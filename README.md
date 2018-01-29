@@ -1,5 +1,5 @@
-# tng-gui
-The 5GTANGO (web) Graphical User Interface
+# 5GTANGO Portal
+The [5GTANGO](http://5gtango.eu) (web) Portal.
 
 ## License
 The tng-gui is published under Apache 2.0 license. Please see the LICENSE file for more details.
