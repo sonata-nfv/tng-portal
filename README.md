@@ -1,6 +1,22 @@
 # 5GTANGO Portal
 
-The [5GTANGO](http://5gtango.eu) (web) Portal.
+This repo contains an Angular app for the [5GTANGO](http://5gtango.eu) (web) Portal.
+
+## Installing
+
+Make sure that you have npm installed. Then, run the following command to install all the required packages and dependences.
+
+```
+npm install
+```
+
+## Running a dev server
+
+If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (html/css/js) change.
+
+```
+ng serve --open
+```
 
 ## License
 
