@@ -1,0 +1,59 @@
+app-login {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  width: calc(100% - 2em);
+  margin: 0 auto;
+  margin-top: 8em;
+  margin-bottom: 8em;
+  background-color: rgb(226, 222, 221);
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  #header {
+    height: 8em;
+    background: url("../../assets/images/tango.svg") no-repeat center
+      rgb(226, 222, 221);
+    background-size: 16em;
+  }
+  .mat-form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    padding: 10px;
+    color: rgb(121, 20, 34);
+    text-align: center;
+  }
+  //   .mat-input-placeholder,
+  //   .mat-form-field-placeholder,
+  //   .mat-form-field-label {
+  //     color: rgb(138, 138, 138);
+  //     // text-align: left;
+  //   }
+  .mat-form-field-ripple {
+    background-color: rgb(121, 20, 34);
+  }
+  button {
+    margin-top: 50px;
+    width: 60%;
+    padding: 10px;
+    background-color: rgb(121, 20, 34);
+    color: rgb(254, 251, 244);
+    font-size: 1.3em;
+    border-radius: 10px;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    color: rgb(121, 20, 34);
+    font-size: 1.3em;
+    padding: 10px;
+
+    &#help {
+      text-align: left;
+      width: 80%;
+    }
+  }
+}
