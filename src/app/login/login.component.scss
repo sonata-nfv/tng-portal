@@ -1,11 +1,15 @@
 app-login {
   display: flex;
+  position: absolute;
   flex-direction: column;
   max-width: 650px;
   width: calc(100% - 2em);
-  margin: 0 auto;
-  margin-top: 8em;
-  margin-bottom: 8em;
+  max-height: 500px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background-color: rgb(226, 222, 221);
   padding: 2em;
   border-radius: 10px;
@@ -26,12 +30,15 @@ app-login {
     color: rgb(121, 20, 34);
     text-align: center;
   }
-  //   .mat-input-placeholder,
-  //   .mat-form-field-placeholder,
-  //   .mat-form-field-label {
-  //     color: rgb(138, 138, 138);
-  //     // text-align: left;
-  //   }
+
+  .mat-form-field-label:not(.mat-form-field-empty) {
+    text-align: start;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: rgb(138, 138, 138);
+    text-align: left;
+  }
   .mat-form-field-ripple {
     background-color: rgb(121, 20, 34);
   }
