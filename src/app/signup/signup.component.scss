@@ -16,11 +16,11 @@ app-signup {
   text-align: center;
   justify-content: center;
   #header {
-    height: 2em;
+    height: 6em;
     background: url("../../assets/images/tango.svg") no-repeat center
       rgb(226, 222, 221);
-    background-size: 8em;
-    width: 20%;
+    background-size: 16em;
+    margin-bottom: 8px;
   }
   .mat-form-field {
     display: flex;
@@ -63,7 +63,7 @@ app-signup {
     font-size: 1.1em;
     padding: 10px;
     &#help {
-      width: 15%;
+      width: 45%;
     }
   }
   #error {
