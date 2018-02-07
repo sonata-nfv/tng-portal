@@ -15,15 +15,6 @@
     <mat-form-field>
       <input matInput type="email" placeholder="Email" name="email" ngModel required>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="First name" name="firstName" ngModel>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Last name" name="lastName" ngModel>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="tel" placeholder="Phone" name="phone" ngModel>
-    </mat-form-field>
     <p id="error" *ngIf="errorString" [innerText]="errorString"></p>
     <button name="signup" [disabled]="!signupForm.valid">REGISTER</button>
     <a routerLink="/login">I have an account</a>

@@ -4,7 +4,8 @@ app-signup {
   flex-direction: column;
   max-width: 650px;
   width: calc(100% - 2em);
-  max-height: 720px;
+  max-height: 500px;
+  padding: 2em;
   margin: auto;
   top: 0;
   left: 0;
@@ -19,7 +20,7 @@ app-signup {
     background: url("../../assets/images/tango.svg") no-repeat center
       rgb(226, 222, 221);
     background-size: 8em;
-    width: 25%;
+    width: 20%;
   }
   .mat-form-field {
     display: flex;
