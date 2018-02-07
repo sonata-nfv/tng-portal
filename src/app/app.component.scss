@@ -1,20 +1,26 @@
 body {
-	overflow: hidden;
-	margin: 0;
+  // overflow: hidden;
+  margin: 0;
 }
 
 app-root {
-    position: absolute;
-	display: flex;
+  position: absolute;
+  display: flex;
 
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 
-	/* Login background */
-	background: url('../assets/images/background-strokes.svg'),  rgb(123, 76, 80);
-    background: url('../assets/images/background-strokes.svg'), linear-gradient(to right, rgb(138, 66, 73) 0%, rgb(123, 76, 80) 68%, rgb(62, 44, 45) 100%);
-	background-position: center center;
-	background-repeat: repeat-y;
-	background-attachment: fixed;
-	background-size: cover;
+  /* Login background */
+  background: url("../assets/images/background-strokes.svg"), rgb(123, 76, 80);
+  background: url("../assets/images/background-strokes.svg"),
+    linear-gradient(
+      to right,
+      rgb(138, 66, 73) 0%,
+      rgb(123, 76, 80) 68%,
+      rgb(62, 44, 45) 100%
+    );
+  background-position: center center;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  background-size: cover;
 }

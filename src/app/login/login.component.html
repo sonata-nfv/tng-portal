@@ -1,14 +1,15 @@
 <div class="container">
 	<div id="header"></div>
-	<form id="login">
+	<form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
 		<mat-form-field>
-			<input matInput id="username" type="text" placeholder="Username/email" name="username" ngModel required>
+			<input matInput type="text" placeholder="Username/email" name="username" ngModel required>
 		</mat-form-field>
 		<mat-form-field>
-			<input matInput id="password" type="password" placeholder="Password" name="password" ngModel required>
+			<input matInput type="password" placeholder="Password" name="password" ngModel required>
 		</mat-form-field>
-		<button id="loginButton" name="login">LOG IN</button>
-		<a id="newAccount">Create new account</a>
-		<a id="help">Help?</a>
+		<p id="error" *ngIf="errorString" [innerText]="errorString"></p>
+		<button name="login" [disabled]="!loginForm.valid">LOG IN</button>
+		<a routerLink="/signup">Create a new account</a>
+		<a id="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
 	</form>
 </div>

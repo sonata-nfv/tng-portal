@@ -1,35 +1,37 @@
-app-login {
+app-signup {
   display: flex;
   position: absolute;
   flex-direction: column;
   max-width: 650px;
   width: calc(100% - 2em);
-  max-height: 500px;
+  max-height: 720px;
   margin: auto;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgb(226, 222, 221);
-  padding: 2em;
   border-radius: 10px;
   text-align: center;
   justify-content: center;
   #header {
-    height: 8em;
+    height: 2em;
     background: url("../../assets/images/tango.svg") no-repeat center
       rgb(226, 222, 221);
-    background-size: 16em;
-    margin-bottom: 20px;
+    background-size: 8em;
+    width: 25%;
   }
   .mat-form-field {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 60%;
-    padding: 10px;
+    padding: 1px;
     color: rgb(121, 20, 34);
     text-align: center;
+  }
+  .mat-form-field-infix {
+    max-height: 15px;
   }
   .mat-form-field-label:not(.mat-form-field-empty) {
     text-align: start;
@@ -42,7 +44,7 @@ app-login {
     background-color: rgb(121, 20, 34);
   }
   button {
-    margin-top: 40px;
+    margin-top: 15px;
     width: 60%;
     padding: 10px;
     background-color: rgb(121, 20, 34);
@@ -69,5 +71,17 @@ app-login {
     color: rgb(201, 0, 16);
     text-align: right;
     width: 80%;
+  }
+  #information {
+    font-size: 1em;
+    color: rgb(201, 0, 16);
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  #note {
+    font-size: 0.8em;
+    color: rgb(138, 138, 138);
+    margin-top: 0px;
+    margin-bottom: 10px;
   }
 }
