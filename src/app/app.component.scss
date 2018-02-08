@@ -1,6 +1,11 @@
 body {
   // overflow: hidden;
   margin: 0;
+  font-family: "Calibri";
+
+  .mat-form-field {
+    font-family: "Calibri";
+  }
 }
 
 app-root {
