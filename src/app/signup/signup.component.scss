@@ -20,7 +20,6 @@ app-signup {
     background: url("../../assets/images/tango.svg") no-repeat center
       rgb(226, 222, 221);
     background-size: 16em;
-    margin-bottom: 8px;
   }
   .mat-form-field {
     display: flex;
@@ -45,7 +44,7 @@ app-signup {
     background-color: rgb(121, 20, 34);
   }
   button {
-    margin-top: 15px;
+    margin-top: 10px;
     width: 60%;
     padding: 10px;
     background-color: rgb(121, 20, 34);
@@ -61,14 +60,14 @@ app-signup {
     flex-direction: column;
     color: rgb(121, 20, 34);
     font-size: 1.1em;
-    padding: 10px;
+    padding: 7px;
     &#help {
       width: 45%;
     }
   }
   #error {
     font-size: 0.9em;
-    margin-top: -15px;
+    margin-top: -20px;
     color: rgb(201, 0, 16);
     text-align: right;
     width: 80%;

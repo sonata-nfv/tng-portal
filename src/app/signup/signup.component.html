@@ -1,22 +1,25 @@
 <div class="container">
   <div id="header"></div>
-  <form (ngSubmit)="signup(signupForm)" #signupForm="ngForm">
+  <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
     <p id="information">Fill the gaps to create a new account</p>
     <p id="note">(*) fields are compulsory</p>
     <mat-form-field>
-      <input matInput type="text" placeholder="Username" name="username" ngModel required>
+      <input matInput type="text" placeholder="Username" formControlName="username" required>
+    </mat-form-field>
+    <p id="error" *ngIf="userErrorString" [innerText]="userErrorString"></p>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" name="password" ngModel required>
+      <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
     </mat-form-field>
+    <p id="error" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
     <mat-form-field>
-      <input matInput type="password" placeholder="Confirm Password" name="confirmPassword" ngModel required>
+      <input matInput type="email" placeholder="Email" formControlName="email" [email]=true required>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput type="email" placeholder="Email" name="email" ngModel required>
-    </mat-form-field>
-    <p id="error" *ngIf="errorString" [innerText]="errorString"></p>
-    <button name="signup" [disabled]="!signupForm.valid">REGISTER</button>
+    <p id="error" *ngIf="signupForm.get('email').invalid && !signupForm.get('email').untouched" [innerText]="emailErrorString"></p>
+    <button name="signup" [disabled]="!signupForm.valid || 
+     signupForm.get('password').value !== signupForm.get('confirmPassword').value">REGISTER</button>
     <a routerLink="/login">I have an account</a>
     <a id="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
   </form>

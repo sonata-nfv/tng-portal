@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 import { AuthService } from "../services/auth/auth.service";
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-signup",
@@ -11,31 +11,54 @@ import { NgForm } from "@angular/forms";
   encapsulation: ViewEncapsulation.None
 })
 export class SignupComponent implements OnInit {
-  errorString: string;
+  userErrorString: string;
+  passwordErrorString: string;
+  emailErrorString: string = "This is not a valid email.";
+
+  signupForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initForm();
+  }
 
-  signup(signupForm: NgForm) {
-    const username = signupForm.controls.username.value;
-    const password = signupForm.controls.password.value;
-    const email = signupForm.controls.email.value;
-    const firstName = signupForm.controls.firstName.value;
-    const lastName = signupForm.controls.lastName.value;
-    const phone = signupForm.controls.phone.value;
+  private initForm() {
+    this.signupForm = new FormGroup({
+      username: new FormControl(),
+      password: new FormControl(),
+      confirmPassword: new FormControl(),
+      email: new FormControl(null, Validators.email)
+    });
+    this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
+  }
 
+  private _onFormChanges(values) {
+    // Check if both password fields match
+    // Possibility to add password restrictions
+    if (values.confirmPassword !== null) {
+      if (values.password !== values.confirmPassword) {
+        this.passwordErrorString = "*Passwords do not match.";
+      } else {
+        this.passwordErrorString = null;
+      }
+    }
+  }
+
+  signup(signupForm: FormGroup) {
     this.authService
-      .signup(username, password, email, firstName, lastName, phone)
+      .signup(
+        this.signupForm.value.username,
+        this.signupForm.value.password,
+        this.signupForm.value.email
+      )
       .then(() => {
         console.log("registered in register...");
         // Set welcome route when user is registered
         // this.router.navigate(["/welcome"]);
       })
       .catch(err => {
-        this.errorString = err;
+        this.userErrorString = err;
       });
-
-    console.log("singing up");
   }
 }
