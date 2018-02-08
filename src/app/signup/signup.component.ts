@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
       .then(() => {
         console.log("registered in register...");
         // Set welcome route when user is registered
-        // this.router.navigate(["/welcome"]);
+        this.router.navigate(["/registered"]);
       })
       .catch(err => {
         this.userErrorString = err;

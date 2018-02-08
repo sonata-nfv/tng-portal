@@ -8,9 +8,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { AuthService } from "./services/auth/auth.service";
+import { RegisteredComponent } from './registered/registered.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, RegisteredComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

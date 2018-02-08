@@ -1,0 +1,46 @@
+app-registered {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  max-width: 650px;
+  width: calc(100% - 2em);
+  max-height: 500px;
+  padding: 2em;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(226, 222, 221);
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  #header {
+    height: 6em;
+    background: url("../../assets/images/tango.svg") no-repeat center
+      rgb(226, 222, 221);
+    background-size: 16em;
+    margin-bottom: 4em;
+  }
+  #thanks {
+    font-size: 1.4em;
+    color: rgb(65, 65, 65);
+    width: 45%;
+    margin-bottom: -30px;
+  }
+  #success {
+    color: rgb(201, 0, 16);
+    font-size: 2.4em;
+    margin-bottom: 6em;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    color: rgb(121, 20, 34);
+    font-size: 1.1em;
+    padding: 2px;
+    &#help {
+      width: 45%;
+    }
+  }
+}
