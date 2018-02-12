@@ -24,9 +24,8 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(username, password)
       .then(() => {
-        console.log("authenticated in login...");
         // Set menu route when user is authenticated
-        // this.router.navigate(["/"]);
+        this.router.navigate(["/"]);
       })
       .catch(err => {
         this.errorString = err;

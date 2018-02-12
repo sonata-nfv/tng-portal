@@ -53,7 +53,6 @@ export class SignupComponent implements OnInit {
         this.signupForm.value.email
       )
       .then(() => {
-        console.log("registered in register...");
         // Set welcome route when user is registered
         this.router.navigate(["/registered"]);
       })

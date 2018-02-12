@@ -1,6 +1,8 @@
+import { APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
@@ -8,18 +10,40 @@ import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { AuthService } from "./services/auth/auth.service";
-import { RegisteredComponent } from './registered/registered.component';
+import { ConfigService } from "./services/config/config.service";
+import { RegisteredComponent } from "./registered/registered.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+export function initConfiguration(configService: ConfigService): Function {
+  return () => configService.init();
+}
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, RegisteredComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SignupComponent,
+    RegisteredComponent,
+    DashboardComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfiguration,
+      deps: [ConfigService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

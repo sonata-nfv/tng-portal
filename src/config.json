@@ -1,0 +1,7 @@
+{
+  "ROUTES": {
+    "BASE": "http://localhost/api/v2",
+    "REGISTER": "/users",
+    "LOGIN": "/sessions"
+  }
+}
