@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   userErrorString: string;
   passwordErrorString: string;
   emailErrorString: string = "This is not a valid email.";
+  validPassword: boolean;
 
   signupForm: FormGroup;
 
@@ -39,8 +40,10 @@ export class SignupComponent implements OnInit {
     if (values.confirmPassword !== null) {
       if (values.password !== values.confirmPassword) {
         this.passwordErrorString = "*Passwords do not match.";
+        this.validPassword = false;
       } else {
         this.passwordErrorString = null;
+        this.validPassword = true;
       }
     }
   }
