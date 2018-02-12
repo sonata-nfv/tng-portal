@@ -84,4 +84,29 @@ app-signup {
     margin-top: 0px;
     margin-bottom: 10px;
   }
+  // Input field is invalid (focus and change field without introducing text)
+  .mat-form-field-invalid .mat-form-field-label {
+    color: rgb(201, 0, 16);
+  }
+  .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+  .mat-form-field-invalid .mat-form-field-label.mat-accent {
+    color: rgb(201, 0, 16);
+  }
+  .mat-form-field-invalid:not(.mat-focused)
+    .mat-form-field-underline
+    .mat-form-field-ripple,
+  .mat-form-field-invalid .mat-form-field-ripple {
+    background-color: rgb(201, 0, 16);
+  }
+  // Input field contains an error (errorString exists)
+  .userErrorString,
+  .passwordErrorString {
+    color: rgb(201, 0, 16);
+    .mat-form-field-ripple {
+      background-color: rgb(201, 0, 16);
+    }
+    .mat-form-field-underline {
+      background-color: rgb(201, 0, 16);
+    }
+  }
 }
