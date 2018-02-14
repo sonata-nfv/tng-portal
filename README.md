@@ -10,6 +10,24 @@ Make sure that you have npm installed. Then, run the following command to instal
 npm install
 ```
 
+### Authentication service
+
+The authentication and registration of the users is made through [son-gkeeper](https://github.com/sonata-nfv/son-gkeeper). The repository is organized by micro-services provided in their own containers created with docker. A docker-compose.yml provides the linking of all the micro-services.
+
+Currently, docker repositories of this project are private. In order to access them it is necessary to be connected to the Athens VPN.
+
+#### Dependencies
+
+* Athens VPN credentials
+* docker
+* docker-compose
+
+#### Building the Gatekeeper
+
+```
+docker-compose up -d
+```
+
 ## Running a dev server
 
 If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (html/css/js) change.
@@ -17,6 +35,10 @@ If you just want to test the app, or start developing something you can quickly 
 ```
 ng serve --open
 ```
+
+### Configuration parameters
+
+The different endpoints needed for this project are defined in the config.json file placed inside /src.
 
 ## License
 
