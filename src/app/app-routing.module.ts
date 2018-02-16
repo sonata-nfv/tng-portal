@@ -11,6 +11,7 @@ const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
   // Use authGuard module to authenticate user in every step
   { path: "", redirectTo: "dashboard", pathMatch: "full" },
+  { path: "portal", redirectTo: "dashboard", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "registered", component: RegisteredComponent },
