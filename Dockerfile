@@ -1,5 +1,5 @@
 # Create image based on the official Node 8.9 image from dockerhub
-FROM node:8.9
+FROM node:8.9.4-slim
 
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
