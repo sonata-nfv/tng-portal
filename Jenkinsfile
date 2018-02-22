@@ -2,15 +2,27 @@ pipeline {
     agent any
 
     stages {
+        stage('Install') {
+            steps {
+                echo 'Installing app dependencies...'
+                sh 'npm install'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building app...'
+                sh 'npm run build'
+            }
+        }
+        stage('Build Docker image') {
+            steps {
+                echo 'Building docker image...'
                 sh 'docker build -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
             }
         }
         stage('Publishing') {
             steps {
-                echo 'Publishing....'
+                echo 'Publishing docker image....'
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
             }
         }
