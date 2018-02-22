@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 
+import { environment } from '../environments/environment';
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -7,5 +9,5 @@ import { Component, ViewEncapsulation } from "@angular/core";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = "app";
+  production = environment.production;
 }

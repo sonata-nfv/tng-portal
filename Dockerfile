@@ -1,23 +1,18 @@
 # Create image based on the official Node 8.9 image from dockerhub
 FROM node:8.9.4-slim
 
-# Create a directory where our app will be placed
-RUN mkdir -p /usr/src/app
-
-# Change directory so that our commands run inside this new directory
-WORKDIR /usr/src/app
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 # Copy dependency definitions
-COPY package.json /usr/src/app
+COPY dist/ /usr/src/app
 
-# Install dependecies
-RUN npm install
+USER node
+RUN mkdir ~/.npm-global
 
-# Get all the code needed to run the app
-COPY . /usr/src/app
+WORKDIR /usr/src/app
 
-# Expose the port the app runs in
+RUN npm i http-server -g
+
 EXPOSE 4200
 
-# Serve the app
-CMD ["npm", "start"]
+CMD ["/home/node/.npm-global/bin/http-server", "-p", "4200"]
