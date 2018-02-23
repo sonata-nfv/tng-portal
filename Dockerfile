@@ -1,18 +1,8 @@
-# Create image based on the official Node 8.9 image from dockerhub
-FROM node:8.9.4-slim
+# # Create image based on the official Node 8.9 image from dockerhub
+FROM nginx:1.13-alpine
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+# Copy distribution app to nginx files
+COPY dist/ /usr/share/nginx/html
 
-# Copy dependency definitions
-COPY dist/ /usr/src/app
-
-USER node
-RUN mkdir ~/.npm-global
-
-WORKDIR /usr/src/app
-
-RUN npm i http-server -g
-
-EXPOSE 4200
-
-CMD ["/home/node/.npm-global/bin/http-server", "-p", "4200"]
+# Set nginx configuration from app files
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
