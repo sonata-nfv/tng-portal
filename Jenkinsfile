@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 echo 'Building docker image...'
-                sh 'docker build -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
+                sh 'docker build --no-cache -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
             }
         }
         stage('Publishing') {
