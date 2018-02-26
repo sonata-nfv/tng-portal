@@ -6,3 +6,6 @@ COPY dist/ /usr/share/nginx/html
 
 # Set nginx configuration from app files
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+# Expose application port
+EXPOSE 4200
