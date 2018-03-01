@@ -9,7 +9,8 @@
 		</mat-form-field>
 		<p id="error" *ngIf="errorString" [innerText]="errorString"></p>
 		<button name="login" [disabled]="!loginForm.valid">LOG IN</button>
-		<a routerLink="/signup">Create a new account</a>
+		<a id="newAccount" routerLink="/signup">Create a new account</a>
 		<a id="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
+		<a id="forgotPassword" href="https://github.com/sonata-nfv/tng-portal">Forgot your password?</a>
 	</form>
 </div>
