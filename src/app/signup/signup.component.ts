@@ -15,10 +15,11 @@ export class SignupComponent implements OnInit {
   passwordErrorString: string;
   emailErrorString: string = "*This is not a valid email.";
   validPassword: boolean;
-  roles = ['Developper', 'Customer'];
-  
   signupForm: FormGroup;
 
+  // Request roles options from the API
+  roles = ['Developper', 'Customer'];
+  
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
@@ -55,7 +56,8 @@ export class SignupComponent implements OnInit {
       .signup(
         this.signupForm.value.username,
         this.signupForm.value.password,
-        this.signupForm.value.email
+        this.signupForm.value.email,
+        this.signupForm.value.role
       )
       .then(() => {
         // Set welcome route when user is registered
