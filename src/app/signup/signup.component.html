@@ -1,12 +1,15 @@
 <div class="container">
   <div id="header"></div>
   <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
+
     <p id="information">Fill the gaps to create a new account</p>
     <p id="note">(*) fields are compulsory</p>
+
     <mat-form-field [ngClass]="{'userErrorString':userErrorString}">
       <input matInput type="text" placeholder="Username" formControlName="username" required>
     </mat-form-field>
     <p id="error" *ngIf="userErrorString" [innerText]="userErrorString"></p>
+
     <mat-form-field [ngClass]="{'passwordErrorString':passwordErrorString}">
       <input matInput type="password" placeholder="Password" formControlName="password" required>
     </mat-form-field>
@@ -14,12 +17,22 @@
       <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
     </mat-form-field>
     <p id="error" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
-    <mat-form-field [ngClass]="{'userErrorString':userErrorString}">
-      <input matInput type="email" placeholder="Email" formControlName="email" [email]=true required>
+
+    <mat-form-field [ngClass]="{'emailErrorString':emailErrorString}">
+        <input matInput type="email" placeholder="Email" formControlName="email" required>
     </mat-form-field>
     <p id="error" *ngIf="signupForm.get('email').invalid && !signupForm.get('email').untouched" [innerText]="emailErrorString"></p>
+
+    <mat-form-field>
+        <mat-select placeholder="Role" formControlName="role" required>
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{ role }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <button name="signup" [disabled]="!signupForm.valid || !validPassword">REGISTER</button>
-    <a routerLink="/login">I have an account</a>
+    <a id="login" routerLink="/login">I have an account</a>
     <a id="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
   </form>
 </div>

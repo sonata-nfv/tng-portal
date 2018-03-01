@@ -9,7 +9,7 @@ app-login {
     right: 0;
     max-width: 635px;
     width: calc(100% - 2em);
-    max-height: 500px;
+    max-height: 550px;
     padding: 2em;
     border-radius: 10px;
     background-color: rgb(226, 222, 221);
@@ -19,8 +19,8 @@ app-login {
       height: 8em;
       background: url("../../assets/images/tango.svg") no-repeat center
         rgb(226, 222, 221);
-      background-size: 16em;
-      margin-bottom: 1em;
+      background-size: 18em;
+      margin-bottom: 2em;
       background-repeat: no-repeat;
     }
     .mat-form-field {
@@ -44,7 +44,7 @@ app-login {
       background-color: rgb(121, 20, 34);
     }
     button {
-      margin-top: 30px;
+      margin-top: 32px;
       width: 60%;
       padding: 10px;
       background-color: rgb(121, 20, 34);

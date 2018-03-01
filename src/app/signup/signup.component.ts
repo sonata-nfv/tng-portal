@@ -13,9 +13,10 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class SignupComponent implements OnInit {
   userErrorString: string;
   passwordErrorString: string;
-  emailErrorString: string = "This is not a valid email.";
+  emailErrorString: string = "*This is not a valid email.";
   validPassword: boolean;
-
+  roles = ['Developper', 'Customer'];
+  
   signupForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -29,7 +30,8 @@ export class SignupComponent implements OnInit {
       username: new FormControl(),
       password: new FormControl(),
       confirmPassword: new FormControl(),
-      email: new FormControl(null, Validators.email)
+      email: new FormControl(null, Validators.email),
+      role: new FormControl()
     });
     this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
   }
@@ -60,7 +62,7 @@ export class SignupComponent implements OnInit {
         this.router.navigate(["/registered"]);
       })
       .catch(err => {
-        this.userErrorString = err;
+        this.userErrorString = "*" + err;
       });
   }
 }
