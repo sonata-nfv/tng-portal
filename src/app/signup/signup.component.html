@@ -24,7 +24,7 @@
     <p id="error" *ngIf="signupForm.get('email').invalid && !signupForm.get('email').untouched" [innerText]="emailErrorString"></p>
 
     <mat-form-field>
-        <mat-select placeholder="Role" formControlName="role" required>
+        <mat-select panelClass="roles" placeholder="Role" formControlName="role" required>
             <mat-option *ngFor="let role of roles" [value]="role">
               {{ role }}
             </mat-option>

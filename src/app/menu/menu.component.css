@@ -1,0 +1,15 @@
+app-menu {
+    display: flex;
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background-color: rgb(218, 218, 218);
+    background: linear-gradient(
+      to right,
+      rgb(245, 245, 245) 85%
+      rgb(248, 248, 248) 85%,
+      rgb(218, 218, 218) 130%
+    );
+   
+
+}
