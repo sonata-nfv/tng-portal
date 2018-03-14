@@ -1,6 +1,6 @@
 {
   "ROUTES": {
-    "BASE": "http://localhost/api/v2",
+    "BASE": "https://sp.int3.sonata-nfv.eu/api/v2/",
     "REGISTER": "/users",
     "LOGIN": "/sessions"
   }

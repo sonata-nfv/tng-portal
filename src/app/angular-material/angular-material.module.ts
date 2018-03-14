@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MatInputModule, MatFormFieldModule } from "@angular/material";
+import { MatInputModule, MatFormFieldModule, MatSelectModule} from "@angular/material";
 
-const modules = [BrowserAnimationsModule, MatFormFieldModule, MatInputModule];
+const modules = [BrowserAnimationsModule, MatFormFieldModule, MatInputModule, MatSelectModule];
 
 @NgModule({
   imports: [modules],

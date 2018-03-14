@@ -41,7 +41,7 @@ export class AuthService {
     });
   }
 
-  signup(username: string, password: string, email: string): any {
+  signup(username: string, password: string, email: string, userType: string): any {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       headers.set("Content-Type", "application/json");
@@ -50,7 +50,7 @@ export class AuthService {
         username: username,
         password: password,
         email: email,
-        user_type: "customer"
+        user_type: userType
       };
       this.http
         .post(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, data, {
