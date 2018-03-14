@@ -17,8 +17,8 @@ export class SignupComponent implements OnInit {
   validPassword: boolean;
   signupForm: FormGroup;
 
-  // Request roles options from the API
-  roles = ['Developper', 'Customer'];
+  // TODO Request roles options from the API
+  roles = ['Developer', 'Customer'];
   
   constructor(private authService: AuthService, private router: Router) {}
 
