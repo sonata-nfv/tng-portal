@@ -1,3 +1,10 @@
 export const environment = {
-  production: true
+  production: true,
+  features_available:  [
+    "DASHBOARD",
+    "USERS",
+    "V&V",
+    "SERVICE PLATFORM",
+    "BSS"
+  ]
 };
