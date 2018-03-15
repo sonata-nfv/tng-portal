@@ -1,3 +1,39 @@
-<p>
-  menu works!
-</p>
+<mat-sidenav-container class="menu">
+  <mat-sidenav-content class="menu-items" #sidenav mode="side">
+    <div class="avatar"></div>
+    <p class="name">Ana</p>
+    <p>ana@ana</p>
+    <button class="logout">
+      <i class="wui wui-power-off"></i>
+      <span>Log out</span> 
+    </button>
+    <div class="sections">
+      <button (click)="sidenav.close()"> 
+        <i class="wui wui-dashboard-alt"></i>
+        <span>DASHBOARD</span> 
+      </button>
+      <button (click)="sidenav.close()">
+          <i class="wui wui-user-group-alt"></i>
+          <span>USERS</span> 
+      </button>
+      <button (click)="sidenav.open()">
+          <i class="wui wui-check-circle-alt"></i>
+          <span>V&V</span> 
+      </button>
+      <button (click)="sidenav.open()">
+          <i class="wui wui-network-alt"></i>
+          <span>SERVICE PLATFORM</span> 
+      </button>      
+      <button (click)="sidenav.open()">
+          <i class="wui wui-table-alt"></i>
+          <span>BSS</span> 
+      </button>
+    </div>
+    <div class="logo"></div>
+  </mat-sidenav-content>
+  <mat-sidenav class="menu-options" align="end" #sidenav mode="side" [(opened)]="opened" >
+        Menu options
+  </mat-sidenav>
+</mat-sidenav-container>
+
+
