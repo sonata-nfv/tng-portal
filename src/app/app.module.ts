@@ -13,7 +13,8 @@ import { AuthService } from "./services/auth/auth.service";
 import { ConfigService } from "./services/config/config.service";
 import { RegisteredComponent } from "./registered/registered.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './menu/menu.component';
+import { IndexComponent } from './index/index.component';
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -26,7 +27,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SignupComponent,
     RegisteredComponent,
     DashboardComponent,
-    // MenuComponent
+    MenuComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

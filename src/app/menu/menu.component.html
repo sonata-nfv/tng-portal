@@ -1,3 +1,51 @@
-<p>
-  menu works!
-</p>
+<mat-sidenav-container class="menu"  autosize>
+  <mat-sidenav class="menu-items" #sidenav mode="side" opened="true">
+    <div class="avatar"></div>
+    <p class="name">Ana</p>
+    <p>ana@ana</p>
+    <button class="logout">
+      <i class="wui wui-power-off"></i>
+      <span>Log out</span> 
+    </button>
+    <div class="sections">
+      <button>
+        <i class="wui wui-dashboard-alt"></i>
+        <span>DASHBOARD</span> 
+      </button>
+      <button>
+          <i class="wui wui-user-group-alt"></i>
+          <span>USERS</span> 
+      </button>
+      <button>
+          <i class="wui wui-check-circle-alt"></i>
+          <span>V&V</span> 
+      </button>
+      <button>
+          <i class="wui wui-network-alt"></i>
+          <span>SERVICE PLATFORM</span> 
+      </button>      
+      <button>
+          <i class="wui wui-table-alt"></i>
+          <span>BSS</span> 
+      </button>
+    </div>
+    <div class="logo"></div>
+  </mat-sidenav>
+
+  <mat-sidenav class="menu-options" #sidenav mode="side" opened="false"  *ngIf="true">
+      Menu options
+  </mat-sidenav>
+  <!-- <mat-sidenav-content class="menu-options"> -->
+        <!-- <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')"> -->
+       
+    <!-- <mat-sidenav class="menu-items" #sidenav mode="side" opened="false">
+      Menu options
+    </mat-sidenav> -->
+
+        <!-- <mat-sidenav-content class="index"> -->
+          <!-- <app-index></app-index> -->
+        <!-- </mat-sidenav-content> -->
+  <!-- </mat-sidenav-content> -->
+</mat-sidenav-container>
+
+

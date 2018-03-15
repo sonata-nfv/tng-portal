@@ -1,0 +1,108 @@
+app-menu {
+  .menu {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 450px;
+    .mat-drawer-container, .mat-drawer {
+      background-color: rgb(245, 245, 245);
+    }
+    background: linear-gradient(
+        to right,
+        rgb(245, 245, 245) 85%
+        rgb(248, 248, 248) 85%,
+        rgb(218, 218, 218) 130%
+    );
+  }
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 150px;
+  }
+  .avatar {
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 4px;
+    background-image: url("../../assets/images/user.svg");
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+  }
+  p {
+    margin: auto;
+    color: rgb(121, 20, 34);
+    &.name {
+      font-size: 26px;
+    }
+    &.email {
+      font-size: 14px;
+    }
+  }
+  .logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 7px;
+    font-size: 12px;
+    border: none;
+    background: none;
+    color: rgb(138, 138, 138);
+    cursor: pointer;
+    span {
+      text-decoration: underline;
+      padding: 3px;
+    }
+  }
+  .logout:focus {
+      outline: none;
+  }
+  .sections {
+    flex: 1 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 25px;
+      border: none;
+      background: none;
+      color: rgb(138, 138, 138);
+      cursor: pointer;
+      i:before {
+        font-size: 55px;
+        color: rgb(138, 138, 138);
+      }
+    }
+    button:focus {
+      outline: none;
+      color: rgb(201, 0, 16);
+      i:before {
+        font-size: 55px;
+        color: rgb(201, 0, 16);
+      }
+    }
+  }
+  .logo {
+    height: 3em;
+    width: 100%;
+    background-position: center;
+    background-image: url("../../assets/images/tango.svg");
+    background-repeat: no-repeat;
+    background-size: 7em;
+  }
+  .menu-options {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 300px;
+    margin-left: 150px;
+  }
+}
