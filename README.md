@@ -18,6 +18,19 @@ If you just want to test the app, or start developing something you can quickly 
 ng serve --open
 ```
 
+## Configuration of the menu items displayed
+Depending on the deployed modules in the infraestructure, the menu shall display only those available. For that, there is a new configuration variable called features_available in the environments file. Any of them might be removed before serving the app to remove them. 
+By default, all the modules are activated. 
+```
+  features_available:  [
+    "DASHBOARD",
+    "USERS",
+    "V&V",
+    "SERVICE PLATFORM",
+    "BSS"
+  ]
+```
+
 ### Authentication service
 
 The authentication and registration of the users is made through [son-gkeeper](https://github.com/sonata-nfv/son-gkeeper). The repository is organized by micro-services provided in their own containers created with docker. A docker-compose.yml provides the linking of all the micro-services.
