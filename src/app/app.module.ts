@@ -16,6 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 
+import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
+
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
 }
@@ -28,7 +30,8 @@ export function initConfiguration(configService: ConfigService): Function {
     RegisteredComponent,
     DashboardComponent,
     MenuComponent,
-    IndexComponent
+    IndexComponent,
+    FeatureAvailableDirective
   ],
   imports: [
     BrowserModule,
