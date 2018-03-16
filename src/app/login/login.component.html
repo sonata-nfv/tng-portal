@@ -1,16 +1,21 @@
 <div class="container">
-	<div id="header"></div>
-	<form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+	<div class="header"></div>
+	<form (ngSubmit)="login(loginForm)" #loginForm="ngForm" class="form">
 		<mat-form-field [ngClass]="{'errorString':errorString}">
 			<input matInput type="text" placeholder="Username/email" name="username" ngModel required>
 		</mat-form-field>
 		<mat-form-field [ngClass]="{'errorString':errorString}">
 			<input matInput type="password" placeholder="Password" name="password" ngModel required>
 		</mat-form-field>
-		<p id="error" *ngIf="errorString" [innerText]="errorString"></p>
+		<p class="error" *ngIf="errorString" [innerText]="errorString"></p>
 		<button name="login" [disabled]="!loginForm.valid">LOG IN</button>
-		<a id="newAccount" routerLink="/signup">Create a new account</a>
-		<a id="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
-		<a id="forgotPassword" href="https://github.com/sonata-nfv/tng-portal">Forgot your password?</a>
+		<a class="newAccount" routerLink="/signup">Create a new account</a>
 	</form>
+	<div class="bottom">
+		<div class="options">
+			<a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
+			<a class="forgotPassword" href="https://github.com/sonata-nfv/tng-portal">Forgot your password?</a>
+		</div>
+		<div class="redLine"></div>
+	</div>
 </div>
