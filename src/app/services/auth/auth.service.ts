@@ -75,7 +75,7 @@ export class AuthService {
         username: username,
         password: password,
         email: email,
-        user_type: userType
+        user_type: userType.toLocaleLowerCase()
       };
       this.http
         .post(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, data, {
