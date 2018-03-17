@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 
+import { AuthService } from "../services/auth/auth.service";
+import { Router } from "@angular/router";
+
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -13,7 +16,7 @@ export class MenuComponent implements OnInit {
   section: String;
   subsection: String;
   @ViewChild("sidenav") sideNav : MatSidenav;
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,10 +28,18 @@ export class MenuComponent implements OnInit {
       this.sideNav.open();
     }
 
-    if(buttonId === 'sp') {
+    if(buttonId === 'dashboard') {
+      this.router.navigate(["/dashboard"]);
+    } else if(buttonId === 'users') {
+      this.router.navigate(["/users"]);
+    } else if(buttonId === 'v&v'){
+      this.router.navigate(["/validation"]);
+    } else if(buttonId === 'sp'){
       this.section = 'policies';
+      this.router.navigate(["/servicePlatform"]);
     } else if(buttonId === 'bss') {
       this.section = 'availableNS';
+      this.router.navigate(["/serviceManagement"]);
     }
     this.menu = buttonId;
   }
