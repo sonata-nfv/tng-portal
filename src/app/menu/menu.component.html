@@ -1,5 +1,5 @@
 <mat-sidenav-container class="menu">
-  <mat-sidenav-content class="menu-items" #sidenav mode="side">
+  <mat-sidenav-content class="menu-items"  mode="side">
     <div class="avatar"></div>
     <p class="name">Ana</p>
     <p>ana@ana</p>
@@ -8,40 +8,57 @@
       <span>Log out</span> 
     </button>
     <div class="sections">
-      <button (click)="sidenav.close()" ifFeatureAvailable="dashboard"> 
+      <button [ngClass]="{ active: menu === 'dashboard' }" (click)="setMenu($event, 'dashboard')" ifFeatureAvailable="dashboard"> 
         <i class="wui wui-dashboard-alt"></i>
         <span>DASHBOARD</span> 
       </button>
-      <button (click)="sidenav.close()" ifFeatureAvailable="users">
+      <button [ngClass]="{ active: menu === 'users' }" (click)="setMenu($event, 'users')" ifFeatureAvailable="users">
           <i class="wui wui-user-group-alt"></i>
           <span>USERS</span> 
       </button>
-      <button (click)="sidenav.open()" ifFeatureAvailable="v&v">
+      <button [ngClass]="{ active: menu === 'v&v' }" (click)="setMenu($event, 'v&v')" ifFeatureAvailable="v&v">
           <i class="wui wui-check-circle-alt"></i>
           <span>V&V</span> 
       </button>
-      <button (click)="sidenav.open()" ifFeatureAvailable="service platform">
+      <button [ngClass]="{ active: menu === 'sp' }" (click)="setMenu($event, 'sp')" ifFeatureAvailable="service platform">
           <i class="wui wui-network-alt"></i>
           <span>SERVICE PLATFORM</span> 
       </button>      
-      <button (click)="sidenav.open()" ifFeatureAvailable="bss">
+      <button [ngClass]="{ active: menu === 'bss' }" (click)="setMenu($event, 'bss')" ifFeatureAvailable="bss">
           <i class="wui wui-table-alt"></i>
           <span>Service Management</span> 
       </button>
     </div>
     <div class="logo"></div>
   </mat-sidenav-content>
-  <mat-sidenav class="menu-options" align="end" #sidenav mode="side" >
-    <!-- <div class="options">
-      <button>Available network services</button>
-      <button>Requests</button>
-      <button>Network service instances</button>
-      <button>Licence store</button>
-      <div class="store">
-          <button>Service licences</button>
-          <button>User licences</button>
+
+  <mat-sidenav class="menu-options" align="end" #sidenav mode="side">
+    <div class="options" *ngIf="menu === 'v&v'"></div>
+    <div class="options" *ngIf="menu === 'sp'">
+      <!-- TODO by default true unless other section chosen -->
+      <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">POLICIES</button>
+        <div class="section" *ngIf="section === 'policies'">
+          <button [ngClass]="{ active: subsection === 'deploymentPolicy' }" (click)="setSubsection($event, 'deploymentPolicy')">Deployment Policies</button>
+          <button [ngClass]="{ active: subsection === 'runtimePolicy' }" (click)="setSubsection($event, 'runtimePolicy')">Runtime Policies</button>
+        </div>
+      <button [ngClass]="{ active: section === 'sla' }" (click)="setSection($event, 'sla')">SLA</button>
+        <div class="section" *ngIf="section === 'sla'">
+          <button [ngClass]="{ active: subsection === 'slaAgreements' }" (click)="setSubsection($event, 'slaAgreements')">SLA Agreements</button>
+          <button [ngClass]="{ active: subsection === 'slaTemplates' }" (click)="setSubsection($event, 'slaTemplates')">SLA Templates</button>
+        </div>
+      <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">SLICES</button>
+    </div>
+    
+    <div class="options" *ngIf="menu === 'bss'">
+      <button [ngClass]="{ active: section === 'availableNS' }" (click)="setSection($event, 'availableNS')">Available network services</button>
+      <button [ngClass]="{ active: section === 'requests' }" (click)="setSection($event, 'requests')">Requests</button>
+      <button [ngClass]="{ active: section === 'nsInstances' }" (click)="setSection($event, 'nsInstances')">Network service instances</button>
+      <button [ngClass]="{ active: section === 'store' }" (click)="setSection($event, 'store')">Licence store</button>
+      <div class="section" *ngIf="section === 'store'">
+          <button [ngClass]="{ active: subsection === 'serviceLicences' }" (click)="setSubsection($event, 'serviceLicences')">Service licences</button>
+          <button [ngClass]="{ active: subsection === 'userLicences' }" (click)="setSubsection($event, 'userLicences')">User licences</button>
       </div>
-    </div> -->
+    </div>
   </mat-sidenav>
 </mat-sidenav-container>
 

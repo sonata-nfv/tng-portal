@@ -76,13 +76,13 @@ app-menu {
       background: none;
       color: rgb(138, 138, 138);
       cursor: pointer;
+      outline: none;
       i:before {
         font-size: 55px;
         color: rgb(138, 138, 138);
       }
     }
-    button:focus {
-      outline: none;
+    button.active {
       color: rgb(201, 0, 16);
       i:before {
         font-size: 55px;
@@ -99,10 +99,53 @@ app-menu {
     background-size: 7em;
   }
   .menu-options {
+    flex: 1 0;
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
     width: 250px;
-    // right: 200px;
+    .options {
+      display: flex;
+      flex-direction: column; 
+      button {
+        padding: 10px;
+        border: none;
+        background: none;
+        text-align: center;
+        margin-top: 45px;
+        font-size: 18px;
+        color: rgb(138, 138, 138);
+        cursor: pointer;
+        outline: none;
+      }
+      button.active {
+        text-align: left;
+        outline: none;
+        color: rgb(201, 0, 16);
+        border-bottom: 2px solid rgb(201, 0, 16);
+        width: 95%;
+        margin-left: 4px;
+      }
+      .section {
+        display: flex;
+        flex-direction: column;
+        button {
+          margin-top: 10px;
+          margin-left: 10px;
+          text-align: left;
+          font-size: 15px;
+          width: 90%;
+          margin-left: 10px;
+          border-bottom: 1px solid rgb(210, 205, 205);
+          outline: none;
+        } 
+        button.active {
+          outline: none;
+          color: rgb(201, 0, 16);
+          border-bottom: 2px solid rgb(201, 0, 16);
+        }
+      }
+     
+    }
   }
 }

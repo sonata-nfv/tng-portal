@@ -9,5 +9,5 @@ import { environment } from '../environments/environment';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  production = environment.production;
+  // production = environment.production;
 }

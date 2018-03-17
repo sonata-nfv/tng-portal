@@ -1,7 +1,7 @@
 {
   "ROUTES": {
     "BASE": "https://sp.int3.sonata-nfv.eu/api/v2/",
-    "REGISTER": "/users",
-    "LOGIN": "/sessions"
+    "REGISTER": "users",
+    "LOGIN": "sessions"
   }
 }
