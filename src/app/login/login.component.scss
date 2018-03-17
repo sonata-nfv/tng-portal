@@ -14,95 +14,114 @@ app-login {
     border-radius: 10px;
     background-color: rgb(226, 222, 221);
     flex-direction: column;    
-    text-align: center;
-    #header {
+    .header {
       height: 8em;
       background: url("../../assets/images/tango.svg") no-repeat center
         rgb(226, 222, 221);
       background-size: 18em;
-      margin-bottom: 2em;
       background-repeat: no-repeat;
     }
-    .mat-form-field {
+    .form {
+      flex: 1 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .mat-form-field {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 60%;
+        padding: 10px;
+        color: rgb(121, 20, 34);
+        text-align: center;
+        font-size: 1.2em;
+      }
+      .mat-form-field-label:not(.mat-form-field-empty) {
+        text-align: start;
+      }
+      .mat-focused .mat-form-field-label {
+        color: rgb(138, 138, 138);
+        text-align: left;
+      }
+      .mat-form-field-ripple {
+        background-color: rgb(121, 20, 34);
+      }
+      button {
+        margin-top: 32px;
+        width: 60%;
+        padding: 10px;
+        background-color: rgb(121, 20, 34);
+        color: rgb(254, 251, 244);
+        font-size: 1.2em;
+        border-radius: 10px;
+      }
+      button:disabled {
+        background-color: rgb(65, 65, 65);
+      }
+      .error {
+        font-size: 0.9em;
+        margin-top: -15px;
+        color: rgb(201, 0, 16);
+        text-align: right;
+        width: 80%;
+      }
+      // Input field is invalid (focus and change field without introducing text)
+      .mat-form-field-invalid .mat-form-field-label {
+        color: rgb(201, 0, 16);
+      }
+      .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+      .mat-form-field-invalid .mat-form-field-label.mat-accent {
+        color: rgb(201, 0, 16);
+      }
+      .mat-form-field-invalid:not(.mat-focused)
+        .mat-form-field-underline
+        .mat-form-field-ripple,
+      .mat-form-field-invalid .mat-form-field-ripple {
+        background-color: rgb(201, 0, 16);
+      }
+      // Input field contains an error (errorString exists)
+      .errorString {
+        color: rgb(201, 0, 16);
+        .mat-form-field-ripple {
+          background-color: rgb(201, 0, 16);
+        }
+        .mat-form-field-underline {
+          background-color: rgb(201, 0, 16);
+        }
+      }
+      a {
+        color: rgb(121, 20, 34);
+        font-size: 1.2em;
+        &.newAccount {
+          padding: 15px;
+        }
+      }
+    }
+    .bottom {
       display: flex;
       flex-direction: column;
-      margin: 0 auto;
-      width: 60%;
-      padding: 10px;
-      color: rgb(121, 20, 34);
-      text-align: center;
-      font-size: 1.2em;
-    }
-    .mat-form-field-label:not(.mat-form-field-empty) {
-      text-align: start;
-    }
-    .mat-focused .mat-form-field-label {
-      color: rgb(138, 138, 138);
-      text-align: left;
-    }
-    .mat-form-field-ripple {
-      background-color: rgb(121, 20, 34);
-    }
-    button {
-      margin-top: 32px;
-      width: 60%;
-      padding: 10px;
-      background-color: rgb(121, 20, 34);
-      color: rgb(254, 251, 244);
-      font-size: 1.2em;
-      border-radius: 10px;
-    }
-    button:disabled {
-      background-color: rgb(65, 65, 65);
-    }
-    a {
-      display: flex;
-      color: rgb(121, 20, 34);
-      font-size: 1.2em;
-      &#newAccount {
-        padding: 15px;
-        flex-direction: column;
+      justify-content: center;
+      .options {
+        margin-bottom: auto;
+        margin-left: 130px;
+        a {
+          color: rgb(121, 20, 34);
+          font-size: 1.2em;
+          &.help {
+            margin-right: 6px;
+          }
+          &.forgotPassword {
+            margin-left: 6px;
+          }
+        }
       }
-      &#help, &#forgotPassword {
-        position:absolute;
-        bottom: 20px;
-      }
-      &#help {
-        left: 23%;
-      }
-      &#forgotPassword {
-        left: 32%
-      }
-    }
-    #error {
-      font-size: 0.9em;
-      margin-top: -15px;
-      color: rgb(201, 0, 16);
-      text-align: right;
-      width: 80%;
-    }
-    // Input field is invalid (focus and change field without introducing text)
-    .mat-form-field-invalid .mat-form-field-label {
-      color: rgb(201, 0, 16);
-    }
-    .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
-    .mat-form-field-invalid .mat-form-field-label.mat-accent {
-      color: rgb(201, 0, 16);
-    }
-    .mat-form-field-invalid:not(.mat-focused)
-      .mat-form-field-underline
-      .mat-form-field-ripple,
-    .mat-form-field-invalid .mat-form-field-ripple {
-      background-color: rgb(201, 0, 16);
-    }
-    // Input field contains an error (errorString exists)
-    .errorString {
-      color: rgb(201, 0, 16);
-      .mat-form-field-ripple {
-        background-color: rgb(201, 0, 16);
-      }
-      .mat-form-field-underline {
-        background-color: rgb(201, 0, 16);
+      .redLine {
+        margin: 0 auto;
+        width: 400px;
+        border-bottom: 3px solid rgb(201, 0, 16);
+        margin-bottom: -2em;
       }
     }
   }

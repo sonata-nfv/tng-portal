@@ -12,9 +12,13 @@ import { SignupComponent } from "./signup/signup.component";
 import { AuthService } from "./services/auth/auth.service";
 import { ConfigService } from "./services/config/config.service";
 import { RegisteredComponent } from "./registered/registered.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
+import { ValidationComponent } from './validation/validation.component';
+import { ServicePlatformComponent } from './service-platform/service-platform.component';
+import { ServiceManagementComponent } from './service-management/service-management.component';
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
@@ -31,7 +35,11 @@ export function initConfiguration(configService: ConfigService): Function {
     DashboardComponent,
     MenuComponent,
     IndexComponent,
-    FeatureAvailableDirective
+    FeatureAvailableDirective,
+    ServiceManagementComponent,
+    UsersComponent,
+    ValidationComponent,
+    ServicePlatformComponent
   ],
   imports: [
     BrowserModule,
