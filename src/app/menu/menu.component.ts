@@ -56,4 +56,9 @@ export class MenuComponent implements OnInit {
   setSubsection(e, buttonId) {
     this.subsection = buttonId;
   }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/login"]);
+  }
 }

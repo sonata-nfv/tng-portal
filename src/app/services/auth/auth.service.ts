@@ -41,6 +41,31 @@ export class AuthService {
     });
   }
 
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    return;
+    // return new Promise((resolve, reject) => {
+    //   let headers = new HttpHeaders();
+    //   headers.set("Content-Type", "application/json");
+
+    //   this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+    //       headers: headers
+    //     })
+    //     .subscribe(
+    //       response => {
+    //         localStorage.removeItem("token");
+    //         localStorage.removeItem("username");
+    //         resolve();
+    //       },
+    //       (error: HttpErrorResponse) => {
+    //         // reject(error.error.error.message);
+    //         reject();
+    //       }
+    //     );
+    //   });
+  }
+
   signup(username: string, password: string, email: string, userType: string): any {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
