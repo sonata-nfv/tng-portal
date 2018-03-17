@@ -6,18 +6,20 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { RegisteredComponent } from "./registered/registered.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { MenuComponent } from "./menu/menu.component";
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
   // Use authGuard module to authenticate user in every step
-  { path: "", redirectTo: "dashboard", pathMatch: "full" },
-  { path: "portal", redirectTo: "dashboard", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "registered", component: RegisteredComponent },
-  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: "menu", component: MenuComponent}
+  { path: "portal", redirectTo: "index", pathMatch: "full" },
+  { path: "", component: IndexComponent, canActivate: [AuthGuard], children: [
+    { path: "", redirectTo: "dashboard", pathMatch: "full" },
+    { path: "dashboard", component: DashboardComponent },
+
+  ]}
 ];
 
 @NgModule({

@@ -1,7 +1,8 @@
 app-dashboard {
     display: flex;
-    position: absolute;
-    width: 100%;
+    // position: absolute;
+    flex: 1 1;
+    width: auto;
     height: 100%;
     background-color: rgb(254, 254, 254);
     h1 {
