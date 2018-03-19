@@ -9,8 +9,6 @@ import { AngularMaterialModule } from "./angular-material/angular-material.modul
 import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
-import { AuthService } from "./services/auth/auth.service";
-import { ConfigService } from "./services/config/config.service";
 import { RegisteredComponent } from "./registered/registered.component";
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -19,6 +17,10 @@ import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
 import { ServiceManagementComponent } from './service-management/service-management.component';
+
+import { AuthService } from "./shared/services/auth/auth.service";
+import { ConfigService } from "./shared/services/config/config.service";
+import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
@@ -52,6 +54,7 @@ export function initConfiguration(configService: ConfigService): Function {
   providers: [
     AuthService,
     ConfigService,
+    ServiceManagementService,
     {
       provide: APP_INITIALIZER,
       useFactory: initConfiguration,

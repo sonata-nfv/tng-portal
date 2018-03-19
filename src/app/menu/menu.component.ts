@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 
-import { AuthService } from "../services/auth/auth.service";
+import { AuthService } from "../shared/services/auth/auth.service";
 import { Router } from "@angular/router";
 
 import { MatSidenav } from '@angular/material';
@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem("username");
-    // TODO return email in login response
+    // TODO get email from user data request
     this.email = "example@gmail.com";
   }
 

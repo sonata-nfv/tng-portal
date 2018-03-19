@@ -58,7 +58,7 @@ export class AuthService {
             resolve();
           },
           (error: HttpErrorResponse) => {
-            reject("Error retrieving user data");
+            reject(error.error.error.message);
           }
         );
     });
