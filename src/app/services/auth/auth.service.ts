@@ -49,7 +49,7 @@ export class AuthService {
     //   let headers = new HttpHeaders();
     //   headers.set("Content-Type", "application/json");
 
-    //   this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+    //   this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, {
     //       headers: headers
     //     })
     //     .subscribe(

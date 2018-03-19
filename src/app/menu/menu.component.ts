@@ -15,10 +15,15 @@ export class MenuComponent implements OnInit {
   menu: String;
   section: String;
   subsection: String;
+  username: String;
+  email: String;
   @ViewChild("sidenav") sideNav : MatSidenav;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.username = localStorage.getItem("username");
+    // TODO return email in login response
+    this.email = "example@gmail.com";
   }
 
   setMenu(e, buttonId) {
