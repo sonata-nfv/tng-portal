@@ -63,10 +63,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().then(() => {
-      // Set portal route when log out
-      this.router.navigate(["/login"]);
-    })
+    this.router.navigate(["/login"]);
+    this.authService.logout().then()
     .catch(err => {
       console.log(err);
     });

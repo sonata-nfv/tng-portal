@@ -65,6 +65,8 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     return new Promise((resolve, reject) => {
       let headers = this.getAuthHeaders();
 
@@ -72,8 +74,6 @@ export class AuthService {
           headers: headers
         })
         .subscribe(() => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("username");
           resolve();
         }, (error: HttpErrorResponse) => {
             reject(error);
