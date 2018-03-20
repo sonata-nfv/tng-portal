@@ -9,21 +9,33 @@ import { ServiceManagementService } from "../shared/services/serviceManagement/s
   encapsulation: ViewEncapsulation.None
 })
 export class AvailableNetworkServicesComponent implements OnInit {
-  items: Array<String>;
+  networkServices: Array<Object>;
+  displayedColumns = ['Service Name', 'Vendor', 'Version', 'Service ID', 'Type'];
+  searchText: string;
+
   constructor(private serviceManagementService: ServiceManagementService) { 
 
   }
 
   ngOnInit() {
-    
     this.serviceManagementService.getNetworkServices().then((response) => {
-      // Set items for search-bar component by name
-      this.items = response.map(item => item.nsd.name);
       // Populate the list of available network services
-      console.log(this.items);
-    
+      this.networkServices = response.map(function(item) { 
+        return {
+          searchField: item.nsd.name,
+          serviceName: item.nsd.name,
+          vendor: item.nsd.vendor,
+          version: item.nsd.version,
+          serviceId: item.uuid,
+          type: item.user_licence
+        }
+      });    
     }).catch(err => {
         console.log(err.error.error.message);
     });;
+  }
+
+  receiveMessage($event) {
+    this.searchText = $event;
   }
 }

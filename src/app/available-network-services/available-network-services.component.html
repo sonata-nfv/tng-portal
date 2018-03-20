@@ -1,4 +1,29 @@
 <h1>SERVICE MANAGEMENT</h1>
 <h2>Available network services</h2>
 
-<app-search-bar [items]="items"></app-search-bar>
+<app-search-bar (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+<mat-table [dataSource]="networkServices | filter: searchText"> 
+    <ng-container matColumnDef="Service Name">
+        <mat-header-cell *matHeaderCellDef> Service Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.serviceName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.vendor}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.version}} </mat-cell>
+    </ng-container>    
+    <ng-container matColumnDef="Service ID">
+        <mat-header-cell *matHeaderCellDef> Service ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.serviceId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Type">
+        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
