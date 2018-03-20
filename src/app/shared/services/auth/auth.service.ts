@@ -65,28 +65,21 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    return;
-    // return new Promise((resolve, reject) => {
-    //   let headers = new HttpHeaders();
-    //   headers.set("Content-Type", "application/json");
+    return new Promise((resolve, reject) => {
+      let headers = this.getAuthHeaders();
 
-    //   this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, {
-    //       headers: headers
-    //     })
-    //     .subscribe(
-    //       response => {
-    //         localStorage.removeItem("token");
-    //         localStorage.removeItem("username");
-    //         resolve();
-    //       },
-    //       (error: HttpErrorResponse) => {
-    //         // reject(error.error.error.message);
-    //         reject();
-    //       }
-    //     );
-    //   });
+      this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+          headers: headers
+        })
+        .subscribe(() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("username");
+          resolve();
+        }, (error: HttpErrorResponse) => {
+            reject(error);
+          }
+        );
+      });
   }
 
   signup(username: string, password: string, email: string, userType: string): any {
