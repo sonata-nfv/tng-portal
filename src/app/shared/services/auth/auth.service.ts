@@ -123,6 +123,10 @@ export class AuthService {
     );
   }
 
+  getAuthHeaders() {
+    return this.authHeaders;
+  }
+
   isAuthenticated(): boolean {
     if (localStorage.getItem("token")) {
       this.setAuthHeaders();

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ConfigService } from ".././config/config.service";
+import { AuthService } from ".././auth/auth.service";
+
 import {
   HttpClient,
   HttpErrorResponse,
@@ -10,11 +12,11 @@ import {
 export class ServiceManagementService {
   authHeaders: HttpHeaders;
 
-  constructor(private config: ConfigService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private config: ConfigService, private http: HttpClient) {}
 
   getNetworkServices(): any {
     return new Promise((resolve, reject) => {
-      let headers = new HttpHeaders();
+      let headers = this.authService.getAuthHeaders();
       headers.set("Content-Type", "application/json");
 
       this.http
@@ -29,5 +31,5 @@ export class ServiceManagementService {
         );
     });
   }
-  
+
 }
