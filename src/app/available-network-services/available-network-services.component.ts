@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
 
@@ -8,9 +9,10 @@ import { ServiceManagementService } from "../shared/services/serviceManagement/s
   styleUrls: ['./available-network-services.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AvailableNetworkServicesComponent implements OnInit {
+export class AvailableNetworkServicesComponent {
   networkServices: Array<Object>;
-  displayedColumns = ['Service Name', 'Vendor', 'Version', 'Service ID', 'Type'];
+  dataSource = new MatTableDataSource();
+  displayedColumns = ['Status', 'Service Name', 'Vendor', 'Version', 'Service ID', 'Type'];
   searchText: string;
 
   constructor(private serviceManagementService: ServiceManagementService) { 
@@ -23,13 +25,16 @@ export class AvailableNetworkServicesComponent implements OnInit {
       this.networkServices = response.map(function(item) { 
         return {
           searchField: item.nsd.name,
+          status: item.status,
           serviceName: item.nsd.name,
           vendor: item.nsd.vendor,
           version: item.nsd.version,
           serviceId: item.uuid,
           type: item.user_licence
         }
-      });    
+      });
+      console.log(response)
+      this.dataSource = new MatTableDataSource(this.networkServices);   
     }).catch(err => {
         console.log(err.error.error.message);
     });;

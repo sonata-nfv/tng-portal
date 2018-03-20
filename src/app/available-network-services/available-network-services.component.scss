@@ -25,6 +25,36 @@ app-available-network-services {
         color: rgb(138, 138, 138);
         font-size: 32px;
     }
-   
+    mat-table {
+        width: 90%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        text-align: center;
+    }
+    .mat-sort-header-button {
+        color: rgb(201, 0, 16);
+        margin: 0 auto;
+    }
+    .mat-header-row {
+        border-bottom: none;
+    }  
+    .mat-row {
+        border-bottom-color: rgb(232, 198, 201);
+    }    
+    i {
+        &.wui-circle-alt {
+            border-radius: 50%;
+            background-color: rgb(195, 195, 195);
+        }
+        &.active {
+            border-radius: 50%;
+            background-color: rgb(123, 214, 123);
+        }
+    }  
+
+
+
+
+
     
 }
