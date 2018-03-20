@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["/servicePlatform"]);
     } else if(buttonId === 'bss') {
       this.section = 'availableNS';
-      this.router.navigate(["/serviceManagement"]);
+      this.router.navigate(["/availableNetworkServices"]);
     }
     this.menu = buttonId;
   }

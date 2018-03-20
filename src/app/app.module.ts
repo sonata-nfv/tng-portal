@@ -16,13 +16,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
-import { ServiceManagementComponent } from './service-management/service-management.component';
+import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
 import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
+
+import { FilterPipe } from "./shared/filter.pipe";
+import { SearchBarComponent } from './search-bar/search-bar.component'
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -38,10 +41,12 @@ export function initConfiguration(configService: ConfigService): Function {
     MenuComponent,
     IndexComponent,
     FeatureAvailableDirective,
-    ServiceManagementComponent,
     UsersComponent,
     ValidationComponent,
-    ServicePlatformComponent
+    ServicePlatformComponent,
+    AvailableNetworkServicesComponent,
+    FilterPipe,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     AuthService,

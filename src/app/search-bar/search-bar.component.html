@@ -1,0 +1,11 @@
+<mat-input-container>
+  <mat-placeholder>
+    <i class="wui wui-search-alt"></i>
+    <span>Search</span>
+  </mat-placeholder>
+  <input matInput [(ngModel)]="searchText">
+</mat-input-container>
+<ul>
+  <li *ngFor="let i of items | filter : searchText">{{ i }}</li>
+</ul>
+
