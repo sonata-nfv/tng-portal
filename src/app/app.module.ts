@@ -21,11 +21,13 @@ import { AvailableNetworkServicesComponent } from './available-network-services/
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
 import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
+import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
-import { SearchBarComponent } from './search-bar/search-bar.component'
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DialogComponent } from './dialog/dialog.component'
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -46,7 +48,11 @@ export function initConfiguration(configService: ConfigService): Function {
     ServicePlatformComponent,
     AvailableNetworkServicesComponent,
     FilterPipe,
-    SearchBarComponent
+    SearchBarComponent,
+    DialogComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,7 @@ export function initConfiguration(configService: ConfigService): Function {
     AuthService,
     ConfigService,
     ServiceManagementService,
+    DialogDataService,
     {
       provide: APP_INITIALIZER,
       useFactory: initConfiguration,

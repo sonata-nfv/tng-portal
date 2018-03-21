@@ -23,7 +23,10 @@ export class ServiceManagementService {
         .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES, {
           headers: headers
         }).subscribe(response => {
-            resolve(response);
+            if (response[0].hasOwnProperty('nsd')) {
+              resolve(response);
+            }
+            reject();
           },
           (error: HttpErrorResponse) => {
             reject(error.error.error.message);

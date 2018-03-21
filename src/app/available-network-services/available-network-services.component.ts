@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
 import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
+
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-available-network-services',
@@ -15,9 +18,7 @@ export class AvailableNetworkServicesComponent {
   displayedColumns = ['Status', 'Service Name', 'Vendor', 'Version', 'Service ID', 'Type'];
   searchText: string;
 
-  constructor(private serviceManagementService: ServiceManagementService) { 
-
-  }
+  constructor(private serviceManagementService: ServiceManagementService, private router: Router, private dialogData: DialogDataService) {}
 
   ngOnInit() {
     this.serviceManagementService.getNetworkServices().then((response) => {
@@ -33,14 +34,22 @@ export class AvailableNetworkServicesComponent {
           type: item.user_licence
         }
       });
-      console.log(response)
       this.dataSource = new MatTableDataSource(this.networkServices);   
     }).catch(err => {
-        console.log(err.error.error.message);
+        console.error(err);
+        // Dialog informing the user to log in again when token expired
+        let title = 'Your session has expired';
+        let content = 'Please, log in again to access Service Management section.';
+        let action = 'Log in';
+        
+        this.dialogData.openDialog(title, content, action, () => {
+          this.router.navigate(["/login"]);
+        });
     });;
   }
 
-  receiveMessage($event) {
+  private receiveMessage($event) {
     this.searchText = $event;
   }
+
 }
