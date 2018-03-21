@@ -29,7 +29,7 @@ export class ServiceManagementService {
             reject();
           },
           (error: HttpErrorResponse) => {
-            reject(error.error.error.message);
+            reject(error.statusText);
           }
         );
     });

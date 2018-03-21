@@ -22,7 +22,6 @@ export class AvailableNetworkServicesComponent {
 
   ngOnInit() {
     this.serviceManagementService.getNetworkServices().then((response) => {
-      console.log(response);
       // Populate the list of available network services
       this.networkServices = response.map(function(item) { 
         return {
@@ -39,13 +38,15 @@ export class AvailableNetworkServicesComponent {
     }).catch(err => {
         console.error(err);
         // Dialog informing the user to log in again when token expired
-        let title = 'Your session has expired';
-        let content = 'Please, LOG IN again because your access token has expired.';
-        let action = 'Log in';
+        if (err === 'Unauthorized') {
+          let title = 'Your session has expired';
+          let content = 'Please, LOG IN again because your access token has expired.';
+          let action = 'Log in';
         
-        this.dialogData.openDialog(title, content, action, () => {
-          this.router.navigate(["/login"]);
-        });
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        }
     });;
   }
 
