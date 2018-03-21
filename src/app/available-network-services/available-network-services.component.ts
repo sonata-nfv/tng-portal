@@ -39,7 +39,7 @@ export class AvailableNetworkServicesComponent {
         console.error(err);
         // Dialog informing the user to log in again when token expired
         let title = 'Your session has expired';
-        let content = 'Please, log in again to access Service Management section.';
+        let content = 'Please, LOG IN again because your access token has expired.';
         let action = 'Log in';
         
         this.dialogData.openDialog(title, content, action, () => {
