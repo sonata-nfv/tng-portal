@@ -22,6 +22,7 @@ export class AvailableNetworkServicesComponent {
 
   ngOnInit() {
     this.serviceManagementService.getNetworkServices().then((response) => {
+      console.log(response);
       // Populate the list of available network services
       this.networkServices = response.map(function(item) { 
         return {
@@ -48,7 +49,7 @@ export class AvailableNetworkServicesComponent {
     });;
   }
 
-  private receiveMessage($event) {
+  receiveMessage($event) {
     this.searchText = $event;
   }
 
