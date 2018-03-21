@@ -1,20 +1,23 @@
 app-users {
     display: flex;
+    flex-direction: column;
     flex: 1 1;
+    align-items: center;
     width: auto;
     height: 100%;
     background-color: rgb(254, 254, 254);
     h1 {
-        padding: 1em;
+        margin-top: 15px;
+        width: 95%;
         color: rgb(201, 0, 16);
-        font-size: 1em;
+        font-size: 16px;
     }
     h1:after {
         background: none repeat scroll 0 0 rgb(201, 0, 16);
         content: "";
         display: block;
         height: 1px;
-        width: 200px;
+        width: 250px;
     }
    
     

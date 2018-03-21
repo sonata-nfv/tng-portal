@@ -3,5 +3,6 @@ export class Config {
     BASE: string;
     REGISTER: string;
     LOGIN: string;
+    SERVICES: string;
   };
 }

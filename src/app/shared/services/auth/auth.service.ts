@@ -41,29 +41,45 @@ export class AuthService {
     });
   }
 
+  userData(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders();
+      headers.set("Content-Type", "application/json");
+
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER + uuid, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            localStorage.setItem("username", response["username"]);
+            localStorage.setItem("email", response["email"]);
+            localStorage.setItem("user_type", response["user_type"]);
+            resolve();
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.error.error.message);
+          }
+        );
+    });
+  }
+
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    return;
-    // return new Promise((resolve, reject) => {
-    //   let headers = new HttpHeaders();
-    //   headers.set("Content-Type", "application/json");
+    return new Promise((resolve, reject) => {
+      let headers = this.getAuthHeaders();
 
-    //   this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, {
-    //       headers: headers
-    //     })
-    //     .subscribe(
-    //       response => {
-    //         localStorage.removeItem("token");
-    //         localStorage.removeItem("username");
-    //         resolve();
-    //       },
-    //       (error: HttpErrorResponse) => {
-    //         // reject(error.error.error.message);
-    //         reject();
-    //       }
-    //     );
-    //   });
+      this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+          headers: headers
+        })
+        .subscribe(() => {
+          resolve();
+        }, (error: HttpErrorResponse) => {
+            reject(error);
+          }
+        );
+      });
   }
 
   signup(username: string, password: string, email: string, userType: string): any {
@@ -98,6 +114,10 @@ export class AuthService {
       "Authorization",
       "Bearer " + localStorage.getItem("token")
     );
+  }
+
+  getAuthHeaders() {
+    return this.authHeaders;
   }
 
   isAuthenticated(): boolean {

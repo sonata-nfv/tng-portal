@@ -1,0 +1,24 @@
+app-search-bar {
+    .mat-input-container {
+        width: 240px;
+    }
+    span {
+        color: rgb(138, 138, 138);
+    }
+    i {
+        margin-left: 10px;
+    }
+    .mat-focused .mat-form-field-label {
+        color: rgb(138, 138, 138);
+        text-align: left;
+    }
+    .mat-form-field-ripple {
+        background-color: rgb(175, 175, 175);
+    }
+    .mat-form-field {
+        color: rgb(116, 119, 121);
+    }
+    input.mat-input-element {
+        margin-left: 10px;
+    }    
+}

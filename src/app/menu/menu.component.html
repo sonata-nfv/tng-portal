@@ -35,7 +35,6 @@
   <mat-sidenav class="menu-options" align="end" #sidenav mode="side">
     <div class="options" *ngIf="menu === 'v&v'"></div>
     <div class="options" *ngIf="menu === 'sp'">
-      <!-- TODO by default true unless other section chosen -->
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">POLICIES</button>
         <div class="section" *ngIf="section === 'policies'">
           <button [ngClass]="{ active: subsection === 'deploymentPolicy' }" (click)="setSubsection($event, 'deploymentPolicy')">Deployment Policies</button>

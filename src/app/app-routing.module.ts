@@ -10,7 +10,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
-import { ServiceManagementComponent } from './service-management/service-management.component';
+import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
 
 const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: "users", component: UsersComponent },
     { path: "validation", component: ValidationComponent },
     { path: "servicePlatform", component: ServicePlatformComponent },
-    { path: "serviceManagement", component: ServiceManagementComponent }
+    { path: "availableNetworkServices", component: AvailableNetworkServicesComponent }
   ]}
 ];
 
