@@ -7,10 +7,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class NetworkServiceInstancesComponent implements OnInit {
+  searchText: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  receiveMessage($event) {
+    this.searchText = $event;
   }
 
 }
