@@ -20,6 +20,9 @@ import { AvailableNetworkServicesComponent } from './available-network-services/
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { RequestsComponent } from './requests/requests.component'
+import { NetworkServiceInstancesComponent } from './network-service-instances/network-service-instances.component';
+import { ServiceLicencesComponent } from './service-licences/service-licences.component';
+import { UserLicencesComponent } from './user-licences/user-licences.component';
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
@@ -51,7 +54,10 @@ export function initConfiguration(configService: ConfigService): Function {
     FilterPipe,
     SearchBarComponent,
     DialogComponent,
-    RequestsComponent
+    RequestsComponent,
+    NetworkServiceInstancesComponent,
+    ServiceLicencesComponent,
+    UserLicencesComponent
   ],
   entryComponents: [
     DialogComponent
