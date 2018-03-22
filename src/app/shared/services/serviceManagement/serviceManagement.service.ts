@@ -26,12 +26,28 @@ export class ServiceManagementService {
             if (response[0].hasOwnProperty('nsd')) {
               resolve(response);
             }
-            reject();
-          },
-          (error: HttpErrorResponse) => {
+            reject('No available network services returned');
+          }, (error: HttpErrorResponse) => {
             reject(error.statusText);
           }
         );
+    });
+  }
+
+  getRequests(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.REQUESTS, {
+          headers: headers
+        }).subscribe(response => {
+          if (response[0].hasOwnProperty('service_uuid')) {
+            resolve(response);
+          }
+          reject('No requests returned');
+        }, (error: HttpErrorResponse) => {
+          reject(error.statusText);
+        });
     });
   }
 

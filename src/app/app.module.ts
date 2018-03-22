@@ -17,6 +17,12 @@ import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
 import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { RequestsComponent } from './requests/requests.component'
+import { NetworkServiceInstancesComponent } from './network-service-instances/network-service-instances.component';
+import { ServiceLicencesComponent } from './service-licences/service-licences.component';
+import { UserLicencesComponent } from './user-licences/user-licences.component';
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
@@ -26,8 +32,6 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { DialogComponent } from './dialog/dialog.component'
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -49,7 +53,11 @@ export function initConfiguration(configService: ConfigService): Function {
     AvailableNetworkServicesComponent,
     FilterPipe,
     SearchBarComponent,
-    DialogComponent
+    DialogComponent,
+    RequestsComponent,
+    NetworkServiceInstancesComponent,
+    ServiceLicencesComponent,
+    UserLicencesComponent
   ],
   entryComponents: [
     DialogComponent

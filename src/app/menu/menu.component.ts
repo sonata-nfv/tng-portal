@@ -52,13 +52,26 @@ export class MenuComponent implements OnInit {
   setSection(e, buttonId) {
     if(buttonId === 'sla') {
       this.subsection = 'slaAgreements';
+    } else if(buttonId === 'availableNS') { 
+      this.router.navigate(["/availableNetworkServices"]);
+    } else if(buttonId === 'requests') {
+      this.router.navigate(["/requests"]);
+    } else if(buttonId === 'nsInstances') {
+      this.router.navigate(["/instances"]);
     } else if(buttonId === 'store') {
       this.subsection = 'serviceLicences';
-    }
+      this.router.navigate(["/serviceLicences"]);
+    } 
+
     this.section = buttonId;
   }
 
   setSubsection(e, buttonId) {
+    if(buttonId === 'serviceLicences') {
+      this.router.navigate(["/serviceLicences"]);
+    } else if(buttonId === 'userLicences') {
+      this.router.navigate(["/userLicences"]);
+    }
     this.subsection = buttonId;
   }
 

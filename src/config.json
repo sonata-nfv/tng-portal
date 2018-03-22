@@ -3,6 +3,7 @@
     "BASE": "https://sp.int3.sonata-nfv.eu/api/v2/",
     "REGISTER": "users/",
     "LOGIN": "sessions/",
-    "SERVICES": "services/"
+    "SERVICES": "services/",
+    "REQUESTS": "requests/"
   }
 }
