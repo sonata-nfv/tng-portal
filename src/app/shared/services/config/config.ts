@@ -4,5 +4,6 @@ export class Config {
     REGISTER: string;
     LOGIN: string;
     SERVICES: string;
+    REQUESTS: string;
   };
 }

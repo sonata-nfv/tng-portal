@@ -54,6 +54,8 @@ export class MenuComponent implements OnInit {
       this.subsection = 'slaAgreements';
     } else if(buttonId === 'store') {
       this.subsection = 'serviceLicences';
+    } else if(buttonId === 'requests') {
+      this.router.navigate(["/requests"]);
     }
     this.section = buttonId;
   }

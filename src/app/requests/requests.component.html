@@ -1,0 +1,18 @@
+<h1>SERVICE MANAGEMENT</h1>
+<h2>Requests</h2>
+
+<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+<!-- TODO create a <ng-container> for each displayedColumn defined -->
+  
+<!-- <mat-table [dataSource]="requests | filter: searchText">  -->
+  <!-- <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+      </mat-cell>
+  </ng-container> -->
+ 
+  <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+  <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+<!-- </mat-table> -->
