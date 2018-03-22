@@ -23,12 +23,18 @@ export class RequestsComponent implements OnInit {
   ngOnInit() {
     this.serviceManagementService.getRequests().then((response) => {
       console.log(response);
-      this.requests = response.map(function(item) { 
-        return { 
+      this.requests = response.map(function(item) {
+        return {
           // TODO Create an object with the elements we want to display in table (like in available-network-services component)
+          requestId: item.id,
+          type: item.request_type,
+          createdAt: item.created_at,
+          updatedAt: item.updated_at,
+          serviceId: item.service_uuid,
+          status: item.status
         }
       });
-      this.dataSource = new MatTableDataSource(this.requests); 
+      this.dataSource = new MatTableDataSource(this.requests);
     }).catch(err => {
       console.error(err);
 
@@ -37,7 +43,7 @@ export class RequestsComponent implements OnInit {
         let title = 'Your session has expired';
         let content = 'Please, LOG IN again because your access token has expired.';
         let action = 'Log in';
-      
+
         this.dialogData.openDialog(title, content, action, () => {
           this.router.navigate(["/login"]);
         });
