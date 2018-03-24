@@ -54,4 +54,15 @@ export class AvailableNetworkServicesComponent {
     this.searchText = $event;
   }
 
+  openNetworkService($event) {
+
+    // GET uuid of the service clicked from $event
+    console.log("Opening NS.....");
+    console.log($event);
+
+
+    // SET uuid in URL: .../networkService/:id
+
+  }
+
 }

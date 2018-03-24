@@ -1,0 +1,35 @@
+<h1>AVAILABLE NETWORK SERVICES</h1>
+<div class="header">
+    <h2> {{ name }}</h2>
+    <button class="close" (click)="close()">CLOSE</button>
+</div>
+<h3>Created by {{ author }}</h3>
+
+<div class="versionDiv">
+    <span class="text">Current version</span>
+    <div class="version">
+        <span>{{ version }}</span>
+    </div>
+</div>
+
+<form class="detail">
+    <mat-form-field class="vendor">
+      <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
+    </mat-form-field>
+    <mat-form-field class="serviceId">
+        <input matInput placeholder="Service id" value="{{ serviceID }}" disabled>
+    </mat-form-field>
+    <mat-form-field class="type">
+        <input matInput placeholder="Type" value="{{ type }}" disabled>
+    </mat-form-field>
+    <div class="lauch">
+        <button (click)="instanciate()">
+            <i class="wui wui-caret-right"></i>
+            <span class="play">Ready to use</span>
+        </button>
+    </div>
+    <div class="description">
+        <span class="title">DESCRIPTION</span>
+        <span class="content">{{ description }}</span>
+    </div>
+</form>

@@ -1,4 +1,5 @@
 app-available-network-services {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 1 1;
@@ -57,7 +58,7 @@ app-available-network-services {
     // Set width for columns 
     .mat-cell:nth-child(1),
     .mat-header-cell:nth-child(1) {
-        flex: 0 0 2%;
+        flex: 0 0 40px;
     }
     .mat-cell:nth-child(2),
     .mat-header-cell:nth-child(2) {

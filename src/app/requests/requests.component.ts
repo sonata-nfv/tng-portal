@@ -22,7 +22,6 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     this.serviceManagementService.getRequests().then((response) => {
-      console.log(response);
       this.requests = response.map(function(item) {
         return {
           // TODO Create an object with the elements we want to display in table (like in available-network-services component)

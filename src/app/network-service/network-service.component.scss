@@ -1,0 +1,143 @@
+app-network-service {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    position: absolute;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgb(254, 254, 254);
+    h1 {
+        margin-top: 15px;
+        width: 95%;
+        color: rgb(201, 0, 16);
+        font-size: 16px;
+    }
+    h1:after {
+        background: none repeat scroll 0 0 rgb(201, 0, 16);
+        content: "";
+        display: block;
+        height: 1px;
+        width: 250px;
+    }
+    h3 {
+        margin-top: 9px;
+        width: 95%;
+        color: rgb(201, 0, 16);
+        font-size: 14px;
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        width: 95%;
+        h2 {
+            margin: 0px 15px 0 0;
+            width: 95%;
+            color: rgb(138, 138, 138);
+            font-size: 32px;
+        }
+        .close {
+            padding: 8px 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            color: rgb(254, 254, 254);
+            background-color: rgb(189, 185, 185);
+        }
+    }
+    .versionDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .text {
+            color: rgb(138, 138, 138);
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .version {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 60px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: rgb(121, 20, 34);
+            span {
+                color: rgb(254, 254, 254);
+                font-size: 40px;
+            }
+        }
+    }
+    .detail {
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .mat-focused .mat-form-field-label {
+            text-align: left;
+        }
+        .mat-form-field {
+            width: 65%;
+        }
+        // Change font-size of label
+        .mat-form-field-can-float.mat-form-field-should-float {
+            .mat-form-field-label {
+              font-size: 20px;
+            }
+        }
+        .mat-input-element:disabled {
+            font-size: 20px;
+            color: rgb(65, 65, 65);
+        }
+        // Change input underline styles
+        .mat-form-field-disabled .mat-form-field-underline {
+            background-image: none;
+            background-color: rgb(200, 159, 160);
+        }
+        .lauch {
+            width: 65%;
+            display: flex;
+            flex-direction: row;
+            align-items: left;
+            button {
+                padding: 15px 0 16px 0;
+                font-size: 18px;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                color: rgb(121, 20, 34);
+                background-color: rgb(254, 254, 254);
+            }
+            i:before {
+                color: green;
+            }
+            span {
+                text-decoration: underline;
+            }
+        }
+        .description {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            span {
+                width: 65%;
+                &.title {
+                    color: rgb(138, 138, 138);
+                }
+                &.content {
+                    min-height: 200px;
+                    color: rgb(65, 65, 65);
+                    background-color: rgb(239, 235, 235);
+                    border-top: 1px solid rgb(201, 0, 16);
+                    border-bottom: 1px solid rgb(201, 0, 16);
+                }
+            }
+        }
+    }
+}

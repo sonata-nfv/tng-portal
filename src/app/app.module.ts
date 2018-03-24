@@ -17,6 +17,7 @@ import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
 import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
+import { NetworkServiceComponent } from './network-service/network-service.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { RequestsComponent } from './requests/requests.component'
@@ -57,7 +58,8 @@ export function initConfiguration(configService: ConfigService): Function {
     RequestsComponent,
     NetworkServiceInstancesComponent,
     ServiceLicencesComponent,
-    UserLicencesComponent
+    UserLicencesComponent,
+    NetworkServiceComponent
   ],
   entryComponents: [
     DialogComponent

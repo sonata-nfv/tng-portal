@@ -34,6 +34,24 @@ export class ServiceManagementService {
     });
   }
 
+  getNetworkService(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+     
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES + uuid, {
+          headers: headers
+        }).subscribe(response => {
+          if (response.hasOwnProperty('nsd')) {
+            resolve(response);
+          }
+          reject('No network service returned');
+        }, (error: HttpErrorResponse) => {
+          reject(error.statusText);
+        });
+    });
+  }
+
   getRequests(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();

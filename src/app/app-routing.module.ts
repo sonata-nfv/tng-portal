@@ -11,6 +11,7 @@ import { UsersComponent } from './users/users.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ServicePlatformComponent } from './service-platform/service-platform.component';
 import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
+import { NetworkServiceComponent } from './network-service/network-service.component';
 import { RequestsComponent } from './requests/requests.component';
 import { NetworkServiceInstancesComponent } from './network-service-instances/network-service-instances.component';
 import { ServiceLicencesComponent } from './service-licences/service-licences.component';
@@ -31,7 +32,9 @@ const routes: Routes = [
     // Service Platform section
     { path: "servicePlatform", component: ServicePlatformComponent },
     // Service Management section
-    { path: "availableNetworkServices", component: AvailableNetworkServicesComponent },
+    { path: "availableNetworkServices", component: AvailableNetworkServicesComponent, children: [
+      { path: "networkService", component: NetworkServiceComponent }
+    ] },
     { path: "requests", component: RequestsComponent },
     { path: "instances", component: NetworkServiceInstancesComponent },
     { path: "serviceLicences", component: ServiceLicencesComponent },
