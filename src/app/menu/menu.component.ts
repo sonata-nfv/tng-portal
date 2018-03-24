@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem("username");
+    this.menu = 'dashboard';
     // TODO get email from user data request
     this.email = "example@gmail.com";
   }
