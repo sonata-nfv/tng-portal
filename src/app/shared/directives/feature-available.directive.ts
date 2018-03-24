@@ -13,7 +13,7 @@ export class FeatureAvailableDirective {
 
   ngOnInit() {
     const isServiceAvailable =
-    environment.features_available.indexOf(this.service.toUpperCase()) > -1
+      environment.features_available.indexOf(this.service.toUpperCase()) > -1
         ? true
         : false;
     if (!isServiceAvailable) {

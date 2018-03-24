@@ -1,17 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AvailableNetworkServicesComponent } from './available-network-services.component';
+import { AvailableNetworkServicesComponent } from "./available-network-services.component";
 
-describe('AvailableNetworkServicesComponent', () => {
+describe("AvailableNetworkServicesComponent", () => {
   let component: AvailableNetworkServicesComponent;
   let fixture: ComponentFixture<AvailableNetworkServicesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AvailableNetworkServicesComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [AvailableNetworkServicesComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AvailableNetworkServicesComponent);
@@ -19,7 +20,7 @@ describe('AvailableNetworkServicesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

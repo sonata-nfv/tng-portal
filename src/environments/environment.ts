@@ -5,11 +5,5 @@
 
 export const environment = {
   production: false,
-  features_available:  [
-    "DASHBOARD",
-    "USERS",
-    "V&V",
-    "SERVICE PLATFORM",
-    "BSS"
-  ]
+  features_available: ["DASHBOARD", "USERS", "V&V", "SERVICE PLATFORM", "BSS"]
 };

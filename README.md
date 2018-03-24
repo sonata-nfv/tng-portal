@@ -19,8 +19,10 @@ ng serve --open
 ```
 
 ## Configuration of the menu items displayed
-Depending on the deployed modules in the infraestructure, the menu shall display only those available. For that, there is a new configuration variable called features_available in the environments file. Any of them might be removed before serving the app to remove them. 
-By default, all the modules are activated. 
+
+Depending on the deployed modules in the infraestructure, the menu shall display only those available. For that, there is a new configuration variable called features_available in the environments file. Any of them might be removed before serving the app to remove them.
+By default, all the modules are activated.
+
 ```
   features_available:  [
     "DASHBOARD",

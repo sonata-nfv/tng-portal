@@ -1,75 +1,75 @@
 app-available-network-services {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1;
-    align-items: center;
-    width: auto;
-    height: 100%;
-    background-color: rgb(254, 254, 254);
-    h1 {
-        margin-top: 15px;
-        width: 95%;
-        color: rgb(201, 0, 16);
-        font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: rgb(254, 254, 254);
+  h1 {
+    margin-top: 15px;
+    width: 95%;
+    color: rgb(201, 0, 16);
+    font-size: 16px;
+  }
+  h1:after {
+    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    content: "";
+    display: block;
+    height: 1px;
+    width: 250px;
+  }
+  h2 {
+    width: 95%;
+    margin: 0px 15px 25px 15px;
+    color: rgb(138, 138, 138);
+    font-size: 32px;
+  }
+  mat-table {
+    margin-bottom: 20px;
+    width: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+  }
+  .mat-sort-header-button {
+    color: rgb(201, 0, 16);
+    margin: 0 auto;
+  }
+  .mat-header-row {
+    min-width: 150px;
+    border-bottom: none;
+  }
+  .mat-row {
+    min-width: 150px;
+    border-bottom-color: rgb(232, 198, 201);
+  }
+  i {
+    &.wui-circle-alt {
+      border-radius: 50%;
+      background-color: rgb(195, 195, 195);
     }
-    h1:after {
-        background: none repeat scroll 0 0 rgb(201, 0, 16);
-        content: "";
-        display: block;
-        height: 1px;
-        width: 250px;
+    &.active {
+      border-radius: 50%;
+      background-color: rgb(123, 214, 123);
     }
-    h2 {
-        width: 95%;
-        margin: 0px 15px 25px 15px;
-        color: rgb(138, 138, 138);
-        font-size: 32px;
-    }
-    mat-table {
-        margin-bottom: 20px;
-        width: 85%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        text-align: center;
-    }
-    .mat-sort-header-button {
-        color: rgb(201, 0, 16);
-        margin: 0 auto;
-    }
-    .mat-header-row {
-        min-width: 150px;
-        border-bottom: none;
-    }  
-    .mat-row {
-        min-width: 150px;
-        border-bottom-color: rgb(232, 198, 201);
-    }    
-    i {
-        &.wui-circle-alt {
-            border-radius: 50%;
-            background-color: rgb(195, 195, 195);
-        }
-        &.active {
-            border-radius: 50%;
-            background-color: rgb(123, 214, 123);
-        }
-    }  
-    // Set width for columns 
-    .mat-cell:nth-child(1),
-    .mat-header-cell:nth-child(1) {
-        flex: 0 0 40px;
-    }
-    .mat-cell:nth-child(2),
-    .mat-header-cell:nth-child(2) {
-        flex: 0 0 21%;
-    }
-    .mat-cell:nth-child(4),
-    .mat-header-cell:nth-child(4) {
-        flex: 0 0 10%;
-    }
-    .mat-cell:nth-child(6),
-    .mat-header-cell:nth-child(6) {
-        flex: 0 0 10%;
-    }
+  }
+  // Set width for columns
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1) {
+    flex: 0 0 40px;
+  }
+  .mat-cell:nth-child(2),
+  .mat-header-cell:nth-child(2) {
+    flex: 0 0 21%;
+  }
+  .mat-cell:nth-child(4),
+  .mat-header-cell:nth-child(4) {
+    flex: 0 0 10%;
+  }
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    flex: 0 0 10%;
+  }
 }

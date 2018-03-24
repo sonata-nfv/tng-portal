@@ -6,31 +6,31 @@
 <!-- TODO create a <ng-container> for each displayedColumn defined -->
 
 <mat-table [dataSource]="requests | filter: searchText">
-  <ng-container matColumnDef="Request ID">
-      <mat-header-cell *matHeaderCellDef> Request ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.requestId }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Type">
-      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.type}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Created at">
-      <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.createdAt }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Updated at">
-      <mat-header-cell *matHeaderCellDef> Updated at </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.updatedAt }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Service ID">
-      <mat-header-cell *matHeaderCellDef> Service ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.serviceId }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Status">
-      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="Request ID">
+        <mat-header-cell *matHeaderCellDef> Request ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.requestId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Type">
+        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.type}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Created at">
+        <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.createdAt }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Updated at">
+        <mat-header-cell *matHeaderCellDef> Updated at </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.updatedAt }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Service ID">
+        <mat-header-cell *matHeaderCellDef> Service ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.serviceId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
- </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -19,16 +19,16 @@
     <p class="error" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
 
     <mat-form-field [ngClass]="{'emailErrorString':emailErrorString}">
-        <input matInput type="email" placeholder="Email" formControlName="email" required>
+      <input matInput type="email" placeholder="Email" formControlName="email" required>
     </mat-form-field>
     <p class="error" *ngIf="signupForm.get('email').invalid && !signupForm.get('email').untouched" [innerText]="emailErrorString"></p>
 
     <mat-form-field>
-        <mat-select panelClass="roles" placeholder="Role" formControlName="role" required>
-            <mat-option *ngFor="let role of roles" [value]="role">
-              {{ role }}
-            </mat-option>
-        </mat-select>
+      <mat-select panelClass="roles" placeholder="Role" formControlName="role" required>
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <button name="signup" [disabled]="!signupForm.valid || !validPassword">REGISTER</button>
@@ -36,7 +36,7 @@
   </form>
 
   <div class="bottom">
-      <a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
-      <div class="redLine"></div>
-  </div>  
+    <a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
+    <div class="redLine"></div>
+  </div>
 </div>

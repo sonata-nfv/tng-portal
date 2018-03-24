@@ -1,17 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NetworkServiceComponent } from './network-service.component';
+import { NetworkServiceComponent } from "./network-service.component";
 
-describe('NetworkServiceComponent', () => {
+describe("NetworkServiceComponent", () => {
   let component: NetworkServiceComponent;
   let fixture: ComponentFixture<NetworkServiceComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NetworkServiceComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [NetworkServiceComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NetworkServiceComponent);
@@ -19,7 +20,7 @@ describe('NetworkServiceComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

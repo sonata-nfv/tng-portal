@@ -1,17 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ServicePlatformComponent } from './service-platform.component';
+import { ServicePlatformComponent } from "./service-platform.component";
 
-describe('ServicePlatformComponent', () => {
+describe("ServicePlatformComponent", () => {
   let component: ServicePlatformComponent;
   let fixture: ComponentFixture<ServicePlatformComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ServicePlatformComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ServicePlatformComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ServicePlatformComponent);
@@ -19,7 +20,7 @@ describe('ServicePlatformComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

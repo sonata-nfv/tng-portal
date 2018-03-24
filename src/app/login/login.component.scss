@@ -13,7 +13,7 @@ app-login {
     padding: 2em;
     border-radius: 10px;
     background-color: rgb(226, 222, 221);
-    flex-direction: column;    
+    flex-direction: column;
     .header {
       height: 8em;
       background: url("../../assets/images/tango.svg") no-repeat center
@@ -71,7 +71,9 @@ app-login {
       .mat-form-field-invalid .mat-form-field-label {
         color: rgb(201, 0, 16);
       }
-      .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+      .mat-form-field-invalid
+        .mat-form-field-label
+        .mat-form-field-required-marker,
       .mat-form-field-invalid .mat-form-field-label.mat-accent {
         color: rgb(201, 0, 16);
       }

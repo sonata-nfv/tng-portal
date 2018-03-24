@@ -10,20 +10,20 @@ import { AppRoutingModule } from "./app-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { RegisteredComponent } from "./registered/registered.component";
-import { MenuComponent } from './menu/menu.component';
-import { IndexComponent } from './index/index.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component';
-import { ValidationComponent } from './validation/validation.component';
-import { ServicePlatformComponent } from './service-platform/service-platform.component';
-import { AvailableNetworkServicesComponent } from './available-network-services/available-network-services.component';
-import { NetworkServiceComponent } from './network-service/network-service.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { RequestsComponent } from './requests/requests.component'
-import { NetworkServiceInstancesComponent } from './network-service-instances/network-service-instances.component';
-import { ServiceLicencesComponent } from './service-licences/service-licences.component';
-import { UserLicencesComponent } from './user-licences/user-licences.component';
+import { MenuComponent } from "./menu/menu.component";
+import { IndexComponent } from "./index/index.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { UsersComponent } from "./users/users.component";
+import { ValidationComponent } from "./validation/validation.component";
+import { ServicePlatformComponent } from "./service-platform/service-platform.component";
+import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
+import { NetworkServiceComponent } from "./network-service/network-service.component";
+import { SearchBarComponent } from "./search-bar/search-bar.component";
+import { DialogComponent } from "./dialog/dialog.component";
+import { RequestsComponent } from "./requests/requests.component";
+import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
+import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
+import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
@@ -61,16 +61,14 @@ export function initConfiguration(configService: ConfigService): Function {
     UserLicencesComponent,
     NetworkServiceComponent
   ],
-  entryComponents: [
-    DialogComponent
-  ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
