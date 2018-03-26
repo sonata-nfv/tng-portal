@@ -1,0 +1,24 @@
+<h1>REQUESTS</h1>
+<div class="header">
+  <h2> {{ detail.requestId }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<form class="detail">
+  <mat-form-field class="type">
+    <input matInput placeholder="Type" value="{{ detail.type }}" disabled>
+  </mat-form-field>
+  <mat-form-field class="createdAt">
+    <input matInput placeholder="Created at" value="{{ detail.createdAt }}" disabled>
+  </mat-form-field>
+  <mat-form-field class="updatedAt">
+    <input matInput placeholder="Updated at" value="{{ detail.updatedAt }}" disabled>
+  </mat-form-field>
+  <mat-form-field class="serviceId">
+    <input matInput placeholder="Service id" value="{{ detail.serviceId }}" disabled>
+  </mat-form-field>
+  <mat-form-field class="status ">
+    <input matInput placeholder="Status" value="{{ detail.status }} " disabled>
+  </mat-form-field>
+
+</form>

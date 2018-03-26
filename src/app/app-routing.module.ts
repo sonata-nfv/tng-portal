@@ -13,6 +13,7 @@ import { ServicePlatformComponent } from "./service-platform/service-platform.co
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
+import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
 import { UserLicencesComponent } from "./user-licences/user-licences.component";
@@ -41,7 +42,11 @@ const routes: Routes = [
         component: AvailableNetworkServicesComponent,
         children: [{ path: "detail/:id", component: NetworkServiceComponent }]
       },
-      { path: "requests", component: RequestsComponent },
+      {
+        path: "requests",
+        component: RequestsComponent,
+        children: [{ path: "detail/:id", component: RequestDetailComponent }]
+      },
       { path: "instances", component: NetworkServiceInstancesComponent },
       { path: "serviceLicences", component: ServiceLicencesComponent },
       { path: "userLicences", component: UserLicencesComponent }

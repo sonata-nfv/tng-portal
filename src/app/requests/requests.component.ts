@@ -3,8 +3,9 @@ import { MatTableDataSource } from "@angular/material";
 
 import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { DataTransferService } from "../shared/services/serviceManagement/dataTransfer.service";
 
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-requests",
@@ -13,7 +14,8 @@ import { Router } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class RequestsComponent implements OnInit {
-  requests: Array<Object>;
+  requests = new Array();
+  selectedRequest: Object = null;
   dataSource = new MatTableDataSource();
   displayedColumns = [
     "Request ID",
@@ -27,7 +29,9 @@ export class RequestsComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private route: ActivatedRoute,
+    private dataTransfer: DataTransferService
   ) {}
 
   ngOnInit() {
@@ -36,7 +40,6 @@ export class RequestsComponent implements OnInit {
       .then(response => {
         this.requests = response.map(function(item) {
           return {
-            // TODO Create an object with the elements we want to display in table (like in available-network-services component)
             requestId: item.id,
             type: item.request_type,
             createdAt: item.created_at,
@@ -66,5 +69,12 @@ export class RequestsComponent implements OnInit {
 
   receiveMessage($event) {
     this.searchText = $event;
+  }
+
+  openRequest(row) {
+    let uuid = row.requestId;
+    let detail = this.requests.find(x => x.requestId === uuid);
+    this.dataTransfer.sendDetail(detail);
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }

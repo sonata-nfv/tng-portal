@@ -3,8 +3,6 @@
 
 <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
 
-<!-- TODO create a <ng-container> for each displayedColumn defined -->
-
 <mat-table [dataSource]="requests | filter: searchText">
     <ng-container matColumnDef="Request ID">
         <mat-header-cell *matHeaderCellDef> Request ID </mat-header-cell>
@@ -28,5 +26,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openRequest(row)"></mat-row>
 </mat-table>
+
+<router-outlet></router-outlet>

@@ -21,6 +21,7 @@ import { NetworkServiceComponent } from "./network-service/network-service.compo
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
 import { RequestsComponent } from "./requests/requests.component";
+import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
 import { UserLicencesComponent } from "./user-licences/user-licences.component";
@@ -28,6 +29,7 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
 import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
+import { DataTransferService } from "./shared/services/serviceManagement/dataTransfer.service";
 import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
@@ -59,7 +61,8 @@ export function initConfiguration(configService: ConfigService): Function {
     NetworkServiceInstancesComponent,
     ServiceLicencesComponent,
     UserLicencesComponent,
-    NetworkServiceComponent
+    NetworkServiceComponent,
+    RequestDetailComponent
   ],
   entryComponents: [DialogComponent],
   imports: [
@@ -74,6 +77,7 @@ export function initConfiguration(configService: ConfigService): Function {
     AuthService,
     ConfigService,
     ServiceManagementService,
+    DataTransferService,
     DialogDataService,
     {
       provide: APP_INITIALIZER,

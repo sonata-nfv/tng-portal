@@ -1,4 +1,5 @@
 app-requests {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -47,10 +48,10 @@ app-requests {
   // Set width for columns
   .mat-cell:nth-child(2),
   .mat-header-cell:nth-child(2) {
-    flex: 0 0 10%;
+    flex: 0 0 9%;
   }
   .mat-cell:nth-child(5),
   .mat-header-cell:nth-child(5) {
-    flex: 0 0 6%;
+    flex: 0 0 11%;
   }
 }
