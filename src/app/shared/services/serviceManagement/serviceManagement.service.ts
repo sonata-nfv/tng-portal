@@ -83,4 +83,28 @@ export class ServiceManagementService {
         );
     });
   }
+
+  getInstances(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            if (response[0].hasOwnProperty("uuid")) {
+              resolve(response);
+            }
+            reject("No requests returned");
+          },
+          (error: HttpErrorResponse) => {
+            if (error.status === 404) {
+              resolve([]);
+            }
+            reject(error.statusText);
+          }
+        );
+    });
+  }
 }
