@@ -40,6 +40,7 @@ export class RequestsComponent implements OnInit {
       .then(response => {
         this.requests = response.map(function(item) {
           return {
+            searchField: item.id,
             requestId: item.id,
             type: item.request_type,
             createdAt: item.created_at,
