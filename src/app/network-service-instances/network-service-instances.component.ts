@@ -39,33 +39,16 @@ export class NetworkServiceInstancesComponent implements OnInit {
           if (item.length < 1) {
             return (this.instances = []);
           } else {
-            // TODO collect returned data and populate instances array
             return {
               searchField: item.uuid,
               instanceId: item.uuid,
               status: item.status,
-              // serviceId: item.,
-              version: item.vendor
-              // latestVersion: item.
+              serviceId: item.descriptor_reference,
+              version: item.version,
+              latestVersion: ""
             };
           }
         });
-
-        // Populate with fake data
-        // this.instances = [
-        //   {
-        //     instanceId: "7f1645c7-acc8-4f05-a1dc-1a2b30eb0452",
-        //     status: "normal operation",
-        //     serviceId: "7f1645c7-acc8-4f05-a1dc-1a2b30eb0452",
-        //     version: "1.2.3",
-        //     latestVersion: "0.9.2"
-        //   }
-        // ];
-        // for (let i = 0; i < 3; i++) {
-        //   this.instances = this.instances.concat(this.instances);
-        // }
-        /////////
-
         this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {

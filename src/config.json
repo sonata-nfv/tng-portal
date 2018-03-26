@@ -5,6 +5,6 @@
     "LOGIN": "sessions/",
     "SERVICES": "services/",
     "REQUESTS": "requests/",
-    "INSTANCES": "records/nsr/"
+    "INSTANCES": "records/services"
   }
 }
