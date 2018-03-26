@@ -27,7 +27,7 @@ app-requests {
   }
   mat-table {
     margin-bottom: 20px;
-    width: 95%;
+    width: 85%;
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
@@ -44,16 +44,13 @@ app-requests {
     min-width: 150px;
     border-bottom-color: rgb(232, 198, 201);
   }
-  .mat-cell {
-    font-size: 12px;
-  }
   // Set width for columns
   .mat-cell:nth-child(2),
   .mat-header-cell:nth-child(2) {
     flex: 0 0 10%;
   }
-  .mat-cell:nth-child(6),
-  .mat-header-cell:nth-child(6) {
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
     flex: 0 0 6%;
   }
 }

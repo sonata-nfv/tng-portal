@@ -19,7 +19,6 @@ export class RequestsComponent implements OnInit {
     "Request ID",
     "Type",
     "Created at",
-    "Updated at",
     "Service ID",
     "Status"
   ];
