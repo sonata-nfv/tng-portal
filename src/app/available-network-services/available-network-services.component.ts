@@ -21,7 +21,8 @@ export class AvailableNetworkServicesComponent {
     "Vendor",
     "Version",
     "Service ID",
-    "Type"
+    "Type",
+    "instanciate"
   ];
   searchText: string;
 
@@ -71,7 +72,12 @@ export class AvailableNetworkServicesComponent {
   }
 
   openNetworkService(row) {
+    console.log(row);
     let uuid = row.serviceId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
+
+  instanciate() {
+    console.log("Instanciating....");
   }
 }
