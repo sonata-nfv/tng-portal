@@ -2,7 +2,7 @@
 
 This repository contains an Angular 5 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
 
-![](https://github.com/sonata-nfv/tng-portal/tree/master/src/assets/images/5GTANGO.gif)
+![](https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif)
 
 ## Installing
 
