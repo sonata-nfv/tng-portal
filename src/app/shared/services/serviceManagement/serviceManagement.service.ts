@@ -53,8 +53,9 @@ export class ServiceManagementService {
           response => {
             if (response.hasOwnProperty("nsd")) {
               resolve(response);
+            } else {
+              reject("No network service returned");
             }
-            reject("No network service returned");
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);
@@ -72,10 +73,11 @@ export class ServiceManagementService {
         })
         .subscribe(
           response => {
-            if (response[0].hasOwnProperty("service_uuid")) {
+            if (response.hasOwnProperty("service_uuid")) {
               resolve(response);
+            } else {
+              reject("No requests returned");
             }
-            reject("No requests returned");
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);
@@ -107,4 +109,38 @@ export class ServiceManagementService {
         );
     });
   }
+
+  // instantiate() {
+  //   return new Promise((resolve, reject) => {
+  //     let uuid = "f146d1fe-3049-47fc-a0cb-7d7b777a4989";
+  //     let data = {
+  //       nsd_id: "f146d1fe-3049-47fc-a0cb-7d7b777a4989",
+  //       latest_nsd_id: "nsr-schema-01"
+  //     };
+
+  //     let headers = this.authService.getAuthHeaders();
+  //     this.http
+  //       .put(
+  //         this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES + uuid,
+  //         data,
+  //         {
+  //           headers: headers
+  //         }
+  //       )
+  //       .subscribe(
+  //         response => {
+  //           if (response[0].hasOwnProperty("uuid")) {
+  //             resolve(response);
+  //           }
+  //           reject("No requests returned");
+  //         },
+  //         (error: HttpErrorResponse) => {
+  //           if (error.status === 404) {
+  //             resolve([]);
+  //           }
+  //           reject(error.statusText);
+  //         }
+  //       );
+  //   });
+  // }
 }
