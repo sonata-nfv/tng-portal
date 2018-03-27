@@ -1,6 +1,8 @@
 # 5GTANGO Portal
 
-This repo contains an Angular app for the [5GTANGO](http://5gtango.eu) (web) Portal.
+This repository contains an Angular 5 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
+
+![](https://github.com/sonata-nfv/tng-portal/tree/master/src/assets/images/5GTANGO.gif)
 
 ## Installing
 
@@ -18,24 +20,9 @@ If you just want to test the app, or start developing something you can quickly 
 ng serve --open
 ```
 
-## Configuration of the menu items displayed
-
-Depending on the deployed modules in the infraestructure, the menu shall display only those available. For that, there is a new configuration variable called features_available in the environments file. Any of them might be removed before serving the app to remove them.
-By default, all the modules are activated.
-
-```
-  features_available:  [
-    "DASHBOARD",
-    "USERS",
-    "V&V",
-    "SERVICE PLATFORM",
-    "BSS"
-  ]
-```
-
 ### Authentication service
 
-The authentication and registration of the users is made through [son-gkeeper](https://github.com/sonata-nfv/son-gkeeper). The repository is organized by micro-services provided in their own containers created with docker. A docker-compose.yml provides the linking of all the micro-services.
+The authentication and registration of the users is made through [son-gkeeper](https://github.com/sonata-nfv/son-gkeeper) at the moment. The repository is organized by micro-services provided in their own containers created with docker. A docker-compose.yml provides the linking of all the micro-services.
 
 Currently, docker repositories of this project are private. In order to access them it is necessary to be connected to the Athens VPN.
 
@@ -51,9 +38,27 @@ Currently, docker repositories of this project are private. In order to access t
 docker-compose up -d
 ```
 
-### Configuration parameters
+## Configuration parameters
 
-The different endpoints needed for this project are defined in the config.json file placed inside /src.
+The routes to the services for this project are defined in the config.json file placed in `/src/config.json`
+
+### Configuration of the menu items displayed
+
+Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/environments/environment.ts`.
+
+By default, all the modules are activated:
+
+```
+  features_available:  [
+    "DASHBOARD",
+    "USERS",
+    "V&V",
+    "SERVICE PLATFORM",
+    "SERVICE MANAGEMENT"
+  ]
+```
+
+To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
 
 ## License
 
