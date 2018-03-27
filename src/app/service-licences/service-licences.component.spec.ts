@@ -1,17 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ServiceLicencesComponent } from './service-licences.component';
+import { ServiceLicencesComponent } from "./service-licences.component";
 
-describe('ServiceLicencesComponent', () => {
+describe("ServiceLicencesComponent", () => {
   let component: ServiceLicencesComponent;
   let fixture: ComponentFixture<ServiceLicencesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ServiceLicencesComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ServiceLicencesComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ServiceLicencesComponent);
@@ -19,7 +20,7 @@ describe('ServiceLicencesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

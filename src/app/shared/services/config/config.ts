@@ -5,5 +5,6 @@ export class Config {
     LOGIN: string;
     SERVICES: string;
     REQUESTS: string;
+    INSTANCES: string;
   };
 }

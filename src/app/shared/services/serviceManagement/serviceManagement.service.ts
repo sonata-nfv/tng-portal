@@ -12,7 +12,11 @@ import {
 export class ServiceManagementService {
   authHeaders: HttpHeaders;
 
-  constructor(private authService: AuthService, private config: ConfigService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private config: ConfigService,
+    private http: HttpClient
+  ) {}
 
   getNetworkServices(): any {
     return new Promise((resolve, reject) => {
@@ -22,12 +26,38 @@ export class ServiceManagementService {
       this.http
         .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES, {
           headers: headers
-        }).subscribe(response => {
-            if (response[0].hasOwnProperty('nsd')) {
+        })
+        .subscribe(
+          response => {
+            if (response[0].hasOwnProperty("nsd")) {
               resolve(response);
             }
-            reject('No available network services returned');
-          }, (error: HttpErrorResponse) => {
+            reject("No available network services returned");
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
+          }
+        );
+    });
+  }
+
+  getNetworkService(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES + uuid, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            if (response.hasOwnProperty("nsd")) {
+              resolve(response);
+            } else {
+              reject("No network service returned");
+            }
+          },
+          (error: HttpErrorResponse) => {
             reject(error.statusText);
           }
         );
@@ -40,15 +70,77 @@ export class ServiceManagementService {
       this.http
         .get(this.config.ROUTES.BASE + this.config.ROUTES.REQUESTS, {
           headers: headers
-        }).subscribe(response => {
-          if (response[0].hasOwnProperty('service_uuid')) {
-            resolve(response);
+        })
+        .subscribe(
+          response => {
+            if (response.hasOwnProperty("service_uuid")) {
+              resolve(response);
+            } else {
+              reject("No requests returned");
+            }
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
           }
-          reject('No requests returned');
-        }, (error: HttpErrorResponse) => {
-          reject(error.statusText);
-        });
+        );
     });
   }
 
+  getInstances(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            if (response[0].hasOwnProperty("uuid")) {
+              resolve(response);
+            }
+            reject("No requests returned");
+          },
+          (error: HttpErrorResponse) => {
+            if (error.status === 404) {
+              resolve([]);
+            }
+            reject(error.statusText);
+          }
+        );
+    });
+  }
+
+  // instantiate() {
+  //   return new Promise((resolve, reject) => {
+  //     let uuid = "f146d1fe-3049-47fc-a0cb-7d7b777a4989";
+  //     let data = {
+  //       nsd_id: "f146d1fe-3049-47fc-a0cb-7d7b777a4989",
+  //       latest_nsd_id: "nsr-schema-01"
+  //     };
+
+  //     let headers = this.authService.getAuthHeaders();
+  //     this.http
+  //       .put(
+  //         this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES + uuid,
+  //         data,
+  //         {
+  //           headers: headers
+  //         }
+  //       )
+  //       .subscribe(
+  //         response => {
+  //           if (response[0].hasOwnProperty("uuid")) {
+  //             resolve(response);
+  //           }
+  //           reject("No requests returned");
+  //         },
+  //         (error: HttpErrorResponse) => {
+  //           if (error.status === 404) {
+  //             resolve([]);
+  //           }
+  //           reject(error.statusText);
+  //         }
+  //       );
+  //   });
+  // }
 }

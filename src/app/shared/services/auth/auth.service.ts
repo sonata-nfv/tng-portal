@@ -70,19 +70,27 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       let headers = this.getAuthHeaders();
 
-      this.http.delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+      this.http
+        .delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
           headers: headers
         })
-        .subscribe(() => {
-          resolve();
-        }, (error: HttpErrorResponse) => {
+        .subscribe(
+          () => {
+            resolve();
+          },
+          (error: HttpErrorResponse) => {
             reject(error);
           }
         );
-      });
+    });
   }
 
-  signup(username: string, password: string, email: string, userType: string): any {
+  signup(
+    username: string,
+    password: string,
+    email: string,
+    userType: string
+  ): any {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       headers.set("Content-Type", "application/json");

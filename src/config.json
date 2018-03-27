@@ -4,6 +4,7 @@
     "REGISTER": "users/",
     "LOGIN": "sessions/",
     "SERVICES": "services/",
-    "REQUESTS": "requests/"
+    "REQUESTS": "requests/",
+    "INSTANCES": "records/services"
   }
 }

@@ -2,3 +2,28 @@
 <h2>Network service instances</h2>
 
 <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+<mat-table [dataSource]="instances | filter: searchText">
+    <ng-container matColumnDef="instanceId">
+        <mat-header-cell *matHeaderCellDef> Network service instance id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.instanceId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="serviceId">
+        <mat-header-cell *matHeaderCellDef> Currently running service id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.serviceId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef> Current version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="latestVersion">
+        <mat-header-cell *matHeaderCellDef> Latest version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.latestVersion }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

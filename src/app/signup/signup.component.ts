@@ -18,8 +18,8 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   // TODO Request roles options from the API
-  roles = ['Developer', 'Customer'];
-  
+  roles = ["Developer", "Customer"];
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {

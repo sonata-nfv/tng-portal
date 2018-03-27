@@ -1,49 +1,48 @@
 app-dialog {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  width: 630px;
+  height: 370px;
+  background-color: rgb(254, 254, 254);
+  color: rgb(138, 138, 138);
+  font-size: 19px;
+  .buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  button {
+    margin: 20px 0 25px;
+    padding: 8px 60px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    &.cancel {
+      margin-right: 15px;
+      color: rgb(254, 254, 254);
+      background-color: rgb(189, 185, 185);
+    }
+    &.action {
+      margin-left: 15px;
+      color: rgb(254, 254, 254);
+      background-color: rgb(201, 0, 16);
+    }
+  }
+  .mat-dialog-title {
+    width: 100%;
+    margin: 55px 0 40px;
+    text-align: center;
+    color: rgb(201, 0, 16);
+    font-size: 29px;
+  }
+  .mat-dialog-content {
     display: flex;
     flex: 1 1;
-    flex-direction: column;
-    align-items: center;
-    width: 630px;
-    height: 370px;
-    background-color: rgb(254, 254, 254);
-    color: rgb(138, 138, 138);
-    font-size: 19px;
-    .buttonContainer {
-        display: flex;
-        justify-content: flex-end;
-    }
-    button {
-        margin: 20px 0 25px;
-        padding: 8px 60px;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-        outline: none;
-        &.cancel {
-            margin-right: 15px;
-            color: rgb(254, 254, 254);
-            background-color: rgb(189, 185, 185);
-        }
-        &.action {
-            margin-left: 15px;
-            color: rgb(254, 254, 254);
-            background-color: rgb(201, 0, 16);
-        }
-    }
-    .mat-dialog-title {
-        width: 100%;
-        margin: 55px 0 40px;
-        text-align: center;
-        color: rgb(201, 0, 16);
-        font-size: 29px;
-    }
-    .mat-dialog-content {
-        display: flex;
-        flex: 1 1;
-        width: 100%;
-        margin: 20px 0 20px;
-        justify-content: center;
-    }
-
+    width: 100%;
+    margin: 20px 0 20px;
+    justify-content: center;
+  }
 }

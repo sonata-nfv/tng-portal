@@ -1,0 +1,76 @@
+app-request-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgb(254, 254, 254);
+  h1 {
+    margin-top: 15px;
+    width: 95%;
+    color: rgb(201, 0, 16);
+    font-size: 16px;
+  }
+  h1:after {
+    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    content: "";
+    display: block;
+    height: 1px;
+    width: 250px;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin-bottom: 10px;
+    h2 {
+      margin: 0px 15px 0 0;
+      width: 95%;
+      color: rgb(138, 138, 138);
+      font-size: 32px;
+    }
+    .close {
+      padding: 8px 50px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: rgb(254, 254, 254);
+      background-color: rgb(189, 185, 185);
+    }
+  }
+  .detail {
+    width: 95%;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .mat-focused .mat-form-field-label {
+      text-align: left;
+    }
+    .mat-form-field {
+      width: 65%;
+    }
+    // Change font-size of label
+    .mat-form-field-can-float.mat-form-field-should-float {
+      .mat-form-field-label {
+        font-size: 20px;
+      }
+    }
+    .mat-input-element:disabled {
+      font-size: 20px;
+      color: rgb(65, 65, 65);
+    }
+    // Change input underline styles
+    .mat-form-field-disabled .mat-form-field-underline {
+      background-image: none;
+      background-color: rgb(200, 159, 160);
+    }
+  }
+}

@@ -13,14 +13,14 @@ app-signup {
     padding: 2em;
     border-radius: 10px;
     background-color: rgb(226, 222, 221);
-    flex-direction: column;    
+    flex-direction: column;
     .header {
-        height: 3em;
-        background: url("../../assets/images/tango.svg") no-repeat center
-          rgb(226, 222, 221);
-        background-size: 12em;
-        background-repeat: no-repeat;
-      }
+      height: 3em;
+      background: url("../../assets/images/tango.svg") no-repeat center
+        rgb(226, 222, 221);
+      background-size: 12em;
+      background-repeat: no-repeat;
+    }
     .form {
       flex: 1 0;
       display: flex;
@@ -84,7 +84,9 @@ app-signup {
       .mat-form-field-invalid .mat-form-field-label {
         color: rgb(201, 0, 16);
       }
-      .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+      .mat-form-field-invalid
+        .mat-form-field-label
+        .mat-form-field-required-marker,
       .mat-form-field-invalid .mat-form-field-label.mat-accent {
         color: rgb(201, 0, 16);
       }
@@ -135,6 +137,5 @@ app-signup {
         margin-bottom: -2em;
       }
     }
-    
   }
 }

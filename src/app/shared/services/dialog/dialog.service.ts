@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material";
 
 import { DialogComponent } from "./../../../dialog/dialog.component";
 
 @Injectable()
 export class DialogDataService {
-    
   constructor(public dialog: MatDialog) {}
 
   openDialog(title: String, content: String, action: String, onAction: any) {
@@ -18,10 +17,9 @@ export class DialogDataService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'action') {
+      if (result === "action") {
         onAction();
       }
     });
   }
-  
 }

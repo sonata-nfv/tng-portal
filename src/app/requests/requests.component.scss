@@ -1,58 +1,57 @@
 app-requests {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1;
-    align-items: center;
-    width: auto;
-    height: 100%;
-    background-color: rgb(254, 254, 254);
-    h1 {
-        margin-top: 15px;
-        width: 95%;
-        color: rgb(201, 0, 16);
-        font-size: 16px;
-    }
-    h1:after {
-        background: none repeat scroll 0 0 rgb(201, 0, 16);
-        content: "";
-        display: block;
-        height: 1px;
-        width: 250px;
-    }
-    h2 {
-        width: 95%;
-        margin: 0px 15px 25px 15px;
-        color: rgb(138, 138, 138);
-        font-size: 32px;
-    }
-    mat-table {
-        width: 95%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        text-align: center;
-    }
-    .mat-sort-header-button {
-        color: rgb(201, 0, 16);
-        margin: 0 auto;
-    }
-    .mat-header-row {
-        min-width: 150px;
-        border-bottom: none;
-    }
-    .mat-row {
-        min-width: 150px;
-        border-bottom-color: rgb(232, 198, 201);
-    }
-    .mat-cell {
-      font-size: 12px;
-    }
-    // Set width for columns
-    .mat-cell:nth-child(2),
-    .mat-header-cell:nth-child(2) {
-        flex: 0 0 10%;
-    }
-    .mat-cell:nth-child(6),
-    .mat-header-cell:nth-child(6) {
-        flex: 0 0 6%;
-    }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: rgb(254, 254, 254);
+  h1 {
+    margin-top: 15px;
+    width: 95%;
+    color: rgb(201, 0, 16);
+    font-size: 16px;
+  }
+  h1:after {
+    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    content: "";
+    display: block;
+    height: 1px;
+    width: 250px;
+  }
+  h2 {
+    width: 95%;
+    margin: 0px 15px 25px 15px;
+    color: rgb(138, 138, 138);
+    font-size: 32px;
+  }
+  mat-table {
+    margin-bottom: 20px;
+    width: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+  }
+  .mat-sort-header-button {
+    color: rgb(201, 0, 16);
+    margin: 0 auto;
+  }
+  .mat-header-row {
+    min-width: 150px;
+    border-bottom: none;
+  }
+  .mat-row {
+    min-width: 150px;
+    border-bottom-color: rgb(232, 198, 201);
+  }
+  // Set width for columns
+  .mat-cell:nth-child(2),
+  .mat-header-cell:nth-child(2) {
+    flex: 0 0 9%;
+  }
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
+    flex: 0 0 11%;
+  }
 }
