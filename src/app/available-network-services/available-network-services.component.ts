@@ -55,6 +55,11 @@ export class AvailableNetworkServicesComponent {
             type: item.user_licence
           };
         });
+        for (let i = 0; i < 5; i++) {
+          this.networkServices = this.networkServices.concat(
+            this.networkServices
+          );
+        }
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
