@@ -1,4 +1,4 @@
-<h2 mat-dialog-title> Instantiate {{ data.serviceName }} network service </h2>
+<h2 mat-dialog-title> Instantiate {{ data.service.serviceName }} network service </h2>
 
 <mat-dialog-content>
   <div class="section">
@@ -53,6 +53,6 @@
 <mat-dialog-actions>
   <div class="buttonContainer">
     <button class="cancel" mat-button mat-dialog-close>Cancel</button>
-    <button class="save" mat-button cdkFocusInitial [mat-dialog-close]="false" (click)="instantiate()">SAVE</button>
+    <button class="save" mat-button cdkFocusInitial [mat-dialog-close]="false" (click)="instantiate(data.service)">SAVE</button>
   </div>
 </mat-dialog-actions>

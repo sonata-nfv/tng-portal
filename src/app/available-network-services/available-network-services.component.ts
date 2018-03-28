@@ -85,7 +85,7 @@ export class AvailableNetworkServicesComponent {
 
   instanciate(row) {
     this.instantiateDialog.open(InstantiateDialogComponent, {
-      data: { serviceName: row.serviceName }
+      data: { service: row }
     });
   }
 }

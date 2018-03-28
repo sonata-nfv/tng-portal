@@ -49,7 +49,7 @@ export class InstantiateDialogComponent implements OnInit {
     }
   }
 
-  instantiate() {
-    this.instantiateDialog.instantiate(this.ingress, this.egress);
+  instantiate(service) {
+    this.instantiateDialog.instantiate(service, this.ingress, this.egress);
   }
 }

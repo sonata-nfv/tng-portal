@@ -105,7 +105,7 @@ export class ServiceManagementService {
     });
   }
 
-  instantiate(ingress: Array<Object>, egress: Array<Object>) {
+  instantiate(service: Object, ingress: Array<Object>, egress: Array<Object>) {
     console.log(ingress);
     console.log(egress);
     // Send request to instantiate with data

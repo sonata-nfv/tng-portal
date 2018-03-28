@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { MatDialog } from "@angular/material";
+
+import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
-
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-network-service",
@@ -22,7 +24,8 @@ export class NetworkServiceComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -47,8 +50,16 @@ export class NetworkServiceComponent implements OnInit {
     });
   }
 
-  // TODO instance from network service displayed
-  instanciate() {}
+  instanciate() {
+    this.instantiateDialog.open(InstantiateDialogComponent, {
+      data: {
+        service: {
+          serviceId: this.serviceID,
+          serviceName: this.name
+        }
+      }
+    });
+  }
 
   close() {
     this.router.navigate(["/availableNetworkServices"]);
