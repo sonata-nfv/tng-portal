@@ -11,7 +11,12 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class RequestDetailComponent implements OnInit {
-  detail: Object;
+  requestId: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  serviceId: string;
+  status: string;
 
   constructor(
     private dataTransfer: DataTransferService,
@@ -20,7 +25,14 @@ export class RequestDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataTransfer.data.subscribe(res => (this.detail = res));
+    this.dataTransfer.data.subscribe(res => {
+      this.requestId = res.requestId;
+      this.type = res.type;
+      this.createdAt = res.createdAt;
+      this.updatedAt = res.updatedAt;
+      this.serviceId = res.serviceId;
+      this.status = res.status;
+    });
   }
 
   close() {
