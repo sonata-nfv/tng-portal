@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class AvailableNetworkServicesComponent {
+  loading: boolean;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
@@ -34,9 +35,11 @@ export class AvailableNetworkServicesComponent {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.serviceManagementService
       .getNetworkServices()
       .then(response => {
+        this.loading = false;
         // Populate the list of available network services
         this.networkServices = response.map(function(item) {
           return {
@@ -52,6 +55,7 @@ export class AvailableNetworkServicesComponent {
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
+        this.loading = false;
         console.error(err);
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
@@ -72,7 +76,6 @@ export class AvailableNetworkServicesComponent {
   }
 
   openNetworkService(row) {
-    console.log(row);
     let uuid = row.serviceId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }

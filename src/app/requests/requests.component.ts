@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class RequestsComponent implements OnInit {
+  loading: boolean;
   requests = new Array();
   selectedRequest: Object = null;
   dataSource = new MatTableDataSource();
@@ -35,10 +36,12 @@ export class RequestsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.serviceManagementService
       .getRequests()
       .then(response => {
         this.requests = response.map(function(item) {
+          this.loading = false;
           return {
             searchField: item.id,
             requestId: item.id,
@@ -52,6 +55,7 @@ export class RequestsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {
+        this.loading = false;
         console.error(err);
 
         // Dialog informing the user to log in again when token expired

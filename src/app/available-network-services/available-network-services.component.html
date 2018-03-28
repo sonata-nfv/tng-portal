@@ -42,4 +42,6 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
 </mat-table>
 
+<app-spinner *ngIf="loading"></app-spinner>
+
 <router-outlet></router-outlet>
