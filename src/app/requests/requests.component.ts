@@ -40,8 +40,8 @@ export class RequestsComponent implements OnInit {
     this.serviceManagementService
       .getRequests()
       .then(response => {
+        this.loading = false;
         this.requests = response.map(function(item) {
-          this.loading = false;
           return {
             searchField: item.id,
             requestId: item.id,
