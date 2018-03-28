@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
+
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
-import { Router, ActivatedRoute } from "@angular/router";
+import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 @Component({
   selector: "app-available-network-services",
@@ -31,7 +33,8 @@ export class AvailableNetworkServicesComponent {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private dialogData: DialogDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -80,7 +83,9 @@ export class AvailableNetworkServicesComponent {
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 
-  instanciate() {
-    console.log("Instanciating....");
+  instanciate(row) {
+    this.instantiateDialog.open(InstantiateDialogComponent, {
+      data: { serviceName: row.serviceName }
+    });
   }
 }

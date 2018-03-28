@@ -1,0 +1,34 @@
+<h2 mat-dialog-title> Instantiate {{ data.serviceName }} network service </h2>
+
+<mat-dialog-content>
+  <!-- <div class="section">
+    <button [ngClass]="{ active: isIngress === true }" (click)="isIngress=true;" class="ingress" mat-button>Ingress</button>
+    <span class="dash">-</span>
+    <button [ngClass]="{ active: isIngress === false }" (click)="isIngress=false;" class="egress" mat-button>Egress</button>
+  </div> -->
+
+  <!-- <div *ngIf="isIngress; else isEgress"> -->
+
+  <form #instantiationForm="ngForm" (ngSubmit)="instantiate(instantiationForm)" class="form">
+    <mat-form-field>
+      <mat-select placeholder="Location" name="location">
+        <mat-option *ngFor="let location of locations" [value]="location">
+          {{ location }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Network attachment point (NAP)" name="nap">
+    </mat-form-field>
+  </form>
+  <!-- </div> -->
+
+  <!-- <ng-template #isEgress>Alternate text while primary text is hidden </ng-template> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="buttonContainer">
+    <button class="cancel" mat-button mat-dialog-close>Cancel</button>
+    <button class="save" mat-button cdkFocusInitial>SAVE</button>
+    <!-- [mat-dialog-close]="false" -->
+  </div>
+</mat-dialog-actions>

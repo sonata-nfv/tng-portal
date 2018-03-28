@@ -18,7 +18,7 @@ import { ValidationComponent } from "./validation/validation.component";
 import { ServicePlatformComponent } from "./service-platform/service-platform.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
-// import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
+import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -59,7 +59,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FilterPipe,
     SearchBarComponent,
     DialogComponent,
-    // InstantiateDialogComponent,
+    InstantiateDialogComponent,
     RequestsComponent,
     NetworkServiceInstancesComponent,
     ServiceLicencesComponent,
@@ -68,10 +68,7 @@ export function initConfiguration(configService: ConfigService): Function {
     RequestDetailComponent,
     SpinnerComponent
   ],
-  entryComponents: [
-    DialogComponent
-    // InstantiateDialogComponent
-  ],
+  entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
