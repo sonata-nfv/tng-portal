@@ -32,8 +32,8 @@
     </ng-container>
     <ng-container matColumnDef="instanciate">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-            <button mat-button (click)="instanciate()">
+        <mat-cell *matCellDef="let element" (click)="instanciate(element)" (click)="$event.stopPropagation()">
+            <button mat-button>
                 <i class="wui wui-caret-right"></i>
             </button>
         </mat-cell>
@@ -41,5 +41,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
 </mat-table>
+
+<app-spinner *ngIf="loading"></app-spinner>
 
 <router-outlet></router-outlet>

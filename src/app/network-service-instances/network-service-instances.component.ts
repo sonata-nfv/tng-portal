@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 
-import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 import { Router } from "@angular/router";
@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class NetworkServiceInstancesComponent implements OnInit {
+  loading: boolean;
   searchText: string;
   instances: Array<Object>;
   dataSource = new MatTableDataSource();
@@ -31,9 +32,11 @@ export class NetworkServiceInstancesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.serviceManagementService
       .getInstances()
       .then(response => {
+        this.loading = false;
         // Populate the list of instances
         this.instances = response.map(function(item) {
           if (item.length < 1) {
@@ -52,6 +55,7 @@ export class NetworkServiceInstancesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
+        this.loading = false;
         console.error(err);
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {

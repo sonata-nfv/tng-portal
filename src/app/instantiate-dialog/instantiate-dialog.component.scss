@@ -1,0 +1,158 @@
+app-instantiate-dialog {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  width: 630px;
+  height: auto;
+  background-color: rgb(254, 254, 254);
+  color: rgb(138, 138, 138);
+  font-size: 19px;
+  .mat-dialog-title {
+    width: 100%;
+    margin: 0 20px;
+    text-align: center;
+    color: rgb(201, 0, 16);
+    font-size: 23¡0px;
+  }
+  .mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1;
+    width: 100%;
+    .section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 60px;
+      button {
+        margin: 0 15px;
+        padding: 15px;
+        font-size: 28px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: rgb(189, 185, 185);
+        background-color: rgb(254, 254, 254);
+      }
+      button.active {
+        color: rgb(201, 0, 16);
+      }
+      .dash {
+        color: rgb(189, 185, 185);
+        font-size: 30px;
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgb(201, 0, 16);
+      dt {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        span {
+          flex: 1;
+          text-align: center;
+        }
+        button {
+          border: none;
+          cursor: pointer;
+          outline: none;
+          padding: 8px;
+          background-color: rgb(254, 254, 254);
+          i:before {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .form {
+      flex: 1 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      .mat-form-field {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        text-align: center;
+        color: rgb(121, 20, 34);
+        .mat-select.mat-select-invalid .mat-select-arrow {
+          color: rgb(138, 138, 138);
+        }
+      }
+      .mat-form-field-label:not(.mat-form-field-empty) {
+        text-align: start;
+      }
+      .mat-focused .mat-form-field-label {
+        color: rgb(138, 138, 138);
+        text-align: left;
+      }
+      .mat-form-field-ripple {
+        background-color: rgb(121, 20, 34);
+      }
+      .mat-select-value-text {
+        color: rgb(121, 20, 34);
+      }
+      .mat-form-field-invalid .mat-form-field-label {
+        color: rgb(138, 138, 138);
+      }
+      .mat-form-field-invalid
+        .mat-form-field-label
+        .mat-form-field-required-marker,
+      .mat-form-field-invalid .mat-form-field-label.mat-accent {
+        color: rgb(138, 138, 138);
+      }
+    }
+    .addNew {
+      display: flex;
+      justify-content: flex-end;
+      width: 60%;
+      button {
+        width: 150px;
+        padding: 8px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: rgb(201, 0, 16);
+        background-color: rgb(254, 254, 254);
+        i:before {
+          font-size: 12px;
+          color: rgb(201, 0, 16);
+        }
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin: 20px 0 25px;
+      padding: 8px 60px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      &.cancel {
+        margin-right: 15px;
+        color: rgb(254, 254, 254);
+        background-color: rgb(189, 185, 185);
+      }
+      &.save {
+        margin-left: 15px;
+        color: rgb(254, 254, 254);
+        background-color: rgb(121, 20, 34);
+      }
+    }
+  }
+}

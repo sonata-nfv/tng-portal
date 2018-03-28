@@ -16,7 +16,7 @@
         <i class="wui wui-user-group-alt"></i>
         <span>USERS</span>
       </button>
-      <button [ngClass]="{ active: menu === 'v&v' }" (click)="setMenu($event, 'v&v')" ifFeatureAvailable="v&v" disabled>
+      <button [ngClass]="{ active: menu === 'v&v' }" (click)="setMenu($event, 'v&v')" ifFeatureAvailable="v&v">
         <i class="wui wui-check-circle-alt"></i>
         <span>V&V</span>
       </button>
@@ -24,7 +24,7 @@
         <i class="wui wui-network-alt"></i>
         <span>SERVICE PLATFORM</span>
       </button>
-      <button [ngClass]="{ active: menu === 'bss' }" (click)="setMenu($event, 'bss')" ifFeatureAvailable="service management">
+      <button [ngClass]="{ active: menu === 'sm' }" (click)="setMenu($event, 'sm')" ifFeatureAvailable="service management">
         <i class="wui wui-table-alt"></i>
         <span>Service Management</span>
       </button>
@@ -48,7 +48,7 @@
       <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">SLICES</button>
     </div>
 
-    <div class="options" *ngIf="menu === 'bss'">
+    <div class="options" *ngIf="menu === 'sm'">
       <button [ngClass]="{ active: section === 'availableNS' }" (click)="setSection($event, 'availableNS')">Available network services</button>
       <button [ngClass]="{ active: section === 'requests' }" (click)="setSection($event, 'requests')">Requests</button>
       <button [ngClass]="{ active: section === 'nsInstances' }" (click)="setSection($event, 'nsInstances')">Network service instances</button>

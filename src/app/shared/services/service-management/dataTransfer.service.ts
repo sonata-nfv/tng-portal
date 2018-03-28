@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class DataTransferService {
-  data = new BehaviorSubject<Object>([]);
+  data = new BehaviorSubject<any>([]);
   cast = this.data.asObservable();
 
   sendDetail(detail) {

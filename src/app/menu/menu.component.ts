@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "sp") {
       this.section = "policies";
       this.router.navigate(["/servicePlatform"]);
-    } else if (buttonId === "bss") {
+    } else if (buttonId === "sm") {
       this.section = "availableNS";
       this.router.navigate(["/availableNetworkServices"]);
     }

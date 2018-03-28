@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 
-import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { DataTransferService } from "../shared/services/serviceManagement/dataTransfer.service";
+import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class RequestsComponent implements OnInit {
+  loading: boolean;
   requests = new Array();
   selectedRequest: Object = null;
   dataSource = new MatTableDataSource();
@@ -35,9 +36,11 @@ export class RequestsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.serviceManagementService
       .getRequests()
       .then(response => {
+        this.loading = false;
         this.requests = response.map(function(item) {
           return {
             searchField: item.id,
@@ -52,6 +55,7 @@ export class RequestsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {
+        this.loading = false;
         console.error(err);
 
         // Dialog informing the user to log in again when token expired

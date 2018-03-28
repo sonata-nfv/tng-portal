@@ -31,8 +31,9 @@ export class ServiceManagementService {
           response => {
             if (response[0].hasOwnProperty("nsd")) {
               resolve(response);
+            } else {
+              resolve([]);
             }
-            reject("No available network services returned");
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);
@@ -54,7 +55,7 @@ export class ServiceManagementService {
             if (response.hasOwnProperty("nsd")) {
               resolve(response);
             } else {
-              reject("No network service returned");
+              resolve({});
             }
           },
           (error: HttpErrorResponse) => {
@@ -73,11 +74,7 @@ export class ServiceManagementService {
         })
         .subscribe(
           response => {
-            if (response.hasOwnProperty("service_uuid")) {
-              resolve(response);
-            } else {
-              reject("No requests returned");
-            }
+            resolve(response);
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);
@@ -95,19 +92,24 @@ export class ServiceManagementService {
         })
         .subscribe(
           response => {
-            if (response[0].hasOwnProperty("uuid")) {
-              resolve(response);
-            }
-            reject("No requests returned");
+            resolve(response);
           },
           (error: HttpErrorResponse) => {
             if (error.status === 404) {
               resolve([]);
+            } else {
+              reject(error.statusText);
             }
-            reject(error.statusText);
           }
         );
     });
+  }
+
+  instantiate(service: Object, ingress: Array<Object>, egress: Array<Object>) {
+    console.log(ingress);
+    console.log(egress);
+    // Send request to instantiate with data
+    // Show pop up saying success/error with id xxxxx
   }
 
   // instantiate() {

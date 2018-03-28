@@ -18,6 +18,7 @@ import { ValidationComponent } from "./validation/validation.component";
 import { ServicePlatformComponent } from "./service-platform/service-platform.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
+import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -28,13 +29,14 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
-import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
-import { DataTransferService } from "./shared/services/serviceManagement/dataTransfer.service";
+import { ServiceManagementService } from "./shared/services/service-management/serviceManagement.service";
+import { DataTransferService } from "./shared/services/service-management/dataTransfer.service";
 import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
+import { SpinnerComponent } from "./spinner/spinner.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -57,14 +59,16 @@ export function initConfiguration(configService: ConfigService): Function {
     FilterPipe,
     SearchBarComponent,
     DialogComponent,
+    InstantiateDialogComponent,
     RequestsComponent,
     NetworkServiceInstancesComponent,
     ServiceLicencesComponent,
     UserLicencesComponent,
     NetworkServiceComponent,
-    RequestDetailComponent
+    RequestDetailComponent,
+    SpinnerComponent
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

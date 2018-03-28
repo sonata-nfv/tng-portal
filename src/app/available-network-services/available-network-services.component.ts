@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
-
-import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
-import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { MatTableDataSource, MatDialog } from "@angular/material";
 
 import { Router, ActivatedRoute } from "@angular/router";
+
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
+
+import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 @Component({
   selector: "app-available-network-services",
@@ -13,6 +15,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class AvailableNetworkServicesComponent {
+  loading: boolean;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
@@ -30,13 +33,16 @@ export class AvailableNetworkServicesComponent {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private dialogData: DialogDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.serviceManagementService
       .getNetworkServices()
       .then(response => {
+        this.loading = false;
         // Populate the list of available network services
         this.networkServices = response.map(function(item) {
           return {
@@ -52,6 +58,7 @@ export class AvailableNetworkServicesComponent {
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
+        this.loading = false;
         console.error(err);
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
@@ -72,12 +79,13 @@ export class AvailableNetworkServicesComponent {
   }
 
   openNetworkService(row) {
-    console.log(row);
     let uuid = row.serviceId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 
-  instanciate() {
-    console.log("Instanciating....");
+  instanciate(row) {
+    this.instantiateDialog.open(InstantiateDialogComponent, {
+      data: { service: row }
+    });
   }
 }
