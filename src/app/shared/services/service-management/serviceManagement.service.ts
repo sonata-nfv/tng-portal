@@ -105,6 +105,13 @@ export class ServiceManagementService {
     });
   }
 
+  instantiate(ingress: Array<Object>, egress: Array<Object>) {
+    console.log(ingress);
+    console.log(egress);
+    // Send request to instantiate with data
+    // Show pop up saying success/error with id xxxxx
+  }
+
   // instantiate() {
   //   return new Promise((resolve, reject) => {
   //     let uuid = "f146d1fe-3049-47fc-a0cb-7d7b777a4989";

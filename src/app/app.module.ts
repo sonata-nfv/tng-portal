@@ -29,8 +29,8 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
-import { ServiceManagementService } from "./shared/services/serviceManagement/serviceManagement.service";
-import { DataTransferService } from "./shared/services/serviceManagement/dataTransfer.service";
+import { ServiceManagementService } from "./shared/services/service-management/serviceManagement.service";
+import { DataTransferService } from "./shared/services/service-management/dataTransfer.service";
 import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";

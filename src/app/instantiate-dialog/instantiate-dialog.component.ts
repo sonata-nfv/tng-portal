@@ -3,6 +3,8 @@ import { MatDialogRef } from "@angular/material";
 import { MAT_DIALOG_DATA } from "@angular/material";
 import { NgForm } from "@angular/forms";
 
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+
 @Component({
   selector: "app-instantiate-dialog",
   templateUrl: "./instantiate-dialog.component.html",
@@ -10,20 +12,44 @@ import { NgForm } from "@angular/forms";
   encapsulation: ViewEncapsulation.None
 })
 export class InstantiateDialogComponent implements OnInit {
+  isIngress = true;
+  ingress = new Array();
+  egress = new Array();
   // TODO GET posible locations
   locations = ["Aveiro", "Barcelona"];
 
   constructor(
     public dialogRef: MatDialogRef<InstantiateDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private instantiateDialog: ServiceManagementService
   ) {}
 
   ngOnInit() {}
 
-  instantiate(instantiation: NgForm) {
-    console.log("instantiating-......");
-    // Send request to instantiate with data
-    // Close dialog
-    // Show pop up saying success/error with id xxxxx
+  addNew(instantiationForm: NgForm) {
+    if (this.isIngress) {
+      this.ingress.push({
+        location: instantiationForm.controls.location.value,
+        nap: instantiationForm.controls.nap.value
+      });
+    } else {
+      this.egress.push({
+        location: instantiationForm.controls.location.value,
+        nap: instantiationForm.controls.nap.value
+      });
+    }
+    instantiationForm.reset();
+  }
+
+  eraseEntry(entry: string) {
+    if (this.isIngress) {
+      this.ingress = this.ingress.filter(x => x !== entry);
+    } else {
+      this.egress = this.egress.filter(x => x !== entry);
+    }
+  }
+
+  instantiate() {
+    this.instantiateDialog.instantiate(this.ingress, this.egress);
   }
 }

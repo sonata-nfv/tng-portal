@@ -3,7 +3,7 @@ import { MatTableDataSource, MatDialog } from "@angular/material";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";

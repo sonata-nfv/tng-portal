@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
-import { ServiceManagementService } from "../shared/services/serviceManagement/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
