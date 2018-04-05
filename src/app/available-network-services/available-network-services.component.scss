@@ -38,6 +38,10 @@ app-available-network-services {
     color: rgb(201, 0, 16);
     margin: 0 auto;
   }
+
+  .mat-header-cell{
+    color: rgb(201, 0, 16);
+  }
   .mat-header-row {
     min-width: 150px;
     border-bottom: none;
@@ -46,7 +50,7 @@ app-available-network-services {
     min-width: 150px;
   //  border-bottom-color: rgb(232, 198, 201);
     border-bottom: none;
-    background-image: linear-gradient(to right, #FFF 6%, rgb(232, 198, 201) 6%, rgb(232, 198, 201) 94%, #FFF 94%, #FFF 100%);
+    background-image: linear-gradient(to right, #FFF 7%, rgb(232, 198, 201) 7%, rgb(232, 198, 201) 94%, #FFF 94%, #FFF 100%);
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
