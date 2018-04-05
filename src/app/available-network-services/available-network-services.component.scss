@@ -32,6 +32,7 @@ app-available-network-services {
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
+    border-bottom: none;
   }
   .mat-sort-header-button {
     color: rgb(201, 0, 16);
@@ -43,8 +44,15 @@ app-available-network-services {
   }
   .mat-row {
     min-width: 150px;
-    border-bottom-color: rgb(232, 198, 201);
+  //  border-bottom-color: rgb(232, 198, 201);
+    border-bottom: none;
+    background-image: linear-gradient(to right, #FFF 6%, rgb(232, 198, 201) 6%, rgb(232, 198, 201) 94%, #FFF 94%, #FFF 100%);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
   }
+
+  .mat-row-underline{}
   i {
     &.wui-circle-alt {
       border-radius: 50%;
