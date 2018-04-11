@@ -60,6 +60,8 @@ app-requests {
   .mat-row {
     min-width: 150px;
     border-bottom-color: rgb(232, 198, 201);
+    align-items: baseline;
+    min-height: 29px;
   }
   // Set width for columns
   .mat-cell:nth-child(2),
