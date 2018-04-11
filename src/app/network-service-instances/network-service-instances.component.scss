@@ -48,6 +48,8 @@ app-network-service-instances {
   .mat-row {
     min-width: 150px;
     border-bottom-color: rgb(232, 198, 201);
+    align-items: baseline;
+    min-height: 29px;
   }
   i {
     &.wui-circle-alt {
