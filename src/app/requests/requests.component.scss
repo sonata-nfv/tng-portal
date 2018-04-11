@@ -59,7 +59,11 @@ app-requests {
   }
   .mat-row {
     min-width: 150px;
-    border-bottom-color: rgb(232, 198, 201);
+    border-bottom: none;
+    background-image: linear-gradient(to right, #FFF 1%, rgb(232, 198, 201) 1%, rgb(232, 198, 201) 98%, #FFF 98%, #FFF 100%);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
   }
