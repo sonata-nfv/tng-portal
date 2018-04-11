@@ -56,6 +56,9 @@ app-requests {
   .mat-header-row {
     min-width: 150px;
     border-bottom: none;
+    position: sticky;
+    top: 0;
+    background: white;
   }
   .mat-row {
     min-width: 150px;
