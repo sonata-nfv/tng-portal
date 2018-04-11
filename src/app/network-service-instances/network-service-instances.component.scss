@@ -34,6 +34,19 @@ app-network-service-instances {
     overflow-x: hidden;
     text-align: center;
   }
+  mat-table::-webkit-scrollbar{
+    width: 10px;
+  }
+  mat-table::-webkit-scrollbar-track {
+        background: rgb(232, 198, 201);
+        border: 4px solid transparent;
+        background-clip: content-box;
+  }
+  mat-table::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+  }
   .mat-sort-header-button {
     color: rgb(201, 0, 16);
     margin: 0 auto;
