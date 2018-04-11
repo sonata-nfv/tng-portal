@@ -59,6 +59,9 @@ app-available-network-services {
     min-width: 150px;
     border-bottom: none;
     align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
   }
   .mat-row {
     min-width: 150px;
