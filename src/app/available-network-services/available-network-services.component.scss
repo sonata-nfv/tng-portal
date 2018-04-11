@@ -45,6 +45,7 @@ app-available-network-services {
   .mat-header-row {
     min-width: 150px;
     border-bottom: none;
+    align-items: center;
   }
   .mat-row {
     min-width: 150px;
@@ -54,6 +55,9 @@ app-available-network-services {
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
+    align-items: baseline;
+    min-height: 29px;
+
   }
 
   .mat-row-underline{}
