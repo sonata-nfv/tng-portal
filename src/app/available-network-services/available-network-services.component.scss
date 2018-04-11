@@ -29,13 +29,14 @@ app-available-network-services {
   mat-table {
     margin-bottom: 20px;
     width: 85%;
-    overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
     border-bottom: none;
+    margin-top: 50px;
   }
   mat-table::-webkit-scrollbar{
     width: 10px;
+    padding-top: 100px;
   }
   mat-table::-webkit-scrollbar-track {
         background: rgb(232, 198, 201);
@@ -56,12 +57,16 @@ app-available-network-services {
     color: rgb(201, 0, 16);
   }
   .mat-header-row {
-    min-width: 150px;
+    in-width: 150px;
     border-bottom: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    position: sticky;
-    top: 0;
+    position: -webkit-sticky;
+    position: absolute;
     background: white;
+    transform: translate(0, -50px);
+    width: 84%;
   }
   .mat-row {
     min-width: 150px;

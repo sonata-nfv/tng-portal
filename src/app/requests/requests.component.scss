@@ -32,6 +32,7 @@ app-requests {
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
+    margin-top: 50px;
   }
   mat-table::-webkit-scrollbar{
     width: 10px;
@@ -54,11 +55,16 @@ app-requests {
     color: rgb(201, 0, 16);
   }
   .mat-header-row {
-    min-width: 150px;
+    in-width: 150px;
     border-bottom: none;
-    position: sticky;
-    top: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: -webkit-sticky;
+    position: absolute;
     background: white;
+    transform: translate(0, -50px);
+    width: 84%;
   }
   .mat-row {
     min-width: 150px;
@@ -69,6 +75,7 @@ app-requests {
     background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
+
   }
   // Set width for columns
   .mat-cell:nth-child(2),
