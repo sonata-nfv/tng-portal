@@ -22,10 +22,14 @@
     <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.type }}</mat-cell>
   </ng-container>
-  <!-- <ng-container matColumnDef="Status">
-    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.status }}</mat-cell>
-  </ng-container> -->
+  <ng-container matColumnDef="buy">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="buy(element)" (click)="$event.stopPropagation()">
+          <button mat-button>
+              <i class="wui wui-shopping-cart"></i>
+          </button>
+      </mat-cell>
+  </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>

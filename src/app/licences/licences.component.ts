@@ -22,6 +22,7 @@ export class LicencesComponent implements OnInit {
     "Licence ID",
     "Related Service",
     "Type",
+    "buy"
   ];
   searchText: string;
 
@@ -53,5 +54,9 @@ export class LicencesComponent implements OnInit {
 
   receiveMessage($event) {
     this.searchText = $event;
+  }
+  
+  buy(row) {
+
   }
 }
