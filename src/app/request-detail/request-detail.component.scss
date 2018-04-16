@@ -13,14 +13,14 @@ app-request-detail {
     margin-top: 15px;
     width: 95%;
     color: rgb(201, 0, 16);
-    font-size: 16px;
+    font-size: 14px;
   }
   h1:after {
     background: none repeat scroll 0 0 rgb(201, 0, 16);
     content: "";
     display: block;
     height: 1px;
-    width: 250px;
+    width: 260px;
   }
   .header {
     display: flex;
@@ -71,6 +71,7 @@ app-request-detail {
     .mat-form-field-disabled .mat-form-field-underline {
       background-image: none;
       background-color: rgb(200, 159, 160);
+      height: 2px;
     }
   }
 }

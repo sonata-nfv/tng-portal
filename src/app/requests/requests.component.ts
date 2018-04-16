@@ -52,6 +52,9 @@ export class RequestsComponent implements OnInit {
             status: item.status
           };
         });
+        for (let i = 0; i < 5; i++) {
+          this.requests = this.requests.concat(this.requests);
+        }
         this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {

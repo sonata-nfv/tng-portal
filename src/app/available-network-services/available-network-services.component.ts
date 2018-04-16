@@ -55,6 +55,7 @@ export class AvailableNetworkServicesComponent {
             type: item.user_licence
           };
         });
+        
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {

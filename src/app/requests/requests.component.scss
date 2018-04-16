@@ -11,14 +11,14 @@ app-requests {
     margin-top: 15px;
     width: 95%;
     color: rgb(201, 0, 16);
-    font-size: 16px;
+    font-size: 14px;
   }
   h1:after {
     background: none repeat scroll 0 0 rgb(201, 0, 16);
     content: "";
     display: block;
     height: 1px;
-    width: 250px;
+    width: 260px;
   }
   h2 {
     width: 95%;
@@ -32,18 +32,50 @@ app-requests {
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
+    margin-top: 50px;
+  }
+  mat-table::-webkit-scrollbar{
+    width: 10px;
+  }
+  mat-table::-webkit-scrollbar-track {
+        background: rgb(232, 198, 201);
+        border: 4px solid transparent;
+        background-clip: content-box;
+  }
+  mat-table::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
   }
   .mat-sort-header-button {
     color: rgb(201, 0, 16);
     margin: 0 auto;
   }
+  .mat-header-cell{
+    color: rgb(201, 0, 16);
+  }
   .mat-header-row {
-    min-width: 150px;
+    in-width: 150px;
     border-bottom: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: -webkit-sticky;
+    position: absolute;
+    background: white;
+    transform: translate(0, -50px);
+    width: 84%;
   }
   .mat-row {
     min-width: 150px;
-    border-bottom-color: rgb(232, 198, 201);
+    border-bottom: none;
+    background-image: linear-gradient(to right, #FFF 1%, rgb(232, 198, 201) 1%, rgb(232, 198, 201) 98%, #FFF 98%, #FFF 100%);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    align-items: baseline;
+    min-height: 29px;
+
   }
   // Set width for columns
   .mat-cell:nth-child(2),

@@ -60,8 +60,8 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "nsInstances") {
       this.router.navigate(["/instances"]);
     } else if (buttonId === "store") {
-      this.subsection = "serviceLicences";
-      this.router.navigate(["/serviceLicences"]);
+      this.subsection = "licences";
+      this.router.navigate(["/licences"]);
     }
 
     this.section = buttonId;

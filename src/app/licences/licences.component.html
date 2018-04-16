@@ -1,0 +1,40 @@
+<h1>SERVICE MANAGEMENT</h1>
+<h2>Licences</h2>
+
+<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+<mat-table [dataSource]="licenses | filter: searchText">
+  <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+      </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Licence ID">
+    <mat-header-cell *matHeaderCellDef> Licence ID </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.licenceId }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Related Service">
+    <mat-header-cell *matHeaderCellDef> Related Service </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.relatedService }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Type">
+    <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.type }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="buy">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="buy(element)" (click)="$event.stopPropagation()">
+          <button mat-button>
+              <i class="wui wui-shopping-cart"></i>
+          </button>
+      </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+</mat-table>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>
