@@ -37,7 +37,7 @@
     <div class="options" *ngIf="menu === 'sp'">
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">POLICIES</button>
       <div class="section" *ngIf="section === 'policies'">
-        <button [ngClass]="{ active: subsection === 'deploymentPolicy' }" (click)="setSubsection($event, 'deploymentPolicy')">Deployment Policies</button>
+        <button [ngClass]="{ active: subsection === 'placementPolicy' }" (click)="setSubsection($event, 'placementPolicy')">Placement Policies</button>
         <button [ngClass]="{ active: subsection === 'runtimePolicy' }" (click)="setSubsection($event, 'runtimePolicy')">Runtime Policies</button>
       </div>
       <button [ngClass]="{ active: section === 'sla' }" (click)="setSection($event, 'sla')">SLA</button>
