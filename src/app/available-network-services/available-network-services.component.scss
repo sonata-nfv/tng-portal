@@ -26,22 +26,38 @@ app-available-network-services {
     color: rgb(138, 138, 138);
     font-size: 32px;
   }
+  .tools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reload {
+    position: absolute;
+    right: 10.5%;
+    .wui-undo::before {
+      font-size: 20px;
+      color: rgb(201, 0, 16);
+      // color: rgb(138, 138, 138);
+      // color: rgb(116, 206, 62);
+    }
+  }
   mat-table {
     margin-bottom: 20px;
     width: 85%;
     overflow-x: hidden;
     text-align: center;
     border-bottom: none;
-    margin-top: 50px;
+    margin-top: 100px;
   }
-  mat-table::-webkit-scrollbar{
+  mat-table::-webkit-scrollbar {
     width: 10px;
     padding-top: 100px;
   }
   mat-table::-webkit-scrollbar-track {
-        background: rgb(232, 198, 201);
-        border: 4px solid transparent;
-        background-clip: content-box;
+    background: rgb(232, 198, 201);
+    border: 4px solid transparent;
+    background-clip: content-box;
   }
   mat-table::-webkit-scrollbar-thumb {
     background-color: darkgrey;
@@ -53,7 +69,7 @@ app-available-network-services {
     margin: 0 auto;
   }
 
-  .mat-header-cell{
+  .mat-header-cell {
     color: rgb(201, 0, 16);
   }
   .mat-header-row {
@@ -70,18 +86,25 @@ app-available-network-services {
   }
   .mat-row {
     min-width: 150px;
-  //  border-bottom-color: rgb(232, 198, 201);
+    //  border-bottom-color: rgb(232, 198, 201);
     border-bottom: none;
-    background-image: linear-gradient(to right, #FFF 7%, rgb(232, 198, 201) 7%, rgb(232, 198, 201) 94%, #FFF 94%, #FFF 100%);
+    background-image: linear-gradient(
+      to right,
+      #fff 7%,
+      rgb(232, 198, 201) 7%,
+      rgb(232, 198, 201) 94%,
+      #fff 94%,
+      #fff 100%
+    );
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
-
   }
 
-  .mat-row-underline{}
+  .mat-row-underline {
+  }
   i {
     &.wui-circle-alt {
       border-radius: 50%;
