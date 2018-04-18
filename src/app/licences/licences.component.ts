@@ -21,35 +21,68 @@ export class LicencesComponent implements OnInit {
   searchText: string;
 
   constructor(
+    private serviceManagementService: ServiceManagementService,
     private router: Router,
     private route: ActivatedRoute,
     private dataTransfer: DataTransferService
   ) {}
 
   ngOnInit() {
-    this.loading = false;
-    this.licences = [
-      {
-        searchField: "uno",
-        status: "active",
-        licenceId: "11fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-        relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
-        type: "public",
-        description:
-          "Description of service 1: fsdfhgsiduafgs aiud fgisuadf guisigaisd safsufhsu fuisfhhgf sdgfgiugii uigiagfg sdigf"
-      },
-      {
-        searchField: "dos",
-        status: "GHLJHG",
-        licenceId: "21fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-        relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
-        type: "public",
-        description: "Description of service 2"
-      }
-    ];
-    for (let i = 0; i < 5; i++) {
-      this.licences = this.licences.concat(this.licences);
-    }
+    this.loading = true;
+    this.serviceManagementService
+      .getLicences()
+      .then(response => {
+        this.loading = false;
+        this.licences = response.map(function(item) {
+          return {
+            searchField: item.licence_uuid,
+            licenceId: item.licence_uuid,
+            relatedService: item.service_uuid,
+            type: item.licence_type,
+            description: item.description,
+            status: item.status
+          };
+        });
+        console.log(this.licences);
+        // this.licences = [
+        //   {
+        //     searchField: "uno",
+        //     status: "active",
+        //     licenceId: "11fff5fa-5770-4fe7-9e34-a0f60ae63b88",
+        //     relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
+        //     type: "public",
+        //     description:
+        //       "Description of service 1: fsdfhgsiduafgs aiud fgisuadf guisigaisd safsufhsu fuisfhhgf sdgfgiugii uigiagfg sdigf"
+        //   },
+        //   {
+        //     searchField: "dos",
+        //     status: "GHLJHG",
+        //     licenceId: "21fff5fa-5770-4fe7-9e34-a0f60ae63b88",
+        //     relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
+        //     type: "public",
+        //     description: "Description of service 2"
+        //   }
+        // ];
+        for (let i = 0; i < 5; i++) {
+          this.licences = this.licences.concat(this.licences);
+        }
+      })
+      .catch(err => {
+        this.loading = false;
+        console.error(err);
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        }
+      });
   }
 
   receiveMessage($event) {
