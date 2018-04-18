@@ -83,6 +83,24 @@ export class ServiceManagementService {
     });
   }
 
+  getLicences(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.LICENCES, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            resolve(response);
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
+          }
+        );
+    });
+  }
+
   getInstances(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
