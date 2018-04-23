@@ -24,7 +24,8 @@ export class LicencesComponent implements OnInit {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private route: ActivatedRoute,
-    private dataTransfer: DataTransferService
+    private dataTransfer: DataTransferService,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
