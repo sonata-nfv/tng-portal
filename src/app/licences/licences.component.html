@@ -1,7 +1,12 @@
 <h1>SERVICE MANAGEMENT</h1>
 <h2>Licences</h2>
 
-<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <button class="reload" (click)="requestLicences()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
 
 <mat-table [dataSource]="licences | filter: searchText">
   <ng-container matColumnDef="Status">

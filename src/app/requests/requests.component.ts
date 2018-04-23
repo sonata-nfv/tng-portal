@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class RequestsComponent implements OnInit {
   loading: boolean;
   requests = new Array();
-  selectedRequest: Object = null;
+  // selectedRequest: Object = null;
   dataSource = new MatTableDataSource();
   displayedColumns = [
     "Request ID",
@@ -36,6 +36,10 @@ export class RequestsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.requestRequests();
+  }
+
+  requestRequests() {
     this.loading = true;
     this.serviceManagementService
       .getRequests()
@@ -52,10 +56,6 @@ export class RequestsComponent implements OnInit {
             status: item.status
           };
         });
-        for (let i = 0; i < 5; i++) {
-          this.requests = this.requests.concat(this.requests);
-        }
-        this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {
         this.loading = false;

@@ -32,6 +32,10 @@ export class NetworkServiceInstancesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.requestNSInstances();
+  }
+
+  requestNSInstances() {
     this.loading = true;
     this.serviceManagementService
       .getInstances()
@@ -52,9 +56,6 @@ export class NetworkServiceInstancesComponent implements OnInit {
             };
           }
         });
-        for (let i = 0; i < 5; i++) {
-          this.instances = this.instances.concat(this.instances);
-        }
         this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
@@ -73,7 +74,6 @@ export class NetworkServiceInstancesComponent implements OnInit {
         }
       });
   }
-
   receiveMessage($event) {
     this.searchText = $event;
   }

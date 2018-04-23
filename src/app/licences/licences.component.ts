@@ -28,6 +28,10 @@ export class LicencesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.requestLicences();
+  }
+
+  requestLicences() {
     this.loading = true;
     this.serviceManagementService
       .getLicences()
@@ -43,26 +47,25 @@ export class LicencesComponent implements OnInit {
             status: item.status
           };
         });
-        console.log(this.licences);
-        // this.licences = [
-        //   {
-        //     searchField: "uno",
-        //     status: "active",
-        //     licenceId: "11fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-        //     relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
-        //     type: "public",
-        //     description:
-        //       "Description of service 1: fsdfhgsiduafgs aiud fgisuadf guisigaisd safsufhsu fuisfhhgf sdgfgiugii uigiagfg sdigf"
-        //   },
-        //   {
-        //     searchField: "dos",
-        //     status: "GHLJHG",
-        //     licenceId: "21fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-        //     relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
-        //     type: "public",
-        //     description: "Description of service 2"
-        //   }
-        // ];
+        this.licences = [
+          {
+            searchField: "uno",
+            status: "active",
+            licenceId: "11fff5fa-5770-4fe7-9e34-a0f60ae63b88",
+            relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
+            type: "public",
+            description:
+              "Description of service 1: fsdfhgsiduafgs aiud fgisuadf guisigaisd safsufhsu fuisfhhgf sdgfgiugii uigiagfg sdigf"
+          },
+          {
+            searchField: "dos",
+            status: "GHLJHG",
+            licenceId: "21fff5fa-5770-4fe7-9e34-a0f60ae63b88",
+            relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
+            type: "public",
+            description: "Description of service 2"
+          }
+        ];
         for (let i = 0; i < 5; i++) {
           this.licences = this.licences.concat(this.licences);
         }
