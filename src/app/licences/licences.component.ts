@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
+import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 
 @Component({
   selector: "app-licences",
@@ -15,48 +15,72 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 })
 export class LicencesComponent implements OnInit {
   loading: boolean;
-  licenses: Array<Object>;
+  licences = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = [
-    "Status",
-    "Licence ID",
-    "Related Service",
-    "Type",
-    "buy"
-  ];
+  displayedColumns = ["Status", "Licence ID", "Related Service", "Type", "buy"];
   searchText: string;
 
   constructor(
+    private serviceManagementService: ServiceManagementService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dataTransfer: DataTransferService,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
-    this.loading = false;
-    this.licenses = [{
-      searchField: 'uno',
-      status: 'active',
-      licenceId: '11fff5fa-5770-4fe7-9e34-a0f60ae63b88',
-      relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
-      type: 'public'
-    },{
-      searchField: 'dos',
-      status: 'GHLJHG',
-      licenceId: '21fff5fa-5770-4fe7-9e34-a0f60ae63b88',
-      relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
-      type: 'public'
-    }];
-    for (let i = 0; i < 5; i++) {
-      this.licenses = this.licenses.concat(
-        this.licenses
-      );
-    }
+    this.requestLicences();
+  }
 
+  requestLicences() {
+    this.loading = true;
+    this.serviceManagementService
+      .getLicences()
+      .then(response => {
+        this.loading = false;
+        this.licences = response.map(function(item) {
+          return {
+            searchField: item.licence_uuid,
+            licenceId: item.licence_uuid,
+            relatedService: item.service_uuid,
+            type: item.licence_type,
+            description: item.description,
+            status: item.status
+          };
+        });
+      })
+      .catch(err => {
+        this.loading = false;
+        console.error(err);
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        }
+      });
   }
 
   receiveMessage($event) {
     this.searchText = $event;
   }
-  
-  buy(row) {
-
+  openLicences(row) {
+    let uuid = row.licenceId;
+    this.getLicenceById(uuid);
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
+
+  getLicenceById(uuid) {
+    let detail = this.licences.find(x => x.licenceId === uuid);
+    this.dataTransfer.sendDetail(detail);
+    return;
+  }
+
+  buy(row) {}
 }

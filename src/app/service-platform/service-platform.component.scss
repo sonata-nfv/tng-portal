@@ -1,4 +1,5 @@
 app-service-platform {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -17,6 +18,6 @@ app-service-platform {
     content: "";
     display: block;
     height: 1px;
-    width: 2600px;
+    width: 260px;
   }
 }

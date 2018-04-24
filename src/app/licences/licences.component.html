@@ -1,11 +1,16 @@
 <h1>SERVICE MANAGEMENT</h1>
 <h2>Licences</h2>
 
-<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <button class="reload" (click)="requestLicences()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
 
-<mat-table [dataSource]="licenses | filter: searchText">
+<mat-table [dataSource]="licences | filter: searchText">
   <ng-container matColumnDef="Status">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
       <mat-cell *matCellDef="let element">
           <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
       </mat-cell>
@@ -32,7 +37,7 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openLicences(row)"></mat-row>
 </mat-table>
 
 <app-spinner *ngIf="loading"></app-spinner>
