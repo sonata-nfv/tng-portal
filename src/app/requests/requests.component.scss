@@ -111,4 +111,11 @@ app-requests {
   .mat-header-cell:nth-child(5) {
     flex: 0 0 11%;
   }
+  app-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
 }
