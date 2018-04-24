@@ -1,66 +1,58 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 
+import { Router, ActivatedRoute } from "@angular/router";
+
 import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { Router } from "@angular/router";
+import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 
 @Component({
-  selector: "app-network-service-instances",
-  templateUrl: "./network-service-instances.component.html",
-  styleUrls: ["./network-service-instances.component.scss"],
+  selector: "app-licences",
+  templateUrl: "./licences.component.html",
+  styleUrls: ["./licences.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class NetworkServiceInstancesComponent implements OnInit {
+export class LicencesComponent implements OnInit {
   loading: boolean;
-  searchText: string;
-  instances: Array<Object>;
+  licences = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = [
-    "instanceId",
-    "status",
-    "serviceId",
-    "version",
-    "latestVersion"
-  ];
+  displayedColumns = ["Status", "Licence ID", "Related Service", "Type", "buy"];
+  searchText: string;
 
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
+    private route: ActivatedRoute,
+    private dataTransfer: DataTransferService,
     private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
-    this.requestNSInstances();
+    this.requestLicences();
   }
 
-  requestNSInstances() {
+  requestLicences() {
     this.loading = true;
     this.serviceManagementService
-      .getInstances()
+      .getLicences()
       .then(response => {
         this.loading = false;
-        // Populate the list of instances
-        this.instances = response.map(function(item) {
-          if (item.length < 1) {
-            return (this.instances = []);
-          } else {
-            return {
-              searchField: item.uuid,
-              instanceId: item.uuid,
-              status: item.status,
-              serviceId: item.descriptor_reference,
-              version: item.version,
-              latestVersion: ""
-            };
-          }
+        this.licences = response.map(function(item) {
+          return {
+            searchField: item.licence_uuid,
+            licenceId: item.licence_uuid,
+            relatedService: item.service_uuid,
+            type: item.licence_type,
+            description: item.description,
+            status: item.status
+          };
         });
-        this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
         this.loading = false;
         console.error(err);
+
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
           let title = "Your session has expired";
@@ -74,7 +66,21 @@ export class NetworkServiceInstancesComponent implements OnInit {
         }
       });
   }
+
   receiveMessage($event) {
     this.searchText = $event;
   }
+  openLicences(row) {
+    let uuid = row.licenceId;
+    this.getLicenceById(uuid);
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
+
+  getLicenceById(uuid) {
+    let detail = this.licences.find(x => x.licenceId === uuid);
+    this.dataTransfer.sendDetail(detail);
+    return;
+  }
+
+  buy(row) {}
 }

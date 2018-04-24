@@ -1,4 +1,5 @@
 app-service-platform {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -10,13 +11,13 @@ app-service-platform {
     margin-top: 15px;
     width: 95%;
     color: rgb(201, 0, 16);
-    font-size: 16px;
+    font-size: 14px;
   }
   h1:after {
     background: none repeat scroll 0 0 rgb(201, 0, 16);
     content: "";
     display: block;
     height: 1px;
-    width: 250px;
+    width: 260px;
   }
 }

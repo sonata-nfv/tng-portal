@@ -1,4 +1,4 @@
-app-requests {
+app-licences {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,12 +34,7 @@ app-requests {
   }
   .reload {
     position: absolute;
-    right: 7%;
-    padding: 4px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: rgb(254, 254, 254);
+    right: 10.5%;
     .wui-undo::before {
       font-size: 20px;
       color: rgb(201, 0, 16);
@@ -90,27 +85,55 @@ app-requests {
     border-bottom: none;
     background-image: linear-gradient(
       to right,
-      #fff 1%,
-      rgb(232, 198, 201) 1%,
-      rgb(232, 198, 201) 98%,
-      #fff 98%,
+      #fff 7%,
+      rgb(232, 198, 201) 7%,
+      rgb(232, 198, 201) 94%,
+      #fff 94%,
       #fff 100%
     );
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
     align-items: baseline;
-    min-height: 29px;
+    min-height: 39px;
   }
-  // Set width for columns
-  .mat-cell:nth-child(2),
-  .mat-header-cell:nth-child(2) {
-    flex: 0 0 9%;
+
+  .mat-row-underline {
+  }
+  i {
+    &.wui-circle-alt {
+      border-radius: 50%;
+      background-color: rgb(195, 195, 195);
+    }
+    &.active {
+      border-radius: 50%;
+      background-color: rgb(123, 214, 123);
+    }
+  }
+  button {
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(254, 254, 254);
+    .wui-shopping-cart:before {
+      color: rgb(235, 165, 79);
+    }
+  }
+
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1) {
+    flex: 0 0 60px;
+  }
+  .mat-cell:nth-child(4),
+  .mat-header-cell:nth-child(4) {
+    flex: 0 0 13%;
   }
   .mat-cell:nth-child(5),
   .mat-header-cell:nth-child(5) {
-    flex: 0 0 11%;
+    flex: 0 0 30px;
   }
+
   app-spinner {
     position: absolute;
     top: 50%;

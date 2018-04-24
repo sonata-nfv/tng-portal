@@ -15,6 +15,8 @@ import { NetworkServiceComponent } from "./network-service/network-service.compo
 import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
+import { LicencesComponent } from "./licences/licences.component";
+import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
 import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
@@ -48,6 +50,11 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
       { path: "instances", component: NetworkServiceInstancesComponent },
+      {
+        path: "licences",
+        component: LicencesComponent,
+        children: [{ path: "detail/:id", component: LicencesDetailComponent }]
+      },
       { path: "serviceLicences", component: ServiceLicencesComponent },
       { path: "userLicences", component: UserLicencesComponent }
     ]

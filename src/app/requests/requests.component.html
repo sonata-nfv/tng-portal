@@ -1,7 +1,12 @@
 <h1>SERVICE MANAGEMENT</h1>
 <h2>Requests</h2>
 
-<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <button class="reload" (click)="requestRequests()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
 
 <mat-table [dataSource]="requests | filter: searchText">
     <ng-container matColumnDef="Request ID">

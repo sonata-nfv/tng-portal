@@ -38,6 +38,14 @@ export class AvailableNetworkServicesComponent {
   ) {}
 
   ngOnInit() {
+    this.requestServices();
+  }
+
+  receiveMessage($event) {
+    this.searchText = $event;
+  }
+
+  requestServices() {
     this.loading = true;
     this.serviceManagementService
       .getNetworkServices()
@@ -72,10 +80,6 @@ export class AvailableNetworkServicesComponent {
           });
         }
       });
-  }
-
-  receiveMessage($event) {
-    this.searchText = $event;
   }
 
   openNetworkService(row) {

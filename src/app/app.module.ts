@@ -37,6 +37,8 @@ import { FeatureAvailableDirective } from "./shared/directives/feature-available
 
 import { FilterPipe } from "./shared/filter.pipe";
 import { SpinnerComponent } from "./spinner/spinner.component";
+import { LicencesComponent } from './licences/licences.component';
+import { LicencesDetailComponent } from './licences-detail/licences-detail.component';
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -66,7 +68,9 @@ export function initConfiguration(configService: ConfigService): Function {
     UserLicencesComponent,
     NetworkServiceComponent,
     RequestDetailComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    LicencesComponent,
+    LicencesDetailComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
