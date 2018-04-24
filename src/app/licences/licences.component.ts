@@ -48,28 +48,6 @@ export class LicencesComponent implements OnInit {
             status: item.status
           };
         });
-        this.licences = [
-          {
-            searchField: "uno",
-            status: "active",
-            licenceId: "11fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-            relatedService: "9f9213c9-1134-43bd-9351-50bff41765de",
-            type: "public",
-            description:
-              "Description of service 1: fsdfhgsiduafgs aiud fgisuadf guisigaisd safsufhsu fuisfhhgf sdgfgiugii uigiagfg sdigf"
-          },
-          {
-            searchField: "dos",
-            status: "GHLJHG",
-            licenceId: "21fff5fa-5770-4fe7-9e34-a0f60ae63b88",
-            relatedService: "2f9213c9-1134-43bd-9351-50bff41765de",
-            type: "public",
-            description: "Description of service 2"
-          }
-        ];
-        for (let i = 0; i < 5; i++) {
-          this.licences = this.licences.concat(this.licences);
-        }
       })
       .catch(err => {
         this.loading = false;
@@ -94,9 +72,14 @@ export class LicencesComponent implements OnInit {
   }
   openLicences(row) {
     let uuid = row.licenceId;
+    this.getLicenceById(uuid);
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
+
+  getLicenceById(uuid) {
     let detail = this.licences.find(x => x.licenceId === uuid);
     this.dataTransfer.sendDetail(detail);
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    return;
   }
 
   buy(row) {}

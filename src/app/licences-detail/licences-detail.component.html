@@ -1,18 +1,24 @@
 <h1>LICENCES</h1>
 <div class='header'>
-  <h2> {{ licenceId }}</h2>
-  <button class='close' (click)="close()">CLOSE</button>
+    <h2> {{ licenceId }}</h2>
+    <button class='close' (click)="close()">CLOSE</button>
 </div>
 
 <form class='detail'>
-  <mat-form-field class="relatedService">
-      <input matInput placeholder="RelatedService" value="{{ relatedService }}" disabled>
-  </mat-form-field>
-  <mat-form-field class="type">
-      <input matInput placeholder="Type" value="{{ type }}" disabled>
-  </mat-form-field>
-  <div class="description">
-      <span class="title">DESCRIPTION</span>
-      <span class="content">{{ description }}</span>
-  </div>
+    <mat-form-field class="relatedService">
+        <input matInput placeholder="RelatedService" value="{{ relatedService }}" disabled>
+    </mat-form-field>
+    <mat-form-field class="type">
+        <input matInput placeholder="Type" value="{{ type }}" disabled>
+    </mat-form-field>
+    <div class="buy">
+        <button (click)="buy()">
+            <i class="wui wui-shopping-cart"></i>
+            <span class="cart">Buy</span>
+        </button>
+    </div>
+    <div class="description">
+        <span class="title">DESCRIPTION</span>
+        <span class="content">{{ description }}</span>
+    </div>
 </form>
