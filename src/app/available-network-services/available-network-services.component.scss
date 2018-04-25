@@ -38,14 +38,13 @@ app-available-network-services {
     .wui-undo::before {
       font-size: 20px;
       color: rgb(201, 0, 16);
-      // color: rgb(138, 138, 138);
-      // color: rgb(116, 206, 62);
     }
   }
   mat-table {
     margin-bottom: 20px;
     width: 85%;
     overflow-x: hidden;
+    overflow-y: overlay;
     text-align: center;
     border-bottom: none;
     margin-top: 100px;
@@ -73,20 +72,16 @@ app-available-network-services {
     color: rgb(201, 0, 16);
   }
   .mat-header-row {
-    in-width: 150px;
     border-bottom: none;
     -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    position: -webkit-sticky;
     position: absolute;
     background: white;
-    transform: translate(0, -50px);
-    width: 84%;
+    transform: translate(0, -57px);
+    width: 85%;
   }
   .mat-row {
     min-width: 150px;
-    //  border-bottom-color: rgb(232, 198, 201);
     border-bottom: none;
     background-image: linear-gradient(
       to right,
@@ -101,9 +96,6 @@ app-available-network-services {
     background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
-  }
-
-  .mat-row-underline {
   }
   i {
     &.wui-circle-alt {
