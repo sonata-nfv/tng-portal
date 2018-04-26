@@ -41,8 +41,8 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "v&v") {
       this.router.navigate(["/validation"]);
     } else if (buttonId === "sp") {
-      this.section = "policies";
-      this.router.navigate(["/servicePlatform"]);
+      this.section = "packages";
+      this.router.navigate(["/packages"]);
     } else if (buttonId === "sm") {
       this.section = "availableNS";
       this.router.navigate(["/availableNetworkServices"]);
@@ -51,7 +51,11 @@ export class MenuComponent implements OnInit {
   }
 
   setSection(e, buttonId) {
-    if (buttonId === "sla") {
+    if (buttonId === "packages") {
+      this.router.navigate(["/packages"]);
+    } else if (buttonId === "policies") {
+      this.router.navigate(["/policies"]);
+    } else if (buttonId === "sla") {
       this.subsection = "slaAgreements";
     } else if (buttonId === "availableNS") {
       this.router.navigate(["/availableNetworkServices"]);

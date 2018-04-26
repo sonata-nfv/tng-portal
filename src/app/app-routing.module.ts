@@ -9,7 +9,8 @@ import { IndexComponent } from "./index/index.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
-import { ServicePlatformComponent } from "./service-platform/service-platform.component";
+import { PoliciesComponent } from "./policies/policies.component";
+import { PackagesComponent } from "./packages/packages.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -37,7 +38,8 @@ const routes: Routes = [
       { path: "users", component: UsersComponent },
       { path: "validation", component: ValidationComponent },
       // Service Platform section
-      { path: "servicePlatform", component: ServicePlatformComponent },
+      { path: "packages", component: PackagesComponent },
+      { path: "policies", component: PoliciesComponent },
       // Service Management section
       {
         path: "availableNetworkServices",

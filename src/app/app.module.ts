@@ -15,7 +15,8 @@ import { IndexComponent } from "./index/index.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
-import { ServicePlatformComponent } from "./service-platform/service-platform.component";
+import { PoliciesComponent } from "./policies/policies.component";
+import { PackagesComponent } from "./packages/packages.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
@@ -37,8 +38,8 @@ import { FeatureAvailableDirective } from "./shared/directives/feature-available
 
 import { FilterPipe } from "./shared/filter.pipe";
 import { SpinnerComponent } from "./spinner/spinner.component";
-import { LicencesComponent } from './licences/licences.component';
-import { LicencesDetailComponent } from './licences-detail/licences-detail.component';
+import { LicencesComponent } from "./licences/licences.component";
+import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -56,7 +57,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FeatureAvailableDirective,
     UsersComponent,
     ValidationComponent,
-    ServicePlatformComponent,
+    PoliciesComponent,
     AvailableNetworkServicesComponent,
     FilterPipe,
     SearchBarComponent,
@@ -70,7 +71,8 @@ export function initConfiguration(configService: ConfigService): Function {
     RequestDetailComponent,
     SpinnerComponent,
     LicencesComponent,
-    LicencesDetailComponent
+    LicencesDetailComponent,
+    PackagesComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
