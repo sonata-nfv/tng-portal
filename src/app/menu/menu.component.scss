@@ -1,5 +1,6 @@
 app-menu {
   .menu {
+    flex: 1 0;
     display: flex;
     height: 100%;
     .mat-drawer-container,
@@ -14,9 +15,13 @@ app-menu {
   }
   .menu-items {
     display: flex;
+    flex: 1 1;
     flex-direction: column;
     text-align: center;
-    width: 150px;
+    width: auto;
+    max-width: 150px;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
   .avatar {
     margin: auto;
@@ -106,6 +111,8 @@ app-menu {
     flex-direction: column;
     justify-content: center;
     width: 250px;
+    overflow-x: hidden;
+    overflow-y: hidden;
     .options {
       display: flex;
       flex-direction: column;
