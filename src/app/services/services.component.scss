@@ -1,0 +1,50 @@
+app-services {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: rgb(254, 254, 254);
+  h1 {
+    margin-top: 15px;
+    width: 95%;
+    color: rgb(201, 0, 16);
+    font-size: 14px;
+  }
+  h1:after {
+    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    content: "";
+    display: block;
+    height: 1px;
+    width: 260px;
+  }
+  h2 {
+    width: 95%;
+    margin: 0px 15px 25px 15px;
+    color: rgb(138, 138, 138);
+    font-size: 32px;
+  }
+  .tools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reload {
+    position: absolute;
+    right: 10.5%;
+    .wui-undo::before {
+      font-size: 20px;
+      color: rgb(201, 0, 16);
+    }
+  }
+  button {
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(254, 254, 254);
+  }
+}

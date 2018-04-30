@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.css']
+  selector: "app-services",
+  templateUrl: "./services.component.html",
+  styleUrls: ["./services.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class ServicesComponent implements OnInit {
+  searchText: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  receiveMessage($event) {
+    this.searchText = $event;
   }
-
 }

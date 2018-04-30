@@ -1,3 +1,9 @@
-<p>
-  services works!
-</p>
+<h1>SERVICE PLATFORM</h1>
+<h2>Services</h2>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <button class="reload" (click)="requestServices()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
