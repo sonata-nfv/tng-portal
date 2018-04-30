@@ -6,6 +6,7 @@
     "SERVICES": "services/",
     "REQUESTS": "requests/",
     "INSTANCES": "records/services",
-    "LICENCES": "licences/"
+    "LICENCES": "licences/",
+    "PACKAGES": "packages/"
   }
 }

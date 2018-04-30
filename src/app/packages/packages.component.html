@@ -1,1 +1,38 @@
 <h1>SERVICE PLATFORM</h1>
+<h2>Packages</h2>
+
+<div class="tools">
+    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <button class="reload" (click)="requestServices()">
+        <i class="wui wui-undo"></i>
+    </button>
+</div>
+
+<mat-table [dataSource]="packages | filter: searchText">
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Created at">
+        <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.createdAt }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Type">
+        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.type}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPackage(row)"></mat-row>
+</mat-table>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

@@ -20,4 +20,104 @@ app-packages {
     height: 1px;
     width: 260px;
   }
+  h2 {
+    width: 95%;
+    margin: 0px 15px 25px 15px;
+    color: rgb(138, 138, 138);
+    font-size: 32px;
+  }
+  .tools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reload {
+    position: absolute;
+    right: 10.5%;
+    .wui-undo::before {
+      font-size: 20px;
+      color: rgb(201, 0, 16);
+    }
+  }
+  button {
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(254, 254, 254);
+  }
+  mat-table {
+    margin-bottom: 20px;
+    width: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    margin-top: 70px;
+  }
+  mat-table::-webkit-scrollbar {
+    width: 10px;
+  }
+  mat-table::-webkit-scrollbar-track {
+    background: rgb(232, 198, 201);
+    border: 4px solid transparent;
+    background-clip: content-box;
+  }
+  mat-table::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+  }
+  .mat-sort-header-button {
+    color: rgb(201, 0, 16);
+    margin: 0 auto;
+  }
+  .mat-header-cell {
+    color: rgb(201, 0, 16);
+  }
+  .mat-header-row {
+    in-width: 150px;
+    border-bottom: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: -webkit-sticky;
+    position: absolute;
+    background: white;
+    transform: translate(0, -50px);
+    width: 84%;
+  }
+  .mat-row {
+    min-width: 150px;
+    border-bottom: none;
+    background-image: linear-gradient(
+      to right,
+      #fff 1%,
+      rgb(232, 198, 201) 1%,
+      rgb(232, 198, 201) 98%,
+      #fff 98%,
+      #fff 100%
+    );
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    align-items: baseline;
+    min-height: 29px;
+  }
+  // Set width for columns
+  .mat-cell:nth-child(4),
+  .mat-header-cell:nth-child(4) {
+    flex: 0 0 9%;
+  }
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
+    flex: 0 0 11%;
+  }
+  app-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
 }

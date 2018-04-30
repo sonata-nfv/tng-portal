@@ -130,37 +130,22 @@ export class ServiceManagementService {
     // Show pop up saying success/error with id xxxxx
   }
 
-  // instantiate() {
-  //   return new Promise((resolve, reject) => {
-  //     let uuid = "f146d1fe-3049-47fc-a0cb-7d7b777a4989";
-  //     let data = {
-  //       nsd_id: "f146d1fe-3049-47fc-a0cb-7d7b777a4989",
-  //       latest_nsd_id: "nsr-schema-01"
-  //     };
-
-  //     let headers = this.authService.getAuthHeaders();
-  //     this.http
-  //       .put(
-  //         this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES + uuid,
-  //         data,
-  //         {
-  //           headers: headers
-  //         }
-  //       )
-  //       .subscribe(
-  //         response => {
-  //           if (response[0].hasOwnProperty("uuid")) {
-  //             resolve(response);
-  //           }
-  //           reject("No requests returned");
-  //         },
-  //         (error: HttpErrorResponse) => {
-  //           if (error.status === 404) {
-  //             resolve([]);
-  //           }
-  //           reject(error.statusText);
-  //         }
-  //       );
-  //   });
-  // }
+  getPackages(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            // TODO parse response
+            resolve(response);
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
+          }
+        );
+    });
+  }
 }
