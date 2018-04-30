@@ -36,6 +36,8 @@
     <div class="options" *ngIf="menu === 'v&v'"></div>
     <div class="options" *ngIf="menu === 'sp'">
       <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">PACKAGES</button>
+      <button [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')">SERVICES</button>
+      <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">FUNCTIONS</button>
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">POLICIES</button>
       <div class="section" *ngIf="section === 'policies'">
         <button [ngClass]="{ active: subsection === 'placementPolicy' }" (click)="setSubsection($event, 'placementPolicy')">Placement Policies</button>

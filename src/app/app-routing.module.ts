@@ -12,6 +12,8 @@ import { ValidationComponent } from "./validation/validation.component";
 import { PoliciesComponent } from "./policies/policies.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
+import { ServicesComponent } from "./services/services.component";
+import { FunctionsComponent } from "./functions/functions.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -43,6 +45,14 @@ const routes: Routes = [
         path: "packages",
         component: PackagesComponent,
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
+      },
+      {
+        path: "services",
+        component: ServicesComponent
+      },
+      {
+        path: "functions",
+        component: FunctionsComponent
       },
       { path: "policies", component: PoliciesComponent },
       // Service Management section
