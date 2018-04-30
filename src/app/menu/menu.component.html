@@ -35,10 +35,10 @@
   <mat-sidenav class="menu-options" align="end" #sidenav mode="side">
     <div class="options" *ngIf="menu === 'v&v'"></div>
     <div class="options" *ngIf="menu === 'sp'">
-      <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">PACKAGES</button>
-      <button [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')">SERVICES</button>
-      <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">FUNCTIONS</button>
-      <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">POLICIES</button>
+      <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">Packages</button>
+      <button [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')">Services</button>
+      <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">Functions</button>
+      <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">Policies</button>
       <div class="section" *ngIf="section === 'policies'">
         <button [ngClass]="{ active: subsection === 'placementPolicy' }" (click)="setSubsection($event, 'placementPolicy')">Placement Policies</button>
         <button [ngClass]="{ active: subsection === 'runtimePolicy' }" (click)="setSubsection($event, 'runtimePolicy')">Runtime Policies</button>
@@ -48,7 +48,7 @@
         <button [ngClass]="{ active: subsection === 'slaAgreements' }" (click)="setSubsection($event, 'slaAgreements')">SLA Agreements</button>
         <button [ngClass]="{ active: subsection === 'slaTemplates' }" (click)="setSubsection($event, 'slaTemplates')">SLA Templates</button>
       </div>
-      <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">SLICES</button>
+      <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">Slices</button>
     </div>
 
     <div class="options" *ngIf="menu === 'sm'">
