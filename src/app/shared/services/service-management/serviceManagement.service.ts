@@ -148,4 +148,23 @@ export class ServiceManagementService {
         );
     });
   }
+
+  getPackage(uuid: String): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES + uuid, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            // TODO parse response
+            resolve(response);
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
+          }
+        );
+    });
+  }
 }

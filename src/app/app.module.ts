@@ -40,6 +40,7 @@ import { FilterPipe } from "./shared/filter.pipe";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { LicencesComponent } from "./licences/licences.component";
 import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
+import { PackagesDetailComponent } from './packages-detail/packages-detail.component';
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -72,7 +73,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SpinnerComponent,
     LicencesComponent,
     LicencesDetailComponent,
-    PackagesComponent
+    PackagesComponent,
+    PackagesDetailComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
