@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-packages-detail",
   templateUrl: "./packages-detail.component.html",
-  styleUrls: ["./packages-detail.component.css"],
+  styleUrls: ["./packages-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class PackagesDetailComponent implements OnInit {

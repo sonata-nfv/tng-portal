@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-signup {
   .container {
     display: flex;
@@ -12,12 +13,12 @@ app-signup {
     max-height: 550px;
     padding: 2em;
     border-radius: 10px;
-    background-color: rgb(226, 222, 221);
+    background-color: $pannel-background-color;
     flex-direction: column;
     .header {
       height: 3em;
       background: url("../../assets/images/tango.svg") no-repeat center
-        rgb(226, 222, 221);
+        $pannel-background-color;
       background-size: 12em;
       background-repeat: no-repeat;
     }
@@ -32,7 +33,7 @@ app-signup {
         flex-direction: column;
         margin: 0 auto;
         width: 60%;
-        color: rgb(121, 20, 34);
+        color: $primary-font-color;
         text-align: center;
       }
       .mat-form-field-infix {
@@ -42,77 +43,77 @@ app-signup {
         text-align: start;
       }
       .mat-focused .mat-form-field-label {
-        color: rgb(138, 138, 138);
+        color: $secondary-font-color;
         text-align: left;
       }
       .mat-form-field-ripple {
-        background-color: rgb(121, 20, 34);
+        background-color: $form-ripple-color;
       }
       button {
         margin-top: 15px;
         width: 60%;
         padding: 10px;
-        background-color: rgb(121, 20, 34);
-        color: rgb(254, 251, 244);
+        background-color: $primary-button-color;
+        color: $button-font-color;
         font-size: 1.2em;
         border-radius: 10px;
       }
       button:disabled {
-        background-color: rgb(65, 65, 65);
+        background-color: $button-disabled-color;
       }
       .error {
         font-size: 0.9em;
         margin-top: -15px;
         margin-bottom: -3px;
-        color: rgb(201, 0, 16);
+        color: $font-color-alert;
         text-align: right;
         width: 80%;
       }
       .information {
         font-size: 1em;
-        color: rgb(201, 0, 16);
+        color: $font-color-alert;
         margin-top: 0px;
         margin-bottom: 3px;
       }
       .note {
         font-size: 0.8em;
-        color: rgb(138, 138, 138);
+        color: $secondary-font-color;
         margin-top: 0px;
         margin-bottom: 4px;
       }
       // Input field is invalid (focus and change field without introducing text)
       .mat-form-field-invalid .mat-form-field-label {
-        color: rgb(201, 0, 16);
+        color: $font-color-alert;
       }
       .mat-form-field-invalid
         .mat-form-field-label
         .mat-form-field-required-marker,
       .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: rgb(201, 0, 16);
+        color: $font-color-alert;
       }
       .mat-form-field-invalid:not(.mat-focused)
         .mat-form-field-underline
         .mat-form-field-ripple,
       .mat-form-field-invalid .mat-form-field-ripple {
-        background-color: rgb(201, 0, 16);
+        background-color: $form-ripple-alert-color;
       }
       // Input field contains an error (errorString exists)
       .userErrorString,
       .passwordErrorString {
-        color: rgb(201, 0, 16);
+        color: $font-color-alert;
         .mat-form-field-ripple {
-          background-color: rgb(201, 0, 16);
+          background-color: $form-ripple-alert-color;
         }
         .mat-form-field-underline {
-          background-color: rgb(201, 0, 16);
+          background-color: $form-ripple-alert-color;
         }
       }
       // Mat-select CSS for the items
       .mat-select-value-text {
-        color: rgb(121, 20, 34);
+        color: $primary-font-color;
       }
       a {
-        color: rgb(121, 20, 34);
+        color: $primary-font-color;
         font-size: 1.2em;
         &.login {
           padding: 15px;
@@ -126,14 +127,14 @@ app-signup {
       .help {
         margin-bottom: auto;
         margin-left: 130px;
-        color: rgb(121, 20, 34);
+        color: $primary-font-color;
         font-size: 1.2em;
         margin-right: 6px;
       }
       .redLine {
         margin: 0 auto;
         width: 400px;
-        border-bottom: 3px solid rgb(201, 0, 16);
+        border-bottom: 3px solid $border-line-color;
         margin-bottom: -2em;
       }
     }

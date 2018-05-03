@@ -129,12 +129,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    //   if (localStorage.getItem("token")) {
-    //     this.setAuthHeaders();
-    //     return true;
-    //   }
-    //   return false;
-    // }
-    return true;
+    if (localStorage.getItem("token")) {
+      this.setAuthHeaders();
+      return true;
+    }
+    return false;
   }
 }

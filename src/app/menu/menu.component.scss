@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-menu {
   .menu {
     flex: 1 0;
@@ -5,12 +6,13 @@ app-menu {
     height: 100%;
     .mat-drawer-container,
     .mat-drawer {
-      background-color: rgb(245, 245, 245);
+      background-color: $menu-background-color;
     }
     background: linear-gradient(
       to right,
-      rgb(245, 245, 245) 85% rgb(248, 248, 248) 85%,
-      rgb(218, 218, 218) 130%
+      $menu-background-color,
+      darken($menu-background-color, 2%) 91%,
+      darken($menu-background-color, 10%) 97%
     );
   }
   .menu-items {
@@ -37,7 +39,7 @@ app-menu {
   p {
     margin: auto;
     width: 150px;
-    color: rgb(121, 20, 34);
+    color: $primary-font-color;
     text-overflow: ellipsis;
     overflow: hidden;
     &.name {
@@ -56,7 +58,7 @@ app-menu {
     font-size: 12px;
     border: none;
     background: none;
-    color: rgb(138, 138, 138);
+    color: $secondary-font-color;
     cursor: pointer;
     span {
       text-decoration: underline;
@@ -72,7 +74,7 @@ app-menu {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-right: 2px solid rgb(201, 0, 16);
+    border-right: 2px solid $border-line-color;
     button {
       display: flex;
       flex-direction: column;
@@ -81,19 +83,19 @@ app-menu {
       padding: 25px;
       border: none;
       background: none;
-      color: rgb(138, 138, 138);
+      color: $secondary-font-color;
       cursor: pointer;
       outline: none;
       i:before {
         font-size: 55px;
-        color: rgb(138, 138, 138);
+        color: $secondary-font-color;
       }
     }
     button.active {
-      color: rgb(201, 0, 16);
+      color: $button-active-color;
       i:before {
         font-size: 55px;
-        color: rgb(201, 0, 16);
+        color: $button-active-color;
       }
     }
   }
@@ -126,15 +128,15 @@ app-menu {
         margin-top: 45px;
         font-size: 18px;
         text-align: left;
-        color: rgb(138, 138, 138);
+        color: $secondary-button-color;
         cursor: pointer;
         outline: none;
       }
       button.active {
         text-align: left;
         outline: none;
-        color: rgb(201, 0, 16);
-        border-bottom: 2px solid rgb(201, 0, 16);
+        color: $button-active-color;
+        border-bottom: 2px solid $button-active-color;
         width: 97%;
       }
       .section {
@@ -149,13 +151,13 @@ app-menu {
           font-size: 15px;
           width: 80%;
           margin-left: 10px;
-          border-bottom: 1px solid rgb(210, 205, 205);
+          border-bottom: 1px solid $secondary-button-color-light;
           outline: none;
         }
         button.active {
           outline: none;
-          color: rgb(201, 0, 16);
-          border-bottom: 2px solid rgb(201, 0, 16);
+          color: $button-active-color;
+          border-bottom: 2px solid $button-active-color;
         }
       }
     }

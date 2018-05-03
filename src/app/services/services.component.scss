@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-services {
   position: relative;
   display: flex;
@@ -6,15 +7,15 @@ app-services {
   align-items: center;
   width: auto;
   height: 100%;
-  background-color: rgb(254, 254, 254);
+  background-color: $basic-background-color;
   h1 {
     margin-top: 15px;
     width: 95%;
-    color: rgb(201, 0, 16);
+    color: $primary-title-color;
     font-size: 14px;
   }
   h1:after {
-    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    background: none repeat scroll 0 0 $primary-title-color;
     content: "";
     display: block;
     height: 1px;
@@ -23,7 +24,7 @@ app-services {
   h2 {
     width: 95%;
     margin: 0px 15px 25px 15px;
-    color: rgb(138, 138, 138);
+    color: $secondary-title-color;
     font-size: 32px;
   }
   .tools {
@@ -37,7 +38,7 @@ app-services {
     right: 10.5%;
     .wui-undo::before {
       font-size: 20px;
-      color: rgb(201, 0, 16);
+      color: $reload-color;
     }
   }
   button {
@@ -45,6 +46,6 @@ app-services {
     border: none;
     cursor: pointer;
     outline: none;
-    background-color: rgb(254, 254, 254);
+    background-color: $basic-background-color;
   }
 }
