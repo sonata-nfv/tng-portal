@@ -149,7 +149,7 @@ export class ServiceManagementService {
     });
   }
 
-  getPackage(uuid: String): any {
+  getPackage(uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http

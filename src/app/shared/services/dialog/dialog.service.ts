@@ -7,7 +7,7 @@ import { DialogComponent } from "./../../../dialog/dialog.component";
 export class DialogDataService {
   constructor(public dialog: MatDialog) {}
 
-  openDialog(title: String, content: String, action: String, onAction: any) {
+  openDialog(title: string, content: string, action: string, onAction: any) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: title,

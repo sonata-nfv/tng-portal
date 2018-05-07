@@ -12,11 +12,11 @@ import { MatSidenav } from "@angular/material";
   encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent implements OnInit {
-  menu: String;
-  section: String;
-  subsection: String;
-  username: String;
-  email: String;
+  menu: string;
+  section: string;
+  subsection: string;
+  username: string;
+  email: string;
   @ViewChild("sidenav") sideNav: MatSidenav;
   constructor(private authService: AuthService, private router: Router) {}
 
