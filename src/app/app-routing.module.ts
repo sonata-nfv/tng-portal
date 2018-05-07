@@ -57,7 +57,7 @@ const routes: Routes = [
       { path: "policies", component: PoliciesComponent },
       // Service Management section
       {
-        path: "availableNetworkServices",
+        path: "available-network-services",
         component: AvailableNetworkServicesComponent,
         children: [{ path: "detail/:id", component: NetworkServiceComponent }]
       },
@@ -66,14 +66,17 @@ const routes: Routes = [
         component: RequestsComponent,
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
-      { path: "instances", component: NetworkServiceInstancesComponent },
+      {
+        path: "network-service-instances",
+        component: NetworkServiceInstancesComponent
+      },
       {
         path: "licences",
         component: LicencesComponent,
         children: [{ path: "detail/:id", component: LicencesDetailComponent }]
       },
-      { path: "serviceLicences", component: ServiceLicencesComponent },
-      { path: "userLicences", component: UserLicencesComponent }
+      { path: "service-licences", component: ServiceLicencesComponent },
+      { path: "user-licences", component: UserLicencesComponent }
     ]
   }
 ];

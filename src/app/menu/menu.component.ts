@@ -45,7 +45,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["/packages"]);
     } else if (buttonId === "sm") {
       this.section = "availableNS";
-      this.router.navigate(["/availableNetworkServices"]);
+      this.router.navigate(["/available-network-services"]);
     }
     this.menu = buttonId;
   }
@@ -62,11 +62,11 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "sla") {
       this.subsection = "slaAgreements";
     } else if (buttonId === "availableNS") {
-      this.router.navigate(["/availableNetworkServices"]);
+      this.router.navigate(["/available-network-services"]);
     } else if (buttonId === "requests") {
       this.router.navigate(["/requests"]);
     } else if (buttonId === "nsInstances") {
-      this.router.navigate(["/instances"]);
+      this.router.navigate(["/network-service-instances"]);
     } else if (buttonId === "store") {
       this.subsection = "licences";
       this.router.navigate(["/licences"]);
@@ -77,9 +77,9 @@ export class MenuComponent implements OnInit {
 
   setSubsection(e, buttonId) {
     if (buttonId === "serviceLicences") {
-      this.router.navigate(["/serviceLicences"]);
+      this.router.navigate(["/service-licences"]);
     } else if (buttonId === "userLicences") {
-      this.router.navigate(["/userLicences"]);
+      this.router.navigate(["/user-licences"]);
     }
     this.subsection = buttonId;
   }

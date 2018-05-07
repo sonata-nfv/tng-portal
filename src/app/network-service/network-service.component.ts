@@ -62,6 +62,6 @@ export class NetworkServiceComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["/availableNetworkServices"]);
+    this.router.navigate(["/available-network-services"]);
   }
 }
