@@ -36,6 +36,6 @@ export class RequestDetailComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["/requests"]);
+    this.router.navigate(["service-management/requests"]);
   }
 }

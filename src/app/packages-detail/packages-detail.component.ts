@@ -44,13 +44,13 @@ export class PackagesDetailComponent implements OnInit {
               this.router.navigate(["/login"]);
             });
           } else {
-            this.router.navigate(["/packages"]);
+            this.router.navigate(["service-platform/packages"]);
           }
         });
     });
   }
 
   close() {
-    this.router.navigate(["/packages"]);
+    this.router.navigate(["service-platform/packages"]);
   }
 }

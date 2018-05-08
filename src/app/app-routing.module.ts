@@ -42,41 +42,47 @@ const routes: Routes = [
       { path: "validation", component: ValidationComponent },
       // Service Platform section
       {
-        path: "packages",
+        path: "service-platform/packages",
         component: PackagesComponent,
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
       },
       {
-        path: "services",
+        path: "service-platform/services",
         component: ServicesComponent
       },
       {
-        path: "functions",
+        path: "service-platform/functions",
         component: FunctionsComponent
       },
-      { path: "policies", component: PoliciesComponent },
+      { path: "service-platform/policies", component: PoliciesComponent },
       // Service Management section
       {
-        path: "available-network-services",
+        path: "service-management/available-network-services",
         component: AvailableNetworkServicesComponent,
         children: [{ path: "detail/:id", component: NetworkServiceComponent }]
       },
       {
-        path: "requests",
+        path: "service-management/requests",
         component: RequestsComponent,
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
       {
-        path: "network-service-instances",
+        path: "service-management/network-service-instances",
         component: NetworkServiceInstancesComponent
       },
       {
-        path: "licences",
+        path: "service-management/licences",
         component: LicencesComponent,
         children: [{ path: "detail/:id", component: LicencesDetailComponent }]
       },
-      { path: "service-licences", component: ServiceLicencesComponent },
-      { path: "user-licences", component: UserLicencesComponent }
+      {
+        path: "service-management/licences/service-licences",
+        component: ServiceLicencesComponent
+      },
+      {
+        path: "service-management/licences/user-licences",
+        component: UserLicencesComponent
+      }
     ]
   }
 ];

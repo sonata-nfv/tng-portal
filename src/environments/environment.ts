@@ -8,7 +8,7 @@ export const environment = {
   features_available: [
     "DASHBOARD",
     "USERS",
-    "V&V",
+    "VALIDATION",
     "SERVICE PLATFORM",
     "SERVICE MANAGEMENT"
   ]

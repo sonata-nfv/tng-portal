@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ViewChild,
+  HostListener
+} from "@angular/core";
 
 import { AuthService } from "../shared/services/auth/auth.service";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 
 import { MatSidenav } from "@angular/material";
 
@@ -17,14 +23,17 @@ export class MenuComponent implements OnInit {
   subsection: string;
   username: string;
   email: string;
+
   @ViewChild("sidenav") sideNav: MatSidenav;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.username = localStorage.getItem("username");
-    this.menu = "dashboard";
     // TODO get email from user data request
     this.email = "example@gmail.com";
+
+    // Maintain menu status when reload
+    this.maintainStatus();
   }
 
   setMenu(e, buttonId) {
@@ -38,50 +47,76 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["/dashboard"]);
     } else if (buttonId === "users") {
       this.router.navigate(["/users"]);
-    } else if (buttonId === "v&v") {
+    } else if (buttonId === "validation") {
       this.router.navigate(["/validation"]);
-    } else if (buttonId === "sp") {
+    } else if (buttonId === "service-platform") {
       this.section = "packages";
-      this.router.navigate(["/packages"]);
-    } else if (buttonId === "sm") {
-      this.section = "availableNS";
-      this.router.navigate(["/available-network-services"]);
+      this.router.navigate(["service-platform/packages"]);
+    } else if (buttonId === "service-management") {
+      this.section = "available-network-services";
+      this.router.navigate(["service-management/available-network-services"]);
     }
     this.menu = buttonId;
   }
 
   setSection(e, buttonId) {
     if (buttonId === "packages") {
-      this.router.navigate(["/packages"]);
+      this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "services") {
-      this.router.navigate(["/services"]);
+      this.router.navigate(["service-platform/services"]);
     } else if (buttonId === "functions") {
-      this.router.navigate(["/functions"]);
+      this.router.navigate(["service-platform/functions"]);
     } else if (buttonId === "policies") {
-      this.router.navigate(["/policies"]);
+      this.subsection = "";
+      this.router.navigate(["service-platform/policies"]);
     } else if (buttonId === "sla") {
       this.subsection = "slaAgreements";
-    } else if (buttonId === "availableNS") {
-      this.router.navigate(["/available-network-services"]);
+    } else if (buttonId === "available-network-services") {
+      this.router.navigate(["service-management/available-network-services"]);
     } else if (buttonId === "requests") {
-      this.router.navigate(["/requests"]);
-    } else if (buttonId === "nsInstances") {
-      this.router.navigate(["/network-service-instances"]);
-    } else if (buttonId === "store") {
-      this.subsection = "licences";
-      this.router.navigate(["/licences"]);
+      this.router.navigate(["service-management/requests"]);
+    } else if (buttonId === "network-service-instances") {
+      this.router.navigate(["service-management/network-service-instances"]);
+    } else if (buttonId === "licences") {
+      this.subsection = "";
+      this.router.navigate(["service-management/licences"]);
     }
-
     this.section = buttonId;
   }
 
   setSubsection(e, buttonId) {
-    if (buttonId === "serviceLicences") {
-      this.router.navigate(["/service-licences"]);
-    } else if (buttonId === "userLicences") {
-      this.router.navigate(["/user-licences"]);
+    if (buttonId === "service-licences") {
+      this.subsection = "service-licences";
+      this.router.navigate(["service-management/licences/service-licences"]);
+    } else if (buttonId === "user-licences") {
+      this.subsection = "user-licences";
+      this.router.navigate(["service-management/licences/user-licences"]);
     }
     this.subsection = buttonId;
+  }
+
+  maintainStatus() {
+    let url = this.router.url.split("/");
+
+    if (url.length > 1) {
+      this.menu = url[1];
+
+      if (
+        url[1] === "validation" ||
+        url[1] === "service-platform" ||
+        url[1] === "service-management"
+      ) {
+        this.sideNav.open();
+      }
+    } else {
+      this.menu = "dashboard";
+    }
+    if (url.length > 2) {
+      this.section = url[2];
+    }
+    if (url.length > 3) {
+      this.subsection = url[3];
+    }
   }
 
   logout() {
@@ -90,7 +125,7 @@ export class MenuComponent implements OnInit {
       .logout()
       .then()
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
 }
