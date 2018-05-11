@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-network-service {
   display: flex;
   flex-direction: column;
@@ -8,24 +9,24 @@ app-network-service {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(254, 254, 254);
+  background-color: $basic-background-color;
   h1 {
     margin-top: 15px;
     width: 95%;
-    color: rgb(201, 0, 16);
-    font-size: 16px;
+    color: $primary-title-color;
+    font-size: 14px;
   }
   h1:after {
-    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    background: none repeat scroll 0 0 $primary-title-color;
     content: "";
     display: block;
     height: 1px;
-    width: 250px;
+    width: 260px;
   }
   h3 {
     margin-top: 9px;
     width: 95%;
-    color: rgb(201, 0, 16);
+    color: $third-title-color;
     font-size: 14px;
   }
   .header {
@@ -35,7 +36,7 @@ app-network-service {
     h2 {
       margin: 0px 15px 0 0;
       width: 95%;
-      color: rgb(138, 138, 138);
+      color: $secondary-font-color;
       font-size: 32px;
     }
     .close {
@@ -45,8 +46,8 @@ app-network-service {
       border: none;
       cursor: pointer;
       outline: none;
-      color: rgb(254, 254, 254);
-      background-color: rgb(189, 185, 185);
+      color: $button-font-color;
+      background-color: $button-close-color;
     }
   }
   .versionDiv {
@@ -54,7 +55,7 @@ app-network-service {
     flex-direction: column;
     align-items: center;
     .text {
-      color: rgb(138, 138, 138);
+      color: $secondary-font-color;
       font-size: 26px;
       margin-bottom: 10px;
     }
@@ -62,13 +63,13 @@ app-network-service {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 60px;
+      margin-bottom: 30px;
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background-color: rgb(121, 20, 34);
+      background-color: $primary-background-color;
       span {
-        color: rgb(254, 254, 254);
+        color: $button-font-color;
         font-size: 40px;
       }
     }
@@ -78,6 +79,7 @@ app-network-service {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
     .mat-focused .mat-form-field-label {
       text-align: left;
     }
@@ -92,14 +94,15 @@ app-network-service {
     }
     .mat-input-element:disabled {
       font-size: 20px;
-      color: rgb(65, 65, 65);
+      color: $secondary-font-color-dark;
     }
     // Change input underline styles
     .mat-form-field-disabled .mat-form-field-underline {
       background-image: none;
-      background-color: rgb(200, 159, 160);
+      background-color: $row-underline-color;
+      height: 3px;
     }
-    .lauch {
+    .launch {
       width: 65%;
       display: flex;
       flex-direction: row;
@@ -110,11 +113,11 @@ app-network-service {
         border: none;
         cursor: pointer;
         outline: none;
-        color: rgb(121, 20, 34);
-        background-color: rgb(254, 254, 254);
+        color: $primary-font-color;
+        background-color: $basic-background-color;
       }
       i:before {
-        color: rgb(116, 206, 62);
+        color: $ready-color;
       }
       span {
         text-decoration: underline;
@@ -128,14 +131,14 @@ app-network-service {
       span {
         width: 65%;
         &.title {
-          color: rgb(138, 138, 138);
+          color: $secondary-title-color;
         }
         &.content {
           min-height: 200px;
-          color: rgb(65, 65, 65);
-          background-color: rgb(239, 235, 235);
-          border-top: 1px solid rgb(201, 0, 16);
-          border-bottom: 1px solid rgb(201, 0, 16);
+          color: $secondary-font-color-dark;
+          background-color: $pannel-background-color;
+          border-top: 1px solid $border-line-color;
+          border-bottom: 1px solid $border-line-color;
         }
       }
     }

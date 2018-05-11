@@ -6,5 +6,7 @@ export class Config {
     SERVICES: string;
     REQUESTS: string;
     INSTANCES: string;
+    LICENCES: string;
+    PACKAGES: string;
   };
 }

@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-request-detail {
   display: flex;
   flex-direction: column;
@@ -8,19 +9,19 @@ app-request-detail {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(254, 254, 254);
+  background-color: $basic-background-color;
   h1 {
     margin-top: 15px;
     width: 95%;
-    color: rgb(201, 0, 16);
-    font-size: 16px;
+    color: $primary-title-color;
+    font-size: 14px;
   }
   h1:after {
-    background: none repeat scroll 0 0 rgb(201, 0, 16);
+    background: none repeat scroll 0 0 $primary-title-color;
     content: "";
     display: block;
     height: 1px;
-    width: 250px;
+    width: 260px;
   }
   .header {
     display: flex;
@@ -30,7 +31,7 @@ app-request-detail {
     h2 {
       margin: 0px 15px 0 0;
       width: 95%;
-      color: rgb(138, 138, 138);
+      color: $secondary-title-color;
       font-size: 32px;
     }
     .close {
@@ -40,8 +41,8 @@ app-request-detail {
       border: none;
       cursor: pointer;
       outline: none;
-      color: rgb(254, 254, 254);
-      background-color: rgb(189, 185, 185);
+      color: $button-font-color;
+      background-color: $button-close-color;
     }
   }
   .detail {
@@ -65,12 +66,13 @@ app-request-detail {
     }
     .mat-input-element:disabled {
       font-size: 20px;
-      color: rgb(65, 65, 65);
+      color: $secondary-font-color-dark;
     }
     // Change input underline styles
     .mat-form-field-disabled .mat-form-field-underline {
       background-image: none;
-      background-color: rgb(200, 159, 160);
+      background-color: $row-underline-color;
+      height: 2px;
     }
   }
 }

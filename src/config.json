@@ -5,6 +5,8 @@
     "LOGIN": "sessions/",
     "SERVICES": "services/",
     "REQUESTS": "requests/",
-    "INSTANCES": "records/services"
+    "INSTANCES": "records/services",
+    "LICENCES": "licences/",
+    "PACKAGES": "packages/"
   }
 }

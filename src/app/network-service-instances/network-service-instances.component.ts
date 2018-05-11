@@ -32,6 +32,10 @@ export class NetworkServiceInstancesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.requestNSInstances();
+  }
+
+  requestNSInstances() {
     this.loading = true;
     this.serviceManagementService
       .getInstances()
@@ -70,7 +74,6 @@ export class NetworkServiceInstancesComponent implements OnInit {
         }
       });
   }
-
   receiveMessage($event) {
     this.searchText = $event;
   }

@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-dialog {
   display: flex;
   flex: 1 1;
@@ -5,8 +6,8 @@ app-dialog {
   align-items: center;
   width: 630px;
   height: 370px;
-  background-color: rgb(254, 254, 254);
-  color: rgb(138, 138, 138);
+  background-color: $basic-background-color;
+  color: $secondary-font-color;
   font-size: 19px;
   .buttonContainer {
     display: flex;
@@ -22,20 +23,20 @@ app-dialog {
     outline: none;
     &.cancel {
       margin-right: 15px;
-      color: rgb(254, 254, 254);
-      background-color: rgb(189, 185, 185);
+      color: $basic-background-color;
+      background-color: $button-close-color;
     }
     &.action {
       margin-left: 15px;
-      color: rgb(254, 254, 254);
-      background-color: rgb(201, 0, 16);
+      color: $basic-background-color;
+      background-color: $button-active-color;
     }
   }
   .mat-dialog-title {
     width: 100%;
     margin: 55px 0 40px;
     text-align: center;
-    color: rgb(201, 0, 16);
+    color: $primary-title-color;
     font-size: 29px;
   }
   .mat-dialog-content {
