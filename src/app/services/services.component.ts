@@ -16,4 +16,6 @@ export class ServicesComponent implements OnInit {
   receiveMessage($event) {
     this.searchText = $event;
   }
+
+  requestServices() {}
 }

@@ -32,6 +32,8 @@ export class LicencesDetailComponent implements OnInit {
     });
   }
 
+  buy() {}
+
   close() {
     this.router.navigate(["service-management/licences"]);
   }

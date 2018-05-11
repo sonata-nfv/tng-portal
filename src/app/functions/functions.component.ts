@@ -16,4 +16,6 @@ export class FunctionsComponent implements OnInit {
   receiveMessage($event) {
     this.searchText = $event;
   }
+
+  requestServices() {}
 }
