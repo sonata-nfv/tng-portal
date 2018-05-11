@@ -56,6 +56,8 @@ export class PackagesComponent implements OnInit {
     this.searchText = $event;
   }
 
+  requestServices() {}
+
   openPackage(row) {
     let uuid = row.packageId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
