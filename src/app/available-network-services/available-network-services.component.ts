@@ -51,6 +51,7 @@ export class AvailableNetworkServicesComponent {
       .getNetworkServices()
       .then(response => {
         this.loading = false;
+
         // Populate the list of available network services
         this.networkServices = response.map(function(item) {
           return {
@@ -67,7 +68,7 @@ export class AvailableNetworkServicesComponent {
       })
       .catch(err => {
         this.loading = false;
-        console.error(err);
+
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
           let title = "Your session has expired";

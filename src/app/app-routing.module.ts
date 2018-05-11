@@ -11,6 +11,9 @@ import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
 import { PoliciesComponent } from "./policies/policies.component";
 import { PackagesComponent } from "./packages/packages.component";
+import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
+import { ServicesComponent } from "./services/services.component";
+import { FunctionsComponent } from "./functions/functions.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -38,27 +41,48 @@ const routes: Routes = [
       { path: "users", component: UsersComponent },
       { path: "validation", component: ValidationComponent },
       // Service Platform section
-      { path: "packages", component: PackagesComponent },
-      { path: "policies", component: PoliciesComponent },
+      {
+        path: "service-platform/packages",
+        component: PackagesComponent,
+        children: [{ path: "detail/:id", component: PackagesDetailComponent }]
+      },
+      {
+        path: "service-platform/services",
+        component: ServicesComponent
+      },
+      {
+        path: "service-platform/functions",
+        component: FunctionsComponent
+      },
+      { path: "service-platform/policies", component: PoliciesComponent },
       // Service Management section
       {
-        path: "availableNetworkServices",
+        path: "service-management/available-network-services",
         component: AvailableNetworkServicesComponent,
         children: [{ path: "detail/:id", component: NetworkServiceComponent }]
       },
       {
-        path: "requests",
+        path: "service-management/requests",
         component: RequestsComponent,
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
-      { path: "instances", component: NetworkServiceInstancesComponent },
       {
-        path: "licences",
+        path: "service-management/network-service-instances",
+        component: NetworkServiceInstancesComponent
+      },
+      {
+        path: "service-management/licences",
         component: LicencesComponent,
         children: [{ path: "detail/:id", component: LicencesDetailComponent }]
       },
-      { path: "serviceLicences", component: ServiceLicencesComponent },
-      { path: "userLicences", component: UserLicencesComponent }
+      {
+        path: "service-management/licences/service-licences",
+        component: ServiceLicencesComponent
+      },
+      {
+        path: "service-management/licences/user-licences",
+        component: UserLicencesComponent
+      }
     ]
   }
 ];

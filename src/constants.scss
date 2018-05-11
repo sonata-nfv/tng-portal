@@ -1,0 +1,62 @@
+// Main colors
+$primary-color: rgb(121, 20, 34);
+$primary-color-light: rgb(201, 0, 16);
+$secondary-color: rgb(65, 65, 65);
+$secondary-color-light: rgb(138, 138, 138);
+
+// Background colors
+$init-background-color: rgb(237, 237, 237);
+$primary-background-color: $primary-color;
+$basic-background-color: rgb(255, 255, 255);
+$pannel-background-color: rgb(240, 240, 240);
+$menu-background-color: rgb(245, 245, 245);
+
+// Font colors
+$primary-font-color: $primary-color;
+$primary-font-color_light: $primary-color-light;
+$secondary-font-color: $secondary-color-light;
+$secondary-font-color-dark: $secondary-color;
+
+$primary-title-color: $primary-color-light;
+$secondary-title-color: $secondary-color-light;
+$third-title-color: $primary-color-light;
+
+$font-color-alert: $primary-color-light;
+$font-color-success: $primary-color-light;
+
+// Form colors
+$form-ripple-color: $primary-color;
+$form-ripple-alert-color: $primary-color-light;
+
+// Button colors
+$primary-button-color: $primary-color;
+$secondary-button-color: $secondary-color-light;
+$secondary-button-color-light: rgb(210, 205, 205);
+
+$button-active-color: $primary-color-light;
+$button-disabled-color: $secondary-color;
+$button-close-color: rgb(189, 185, 185);
+
+$button-font-color: rgb(255, 255, 255);
+$button-font-color_light: $primary-color-light;
+$disabled-font-color: rgb(189, 185, 185);
+
+// Border colors
+$border-line-color: $primary-color-light;
+
+// Icons colors
+$reload-color: $primary-color-light;
+$active-color: rgb(123, 214, 123);
+$inactive-color: rgb(195, 195, 195);
+$ready-color: rgb(123, 214, 123);
+$shopping-cart-color: rgb(235, 165, 79);
+
+// Table colors
+$header-color: $primary-color-light;
+$cell-color: $primary-color-light;
+$row-underline-color: rgb(226, 176, 180);
+
+// Scrollbar colors
+$track-color: rgb(232, 198, 201);
+$thumb-background-color: rgb(169, 169, 169);
+$thumb-outline-color: rgb(112, 128, 144);

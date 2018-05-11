@@ -7,5 +7,6 @@ export class Config {
     REQUESTS: string;
     INSTANCES: string;
     LICENCES: string;
+    PACKAGES: string;
   };
 }

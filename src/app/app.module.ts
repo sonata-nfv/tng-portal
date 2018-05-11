@@ -17,6 +17,10 @@ import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
 import { PoliciesComponent } from "./policies/policies.component";
 import { PackagesComponent } from "./packages/packages.component";
+import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
+import { ServicesComponent } from "./services/services.component";
+import { FunctionsComponent } from "./functions/functions.component";
+
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
@@ -25,6 +29,8 @@ import { DialogComponent } from "./dialog/dialog.component";
 import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
+import { LicencesComponent } from "./licences/licences.component";
+import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
 import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
@@ -38,8 +44,6 @@ import { FeatureAvailableDirective } from "./shared/directives/feature-available
 
 import { FilterPipe } from "./shared/filter.pipe";
 import { SpinnerComponent } from "./spinner/spinner.component";
-import { LicencesComponent } from "./licences/licences.component";
-import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -72,7 +76,10 @@ export function initConfiguration(configService: ConfigService): Function {
     SpinnerComponent,
     LicencesComponent,
     LicencesDetailComponent,
-    PackagesComponent
+    PackagesComponent,
+    PackagesDetailComponent,
+    ServicesComponent,
+    FunctionsComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

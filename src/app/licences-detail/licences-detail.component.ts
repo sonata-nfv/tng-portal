@@ -33,6 +33,6 @@ export class LicencesDetailComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["/licences"]);
+    this.router.navigate(["service-management/licences"]);
   }
 }

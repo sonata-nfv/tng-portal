@@ -1,3 +1,4 @@
+@import "../../constants.scss";
 app-registered {
   .container {
     display: flex;
@@ -13,30 +14,30 @@ app-registered {
     max-height: 550px;
     padding: 2em;
     border-radius: 10px;
-    background-color: rgb(226, 222, 221);
+    background-color: $pannel-background-color;
     text-align: center;
     #header {
       height: 8em;
-      background: url("../../assets/images/tango.svg") no-repeat center
-        rgb(226, 222, 221);
+      background: url("../../assets/images/sonata_powered_by_5gtango_logo.svg")
+        no-repeat center $pannel-background-color;
       background-size: 18em;
       margin-bottom: 2em;
       background-repeat: no-repeat;
     }
     #thanks {
       font-size: 1.4em;
-      color: rgb(65, 65, 65);
+      color: $secondary-font-color-dark;
       width: 45%;
       margin-bottom: -30px;
     }
     #success {
-      color: rgb(201, 0, 16);
+      color: $font-color-success;
       font-size: 2.4em;
       margin-bottom: 6em;
     }
     a {
       display: flex;
-      color: rgb(121, 20, 34);
+      color: $primary-font-color;
       font-size: 1.2em;
       &#login {
         flex-direction: column;

@@ -1,5 +1,6 @@
 @import "../../constants.scss";
-app-service-licences {
+app-functions {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -25,5 +26,26 @@ app-service-licences {
     margin: 0px 15px 25px 15px;
     color: $secondary-title-color;
     font-size: 32px;
+  }
+  .tools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reload {
+    position: absolute;
+    right: 10.5%;
+    .wui-undo::before {
+      font-size: 20px;
+      color: $reload-color;
+    }
+  }
+  button {
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
   }
 }

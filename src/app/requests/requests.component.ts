@@ -16,7 +16,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class RequestsComponent implements OnInit {
   loading: boolean;
   requests = new Array();
-  // selectedRequest: Object = null;
   dataSource = new MatTableDataSource();
   displayedColumns = [
     "Request ID",
