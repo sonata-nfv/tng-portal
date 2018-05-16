@@ -1,6 +1,6 @@
 {
   "ROUTES": {
-    "BASE": "https://sp.int3.sonata-nfv.eu/api/v2/",
+    "BASE": "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/",
     "REGISTER": "users/",
     "LOGIN": "sessions/",
     "SERVICES": "services/",
@@ -8,5 +8,6 @@
     "INSTANCES": "records/services",
     "LICENCES": "licences/",
     "PACKAGES": "packages/"
-  }
+  },
+  "PAGINATION": "?page_size=20&page_number=1"
 }

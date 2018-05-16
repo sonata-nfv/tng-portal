@@ -9,4 +9,5 @@ export class Config {
     LICENCES: string;
     PACKAGES: string;
   };
+  PAGINATION: string;
 }
