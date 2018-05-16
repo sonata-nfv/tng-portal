@@ -134,13 +134,31 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES, {
-          headers: headers
-        })
+        .get(
+          this.config.ROUTES.BASE +
+            this.config.ROUTES.PACKAGES +
+            this.config.PAGINATION,
+          {
+            headers: headers
+          }
+        )
         .subscribe(
           response => {
-            // TODO parse response
-            resolve(response);
+            if (response instanceof Array) {
+              resolve(
+                response.map(item => {
+                  return {
+                    name: item.package_name,
+                    vendor: item.pd.vendor,
+                    createdAt: item.created_at,
+                    version: item.pd.version,
+                    type: item.pd.package_type
+                  };
+                })
+              );
+            } else {
+              throw new Error("Response is not an array of Objects");
+            }
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);

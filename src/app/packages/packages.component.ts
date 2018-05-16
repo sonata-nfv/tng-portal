@@ -27,6 +27,10 @@ export class PackagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.requestPackages();
+  }
+
+  requestPackages() {
     this.loading = true;
     this.serviceManagementService
       .getPackages()
@@ -36,7 +40,6 @@ export class PackagesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        console.error(err);
 
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
@@ -55,8 +58,6 @@ export class PackagesComponent implements OnInit {
   receiveMessage($event) {
     this.searchText = $event;
   }
-
-  requestServices() {}
 
   openPackage(row) {
     let uuid = row.packageId;
