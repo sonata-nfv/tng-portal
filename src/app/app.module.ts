@@ -15,7 +15,7 @@ import { IndexComponent } from "./index/index.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
-import { PoliciesComponent } from "./policies/policies.component";
+import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { ServicesComponent } from "./services/services.component";
@@ -61,7 +61,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FeatureAvailableDirective,
     UsersComponent,
     ValidationComponent,
-    PoliciesComponent,
+    PlacementPolicyComponent,
     AvailableNetworkServicesComponent,
     FilterPipe,
     SearchBarComponent,

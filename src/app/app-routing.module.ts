@@ -9,7 +9,7 @@ import { IndexComponent } from "./index/index.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
-import { PoliciesComponent } from "./policies/policies.component";
+import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { ServicesComponent } from "./services/services.component";
@@ -54,7 +54,10 @@ const routes: Routes = [
         path: "service-platform/functions",
         component: FunctionsComponent
       },
-      { path: "service-platform/policies", component: PoliciesComponent },
+      {
+        path: "service-platform/policies/placement-policy",
+        component: PlacementPolicyComponent
+      },
       // Service Management section
       {
         path: "service-management/available-network-services",

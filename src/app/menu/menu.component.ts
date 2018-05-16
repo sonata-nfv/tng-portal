@@ -67,8 +67,8 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "functions") {
       this.router.navigate(["service-platform/functions"]);
     } else if (buttonId === "policies") {
-      this.subsection = "";
-      this.router.navigate(["service-platform/policies"]);
+      this.subsection = "placement-policy";
+      this.router.navigate(["service-platform/policies/placement-policy"]);
     } else if (buttonId === "sla") {
       this.subsection = "slaAgreements";
     } else if (buttonId === "available-network-services") {

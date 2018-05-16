@@ -1,0 +1,171 @@
+@import "../../constants.scss";
+app-placement-policy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+  h1 {
+    margin-top: 15px;
+    width: 95%;
+    color: $primary-title-color;
+    font-size: 14px;
+  }
+  h1:after {
+    background: none repeat scroll 0 0 $primary-title-color;
+    content: "";
+    display: block;
+    height: 1px;
+    width: 260px;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h2 {
+      width: 95%;
+      margin: 0px;
+      color: $secondary-title-color;
+      font-size: 32px;
+    }
+    button {
+      width: 200px;
+      height: 35px;
+      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: $button-font-color;
+    }
+    .save {
+      background-color: $button-save-color;
+    }
+    .cancel {
+      background-color: $button-close-color;
+    }
+  }
+  .form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 90px;
+    .placementPolicy {
+      width: 25%;
+    }
+    // Select styles
+    .mat-form-field-label {
+      color: $form-options-color;
+    }
+    .mat-form-field-invalid .mat-form-field-required-marker,
+    .mat-form-field-invalid .mat-form-field-label.mat-accent {
+      color: $form-options-color;
+    }
+    .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+      color: $form-options-color;
+    }
+    .mat-form-field-invalid:not(.mat-focused)
+      .mat-form-field-underline
+      .mat-form-field-ripple,
+    .mat-form-field-invalid .mat-form-field-ripple {
+      background-color: $form-options-color;
+    }
+    .mat-focused .mat-form-field-required-marker {
+      color: $form-options-color;
+    }
+    .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+      color: $form-options-color;
+    }
+    .mat-form-field-ripple {
+      background-color: $row-underline-color;
+    }
+    .mat-select-value-text {
+      color: $form-selected-color;
+    }
+  }
+  .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
+    color: $form-selected-active;
+  }
+  .mat-form-field-disabled .mat-form-field-underline {
+    background-color: $form-selected-active;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 0;
+    margin-top: 30px;
+    margin-bottom: 0;
+    .line {
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      margin-bottom: 10px;
+      .mat-form-field {
+        width: 78%;
+      }
+      button {
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 6px;
+        margin-left: 10px;
+        background-color: $basic-background-color;
+        i:before {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  ol {
+    list-style: none;
+  }
+  li {
+    counter-increment: item;
+    margin-bottom: 5px;
+  }
+  li:before {
+    margin-right: 10px;
+    content: counter(item) ". ";
+    background: $basic-background-color;
+    color: $list-bullet-color;
+    width: 1em;
+    font-size: 40px;
+    font-weight: bold;
+    transform: translate(0, 9px);
+  }
+  .error {
+    font-size: 0.8em;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    color: $font-color-alert;
+    text-align: right;
+    width: 24%;
+  }
+  .addMore {
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+    button {
+      width: 100px;
+      padding: 5px;
+      font-size: 16px;
+      text-align: end;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: $button-font-color_light;
+      background-color: $basic-background-color;
+      i:before {
+        font-size: 12px;
+        color: $button-font-color_light;
+      }
+    }
+  }
+}

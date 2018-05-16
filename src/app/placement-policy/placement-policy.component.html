@@ -1,0 +1,48 @@
+<h1>POLICIES</h1>
+
+<div class="header">
+    <h2>Placement Policy</h2>
+    <button *ngIf="show" class="save" (click)="save(placementPolicyForm)">SAVE</button>
+    <button *ngIf="show" class="cancel" (click)="cancel(placementPolicyForm)">CANCEL</button>
+</div>
+
+<form [formGroup]="placementPolicyForm" class="form">
+    <mat-form-field class="placementPolicy">
+        <mat-select placeholder="Select a policy" formControlName="placementPolicy" required>
+            <mat-option *ngFor="let placementPolicy of placementPolicies" [value]="placementPolicy">
+                {{ placementPolicy }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- Prioritize option form fields -->
+    <ol class="list" *ngIf="prioritise">
+        <li class="line" *ngFor="let item of datacentersSelected">
+            <mat-form-field>
+                <mat-select [value]="item" disabled>
+                    <mat-option [value]="item">{{ item }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button (click)="eraseEntry(item)">
+                <i class="wui wui-trash-alt"></i>
+            </button>
+        </li>
+        <li class="line" *ngIf="datacentersSelected.length !== datacenters.length">
+            <mat-form-field>
+                <mat-select placeholder="Select a datacenter" formControlName="datacenter" required>
+                    <mat-option *ngFor="let datacenter of datacenters" [value]="datacenter" [disabled]="datacentersSelected.includes(datacenter)">
+                        {{ datacenter }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </li>
+    </ol>
+    <span class="error" *ngIf="error">*Please select a datacenter to add</span>
+    <div class="addMore" *ngIf="prioritise && datacentersSelected.length !== datacenters.length">
+        <button (click)="addMore(placementPolicyForm)">
+            <i class="wui wui-plus"></i>
+            <span>Add more</span>
+        </button>
+    </div>
+</form>
