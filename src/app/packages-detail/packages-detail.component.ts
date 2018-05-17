@@ -13,6 +13,12 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class PackagesDetailComponent implements OnInit {
   package: Object;
+  displayedColumns = ["name", "vendor", "version"];
+  displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
+  ns = new Array();
+  vnf = new Array();
+  searchText: string;
+  tests = new Array();
 
   constructor(
     private serviceManagementService: ServiceManagementService,
@@ -22,6 +28,35 @@ export class PackagesDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    for (let i = 0; i < 4; i++) {
+      this.ns.push({
+        name: "ns1",
+        vendor: "eu.sonata-nfv-service-description",
+        version: "0.1"
+      });
+      this.vnf.push({
+        name: "vnf1",
+        vendor: "eu.sonata-nfv-service-description",
+        version: "0.1"
+      });
+      this.tests.push(
+        {
+          searchField: "test2",
+          name: "test2",
+          creationDate: "assdghfdgfkhjgljñkddfghgn",
+          status: "activated",
+          lastActivity: "assdghfdgfkhjgljñkddfghgn"
+        },
+        {
+          searchField: "test1",
+          name: "test1",
+          creationDate: "assdghfdgfkhjgljñkddfghgn",
+          status: "activated",
+          lastActivity: "assdghfdgfkhjgljñkddfghgn"
+        }
+      );
+    }
+
     this.route.params.subscribe(params => {
       let uuid = params["id"];
 
@@ -31,8 +66,6 @@ export class PackagesDetailComponent implements OnInit {
           this.package = response;
         })
         .catch(err => {
-          console.error(err);
-
           // Dialog informing the user to log in again when token expired
           if (err === "Unauthorized") {
             let title = "Your session has expired";
@@ -44,10 +77,14 @@ export class PackagesDetailComponent implements OnInit {
               this.router.navigate(["/login"]);
             });
           } else {
-            this.router.navigate(["service-platform/packages"]);
+            // this.close();
           }
         });
     });
+  }
+
+  receiveMessage($event) {
+    this.searchText = $event;
   }
 
   close() {

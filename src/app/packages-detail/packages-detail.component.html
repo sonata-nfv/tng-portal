@@ -1,3 +1,101 @@
-<p>
-  packages-detail works!
-</p>
+<h1>PACKAGES</h1>
+<div class="header">
+  <!-- <h2> {{ name }}</h2> -->
+  <h2>name</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+<div class="subheader">
+  <!-- <h3>Created by {{ author }}</h3> -->
+  <h3 class="author">Created by author</h3>
+  <!-- <h3>{{ date }}</h3> -->
+  <h3 class="date">date</h3>
+</div>
+
+<div class="versionDiv">
+  <span class="text">Current version</span>
+  <div class="version">
+    <!-- <span>{{ version }}</span> -->
+    <span>0.4</span>
+  </div>
+</div>
+
+<form class="detail">
+  <mat-form-field class="vendor">
+    <!-- <input matInput placeholder="Vendor" value="{{ vendor }}" disabled> -->
+    <input matInput placeholder="Vendor" value="vendor" disabled>
+
+  </mat-form-field>
+
+  <mat-form-field class="type">
+    <!-- <input matInput placeholder="Type" value="{{ type }}" disabled> -->
+    <input matInput placeholder="Type" value="type" disabled>
+  </mat-form-field>
+
+  <div class="ns">
+    <span class="sectionTitle">NS</span>
+    <mat-table [dataSource]="ns">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="vnf">
+    <span class="sectionTitle">VNF</span>
+    <mat-table [dataSource]="vnf">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="tests">
+    <span class="sectionTitle">TEST</span>
+    <div class="list">
+      <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+      <mat-table [dataSource]="tests | filter: searchText">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+          <mat-header-cell *matHeaderCellDef> Creation Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.creationDate }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastActivity">
+          <mat-header-cell *matHeaderCellDef> Last Activity </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.lastActivity }} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumnsTests"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsTests;" (click)="openNetworkService(row)"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</form>

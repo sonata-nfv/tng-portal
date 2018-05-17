@@ -7,7 +7,7 @@
     "REQUESTS": "requests/",
     "INSTANCES": "records/services",
     "LICENCES": "licences/",
-    "PACKAGES": "packages/"
+    "PACKAGES": "packages"
   },
   "PAGINATION": "?page_size=20&page_number=1"
 }
