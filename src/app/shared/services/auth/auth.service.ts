@@ -119,6 +119,10 @@ export class AuthService {
 
   private setAuthHeaders() {
     this.authHeaders = new HttpHeaders().set(
+      "Content-Type",
+      "application/json"
+    );
+    this.authHeaders.set(
       "Authorization",
       "Bearer " + localStorage.getItem("token")
     );
@@ -129,10 +133,11 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if (localStorage.getItem("token")) {
-      this.setAuthHeaders();
-      return true;
-    }
-    return false;
+    return true;
+    // if (localStorage.getItem("token")) {
+    //   this.setAuthHeaders();
+    //   return true;
+    // }
+    // return false;
   }
 }
