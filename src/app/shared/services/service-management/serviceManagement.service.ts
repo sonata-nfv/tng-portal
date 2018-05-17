@@ -21,7 +21,6 @@ export class ServiceManagementService {
   getNetworkServices(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
-      headers.set("Content-Type", "application/json");
 
       this.http
         .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES, {
