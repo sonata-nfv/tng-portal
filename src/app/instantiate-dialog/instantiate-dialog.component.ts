@@ -12,19 +12,33 @@ import { ServiceManagementService } from "../shared/services/service-management/
   encapsulation: ViewEncapsulation.None
 })
 export class InstantiateDialogComponent implements OnInit {
+  loading: boolean;
   isIngress = true;
   ingress = new Array();
   egress = new Array();
-  // TODO GET posible locations
-  locations = ["Aveiro", "Barcelona"];
+  locations = new Array();
 
   constructor(
+    private serviceManagementService: ServiceManagementService,
     public dialogRef: MatDialogRef<InstantiateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private instantiateDialog: ServiceManagementService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = true;
+    setTimeout(() => {
+      this.serviceManagementService
+        .requestVims()
+        .then(response => {
+          this.loading = false;
+          this.locations = response;
+        })
+        .catch(err => {
+          this.loading = false;
+        });
+    }, 1000);
+  }
 
   addNew(instantiationForm: NgForm) {
     if (this.isIngress) {

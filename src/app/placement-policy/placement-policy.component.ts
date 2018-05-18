@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 
 @Component({
   selector: "app-placement-policy",
@@ -10,6 +11,8 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
   encapsulation: ViewEncapsulation.None
 })
 export class PlacementPolicyComponent implements OnInit {
+  loading: boolean;
+  requested: boolean = false;
   placementPolicyForm: FormGroup;
   show: boolean = false;
   error: boolean;
@@ -17,10 +20,13 @@ export class PlacementPolicyComponent implements OnInit {
 
   // TODO GET placement policies from a service
   placementPolicies = ["None", "Load Balanced", "Prioritise", "Fill First"];
-  datacenters = ["A", "B", "C"];
+  datacenters = new Array();
   datacentersSelected = new Array();
 
-  constructor(private dialogData: DialogDataService) {}
+  constructor(
+    private serviceManagementService: ServiceManagementService,
+    private dialogData: DialogDataService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -44,6 +50,21 @@ export class PlacementPolicyComponent implements OnInit {
     }
     if (values.placementPolicy === "Prioritise") {
       this.prioritise = true;
+      if (!this.requested) {
+        this.loading = true;
+        setTimeout(() => {
+          this.serviceManagementService
+            .requestVims()
+            .then(response => {
+              this.loading = false;
+              this.datacenters = response;
+              this.requested = true;
+            })
+            .catch(err => {
+              this.loading = false;
+            });
+        }, 1000);
+      }
     } else {
       this.prioritise = false;
     }
@@ -60,7 +81,7 @@ export class PlacementPolicyComponent implements OnInit {
       let action = "Accept";
       this.dialogData.openDialog(title, content, action, () => {});
     } else {
-      // Save request to catalog
+      // TODO Save request to catalog
       console.log("this  is save");
     }
   }
