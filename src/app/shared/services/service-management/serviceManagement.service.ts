@@ -191,11 +191,12 @@ export class ServiceManagementService {
               resolve(
                 response.map(item => {
                   return {
-                    name: item.package_name,
+                    uuid: item.uuid,
+                    name: item.pd.name,
                     vendor: item.pd.vendor,
                     createdAt: item.created_at,
                     version: item.pd.version,
-                    type: item.pd.package_type
+                    type: "public"
                   };
                 })
               );
@@ -214,13 +215,29 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES + uuid, {
-          headers: headers
-        })
+        .get(
+          this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES + "/" + uuid,
+          {
+            headers: headers
+          }
+        )
         .subscribe(
           response => {
-            // TODO parse response
-            resolve(response);
+            // TODO split package content into ns, vnf and tests
+            // TODO request Jose name, version and vendor in packages content
+            let res = {
+              uuid: response["uuid"],
+              name: response["pd"]["name"],
+              author: response["pd"]["maintainer"],
+              date: response["created_at"],
+              vendor: response["pd"]["vendor"],
+              version: response["pd"]["version"],
+              type: "public",
+              ns: response["pd"]["package_content"],
+              vnf: response["pd"]["package_content"],
+              tests: response["pd"]["package_content"]
+            };
+            resolve(res);
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);

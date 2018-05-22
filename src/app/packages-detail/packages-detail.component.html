@@ -1,39 +1,33 @@
 <h1>PACKAGES</h1>
 <div class="header">
-  <!-- <h2> {{ name }}</h2> -->
-  <h2>name</h2>
+  <h2> {{ package.name }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 <div class="subheader">
-  <!-- <h3>Created by {{ author }}</h3> -->
-  <h3 class="author">Created by author</h3>
-  <!-- <h3>{{ date }}</h3> -->
-  <h3 class="date">date</h3>
+  <h3 class="author">Created by {{ package.author }}</h3>
+  <h3 class="date">{{ package.createdAt }}</h3>
 </div>
 
 <div class="versionDiv">
   <span class="text">Current version</span>
   <div class="version">
-    <!-- <span>{{ version }}</span> -->
-    <span>0.4</span>
+    <span>{{ package.version }}</span>
   </div>
 </div>
 
 <form class="detail">
   <mat-form-field class="vendor">
-    <!-- <input matInput placeholder="Vendor" value="{{ vendor }}" disabled> -->
-    <input matInput placeholder="Vendor" value="vendor" disabled>
-
+    <input matInput placeholder="Vendor" value="{{ package.vendor }}" disabled>
   </mat-form-field>
 
   <mat-form-field class="type">
-    <!-- <input matInput placeholder="Type" value="{{ type }}" disabled> -->
-    <input matInput placeholder="Type" value="type" disabled>
+    <input matInput placeholder="Type" value="{{ package.type }}" disabled>
   </mat-form-field>
 
   <div class="ns">
     <span class="sectionTitle">NS</span>
-    <mat-table [dataSource]="ns">
+    <span class="message" *ngIf="package.ns.length == 0">There are no network services to display</span>
+    <mat-table *ngIf="package.ns.length > 0" [dataSource]="package.ns">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
@@ -53,7 +47,8 @@
 
   <div class="vnf">
     <span class="sectionTitle">VNF</span>
-    <mat-table [dataSource]="vnf">
+    <span class="message" *ngIf="package.vnf.length == 0">There are no virtual network functions to display</span>
+    <mat-table *ngIf="package.vnf.length > 0" [dataSource]="package.vnf">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
@@ -73,10 +68,11 @@
 
   <div class="tests">
     <span class="sectionTitle">TEST</span>
-    <div class="list">
-      <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <span class="message" *ngIf="package.tests.length == 0">There are no tests to display</span>
+    <div class="list" *ngIf="package.tests.length > 0">
+      <app-search-bar class="search" *ngIf="package.tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
 
-      <mat-table [dataSource]="tests | filter: searchText">
+      <mat-table [dataSource]="package.tests | filter: searchText">
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>

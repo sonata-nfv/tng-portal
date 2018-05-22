@@ -28,9 +28,9 @@ app-packages-detail {
     display: flex;
     flex-direction: row;
     width: 95%;
-    min-height: 30px;
+    min-height: 38px;
     h2 {
-      margin: 0px 15px 0 0;
+      margin: 0;
       width: 95%;
       color: $secondary-font-color;
       font-size: 32px;
@@ -52,11 +52,11 @@ app-packages-detail {
     display: flex;
     flex-direction: row;
     width: 95%;
-    min-height: 40px;
+    min-height: 60px;
     h3 {
-      margin-top: 9px;
+      margin-top: 0;
       margin-right: 15px;
-      font-size: 14px;
+      font-size: 12px;
       &.author {
         color: $third-title-color;
       }
@@ -106,17 +106,31 @@ app-packages-detail {
       font-size: 20px;
       color: $primary-font-color;
     }
+    .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+    .mat-form-field-empty.mat-form-field-label {
+      font-size: 17px;
+    }
     .type {
       margin-bottom: 20px;
     }
     .ns,
     .vnf,
     .tests {
+      display: flex;
+      flex-direction: column;
       width: 100%;
+      span {
+        min-height: 25px;
+      }
     }
     .sectionTitle {
       font-size: 24px;
       color: $primary-font-color-light;
+    }
+    .message {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      color: $secondary-font-color;
     }
     .mat-table {
       width: 100%;

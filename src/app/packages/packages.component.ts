@@ -3,6 +3,7 @@ import { MatTableDataSource } from "@angular/material";
 
 import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -23,7 +24,8 @@ export class PackagesComponent implements OnInit {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private dialogData: DialogDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dataTransfer: DataTransferService
   ) {}
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class PackagesComponent implements OnInit {
 
   requestPackages() {
     this.loading = true;
+
     this.serviceManagementService
       .getPackages()
       .then(response => {
@@ -60,7 +63,9 @@ export class PackagesComponent implements OnInit {
   }
 
   openPackage(row) {
-    let uuid = row.packageId;
+    let uuid = row.uuid;
+    let detail = this.packages.find(x => x.uuid === uuid);
+    this.dataTransfer.sendDetail(detail);
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }
