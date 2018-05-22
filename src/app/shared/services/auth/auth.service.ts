@@ -23,7 +23,7 @@ export class AuthService {
       };
 
       this.http
-        .post(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, data, {
+        .post(this.config.base + this.config.login, data, {
           headers: headers
         })
         .subscribe(
@@ -47,7 +47,7 @@ export class AuthService {
       headers.set("Content-Type", "application/json");
 
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER + uuid, {
+        .get(this.config.base + this.config.register + uuid, {
           headers: headers
         })
         .subscribe(
@@ -71,7 +71,7 @@ export class AuthService {
       let headers = this.getAuthHeaders();
 
       this.http
-        .delete(this.config.ROUTES.BASE + this.config.ROUTES.LOGIN, {
+        .delete(this.config.base + this.config.login, {
           headers: headers
         })
         .subscribe(
@@ -102,7 +102,7 @@ export class AuthService {
         user_type: userType.toLocaleLowerCase()
       };
       this.http
-        .post(this.config.ROUTES.BASE + this.config.ROUTES.REGISTER, data, {
+        .post(this.config.base + this.config.register, data, {
           headers: headers
         })
         .subscribe(

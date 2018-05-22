@@ -12,6 +12,7 @@ import {
 export class ServiceManagementService {
   authHeaders: HttpHeaders;
   request_uuid: string;
+  pagination: string = "?page_size=20&page_number=1";
 
   constructor(
     private authService: AuthService,
@@ -24,7 +25,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES, {
+        .get(this.config.base + this.config.services, {
           headers: headers
         })
         .subscribe(
@@ -48,7 +49,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES + uuid, {
+        .get(this.config.base + this.config.services + uuid, {
           headers: headers
         })
         .subscribe(
@@ -70,7 +71,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.REQUESTS, {
+        .get(this.config.base + this.config.requests, {
           headers: headers
         })
         .subscribe(
@@ -88,7 +89,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.LICENCES, {
+        .get(this.config.base + this.config.licences, {
           headers: headers
         })
         .subscribe(
@@ -106,7 +107,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES, {
+        .get(this.config.base + this.config.instances, {
           headers: headers
         })
         .subscribe(
@@ -177,14 +178,9 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(
-          this.config.ROUTES.BASE +
-            this.config.ROUTES.PACKAGES +
-            this.config.PAGINATION,
-          {
-            headers: headers
-          }
-        )
+        .get(this.config.base + this.config.packages + this.pagination, {
+          headers: headers
+        })
         .subscribe(
           response => {
             if (response instanceof Array) {
@@ -196,48 +192,14 @@ export class ServiceManagementService {
                     vendor: item.pd.vendor,
                     createdAt: item.created_at,
                     version: item.pd.version,
-                    type: "public"
+                    type: "public",
+                    author: item.pd.maintainer
                   };
                 })
               );
             } else {
               throw new Error("Response is not an array of Objects");
             }
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
-  }
-
-  getPackage(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(
-          this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES + "/" + uuid,
-          {
-            headers: headers
-          }
-        )
-        .subscribe(
-          response => {
-            // TODO split package content into ns, vnf and tests
-            // TODO request Jose name, version and vendor in packages content
-            let res = {
-              uuid: response["uuid"],
-              name: response["pd"]["name"],
-              author: response["pd"]["maintainer"],
-              date: response["created_at"],
-              vendor: response["pd"]["vendor"],
-              version: response["pd"]["version"],
-              type: "public",
-              ns: response["pd"]["package_content"],
-              vnf: response["pd"]["package_content"],
-              tests: response["pd"]["package_content"]
-            };
-            resolve(res);
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);
