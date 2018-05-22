@@ -193,7 +193,8 @@ export class ServiceManagementService {
                     createdAt: item.created_at,
                     version: item.pd.version,
                     type: "public",
-                    author: item.pd.maintainer
+                    author: item.pd.maintainer,
+                    package_file_id: item.package_file_id
                   };
                 })
               );
