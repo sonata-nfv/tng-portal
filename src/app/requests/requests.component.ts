@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -28,7 +28,7 @@ export class PackagesDetailComponent implements OnInit {
   tests: Array<Object>;
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private servicePlatformService: ServicePlatformService,
     private dialogData: DialogDataService,
     private router: Router,
     private route: ActivatedRoute
@@ -40,7 +40,7 @@ export class PackagesDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       let uuid = params["id"];
 
-      this.serviceManagementService
+      this.servicePlatformService
         .getPackage(uuid)
         .then(response => {
           this.loading = false;

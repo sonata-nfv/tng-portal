@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { CommonService } from "../shared/services/common/common.service";
 
 @Component({
   selector: "app-index",
@@ -8,9 +8,9 @@ import { ServiceManagementService } from "../shared/services/service-management/
   styleUrls: ["./index.component.scss"]
 })
 export class IndexComponent implements OnInit {
-  constructor(private serviceManagementService: ServiceManagementService) {}
+  constructor(private commonService: CommonService) {}
 
   ngOnInit() {
-    this.serviceManagementService.getVimsRequestUUID();
+    this.commonService.getVimsRequestUUID();
   }
 }

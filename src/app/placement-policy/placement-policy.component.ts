@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { CommonService } from "../shared/services/common/common.service";
 
 @Component({
   selector: "app-placement-policy",
@@ -24,7 +24,7 @@ export class PlacementPolicyComponent implements OnInit {
   datacentersSelected = new Array();
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
@@ -53,7 +53,7 @@ export class PlacementPolicyComponent implements OnInit {
       if (!this.requested) {
         this.loading = true;
         setTimeout(() => {
-          this.serviceManagementService
+          this.commonService
             .requestVims()
             .then(response => {
               this.loading = false;

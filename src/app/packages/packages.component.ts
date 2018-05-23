@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -20,7 +20,7 @@ export class PackagesComponent implements OnInit {
   searchText: string;
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private servicePlatformService: ServicePlatformService,
     private router: Router,
     private dialogData: DialogDataService,
     private route: ActivatedRoute
@@ -33,7 +33,7 @@ export class PackagesComponent implements OnInit {
   requestPackages() {
     this.loading = true;
 
-    this.serviceManagementService
+    this.servicePlatformService
       .getPackages()
       .then(response => {
         this.loading = false;

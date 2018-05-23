@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material";
 
 import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 
 @Component({
   selector: "app-network-service",

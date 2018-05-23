@@ -36,8 +36,10 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
-import { ServiceManagementService } from "./shared/services/service-management/serviceManagement.service";
+import { CommonService } from "./shared/services/common/common.service";
+import { ServiceManagementService } from "./shared/services/service-management/service-management.service";
 import { DataTransferService } from "./shared/services/service-management/dataTransfer.service";
+import { ServicePlatformService } from "./shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
@@ -93,8 +95,10 @@ export function initConfiguration(configService: ConfigService): Function {
   providers: [
     AuthService,
     ConfigService,
+    CommonService,
     ServiceManagementService,
     DataTransferService,
+    ServicePlatformService,
     DialogDataService,
     {
       provide: APP_INITIALIZER,
