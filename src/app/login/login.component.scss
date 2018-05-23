@@ -35,9 +35,12 @@ app-login {
         margin: 0 auto;
         width: 60%;
         padding: 10px;
-        color: $primary-font-color;
+        color: $secondary-font-color-dark;
         text-align: center;
         font-size: 1.2em;
+      }
+      .mat-focused {
+        color: $primary-font-color;
       }
       .mat-form-field-label:not(.mat-form-field-empty) {
         text-align: start;
