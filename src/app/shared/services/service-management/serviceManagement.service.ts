@@ -192,15 +192,41 @@ export class ServiceManagementService {
                     vendor: item.pd.vendor,
                     createdAt: item.created_at,
                     version: item.pd.version,
-                    type: "public",
-                    author: item.pd.maintainer,
-                    package_file_id: item.package_file_id
+                    type: "public"
                   };
                 })
               );
             } else {
               throw new Error("Response is not an array of Objects");
             }
+          },
+          (error: HttpErrorResponse) => {
+            reject(error.statusText);
+          }
+        );
+    });
+  }
+
+  getPackage(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.packages + "/" + uuid, {
+          headers: headers
+        })
+        .subscribe(
+          response => {
+            let res = {
+              uuid: response["uuid"],
+              name: response["pd"]["name"],
+              author: response["pd"]["maintainer"],
+              createdAt: response["created_at"],
+              vendor: response["pd"]["vendor"],
+              version: response["pd"]["version"],
+              type: "public",
+              package_file_id: response["package_file_id"]
+            };
+            resolve(res);
           },
           (error: HttpErrorResponse) => {
             reject(error.statusText);

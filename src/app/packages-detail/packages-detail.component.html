@@ -1,33 +1,33 @@
 <h1>PACKAGES</h1>
-<div class="header">
-  <h2> {{ package.name }}</h2>
+<div class="header" *ngIf="name">
+  <h2> {{ name }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
-<div class="subheader">
-  <h3 class="author">Created by {{ package.author }}</h3>
-  <h3 class="date">{{ package.createdAt }}</h3>
+<div class="subheader" *ngIf="author">
+  <h3 class="author">Created by {{ author }}</h3>
+  <h3 class="date">{{ createdAt }}</h3>
 </div>
 
-<div class="versionDiv">
+<div class="versionDiv" *ngIf="version">
   <span class="text">Current version</span>
   <div class="version">
-    <span>{{ package.version }}</span>
+    <span>{{ version }}</span>
   </div>
 </div>
 
 <form class="detail">
-  <mat-form-field class="vendor">
-    <input matInput placeholder="Vendor" value="{{ package.vendor }}" disabled>
+  <mat-form-field class="vendor" *ngIf="vendor">
+    <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
   </mat-form-field>
 
-  <mat-form-field class="type">
-    <input matInput placeholder="Type" value="{{ package.type }}" disabled>
+  <mat-form-field class="type" *ngIf="type">
+    <input matInput placeholder="Type" value="{{ type }}" disabled>
   </mat-form-field>
 
-  <div class="ns">
+  <div class="ns" *ngIf="ns">
     <span class="sectionTitle">NS</span>
-    <span class="message" *ngIf="package.ns.length == 0">There are no network services to display</span>
-    <mat-table *ngIf="package.ns.length > 0" [dataSource]="package.ns">
+    <span class="message" *ngIf="ns.length == 0">There are no network services to display</span>
+    <mat-table *ngIf="ns.length > 0" [dataSource]="ns">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
@@ -45,10 +45,10 @@
     </mat-table>
   </div>
 
-  <div class="vnf">
+  <div class="vnf" *ngIf="vnf">
     <span class="sectionTitle">VNF</span>
-    <span class="message" *ngIf="package.vnf.length == 0">There are no virtual network functions to display</span>
-    <mat-table *ngIf="package.vnf.length > 0" [dataSource]="package.vnf">
+    <span class="message" *ngIf="vnf.length == 0">There are no virtual network functions to display</span>
+    <mat-table *ngIf="vnf.length > 0" [dataSource]="vnf">
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
@@ -66,13 +66,13 @@
     </mat-table>
   </div>
 
-  <div class="tests">
+  <div class="tests" *ngIf="tests">
     <span class="sectionTitle">TEST</span>
-    <span class="message" *ngIf="package.tests.length == 0">There are no tests to display</span>
-    <div class="list" *ngIf="package.tests.length > 0">
-      <app-search-bar class="search" *ngIf="package.tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <span class="message" *ngIf="tests.length == 0">There are no tests to display</span>
+    <div class="list" *ngIf="tests.length > 0">
+      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
 
-      <mat-table [dataSource]="package.tests | filter: searchText">
+      <mat-table [dataSource]="tests | filter: searchText">
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
@@ -95,3 +95,5 @@
     </div>
   </div>
 </form>
+
+<app-spinner *ngIf="loading"></app-spinner>
