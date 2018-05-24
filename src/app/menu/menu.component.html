@@ -26,7 +26,7 @@
       </button>
       <button [ngClass]="{ active: menu === 'service-management' }" (click)="setMenu($event, 'service-management')" ifFeatureAvailable="service management">
         <i class="wui wui-table-alt"></i>
-        <span>Service Management</span>
+        <span>SERVICE MANAGEMENT</span>
       </button>
     </div>
     <div class="logo"></div>
@@ -40,8 +40,8 @@
       <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">Functions</button>
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">Policies</button>
       <div class="section" *ngIf="section === 'policies'">
-        <button [ngClass]="{ active: subsection === 'placementPolicy' }" (click)="setSubsection($event, 'placementPolicy')">Placement Policies</button>
-        <button [ngClass]="{ active: subsection === 'runtimePolicy' }" (click)="setSubsection($event, 'runtimePolicy')">Runtime Policies</button>
+        <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement Policy</button>
+        <button [ngClass]="{ active: subsection === 'runtime-policy' }" (click)="setSubsection($event, 'runtime-policy')">Runtime Policies</button>
       </div>
       <button [ngClass]="{ active: section === 'sla' }" (click)="setSection($event, 'sla')">SLA</button>
       <div class="section" *ngIf="section === 'sla'">

@@ -1,3 +1,99 @@
-<p>
-  packages-detail works!
-</p>
+<h1>PACKAGES</h1>
+<div class="header" *ngIf="name">
+  <h2> {{ name }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+<div class="subheader" *ngIf="author">
+  <h3 class="author">Created by {{ author }}</h3>
+  <h3 class="date">{{ createdAt }}</h3>
+</div>
+
+<div class="versionDiv" *ngIf="version">
+  <span class="text">Current version</span>
+  <div class="version">
+    <span>{{ version }}</span>
+  </div>
+</div>
+
+<form class="detail">
+  <mat-form-field class="vendor" *ngIf="vendor">
+    <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
+  </mat-form-field>
+
+  <mat-form-field class="type" *ngIf="type">
+    <input matInput placeholder="Type" value="{{ type }}" disabled>
+  </mat-form-field>
+
+  <div class="ns" *ngIf="ns">
+    <span class="sectionTitle">NS</span>
+    <span class="message" *ngIf="ns.length == 0">There are no network services to display</span>
+    <mat-table *ngIf="ns.length > 0" [dataSource]="ns">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="vnf" *ngIf="vnf">
+    <span class="sectionTitle">VNF</span>
+    <span class="message" *ngIf="vnf.length == 0">There are no virtual network functions to display</span>
+    <mat-table *ngIf="vnf.length > 0" [dataSource]="vnf">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vendor">
+        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="tests" *ngIf="tests">
+    <span class="sectionTitle">TEST</span>
+    <span class="message" *ngIf="tests.length == 0">There are no tests to display</span>
+    <div class="list" *ngIf="tests.length > 0">
+      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+
+      <mat-table [dataSource]="tests | filter: searchText">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="creationDate">
+          <mat-header-cell *matHeaderCellDef> Creation Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.creationDate }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastActivity">
+          <mat-header-cell *matHeaderCellDef> Last Activity </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.lastActivity }} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumnsTests"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsTests;" (click)="openNetworkService(row)"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

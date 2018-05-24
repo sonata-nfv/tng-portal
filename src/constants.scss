@@ -27,6 +27,9 @@ $font-color-success: $primary-color-light;
 // Form colors
 $form-ripple-color: $primary-color;
 $form-ripple-alert-color: $primary-color-light;
+$form-options-color: $secondary-font-color;
+$form-selected-active: $primary-color;
+$form-selected-color: $secondary-font-color-dark;
 
 // Button colors
 $primary-button-color: $primary-color;
@@ -35,6 +38,7 @@ $secondary-button-color-light: rgb(210, 205, 205);
 
 $button-active-color: $primary-color-light;
 $button-disabled-color: $secondary-color;
+$button-save-color: $primary-color;
 $button-close-color: rgb(189, 185, 185);
 
 $button-font-color: rgb(255, 255, 255);
@@ -60,3 +64,6 @@ $row-underline-color: rgb(226, 176, 180);
 $track-color: rgb(232, 198, 201);
 $thumb-background-color: rgb(169, 169, 169);
 $thumb-outline-color: rgb(112, 128, 144);
+
+// Lists
+$list-bullet-color: $secondary-color-light;

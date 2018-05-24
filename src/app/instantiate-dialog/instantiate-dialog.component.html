@@ -56,3 +56,5 @@
     <button class="save" mat-button cdkFocusInitial [mat-dialog-close]="false" (click)="instantiate(data.service)">SAVE</button>
   </div>
 </mat-dialog-actions>
+
+<app-spinner *ngIf="loading"></app-spinner>

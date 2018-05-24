@@ -1,11 +1,11 @@
 <h1>AVAILABLE NETWORK SERVICES</h1>
-<div class="header">
+<div class="header" *ngIf="name">
     <h2> {{ name }}</h2>
     <button class="close" (click)="close()">CLOSE</button>
 </div>
-<h3>Created by {{ author }}</h3>
+<h3 *ngIf="author">Created by {{ author }}</h3>
 
-<div class="versionDiv">
+<div class="versionDiv" *ngIf="version">
     <span class="text">Current version</span>
     <div class="version">
         <span>{{ version }}</span>
@@ -13,23 +13,25 @@
 </div>
 
 <form class="detail">
-    <mat-form-field class="vendor">
+    <mat-form-field class="vendor" *ngIf="vendor">
         <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
     </mat-form-field>
-    <mat-form-field class="serviceId">
+    <mat-form-field class="serviceId" *ngIf="serviceID">
         <input matInput placeholder="Service id" value="{{ serviceID }}" disabled>
     </mat-form-field>
-    <mat-form-field class="type">
+    <mat-form-field class="type" *ngIf="type">
         <input matInput placeholder="Type" value="{{ type }}" disabled>
     </mat-form-field>
-    <div class="launch">
+    <div class="launch" *ngIf="vendor || serviceID || type">
         <button (click)="instanciate()">
             <i class="wui wui-caret-right"></i>
             <span class="play">Ready to use</span>
         </button>
     </div>
-    <div class="description">
+    <div class="description" *ngIf="description">
         <span class="title">DESCRIPTION</span>
         <span class="content">{{ description }}</span>
     </div>
 </form>
+
+<app-spinner *ngIf="loading"></app-spinner>

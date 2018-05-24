@@ -8,6 +8,4 @@ import { environment } from "../environments/environment";
   styleUrls: ["./app.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
-  // production = environment.production;
-}
+export class AppComponent {}

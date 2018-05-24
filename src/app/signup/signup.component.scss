@@ -33,8 +33,11 @@ app-signup {
         flex-direction: column;
         margin: 0 auto;
         width: 60%;
-        color: $primary-font-color;
+        color: $secondary-font-color-dark;
         text-align: center;
+      }
+      .mat-focused {
+        color: $primary-font-color;
       }
       .mat-form-field-infix {
         max-height: 15px;
@@ -109,8 +112,12 @@ app-signup {
         }
       }
       // Mat-select CSS for the items
-      .mat-select-value-text {
+      .mat-focused .mat-select-value-text,
+      .mat-focused .mat-select-arrow {
         color: $primary-font-color;
+      }
+      .mat-select-value {
+        color: $secondary-font-color-dark;
       }
       a {
         color: $primary-font-color;

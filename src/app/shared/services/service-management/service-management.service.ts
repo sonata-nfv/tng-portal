@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ConfigService } from ".././config/config.service";
 import { AuthService } from ".././auth/auth.service";
+import { CommonService } from ".././common/common.service";
 
 import {
   HttpClient,
@@ -11,8 +12,10 @@ import {
 @Injectable()
 export class ServiceManagementService {
   authHeaders: HttpHeaders;
+  request_uuid: string;
 
   constructor(
+    private commonService: CommonService,
     private authService: AuthService,
     private config: ConfigService,
     private http: HttpClient
@@ -21,18 +24,18 @@ export class ServiceManagementService {
   getNetworkServices(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
-      headers.set("Content-Type", "application/json");
 
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES, {
+        .get(this.config.base + this.config.services, {
           headers: headers
         })
         .subscribe(
           response => {
-            if (response[0].hasOwnProperty("nsd")) {
+            if (response instanceof Array) {
+              this.commonService.getVimsRequestUUID();
               resolve(response);
             } else {
-              resolve([]);
+              throw new Error("Response is not an array of Objects");
             }
           },
           (error: HttpErrorResponse) => {
@@ -47,7 +50,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.SERVICES + uuid, {
+        .get(this.config.base + this.config.services + uuid, {
           headers: headers
         })
         .subscribe(
@@ -69,7 +72,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.REQUESTS, {
+        .get(this.config.base + this.config.requests, {
           headers: headers
         })
         .subscribe(
@@ -87,7 +90,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.LICENCES, {
+        .get(this.config.base + this.config.licences, {
           headers: headers
         })
         .subscribe(
@@ -105,7 +108,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.INSTANCES, {
+        .get(this.config.base + this.config.instances, {
           headers: headers
         })
         .subscribe(
@@ -128,43 +131,5 @@ export class ServiceManagementService {
     console.log(egress);
     // Send request to instantiate with data
     // Show pop up saying success/error with id xxxxx
-  }
-
-  getPackages(): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES, {
-          headers: headers
-        })
-        .subscribe(
-          response => {
-            // TODO parse response
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
-  }
-
-  getPackage(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.ROUTES.BASE + this.config.ROUTES.PACKAGES + uuid, {
-          headers: headers
-        })
-        .subscribe(
-          response => {
-            // TODO parse response
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
   }
 }

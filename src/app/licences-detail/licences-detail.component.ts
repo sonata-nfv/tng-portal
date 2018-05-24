@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
 
-import { ServiceManagementService } from "../shared/services/service-management/serviceManagement.service";
+import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 
 @Component({
   selector: "app-licences-detail",
