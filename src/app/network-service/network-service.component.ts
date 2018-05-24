@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material";
 import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-network-service",
@@ -13,6 +14,8 @@ import { ServiceManagementService } from "../shared/services/service-management/
   encapsulation: ViewEncapsulation.None
 })
 export class NetworkServiceComponent implements OnInit {
+  loading: boolean;
+
   name: string;
   author: string;
   version: string;
@@ -23,18 +26,23 @@ export class NetworkServiceComponent implements OnInit {
 
   constructor(
     private serviceManagementService: ServiceManagementService,
+    private dialogData: DialogDataService,
     private router: Router,
     private route: ActivatedRoute,
     private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
+    this.loading = true;
+
     this.route.params.subscribe(params => {
       let uuid = params["id"];
 
       this.serviceManagementService
         .getNetworkService(uuid)
         .then(response => {
+          this.loading = false;
+
           this.name = response.nsd.name;
           this.author = response.nsd.author;
           this.version = response.nsd.version;
@@ -45,7 +53,21 @@ export class NetworkServiceComponent implements OnInit {
           return;
         })
         .catch(err => {
-          console.error(err);
+          this.loading = false;
+
+          // Dialog informing the user to log in again when token expired
+          if (err === "Unauthorized") {
+            let title = "Your session has expired";
+            let content =
+              "Please, LOG IN again because your access token has expired.";
+            let action = "Log in";
+
+            this.dialogData.openDialog(title, content, action, () => {
+              this.router.navigate(["/login"]);
+            });
+          } else {
+            this.close();
+          }
         });
     });
   }
