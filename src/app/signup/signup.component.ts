@@ -49,6 +49,7 @@ export class SignupComponent implements OnInit {
         this.validPassword = true;
       }
     }
+    this.userErrorString = null;
   }
 
   signup(signupForm: FormGroup) {
