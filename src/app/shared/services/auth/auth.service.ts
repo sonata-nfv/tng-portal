@@ -23,9 +23,13 @@ export class AuthService {
       };
 
       this.http
-        .post(this.config.base + this.config.login, data, {
-          headers: headers
-        })
+        .post(
+          "https://sp.int3.sonata-nfv.eu/api/v2/" + this.config.login,
+          data,
+          {
+            headers: headers
+          }
+        )
         .subscribe(
           response => {
             localStorage.setItem("token", response["token"]["access_token"]);
@@ -102,9 +106,13 @@ export class AuthService {
         user_type: userType.toLocaleLowerCase()
       };
       this.http
-        .post(this.config.base + this.config.register, data, {
-          headers: headers
-        })
+        .post(
+          "https://sp.int3.sonata-nfv.eu/api/v2/" + this.config.register,
+          data,
+          {
+            headers: headers
+          }
+        )
         .subscribe(
           response => {
             resolve();
