@@ -20,6 +20,7 @@ import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { ServicesComponent } from "./services/services.component";
 import { FunctionsComponent } from "./functions/functions.component";
+import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
@@ -81,7 +82,8 @@ export function initConfiguration(configService: ConfigService): Function {
     PackagesComponent,
     PackagesDetailComponent,
     ServicesComponent,
-    FunctionsComponent
+    FunctionsComponent,
+    SlaTemplatesComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

@@ -1,0 +1,54 @@
+<h1>SERVICE PLATFORM</h1>
+
+<div class="header">
+  <h2>SLA Templates</h2>
+  <button class="add">
+    <i class="wui wui-plus"></i>
+    <span>Create New Template</span>
+  </button>
+</div>
+
+<div class="tools">
+  <form [formGroup]="nsForm" (ngSubmit)="searchNS(nsForm)" class="form">
+    <mat-form-field>
+      <mat-select panelClass="ns" placeholder="Network Service" formControlName="ns">
+        <mat-option *ngFor="let ns of listNS" [value]="ns">
+          {{ ns }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <button class="reload" (click)="requestPackages()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<mat-table [dataSource]="templates | filter: searchText">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ID">
+    <mat-header-cell *matHeaderCellDef> Template ID </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ns">
+    <mat-header-cell *matHeaderCellDef> Network Service </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.ns }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="expirationDate">
+    <mat-header-cell *matHeaderCellDef> Expiration Date </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.expirationDate }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <i class="wui wui-trash-alt"></i>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openTemplate(row)"></mat-row>
+</mat-table>
+
+<app-spinner *ngIf="loading"></app-spinner>

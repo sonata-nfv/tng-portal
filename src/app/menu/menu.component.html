@@ -43,10 +43,10 @@
         <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement Policy</button>
         <button [ngClass]="{ active: subsection === 'runtime-policy' }" (click)="setSubsection($event, 'runtime-policy')">Runtime Policies</button>
       </div>
-      <button [ngClass]="{ active: section === 'sla' }" (click)="setSection($event, 'sla')">SLA</button>
-      <div class="section" *ngIf="section === 'sla'">
-        <button [ngClass]="{ active: subsection === 'slaAgreements' }" (click)="setSubsection($event, 'slaAgreements')">SLA Agreements</button>
-        <button [ngClass]="{ active: subsection === 'slaTemplates' }" (click)="setSubsection($event, 'slaTemplates')">SLA Templates</button>
+      <button [ngClass]="{ active: section === 'slas' }" (click)="setSection($event, 'slas')">SLA</button>
+      <div class="section" *ngIf="section === 'slas'">
+        <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">SLA Templates</button>
+        <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">SLA Agreements</button>
       </div>
       <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">Slices</button>
     </div>
