@@ -90,10 +90,10 @@ app-placement-policy {
     }
   }
   .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
-    color: $form-selected-active;
+    color: $form-focus;
   }
   .mat-form-field-disabled .mat-form-field-underline {
-    background-color: $form-selected-active;
+    background-color: $form-focus;
   }
   .list {
     display: flex;

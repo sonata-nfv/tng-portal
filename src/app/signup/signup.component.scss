@@ -33,24 +33,61 @@ app-signup {
         flex-direction: column;
         margin: 0 auto;
         width: 60%;
-        color: $secondary-font-color-dark;
+        color: $form-focus;
         text-align: center;
+        font-size: 18px;
+      }
+      .mat-form-field-underline:not(.mat-form-field-empty) {
+        background-color: $form-focus;
       }
       .mat-focused {
-        color: $primary-font-color;
-      }
-      .mat-form-field-infix {
-        max-height: 15px;
+        color: $form-focus;
       }
       .mat-form-field-label:not(.mat-form-field-empty) {
         text-align: start;
       }
       .mat-focused .mat-form-field-label {
-        color: $secondary-font-color;
+        color: $form-focus-label;
         text-align: left;
       }
       .mat-form-field-ripple {
-        background-color: $form-ripple-color;
+        background-color: $form-focus;
+      }
+      .mat-form-field-invalid .mat-form-field-label,
+      .mat-form-field-required-marker,
+      .mat-form-field-invalid .mat-form-field-label.mat-accent {
+        color: $form-focus-label;
+      }
+      // Mat-select CSS for the items
+      .mat-select-arrow {
+        color: $form-focus-label;
+      }
+      .mat-select-value-text,
+      .mat-focused .mat-select-value-text,
+      .mat-focused .mat-select-arrow {
+        color: $form-focus;
+      }
+      .mat-select-value {
+        color: $form-selected-color;
+      }
+      /* Input field contains an error (errorString exists)*/
+      .userErrorString,
+      .passwordErrorString,
+      .emailErrorString {
+        color: $form-alert-color;
+        .mat-form-field-ripple {
+          background-color: $form-alert-color;
+        }
+        .mat-form-field-underline {
+          background-color: $form-alert-color;
+        }
+      }
+      a {
+        color: $primary-font-color;
+        font-size: 18px;
+        &.login {
+          padding: 15px;
+        }
       }
       button {
         margin-top: 15px;
@@ -58,73 +95,19 @@ app-signup {
         padding: 10px;
         background-color: $primary-button-color;
         color: $button-font-color;
-        font-size: 1.2em;
+        font-size: 18px;
         border-radius: 10px;
       }
       button:disabled {
         background-color: $button-disabled-color;
       }
       .error {
-        font-size: 0.9em;
+        font-size: 13px;
         margin-top: -15px;
         margin-bottom: -3px;
         color: $font-color-alert;
         text-align: right;
-        width: 80%;
-      }
-      .information {
-        font-size: 1em;
-        color: $font-color-alert;
-        margin-top: 0px;
-        margin-bottom: 3px;
-      }
-      .note {
-        font-size: 0.8em;
-        color: $secondary-font-color;
-        margin-top: 0px;
-        margin-bottom: 4px;
-      }
-      // Input field is invalid (focus and change field without introducing text)
-      .mat-form-field-invalid .mat-form-field-label {
-        color: $font-color-alert;
-      }
-      .mat-form-field-invalid
-        .mat-form-field-label
-        .mat-form-field-required-marker,
-      .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: $font-color-alert;
-      }
-      .mat-form-field-invalid:not(.mat-focused)
-        .mat-form-field-underline
-        .mat-form-field-ripple,
-      .mat-form-field-invalid .mat-form-field-ripple {
-        background-color: $form-ripple-alert-color;
-      }
-      // Input field contains an error (errorString exists)
-      .userErrorString,
-      .passwordErrorString {
-        color: $font-color-alert;
-        .mat-form-field-ripple {
-          background-color: $form-ripple-alert-color;
-        }
-        .mat-form-field-underline {
-          background-color: $form-ripple-alert-color;
-        }
-      }
-      // Mat-select CSS for the items
-      .mat-focused .mat-select-value-text,
-      .mat-focused .mat-select-arrow {
-        color: $primary-font-color;
-      }
-      .mat-select-value {
-        color: $secondary-font-color-dark;
-      }
-      a {
-        color: $primary-font-color;
-        font-size: 1.2em;
-        &.login {
-          padding: 15px;
-        }
+        width: 60%;
       }
     }
     .bottom {
@@ -133,10 +116,10 @@ app-signup {
       justify-content: center;
       .help {
         margin-bottom: auto;
-        margin-left: 130px;
-        color: $primary-font-color;
-        font-size: 1.2em;
         margin-right: 6px;
+        margin-left: 130px;
+        color: $button-hyperlink-color;
+        font-size: 15px;
       }
       .redLine {
         margin: 0 auto;

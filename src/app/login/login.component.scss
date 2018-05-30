@@ -28,29 +28,53 @@ app-login {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-
       .mat-form-field {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
         width: 60%;
         padding: 10px;
-        color: $secondary-font-color-dark;
+        color: $form-focus;
         text-align: center;
-        font-size: 1.2em;
+        font-size: 18px;
+      }
+      .mat-form-field-underline:not(.mat-form-field-empty) {
+        background-color: $form-focus;
       }
       .mat-focused {
-        color: $primary-font-color;
+        color: $form-focus;
       }
       .mat-form-field-label:not(.mat-form-field-empty) {
         text-align: start;
       }
       .mat-focused .mat-form-field-label {
-        color: $secondary-font-color;
+        color: $form-focus-label;
         text-align: left;
       }
       .mat-form-field-ripple {
-        background-color: $form-ripple-color;
+        background-color: $form-focus;
+      }
+      .mat-form-field-invalid .mat-form-field-label,
+      .mat-form-field-required-marker,
+      .mat-form-field-invalid .mat-form-field-label.mat-accent {
+        color: $form-focus-label;
+      }
+      // Input field contains an error (errorString exists)
+      .errorString {
+        color: $form-alert-color;
+        .mat-form-field-ripple {
+          background-color: $form-alert-color;
+        }
+        .mat-form-field-underline {
+          background-color: $form-alert-color;
+        }
+      }
+      a {
+        color: $primary-font-color;
+        font-size: 18px;
+        &.newAccount {
+          padding: 15px;
+        }
       }
       button {
         margin-top: 32px;
@@ -58,51 +82,18 @@ app-login {
         padding: 10px;
         background-color: $primary-button-color;
         color: $button-font-color;
-        font-size: 1.2em;
+        font-size: 18px;
         border-radius: 10px;
       }
       button:disabled {
         background-color: $button-disabled-color;
       }
       .error {
-        font-size: 0.9em;
+        font-size: 13px;
         margin-top: -15px;
         color: $font-color-alert;
         text-align: right;
-        width: 80%;
-      }
-      // Input field is invalid (focus and change field without introducing text)
-      .mat-form-field-invalid .mat-form-field-label {
-        color: $font-color-alert;
-      }
-      .mat-form-field-invalid
-        .mat-form-field-label
-        .mat-form-field-required-marker,
-      .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: $font-color-alert;
-      }
-      .mat-form-field-invalid:not(.mat-focused)
-        .mat-form-field-underline
-        .mat-form-field-ripple,
-      .mat-form-field-invalid .mat-form-field-ripple {
-        color: $form-ripple-alert-color;
-      }
-      // Input field contains an error (errorString exists)
-      .errorString {
-        color: $font-color-alert;
-        .mat-form-field-ripple {
-          background-color: $form-ripple-alert-color;
-        }
-        .mat-form-field-underline {
-          background-color: $form-ripple-alert-color;
-        }
-      }
-      a {
-        color: $primary-font-color;
-        font-size: 1.2em;
-        &.newAccount {
-          padding: 15px;
-        }
+        width: 60%;
       }
     }
     .bottom {
@@ -113,8 +104,8 @@ app-login {
         margin-bottom: auto;
         margin-left: 130px;
         a {
-          color: $primary-font-color;
-          font-size: 1.2em;
+          color: $button-hyperlink-color;
+          font-size: 15px;
           &.help {
             margin-right: 6px;
           }
