@@ -58,19 +58,9 @@ app-signup {
       .mat-form-field-invalid .mat-form-field-label.mat-accent {
         color: $form-focus-label;
       }
-      // Mat-select CSS for the items
-      .mat-select-arrow {
-        color: $form-focus-label;
+      .select {
+        width: 100%;
       }
-      .mat-select-value-text,
-      .mat-focused .mat-select-value-text,
-      .mat-focused .mat-select-arrow {
-        color: $form-focus;
-      }
-      .mat-select-value {
-        color: $form-selected-color;
-      }
-      /* Input field contains an error (errorString exists)*/
       .userErrorString,
       .passwordErrorString,
       .emailErrorString {

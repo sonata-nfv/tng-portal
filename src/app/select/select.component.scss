@@ -1,3 +1,14 @@
 @import "../../constants.scss";
 app-select {
+  .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+    color: $form-focus-label;
+  }
+  .mat-select-value-text,
+  .mat-focused .mat-select-value-text,
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color: $form-focus;
+  }
+}
+.mat-option-text {
+  color: $secondary-button-color;
 }

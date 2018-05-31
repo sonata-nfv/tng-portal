@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       password: new FormControl(),
       confirmPassword: new FormControl(),
       email: new FormControl(null, Validators.email),
-      role: new FormControl()
+      role: new FormControl(null, Validators.required)
     });
     this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
   }
@@ -77,5 +77,9 @@ export class SignupComponent implements OnInit {
         this.userErrorString = "*" + err;
         this.emailErrorString = "*" + err;
       });
+  }
+
+  private receiveRole($event) {
+    this.signupForm.controls.role.setValue($event);
   }
 }

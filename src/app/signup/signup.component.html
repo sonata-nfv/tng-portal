@@ -20,13 +20,7 @@
     </mat-form-field>
     <p class="error" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
 
-    <mat-form-field>
-      <mat-select panelClass="roles" placeholder="Role" formControlName="role" required>
-        <mat-option *ngFor="let role of roles" [value]="role">
-          {{ role }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"></app-select>
 
     <button name="signup" [disabled]="!signupForm.valid || !validPassword">REGISTER</button>
     <a class="login" routerLink="/login">I have an account</a>
