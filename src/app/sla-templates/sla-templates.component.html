@@ -31,7 +31,7 @@
   </ng-container>
   <ng-container matColumnDef="ID">
     <mat-header-cell *matHeaderCellDef> Template ID </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.uuid }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="ns">
     <mat-header-cell *matHeaderCellDef> Network Service </mat-header-cell>
@@ -43,7 +43,7 @@
   </ng-container>
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let element">
+    <mat-cell *matCellDef="let element" (click)="remove(element)" (click)="$event.stopPropagation()">
       <i class="wui wui-trash-alt"></i>
     </mat-cell>
   </ng-container>
@@ -52,3 +52,5 @@
 </mat-table>
 
 <app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

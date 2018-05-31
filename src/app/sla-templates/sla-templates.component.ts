@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-sla-templates",
@@ -19,7 +20,7 @@ export class SlaTemplatesComponent implements OnInit {
   // TODO request NS
   listNS = ["A", "B"];
 
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.nsForm = new FormGroup({
@@ -32,7 +33,7 @@ export class SlaTemplatesComponent implements OnInit {
     this.templates = [
       {
         name: "sla1",
-        id: "45217851155",
+        uuid: "45217851155",
         ns: "ns1",
         expirationDate: "05/12/2019"
       }
@@ -44,12 +45,20 @@ export class SlaTemplatesComponent implements OnInit {
   }
 
   requestTemplates() {
-    this.loading = true;
+    // this.loading = true;
+    // TODO request the templates according to NS selected or all
   }
 
   receiveMessage($event) {
     this.searchText = $event;
   }
 
-  openTemplate(row) {}
+  remove(element) {
+    // TODO send request to remove SLA from list
+  }
+
+  openTemplate(row) {
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }

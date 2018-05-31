@@ -63,10 +63,10 @@ app-sla-templates {
     align-items: center;
     .form {
       width: 30%;
-      margin-right: 10px;
+      margin-right: 30px;
       .mat-form-field {
         width: 100%;
-        color: $secondary-font-color-dark;
+        color: $form-selected-color;
       }
       .mat-form-field-infix {
         margin-left: 5px;
@@ -76,14 +76,14 @@ app-sla-templates {
         text-align: left;
       }
       .mat-form-field-ripple {
-        background-color: $form-ripple-color;
+        background-color: $form-focus;
       }
       .mat-focused .mat-select-value-text,
       .mat-focused .mat-select-arrow {
         color: $primary-font-color;
       }
       .mat-select-value {
-        color: $secondary-font-color-dark;
+        color: $form-selected-color;
       }
     }
     .search {
@@ -147,6 +147,9 @@ app-sla-templates {
     background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
+  }
+  .mat-cell {
+    color: $form-selected-color;
   }
   .mat-cell:nth-child(5),
   .mat-header-cell:nth-child(5) {

@@ -16,6 +16,7 @@ import { ServicesComponent } from "./services/services.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
+import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -62,7 +63,10 @@ const routes: Routes = [
       },
       {
         path: "service-platform/slas/sla-templates",
-        component: SlaTemplatesComponent
+        component: SlaTemplatesComponent,
+        children: [
+          { path: "detail/:id", component: SlaTemplatesDetailComponent }
+        ]
       },
       // Service Management section
       {

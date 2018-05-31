@@ -21,6 +21,7 @@ import { PackagesDetailComponent } from "./packages-detail/packages-detail.compo
 import { ServicesComponent } from "./services/services.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
+import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
@@ -47,6 +48,8 @@ import { FeatureAvailableDirective } from "./shared/directives/feature-available
 
 import { FilterPipe } from "./shared/filter.pipe";
 import { SpinnerComponent } from "./spinner/spinner.component";
+import { CalendarComponent } from './calendar/calendar.component';
+import { SelectComponent } from './select/select.component';
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -83,7 +86,10 @@ export function initConfiguration(configService: ConfigService): Function {
     PackagesDetailComponent,
     ServicesComponent,
     FunctionsComponent,
-    SlaTemplatesComponent
+    SlaTemplatesComponent,
+    SlaTemplatesDetailComponent,
+    CalendarComponent,
+    SelectComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

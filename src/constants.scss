@@ -1,6 +1,6 @@
 // Main colors
-$primary-color: rgb(121, 20, 34);
-$primary-color-light: rgb(201, 0, 16);
+$primary-color: rgb(121, 33, 33);
+$primary-color-light: rgb(212, 11, 13);
 $secondary-color: rgb(65, 65, 65);
 $secondary-color-light: rgb(138, 138, 138);
 
@@ -25,6 +25,7 @@ $font-color-alert: $primary-color-light;
 $font-color-success: $primary-color-light;
 
 // Form colors
+$font-primary-light: $primary-color-light;
 $form-alert-color: $primary-color-light;
 $form-options-color: $secondary-font-color;
 $form-selected-color: $secondary-font-color-dark;
@@ -41,6 +42,7 @@ $button-disabled-color: $secondary-color;
 $button-save-color: $primary-color;
 $button-delete-color: $primary-color;
 $button-close-color: rgb(189, 185, 185);
+$button-hyperlink-color: rgb(123, 120, 120);
 
 $button-font-color: rgb(255, 255, 255);
 $button-font-color_light: $primary-color-light;
