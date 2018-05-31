@@ -22,7 +22,7 @@
     </mat-select>
   </mat-form-field>
 
-  <app-calendar></app-calendar>
+  <app-calendar (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
 
 <div class="advance">

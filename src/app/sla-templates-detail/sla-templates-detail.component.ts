@@ -10,6 +10,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class SlaTemplatesDetailComponent implements OnInit {
   loading: boolean;
+  date: string;
   templateForm: FormGroup;
   listNS = new Array();
   guaranties = new Array();
@@ -52,6 +53,10 @@ export class SlaTemplatesDetailComponent implements OnInit {
 
   searchNS(templateForm) {
     console.log("this is search");
+  }
+
+  receiveDate($event) {
+    this.date = $event;
   }
 
   close() {
