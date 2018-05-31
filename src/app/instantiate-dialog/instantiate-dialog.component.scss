@@ -79,16 +79,19 @@ app-instantiate-dialog {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      width: 100%;
+      width: 60%;
       .mat-form-field {
         display: flex;
         flex-direction: column;
-        width: 60%;
+        width: 100%;
         text-align: center;
         color: $primary-font-color;
         .mat-select.mat-select-invalid .mat-select-arrow {
           color: $secondary-font-color;
         }
+      }
+      .select {
+        width: 100%;
       }
       .mat-form-field-label:not(.mat-form-field-empty) {
         text-align: start;
@@ -100,15 +103,11 @@ app-instantiate-dialog {
       .mat-form-field-ripple {
         background-color: $form-focus;
       }
-      .mat-select-value-text {
-        color: $primary-font-color;
-      }
       .mat-form-field-invalid .mat-form-field-label {
         color: $secondary-font-color;
       }
-      .mat-form-field-invalid
-        .mat-form-field-label
-        .mat-form-field-required-marker,
+      .mat-form-field-invalid .mat-form-field-label,
+      .mat-form-field-required-marker,
       .mat-form-field-invalid .mat-form-field-label.mat-accent {
         color: $secondary-font-color;
       }
@@ -116,10 +115,11 @@ app-instantiate-dialog {
     .addNew {
       display: flex;
       justify-content: flex-end;
-      width: 60%;
+      width: 100%;
       button {
-        width: 150px;
+        min-width: 130px;
         padding: 8px;
+        padding-right: 0px;
         font-size: 16px;
         border: none;
         cursor: pointer;
@@ -129,6 +129,12 @@ app-instantiate-dialog {
         i:before {
           font-size: 12px;
           color: $button-font-color_light;
+        }
+      }
+      button:disabled {
+        color: $disabled-font-color;
+        i:before {
+          color: $disabled-font-color;
         }
       }
     }

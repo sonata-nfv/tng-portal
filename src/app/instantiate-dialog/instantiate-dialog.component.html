@@ -26,16 +26,12 @@
     </dt>
   </dl>
 
-  <form #instantiationForm="ngForm" (ngSubmit)="addNew(instantiationForm)" class="form">
+  <form [formGroup]="instantiationForm" (ngSubmit)="addNew(instantiationForm)" class="form">
+
+    <app-select class="select" placeholder="Location" [list]="locations" [disabled]="loading" [reset]="reset" (selectEvent)="receiveLocation($event)"></app-select>
+
     <mat-form-field>
-      <mat-select placeholder="Location" name="location" ngModel required>
-        <mat-option *ngFor="let location of locations" [value]="location">
-          {{ location }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Network attachment point (NAP)" name="nap" ngModel required>
+      <input matInput type="text" placeholder="Network attachment point (NAP)" formControlName="nap" required>
     </mat-form-field>
 
     <div class="addNew">

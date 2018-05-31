@@ -15,8 +15,22 @@ import { FormControl } from "@angular/forms";
   encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements OnInit {
-  select = new FormControl();
+  select = new FormControl({ disabled: false });
 
+  @Input()
+  set reset(reset: boolean) {
+    if (reset) {
+      this.select.reset();
+    }
+  }
+  @Input()
+  set disabled(disabled: boolean) {
+    if (disabled) {
+      this.select.disable();
+    } else {
+      this.select.enable();
+    }
+  }
   @Input() placeholder: string;
   @Input() list: Array<string>;
   @Output() selectEvent = new EventEmitter<string>();

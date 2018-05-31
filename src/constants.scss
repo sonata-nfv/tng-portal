@@ -2,7 +2,7 @@
 $primary-color: rgb(121, 33, 33);
 $primary-color-light: rgb(212, 11, 13);
 $secondary-color: rgb(65, 65, 65);
-$secondary-color-light: rgb(138, 138, 138);
+$secondary-color-light: rgb(139, 139, 139);
 
 // Background colors
 $init-background-color: rgb(237, 237, 237);
@@ -31,6 +31,7 @@ $form-options-color: $secondary-font-color;
 $form-selected-color: $secondary-font-color-dark;
 $form-focus: $primary-color;
 $form-focus-label: $secondary-font-color;
+$form-disabled-color: $secondary-color-light;
 
 // Button colors
 $primary-button-color: $primary-color;

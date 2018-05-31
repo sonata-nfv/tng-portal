@@ -49,7 +49,11 @@ export class CommonService {
           response => {
             if (response instanceof Array) {
               let datacenters = response.map(a => a.vim_city);
-              resolve(datacenters);
+              if (datacenters.length == 0) {
+                resolve(["None"]);
+              } else {
+                resolve(datacenters);
+              }
             } else {
               throw new Error("Response is not an array of Objects");
             }

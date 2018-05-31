@@ -8,6 +8,10 @@ app-select {
   .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
     color: $form-focus;
   }
+  .mat-form-field-disabled .mat-form-field-underline {
+    background-color: $form-disabled-color;
+    background-image: none;
+  }
 }
 .mat-option-text {
   color: $secondary-button-color;

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { MAT_DIALOG_DATA } from "@angular/material";
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { CommonService } from "../shared/services/common/common.service";
@@ -14,7 +14,9 @@ import { CommonService } from "../shared/services/common/common.service";
 })
 export class InstantiateDialogComponent implements OnInit {
   loading: boolean;
-  isIngress = true;
+  instantiationForm: FormGroup;
+  reset: boolean = false;
+  isIngress: boolean = true;
   ingress = new Array();
   egress = new Array();
   locations = new Array();
@@ -28,6 +30,12 @@ export class InstantiateDialogComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+
+    this.instantiationForm = new FormGroup({
+      location: new FormControl(null, Validators.required),
+      nap: new FormControl()
+    });
+
     setTimeout(() => {
       this.commonService
         .requestVims()
@@ -41,7 +49,7 @@ export class InstantiateDialogComponent implements OnInit {
     }, 1000);
   }
 
-  addNew(instantiationForm: NgForm) {
+  addNew(instantiationForm: FormGroup) {
     if (this.isIngress) {
       this.ingress.push({
         location: instantiationForm.controls.location.value,
@@ -53,7 +61,11 @@ export class InstantiateDialogComponent implements OnInit {
         nap: instantiationForm.controls.nap.value
       });
     }
-    instantiationForm.reset();
+    this.instantiationForm.reset();
+    this.reset = true;
+    setTimeout(() => {
+      this.reset = false;
+    }, 5);
   }
 
   eraseEntry(entry: string) {
@@ -62,6 +74,10 @@ export class InstantiateDialogComponent implements OnInit {
     } else {
       this.egress = this.egress.filter(x => x !== entry);
     }
+  }
+
+  private receiveLocation($event) {
+    this.instantiationForm.controls.location.setValue($event);
   }
 
   instantiate(service) {
