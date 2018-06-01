@@ -45,6 +45,11 @@ const routes: Routes = [
       { path: "validation", component: ValidationComponent },
       // Service Platform section
       {
+        path: "service-platform",
+        redirectTo: "service-platform/packages",
+        pathMatch: "full"
+      },
+      {
         path: "service-platform/packages",
         component: PackagesComponent,
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
@@ -69,6 +74,11 @@ const routes: Routes = [
         ]
       },
       // Service Management section
+      {
+        path: "service-management",
+        redirectTo: "service-management/available-network-services",
+        pathMatch: "full"
+      },
       {
         path: "service-management/available-network-services",
         component: AvailableNetworkServicesComponent,
