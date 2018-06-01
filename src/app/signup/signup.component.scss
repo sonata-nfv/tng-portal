@@ -61,6 +61,9 @@ app-signup {
       .select {
         width: 100%;
       }
+      .mat-select-value-text {
+        color: $form-focus;
+      }
       .userErrorString,
       .passwordErrorString,
       .emailErrorString {

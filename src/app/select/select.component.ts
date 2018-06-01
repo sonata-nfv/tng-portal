@@ -15,7 +15,12 @@ import { FormControl } from "@angular/forms";
   encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements OnInit {
-  select = new FormControl({ disabled: false });
+  _disabled: boolean = false;
+  _required: boolean = true;
+  select = new FormControl({
+    disabled: this._disabled,
+    required: this._required
+  });
 
   @Input()
   set reset(reset: boolean) {
@@ -25,11 +30,16 @@ export class SelectComponent implements OnInit {
   }
   @Input()
   set disabled(disabled: boolean) {
+    this._disabled = disabled;
     if (disabled) {
       this.select.disable();
     } else {
       this.select.enable();
     }
+  }
+  @Input()
+  set required(required: boolean) {
+    this._required = required;
   }
   @Input() placeholder: string;
   @Input() list: Array<string>;

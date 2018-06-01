@@ -50,50 +50,29 @@ app-placement-policy {
       background-color: $button-close-color;
     }
   }
-  .form {
+  form {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    margin-top: 90px;
+    &.policyForm {
+      margin-top: 90px;
+    }
+    &.datacenterForm {
+      .mat-form-field-disabled .mat-form-field-underline {
+        background-color: $form-focus;
+        background-image: none;
+      }
+      .mat-select.mat-select-disabled .mat-select-arrow {
+        color: $form-focus;
+      }
+      .mat-select-disabled .mat-select-value {
+        color: $form-selected-color;
+      }
+    }
     .placementPolicy {
       width: 25%;
     }
-    // Select styles
-    .mat-form-field-label {
-      color: $form-options-color;
-    }
-    .mat-form-field-invalid .mat-form-field-required-marker,
-    .mat-form-field-invalid .mat-form-field-label.mat-accent {
-      color: $form-options-color;
-    }
-    .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
-      color: $form-options-color;
-    }
-    .mat-form-field-invalid:not(.mat-focused)
-      .mat-form-field-underline
-      .mat-form-field-ripple,
-    .mat-form-field-invalid .mat-form-field-ripple {
-      background-color: $form-options-color;
-    }
-    .mat-focused .mat-form-field-required-marker {
-      color: $form-options-color;
-    }
-    .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-      color: $form-options-color;
-    }
-    .mat-form-field-ripple {
-      background-color: $row-underline-color;
-    }
-    .mat-select-value-text {
-      color: $form-selected-color;
-    }
-  }
-  .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
-    color: $form-focus;
-  }
-  .mat-form-field-disabled .mat-form-field-underline {
-    background-color: $form-focus;
   }
   .list {
     display: flex;
@@ -107,8 +86,9 @@ app-placement-policy {
       justify-content: start;
       flex-direction: row;
       margin-bottom: 10px;
-      .mat-form-field {
-        width: 78%;
+      .mat-form-field,
+      .select {
+        width: 86%;
       }
       button {
         border: none;

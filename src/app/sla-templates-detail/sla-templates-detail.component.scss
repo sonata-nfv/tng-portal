@@ -95,7 +95,7 @@ app-sla-templates-detail {
       }
     }
     .mat-form-field .mat-form-field-underline {
-      background-color: $row-underline-color;
+      background-color: $underline-color;
     }
     .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
       color: $form-focus;
@@ -140,13 +140,13 @@ app-sla-templates-detail {
           color: $button-hyperlink-color;
         }
         .wui-caret-up:before {
-          color: $row-underline-color;
+          color: $underline-color;
         }
       }
       .underline {
         margin: 2px auto;
         width: 150px;
-        border-bottom: 1px solid $row-underline-color;
+        border-bottom: 1px solid $underline-color;
         &.opened {
           margin: 4px auto;
         }
