@@ -19,12 +19,12 @@ export class AvailableNetworkServicesComponent {
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    "Status",
-    "Service Name",
+    "Name",
     "Vendor",
     "Version",
-    "Service ID",
+    "Licenses",
     "Type",
+    "SLAs",
     "instanciate"
   ];
   searchText: string;
@@ -53,17 +53,7 @@ export class AvailableNetworkServicesComponent {
         this.loading = false;
 
         // Populate the list of available network services
-        this.networkServices = response.map(function(item) {
-          return {
-            searchField: item.nsd.name,
-            status: item.status,
-            serviceName: item.nsd.name,
-            vendor: item.nsd.vendor,
-            version: item.nsd.version,
-            serviceId: item.uuid,
-            type: item.user_licence
-          };
-        });
+        this.networkServices = response;
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {

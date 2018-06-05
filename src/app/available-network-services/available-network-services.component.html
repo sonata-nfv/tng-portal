@@ -2,21 +2,15 @@
 <h2>Available network services</h2>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
-  <button class="reload" (click)="requestServices()">
-    <i class="wui wui-undo"></i>
-  </button>
+    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <button class="reload" (click)="requestServices()">
+        <i class="wui wui-undo"></i>
+    </button>
 </div>
 
 <mat-table [dataSource]="networkServices | filter: searchText">
-    <ng-container matColumnDef="Status">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
-        </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="Service Name">
-        <mat-header-cell *matHeaderCellDef> Service Name </mat-header-cell>
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.serviceName }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Vendor">
@@ -27,13 +21,19 @@
         <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Service ID">
-        <mat-header-cell *matHeaderCellDef> Service ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.serviceId }} </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="Type">
         <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.type }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Licenses">
+        <mat-header-cell *matHeaderCellDef> Licenses </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.licenses }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SLAs">
+        <mat-header-cell *matHeaderCellDef> SLAs </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+            <a routerLink="{{ element.slas }}">View</a>
+        </mat-cell>
     </ng-container>
     <ng-container matColumnDef="instanciate">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>

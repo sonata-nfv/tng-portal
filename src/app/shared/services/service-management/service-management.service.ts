@@ -33,7 +33,19 @@ export class ServiceManagementService {
           response => {
             if (response instanceof Array) {
               this.commonService.getVimsRequestUUID();
-              resolve(response);
+
+              let res = response.map(function(item) {
+                return {
+                  serviceName: item.nsd.name,
+                  serviceId: item.uuid,
+                  vendor: item.nsd.vendor,
+                  version: item.nsd.version,
+                  type: "public",
+                  licenses: "None",
+                  slas: "/service-management/available-network-services"
+                };
+              });
+              resolve(res);
             } else {
               throw new Error("Response is not an array of Objects");
             }
