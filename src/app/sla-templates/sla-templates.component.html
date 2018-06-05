@@ -9,15 +9,6 @@
 </div>
 
 <div class="tools">
-  <form [formGroup]="nsForm" (ngSubmit)="searchNS(nsForm)" class="form">
-    <mat-form-field>
-      <mat-select panelClass="ns" placeholder="Network Service" formControlName="ns">
-        <mat-option *ngFor="let ns of listNS" [value]="ns">
-          {{ ns }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
   <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
   <button class="reload" (click)="requestPackages()">
     <i class="wui wui-undo"></i>

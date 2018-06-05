@@ -61,31 +61,6 @@ app-sla-templates {
     margin-top: 30px;
     justify-content: center;
     align-items: center;
-    .form {
-      width: 30%;
-      margin-right: 30px;
-      .mat-form-field {
-        width: 100%;
-        color: $form-selected-color;
-      }
-      .mat-form-field-infix {
-        margin-left: 5px;
-      }
-      .mat-focused .mat-form-field-label {
-        color: $secondary-font-color;
-        text-align: left;
-      }
-      .mat-form-field-ripple {
-        background-color: $form-focus;
-      }
-      .mat-focused .mat-select-value-text,
-      .mat-focused .mat-select-arrow {
-        color: $primary-font-color;
-      }
-      .mat-select-value {
-        color: $form-selected-color;
-      }
-    }
     .search {
       width: 20%;
     }
