@@ -41,6 +41,10 @@ export class SelectComponent implements OnInit {
   set required(required: boolean) {
     this._required = required;
   }
+  @Input()
+  set value(item: string) {
+    this.select.setValue(item);
+  }
   @Input() placeholder: string;
   @Input() list: Array<string>;
   @Output() selectEvent = new EventEmitter<string>();

@@ -3,6 +3,7 @@ app-select {
   .mat-form-field {
     width: 100%;
   }
+
   .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
     color: $form-focus-label;
   }
@@ -29,6 +30,12 @@ app-select {
     background-image: none;
   }
 }
-.mat-option-text {
-  color: $secondary-button-color;
+// Set select options color to grey
+.mat-option {
+  color: $form-options-color;
+}
+// Set select focused option color to primary
+.mat-option.mat-active,
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $form-focus;
 }

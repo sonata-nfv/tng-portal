@@ -90,31 +90,8 @@ app-sla-templates-detail {
       font-size: 16px;
       color: $form-selected-color;
       &.ns {
-        font-size: 20px;
         width: 100%;
       }
-    }
-    .mat-form-field .mat-form-field-underline {
-      background-color: $underline-color;
-    }
-    .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-      color: $form-focus;
-    }
-    .mat-form-field-infix {
-      margin-left: 5px;
-    }
-    .mat-focused .mat-form-field-label {
-      color: $form-focus-label;
-      text-align: left;
-    }
-    .mat-form-field-ripple {
-      background-color: $form-focus;
-    }
-    .mat-focused .mat-select-value-text {
-      color: $form-focus;
-    }
-    .mat-select-value {
-      color: $secondary-font-color-dark;
     }
   }
   .advance {
@@ -156,6 +133,7 @@ app-sla-templates-detail {
       display: flex;
       flex-direction: column;
       width: 100%;
+      color: $form-focus;
       .sectionTitle {
         margin-bottom: 15px;
         font-size: 24px;
@@ -163,7 +141,6 @@ app-sla-templates-detail {
       }
       .guarantiesList {
         width: 65%;
-        font-size: 16px;
       }
       .note {
         display: flex;

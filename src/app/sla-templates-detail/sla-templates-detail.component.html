@@ -13,14 +13,8 @@
   <h3 class="date">{{ createdAt }}</h3>
 </div>
 
-<form [formGroup]="templateForm" (ngSubmit)="searchNS(templateForm)">
-  <mat-form-field class="ns">
-    <mat-select panelClass="ns" placeholder="Network Service" formControlName="ns">
-      <mat-option *ngFor="let ns of listNS" [value]="ns">
-        {{ ns }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<form [formGroup]="templateForm">
+  <app-select class="ns" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)"></app-select>
 
   <app-calendar (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
@@ -42,13 +36,8 @@
 
     <!-- TODO display different guarantees -->
 
-    <mat-form-field class="guarantiesList">
-      <mat-select placeholder="Select NS Guarantee" formControlName="guarantee">
-        <mat-option *ngFor="let guarantee of guaranties" [value]="guarantee">
-          {{ guarantee }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select>
+
     <span class="note">Add a new guarantee selecting a NS</span>
   </form>
 </div>

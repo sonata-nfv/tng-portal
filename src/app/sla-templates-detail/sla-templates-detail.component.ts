@@ -39,7 +39,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
         ns: new FormControl(),
         guarantee: new FormControl()
       });
-      this.templateForm.controls.ns.setValue("A");
+      // this.templateForm.controls.ns.setValue("A");
       this.templateForm.valueChanges.subscribe(value =>
         this._onFormChanges(value)
       );
@@ -51,8 +51,13 @@ export class SlaTemplatesDetailComponent implements OnInit {
 
   private _onFormChanges(values) {}
 
-  searchNS(templateForm) {
-    console.log("this is search");
+  receiveNS($event) {
+    this.templateForm.controls.ns.setValue($event);
+    // TODO NS search
+  }
+
+  receiveGuarantee($event) {
+    this.templateForm.controls.guarantee.setValue($event);
   }
 
   receiveDate($event) {
