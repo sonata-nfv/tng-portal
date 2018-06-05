@@ -66,7 +66,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.services + uuid, {
+        .get(this.config.base + this.config.services + "/" + uuid, {
           headers: headers
         })
         .subscribe(
