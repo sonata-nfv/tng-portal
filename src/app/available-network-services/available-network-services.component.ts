@@ -27,7 +27,6 @@ export class AvailableNetworkServicesComponent {
     "SLAs",
     "instanciate"
   ];
-  searchText: string;
 
   constructor(
     private serviceManagementService: ServiceManagementService,
@@ -42,13 +41,13 @@ export class AvailableNetworkServicesComponent {
   }
 
   receiveMessage($event) {
-    this.searchText = $event;
+    this.requestServices($event);
   }
 
-  requestServices() {
+  requestServices(search?) {
     this.loading = true;
     this.serviceManagementService
-      .getNetworkServices()
+      .getNetworkServices(search)
       .then(response => {
         this.loading = false;
 

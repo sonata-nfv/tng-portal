@@ -8,7 +8,7 @@
     </button>
 </div>
 
-<mat-table [dataSource]="networkServices | filter: searchText">
+<mat-table [dataSource]="networkServices">
     <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.serviceName }} </mat-cell>

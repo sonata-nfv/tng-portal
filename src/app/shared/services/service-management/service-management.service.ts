@@ -21,12 +21,16 @@ export class ServiceManagementService {
     private http: HttpClient
   ) {}
 
-  getNetworkServices(): any {
+  getNetworkServices(search?): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.services + search
+          : this.config.base + this.config.services;
 
       this.http
-        .get(this.config.base + this.config.services, {
+        .get(url, {
           headers: headers
         })
         .subscribe(

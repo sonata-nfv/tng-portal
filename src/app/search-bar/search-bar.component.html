@@ -3,5 +3,5 @@
     <i class="wui wui-search-alt"></i>
     <span>Search</span>
   </mat-placeholder>
-  <input matInput [(ngModel)]="searchText" (keyup)="sendMessage()">
+  <input matInput [(ngModel)]="searchText" (keyup.enter)="sendMessage()">
 </mat-input-container>
