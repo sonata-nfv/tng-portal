@@ -24,39 +24,15 @@ app-signup {
     }
     .form {
       flex: 1 0;
-      display: flex;
       align-items: center;
-      flex-direction: column;
       justify-content: center;
       .mat-form-field {
         display: flex;
         flex-direction: column;
+        text-align: center;
         margin: 0 auto;
         width: 60%;
         color: $form-focus;
-        text-align: center;
-        font-size: 18px;
-      }
-      .mat-form-field-underline:not(.mat-form-field-empty) {
-        background-color: $form-focus;
-      }
-      .mat-focused {
-        color: $form-focus;
-      }
-      .mat-form-field-label:not(.mat-form-field-empty) {
-        text-align: start;
-      }
-      .mat-focused .mat-form-field-label {
-        color: $form-focus-label;
-        text-align: left;
-      }
-      .mat-form-field-ripple {
-        background-color: $form-focus;
-      }
-      .mat-form-field-invalid .mat-form-field-label,
-      .mat-form-field-required-marker,
-      .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: $form-focus-label;
       }
       .select {
         width: 100%;
@@ -73,6 +49,9 @@ app-signup {
         }
         .mat-form-field-underline {
           background-color: $form-alert-color;
+        }
+        .mat-input-element {
+          color: $form-alert-color;
         }
       }
       a {

@@ -75,47 +75,15 @@ app-instantiate-dialog {
     }
     .form {
       flex: 1 0;
-      display: flex;
       align-items: center;
-      flex-direction: column;
       justify-content: center;
       width: 60%;
       .mat-form-field {
-        display: flex;
-        flex-direction: column;
         width: 100%;
         text-align: center;
-        color: $form-selected-color;
-        .mat-select.mat-select-invalid .mat-select-arrow {
-          color: $form-focus-label;
-        }
       }
       .select {
         width: 100%;
-      }
-      .mat-form-field-underline {
-        background-color: $underline-color;
-      }
-      .mat-form-field-label:not(.mat-form-field-empty) {
-        text-align: start;
-      }
-      .mat-focused .mat-input-element {
-        color: $form-focus;
-      }
-      .mat-focused .mat-form-field-label {
-        color: $form-focus-label;
-        text-align: left;
-      }
-      .mat-form-field-ripple {
-        background-color: $form-focus;
-      }
-      .mat-form-field-invalid .mat-form-field-label {
-        color: $form-focus-label;
-      }
-      .mat-form-field-invalid .mat-form-field-label,
-      .mat-form-field-required-marker,
-      .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: $form-focus-label;
       }
     }
     .addNew {
