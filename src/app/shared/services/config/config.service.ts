@@ -6,7 +6,7 @@ export class ConfigService {
   register: string = "users/";
   login: string = "sessions/";
   services: string = "services";
-  requests: string = "requests/";
+  requests: string = "requests";
   instances: string = "records/services";
   licences: string = "licences/";
   packages: string = "packages";

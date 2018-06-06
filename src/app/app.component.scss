@@ -61,7 +61,7 @@ form {
   }
   .mat-input-element:disabled {
     font-size: 20px;
-    color: $secondary-font-color-dark;
+    color: $form-focus;
   }
   // Change input underline styles
   .mat-form-field-underline {
@@ -76,6 +76,9 @@ form {
   }
   .mat-form-field-ripple {
     background-color: $form-focus;
+  }
+  .mat-form-field-disabled .mat-form-field-underline {
+    display: none;
   }
   // Label styles
   .mat-focused .mat-form-field-label {
@@ -121,7 +124,7 @@ form {
   margin-bottom: 30px;
   .text {
     color: $secondary-font-color;
-    font-size: 26px;
+    font-size: 21px;
     margin-bottom: 10px;
   }
   .version {
@@ -137,4 +140,12 @@ form {
       font-size: 40px;
     }
   }
+}
+// Spinner styles to center in component
+app-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }

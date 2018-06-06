@@ -10,9 +10,10 @@ app-available-network-services {
   background-color: $basic-background-color;
   h1 {
     margin-top: 15px;
+    margin-bottom: 3px;
     width: 95%;
     color: $primary-title-color;
-    font-size: 14px;
+    font-size: 17px;
   }
   h1:after {
     background: none repeat scroll 0 0 $primary-title-color;
@@ -25,7 +26,7 @@ app-available-network-services {
     width: 95%;
     margin: 0px 15px 25px 15px;
     color: $secondary-title-color;
-    font-size: 32px;
+    font-size: 21px;
   }
   .tools {
     width: 100%;
@@ -35,7 +36,7 @@ app-available-network-services {
   }
   .reload {
     position: absolute;
-    right: 10.5%;
+    right: 120px;
     .wui-undo::before {
       font-size: 20px;
       color: $reload-color;
@@ -48,7 +49,7 @@ app-available-network-services {
     overflow-y: overlay;
     text-align: center;
     border-bottom: none;
-    margin-top: 100px;
+    margin-top: 60px;
   }
   mat-table::-webkit-scrollbar {
     width: 10px;
@@ -68,7 +69,10 @@ app-available-network-services {
     color: $header-color;
     margin: 0 auto;
   }
-
+  .mat-header-cell,
+  .mat-header-row {
+    font-size: 14px;
+  }
   .mat-header-cell {
     color: $cell-color;
   }
@@ -122,12 +126,5 @@ app-available-network-services {
   .mat-cell:nth-child(7),
   .mat-header-cell:nth-child(7) {
     flex: 0 0 30px;
-  }
-  app-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
   }
 }

@@ -2,13 +2,13 @@
 <h2>Requests</h2>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
-  <button class="reload" (click)="requestRequests()">
-    <i class="wui wui-undo"></i>
-  </button>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+    <button class="reload" (click)="requestRequests()">
+        <i class="wui wui-undo"></i>
+    </button>
 </div>
 
-<mat-table [dataSource]="requests | filter: searchText">
+<mat-table [dataSource]="requests">
     <ng-container matColumnDef="Request ID">
         <mat-header-cell *matHeaderCellDef> Request ID </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.requestId }} </mat-cell>

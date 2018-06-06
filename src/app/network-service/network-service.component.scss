@@ -14,18 +14,12 @@ app-network-service {
   > * {
     flex: 0 0 auto;
   }
-  h3 {
-    margin-top: 9px;
-    width: 95%;
-    color: $third-title-color;
-    font-size: 14px;
-  }
   .header {
     display: flex;
     flex-direction: row;
     width: 95%;
     h2 {
-      margin: 0px 15px 0 0;
+      margin: 0;
       width: 95%;
       color: $secondary-font-color;
       font-size: 32px;
@@ -33,10 +27,27 @@ app-network-service {
     .close {
       padding: 12px;
       min-width: 170px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
       color: $button-font-color;
       background-color: $button-close-color;
+    }
+  }
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 60px;
+    h3 {
+      margin-top: 0;
+      margin-right: 15px;
+      font-size: 12px;
+      &.author {
+        color: $third-title-color;
+      }
+      &.date {
+        color: $secondary-title-color;
+      }
     }
   }
   .detail {
@@ -51,15 +62,12 @@ app-network-service {
       display: flex;
       flex-direction: row;
       button {
-        padding: 15px 0 16px 0;
+        padding: 15px 0 25px 0;
         font-size: 18px;
         color: $primary-font-color;
       }
       i:before {
         color: $ready-color;
-      }
-      span {
-        text-decoration: underline;
       }
     }
     .description {
@@ -81,12 +89,5 @@ app-network-service {
         }
       }
     }
-  }
-  app-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
   }
 }

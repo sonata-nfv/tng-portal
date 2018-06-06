@@ -81,7 +81,7 @@ export class InstantiateDialogComponent implements OnInit {
   }
 
   instantiate(service) {
-    this.serviceManagementService.instantiate(
+    this.serviceManagementService.postNSRequest(
       service,
       this.ingress,
       this.egress

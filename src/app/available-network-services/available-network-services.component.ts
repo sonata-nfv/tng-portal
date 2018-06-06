@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource, MatDialog } from "@angular/material";
-
 import { Router, ActivatedRoute } from "@angular/router";
+
+import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 @Component({
   selector: "app-available-network-services",
@@ -25,7 +24,7 @@ export class AvailableNetworkServicesComponent {
     "Licenses",
     "Type",
     "SLAs",
-    "instanciate"
+    "instantiate"
   ];
 
   constructor(
@@ -40,10 +39,17 @@ export class AvailableNetworkServicesComponent {
     this.requestServices();
   }
 
-  receiveMessage($event) {
-    this.requestServices($event);
+  searchFieldData(search) {
+    this.requestServices(search);
   }
 
+  /**
+   * Generates the HTTP request to get the list of NS.
+   *
+   * @param search [Optional] Network Service attributes that
+   *                          must be matched by the returned
+   *                          list of NS.
+   */
   requestServices(search?) {
     this.loading = true;
     this.serviceManagementService
@@ -51,7 +57,6 @@ export class AvailableNetworkServicesComponent {
       .then(response => {
         this.loading = false;
 
-        // Populate the list of available network services
         this.networkServices = response;
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
@@ -77,7 +82,7 @@ export class AvailableNetworkServicesComponent {
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 
-  instanciate(row) {
+  instantiate(row) {
     this.instantiateDialog.open(InstantiateDialogComponent, {
       data: { service: row }
     });

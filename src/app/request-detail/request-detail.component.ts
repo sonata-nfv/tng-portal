@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-
-import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
-
 import { Router, ActivatedRoute } from "@angular/router";
+
+import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-request-detail",
@@ -11,28 +11,67 @@ import { Router, ActivatedRoute } from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class RequestDetailComponent implements OnInit {
-  requestId: string;
+  loading: boolean;
+
+  requestID: string;
   type: string;
   createdAt: string;
   updatedAt: string;
-  serviceId: string;
+  serviceID: string;
   status: string;
 
   constructor(
-    private dataTransfer: DataTransferService,
+    private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
-    this.dataTransfer.data.subscribe(res => {
-      this.requestId = res.requestId;
-      this.type = res.type;
-      this.createdAt = res.createdAt;
-      this.updatedAt = res.updatedAt;
-      this.serviceId = res.serviceId;
-      this.status = res.status;
+    this.route.params.subscribe(params => {
+      let uuid = params["id"];
+      this.requestRequest(uuid);
     });
+  }
+
+  /**
+   * Generates the HTTP request of a defined NS request by UUID.
+   *
+   * @param uuid ID of the selected NS request to be displayed.
+   *             Comming from the route.
+   */
+  requestRequest(uuid) {
+    this.loading = true;
+
+    this.serviceManagementService
+      .getOneNSRequest(uuid)
+      .then(response => {
+        this.loading = false;
+
+        this.requestID = response.requestID;
+        this.type = response.type;
+        this.createdAt = response.createdAt;
+        this.updatedAt = response.updatedAt;
+        this.serviceID = response.serviceID;
+        this.status = response.status;
+      })
+      .catch(err => {
+        this.loading = false;
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        } else {
+          this.close();
+        }
+      });
   }
 
   close() {

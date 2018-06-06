@@ -21,6 +21,14 @@ export class ServiceManagementService {
     private http: HttpClient
   ) {}
 
+  /**
+   * Retrieves a list of Available Network Services.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Network Service attributes that
+   *                          must be matched by the returned
+   *                          list of NS.
+   */
   getNetworkServices(search?): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
@@ -33,35 +41,36 @@ export class ServiceManagementService {
         .get(url, {
           headers: headers
         })
-        .subscribe(
-          response => {
-            if (response instanceof Array) {
-              this.commonService.getVimsRequestUUID();
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            this.commonService.getVimsRequestUUID();
 
-              let res = response.map(function(item) {
-                return {
-                  serviceName: item.nsd.name,
-                  serviceId: item.uuid,
-                  vendor: item.nsd.vendor,
-                  version: item.nsd.version,
-                  type: "public",
-                  licenses: "None",
-                  slas: "/service-management/available-network-services"
-                };
-              });
-              resolve(res);
-            } else {
-              throw new Error("Response is not an array of Objects");
-            }
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
+            resolve(
+              response.map(item => ({
+                serviceName: item.nsd.name,
+                serviceId: item.uuid,
+                vendor: item.nsd.vendor,
+                version: item.nsd.version,
+                type: "public",
+                licenses: "None",
+                slas: "/service-management/available-network-services"
+              }))
+            );
+          } else {
+            reject();
           }
-        );
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
-  getNetworkService(uuid: string): any {
+  /**
+   * Retrieves a Network Service by UUID
+   *
+   * @param uuid UUID of the desired Network Service.
+   */
+  getOneNetworkService(uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
@@ -69,37 +78,147 @@ export class ServiceManagementService {
         .get(this.config.base + this.config.services + "/" + uuid, {
           headers: headers
         })
-        .subscribe(
-          response => {
-            if (response.hasOwnProperty("nsd")) {
-              resolve(response);
-            } else {
-              resolve({});
-            }
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("nsd")) {
+            resolve({
+              name: response["nsd"]["name"],
+              author: response["nsd"]["author"],
+              version: response["nsd"]["version"],
+              vendor: response["nsd"]["vendor"],
+              serviceID: response["uuid"],
+              type: response["user_licence"],
+              description: response["nsd"]["description"],
+              createdAt: response["created_at"]
+            });
+          } else {
+            reject();
           }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a list of Network Service requests.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Request attributes that must be
+   *                          matched by the returned list of
+   *                          NS requests.
+   */
+  getNSRequests(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base +
+            this.config.requests +
+            "/" +
+            this.config.services +
+            search
+          : this.config.base +
+            this.config.requests +
+            "/" +
+            this.config.services;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => ({
+                requestId: item.id,
+                type: item.request_type,
+                createdAt: item.created_at,
+                serviceId: item.service_uuid,
+                status: item.status
+              }))
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Network Service request by UUID
+   *
+   * @param uuid UUID of the desired NS request.
+   */
+  getOneNSRequest(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(
+          this.config.base +
+            this.config.requests +
+            "/" +
+            this.config.services +
+            "/" +
+            uuid,
+          {
+            headers: headers
+          }
+        )
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("id")) {
+            resolve({
+              requestID: response["id"],
+              type: response["request_type"],
+              createdAt: response["created_at"],
+              updatedAt: response["updated_at"],
+              serviceID: response["service_uuid"],
+              status: response["status"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a list of Network Service instances.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Instance attributes that must be
+   *                          matched by the returned list of
+   *                          NS instances.
+   */
+  getInstances(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.instances, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve(response);
+        })
+        .catch(
+          err => (err.status === 404 ? resolve([]) : reject(err.statusText))
         );
     });
   }
 
-  getRequests(): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.base + this.config.requests, {
-          headers: headers
-        })
-        .subscribe(
-          response => {
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
+  postNSRequest(
+    service: Object,
+    ingress: Array<Object>,
+    egress: Array<Object>
+  ) {
+    console.log(ingress);
+    console.log(egress);
+    // Send request to instantiate with data
+    // Show pop up saying success/error with id xxxxx
   }
 
   getLicences(): any {
@@ -109,43 +228,11 @@ export class ServiceManagementService {
         .get(this.config.base + this.config.licences, {
           headers: headers
         })
-        .subscribe(
-          response => {
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
-  }
-
-  getInstances(): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.base + this.config.instances, {
-          headers: headers
+        .toPromise()
+        .then(response => {
+          resolve(response);
         })
-        .subscribe(
-          response => {
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            if (error.status === 404) {
-              resolve([]);
-            } else {
-              reject(error.statusText);
-            }
-          }
-        );
+        .catch(err => reject(err.statusText));
     });
-  }
-
-  instantiate(service: Object, ingress: Array<Object>, egress: Array<Object>) {
-    console.log(ingress);
-    console.log(egress);
-    // Send request to instantiate with data
-    // Show pop up saying success/error with id xxxxx
   }
 }

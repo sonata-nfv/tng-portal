@@ -2,7 +2,7 @@
 <h2>Available network services</h2>
 
 <div class="tools">
-    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
     <button class="reload" (click)="requestServices()">
         <i class="wui wui-undo"></i>
     </button>
@@ -35,9 +35,9 @@
             <a routerLink="{{ element.slas }}">View</a>
         </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="instanciate">
+    <ng-container matColumnDef="instantiate">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="instanciate(element)" (click)="$event.stopPropagation()">
+        <mat-cell *matCellDef="let element" (click)="instantiate(element)" (click)="$event.stopPropagation()">
             <button mat-button>
                 <i class="wui wui-caret-right"></i>
             </button>
