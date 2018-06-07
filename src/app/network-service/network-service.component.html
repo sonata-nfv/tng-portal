@@ -1,6 +1,6 @@
-<h1 *ngIf="name">AVAILABLE NETWORK SERVICES</h1>
+<h1 class="sectionTitle" *ngIf="name">AVAILABLE NETWORK SERVICES</h1>
 <div class="header" *ngIf="name">
-    <h2> {{ name }}</h2>
+    <h2 class="subsectionTitle"> {{ name }}</h2>
     <button class="close" (click)="close()">CLOSE</button>
 </div>
 <div class="subheader" *ngIf="author">

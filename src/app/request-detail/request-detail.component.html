@@ -1,6 +1,6 @@
-<h1 *ngIf="requestID">REQUESTS</h1>
+<h1 class="sectionTitle" *ngIf="requestID">REQUESTS</h1>
 <div class="header" *ngIf="requestID">
-  <h2> {{ requestID }}</h2>
+  <h2 class="subsectionTitle"> {{ requestID }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 <!-- TODO include created by and createdAt at subheader if in response -->

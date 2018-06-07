@@ -8,26 +8,6 @@ app-network-service-instances {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  h1 {
-    margin-top: 15px;
-    margin-bottom: 3px;
-    width: 95%;
-    color: $primary-title-color;
-    font-size: 17px;
-  }
-  h1:after {
-    background: none repeat scroll 0 0 $primary-title-color;
-    content: "";
-    display: block;
-    height: 1px;
-    width: 260px;
-  }
-  h2 {
-    width: 95%;
-    margin: 0px 15px 25px 15px;
-    color: $secondary-title-color;
-    font-size: 37px;
-  }
   .tools {
     width: 100%;
     display: flex;
@@ -37,7 +17,6 @@ app-network-service-instances {
   .reload {
     position: absolute;
     right: 120px;
-    // padding: 4px;
     border: none;
     cursor: pointer;
     outline: none;
@@ -48,49 +27,13 @@ app-network-service-instances {
     }
   }
   mat-table {
-    margin-bottom: 20px;
     width: 95%;
-    overflow-y: overlay;
-    overflow-x: hidden;
-    text-align: center;
-    margin-top: 60px;
-  }
-  mat-table::-webkit-scrollbar {
-    width: 10px;
-    padding-top: 100px;
-  }
-  mat-table::-webkit-scrollbar-track {
-    background: $track-color;
-    border: 4px solid transparent;
-    background-clip: content-box;
-  }
-  mat-table::-webkit-scrollbar-thumb {
-    background-color: $thumb-background-color;
-    outline: 1px solid $thumb-outline-color;
-    border-radius: 10px;
-  }
-  .mat-sort-header-button {
-    color: $header-color;
-    margin: 0 auto;
   }
   .mat-header-row {
+    width: 95%;
     border-bottom: none;
-    -webkit-box-align: center;
-    align-items: center;
-    position: absolute;
-    background: $basic-background-color;
-    transform: translate(0, -57px);
-    width: 95%;
-  }
-  .mat-header-cell {
-    color: $cell-color;
-  }
-  .mat-header-cell,
-  .mat-header-row {
-    font-size: 14px;
   }
   .mat-row {
-    min-width: 150px;
     border-bottom: none;
     background-image: linear-gradient(
       to right,
@@ -100,9 +43,6 @@ app-network-service-instances {
       $basic-background-color 94%,
       $basic-background-color 100%
     );
-    background-position: bottom;
-    background-size: 100% 1px;
-    background-repeat: no-repeat;
     align-items: baseline;
     min-height: 29px;
   }
