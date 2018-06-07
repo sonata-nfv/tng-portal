@@ -28,6 +28,7 @@ app-menu {
     margin-top: 20px;
     margin-bottom: 5px;
     background-image: url("../../assets/images/user.svg");
+    opacity: 0.3;
     width: 78px;
     height: 74px;
     background-size: cover;
@@ -88,6 +89,9 @@ app-menu {
       span {
         margin-top: 5px;
         font-size: 11px;
+        width: 70px;
+        margin-right: 15px;
+        margin-left: 15px;
       }
     }
     button.active {
@@ -105,13 +109,14 @@ app-menu {
     background-position: center;
     background-image: url("../../assets/images/sonata_powered_by_5gtango_logo.svg");
     background-repeat: no-repeat;
+    background-size: 100px;
   }
   .menu-options {
     flex: 1 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 250px;
+    width: 225px;
     overflow-x: hidden;
     overflow-y: hidden;
     .options {

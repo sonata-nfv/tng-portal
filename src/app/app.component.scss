@@ -1,22 +1,15 @@
 @import "../constants.scss";
+@font-face {
+  font-family: "Calibri";
+  src: url("../assets/fonts/fonts/Calibri.ttf");
+}
+* {
+  font-family: "Calibri";
+}
 body {
   overflow-x: hidden;
   overflow-y: hidden;
   margin: 0;
-  // Set font to the app
-  font-family: "Calibri";
-  .mat-form-field {
-    font-family: "Calibri";
-  }
-  p {
-    font-family: "Calibri";
-  }
-  button {
-    font-family: "Calibri";
-  }
-  .mat-dialog-title {
-    font-family: "Calibri";
-  }
 }
 // App basic background
 app-root {
@@ -48,6 +41,7 @@ app-index {
   width: 95%;
   color: $primary-title-color;
   font-size: 17px;
+  font-weight: normal;
 }
 .sectionTitle:after {
   background: none repeat scroll 0 0 $primary-title-color;
@@ -61,6 +55,10 @@ app-index {
   margin: 0px 15px 25px 15px;
   color: $secondary-title-color;
   font-size: 37px;
+  font-weight: normal;
+}
+.subtitle {
+  font-weight: normal;
 }
 // Set form scss for the Portal
 form {

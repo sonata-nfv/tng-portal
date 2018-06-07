@@ -4,24 +4,25 @@ app-instantiate-dialog {
   flex: 1 1;
   flex-direction: column;
   align-items: center;
-  width: 630px;
+  width: 700px;
   height: auto;
+  min-height: 450px;
   background-color: $basic-background-color;
   color: $secondary-font-color;
-  font-size: 19px;
   .mat-dialog-title {
     width: 100%;
     margin: 0 20px;
     text-align: center;
     color: $primary-title-color;
-    font-size: 20px;
+    font-size: 17px;
   }
   .mat-dialog-content {
     display: flex;
+    flex: 1 1;
     flex-direction: column;
     align-items: center;
-    flex: 1 1;
     width: 100%;
+    font-size: 22px;
     .section {
       display: flex;
       flex-direction: row;
@@ -32,8 +33,7 @@ app-instantiate-dialog {
       button {
         margin: 0 15px;
         padding: 15px;
-        font-size: 28px;
-        font-weight: bold;
+        font-size: 37px;
         border: none;
         cursor: pointer;
         outline: none;
@@ -76,7 +76,7 @@ app-instantiate-dialog {
     .form {
       flex: 1 0;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       width: 60%;
       .mat-form-field {
         width: 100%;
@@ -95,9 +95,6 @@ app-instantiate-dialog {
         padding: 8px;
         padding-right: 0px;
         font-size: 16px;
-        border: none;
-        cursor: pointer;
-        outline: none;
         color: $button-font-color_light;
         background-color: $basic-background-color;
         i:before {
@@ -117,13 +114,10 @@ app-instantiate-dialog {
     display: flex;
     justify-content: flex-end;
     button {
-      margin: 20px 0 25px;
+      margin-top: 20px;
       padding: 8px 60px;
       font-size: 18px;
       font-weight: bold;
-      border: none;
-      cursor: pointer;
-      outline: none;
       &.cancel {
         margin-right: 15px;
         color: $button-font-color;
@@ -136,11 +130,9 @@ app-instantiate-dialog {
       }
     }
   }
-  app-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
   }
 }

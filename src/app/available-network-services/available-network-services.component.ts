@@ -37,6 +37,8 @@ export class AvailableNetworkServicesComponent {
 
   ngOnInit() {
     this.requestServices();
+
+    this.instantiate({});
   }
 
   searchFieldData(search) {
