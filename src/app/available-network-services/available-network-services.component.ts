@@ -18,11 +18,11 @@ export class AvailableNetworkServicesComponent {
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    "Name",
     "Vendor",
+    "Name",
     "Version",
-    "Licenses",
     "Type",
+    "Licenses",
     "SLAs",
     "instantiate"
   ];

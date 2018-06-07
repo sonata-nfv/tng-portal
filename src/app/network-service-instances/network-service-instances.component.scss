@@ -10,9 +10,10 @@ app-network-service-instances {
   background-color: $basic-background-color;
   h1 {
     margin-top: 15px;
+    margin-bottom: 3px;
     width: 95%;
     color: $primary-title-color;
-    font-size: 14px;
+    font-size: 17px;
   }
   h1:after {
     background: none repeat scroll 0 0 $primary-title-color;
@@ -25,7 +26,7 @@ app-network-service-instances {
     width: 95%;
     margin: 0px 15px 25px 15px;
     color: $secondary-title-color;
-    font-size: 32px;
+    font-size: 37px;
   }
   .tools {
     width: 100%;
@@ -35,8 +36,8 @@ app-network-service-instances {
   }
   .reload {
     position: absolute;
-    right: 7%;
-    padding: 4px;
+    right: 120px;
+    // padding: 4px;
     border: none;
     cursor: pointer;
     outline: none;
@@ -48,14 +49,15 @@ app-network-service-instances {
   }
   mat-table {
     margin-bottom: 20px;
-    width: 85%;
-    overflow-y: auto;
+    width: 95%;
+    overflow-y: overlay;
     overflow-x: hidden;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 60px;
   }
   mat-table::-webkit-scrollbar {
     width: 10px;
+    padding-top: 100px;
   }
   mat-table::-webkit-scrollbar-track {
     background: $track-color;
@@ -78,10 +80,14 @@ app-network-service-instances {
     position: absolute;
     background: $basic-background-color;
     transform: translate(0, -57px);
-    width: 85%;
+    width: 95%;
   }
   .mat-header-cell {
     color: $cell-color;
+  }
+  .mat-header-cell,
+  .mat-header-row {
+    font-size: 14px;
   }
   .mat-row {
     min-width: 150px;
@@ -113,21 +119,14 @@ app-network-service-instances {
   // Set width for columns
   .mat-cell:nth-child(2),
   .mat-header-cell:nth-child(2) {
-    flex: 0 0 15%;
+    flex: 0 0 12%;
   }
   .mat-cell:nth-child(4),
   .mat-header-cell:nth-child(4) {
-    flex: 0 0 15%;
+    flex: 0 0 12%;
   }
   .mat-cell:nth-child(5),
   .mat-header-cell:nth-child(5) {
-    flex: 0 0 15%;
-  }
-  app-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    flex: 0 0 12%;
   }
 }

@@ -2,16 +2,16 @@
 <h2>Network service instances</h2>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
-  <button class="reload" (click)="requestNSInstances()">
-    <i class="wui wui-undo"></i>
-  </button>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+    <button class="reload" (click)="requestNSInstances()">
+        <i class="wui wui-undo"></i>
+    </button>
 </div>
 
-<mat-table [dataSource]="instances | filter: searchText">
+<mat-table [dataSource]="instances">
     <ng-container matColumnDef="instanceId">
         <mat-header-cell *matHeaderCellDef> Network service instance id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.instanceId }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.instanceID }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
@@ -19,7 +19,7 @@
     </ng-container>
     <ng-container matColumnDef="serviceId">
         <mat-header-cell *matHeaderCellDef> Currently running service id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.serviceId }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.serviceID }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="version">
         <mat-header-cell *matHeaderCellDef> Current version </mat-header-cell>

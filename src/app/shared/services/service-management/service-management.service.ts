@@ -193,16 +193,34 @@ export class ServiceManagementService {
    *                          matched by the returned list of
    *                          NS instances.
    */
-  getInstances(search?): any {
+  getNSInstances(search?): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.instances + search
+          : this.config.base + this.config.instances;
+
       this.http
-        .get(this.config.base + this.config.instances, {
+        .get(url, {
           headers: headers
         })
         .toPromise()
         .then(response => {
-          resolve(response);
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => ({
+                searchField: item.uuid,
+                instanceID: item.uuid,
+                status: item.status,
+                serviceID: item.descriptor_reference,
+                version: item.version,
+                latestVersion: ""
+              }))
+            );
+          } else {
+            reject();
+          }
         })
         .catch(
           err => (err.status === 404 ? resolve([]) : reject(err.statusText))
