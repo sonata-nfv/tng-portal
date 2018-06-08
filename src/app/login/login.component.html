@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="header"></div>
-	<form (ngSubmit)="login(loginForm)" #loginForm="ngForm" class="form">
+	<form (ngSubmit)="login(loginForm)" [formGroup]="loginForm" class="form">
 		<mat-form-field [ngClass]="{'errorString':errorString}">
-			<input matInput type="text" placeholder="Username/email" name="username" ngModel required>
+			<input matInput type="text" placeholder="Username/email" formControlName="username" required>
 		</mat-form-field>
 		<mat-form-field [ngClass]="{'errorString':errorString}">
-			<input matInput type="password" placeholder="Password" name="password" ngModel required>
+			<input matInput type="password" placeholder="Password" formControlName="password" required>
 		</mat-form-field>
 		<p class="error" *ngIf="errorString" [innerText]="errorString"></p>
 		<button name="login" [disabled]="!loginForm.valid">LOG IN</button>

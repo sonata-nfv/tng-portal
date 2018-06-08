@@ -1,5 +1,6 @@
 @import "../../constants.scss";
 app-request-detail {
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -10,33 +11,23 @@ app-request-detail {
   right: 0;
   left: 0;
   background-color: $basic-background-color;
-  h1 {
-    margin-top: 15px;
-    width: 95%;
-    color: $primary-title-color;
-    font-size: 14px;
-  }
-  h1:after {
-    background: none repeat scroll 0 0 $primary-title-color;
-    content: "";
-    display: block;
-    height: 1px;
-    width: 260px;
+  > * {
+    flex: 0 0 auto;
   }
   .header {
     display: flex;
     flex-direction: row;
     width: 95%;
-    margin-bottom: 10px;
     h2 {
       margin: 0px 15px 0 0;
       width: 95%;
       color: $secondary-title-color;
-      font-size: 32px;
+      font-size: 21px;
     }
     .close {
-      padding: 8px 50px;
-      font-size: 18px;
+      padding: 12px;
+      min-width: 170px;
+      font-size: 17px;
       font-weight: bold;
       border: none;
       cursor: pointer;
@@ -47,32 +38,23 @@ app-request-detail {
   }
   .detail {
     width: 95%;
-    display: flex;
     flex: 1 1;
-    flex-direction: column;
+    margin-top: 100px;
     align-items: center;
-    justify-content: center;
-    .mat-focused .mat-form-field-label {
-      text-align: left;
-    }
+    justify-content: flex-start;
     .mat-form-field {
       width: 65%;
     }
-    // Change font-size of label
-    .mat-form-field-can-float.mat-form-field-should-float {
-      .mat-form-field-label {
-        font-size: 20px;
-      }
+    .updatedAt .mat-input-element:disabled {
+      font-size: 14px;
+      color: $form-disabled-color;
     }
-    .mat-input-element:disabled {
-      font-size: 20px;
-      color: $secondary-font-color-dark;
+    .updatedAt .mat-form-field-label {
+      display: none;
     }
-    // Change input underline styles
-    .mat-form-field-disabled .mat-form-field-underline {
-      background-image: none;
-      background-color: $row-underline-color;
-      height: 2px;
+    .updatedAt .mat-form-field-infix {
+      border-top: 0;
+      padding: 0;
     }
   }
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
+import { Router } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-network-service-instances",
@@ -22,7 +21,9 @@ export class NetworkServiceInstancesComponent implements OnInit {
     "status",
     "serviceId",
     "version",
-    "latestVersion"
+    "latestVersion",
+    "reload",
+    "stop"
   ];
 
   constructor(
@@ -35,32 +36,30 @@ export class NetworkServiceInstancesComponent implements OnInit {
     this.requestNSInstances();
   }
 
-  requestNSInstances() {
+  searchFieldData(search) {
+    this.requestNSInstances(search);
+  }
+
+  /**
+   * Generates the HTTP request to get the list of NS instances.
+   *
+   * @param search [Optional] NS instances attributes that must
+   *                          be matched by the returned list
+   *                          of NS instances.
+   */
+  requestNSInstances(search?) {
     this.loading = true;
     this.serviceManagementService
-      .getInstances()
+      .getNSInstances(search)
       .then(response => {
         this.loading = false;
-        // Populate the list of instances
-        this.instances = response.map(function(item) {
-          if (item.length < 1) {
-            return (this.instances = []);
-          } else {
-            return {
-              searchField: item.uuid,
-              instanceId: item.uuid,
-              status: item.status,
-              serviceId: item.descriptor_reference,
-              version: item.version,
-              latestVersion: ""
-            };
-          }
-        });
+
+        this.instances = response;
         this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
         this.loading = false;
-        console.error(err);
+
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {
           let title = "Your session has expired";
@@ -74,7 +73,8 @@ export class NetworkServiceInstancesComponent implements OnInit {
         }
       });
   }
-  receiveMessage($event) {
-    this.searchText = $event;
-  }
+
+  reloadInstance(row) {}
+
+  stopInstance(row) {}
 }

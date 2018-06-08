@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource, MatDialog } from "@angular/material";
-
 import { Router, ActivatedRoute } from "@angular/router";
+
+import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
 @Component({
   selector: "app-available-network-services",
@@ -19,15 +18,14 @@ export class AvailableNetworkServicesComponent {
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    "Status",
-    "Service Name",
     "Vendor",
+    "Name",
     "Version",
-    "Service ID",
     "Type",
-    "instanciate"
+    "Licenses",
+    "SLAs",
+    "instantiate"
   ];
-  searchText: string;
 
   constructor(
     private serviceManagementService: ServiceManagementService,
@@ -41,29 +39,25 @@ export class AvailableNetworkServicesComponent {
     this.requestServices();
   }
 
-  receiveMessage($event) {
-    this.searchText = $event;
+  searchFieldData(search) {
+    this.requestServices(search);
   }
 
-  requestServices() {
+  /**
+   * Generates the HTTP request to get the list of NS.
+   *
+   * @param search [Optional] Network Service attributes that
+   *                          must be matched by the returned
+   *                          list of NS.
+   */
+  requestServices(search?) {
     this.loading = true;
     this.serviceManagementService
-      .getNetworkServices()
+      .getNetworkServices(search)
       .then(response => {
         this.loading = false;
 
-        // Populate the list of available network services
-        this.networkServices = response.map(function(item) {
-          return {
-            searchField: item.nsd.name,
-            status: item.status,
-            serviceName: item.nsd.name,
-            vendor: item.nsd.vendor,
-            version: item.nsd.version,
-            serviceId: item.uuid,
-            type: item.user_licence
-          };
-        });
+        this.networkServices = response;
         this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
@@ -88,7 +82,7 @@ export class AvailableNetworkServicesComponent {
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 
-  instanciate(row) {
+  instantiate(row) {
     this.instantiateDialog.open(InstantiateDialogComponent, {
       data: { service: row }
     });

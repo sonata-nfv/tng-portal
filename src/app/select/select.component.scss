@@ -1,0 +1,41 @@
+@import "../../constants.scss";
+app-select {
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+    color: $form-focus-label;
+  }
+  .mat-select-value-text {
+    color: $form-selected-color;
+  }
+  .mat-focused .mat-select-value-text,
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color: $form-focus;
+  }
+  .mat-form-field-ripple {
+    background-color: $form-focus;
+  }
+  .mat-form-field-underline {
+    background-color: $underline-color;
+  }
+  .mat-focused .mat-form-field-label,
+  .mat-focused .mat-form-field-required-marker,
+  .mat-focused .mat-form-field-invalid .mat-form-field-label.mat-accent {
+    color: $form-options-color;
+  }
+  .mat-form-field-disabled .mat-form-field-underline {
+    background-color: $form-disabled-color;
+    background-image: none;
+  }
+}
+// Set select options color to grey
+.mat-option {
+  color: $form-options-color;
+}
+// Set select focused option color to primary
+.mat-option.mat-active,
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $form-focus;
+}

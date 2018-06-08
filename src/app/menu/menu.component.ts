@@ -69,8 +69,9 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "policies") {
       this.subsection = "placement-policy";
       this.router.navigate(["service-platform/policies/placement-policy"]);
-    } else if (buttonId === "sla") {
-      this.subsection = "slaAgreements";
+    } else if (buttonId === "slas") {
+      this.subsection = "sla-templates";
+      this.router.navigate(["service-platform/slas/sla-templates"]);
     } else if (buttonId === "available-network-services") {
       this.router.navigate(["service-management/available-network-services"]);
     } else if (buttonId === "requests") {
@@ -85,7 +86,13 @@ export class MenuComponent implements OnInit {
   }
 
   setSubsection(e, buttonId) {
-    if (buttonId === "service-licences") {
+    if (buttonId === "sla-templates") {
+      this.subsection = "sla-templates";
+      this.router.navigate(["service-platform/slas/sla-templates"]);
+    } else if (buttonId === "sla-agreements") {
+      this.subsection = "sla-agreements";
+      this.router.navigate(["service-platform/slas/sla-templates"]);
+    } else if (buttonId === "service-licences") {
       this.subsection = "service-licences";
       this.router.navigate(["service-management/licences/service-licences"]);
     } else if (buttonId === "user-licences") {

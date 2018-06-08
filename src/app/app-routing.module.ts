@@ -2,18 +2,21 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { AuthGuard } from "./auth-guard";
+
+import { IndexComponent } from "./index/index.component";
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { RegisteredComponent } from "./registered/registered.component";
-import { IndexComponent } from "./index/index.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
-import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { ServicesComponent } from "./services/services.component";
 import { FunctionsComponent } from "./functions/functions.component";
+import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
+import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
+import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -42,6 +45,11 @@ const routes: Routes = [
       { path: "validation", component: ValidationComponent },
       // Service Platform section
       {
+        path: "service-platform",
+        redirectTo: "service-platform/packages",
+        pathMatch: "full"
+      },
+      {
         path: "service-platform/packages",
         component: PackagesComponent,
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
@@ -58,7 +66,19 @@ const routes: Routes = [
         path: "service-platform/policies/placement-policy",
         component: PlacementPolicyComponent
       },
+      {
+        path: "service-platform/slas/sla-templates",
+        component: SlaTemplatesComponent,
+        children: [
+          { path: "detail/:id", component: SlaTemplatesDetailComponent }
+        ]
+      },
       // Service Management section
+      {
+        path: "service-management",
+        redirectTo: "service-management/available-network-services",
+        pathMatch: "full"
+      },
       {
         path: "service-management/available-network-services",
         component: AvailableNetworkServicesComponent,

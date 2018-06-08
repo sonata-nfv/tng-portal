@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="{{ placeholder }}" [formControl]="select" [required]="_required">
+    <mat-option *ngFor="let item of list" [value]="item">
+      {{ item }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

@@ -5,8 +5,8 @@ export class ConfigService {
   base: string = window.location.origin + "/api/v3/";
   register: string = "users/";
   login: string = "sessions/";
-  services: string = "services/";
-  requests: string = "requests/";
+  services: string = "services";
+  requests: string = "requests";
   instances: string = "records/services";
   licences: string = "licences/";
   packages: string = "packages";

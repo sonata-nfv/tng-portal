@@ -1,22 +1,15 @@
 @import "../constants.scss";
+@font-face {
+  font-family: "Calibri";
+  src: url("../assets/fonts/fonts/Calibri.ttf");
+}
+* {
+  font-family: "Calibri";
+}
 body {
   overflow-x: hidden;
   overflow-y: hidden;
   margin: 0;
-  // Set font to the app
-  font-family: "Calibri";
-  .mat-form-field {
-    font-family: "Calibri";
-  }
-  p {
-    font-family: "Calibri";
-  }
-  button {
-    font-family: "Calibri";
-  }
-  .mat-dialog-title {
-    font-family: "Calibri";
-  }
 }
 // App basic background
 app-root {
@@ -41,7 +34,196 @@ app-index {
   flex: 1 1;
   width: 100%;
 }
-// Set select options color to grey
-.mat-option-text {
-  color: $secondary-button-color;
+// Section title and subtitle styles
+.sectionTitle {
+  margin-top: 15px;
+  margin-bottom: 3px;
+  width: 95%;
+  color: $primary-title-color;
+  font-size: 17px;
+  font-weight: normal;
+}
+.sectionTitle:after {
+  background: none repeat scroll 0 0 $primary-title-color;
+  content: "";
+  display: block;
+  height: 1px;
+  width: 260px;
+}
+.subsectionTitle {
+  width: 95%;
+  margin: 0px 15px 20px 15px;
+  color: $secondary-title-color;
+  font-size: 37px;
+  font-weight: normal;
+}
+.subtitle {
+  font-weight: normal;
+}
+// Set form scss for the Portal
+form {
+  display: flex;
+  flex-direction: column;
+  .mat-form-field {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    text-align: left;
+    color: $form-selected-color;
+    .mat-select.mat-select-invalid .mat-select-arrow {
+      color: $form-focus-label;
+    }
+  }
+  // Input text styles
+  .mat-focused .mat-input-element {
+    color: $form-focus;
+  }
+  .mat-input-element:disabled {
+    font-size: 20px;
+    color: $form-focus;
+  }
+  // Change input underline styles
+  .mat-form-field-underline {
+    background-color: $underline-color;
+  }
+  .mat-form-field-disabled .mat-form-field-underline {
+    background-image: none;
+    background-color: $underline-color;
+  }
+  .mat-form-field-invalid .mat-form-field-ripple {
+    background-color: $underline-color;
+  }
+  .mat-form-field-ripple {
+    background-color: $form-focus;
+  }
+  .mat-form-field-disabled .mat-form-field-underline {
+    display: none;
+  }
+  // Label styles
+  .mat-focused .mat-form-field-label {
+    text-align: left;
+  }
+  .mat-form-field-label:not(.mat-form-field-empty) {
+    text-align: start;
+  }
+  .mat-focused .mat-form-field-label {
+    color: $form-focus-label;
+    text-align: left;
+  }
+  .mat-form-field-invalid .mat-form-field-label {
+    color: $form-focus-label;
+  }
+  .mat-form-field-can-float.mat-form-field-should-float {
+    .mat-form-field-label {
+      font-size: 20px;
+    }
+  }
+  // Focused styles
+  .mat-focused {
+    color: $form-focus;
+  }
+  // Generic invalid styles
+  .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+  .mat-form-field-invalid .mat-form-field-label.mat-accent,
+  .mat-focused .mat-form-field-required-marker {
+    color: $form-focus-label;
+  }
+  // Select styles
+  .mat-select-value-text {
+    color: $form-focus;
+  }
+}
+
+/* Set styles for version circles*/
+.versionDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+  margin-bottom: 30px;
+  .text {
+    color: $secondary-font-color;
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+  .version {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    min-height: 120px;
+    border-radius: 50%;
+    background-color: $primary-background-color;
+    span {
+      color: $button-font-color;
+      font-size: 40px;
+    }
+  }
+}
+// Spinner styles to center in component
+app-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+// Mat table styles
+mat-table {
+  margin-bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  text-align: center;
+  border-bottom: none;
+  margin-top: 60px;
+}
+.mat-header-cell {
+  color: $header-color;
+}
+.mat-cell {
+  color: $cell-color;
+}
+.mat-header-cell,
+.mat-header-row {
+  font-size: 14px;
+}
+.mat-header-row {
+  // -webkit-box-align: center;
+  align-items: center;
+  position: absolute;
+  background: $basic-background-color;
+  transform: translate(0, -57px);
+}
+.mat-row {
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+mat-table::-webkit-scrollbar {
+  width: 10px;
+  padding-top: 100px;
+}
+mat-table::-webkit-scrollbar-track {
+  background: $track-color;
+  border: 4px solid transparent;
+  background-clip: content-box;
+}
+mat-table::-webkit-scrollbar-thumb {
+  background-color: $thumb-background-color;
+  outline: 1px solid $thumb-outline-color;
+  border-radius: 10px;
+}
+// Close icon
+.closeIcon {
+  position: absolute;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: $button-font-color_light;
+  background-color: $basic-background-color;
+  i:before {
+    font-size: 10px;
+    color: $button-font-color_light;
+  }
 }

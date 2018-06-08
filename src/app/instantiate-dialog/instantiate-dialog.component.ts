@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { MAT_DIALOG_DATA } from "@angular/material";
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { CommonService } from "../shared/services/common/common.service";
@@ -14,10 +14,14 @@ import { CommonService } from "../shared/services/common/common.service";
 })
 export class InstantiateDialogComponent implements OnInit {
   loading: boolean;
-  isIngress = true;
+  continue: boolean = false;
+  reset: boolean = false;
+  isIngress: boolean = true;
+  instantiationForm: FormGroup;
   ingress = new Array();
   egress = new Array();
   locations = new Array();
+  slas = new Array();
 
   constructor(
     private commonService: CommonService,
@@ -28,6 +32,13 @@ export class InstantiateDialogComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+
+    this.instantiationForm = new FormGroup({
+      location: new FormControl(null, Validators.required),
+      nap: new FormControl(),
+      sla: new FormControl()
+    });
+
     setTimeout(() => {
       this.commonService
         .requestVims()
@@ -39,23 +50,38 @@ export class InstantiateDialogComponent implements OnInit {
           this.loading = false;
         });
     }, 1000);
+
+    // TODO requests sla templates list
+    this.slas = ["sla1", "sla2"];
   }
 
-  addNew(instantiationForm: NgForm) {
+  /**
+   * Saves the introduced ingress/egress points
+   */
+  addNew() {
     if (this.isIngress) {
       this.ingress.push({
-        location: instantiationForm.controls.location.value,
-        nap: instantiationForm.controls.nap.value
+        location: this.instantiationForm.controls.location.value,
+        nap: this.instantiationForm.controls.nap.value
       });
     } else {
       this.egress.push({
-        location: instantiationForm.controls.location.value,
-        nap: instantiationForm.controls.nap.value
+        location: this.instantiationForm.controls.location.value,
+        nap: this.instantiationForm.controls.nap.value
       });
     }
-    instantiationForm.reset();
+    this.instantiationForm.reset();
+    this.reset = true;
+    setTimeout(() => {
+      this.reset = false;
+    }, 5);
   }
 
+  /**
+   * Removes the selected ingress/egress point from the list
+   *
+   * @param entry Ingress or egress point selected
+   */
   eraseEntry(entry: string) {
     if (this.isIngress) {
       this.ingress = this.ingress.filter(x => x !== entry);
@@ -64,11 +90,25 @@ export class InstantiateDialogComponent implements OnInit {
     }
   }
 
+  receiveLocation(location) {
+    this.instantiationForm.controls.location.setValue(location);
+  }
+
+  receiveSLA(sla) {
+    this.instantiationForm.controls.sla.setValue(sla);
+  }
+
   instantiate(service) {
-    this.serviceManagementService.instantiate(
+    this.serviceManagementService.postNSRequest(
       service,
       this.ingress,
-      this.egress
+      this.egress,
+      this.instantiationForm.controls.sla.value
     );
+    this.close();
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }

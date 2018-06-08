@@ -1,24 +1,22 @@
-<h1>REQUESTS</h1>
-<div class="header">
-  <h2> {{ requestId }}</h2>
+<h1 class="sectionTitle" *ngIf="requestID">REQUESTS</h1>
+<div class="header" *ngIf="requestID">
+  <h2 class="subsectionTitle"> {{ requestID }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
-
+<!-- TODO include created by and createdAt at subheader if in response -->
 <form class="detail">
-  <mat-form-field class="type">
-    <input matInput placeholder="Type" value="{{ type }}" disabled>
+  <mat-form-field class="serviceId" *ngIf="serviceID">
+    <input matInput placeholder="Service id" value="{{ serviceID }}" disabled>
   </mat-form-field>
-  <mat-form-field class="createdAt">
-    <input matInput placeholder="Created at" value="{{ createdAt }}" disabled>
-  </mat-form-field>
-  <mat-form-field class="updatedAt">
-    <input matInput placeholder="Updated at" value="{{ updatedAt }}" disabled>
-  </mat-form-field>
-  <mat-form-field class="serviceId">
-    <input matInput placeholder="Service id" value="{{ serviceId }}" disabled>
-  </mat-form-field>
-  <mat-form-field class="status ">
+  <mat-form-field class="status" *ngIf="status">
     <input matInput placeholder="Status" value="{{ status }}" disabled>
   </mat-form-field>
-
+  <mat-form-field class="type" *ngIf="type">
+    <input matInput placeholder="Type" value="{{ type }}" disabled>
+  </mat-form-field>
+  <mat-form-field class="updatedAt" *ngIf="updatedAt">
+    <input matInput placeholder="Updated at" value="Last update: {{ updatedAt }}" disabled>
+  </mat-form-field>
 </form>
+
+<app-spinner *ngIf="loading"></app-spinner>

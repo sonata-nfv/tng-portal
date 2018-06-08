@@ -40,7 +40,9 @@ docker-compose up -d
 
 ## Configuration parameters
 
-The routes to the services for this project are defined in the config.json file placed in `/src/config.json`
+The routes to the services for this project are defined in the config.service.ts file placed in `/src/app/shared/services/config/config.service.ts`.
+
+By default, if the Portal is launched locally, the used services will be those in `http://pre-int-sp-ath.5gtango.eu:32002`.
 
 ### Configuration of the menu items displayed
 

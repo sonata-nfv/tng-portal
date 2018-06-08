@@ -2,7 +2,7 @@
   <mat-sidenav-content class="menu-items" mode="side">
     <div class="avatar"></div>
     <p class="name">{{ username }}</p>
-    <p>{{ email }}</p>
+    <p class="email">{{ email }}</p>
     <button class="logout" (click)="logout()">
       <i class="wui wui-power-off"></i>
       <span>Log out</span>
@@ -43,10 +43,10 @@
         <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement Policy</button>
         <button [ngClass]="{ active: subsection === 'runtime-policy' }" (click)="setSubsection($event, 'runtime-policy')">Runtime Policies</button>
       </div>
-      <button [ngClass]="{ active: section === 'sla' }" (click)="setSection($event, 'sla')">SLA</button>
-      <div class="section" *ngIf="section === 'sla'">
-        <button [ngClass]="{ active: subsection === 'slaAgreements' }" (click)="setSubsection($event, 'slaAgreements')">SLA Agreements</button>
-        <button [ngClass]="{ active: subsection === 'slaTemplates' }" (click)="setSubsection($event, 'slaTemplates')">SLA Templates</button>
+      <button [ngClass]="{ active: section === 'slas' }" (click)="setSection($event, 'slas')">SLA</button>
+      <div class="section" *ngIf="section === 'slas'">
+        <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">SLA Templates</button>
+        <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">SLA Agreements</button>
       </div>
       <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">Slices</button>
     </div>
@@ -55,8 +55,8 @@
       <button [ngClass]="{ active: section === 'available-network-services' }" (click)="setSection($event, 'available-network-services')">Available network services</button>
       <button [ngClass]="{ active: section === 'requests' }" (click)="setSection($event, 'requests')">Requests</button>
       <button [ngClass]="{ active: section === 'network-service-instances' }" (click)="setSection($event, 'network-service-instances')">Network service instances</button>
-      <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')">Licence store</button>
-      <div class="section" *ngIf="section === 'licences'">
+      <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')" ifFeatureAvailable="licences">Licence store</button>
+      <div class="section" *ngIf="section === 'licences'" ifFeatureAvailable="licences">
         <button [ngClass]="{ active: subsection === 'service-licences' }" (click)="setSubsection($event, 'service-licences')">Service licences</button>
         <button [ngClass]="{ active: subsection === 'user-licences' }" (click)="setSubsection($event, 'user-licences')">User licences</button>
       </div>

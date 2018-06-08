@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { DataTransferService } from "../shared/services/service-management/dataTransfer.service";
-
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-requests",
@@ -30,31 +28,31 @@ export class RequestsComponent implements OnInit {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private dialogData: DialogDataService,
-    private route: ActivatedRoute,
-    private dataTransfer: DataTransferService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.requestRequests();
   }
 
-  requestRequests() {
+  searchFieldData(search) {
+    this.requestRequests(search);
+  }
+
+  /**
+   * Generates the HTTP request to get the list of NS requests.
+   *
+   * @param search [Optional] NS requests attributes that must
+   *                          be matched by the returned list
+   *                          of NS requests.
+   */
+  requestRequests(search?) {
     this.loading = true;
     this.serviceManagementService
-      .getRequests()
+      .getNSRequests(search)
       .then(response => {
         this.loading = false;
-        this.requests = response.map(function(item) {
-          return {
-            searchField: item.id,
-            requestId: item.id,
-            type: item.request_type,
-            createdAt: item.created_at,
-            updatedAt: item.updated_at,
-            serviceId: item.service_uuid,
-            status: item.status
-          };
-        });
+        this.requests = response;
       })
       .catch(err => {
         this.loading = false;
@@ -74,14 +72,8 @@ export class RequestsComponent implements OnInit {
       });
   }
 
-  receiveMessage($event) {
-    this.searchText = $event;
-  }
-
   openRequest(row) {
     let uuid = row.requestId;
-    let detail = this.requests.find(x => x.requestId === uuid);
-    this.dataTransfer.sendDetail(detail);
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }

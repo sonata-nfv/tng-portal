@@ -1,0 +1,43 @@
+<div class="title">
+  <h1 class="sectionTitle">SLA Templates</h1>
+  <button>Delete policy</button>
+</div>
+
+<div class="header" *ngIf="name">
+  <h2 class="subsectionTitle"> {{ name }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="subheader" *ngIf="author">
+  <h3 class="subtitle author">Created by {{ author }}</h3>
+  <h3 class="subtitle date">{{ createdAt }}</h3>
+</div>
+
+<form [formGroup]="templateForm">
+  <app-select class="ns" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)"></app-select>
+
+  <app-calendar (dateEvent)="receiveDate($event)"></app-calendar>
+</form>
+
+<div class="advance">
+  <button class="advanceButton" (click)="closed=!closed">
+    <div class="open">
+      <span>Advance parameters</span>
+      <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
+      <ng-template #opened>
+        <i class="wui wui-caret-up"></i>
+      </ng-template>
+    </div>
+    <div class="underline" [ngClass]="{ opened : !closed }"></div>
+  </button>
+
+  <form *ngIf="!closed" [formGroup]="templateForm" class="guaranties">
+    <span class="sectionTitle">Service Guaranties</span>
+
+    <!-- TODO display different guarantees -->
+
+    <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select>
+
+    <span class="note">Add a new guarantee selecting a NS</span>
+  </form>
+</div>

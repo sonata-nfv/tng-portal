@@ -13,7 +13,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class SignupComponent implements OnInit {
   userErrorString: string;
   passwordErrorString: string;
-  emailErrorString: string = "*This is not a valid email.";
+  emailErrorString: string;
   validPassword: boolean;
   signupForm: FormGroup;
 
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       password: new FormControl(),
       confirmPassword: new FormControl(),
       email: new FormControl(null, Validators.email),
-      role: new FormControl()
+      role: new FormControl(null, Validators.required)
     });
     this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
   }
@@ -49,6 +49,16 @@ export class SignupComponent implements OnInit {
         this.validPassword = true;
       }
     }
+    if (
+      this.signupForm.controls.email.invalid &&
+      this.signupForm.controls.email.value != "" &&
+      this.signupForm.controls.email.value != null
+    ) {
+      this.emailErrorString = "*This is not a valid email.";
+    } else {
+      this.emailErrorString = null;
+    }
+    this.userErrorString = null;
   }
 
   signup(signupForm: FormGroup) {
@@ -65,6 +75,11 @@ export class SignupComponent implements OnInit {
       })
       .catch(err => {
         this.userErrorString = "*" + err;
+        this.emailErrorString = "*" + err;
       });
+  }
+
+  private receiveRole($event) {
+    this.signupForm.controls.role.setValue($event);
   }
 }

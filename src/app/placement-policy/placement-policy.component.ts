@@ -12,10 +12,13 @@ import { CommonService } from "../shared/services/common/common.service";
 })
 export class PlacementPolicyComponent implements OnInit {
   loading: boolean;
-  requested: boolean = false;
   placementPolicyForm: FormGroup;
-  show: boolean = false;
+  prioritiseForm: FormGroup;
   error: boolean;
+  show: boolean = false;
+  resetPolicy: boolean = false;
+  resetDatacenter: boolean = false;
+  requested: boolean = false;
   prioritise: boolean = false;
 
   // TODO GET placement policies from a service
@@ -34,46 +37,41 @@ export class PlacementPolicyComponent implements OnInit {
 
   private initForm() {
     this.placementPolicyForm = new FormGroup({
-      placementPolicy: new FormControl(),
+      placementPolicy: new FormControl()
+    });
+    this.prioritiseForm = new FormGroup({
       datacenter: new FormControl()
     });
     this.placementPolicyForm.valueChanges.subscribe(value =>
-      this._onFormChanges(value)
+      this._onFormChangesPolicy(value)
     );
   }
 
-  private _onFormChanges(values) {
-    if (values.placementPolicy !== null) {
-      this.show = true;
-    } else {
-      this.show = false;
-    }
-    if (values.placementPolicy === "Prioritise") {
-      this.prioritise = true;
-      if (!this.requested) {
-        this.loading = true;
-        setTimeout(() => {
-          this.commonService
-            .requestVims()
-            .then(response => {
-              this.loading = false;
-              this.datacenters = response;
-              this.requested = true;
-            })
-            .catch(err => {
-              this.loading = false;
-            });
-        }, 1000);
-      }
-    } else {
-      this.prioritise = false;
+  private _onFormChangesPolicy(values) {
+    this.show = values.placementPolicy !== null ? true : false;
+    this.prioritise = values.placementPolicy === "Prioritise" ? true : false;
+
+    if (this.prioritise && !this.requested) {
+      this.loading = true;
+      setTimeout(() => {
+        this.commonService
+          .requestVims()
+          .then(response => {
+            this.loading = false;
+            this.datacenters = response;
+            this.requested = true;
+          })
+          .catch(err => {
+            this.loading = false;
+          });
+      }, 1000);
     }
   }
 
-  save(placementPolicyForm: FormGroup) {
+  save() {
     if (
       this.datacentersSelected.length < 1 &&
-      placementPolicyForm.controls.placementPolicy.value === "Prioritise"
+      this.placementPolicyForm.controls.placementPolicy.value === "Prioritise"
     ) {
       let title = "oh oh...";
       let content =
@@ -82,28 +80,56 @@ export class PlacementPolicyComponent implements OnInit {
       this.dialogData.openDialog(title, content, action, () => {});
     } else {
       // TODO Save request to catalog
-      console.log("this  is save");
+      console.log(this.placementPolicyForm.controls.placementPolicy.value);
+      console.log(this.datacentersSelected);
     }
   }
 
-  cancel(placementPolicyForm: FormGroup) {
-    placementPolicyForm.reset();
-    this.datacentersSelected = new Array();
+  cancel() {
+    if (this.prioritise) {
+      this.prioritiseForm.reset();
+      this.resetDatacenter = true;
+      setTimeout(() => {
+        this.resetDatacenter = false;
+      }, 5);
+
+      this.datacenters = this.datacenters.concat(this.datacentersSelected);
+      this.datacentersSelected = new Array();
+    }
+
+    this.placementPolicyForm.reset();
+    this.resetPolicy = true;
+    setTimeout(() => {
+      this.resetPolicy = false;
+    }, 5);
   }
 
-  addMore(placementPolicyForm: FormGroup) {
-    if (placementPolicyForm.controls.datacenter.value !== null) {
-      this.error = false;
+  addMore() {
+    this.error =
+      this.prioritiseForm.controls.datacenter.value !== null ? false : true;
+
+    if (!this.error) {
       this.datacentersSelected.push(
-        placementPolicyForm.controls.datacenter.value
+        this.prioritiseForm.controls.datacenter.value
       );
-      placementPolicyForm.get("datacenter").reset();
-    } else {
-      this.error = true;
+      this.datacenters = this.datacenters.filter(
+        x => x != this.prioritiseForm.controls.datacenter.value
+      );
+
+      this.resetDatacenter = true;
     }
+  }
+
+  receivePlacementPolicy($event) {
+    this.placementPolicyForm.controls.placementPolicy.setValue($event);
+  }
+
+  receiveDatecenter($event) {
+    this.prioritiseForm.controls.datacenter.setValue($event);
   }
 
   eraseEntry(item) {
     this.datacentersSelected = this.datacentersSelected.filter(x => x !== item);
+    this.datacenters.push(item);
   }
 }
