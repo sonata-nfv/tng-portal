@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  private receiveRole($event) {
+  receiveRole($event) {
     this.signupForm.controls.role.setValue($event);
   }
 }
