@@ -228,13 +228,23 @@ export class ServiceManagementService {
     });
   }
 
+  /**
+   *
+   * @param service Information about the service about to be instantiated
+   * @param ingress Ingress points of the instantiation
+   * @param egress Egress points of the instantiation
+   * @param sla Selected service level agreement in the instantiation
+   */
   postNSRequest(
     service: Object,
     ingress: Array<Object>,
-    egress: Array<Object>
+    egress: Array<Object>,
+    sla: string
   ) {
     console.log(ingress);
     console.log(egress);
+    console.log(service);
+    console.log(sla);
     // Send request to instantiate with data
     // Show pop up saying success/error with id xxxxx
   }

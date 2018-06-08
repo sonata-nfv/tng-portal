@@ -188,7 +188,7 @@ mat-table {
   font-size: 14px;
 }
 .mat-header-row {
-  -webkit-box-align: center;
+  // -webkit-box-align: center;
   align-items: center;
   position: absolute;
   background: $basic-background-color;
@@ -212,4 +212,18 @@ mat-table::-webkit-scrollbar-thumb {
   background-color: $thumb-background-color;
   outline: 1px solid $thumb-outline-color;
   border-radius: 10px;
+}
+// Close icon
+.closeIcon {
+  position: absolute;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: $button-font-color_light;
+  background-color: $basic-background-color;
+  i:before {
+    font-size: 10px;
+    color: $button-font-color_light;
+  }
 }
