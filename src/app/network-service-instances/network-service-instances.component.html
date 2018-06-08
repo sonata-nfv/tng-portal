@@ -29,6 +29,22 @@
         <mat-header-cell *matHeaderCellDef> Latest version </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.latestVersion }} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="reload">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="reloadInstance(element)" (click)="$event.stopPropagation()">
+            <button class="rowOptions" mat-button>
+                <i class="wui wui-undo"></i>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stop">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="stopInstance(element)" (click)="$event.stopPropagation()">
+            <button class="rowOptions" mat-button>
+                <i class="wui wui-stop-alt"></i>
+            </button>
+        </mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

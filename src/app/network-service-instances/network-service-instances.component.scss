@@ -14,12 +14,14 @@ app-network-service-instances {
     justify-content: center;
     align-items: center;
   }
+  button {
+    cursor: pointer;
+    outline: none;
+  }
   .reload {
     position: absolute;
     right: 120px;
     border: none;
-    cursor: pointer;
-    outline: none;
     background-color: $basic-background-color;
     .wui-undo::before {
       font-size: 20px;
@@ -37,25 +39,30 @@ app-network-service-instances {
     border-bottom: none;
     background-image: linear-gradient(
       to right,
-      $basic-background-color 7%,
-      $underline-color 7%,
-      $underline-color 94%,
-      $basic-background-color 94%,
+      $basic-background-color 4%,
+      $underline-color 4%,
+      $underline-color 92%,
+      $basic-background-color 92%,
       $basic-background-color 100%
     );
     align-items: baseline;
     min-height: 29px;
   }
-  i {
-    &.wui-circle-alt {
-      border-radius: 50%;
-      background-color: $inactive-color;
+  .rowOptions {
+    border: none;
+    background-color: $basic-background-color;
+    .wui-undo::before {
+      font-size: 12px;
+      color: $relaunch-color;
     }
-    &.active {
-      border-radius: 50%;
-      background-color: $active-color;
+    .wui-stop-alt::before {
+      font-size: 12px;
+      border-radius: 25%;
+      color: $stop-color;
+      background-color: $stop-color;
     }
   }
+
   // Set width for columns
   .mat-cell:nth-child(2),
   .mat-header-cell:nth-child(2) {
@@ -68,5 +75,13 @@ app-network-service-instances {
   .mat-cell:nth-child(5),
   .mat-header-cell:nth-child(5) {
     flex: 0 0 12%;
+  }
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    flex: 0 0 30px;
+  }
+  .mat-cell:nth-child(7),
+  .mat-header-cell:nth-child(7) {
+    flex: 0 0 30px;
   }
 }

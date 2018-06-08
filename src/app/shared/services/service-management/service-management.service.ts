@@ -210,7 +210,6 @@ export class ServiceManagementService {
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
-                searchField: item.uuid,
                 instanceID: item.uuid,
                 status: item.status,
                 serviceID: item.descriptor_reference,

@@ -21,7 +21,9 @@ export class NetworkServiceInstancesComponent implements OnInit {
     "status",
     "serviceId",
     "version",
-    "latestVersion"
+    "latestVersion",
+    "reload",
+    "stop"
   ];
 
   constructor(
@@ -71,4 +73,8 @@ export class NetworkServiceInstancesComponent implements OnInit {
         }
       });
   }
+
+  reloadInstance(row) {}
+
+  stopInstance(row) {}
 }
