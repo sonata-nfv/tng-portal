@@ -11,25 +11,14 @@ app-sla-templates-detail {
   right: 0;
   left: 0;
   background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
   .title {
     display: flex;
     flex-direction: row;
     width: 95%;
     min-height: 30px;
-    h1 {
-      margin-top: 15px;
-      margin-bottom: 0;
-      width: 95%;
-      color: $primary-title-color;
-      font-size: 14px;
-    }
-    h1:after {
-      background: none repeat scroll 0 0 $primary-title-color;
-      content: "";
-      display: block;
-      height: 1px;
-      width: 260px;
-    }
     button {
       min-width: 150px;
       font-size: 15px;
@@ -44,22 +33,15 @@ app-sla-templates-detail {
     display: flex;
     flex-direction: row;
     width: 95%;
-    min-height: 38px;
     h2 {
       margin: 0;
       width: 95%;
-      color: $secondary-font-color;
-      font-size: 32px;
     }
     .close {
       padding: 12px;
       min-width: 170px;
-      min-height: 45px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
-      border: none;
-      cursor: pointer;
-      outline: none;
       color: $button-font-color;
       background-color: $button-close-color;
     }
@@ -82,13 +64,8 @@ app-sla-templates-detail {
     }
   }
   form {
-    display: flex;
-    flex-direction: column;
     width: 55%;
-    margin-right: 10px;
     .mat-form-field {
-      font-size: 16px;
-      color: $form-selected-color;
       &.ns {
         width: 100%;
       }
@@ -133,7 +110,6 @@ app-sla-templates-detail {
       display: flex;
       flex-direction: column;
       width: 100%;
-      color: $form-focus;
       .sectionTitle {
         margin-bottom: 15px;
         font-size: 24px;
