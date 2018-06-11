@@ -7,7 +7,6 @@ export const environment = {
   production: false,
   features_available: [
     "DASHBOARD",
-    "USERS",
     "VALIDATION",
     "SERVICE PLATFORM",
     "SERVICE MANAGEMENT"
