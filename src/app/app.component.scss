@@ -227,3 +227,12 @@ mat-table::-webkit-scrollbar-thumb {
     color: $button-font-color_light;
   }
 }
+// Close button in detailed views
+.close {
+  padding: 12px;
+  min-width: 170px;
+  font-size: 17px;
+  font-weight: bold;
+  color: $button-font-color;
+  background-color: $button-close-color;
+}

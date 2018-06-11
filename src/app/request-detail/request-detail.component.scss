@@ -25,15 +25,9 @@ app-request-detail {
       font-size: 21px;
     }
     .close {
-      padding: 12px;
-      min-width: 170px;
-      font-size: 17px;
-      font-weight: bold;
       border: none;
       cursor: pointer;
       outline: none;
-      color: $button-font-color;
-      background-color: $button-close-color;
     }
   }
   .detail {
