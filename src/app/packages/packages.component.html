@@ -2,13 +2,13 @@
 <h2 class="subsectionTitle">Packages</h2>
 
 <div class="tools">
-    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
     <button class="reload" (click)="requestPackages()">
         <i class="wui wui-undo"></i>
     </button>
 </div>
 
-<mat-table [dataSource]="packages | filter: searchText">
+<mat-table [dataSource]="packages">
     <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>

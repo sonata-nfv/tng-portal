@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-packages-detail",
@@ -14,7 +13,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class PackagesDetailComponent implements OnInit {
   displayedColumns = ["name", "vendor", "version"];
   displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
-  searchText: string;
   loading: boolean;
 
   name: string;
@@ -35,50 +33,53 @@ export class PackagesDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loading = true;
-
     this.route.params.subscribe(params => {
       let uuid = params["id"];
-
-      this.servicePlatformService
-        .getPackage(uuid)
-        .then(response => {
-          this.loading = false;
-
-          this.name = response.name;
-          this.author = response.author;
-          this.createdAt = response.createdAt;
-          this.vendor = response.vendor;
-          this.version = response.version;
-          this.type = response.type;
-
-          // TODO request to /packages/package_file_id
-          this.ns = [];
-          this.vnf = [];
-          this.tests = [];
-        })
-        .catch(err => {
-          this.loading = false;
-
-          // Dialog informing the user to log in again when token expired
-          if (err === "Unauthorized") {
-            let title = "Your session has expired";
-            let content =
-              "Please, LOG IN again because your access token has expired.";
-            let action = "Log in";
-
-            this.dialogData.openDialog(title, content, action, () => {
-              this.router.navigate(["/login"]);
-            });
-          } else {
-            this.close();
-          }
-        });
+      this.requestPackages(uuid);
     });
   }
 
-  receiveMessage($event) {
-    this.searchText = $event;
+  requestPackages(uuid) {
+    this.loading = true;
+
+    this.servicePlatformService
+      .getPackage(uuid)
+      .then(response => {
+        this.loading = false;
+
+        this.name = response.name;
+        this.author = response.author;
+        this.createdAt = response.createdAt;
+        this.vendor = response.vendor;
+        this.version = response.version;
+        this.type = response.type;
+
+        // TODO request to /packages/package_file_id
+        this.ns = [];
+        this.vnf = [];
+        this.tests = [];
+      })
+      .catch(err => {
+        this.loading = false;
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        } else {
+          this.close();
+        }
+      });
+  }
+
+  searchFieldData(search) {
+    // TODO call request request to /packages/package_file_id the tests
   }
 
   close() {

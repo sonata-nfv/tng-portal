@@ -70,9 +70,9 @@
     <span class="sectionTitle">TEST</span>
     <span class="message" *ngIf="tests.length == 0">There are no tests to display</span>
     <div class="list" *ngIf="tests.length > 0">
-      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
 
-      <mat-table [dataSource]="tests | filter: searchText">
+      <mat-table [dataSource]="tests">
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>

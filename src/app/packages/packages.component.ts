@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-packages",
@@ -17,7 +16,6 @@ export class PackagesComponent implements OnInit {
   packages = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = ["Name", "Vendor", "Created at", "Version", "Type"];
-  searchText: string;
 
   constructor(
     private servicePlatformService: ServicePlatformService,
@@ -30,11 +28,15 @@ export class PackagesComponent implements OnInit {
     this.requestPackages();
   }
 
-  requestPackages() {
+  searchFieldData(search) {
+    this.requestPackages(search);
+  }
+
+  requestPackages(search?) {
     this.loading = true;
 
     this.servicePlatformService
-      .getPackages()
+      .getPackages(search)
       .then(response => {
         this.loading = false;
         this.packages = response;
@@ -54,10 +56,6 @@ export class PackagesComponent implements OnInit {
           });
         }
       });
-  }
-
-  receiveMessage($event) {
-    this.searchText = $event;
   }
 
   openPackage(row) {
