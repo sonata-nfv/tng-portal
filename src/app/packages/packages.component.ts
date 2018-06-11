@@ -32,6 +32,13 @@ export class PackagesComponent implements OnInit {
     this.requestPackages(search);
   }
 
+  /**
+   * Generates the HTTP request to get the list of packages.
+   *
+   * @param search [Optional] Package attributes that must be
+   *                          matched by the returned list of
+   *                          packages.
+   */
   requestPackages(search?) {
     this.loading = true;
 

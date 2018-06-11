@@ -9,13 +9,19 @@
 </div>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
   <button class="reload" (click)="requestTemplates()">
     <i class="wui wui-undo"></i>
   </button>
 </div>
 
-<mat-table [dataSource]="templates | filter: searchText">
+<mat-table [dataSource]="templates">
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+    </mat-cell>
+  </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>

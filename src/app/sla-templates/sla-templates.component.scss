@@ -22,8 +22,6 @@ app-sla-templates {
     h2 {
       margin: 0;
       width: 80%;
-      color: $secondary-title-color;
-      font-size: 32px;
     }
     .add {
       display: flex;
@@ -48,7 +46,7 @@ app-sla-templates {
     align-items: center;
     .reload {
       position: absolute;
-      right: 10.5%;
+      right: 120px;
       .wui-undo::before {
         font-size: 20px;
         color: $reload-color;
@@ -56,18 +54,18 @@ app-sla-templates {
     }
   }
   mat-table {
-    width: 85%;
+    width: 95%;
   }
   .mat-header-row {
-    width: 85%;
+    width: 95%;
     border-bottom: none;
   }
   .mat-row {
     border-bottom: none;
     background-image: linear-gradient(
       to right,
-      $basic-background-color 2%,
-      $underline-color 2%,
+      $basic-background-color 7%,
+      $underline-color 7%,
       $underline-color 94%,
       $basic-background-color 94%,
       $basic-background-color 100%
@@ -75,8 +73,24 @@ app-sla-templates {
     align-items: baseline;
     min-height: 29px;
   }
-  .mat-cell:nth-child(5),
-  .mat-header-cell:nth-child(5) {
+  i {
+    &.wui-circle-alt {
+      border-radius: 50%;
+      background-color: $inactive-color;
+    }
+    &.active {
+      border-radius: 50%;
+      background-color: $active-color;
+    }
+  }
+
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1) {
+    flex: 0 0 40px;
+    font-size: 8px;
+  }
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
     flex: 0 0 25px;
     font-size: 20px;
   }

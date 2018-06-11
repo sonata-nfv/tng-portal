@@ -3,6 +3,9 @@ import { MatTableDataSource } from "@angular/material";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
+
 @Component({
   selector: "app-sla-templates",
   templateUrl: "./sla-templates.component.html",
@@ -13,44 +16,58 @@ export class SlaTemplatesComponent implements OnInit {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  nsForm: FormGroup;
-  displayedColumns = ["name", "ID", "ns", "expirationDate", "delete"];
-  searchText: string;
+  displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
 
   // TODO request NS
   listNS = ["A", "B"];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private servicePlatformService: ServicePlatformService,
+    private dialogData: DialogDataService
+  ) {}
 
   ngOnInit() {
-    this.nsForm = new FormGroup({
-      ns: new FormControl()
-    });
-    this.nsForm.valueChanges.subscribe(value => this._onFormChanges(value));
-
     this.requestTemplates();
-
-    this.templates = [
-      {
-        name: "sla1",
-        uuid: "45217851155",
-        ns: "ns1",
-        expirationDate: "05/12/2019"
-      }
-    ];
   }
 
-  private _onFormChanges(values) {
-    // TODO request list from NS each time the user selects one
+  searchFieldData(search) {
+    this.requestTemplates(search);
   }
 
-  requestTemplates() {
-    // this.loading = true;
-    // TODO request the templates according to NS selected or all
-  }
+  /**
+   * Generates the HTTP request to get the list of SLA templates.
+   *
+   * @param search [Optional] SLA template attributes that
+   *                          must be matched by the returned
+   *                          list of templates.
+   */
+  requestTemplates(search?) {
+    this.loading = true;
+    this.servicePlatformService
+      .getSLATemplates(search)
+      .then(response => {
+        this.loading = false;
 
-  receiveMessage($event) {
-    this.searchText = $event;
+        this.templates = response;
+        this.dataSource = new MatTableDataSource(this.templates);
+      })
+      .catch(err => {
+        this.loading = false;
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        }
+      });
   }
 
   remove(element) {

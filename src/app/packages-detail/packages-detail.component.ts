@@ -39,11 +39,17 @@ export class PackagesDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Generates the HTTP request of a package by UUID.
+   *
+   * @param uuid ID of the selected package to be displayed.
+   *             Comming from the route.
+   */
   requestPackages(uuid) {
     this.loading = true;
 
     this.servicePlatformService
-      .getPackage(uuid)
+      .getOnePackage(uuid)
       .then(response => {
         this.loading = false;
 
