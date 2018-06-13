@@ -27,22 +27,20 @@ pipeline {
             }
         }
         stage('Deployment in Integration') {
-          parallel {
             stage('Deployment in Integration') {
-              steps {
-                echo 'Deploying in integration...'
-              }
-            }
-            stage('Deploying') {
-              steps {
-                sh 'rm -rf tng-devops || true'
-                sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
-                dir(path: 'tng-devops') {
-                  sh 'ansible-playbook roles/sp.yml -i environments -e "target=pre-int-sp host_key_checking=False"'
+                when{
+                    branch 'master'
+                } 
+                steps {
+                    sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest registry.sonata-nfv.eu:5000/tng-portal:int'
+                    sh 'docker push registry.sonata-nfv.eu:5000/tng-portal:int'
+                    sh 'rm -rf tng-devops || true'
+                    sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
+                    dir(path: 'tng-devops') {
+                    sh 'ansible-playbook roles/sp.yml -i environments -e "target=pre-int-sp host_key_checking=False"'
+                    }
                 }
-              }
             }
-          }
         }
     }
 }
