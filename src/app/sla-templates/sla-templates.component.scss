@@ -44,54 +44,30 @@ app-sla-templates {
     width: 95%;
     justify-content: center;
     align-items: center;
-    .reload {
-      position: absolute;
-      right: 120px;
-      .wui-undo::before {
-        font-size: 20px;
-        color: $reload-color;
-      }
-    }
   }
-  mat-table {
+  table {
     width: 95%;
   }
-  .mat-header-row {
-    width: 95%;
-    border-bottom: none;
-  }
-  .mat-row {
-    border-bottom: none;
+  tr.mat-row {
     background-image: linear-gradient(
       to right,
-      $basic-background-color 7%,
-      $underline-color 7%,
-      $underline-color 94%,
-      $basic-background-color 94%,
+      $basic-background-color 4%,
+      $underline-color 4%,
+      $underline-color 95%,
+      $basic-background-color 95%,
       $basic-background-color 100%
     );
-    align-items: baseline;
-    min-height: 29px;
-  }
-  i {
-    &.wui-circle-alt {
-      border-radius: 50%;
-      background-color: $inactive-color;
-    }
-    &.active {
-      border-radius: 50%;
-      background-color: $active-color;
-    }
   }
 
   .mat-cell:nth-child(1),
   .mat-header-cell:nth-child(1) {
-    flex: 0 0 40px;
+    padding-bottom: 8px;
+    width: 40px;
     font-size: 8px;
   }
   .mat-cell:nth-child(6),
   .mat-header-cell:nth-child(6) {
-    flex: 0 0 25px;
+    width: 25px;
     font-size: 20px;
   }
 }

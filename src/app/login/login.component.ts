@@ -12,7 +12,7 @@ import { AuthService } from "../shared/services/auth/auth.service";
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  errorString: string;
+  errorFormField: string;
   loginForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   private _onFormChanges(values) {
-    this.errorString = null;
+    this.errorFormField = null;
   }
 
   login(loginForm: FormGroup) {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/"]);
       })
       .catch(err => {
-        this.errorString = err;
+        this.errorFormField = err;
       });
   }
 }

@@ -32,7 +32,7 @@
     <div class="logo"></div>
   </mat-sidenav-content>
 
-  <mat-sidenav class="menu-options" align="end" #sidenav mode="side">
+  <mat-sidenav class="menu-options" position="end" #sidenav mode="side">
     <div class="options" *ngIf="menu === 'validation'"></div>
     <div class="options" *ngIf="menu === 'service-platform'">
       <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">Packages</button>

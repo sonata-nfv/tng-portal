@@ -94,6 +94,14 @@ export class ServicePlatformService {
     });
   }
 
+  /**
+   * Retrieves a list of SLA Templates.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Template attributes that must be
+   *                          matched by the returned list of
+   *                          SLA Templates.
+   */
   getSLATemplates(search?): any {
     return new Promise((resolve, reject) => {
       // let headers = this.authService.getAuthHeaders();

@@ -14,45 +14,17 @@ app-requests {
     justify-content: center;
     align-items: center;
   }
-  .reload {
-    position: absolute;
-    right: 120px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-    .wui-undo::before {
-      font-size: 20px;
-      color: $reload-color;
-    }
+  table {
+    width: 95%;
   }
-  mat-table {
-    width: 90%;
-  }
-  .mat-header-row {
-    width: 90%;
-    border-bottom: none;
-  }
-  .mat-row {
-    border-bottom: none;
+  tr.mat-row {
     background-image: linear-gradient(
       to right,
       $basic-background-color 1%,
       $underline-color 1%,
-      $underline-color 99%,
-      $basic-background-color 99%,
+      $underline-color 98%,
+      $basic-background-color 98%,
       $basic-background-color 100%
     );
-    align-items: baseline;
-    min-height: 29px;
-  }
-  // Set width for columns
-  .mat-cell:nth-child(2),
-  .mat-header-cell:nth-child(2) {
-    flex: 0 0 12%;
-  }
-  .mat-cell:nth-child(5),
-  .mat-header-cell:nth-child(5) {
-    flex: 0 0 12%;
   }
 }

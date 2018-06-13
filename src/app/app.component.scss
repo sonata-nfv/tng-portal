@@ -1,4 +1,5 @@
 @import "../constants.scss";
+@import "../material-styles.scss";
 @font-face {
   font-family: "Calibri";
   src: url("../assets/fonts/fonts/Calibri.ttf");
@@ -11,6 +12,7 @@ body {
   overflow-y: hidden;
   margin: 0;
 }
+
 // App basic background
 app-root {
   position: absolute;
@@ -28,12 +30,14 @@ app-root {
   background-attachment: fixed;
   background-size: cover;
 }
+
 // Set index dimenssions to enable menu opening
 app-index {
   display: flex;
   flex: 1 1;
   width: 100%;
 }
+
 // Section title and subtitle styles
 .sectionTitle {
   margin-top: 15px;
@@ -59,79 +63,6 @@ app-index {
 }
 .subtitle {
   font-weight: normal;
-}
-// Set form scss for the Portal
-form {
-  display: flex;
-  flex-direction: column;
-  .mat-form-field {
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    text-align: left;
-    color: $form-selected-color;
-    .mat-select.mat-select-invalid .mat-select-arrow {
-      color: $form-focus-label;
-    }
-  }
-  // Input text styles
-  .mat-focused .mat-input-element {
-    color: $form-focus;
-  }
-  .mat-input-element:disabled {
-    font-size: 20px;
-    color: $form-focus;
-  }
-  // Change input underline styles
-  .mat-form-field-underline {
-    background-color: $underline-color;
-  }
-  .mat-form-field-disabled .mat-form-field-underline {
-    background-image: none;
-    background-color: $underline-color;
-  }
-  .mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $underline-color;
-  }
-  .mat-form-field-ripple {
-    background-color: $form-focus;
-  }
-  .mat-form-field-disabled .mat-form-field-underline {
-    display: none;
-  }
-  // Label styles
-  .mat-focused .mat-form-field-label {
-    text-align: left;
-  }
-  .mat-form-field-label:not(.mat-form-field-empty) {
-    text-align: start;
-  }
-  .mat-focused .mat-form-field-label {
-    color: $form-focus-label;
-    text-align: left;
-  }
-  .mat-form-field-invalid .mat-form-field-label {
-    color: $form-focus-label;
-  }
-  .mat-form-field-can-float.mat-form-field-should-float {
-    .mat-form-field-label {
-      font-size: 20px;
-    }
-  }
-  // Focused styles
-  .mat-focused {
-    color: $form-focus;
-  }
-  // Generic invalid styles
-  .mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
-  .mat-form-field-invalid .mat-form-field-label.mat-accent,
-  .mat-focused .mat-form-field-required-marker {
-    color: $form-focus-label;
-  }
-  // Select styles
-  .mat-select-value-text {
-    color: $form-focus;
-  }
 }
 
 /* Set styles for version circles*/
@@ -160,6 +91,7 @@ form {
     }
   }
 }
+
 // Spinner styles to center in component
 app-spinner {
   position: absolute;
@@ -168,51 +100,7 @@ app-spinner {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
-// Mat table styles
-mat-table {
-  margin-bottom: 20px;
-  overflow-x: hidden;
-  overflow-y: overlay;
-  text-align: center;
-  border-bottom: none;
-  margin-top: 60px;
-}
-.mat-header-cell {
-  color: $header-color;
-}
-.mat-cell {
-  color: $cell-color;
-}
-.mat-header-cell,
-.mat-header-row {
-  font-size: 14px;
-}
-.mat-header-row {
-  // -webkit-box-align: center;
-  align-items: center;
-  position: absolute;
-  background: $basic-background-color;
-  transform: translate(0, -57px);
-}
-.mat-row {
-  background-position: bottom;
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-}
-mat-table::-webkit-scrollbar {
-  width: 10px;
-  padding-top: 100px;
-}
-mat-table::-webkit-scrollbar-track {
-  background: $track-color;
-  border: 4px solid transparent;
-  background-clip: content-box;
-}
-mat-table::-webkit-scrollbar-thumb {
-  background-color: $thumb-background-color;
-  outline: 1px solid $thumb-outline-color;
-  border-radius: 10px;
-}
+
 // Close icon
 .closeIcon {
   position: absolute;
@@ -227,12 +115,50 @@ mat-table::-webkit-scrollbar-thumb {
     color: $button-font-color_light;
   }
 }
+
 // Close button in detailed views
 .close {
+  border: none;
+  cursor: pointer;
+  outline: none;
   padding: 12px;
   min-width: 170px;
-  font-size: 17px;
   font-weight: bold;
+  font-size: 17px;
   color: $button-font-color;
+  background-color: $button-close-color;
+}
+
+// Reload button
+.reload {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  right: 120px;
+  background-color: $basic-background-color;
+  .wui-undo::before {
+    font-size: 20px;
+    color: $reload-color;
+  }
+}
+
+// Button edit options in page
+.edit-options {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 12px;
+  min-width: 160px;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 17px;
+  color: $button-font-color;
+}
+.save {
+  background-color: $button-save-color;
+}
+.cancel {
   background-color: $button-close-color;
 }
