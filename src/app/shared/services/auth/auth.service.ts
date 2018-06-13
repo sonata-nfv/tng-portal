@@ -137,7 +137,8 @@ export class AuthService {
   }
 
   getAuthHeaders() {
-    return this.authHeaders;
+    // return this.authHeaders;
+    return null;
   }
 
   isAuthenticated(): boolean {
