@@ -22,37 +22,25 @@ app-signup {
       background-size: 11em;
       background-repeat: no-repeat;
     }
-    .form {
+    form {
       flex: 1 0;
       align-items: center;
       justify-content: center;
       .mat-form-field {
-        display: flex;
-        flex-direction: column;
         text-align: center;
         margin: 0 auto;
         width: 60%;
         color: $form-focus;
       }
+      .mat-form-field-appearance-legacy .mat-form-field-label {
+        text-align: center;
+      }
+      .mat-form-field.mat-focused .mat-form-field-label,
+      .mat-form-field-label:not(.mat-form-field-empty) {
+        text-align: start;
+      }
       .select {
         width: 100%;
-      }
-      .mat-select-value-text {
-        color: $form-focus;
-      }
-      .userErrorString,
-      .passwordErrorString,
-      .emailErrorString {
-        color: $form-alert-color;
-        .mat-form-field-ripple {
-          background-color: $form-alert-color;
-        }
-        .mat-form-field-underline {
-          background-color: $form-alert-color;
-        }
-        .mat-input-element {
-          color: $form-alert-color;
-        }
       }
       a {
         color: $primary-font-color;

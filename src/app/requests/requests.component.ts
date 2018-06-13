@@ -52,7 +52,9 @@ export class RequestsComponent implements OnInit {
       .getNSRequests(search)
       .then(response => {
         this.loading = false;
+
         this.requests = response;
+        this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {
         this.loading = false;

@@ -9,38 +9,50 @@
 </div>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
   <button class="reload" (click)="requestTemplates()">
     <i class="wui wui-undo"></i>
   </button>
 </div>
 
-<mat-table [dataSource]="templates | filter: searchText">
+<table mat-table [dataSource]="templates">
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+    </td>
+  </ng-container>
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
   </ng-container>
   <ng-container matColumnDef="ID">
-    <mat-header-cell *matHeaderCellDef> Template ID </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.uuid }} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Template ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.uuid }} </td>
   </ng-container>
   <ng-container matColumnDef="ns">
-    <mat-header-cell *matHeaderCellDef> Network Service </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.ns }} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Network Service </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ns }} </td>
   </ng-container>
   <ng-container matColumnDef="expirationDate">
-    <mat-header-cell *matHeaderCellDef> Expiration Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.expirationDate }} </mat-cell>
+    <th mat-header-cell *matHeaderCellDef> Expiration Date </th>
+    <td mat-cell *matCellDef="let element"> {{ element.expirationDate }} </td>
   </ng-container>
   <ng-container matColumnDef="delete">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let element" (click)="remove(element)" (click)="$event.stopPropagation()">
-      <i class="wui wui-trash-alt"></i>
-    </mat-cell>
+    <th mat-header-cell *matHeaderCellDef>
+    </th>
+    <td mat-cell *matCellDef="let element" (click)="remove(element)" (click)="$event.stopPropagation()">
+      <button class="row-options" mat-button>
+        <i class="wui wui-trash-alt"></i>
+      </button>
+    </td>
   </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openTemplate(row)"></mat-row>
-</mat-table>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openTemplate(row)">
+  </tr>
+</table>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

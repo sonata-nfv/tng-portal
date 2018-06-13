@@ -16,24 +16,6 @@ app-placement-policy {
       width: 95%;
       margin: 0px;
     }
-    button {
-      width: 200px;
-      height: 35px;
-      margin-right: 5px;
-      margin-left: 5px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      color: $button-font-color;
-    }
-    .save {
-      background-color: $button-save-color;
-    }
-    .cancel {
-      background-color: $button-close-color;
-    }
   }
   form {
     display: flex;

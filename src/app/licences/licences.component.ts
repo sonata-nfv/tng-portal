@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
-
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";

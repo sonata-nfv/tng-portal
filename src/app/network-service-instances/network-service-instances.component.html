@@ -8,45 +8,49 @@
     </button>
 </div>
 
-<mat-table [dataSource]="instances">
+<table mat-table [dataSource]="instances">
     <ng-container matColumnDef="instanceId">
-        <mat-header-cell *matHeaderCellDef> Network service instance id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.instanceID }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Network service instance id </th>
+        <td mat-cell *matCellDef="let element"> {{ element.instanceID }} </td>
     </ng-container>
     <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
     </ng-container>
     <ng-container matColumnDef="serviceId">
-        <mat-header-cell *matHeaderCellDef> Currently running service id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.serviceID }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Currently running service id </th>
+        <td mat-cell *matCellDef="let element"> {{ element.serviceID }} </td>
     </ng-container>
     <ng-container matColumnDef="version">
-        <mat-header-cell *matHeaderCellDef> Current version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Current version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
     </ng-container>
     <ng-container matColumnDef="latestVersion">
-        <mat-header-cell *matHeaderCellDef> Latest version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.latestVersion }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Latest version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.latestVersion }} </td>
     </ng-container>
     <ng-container matColumnDef="reload">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="reloadInstance(element)" (click)="$event.stopPropagation()">
-            <button class="rowOptions" mat-button>
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell *matCellDef="let element" (click)="reloadInstance(element)" (click)="$event.stopPropagation()">
+            <button class="row-options" mat-button>
                 <i class="wui wui-undo"></i>
             </button>
-        </mat-cell>
+        </td>
     </ng-container>
     <ng-container matColumnDef="stop">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="stopInstance(element)" (click)="$event.stopPropagation()">
-            <button class="rowOptions" mat-button>
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell *matCellDef="let element" (click)="stopInstance(element)" (click)="$event.stopPropagation()">
+            <button class="row-options" mat-button>
                 <i class="wui wui-stop-alt"></i>
             </button>
-        </mat-cell>
+        </td>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+</table>
 
 <app-spinner *ngIf="loading"></app-spinner>

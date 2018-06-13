@@ -22,8 +22,6 @@ app-sla-templates {
     h2 {
       margin: 0;
       width: 80%;
-      color: $secondary-title-color;
-      font-size: 32px;
     }
     .add {
       display: flex;
@@ -46,38 +44,30 @@ app-sla-templates {
     width: 95%;
     justify-content: center;
     align-items: center;
-    .reload {
-      position: absolute;
-      right: 10.5%;
-      .wui-undo::before {
-        font-size: 20px;
-        color: $reload-color;
-      }
-    }
   }
-  mat-table {
-    width: 85%;
+  table {
+    width: 95%;
   }
-  .mat-header-row {
-    width: 85%;
-    border-bottom: none;
-  }
-  .mat-row {
-    border-bottom: none;
+  tr.mat-row {
     background-image: linear-gradient(
       to right,
-      $basic-background-color 2%,
-      $underline-color 2%,
-      $underline-color 94%,
-      $basic-background-color 94%,
+      $basic-background-color 4%,
+      $underline-color 4%,
+      $underline-color 95%,
+      $basic-background-color 95%,
       $basic-background-color 100%
     );
-    align-items: baseline;
-    min-height: 29px;
   }
-  .mat-cell:nth-child(5),
-  .mat-header-cell:nth-child(5) {
-    flex: 0 0 25px;
+
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1) {
+    padding-bottom: 8px;
+    width: 40px;
+    font-size: 8px;
+  }
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    width: 25px;
     font-size: 20px;
   }
 }

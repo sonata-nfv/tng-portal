@@ -1,6 +1,6 @@
 # 5GTANGO Portal
 
-This repository contains an Angular 5 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
+This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
 
 ![](https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif)
 
@@ -12,6 +12,10 @@ Make sure that you have npm installed. Then, run the following command to instal
 npm install
 ```
 
+### Installation dependencies
+
+- Node.js >= v8.9
+
 ## Running a dev server
 
 If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (html/css/js) change.
@@ -20,23 +24,11 @@ If you just want to test the app, or start developing something you can quickly 
 ng serve --open
 ```
 
-### Authentication service
+### Running dependencies
 
-The authentication and registration of the users is made through [son-gkeeper](https://github.com/sonata-nfv/son-gkeeper) at the moment. The repository is organized by micro-services provided in their own containers created with docker. A docker-compose.yml provides the linking of all the micro-services.
+Requests made from the Portal in the development mode need the VPN in order to receive a response.
 
-Currently, docker repositories of this project are private. In order to access them it is necessary to be connected to the Athens VPN.
-
-#### Dependencies
-
-* Athens VPN credentials
-* docker
-* docker-compose
-
-#### Building the Gatekeeper
-
-```
-docker-compose up -d
-```
+- Athens VPN credentials
 
 ## Configuration parameters
 
@@ -44,11 +36,11 @@ The routes to the services for this project are defined in the config.service.ts
 
 By default, if the Portal is launched locally, the used services will be those in `http://pre-int-sp-ath.5gtango.eu:32002`.
 
-### Configuration of the menu items displayed
+### Menu sections displayed
 
-Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/environments/environment.ts`.
+Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/environments/environment.ts` and in `/src/environments/environment.prod.ts`.
 
-By default, all the modules are activated:
+These are the sections that can be activated:
 
 ```
   features_available:  [
@@ -70,10 +62,10 @@ The tng-gui is published under Apache 2.0 license. Please see the LICENSE file f
 
 The following lead developers are responsible for this repository and have admin rights. They can, for example, merge pull requests.
 
-* Antón Román Portabales
-* Ana Pol González
+- Antón Román Portabales
+- Ana Pol González
 
 #### Feedback-Chanel
 
-* You may use the mailing list [tango-5g-wp2@lists.atosresearch.eu](mailto:tango-5g-wp2@lists.atosresearch.eu)
-* [GitHub issues](https://github.com/sonata-nfv/tng-gui/issues)
+- You may use the mailing list [tango-5g-wp2@lists.atosresearch.eu](mailto:tango-5g-wp2@lists.atosresearch.eu)
+- [GitHub issues](https://github.com/sonata-nfv/tng-gui/issues)

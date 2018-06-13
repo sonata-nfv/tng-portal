@@ -14,29 +14,10 @@ app-packages {
     justify-content: center;
     align-items: center;
   }
-  .reload {
-    position: absolute;
-    right: 120px;
-    .wui-undo::before {
-      font-size: 20px;
-      color: $reload-color;
-    }
+  table {
+    width: 95%;
   }
-  button {
-    padding: 4px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-  }
-  mat-table {
-    width: 85%;
-  }
-  .mat-header-row {
-    width: 85%;
-    border-bottom: none;
-  }
-  .mat-row {
+  tr.mat-row {
     border-bottom: none;
     background-image: linear-gradient(
       to right,
@@ -48,14 +29,5 @@ app-packages {
     );
     align-items: baseline;
     min-height: 29px;
-  }
-  // Set width for columns
-  .mat-cell:nth-child(4),
-  .mat-header-cell:nth-child(4) {
-    flex: 0 0 12%;
-  }
-  .mat-cell:nth-child(5),
-  .mat-header-cell:nth-child(5) {
-    flex: 0 0 12%;
   }
 }

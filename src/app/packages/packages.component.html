@@ -2,36 +2,38 @@
 <h2 class="subsectionTitle">Packages</h2>
 
 <div class="tools">
-    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
     <button class="reload" (click)="requestPackages()">
         <i class="wui wui-undo"></i>
     </button>
 </div>
 
-<mat-table [dataSource]="packages | filter: searchText">
+<table mat-table [dataSource]="packages">
     <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
     </ng-container>
     <ng-container matColumnDef="Vendor">
-        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Vendor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vendor }} </td>
     </ng-container>
     <ng-container matColumnDef="Created at">
-        <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.createdAt }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let element"> {{ element.createdAt }} </td>
     </ng-container>
     <ng-container matColumnDef="Version">
-        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
     </ng-container>
     <ng-container matColumnDef="Type">
-        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.type}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{ element.type}} </td>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPackage(row)"></mat-row>
-</mat-table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPackage(row)">
+    </tr>
+</table>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

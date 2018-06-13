@@ -22,14 +22,6 @@ app-network-service {
       margin: 0;
       width: 95%;
     }
-    .close {
-      padding: 12px;
-      min-width: 170px;
-      font-size: 17px;
-      font-weight: bold;
-      color: $button-font-color;
-      background-color: $button-close-color;
-    }
   }
   .subheader {
     display: flex;
@@ -60,12 +52,19 @@ app-network-service {
       display: flex;
       flex-direction: row;
       button {
+        border: none;
+        cursor: pointer;
+        outline: none;
         padding: 15px 0 25px 0;
         font-size: 18px;
         color: $primary-font-color;
+        background-color: $basic-background-color;
       }
       i:before {
         color: $ready-color;
+      }
+      span {
+        margin-left: 5px;
       }
     }
     .description {

@@ -8,44 +8,44 @@
     </button>
 </div>
 
-<mat-table [dataSource]="networkServices">
+<table mat-table [dataSource]="networkServices">
     <ng-container matColumnDef="Vendor">
-        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Vendor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vendor }} </td>
     </ng-container>
     <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.serviceName }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.serviceName }} </td>
     </ng-container>
     <ng-container matColumnDef="Version">
-        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
     </ng-container>
     <ng-container matColumnDef="Type">
-        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.type }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
     </ng-container>
     <ng-container matColumnDef="Licenses">
-        <mat-header-cell *matHeaderCellDef> Licenses </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.licenses }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Licenses </th>
+        <td mat-cell *matCellDef="let element"> {{ element.licenses }} </td>
     </ng-container>
     <ng-container matColumnDef="SLAs">
-        <mat-header-cell *matHeaderCellDef> SLAs </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+        <th mat-header-cell *matHeaderCellDef> SLAs </th>
+        <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
             <a routerLink="{{ element.slas }}">View</a>
-        </mat-cell>
+        </td>
     </ng-container>
     <ng-container matColumnDef="instantiate">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="instantiate(element)" (click)="$event.stopPropagation()">
-            <button mat-button>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" (click)="instantiate(element)" (click)="$event.stopPropagation()">
+            <button class="row-options" mat-button>
                 <i class="wui wui-caret-right"></i>
             </button>
-        </mat-cell>
+        </td>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
-</mat-table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></tr>
+</table>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

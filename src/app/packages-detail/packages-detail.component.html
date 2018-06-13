@@ -27,71 +27,77 @@
   <div class="ns" *ngIf="ns">
     <span class="sectionTitle">NS</span>
     <span class="message" *ngIf="ns.length == 0">There are no network services to display</span>
-    <mat-table *ngIf="ns.length > 0" [dataSource]="ns">
+    <table mat-table *ngIf="ns.length > 0" [dataSource]="ns">
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
       </ng-container>
       <ng-container matColumnDef="vendor">
-        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Vendor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vendor }} </td>
       </ng-container>
       <ng-container matColumnDef="version">
-        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
       </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
   </div>
 
   <div class="vnf" *ngIf="vnf">
     <span class="sectionTitle">VNF</span>
     <span class="message" *ngIf="vnf.length == 0">There are no virtual network functions to display</span>
-    <mat-table *ngIf="vnf.length > 0" [dataSource]="vnf">
+    <table mat-table *ngIf="vnf.length > 0" [dataSource]="vnf">
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
       </ng-container>
       <ng-container matColumnDef="vendor">
-        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.vendor }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Vendor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vendor }} </td>
       </ng-container>
       <ng-container matColumnDef="version">
-        <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.version }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Version </th>
+        <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
       </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></mat-row>
-    </mat-table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)">
+      </tr>
+    </table>
   </div>
 
   <div class="tests" *ngIf="tests">
     <span class="sectionTitle">TEST</span>
     <span class="message" *ngIf="tests.length == 0">There are no tests to display</span>
     <div class="list" *ngIf="tests.length > 0">
-      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+      <app-search-bar class="search" *ngIf="tests.length > 1" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
 
-      <mat-table [dataSource]="tests | filter: searchText">
+      <table mat-table [dataSource]="tests">
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
         </ng-container>
         <ng-container matColumnDef="creationDate">
-          <mat-header-cell *matHeaderCellDef> Creation Date </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.creationDate }} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.creationDate }} </td>
         </ng-container>
         <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
         </ng-container>
         <ng-container matColumnDef="lastActivity">
-          <mat-header-cell *matHeaderCellDef> Last Activity </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.lastActivity }} </mat-cell>
+          <th mat-header-cell *matHeaderCellDef> Last Activity </th>
+          <td mat-cell *matCellDef="let element"> {{ element.lastActivity }} </td>
         </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumnsTests"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumnsTests;" (click)="openNetworkService(row)"></mat-row>
-      </mat-table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTests">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTests;" (click)="openNetworkService(row)">
+        </tr>
+      </table>
     </div>
   </div>
 </form>
