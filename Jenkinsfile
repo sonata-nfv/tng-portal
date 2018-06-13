@@ -14,8 +14,18 @@ pipeline {
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
             }
         }
+        stage('Deploying in pre-int') {
+            steps {
+                echo 'Deploying in pre-integration....'
+                sh 'rm -rf tng-devops || true'
+                sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
+                dir(path: 'tng-devops') {
+                    sh 'ansible-playbook roles/sp.yml -i environments -e "target=pre-int-sp"'
+                }
+            }      
+        }
         stage('Deployment in Integration') {
-            when{
+            when {
                 branch 'master'
             } 
             steps {
@@ -24,7 +34,7 @@ pipeline {
                 sh 'rm -rf tng-devops || true'
                 sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
                 dir(path: 'tng-devops') {
-                    sh 'ansible-playbook roles/sp.yml -i environments -e "target=pre-int-sp host_key_checking=False"'
+                sh 'ansible-playbook roles/sp.yml -i environments -e "target=int-sp"'
                 }
             }
         }
