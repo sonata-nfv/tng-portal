@@ -54,6 +54,10 @@ These are the sections that can be activated:
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
 
+### Exposed port in docker container
+
+The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
+
 ## License
 
 The tng-gui is published under Apache 2.0 license. Please see the LICENSE file for more details.

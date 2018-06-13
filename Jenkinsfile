@@ -2,18 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Install') {
-            steps {
-                echo 'Installing app dependencies...'
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building app...'
-                sh 'npm run build'
-            }
-        }
         stage('Build Docker image') {
             steps {
                 echo 'Building docker image...'
