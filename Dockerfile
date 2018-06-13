@@ -8,6 +8,7 @@ ADD . /build
 WORKDIR /build
 
 # Build
+RUN npm install -g npm
 RUN npm install
 RUN npm run build
 
