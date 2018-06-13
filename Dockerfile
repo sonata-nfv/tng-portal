@@ -1,5 +1,5 @@
 # # Create an image based on the official Node 8.11.3 image from dockerhub
-FROM node:8.11.3-alpine
+FROM node:8.11.3-jessie
 
 # Copy the code into the container at /build
 ADD . /build
