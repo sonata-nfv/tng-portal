@@ -145,4 +145,58 @@ export class ServicePlatformService {
       }, 1000);
     });
   }
+
+  /**
+   * Retrieves a list of SLA Agreements.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Agreement attributes that must be
+   *                          matched by the returned list of
+   *                          SLA Agreements.
+   */
+  getSLAAgreements(search?): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+      // let url =
+      //   search != undefined
+      //     ? this.config.base + this.config.sla + search
+      //     : this.config.base + this.config.sla;
+      // this.http
+      //   .get(url, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     if (response instanceof Array) {
+      //       resolve(
+      //         response.map(item => {
+      //           return {
+      //             uuid: ,
+      //             name: ,
+      //             ns: ,
+      //             customer: ,
+      //             date: ,
+      //             status:
+      //           };
+      //         })
+      //       );
+      //     } else {
+      //       reject();
+      //     }
+      //   })
+      //   .catch(err => reject(err.statusText));
+      setTimeout(() => {
+        resolve([
+          {
+            status: "active",
+            uuid: "45217851155",
+            name: "sla1",
+            ns: "ns1",
+            customer: "customer1",
+            date: "05/12/2019"
+          }
+        ]);
+      }, 1000);
+    });
+  }
 }

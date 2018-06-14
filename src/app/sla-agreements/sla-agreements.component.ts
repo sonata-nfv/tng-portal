@@ -6,48 +6,48 @@ import { ServicePlatformService } from "../shared/services/service-platform/serv
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-packages",
-  templateUrl: "./packages.component.html",
-  styleUrls: ["./packages.component.scss"],
+  selector: "app-sla-agreements",
+  templateUrl: "./sla-agreements.component.html",
+  styleUrls: ["./sla-agreements.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class PackagesComponent implements OnInit {
+export class SlaAgreementsComponent implements OnInit {
   loading: boolean;
-  packages = new Array();
+  agreements = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["Vendor", "Name", "Version", "Created at", "Type"];
+  displayedColumns = ["status", "name", "ns", "customer", "date"];
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
     private router: Router,
-    private dialogData: DialogDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private servicePlatformService: ServicePlatformService,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
-    this.requestPackages();
+    this.requestAgreements();
   }
 
   searchFieldData(search) {
-    this.requestPackages(search);
+    this.requestAgreements(search);
   }
 
   /**
-   * Generates the HTTP request to get the list of packages.
+   * Generates the HTTP request to get the list of SLA agreements.
    *
-   * @param search [Optional] Package attributes that must be
-   *                          matched by the returned list of
-   *                          packages.
+   * @param search [Optional] SLA agreement attributes that
+   *                          must be matched by the returned
+   *                          list of agreements.
    */
-  requestPackages(search?) {
+  requestAgreements(search?) {
     this.loading = true;
-
     this.servicePlatformService
-      .getPackages(search)
+      .getSLAAgreements(search)
       .then(response => {
         this.loading = false;
-        this.packages = response;
-        this.dataSource = new MatTableDataSource(this.packages);
+
+        this.agreements = response;
+        this.dataSource = new MatTableDataSource(this.agreements);
       })
       .catch(err => {
         this.loading = false;
@@ -66,8 +66,8 @@ export class PackagesComponent implements OnInit {
       });
   }
 
-  openPackage(row) {
+  openAgreement(row) {
     let uuid = row.uuid;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    // this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }
