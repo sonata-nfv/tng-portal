@@ -32,6 +32,7 @@ import { FunctionsComponent } from "./functions/functions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
+import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
@@ -68,36 +69,37 @@ export function initConfiguration(configService: ConfigService): Function {
     LoginComponent,
     SignupComponent,
     RegisteredComponent,
-    DashboardComponent,
     MenuComponent,
     IndexComponent,
-    FeatureAvailableDirective,
+    DashboardComponent,
     UsersComponent,
     ValidationComponent,
-    PlacementPolicyComponent,
-    AvailableNetworkServicesComponent,
-    FilterPipe,
-    SearchBarComponent,
-    DialogComponent,
-    InstantiateDialogComponent,
-    RequestsComponent,
-    NetworkServiceInstancesComponent,
-    ServiceLicencesComponent,
-    UserLicencesComponent,
-    NetworkServiceComponent,
-    RequestDetailComponent,
-    SpinnerComponent,
-    LicencesComponent,
-    LicencesDetailComponent,
     PackagesComponent,
     PackagesDetailComponent,
     ServicesComponent,
     FunctionsComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
+    SlaAgreementsComponent,
+    SlaAgreementsDetailComponent,
+    PlacementPolicyComponent,
+    AvailableNetworkServicesComponent,
+    NetworkServiceComponent,
+    RequestsComponent,
+    RequestDetailComponent,
+    NetworkServiceInstancesComponent,
+    LicencesComponent,
+    LicencesDetailComponent,
+    ServiceLicencesComponent,
+    UserLicencesComponent,
+    SpinnerComponent,
+    InstantiateDialogComponent,
     CalendarComponent,
     SelectComponent,
-    SlaAgreementsComponent
+    SearchBarComponent,
+    DialogComponent,
+    FilterPipe,
+    FeatureAvailableDirective
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

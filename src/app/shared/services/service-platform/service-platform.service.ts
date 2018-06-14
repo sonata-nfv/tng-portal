@@ -78,7 +78,7 @@ export class ServicePlatformService {
         })
         .toPromise()
         .then(response => {
-          let res = {
+          resolve({
             uuid: response["uuid"],
             name: response["pd"]["name"],
             author: response["pd"]["maintainer"],
@@ -87,8 +87,7 @@ export class ServicePlatformService {
             version: response["pd"]["version"],
             type: "public",
             package_file_id: response["package_file_id"]
-          };
-          resolve(res);
+          });
         })
         .catch(err => reject(err.statusText));
     });

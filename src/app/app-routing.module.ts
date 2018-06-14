@@ -18,6 +18,7 @@ import { PlacementPolicyComponent } from "./placement-policy/placement-policy.co
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
+import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -76,7 +77,10 @@ const routes: Routes = [
       },
       {
         path: "service-platform/slas/sla-agreements",
-        component: SlaAgreementsComponent
+        component: SlaAgreementsComponent,
+        children: [
+          { path: "detail/:id", component: SlaAgreementsDetailComponent }
+        ]
       },
       // Service Management section
       {

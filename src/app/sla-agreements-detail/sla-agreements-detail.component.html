@@ -1,0 +1,50 @@
+<div class="title" *ngIf="name">
+  <h1 class="sectionTitle">SLA Templates</h1>
+  <button>Delete policy</button>
+</div>
+
+<div class="header" *ngIf="name">
+  <h2 class="subsectionTitle"> {{ name }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="subheader" *ngIf="author">
+  <h3 class="subtitle author">Created by {{ author }}</h3>
+  <h3 class="subtitle date">{{ date }}</h3>
+</div>
+
+<form>
+  <mat-form-field class="ns" *ngIf="ns">
+    <input matInput placeholder="Network Service" value="{{ ns }}" disabled>
+  </mat-form-field>
+
+  <mat-form-field class="customer" *ngIf="customer">
+    <input matInput placeholder="Customer" value="{{ customer }}" disabled>
+  </mat-form-field>
+
+  <div class="details" *ngIf="propertyList">
+    <table>
+      <tr *ngFor="let entry of propertyList">
+        <td>{{ entry.property }}</td>
+        <td class="dash"> - </td>
+        <td>{{ entry.guarantee }}</td>
+      </tr>
+    </table>
+
+    <div class="availability" *ngIf="availability">
+      <span>Max. Availability</span>
+      <span class="number">{{ availability }}</span>
+    </div>
+
+    <div class="cost" *ngIf="cost">
+      <span>Cost</span>
+      <span class="number">{{ cost }}</span>
+    </div>
+  </div>
+
+  <div class="select" *ngIf="propertyList">
+    <button>SELECT</button>
+  </div>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

@@ -49,11 +49,13 @@ export class SlaTemplatesDetailComponent implements OnInit {
     });
   }
 
-  private _onFormChanges(values) {}
+  private _onFormChanges(values) {
+    // TODO NS search of ns changes
+  }
 
   receiveNS($event) {
     this.templateForm.controls.ns.setValue($event);
-    // TODO NS search
+    // TODO guarantees search according NS
   }
 
   receiveGuarantee($event) {
