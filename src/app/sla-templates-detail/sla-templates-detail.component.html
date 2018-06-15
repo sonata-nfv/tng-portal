@@ -1,4 +1,4 @@
-<div class="title">
+<div class="title" *ngIf="name">
   <h1 class="sectionTitle">SLA Templates</h1>
   <button>Delete policy</button>
 </div>
@@ -14,12 +14,13 @@
 </div>
 
 <form [formGroup]="templateForm">
-  <app-select class="ns" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)"></app-select>
+  <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
+    (selectEvent)="receiveNS($event)"></app-select>
 
-  <app-calendar (dateEvent)="receiveDate($event)"></app-calendar>
+  <app-calendar *ngIf="expirationDate" [value]="expirationDate" (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
 
-<div class="advanceSection">
+<div class="advanceSection" *ngIf="storedGuarantees || guaranties">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Advance parameters</span>

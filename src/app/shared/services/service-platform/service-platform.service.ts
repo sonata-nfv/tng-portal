@@ -147,6 +147,59 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a SLA Template by UUID
+   *
+   * @param uuid UUID of the desired SLA Template.
+   */
+  getOneSLATemplate(uuid): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+      // this.http
+      //   .get(this.config.base + this.config + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       uuid: response["uuid"],
+      //       name: response["name"],
+      //       author: response["author"],
+      //       createdAt: response["createdAt"],
+      //       expirationDate: response["expirationDate"],
+      //       ns: response["ns"],
+      //       storedGuarantees: response["storedGuarantees"]
+      //     });
+      //   })
+      //   .catch(err => reject(err.statusText));
+
+      setTimeout(() => {
+        resolve({
+          uuid: uuid,
+          name: "name",
+          author: "author",
+          createdAt: new Date(),
+          expirationDate: new Date(),
+          ns: "A",
+          storedGuarantees: [
+            {
+              name: "nameg",
+              property: "prop",
+              value: "value",
+              period: "period"
+            },
+            {
+              name: "nameg2",
+              property: "prop2",
+              value: "value2",
+              period: "period2"
+            }
+          ]
+        });
+      }, 1000);
+    });
+  }
+
+  /**
    * Retrieves a list of SLA Agreements.
    * Either following a search pattern or not.
    *
@@ -193,6 +246,53 @@ export class ServicePlatformService {
             date: "05/12/2019"
           }
         ]);
+      }, 1000);
+    });
+  }
+
+  /**
+   * Retrieves a SLA Agreement by UUID
+   *
+   * @param uuid UUID of the desired SLA Agreement.
+   */
+  getOneSLAAgreement(uuid): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+      // this.http
+      //   .get(this.config.base + this.config + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       uuid: response["uuid"],
+      //       name: response["name"],
+      //       author: response["author"],
+      //       date: response["date"],
+      //       ns: response["ns"],
+      //       customer: response["customer"],
+      //       propertyList: response["propertyList"],
+      //       availability: response["availability"],
+      //       cost: response["cost"],
+      //     });
+      //   })
+      //   .catch(err => reject(err.statusText));
+
+      setTimeout(() => {
+        resolve({
+          uuid: uuid,
+          name: "name",
+          author: "author",
+          date: "this is a date",
+          ns: "A",
+          customer: "customer1",
+          propertyList: [
+            { property: "property1", guarantee: "guarantee1" },
+            { property: "property22222332", guarantee: "guarantee2222" }
+          ],
+          availability: "availability",
+          cost: "cost"
+        });
       }, 1000);
     });
   }

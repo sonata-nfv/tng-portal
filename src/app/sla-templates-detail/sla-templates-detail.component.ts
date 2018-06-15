@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl } from "@angular/forms";
 
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { DialogDataService } from "../shared/services/dialog/dialog.service";
+
 @Component({
   selector: "app-sla-templates-detail",
   templateUrl: "./sla-templates-detail.component.html",
@@ -13,27 +16,24 @@ export class SlaTemplatesDetailComponent implements OnInit {
   date: string;
   templateForm: FormGroup;
   listNS = new Array();
-  storedGuarantees = new Array();
-  guaranties = new Array();
+  storedGuarantees: Array<Object>;
+  guaranties: Array<Object>;
   closed: boolean = true;
 
   name: string;
   author: string;
   createdAt: string;
+  expirationDate: string;
   ns: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private servicePlatformService: ServicePlatformService,
+    private dialogData: DialogDataService
+  ) {}
 
   ngOnInit() {
-    this.name = "name";
-    this.author = "author";
-    this.createdAt = "date";
-    this.listNS = ["A", "B"];
-    this.storedGuarantees = [
-      { name: "nameg", property: "prop", value: "value", period: "period" },
-      { name: "nameg2", property: "prop2", value: "value2", period: "period2" }
-    ];
-
     this.templateForm = new FormGroup({
       ns: new FormControl(),
       guarantee: new FormControl()
@@ -49,17 +49,49 @@ export class SlaTemplatesDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Generates the HTTP request of a SLA Template by UUID.
+   *
+   * @param uuid ID of the selected template to be displayed.
+   *             Comming from the route.
+   */
   requestSLATemplate(uuid) {
-    // TODO request SLA template detail
+    this.loading = true;
 
-    // TODO request NS
+    // TODO request list of NS to display
+    this.listNS = ["A", "B"];
 
-    // TODO request details of the SLA:
-    // including selected NS to set in form
-    // including stored guarantees to set in form
-    this.templateForm.controls.ns.setValue("A");
+    this.servicePlatformService
+      .getOneSLATemplate(uuid)
+      .then(response => {
+        this.loading = false;
 
-    // TODO request available guaranties
+        this.name = response.name;
+        this.author = response.author;
+        this.createdAt = response.createdAt;
+        this.expirationDate = response.expirationDate;
+        this.templateForm.controls.ns.setValue(response.ns);
+        this.storedGuarantees = response.storedGuarantees;
+      })
+      .catch(err => {
+        this.loading = false;
+
+        // Dialog informing the user to log in again when token expired
+        if (err === "Unauthorized") {
+          let title = "Your session has expired";
+          let content =
+            "Please, LOG IN again because your access token has expired.";
+          let action = "Log in";
+
+          this.dialogData.openDialog(title, content, action, () => {
+            this.router.navigate(["/login"]);
+          });
+        } else {
+          this.close();
+        }
+      });
+
+    // TODO request available guaranties for that NS
     this.guaranties = ["g1", "g2"];
   }
 
