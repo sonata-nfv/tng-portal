@@ -7,14 +7,23 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
 import { AppRoutingModule } from "./app-routing.module";
+import { SpinnerComponent } from "./spinner/spinner.component";
+import { CalendarComponent } from "./calendar/calendar.component";
+import { SelectComponent } from "./select/select.component";
+
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { RegisteredComponent } from "./registered/registered.component";
+
 import { MenuComponent } from "./menu/menu.component";
 import { IndexComponent } from "./index/index.component";
+
 import { DashboardComponent } from "./dashboard/dashboard.component";
+
 import { UsersComponent } from "./users/users.component";
+
 import { ValidationComponent } from "./validation/validation.component";
+
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
@@ -22,6 +31,8 @@ import { ServicesComponent } from "./services/services.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
+import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
+import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 
 import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
 import { NetworkServiceComponent } from "./network-service/network-service.component";
@@ -47,9 +58,6 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
-import { SpinnerComponent } from "./spinner/spinner.component";
-import { CalendarComponent } from './calendar/calendar.component';
-import { SelectComponent } from './select/select.component';
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -61,35 +69,37 @@ export function initConfiguration(configService: ConfigService): Function {
     LoginComponent,
     SignupComponent,
     RegisteredComponent,
-    DashboardComponent,
     MenuComponent,
     IndexComponent,
-    FeatureAvailableDirective,
+    DashboardComponent,
     UsersComponent,
     ValidationComponent,
-    PlacementPolicyComponent,
-    AvailableNetworkServicesComponent,
-    FilterPipe,
-    SearchBarComponent,
-    DialogComponent,
-    InstantiateDialogComponent,
-    RequestsComponent,
-    NetworkServiceInstancesComponent,
-    ServiceLicencesComponent,
-    UserLicencesComponent,
-    NetworkServiceComponent,
-    RequestDetailComponent,
-    SpinnerComponent,
-    LicencesComponent,
-    LicencesDetailComponent,
     PackagesComponent,
     PackagesDetailComponent,
     ServicesComponent,
     FunctionsComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
+    SlaAgreementsComponent,
+    SlaAgreementsDetailComponent,
+    PlacementPolicyComponent,
+    AvailableNetworkServicesComponent,
+    NetworkServiceComponent,
+    RequestsComponent,
+    RequestDetailComponent,
+    NetworkServiceInstancesComponent,
+    LicencesComponent,
+    LicencesDetailComponent,
+    ServiceLicencesComponent,
+    UserLicencesComponent,
+    SpinnerComponent,
+    InstantiateDialogComponent,
     CalendarComponent,
-    SelectComponent
+    SelectComponent,
+    SearchBarComponent,
+    DialogComponent,
+    FilterPipe,
+    FeatureAvailableDirective
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

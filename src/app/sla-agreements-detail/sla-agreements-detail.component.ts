@@ -1,69 +1,65 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { FormGroup, FormControl } from "@angular/forms";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-packages-detail",
-  templateUrl: "./packages-detail.component.html",
-  styleUrls: ["./packages-detail.component.scss"],
+  selector: "app-sla-agreements-detail",
+  templateUrl: "./sla-agreements-detail.component.html",
+  styleUrls: ["./sla-agreements-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class PackagesDetailComponent implements OnInit {
-  displayedColumns = ["name", "vendor", "version"];
-  displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
+export class SlaAgreementsDetailComponent implements OnInit {
   loading: boolean;
+  agreementForm: FormGroup;
 
   name: string;
   author: string;
-  createdAt: string;
-  vendor: string;
-  version: string;
-  type: string;
-  ns: Array<Object>;
-  vnf: Array<Object>;
-  tests: Array<Object>;
+  date: string;
+  ns: string;
+  customer: string;
+  propertyList: Array<Object>;
+  availability: string;
+  cost: string;
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private servicePlatformService: ServicePlatformService,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       let uuid = params["id"];
-      this.requestPackage(uuid);
+      this.requestSLAAgreement(uuid);
     });
   }
 
   /**
-   * Generates the HTTP request of a package by UUID.
+   * Generates the HTTP request of a SLA Agreement by UUID.
    *
-   * @param uuid ID of the selected package to be displayed.
+   * @param uuid ID of the selected agreement to be displayed.
    *             Comming from the route.
    */
-  requestPackage(uuid) {
+  requestSLAAgreement(uuid) {
     this.loading = true;
 
     this.servicePlatformService
-      .getOnePackage(uuid)
+      .getOneSLAAgreement(uuid)
       .then(response => {
         this.loading = false;
 
         this.name = response.name;
         this.author = response.author;
-        this.createdAt = response.createdAt;
-        this.vendor = response.vendor;
-        this.version = response.version;
-        this.type = response.type;
-
-        // TODO request to /packages/package_file_id
-        this.ns = [];
-        this.vnf = [];
-        this.tests = [];
+        this.date = response.date;
+        this.ns = response.ns;
+        this.customer = response.customer;
+        this.propertyList = response.propertyList;
+        this.availability = response.availability;
+        this.cost = response.cost;
       })
       .catch(err => {
         this.loading = false;
@@ -84,11 +80,7 @@ export class PackagesDetailComponent implements OnInit {
       });
   }
 
-  searchFieldData(search) {
-    // TODO call request request to /packages/package_file_id the tests
-  }
-
   close() {
-    this.router.navigate(["service-platform/packages"]);
+    this.router.navigate(["service-platform/slas/sla-agreements"]);
   }
 }
