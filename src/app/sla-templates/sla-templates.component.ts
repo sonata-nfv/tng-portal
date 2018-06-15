@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
-import { FormGroup, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";

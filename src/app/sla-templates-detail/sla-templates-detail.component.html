@@ -1,4 +1,4 @@
-<div class="title">
+<div class="title" *ngIf="name">
   <h1 class="sectionTitle">SLA Templates</h1>
   <button>Delete policy</button>
 </div>
@@ -14,12 +14,13 @@
 </div>
 
 <form [formGroup]="templateForm">
-  <app-select class="ns" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)"></app-select>
+  <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
+    (selectEvent)="receiveNS($event)"></app-select>
 
-  <app-calendar (dateEvent)="receiveDate($event)"></app-calendar>
+  <app-calendar *ngIf="expirationDate" [value]="expirationDate" (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
 
-<div class="advance">
+<div class="advanceSection" *ngIf="storedGuarantees || guaranties">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Advance parameters</span>
@@ -31,10 +32,34 @@
     <div class="underline" [ngClass]="{ opened : !closed }"></div>
   </button>
 
-  <form *ngIf="!closed" [formGroup]="templateForm" class="guaranties">
+  <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
     <span class="sectionTitle">Service Guaranties</span>
 
-    <!-- TODO display different guarantees -->
+    <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
+
+      <mat-form-field class="gName">
+        <input matInput placeholder="Name" value="item.name" [disabled]="true">
+      </mat-form-field>
+
+      <mat-form-field class="gProperty">
+        <input matInput placeholder="Property" value="item.property" [disabled]="true">
+      </mat-form-field>
+
+      <div class="timePeriod">
+        <mat-form-field class="gValue">
+          <input matInput placeholder="Value" value="item.value" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="gPeriod">
+          <input matInput placeholder="Time Period" value="item.period" [disabled]="true">
+        </mat-form-field>
+      </div>
+
+      <button (click)="eraseEntry(entry)">
+        <i class="wui wui-trash-alt"></i>
+      </button>
+
+    </div>
 
     <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select>
 

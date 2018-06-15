@@ -3,7 +3,8 @@ import {
   OnInit,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
+  Input
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 
@@ -16,6 +17,17 @@ import { FormControl } from "@angular/forms";
 export class CalendarComponent implements OnInit {
   date = new FormControl();
 
+  /**
+   * [Optional] Fixes the initial value whenever set
+   */
+  @Input()
+  set value(item: string) {
+    this.date.setValue(item);
+  }
+
+  /**
+   * Provides the selected element.
+   */
   @Output() dateEvent = new EventEmitter<string>();
   constructor() {}
 

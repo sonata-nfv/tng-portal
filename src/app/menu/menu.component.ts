@@ -91,7 +91,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["service-platform/slas/sla-templates"]);
     } else if (buttonId === "sla-agreements") {
       this.subsection = "sla-agreements";
-      this.router.navigate(["service-platform/slas/sla-templates"]);
+      this.router.navigate(["service-platform/slas/sla-agreements"]);
     } else if (buttonId === "service-licences") {
       this.subsection = "service-licences";
       this.router.navigate(["service-management/licences/service-licences"]);

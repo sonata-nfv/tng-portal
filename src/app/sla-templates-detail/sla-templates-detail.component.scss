@@ -62,12 +62,64 @@ app-sla-templates-detail {
         width: 100%;
       }
     }
+    &.advancedForm {
+      width: 100%;
+      .sectionTitle {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: $third-title-color;
+      }
+      .guarantiesList {
+        width: 50%;
+        margin-top: 20px;
+      }
+      .note {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+        margin-top: -16px;
+        font-size: 13px;
+        color: $font-color-alert;
+      }
+      .guaranteeRow {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        &.mat-input-element,
+        .mat-input-element:disabled,
+        .mat-form-field-can-float.mat-form-field-should-float
+          .mat-form-field-label {
+          font-size: 16px;
+        }
+        .gName {
+          width: 30%;
+        }
+        .gProperty {
+          width: 40%;
+        }
+        .timePeriod {
+          display: flex;
+          flex-direction: column;
+          width: 20%;
+          .mat-form-field-wrapper {
+            padding-bottom: 10px;
+          }
+        }
+        button {
+          width: 10%;
+          margin-top: 20px;
+          font-size: 16px;
+        }
+      }
+    }
   }
-  .advance {
+  .advanceSection {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 55%;
+    margin-bottom: 300px;
     .advanceButton {
       display: flex;
       flex-direction: column;
@@ -96,27 +148,6 @@ app-sla-templates-detail {
         &.opened {
           margin: 4px auto;
         }
-      }
-    }
-    .guaranties {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      .sectionTitle {
-        margin-bottom: 15px;
-        font-size: 24px;
-        color: $third-title-color;
-      }
-      .guarantiesList {
-        width: 65%;
-      }
-      .note {
-        display: flex;
-        justify-content: flex-end;
-        width: 65%;
-        margin-top: -16px;
-        font-size: 13px;
-        color: $font-color-alert;
       }
     }
   }

@@ -1,0 +1,123 @@
+@import "../../constants.scss";
+app-sla-agreements-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+  .title {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 30px;
+    button {
+      min-width: 150px;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      text-decoration: underline;
+      color: $button-delete-color;
+      background-color: $basic-background-color;
+    }
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h2 {
+      margin: 0;
+      width: 95%;
+    }
+  }
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 60px;
+    h3 {
+      margin-top: 0;
+      margin-right: 15px;
+      font-size: 12px;
+      &.author {
+        color: $third-title-color;
+      }
+      &.date {
+        color: $secondary-title-color;
+      }
+    }
+  }
+  form {
+    width: 60%;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    .mat-form-field {
+      width: 100%;
+    }
+    .details {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      min-height: 200px;
+      color: $secondary-font-color-dark;
+      background-color: $pannel-background-color;
+      border-top: 1px solid $border-line-color;
+      border-bottom: 1px solid $border-line-color;
+
+      table {
+        width: 50%;
+        margin-left: 30px;
+        font-size: 15px;
+        td.dash {
+          width: 15px;
+        }
+      }
+      .availability,
+      .cost {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 25%;
+        margin-left: 20px;
+        font-size: 20px;
+        .number {
+          margin-top: 10px;
+          font-size: 24px;
+          color: $primary-font-color_light;
+        }
+      }
+      .cost {
+        margin-right: 30px;
+      }
+    }
+    .select {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      button {
+        min-width: 100px;
+        min-height: 30px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        font-size: 16px;
+        color: $button-font-color;
+        background-color: $button-active-color;
+      }
+    }
+  }
+}
