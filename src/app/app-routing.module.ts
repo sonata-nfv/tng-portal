@@ -19,8 +19,8 @@ import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
-import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
-import { NetworkServiceComponent } from "./network-service/network-service.component";
+import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
+import { SmNetworkServiceComponent } from "./sm-network-service/sm-network-service.component";
 import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
@@ -85,13 +85,13 @@ const routes: Routes = [
       // Service Management section
       {
         path: "service-management",
-        redirectTo: "service-management/available-network-services",
+        redirectTo: "service-management/sm-network-services",
         pathMatch: "full"
       },
       {
-        path: "service-management/available-network-services",
-        component: AvailableNetworkServicesComponent,
-        children: [{ path: "detail/:id", component: NetworkServiceComponent }]
+        path: "service-management/sm-network-services",
+        component: SmNetworkServicesComponent,
+        children: [{ path: "detail/:id", component: SmNetworkServiceComponent }]
       },
       {
         path: "service-management/requests",
@@ -99,7 +99,7 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
       {
-        path: "service-management/network-service-instances",
+        path: "service-management/sm-network-service-instances",
         component: NetworkServiceInstancesComponent
       },
       {

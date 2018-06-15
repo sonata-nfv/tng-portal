@@ -8,12 +8,12 @@ import { ServiceManagementService } from "../shared/services/service-management/
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-network-service",
-  templateUrl: "./network-service.component.html",
-  styleUrls: ["./network-service.component.scss"],
+  selector: "app-sm-network-service",
+  templateUrl: "./sm-network-service.component.html",
+  styleUrls: ["./sm-network-service.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class NetworkServiceComponent implements OnInit {
+export class SmNetworkServiceComponent implements OnInit {
   loading: boolean;
 
   name: string;
@@ -94,6 +94,6 @@ export class NetworkServiceComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["service-management/available-network-services"]);
+    this.router.navigate(["service-management/sm-network-services"]);
   }
 }

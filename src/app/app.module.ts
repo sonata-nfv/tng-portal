@@ -34,8 +34,8 @@ import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-template
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 
-import { AvailableNetworkServicesComponent } from "./available-network-services/available-network-services.component";
-import { NetworkServiceComponent } from "./network-service/network-service.component";
+import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
+import { SmNetworkServiceComponent } from "./sm-network-service/sm-network-service.component";
 import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
@@ -83,8 +83,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SlaAgreementsComponent,
     SlaAgreementsDetailComponent,
     PlacementPolicyComponent,
-    AvailableNetworkServicesComponent,
-    NetworkServiceComponent,
+    SmNetworkServicesComponent,
+    SmNetworkServiceComponent,
     RequestsComponent,
     RequestDetailComponent,
     NetworkServiceInstancesComponent,
