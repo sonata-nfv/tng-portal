@@ -13,6 +13,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
   date: string;
   templateForm: FormGroup;
   listNS = new Array();
+  storedGuarantees = new Array();
   guaranties = new Array();
   closed: boolean = true;
 
@@ -28,25 +29,38 @@ export class SlaTemplatesDetailComponent implements OnInit {
     this.author = "author";
     this.createdAt = "date";
     this.listNS = ["A", "B"];
+    this.storedGuarantees = [
+      { name: "nameg", property: "prop", value: "value", period: "period" },
+      { name: "nameg2", property: "prop2", value: "value2", period: "period2" }
+    ];
+
+    this.templateForm = new FormGroup({
+      ns: new FormControl(),
+      guarantee: new FormControl()
+    });
+
+    this.templateForm.valueChanges.subscribe(value =>
+      this._onFormChanges(value)
+    );
 
     this.route.params.subscribe(params => {
       let uuid = params["id"];
-
-      // TODO request details of the SLA
-
-      // TODO request NS
-      this.templateForm = new FormGroup({
-        ns: new FormControl(),
-        guarantee: new FormControl()
-      });
-      // this.templateForm.controls.ns.setValue("A");
-      this.templateForm.valueChanges.subscribe(value =>
-        this._onFormChanges(value)
-      );
-
-      // TODO request guaranties
-      this.guaranties = ["g1", "g2"];
+      this.requestSLATemplate(uuid);
     });
+  }
+
+  requestSLATemplate(uuid) {
+    // TODO request SLA template detail
+
+    // TODO request NS
+
+    // TODO request details of the SLA:
+    // including selected NS to set in form
+    // including stored guarantees to set in form
+    this.templateForm.controls.ns.setValue("A");
+
+    // TODO request available guaranties
+    this.guaranties = ["g1", "g2"];
   }
 
   private _onFormChanges(values) {

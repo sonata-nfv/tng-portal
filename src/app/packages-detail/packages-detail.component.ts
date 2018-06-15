@@ -35,7 +35,7 @@ export class PackagesDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       let uuid = params["id"];
-      this.requestPackages(uuid);
+      this.requestPackage(uuid);
     });
   }
 
@@ -45,7 +45,7 @@ export class PackagesDetailComponent implements OnInit {
    * @param uuid ID of the selected package to be displayed.
    *             Comming from the route.
    */
-  requestPackages(uuid) {
+  requestPackage(uuid) {
     this.loading = true;
 
     this.servicePlatformService

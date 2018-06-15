@@ -131,6 +131,7 @@ export class ServicePlatformService {
       //     }
       //   })
       //   .catch(err => reject(err.statusText));
+
       setTimeout(() => {
         resolve([
           {
@@ -166,24 +167,21 @@ export class ServicePlatformService {
       //   })
       //   .toPromise()
       //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => {
-      //           return {
-      //             uuid: ,
-      //             name: ,
-      //             ns: ,
-      //             customer: ,
-      //             date: ,
-      //             status:
-      //           };
-      //         })
-      //       );
-      //     } else {
-      //       reject();
-      //     }
+      //     resolve(
+      //       response["cust_sla"].map(item => {
+      //         return {
+      //           uuid: item.sla_uuid,
+      //           name: item.sla_name,
+      //           ns: item.ns_name,
+      //           customer: item.cust_username,
+      //           date: item.sla_date,
+      //           status: item.sla_status
+      //         };
+      //       })
+      //     );
       //   })
       //   .catch(err => reject(err.statusText));
+
       setTimeout(() => {
         resolve([
           {
