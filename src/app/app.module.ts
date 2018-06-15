@@ -27,7 +27,7 @@ import { ValidationComponent } from "./validation/validation.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
-import { ServicesComponent } from "./services/services.component";
+import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
@@ -76,7 +76,7 @@ export function initConfiguration(configService: ConfigService): Function {
     ValidationComponent,
     PackagesComponent,
     PackagesDetailComponent,
-    ServicesComponent,
+    SpNetworkServicesComponent,
     FunctionsComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,

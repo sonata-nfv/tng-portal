@@ -12,7 +12,7 @@ import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
-import { ServicesComponent } from "./services/services.component";
+import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
@@ -57,8 +57,8 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
       },
       {
-        path: "service-platform/services",
-        component: ServicesComponent
+        path: "service-platform/sp-network-services",
+        component: SpNetworkServicesComponent
       },
       {
         path: "service-platform/functions",

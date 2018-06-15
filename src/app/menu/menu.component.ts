@@ -62,8 +62,8 @@ export class MenuComponent implements OnInit {
   setSection(e, buttonId) {
     if (buttonId === "packages") {
       this.router.navigate(["service-platform/packages"]);
-    } else if (buttonId === "services") {
-      this.router.navigate(["service-platform/services"]);
+    } else if (buttonId === "sp-network-services") {
+      this.router.navigate(["service-platform/sp-network-services"]);
     } else if (buttonId === "functions") {
       this.router.navigate(["service-platform/functions"]);
     } else if (buttonId === "policies") {

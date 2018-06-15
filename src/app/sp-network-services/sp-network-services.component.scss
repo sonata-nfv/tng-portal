@@ -1,5 +1,5 @@
 @import "../../constants.scss";
-app-services {
+app-sp-network-services {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,19 +14,17 @@ app-services {
     justify-content: center;
     align-items: center;
   }
-  .reload {
-    position: absolute;
-    right: 120px;
-    .wui-undo::before {
-      font-size: 20px;
-      color: $reload-color;
-    }
+  table {
+    width: 95%;
   }
-  button {
-    padding: 4px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 1%,
+      $underline-color 1%,
+      $underline-color 99%,
+      $basic-background-color 99%,
+      $basic-background-color 100%
+    );
   }
 }

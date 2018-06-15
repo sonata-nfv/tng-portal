@@ -36,7 +36,7 @@
     <div class="options" *ngIf="menu === 'validation'"></div>
     <div class="options" *ngIf="menu === 'service-platform'">
       <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">Packages</button>
-      <button [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')">Services</button>
+      <button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')">Network Services</button>
       <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">Functions</button>
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">Policies</button>
       <div class="section" *ngIf="section === 'policies'">
