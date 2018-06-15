@@ -10,6 +10,7 @@ export class ConfigService {
   instances: string = "records/services";
   licences: string = "licences/";
   packages: string = "packages";
+  slas: string = "slas";
 
   constructor() {}
 

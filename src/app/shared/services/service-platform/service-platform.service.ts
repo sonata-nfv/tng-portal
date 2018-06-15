@@ -103,46 +103,34 @@ export class ServicePlatformService {
    */
   getSLATemplates(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.sla + search
-      //     : this.config.base + this.config.sla;
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => {
-      //           return {
-      //             uuid: item.uuid,
-      //             name: item.slad.name,
-      //             ns: item.slad.sla_template.ns.ns_name,
-      //             expirationDate: item.slad.sla_template.valid_until,
-      //             status: item.status
-      //           };
-      //         })
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve([
-          {
-            status: "active",
-            name: "sla1",
-            uuid: "45217851155",
-            ns: "ns1",
-            expirationDate: "05/12/2019"
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slas + search
+          : this.config.base + this.config.slas;
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.slad.name,
+                  ns: item.slad.sla_template.ns.ns_name,
+                  expirationDate: item.slad.sla_template.valid_until,
+                  status: item.status
+                };
+              })
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
