@@ -8,12 +8,12 @@ import { ServiceManagementService } from "../shared/services/service-management/
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-available-network-services",
-  templateUrl: "./available-network-services.component.html",
-  styleUrls: ["./available-network-services.component.scss"],
+  selector: "app-sm-network-services",
+  templateUrl: "./sm-network-services.component.html",
+  styleUrls: ["./sm-network-services.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AvailableNetworkServicesComponent {
+export class SmNetworkServicesComponent {
   loading: boolean;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();

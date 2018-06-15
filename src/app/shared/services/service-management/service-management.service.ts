@@ -54,7 +54,7 @@ export class ServiceManagementService {
                 version: item.nsd.version,
                 type: "public",
                 licenses: "None",
-                slas: "/service-management/available-network-services"
+                slas: "/service-management/sm-network-services"
               }))
             );
           } else {

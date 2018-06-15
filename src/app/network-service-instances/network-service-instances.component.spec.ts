@@ -6,13 +6,11 @@ describe("NetworkServiceInstancesComponent", () => {
   let component: NetworkServiceInstancesComponent;
   let fixture: ComponentFixture<NetworkServiceInstancesComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [NetworkServiceInstancesComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [NetworkServiceInstancesComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NetworkServiceInstancesComponent);
