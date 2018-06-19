@@ -94,6 +94,49 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a list of Functions.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Packages attributes that must be
+   *                          matched by the returned list of
+   *                          packages.
+   */
+  getFunctions(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.functions + search
+          : this.config.base + this.config.functions;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.vnfd.name,
+                  vendor: item.vnfd.vendor,
+                  status: item.status,
+                  version: item.vnfd.version,
+                  type: "public"
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Retrieves a list of SLA Templates.
    * Either following a search pattern or not.
    *
