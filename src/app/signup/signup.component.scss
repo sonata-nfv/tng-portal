@@ -32,6 +32,10 @@ app-signup {
         width: 60%;
         color: $form-focus;
       }
+      .mat-select-value-text {
+        margin-left: 20px; // Margin to compensate select's arrow
+        color: $form-focus;
+      }
       .mat-form-field-appearance-legacy .mat-form-field-label {
         text-align: center;
       }

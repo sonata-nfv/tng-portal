@@ -78,11 +78,6 @@ form {
     color: $form-focus-label;
   }
 
-  // Select styles
-  .mat-select-value-text {
-    color: $form-focus;
-  }
-
   // Styles when form field contains error
   .errorFormField {
     .mat-input-element {
