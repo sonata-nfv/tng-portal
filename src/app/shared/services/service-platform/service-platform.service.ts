@@ -137,6 +137,37 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a Function by UUID
+   *
+   * @param uuid UUID of the desired Function.
+   */
+  getOneFunction(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.functions + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["vnfd"]["name"],
+            author: response["vnfd"]["author"],
+            createdAt: response["created_at"],
+            updatedAt: response["updated_at"],
+            vendor: response["vnfd"]["vendor"],
+            version: response["vnfd"]["version"],
+            type: "public",
+            status: response["status"],
+            description: response["vnfd"]["description"]
+          });
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Retrieves a list of SLA Templates.
    * Either following a search pattern or not.
    *

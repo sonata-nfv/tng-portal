@@ -66,5 +66,8 @@ export class FunctionsComponent implements OnInit {
       });
   }
 
-  openFunction(row) {}
+  openFunction(row) {
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }

@@ -29,6 +29,7 @@ import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { FunctionsComponent } from "./functions/functions.component";
+import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
@@ -78,6 +79,7 @@ export function initConfiguration(configService: ConfigService): Function {
     PackagesDetailComponent,
     SpNetworkServicesComponent,
     FunctionsComponent,
+    FunctionsDetailComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
     SlaAgreementsComponent,
