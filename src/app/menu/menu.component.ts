@@ -76,8 +76,8 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["service-management/sm-network-services"]);
     } else if (buttonId === "requests") {
       this.router.navigate(["service-management/requests"]);
-    } else if (buttonId === "sm-network-service-instances") {
-      this.router.navigate(["service-management/sm-network-service-instances"]);
+    } else if (buttonId === "network-service-instances") {
+      this.router.navigate(["service-management/network-service-instances"]);
     } else if (buttonId === "licences") {
       this.subsection = "";
       this.router.navigate(["service-management/licences"]);

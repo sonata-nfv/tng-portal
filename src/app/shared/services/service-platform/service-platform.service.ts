@@ -106,8 +106,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slas + search
-          : this.config.base + this.config.slas;
+          ? this.config.base + this.config.templates + search
+          : this.config.base + this.config.templates;
       this.http
         .get(url, {
           headers: headers
@@ -165,8 +165,8 @@ export class ServicePlatformService {
           uuid: uuid,
           name: "name",
           author: "author",
-          createdAt: new Date(),
-          expirationDate: new Date(),
+          createdAt: new Date().toISOString(),
+          expirationDate: new Date().toISOString(),
           ns: "A",
           storedGuarantees: [
             {
@@ -200,8 +200,8 @@ export class ServicePlatformService {
       // let headers = this.authService.getAuthHeaders();
       // let url =
       //   search != undefined
-      //     ? this.config.base + this.config.sla + search
-      //     : this.config.base + this.config.sla;
+      //     ? this.config.base + this.config.agreements + search
+      //     : this.config.base + this.config.agreements;
       // this.http
       //   .get(url, {
       //     headers: headers
@@ -214,7 +214,7 @@ export class ServicePlatformService {
       //           uuid: item.sla_uuid,
       //           name: item.sla_name,
       //           ns: item.ns_name,
-      //           customer: item.cust_username,
+      //           customer: item.cust_email,
       //           date: item.sla_date,
       //           status: item.sla_status
       //         };
@@ -231,7 +231,7 @@ export class ServicePlatformService {
             name: "sla1",
             ns: "ns1",
             customer: "customer1",
-            date: "05/12/2019"
+            date: new Date().toISOString()
           }
         ]);
       }, 1000);
@@ -271,15 +271,18 @@ export class ServicePlatformService {
           uuid: uuid,
           name: "name",
           author: "author",
-          date: "this is a date",
+          date: new Date().toISOString(),
           ns: "A",
           customer: "customer1",
           propertyList: [
-            { property: "property1", guarantee: "guarantee1" },
-            { property: "property22222332", guarantee: "guarantee2222" }
+            {
+              property: "property_1",
+              guarantee: "guarantee_1"
+            },
+            { property: "property_22", guarantee: "guarantee_22" }
           ],
-          availability: "availability",
-          cost: "cost"
+          availability: "90%",
+          cost: "100€/month"
         });
       }, 1000);
     });

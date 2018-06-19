@@ -99,7 +99,7 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
       {
-        path: "service-management/sm-network-service-instances",
+        path: "service-management/network-service-instances",
         component: NetworkServiceInstancesComponent
       },
       {

@@ -10,7 +10,8 @@ export class ConfigService {
   instances: string = "records/services";
   licences: string = "licences/";
   packages: string = "packages";
-  slas: string = "slas";
+  templates: string = "slas/templates";
+  agreements: string = "slas/agreements"
 
   constructor() {}
 

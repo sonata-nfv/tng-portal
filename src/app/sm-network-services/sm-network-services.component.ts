@@ -21,7 +21,7 @@ export class SmNetworkServicesComponent {
     "Vendor",
     "Name",
     "Version",
-    "Type",
+    "Status",
     "Licenses",
     "SLAs",
     "instantiate"
