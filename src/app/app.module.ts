@@ -28,6 +28,7 @@ import { PlacementPolicyComponent } from "./placement-policy/placement-policy.co
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
+import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
@@ -36,7 +37,7 @@ import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.componen
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
-import { SmNetworkServiceComponent } from "./sm-network-service/sm-network-service.component";
+import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
 import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
@@ -78,6 +79,7 @@ export function initConfiguration(configService: ConfigService): Function {
     PackagesComponent,
     PackagesDetailComponent,
     SpNetworkServicesComponent,
+    SpNetworkServicesDetailComponent,
     FunctionsComponent,
     FunctionsDetailComponent,
     SlaTemplatesComponent,
@@ -86,7 +88,7 @@ export function initConfiguration(configService: ConfigService): Function {
     SlaAgreementsDetailComponent,
     PlacementPolicyComponent,
     SmNetworkServicesComponent,
-    SmNetworkServiceComponent,
+    SmNetworkServicesDetailComponent,
     RequestsComponent,
     RequestDetailComponent,
     NetworkServiceInstancesComponent,

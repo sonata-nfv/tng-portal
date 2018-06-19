@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
@@ -25,7 +25,7 @@ export class SpNetworkServicesComponent implements OnInit {
   ];
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private commonService: CommonService,
     private router: Router,
     private dialogData: DialogDataService,
     private route: ActivatedRoute
@@ -48,7 +48,7 @@ export class SpNetworkServicesComponent implements OnInit {
    */
   requestServices(search?) {
     this.loading = true;
-    this.serviceManagementService
+    this.commonService
       .getNetworkServices(search)
       .then(response => {
         this.loading = false;
@@ -73,5 +73,8 @@ export class SpNetworkServicesComponent implements OnInit {
       });
   }
 
-  openNetworkService(row) {}
+  openNetworkService(row) {
+    let uuid = row.serviceId;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }

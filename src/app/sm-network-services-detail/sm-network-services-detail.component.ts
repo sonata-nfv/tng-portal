@@ -4,16 +4,16 @@ import { MatDialog } from "@angular/material";
 
 import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
-import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-sm-network-service",
-  templateUrl: "./sm-network-service.component.html",
-  styleUrls: ["./sm-network-service.component.scss"],
+  selector: "app-sm-network-services-detail",
+  templateUrl: "./sm-network-services-detail.component.html",
+  styleUrls: ["./sm-network-services-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SmNetworkServiceComponent implements OnInit {
+export class SmNetworkServicesDetailComponent implements OnInit {
   loading: boolean;
 
   name: string;
@@ -26,7 +26,7 @@ export class SmNetworkServiceComponent implements OnInit {
   createdAt: string;
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private commonService: CommonService,
     private dialogData: DialogDataService,
     private router: Router,
     private route: ActivatedRoute,
@@ -49,7 +49,7 @@ export class SmNetworkServiceComponent implements OnInit {
   requestNS(uuid) {
     this.loading = true;
 
-    this.serviceManagementService
+    this.commonService
       .getOneNetworkService(uuid)
       .then(response => {
         this.loading = false;

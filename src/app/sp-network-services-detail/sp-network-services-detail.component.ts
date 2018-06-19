@@ -1,30 +1,31 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-functions-detail",
-  templateUrl: "./functions-detail.component.html",
-  styleUrls: ["./functions-detail.component.scss"],
+  selector: "app-sp-network-services-detail",
+  templateUrl: "./sp-network-services-detail.component.html",
+  styleUrls: ["./sp-network-services-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class FunctionsDetailComponent implements OnInit {
+export class SpNetworkServicesDetailComponent implements OnInit {
   loading: boolean;
 
   name: string;
   author: string;
   version: string;
+  status: string;
   vendor: string;
+  serviceID: string;
   type: string;
   description: string;
   createdAt: string;
   updatedAt: string;
-  status: string;
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private dialogData: DialogDataService,
     private router: Router,
     private route: ActivatedRoute
@@ -33,21 +34,15 @@ export class FunctionsDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       let uuid = params["id"];
-      this.requestFunction(uuid);
+      this.requestNetworkService(uuid);
     });
   }
 
-  /**
-   * Generates the HTTP request of a function by UUID.
-   *
-   * @param uuid ID of the selected function to be displayed.
-   *             Comming from the route.
-   */
-  requestFunction(uuid) {
+  requestNetworkService(uuid) {
     this.loading = true;
 
-    this.servicePlatformService
-      .getOneFunction(uuid)
+    this.commonService
+      .getOneNetworkService(uuid)
       .then(response => {
         this.loading = false;
 
@@ -55,11 +50,12 @@ export class FunctionsDetailComponent implements OnInit {
         this.author = response.author;
         this.version = response.version;
         this.vendor = response.vendor;
+        this.status = response.status;
+        this.serviceID = response.serviceID;
         this.type = response.type;
         this.description = response.description;
         this.createdAt = response.createdAt;
         this.updatedAt = response.updatedAt;
-        this.status = response.status;
       })
       .catch(err => {
         this.loading = false;
@@ -81,6 +77,6 @@ export class FunctionsDetailComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["service-platform/functions"]);
+    this.router.navigate(["service-platform/sp-network-services"]);
   }
 }
