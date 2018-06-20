@@ -21,7 +21,7 @@
     [disabled]="true"></app-calendar>
 </form>
 
-<div class="advanceSection" *ngIf="storedGuarantees && ns">
+<div class="advanceSection" *ngIf="storedGuarantees">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Advance parameters</span>
@@ -67,3 +67,5 @@
     <!-- <span class="note">Add a new guarantee selecting a NS</span> -->
   </form>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

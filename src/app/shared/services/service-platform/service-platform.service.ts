@@ -240,6 +240,29 @@ export class ServicePlatformService {
   }
 
   /**
+   * Removes the specified template from the database
+   *
+   * @param uuid UUID of the desired SLA Template.
+   */
+  deleteOneSLATemplate(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.base + this.config.templates + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
+    });
+  }
+
+  /**
    * Retrieves a list of SLA Agreements.
    * Either following a search pattern or not.
    *

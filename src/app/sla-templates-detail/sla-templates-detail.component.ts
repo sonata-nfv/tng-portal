@@ -19,7 +19,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
   templateForm: FormGroup;
   listNS = new Array();
   storedGuarantees: Array<Object>;
-  closed: boolean = true;
+  closed: boolean = false;
 
   name: string;
   author: string;
@@ -94,19 +94,19 @@ export class SlaTemplatesDetailComponent implements OnInit {
   receiveDate($event) {}
 
   deleteTemplate() {
-    // this.loading = true;
-    //
-    // this.servicePlatformService
-    //   .deleteOneSLATemplate(this.uuid)
-    //   .then(response => {
-    //     this.loading = false;
-    //     this.close();
-    //   })
-    //   .catch(err => {
-    //     this.loading = false;
-    //     this.close();
-    //     // TODO display request status in toast
-    //   });
+    this.loading = true;
+
+    this.servicePlatformService
+      .deleteOneSLATemplate(this.uuid)
+      .then(response => {
+        this.loading = false;
+        this.close();
+      })
+      .catch(err => {
+        this.loading = false;
+        this.close();
+        // TODO display request status in toast
+      });
   }
 
   close() {
