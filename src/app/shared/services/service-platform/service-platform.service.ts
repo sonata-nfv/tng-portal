@@ -94,6 +94,80 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a list of Functions.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Packages attributes that must be
+   *                          matched by the returned list of
+   *                          packages.
+   */
+  getFunctions(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.functions + search
+          : this.config.base + this.config.functions;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.vnfd.name,
+                  vendor: item.vnfd.vendor,
+                  status: item.status,
+                  version: item.vnfd.version,
+                  type: "public"
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Function by UUID
+   *
+   * @param uuid UUID of the desired Function.
+   */
+  getOneFunction(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.functions + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["vnfd"]["name"],
+            author: response["vnfd"]["author"],
+            createdAt: response["created_at"],
+            updatedAt: response["updated_at"],
+            vendor: response["vnfd"]["vendor"],
+            version: response["vnfd"]["version"],
+            type: "public",
+            status: response["status"],
+            description: response["vnfd"]["description"]
+          });
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Retrieves a list of SLA Templates.
    * Either following a search pattern or not.
    *
@@ -106,8 +180,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slas + search
-          : this.config.base + this.config.slas;
+          ? this.config.base + this.config.templates + search
+          : this.config.base + this.config.templates;
       this.http
         .get(url, {
           headers: headers
@@ -141,49 +215,27 @@ export class ServicePlatformService {
    */
   getOneSLATemplate(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // this.http
-      //   .get(this.config.base + this.config + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["name"],
-      //       author: response["author"],
-      //       createdAt: response["createdAt"],
-      //       expirationDate: response["expirationDate"],
-      //       ns: response["ns"],
-      //       storedGuarantees: response["storedGuarantees"]
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: uuid,
-          name: "name",
-          author: "author",
-          createdAt: new Date(),
-          expirationDate: new Date(),
-          ns: "A",
-          storedGuarantees: [
-            {
-              name: "nameg",
-              property: "prop",
-              value: "value",
-              period: "period"
-            },
-            {
-              name: "nameg2",
-              property: "prop2",
-              value: "value2",
-              period: "period2"
-            }
-          ]
-        });
-      }, 1000);
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.templates + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["slad"]["name"],
+            author: response["slad"]["author"],
+            createdAt: response["created_at"],
+            expirationDate: new Date(
+              Date.parse(response["slad"]["sla_template"]["valid_until"])
+            ),
+            ns: response["slad"]["sla_template"]["ns"]["ns_name"],
+            storedGuarantees:
+              response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
@@ -200,8 +252,8 @@ export class ServicePlatformService {
       // let headers = this.authService.getAuthHeaders();
       // let url =
       //   search != undefined
-      //     ? this.config.base + this.config.sla + search
-      //     : this.config.base + this.config.sla;
+      //     ? this.config.base + this.config.agreements + search
+      //     : this.config.base + this.config.agreements;
       // this.http
       //   .get(url, {
       //     headers: headers
@@ -214,7 +266,7 @@ export class ServicePlatformService {
       //           uuid: item.sla_uuid,
       //           name: item.sla_name,
       //           ns: item.ns_name,
-      //           customer: item.cust_username,
+      //           customer: item.cust_email,
       //           date: item.sla_date,
       //           status: item.sla_status
       //         };
@@ -231,7 +283,7 @@ export class ServicePlatformService {
             name: "sla1",
             ns: "ns1",
             customer: "customer1",
-            date: "05/12/2019"
+            date: new Date().toISOString()
           }
         ]);
       }, 1000);
@@ -271,15 +323,18 @@ export class ServicePlatformService {
           uuid: uuid,
           name: "name",
           author: "author",
-          date: "this is a date",
+          date: new Date().toISOString(),
           ns: "A",
           customer: "customer1",
           propertyList: [
-            { property: "property1", guarantee: "guarantee1" },
-            { property: "property22222332", guarantee: "guarantee2222" }
+            {
+              property: "property_1",
+              guarantee: "guarantee_1"
+            },
+            { property: "property_22", guarantee: "guarantee_22" }
           ],
-          availability: "availability",
-          cost: "cost"
+          availability: "90%",
+          cost: "100€/month"
         });
       }, 1000);
     });

@@ -13,17 +13,18 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 })
 export class SlaTemplatesDetailComponent implements OnInit {
   loading: boolean;
+
+  uuid: string;
   date: string;
   templateForm: FormGroup;
   listNS = new Array();
   storedGuarantees: Array<Object>;
-  guaranties: Array<Object>;
   closed: boolean = true;
 
   name: string;
   author: string;
   createdAt: string;
-  expirationDate: string;
+  expirationDate: Date;
   ns: string;
 
   constructor(
@@ -39,13 +40,9 @@ export class SlaTemplatesDetailComponent implements OnInit {
       guarantee: new FormControl()
     });
 
-    this.templateForm.valueChanges.subscribe(value =>
-      this._onFormChanges(value)
-    );
-
     this.route.params.subscribe(params => {
-      let uuid = params["id"];
-      this.requestSLATemplate(uuid);
+      this.uuid = params["id"];
+      this.requestSLATemplate(this.uuid);
     });
   }
 
@@ -58,9 +55,6 @@ export class SlaTemplatesDetailComponent implements OnInit {
   requestSLATemplate(uuid) {
     this.loading = true;
 
-    // TODO request list of NS to display
-    this.listNS = ["A", "B"];
-
     this.servicePlatformService
       .getOneSLATemplate(uuid)
       .then(response => {
@@ -70,6 +64,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
         this.author = response.author;
         this.createdAt = response.createdAt;
         this.expirationDate = response.expirationDate;
+        this.listNS = [response.ns];
         this.templateForm.controls.ns.setValue(response.ns);
         this.storedGuarantees = response.storedGuarantees;
       })
@@ -90,26 +85,28 @@ export class SlaTemplatesDetailComponent implements OnInit {
           this.close();
         }
       });
-
-    // TODO request available guaranties for that NS
-    this.guaranties = ["g1", "g2"];
   }
 
-  private _onFormChanges(values) {
-    // TODO NS search of ns changes
-  }
+  receiveNS($event) {}
 
-  receiveNS($event) {
-    this.templateForm.controls.ns.setValue($event);
-    // TODO guarantees search according NS
-  }
+  receiveGuarantee($event) {}
 
-  receiveGuarantee($event) {
-    this.templateForm.controls.guarantee.setValue($event);
-  }
+  receiveDate($event) {}
 
-  receiveDate($event) {
-    this.date = $event;
+  deleteTemplate() {
+    // this.loading = true;
+    //
+    // this.servicePlatformService
+    //   .deleteOneSLATemplate(this.uuid)
+    //   .then(response => {
+    //     this.loading = false;
+    //     this.close();
+    //   })
+    //   .catch(err => {
+    //     this.loading = false;
+    //     this.close();
+    //     // TODO display request status in toast
+    //   });
   }
 
   close() {

@@ -1,6 +1,6 @@
 <div class="title" *ngIf="name">
   <h1 class="sectionTitle">SLA Templates</h1>
-  <button>Delete policy</button>
+  <button (click)="deleteTemplate()">Delete template</button>
 </div>
 
 <div class="header" *ngIf="name">
@@ -15,12 +15,13 @@
 
 <form [formGroup]="templateForm">
   <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
-    (selectEvent)="receiveNS($event)"></app-select>
+    (selectEvent)="receiveNS($event)" [disabled]="true"></app-select>
 
-  <app-calendar *ngIf="expirationDate" [value]="expirationDate" (dateEvent)="receiveDate($event)"></app-calendar>
+  <app-calendar *ngIf="expirationDate" placeholder="Expiration Date" [value]="expirationDate" (dateEvent)="receiveDate($event)"
+    [disabled]="true"></app-calendar>
 </form>
 
-<div class="advanceSection" *ngIf="storedGuarantees || guaranties">
+<div class="advanceSection" *ngIf="storedGuarantees && ns">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Advance parameters</span>
@@ -38,31 +39,31 @@
     <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
 
       <mat-form-field class="gName">
-        <input matInput placeholder="Name" value="item.name" [disabled]="true">
+        <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}" [disabled]="true">
       </mat-form-field>
 
-      <mat-form-field class="gProperty">
-        <input matInput placeholder="Property" value="item.property" [disabled]="true">
+      <mat-form-field class="gOperator">
+        <input matInput placeholder="Operator" value="{{ item.operator }}" [disabled]="true">
       </mat-form-field>
 
       <div class="timePeriod">
-        <mat-form-field class="gValue">
-          <input matInput placeholder="Value" value="item.value" [disabled]="true">
+        <mat-form-field class="gPeriodValue">
+          <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.serviceLevel }}" [disabled]="true">
         </mat-form-field>
 
         <mat-form-field class="gPeriod">
-          <input matInput placeholder="Time Period" value="item.period" [disabled]="true">
+          <input matInput placeholder="Time Period" value="{{ item.serviceLevelObjetive.period }}" [disabled]="true">
         </mat-form-field>
       </div>
 
-      <button (click)="eraseEntry(entry)">
+      <!-- <button (click)="eraseEntry(entry)">
         <i class="wui wui-trash-alt"></i>
-      </button>
+      </button> -->
 
     </div>
 
-    <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select>
+    <!-- <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select> -->
 
-    <span class="note">Add a new guarantee selecting a NS</span>
+    <!-- <span class="note">Add a new guarantee selecting a NS</span> -->
   </form>
 </div>

@@ -15,13 +15,14 @@ app-calendar {
       color: $form-focus;
     }
   }
-  .mat-form-field-can-float.mat-form-field-should-float {
+  .mat-form-field .mat-form-field-underline {
+    background-color: $underline-color;
+  }
+  // Hide placeholder
+  .hidePlaceholder .mat-form-field-can-float.mat-form-field-should-float {
     .mat-form-field-label {
       display: none;
     }
-  }
-  .mat-form-field .mat-form-field-underline {
-    background-color: $underline-color;
   }
 }
 

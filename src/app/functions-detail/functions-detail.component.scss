@@ -1,0 +1,84 @@
+@import "../../constants.scss";
+app-functions-detail {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h2 {
+      margin: 0;
+      width: 95%;
+    }
+  }
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 60px;
+    h3 {
+      margin-top: 0;
+      margin-right: 15px;
+      font-size: 12px;
+      &.author {
+        color: $third-title-color;
+      }
+      &.date {
+        color: $secondary-title-color;
+      }
+    }
+  }
+  .detail {
+    width: 95%;
+    align-items: center;
+    margin-bottom: 20px;
+    .mat-form-field {
+      width: 65%;
+    }
+    .updatedAt .mat-input-element:disabled {
+      font-size: 14px;
+      color: $form-disabled-color;
+    }
+    .updatedAt .mat-form-field-label {
+      display: none;
+    }
+    .updatedAt .mat-form-field-infix {
+      border-top: 0;
+      padding: 0;
+    }
+  }
+  .description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      width: 65%;
+      &.title {
+        color: $secondary-title-color;
+      }
+      &.content {
+        min-height: 200px;
+        color: $secondary-font-color-dark;
+        background-color: $pannel-background-color;
+        border-top: 1px solid $border-line-color;
+        border-bottom: 1px solid $border-line-color;
+        p {
+          margin: 5px;
+        }
+      }
+    }
+  }
+}

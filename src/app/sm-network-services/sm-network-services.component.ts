@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
 
-import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
@@ -21,14 +21,14 @@ export class SmNetworkServicesComponent {
     "Vendor",
     "Name",
     "Version",
-    "Type",
+    "Status",
     "Licenses",
     "SLAs",
     "instantiate"
   ];
 
   constructor(
-    private serviceManagementService: ServiceManagementService,
+    private commonService: CommonService,
     private router: Router,
     private dialogData: DialogDataService,
     private route: ActivatedRoute,
@@ -52,7 +52,7 @@ export class SmNetworkServicesComponent {
    */
   requestServices(search?) {
     this.loading = true;
-    this.serviceManagementService
+    this.commonService
       .getNetworkServices(search)
       .then(response => {
         this.loading = false;

@@ -2,52 +2,59 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-functions",
-  templateUrl: "./functions.component.html",
-  styleUrls: ["./functions.component.scss"],
+  selector: "app-sp-network-services",
+  templateUrl: "./sp-network-services.component.html",
+  styleUrls: ["./sp-network-services.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class FunctionsComponent implements OnInit {
+export class SpNetworkServicesComponent implements OnInit {
   loading: boolean;
-  functions: Array<Object>;
+  networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
-  displayedColumns = ["Vendor", "Name", "Version", "Status"];
+  displayedColumns = [
+    "Vendor",
+    "Name",
+    "Version",
+    "Status",
+    "SLAs",
+    "Policies"
+  ];
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private router: Router,
     private dialogData: DialogDataService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.requestFunctions();
+    this.requestServices();
   }
 
   searchFieldData(search) {
-    this.requestFunctions(search);
+    this.requestServices(search);
   }
 
   /**
-   * Generates the HTTP request to get the list of functions.
+   * Generates the HTTP request to get the list of NS.
    *
-   * @param search [Optional] Function attributes that must be
-   *                          matched by the returned list of
-   *                          functions.
+   * @param search [Optional] Network Service attributes that
+   *                          must be matched by the returned
+   *                          list of NS.
    */
-  requestFunctions(search?) {
+  requestServices(search?) {
     this.loading = true;
-    this.servicePlatformService
-      .getFunctions(search)
+    this.commonService
+      .getNetworkServices(search)
       .then(response => {
         this.loading = false;
 
-        this.functions = response;
-        this.dataSource = new MatTableDataSource(this.functions);
+        this.networkServices = response;
+        this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
         this.loading = false;
@@ -66,8 +73,8 @@ export class FunctionsComponent implements OnInit {
       });
   }
 
-  openFunction(row) {
-    let uuid = row.uuid;
+  openNetworkService(row) {
+    let uuid = row.serviceId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }
