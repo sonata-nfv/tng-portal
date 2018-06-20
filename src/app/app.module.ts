@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { MAT_DATE_LOCALE } from "@angular/material";
 
 import { AppComponent } from "./app.component";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
@@ -127,7 +128,8 @@ export function initConfiguration(configService: ConfigService): Function {
       useFactory: initConfiguration,
       deps: [ConfigService],
       multi: true
-    }
+    },
+    { provide: MAT_DATE_LOCALE, useValue: "en-GB" }
   ],
   bootstrap: [AppComponent]
 })

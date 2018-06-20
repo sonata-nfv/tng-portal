@@ -29,10 +29,12 @@ app-select {
     background-color: $form-disabled-color;
     background-image: none;
   }
-  // Set a left margin to compensate select's arrow
-  .mat-form-field-appearance-legacy .mat-form-field-label,
-  .mat-select-value-text {
-    margin-left: 8px;
+  // Styles when select is disabled
+  .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
+    color: $basic-background-color;
+  }
+  .mat-form-field .mat-select-disabled .mat-select-value-text {
+    color: $form-focus;
   }
 }
 // Set select options color to grey

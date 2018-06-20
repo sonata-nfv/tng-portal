@@ -215,49 +215,27 @@ export class ServicePlatformService {
    */
   getOneSLATemplate(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // this.http
-      //   .get(this.config.base + this.config + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["name"],
-      //       author: response["author"],
-      //       createdAt: response["createdAt"],
-      //       expirationDate: response["expirationDate"],
-      //       ns: response["ns"],
-      //       storedGuarantees: response["storedGuarantees"]
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: uuid,
-          name: "name",
-          author: "author",
-          createdAt: new Date().toISOString(),
-          expirationDate: new Date().toISOString(),
-          ns: "A",
-          storedGuarantees: [
-            {
-              name: "nameg",
-              property: "prop",
-              value: "value",
-              period: "period"
-            },
-            {
-              name: "nameg2",
-              property: "prop2",
-              value: "value2",
-              period: "period2"
-            }
-          ]
-        });
-      }, 1000);
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.templates + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["slad"]["name"],
+            author: response["slad"]["author"],
+            createdAt: response["created_at"],
+            expirationDate: new Date(
+              Date.parse(response["slad"]["sla_template"]["valid_until"])
+            ),
+            ns: response["slad"]["sla_template"]["ns"]["ns_name"],
+            storedGuarantees:
+              response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

@@ -17,9 +17,6 @@ export class SlaTemplatesComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
 
-  // TODO request NS
-  listNS = ["A", "B"];
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,

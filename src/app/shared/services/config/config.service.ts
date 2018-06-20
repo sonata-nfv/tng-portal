@@ -12,6 +12,7 @@ export class ConfigService {
   packages: string = "packages";
   templates: string = "slas/templates";
   agreements: string = "slas/agreements";
+  guarantees: string = "slas/configurations/guaranteesList";
   functions: string = "functions";
 
   constructor() {}

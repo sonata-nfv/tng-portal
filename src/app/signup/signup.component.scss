@@ -36,6 +36,10 @@ app-signup {
         margin-left: 20px; // Margin to compensate select's arrow
         color: $form-focus;
       }
+      // Margin to compensate select's arrow
+      .select .mat-form-field-appearance-legacy .mat-form-field-label {
+        margin-left: 8px;
+      }
       .mat-form-field-appearance-legacy .mat-form-field-label {
         text-align: center;
       }
