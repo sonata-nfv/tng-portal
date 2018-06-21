@@ -51,8 +51,16 @@ export class InstantiateDialogComponent implements OnInit {
         });
     }, 1000);
 
-    // TODO requests sla templates list
-    this.slas = ["sla1", "sla2"];
+    this.commonService
+      .getSLATemplates()
+      .then(response => {
+        this.loading = false;
+
+        this.slas = response.map(x => x.name);
+      })
+      .catch(err => {
+        this.loading = false;
+      });
   }
 
   /**
@@ -98,9 +106,9 @@ export class InstantiateDialogComponent implements OnInit {
     this.instantiationForm.controls.sla.setValue(sla);
   }
 
-  instantiate(service) {
+  instantiate(serviceUUID) {
     this.serviceManagementService.postNSRequest(
-      service,
+      serviceUUID,
       this.ingress,
       this.egress,
       this.instantiationForm.controls.sla.value

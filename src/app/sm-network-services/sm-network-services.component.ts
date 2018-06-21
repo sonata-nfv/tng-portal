@@ -84,7 +84,7 @@ export class SmNetworkServicesComponent {
 
   instantiate(row) {
     this.instantiateDialog.open(InstantiateDialogComponent, {
-      data: { service: row }
+      data: { serviceUUID: row.serviceId, serviceName: row.serviceName }
     });
   }
 }

@@ -168,47 +168,6 @@ export class ServicePlatformService {
   }
 
   /**
-   * Retrieves a list of SLA Templates.
-   * Either following a search pattern or not.
-   *
-   * @param search [Optional] Template attributes that must be
-   *                          matched by the returned list of
-   *                          SLA Templates.
-   */
-  getSLATemplates(search?): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      let url =
-        search != undefined
-          ? this.config.base + this.config.templates + search
-          : this.config.base + this.config.templates;
-      this.http
-        .get(url, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          if (response instanceof Array) {
-            resolve(
-              response.map(item => {
-                return {
-                  uuid: item.uuid,
-                  name: item.slad.name,
-                  ns: item.slad.sla_template.ns.ns_name,
-                  expirationDate: item.slad.sla_template.valid_until,
-                  status: item.status
-                };
-              })
-            );
-          } else {
-            reject();
-          }
-        })
-        .catch(err => reject(err.statusText));
-    });
-  }
-
-  /**
    * Retrieves a SLA Template by UUID
    *
    * @param uuid UUID of the desired SLA Template.

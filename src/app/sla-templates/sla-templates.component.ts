@@ -3,6 +3,7 @@ import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
@@ -21,6 +22,7 @@ export class SlaTemplatesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
@@ -42,7 +44,7 @@ export class SlaTemplatesComponent implements OnInit {
   requestTemplates(search?) {
     this.loading = true;
 
-    this.servicePlatformService
+    this.commonService
       .getSLATemplates(search)
       .then(response => {
         this.loading = false;

@@ -49,7 +49,7 @@ export class ServiceManagementService {
                 requestId: item.id,
                 type: item.request_type,
                 createdAt: item.created_at,
-                serviceId: item.service_uuid,
+                serviceId: item.uuid,
                 status: item.status
               }))
             );
@@ -157,19 +157,33 @@ export class ServiceManagementService {
    * @param sla Selected service level agreement in the instantiation
    */
   postNSRequest(
-    service: Object,
+    serviceUUID: Object,
     ingress: Array<Object>,
     egress: Array<Object>,
-    sla: string
+    slaUUID: string
   ) {
-    console.log(ingress);
-    console.log(egress);
-    console.log(service);
-    console.log(sla);
-    // Send request to instantiate with data
-    // Show pop up saying success/error with id xxxxx
-  }
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders();
+      let data = {
+        sla_id: slaUUID,
+        uuid: serviceUUID,
+        ingresses: ingress,
+        egresses: egress
+      };
 
+      this.http
+        .post(this.config.base + this.config.requests, data, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          console.log(response);
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
+      // Show pop up saying success/error with id xxxxx
+    });
+  }
   getLicences(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();

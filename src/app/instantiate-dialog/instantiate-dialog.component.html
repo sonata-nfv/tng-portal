@@ -2,7 +2,7 @@
   <i class="wui wui-times"></i>
 </button>
 
-<h2 mat-dialog-title> Instantiate {{ data.service.serviceName }} network service </h2>
+<h2 mat-dialog-title> Instantiate {{ data.serviceName }} network service </h2>
 
 <mat-dialog-content *ngIf="!continue">
   <div class="section">
@@ -95,9 +95,8 @@
 <mat-dialog-actions *ngIf="continue">
   <div class="buttonContainer">
     <button class="cancel" mat-button mat-dialog-close>REJECT</button>
-    <button class="next" mat-button cdkFocusInitial [disabled]="!instantiationForm.controls.sla.value" (click)="instantiate()">INSTANTIATE</button>
+    <button class="next" mat-button cdkFocusInitial [disabled]="!instantiationForm.controls.sla.value" (click)="instantiate(data.serviceUUID)">INSTANTIATE</button>
   </div>
-  <!-- [mat-dialog-close]="false"  -->
 </mat-dialog-actions>
 
 <app-spinner *ngIf="loading"></app-spinner>
