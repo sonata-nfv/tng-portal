@@ -1,5 +1,5 @@
 @import "../../constants.scss";
-app-sm-network-service {
+app-sm-network-services-detail {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -83,6 +83,9 @@ app-sm-network-service {
           background-color: $pannel-background-color;
           border-top: 1px solid $border-line-color;
           border-bottom: 1px solid $border-line-color;
+          p {
+            margin: 5px;
+          }
         }
       }
     }

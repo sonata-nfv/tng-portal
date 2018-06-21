@@ -42,7 +42,7 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>
     </th>
-    <td mat-cell *matCellDef="let element" (click)="remove(element)" (click)="$event.stopPropagation()">
+    <td mat-cell *matCellDef="let element" (click)="deleteTemplate(element.uuid)" (click)="$event.stopPropagation()">
       <button class="row-options" mat-button>
         <i class="wui wui-trash-alt"></i>
       </button>

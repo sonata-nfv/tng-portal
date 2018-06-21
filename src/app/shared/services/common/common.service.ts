@@ -19,6 +19,132 @@ export class CommonService {
     private http: HttpClient
   ) {}
 
+  /**
+   * Retrieves a list of SLA Templates.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Template attributes that must be
+   *                          matched by the returned list of
+   *                          SLA Templates.
+   */
+  getSLATemplates(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.templates + search
+          : this.config.base + this.config.templates;
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.slad.name,
+                  ns: item.slad.sla_template.ns.ns_name,
+                  expirationDate: item.slad.sla_template.valid_until,
+                  status: item.status
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a list of Available Network Services.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Network Service attributes that
+   *                          must be matched by the returned
+   *                          list of NS.
+   */
+  getNetworkServices(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.services + search
+          : this.config.base + this.config.services;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            this.getVimsRequestUUID();
+
+            resolve(
+              response.map(item => ({
+                serviceName: item.nsd.name,
+                serviceId: item.uuid,
+                vendor: item.nsd.vendor,
+                version: item.nsd.version,
+                status: item.status,
+                licenses: "None",
+                slas: "/service-management/sm-network-services"
+              }))
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Network Service by UUID
+   *
+   * @param uuid UUID of the desired Network Service.
+   */
+  getOneNetworkService(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.services + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("nsd")) {
+            resolve({
+              name: response["nsd"]["name"],
+              author: response["nsd"]["author"],
+              version: response["nsd"]["version"],
+              status: response["status"],
+              vendor: response["nsd"]["vendor"],
+              serviceID: response["uuid"],
+              type: response["user_licence"],
+              description: response["nsd"]["description"],
+              createdAt: response["created_at"],
+              updatedAt: response["updated_at"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Initiates the server side process to recover existing vims
+   *
+   * @param request_uuid Identifier to request the vims later
+   */
   getVimsRequestUUID(): any {
     let headers = this.authService.getAuthHeaders();
     this.http
@@ -35,6 +161,9 @@ export class CommonService {
       );
   }
 
+  /**
+   * Retrieves the existing vims represented by the city name
+   */
   requestVims(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();

@@ -12,15 +12,17 @@ import { UsersComponent } from "./users/users.component";
 import { ValidationComponent } from "./validation/validation.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
-import { ServicesComponent } from "./services/services.component";
+import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
+import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
 import { FunctionsComponent } from "./functions/functions.component";
+import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
-import { SmNetworkServiceComponent } from "./sm-network-service/sm-network-service.component";
+import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
 import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
@@ -57,12 +59,16 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
       },
       {
-        path: "service-platform/services",
-        component: ServicesComponent
+        path: "service-platform/sp-network-services",
+        component: SpNetworkServicesComponent,
+        children: [
+          { path: "detail/:id", component: SpNetworkServicesDetailComponent }
+        ]
       },
       {
         path: "service-platform/functions",
-        component: FunctionsComponent
+        component: FunctionsComponent,
+        children: [{ path: "detail/:id", component: FunctionsDetailComponent }]
       },
       {
         path: "service-platform/policies/placement-policy",
@@ -91,7 +97,9 @@ const routes: Routes = [
       {
         path: "service-management/sm-network-services",
         component: SmNetworkServicesComponent,
-        children: [{ path: "detail/:id", component: SmNetworkServiceComponent }]
+        children: [
+          { path: "detail/:id", component: SmNetworkServicesDetailComponent }
+        ]
       },
       {
         path: "service-management/requests",
@@ -99,7 +107,7 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: RequestDetailComponent }]
       },
       {
-        path: "service-management/sm-network-service-instances",
+        path: "service-management/network-service-instances",
         component: NetworkServiceInstancesComponent
       },
       {

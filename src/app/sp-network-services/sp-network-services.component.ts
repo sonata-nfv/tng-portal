@@ -2,18 +2,16 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
-
 import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-sm-network-services",
-  templateUrl: "./sm-network-services.component.html",
-  styleUrls: ["./sm-network-services.component.scss"],
+  selector: "app-sp-network-services",
+  templateUrl: "./sp-network-services.component.html",
+  styleUrls: ["./sp-network-services.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SmNetworkServicesComponent {
+export class SpNetworkServicesComponent implements OnInit {
   loading: boolean;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
@@ -22,17 +20,15 @@ export class SmNetworkServicesComponent {
     "Name",
     "Version",
     "Status",
-    "Licenses",
     "SLAs",
-    "instantiate"
+    "Policies"
   ];
 
   constructor(
     private commonService: CommonService,
     private router: Router,
     private dialogData: DialogDataService,
-    private route: ActivatedRoute,
-    private instantiateDialog: MatDialog
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -80,11 +76,5 @@ export class SmNetworkServicesComponent {
   openNetworkService(row) {
     let uuid = row.serviceId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
-  }
-
-  instantiate(row) {
-    this.instantiateDialog.open(InstantiateDialogComponent, {
-      data: { serviceUUID: row.serviceId, serviceName: row.serviceName }
-    });
   }
 }

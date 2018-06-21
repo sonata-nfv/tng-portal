@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { MAT_DATE_LOCALE } from "@angular/material";
 
 import { AppComponent } from "./app.component";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
@@ -27,15 +28,17 @@ import { ValidationComponent } from "./validation/validation.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
-import { ServicesComponent } from "./services/services.component";
+import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
+import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
 import { FunctionsComponent } from "./functions/functions.component";
+import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
-import { SmNetworkServiceComponent } from "./sm-network-service/sm-network-service.component";
+import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
 import { InstantiateDialogComponent } from "./instantiate-dialog/instantiate-dialog.component";
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { DialogComponent } from "./dialog/dialog.component";
@@ -76,15 +79,17 @@ export function initConfiguration(configService: ConfigService): Function {
     ValidationComponent,
     PackagesComponent,
     PackagesDetailComponent,
-    ServicesComponent,
+    SpNetworkServicesComponent,
+    SpNetworkServicesDetailComponent,
     FunctionsComponent,
+    FunctionsDetailComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
     SlaAgreementsComponent,
     SlaAgreementsDetailComponent,
     PlacementPolicyComponent,
     SmNetworkServicesComponent,
-    SmNetworkServiceComponent,
+    SmNetworkServicesDetailComponent,
     RequestsComponent,
     RequestDetailComponent,
     NetworkServiceInstancesComponent,
@@ -123,7 +128,8 @@ export function initConfiguration(configService: ConfigService): Function {
       useFactory: initConfiguration,
       deps: [ConfigService],
       multi: true
-    }
+    },
+    { provide: MAT_DATE_LOCALE, useValue: "en-GB" }
   ],
   bootstrap: [AppComponent]
 })
