@@ -121,8 +121,8 @@ app-spinner {
   border: none;
   cursor: pointer;
   outline: none;
-  padding: 12px;
-  min-width: 170px;
+  min-width: 160px;
+  height: 35px;
   font-weight: bold;
   font-size: 17px;
   color: $button-font-color;
@@ -148,8 +148,8 @@ app-spinner {
   border: none;
   cursor: pointer;
   outline: none;
-  padding: 12px;
   min-width: 160px;
+  height: 35px;
   margin-right: 5px;
   margin-left: 5px;
   font-weight: bold;

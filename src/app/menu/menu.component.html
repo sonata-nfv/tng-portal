@@ -36,7 +36,7 @@
     <div class="options" *ngIf="menu === 'validation'"></div>
     <div class="options" *ngIf="menu === 'service-platform'">
       <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">Packages</button>
-      <button [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')">Services</button>
+      <button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')">Network Services</button>
       <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">Functions</button>
       <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">Policies</button>
       <div class="section" *ngIf="section === 'policies'">
@@ -54,7 +54,7 @@
     <div class="options" *ngIf="menu === 'service-management'">
       <button [ngClass]="{ active: section === 'sm-network-services' }" (click)="setSection($event, 'sm-network-services')">Available network services</button>
       <button [ngClass]="{ active: section === 'requests' }" (click)="setSection($event, 'requests')">Requests</button>
-      <button [ngClass]="{ active: section === 'sm-network-service-instances' }" (click)="setSection($event, 'sm-network-service-instances')">Network service instances</button>
+      <button [ngClass]="{ active: section === 'network-service-instances' }" (click)="setSection($event, 'network-service-instances')">Network service instances</button>
       <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')" ifFeatureAvailable="licences">Licence store</button>
       <div class="section" *ngIf="section === 'licences'" ifFeatureAvailable="licences">
         <button [ngClass]="{ active: subsection === 'service-licences' }" (click)="setSubsection($event, 'service-licences')">Service licences</button>

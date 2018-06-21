@@ -2,19 +2,16 @@
 app-search-bar {
   .mat-form-field {
     width: 240px;
+    color: $primary-font-color;
   }
   i {
     margin-left: 10px;
+    margin-right: 5px;
   }
-  .mat-focused .mat-form-field-label {
-    color: $secondary-color-light;
-    text-align: left;
-  }
+  .mat-form-field-appearance-legacy .mat-form-field-underline,
+  .mat-form-field.mat-focused .mat-form-field-ripple,
   .mat-form-field-ripple {
     background-color: $form-focus;
-  }
-  .mat-form-field {
-    color: $primary-font-color;
   }
   input.mat-input-element {
     margin-left: 10px;

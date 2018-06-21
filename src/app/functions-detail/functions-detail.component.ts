@@ -1,53 +1,65 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-functions",
-  templateUrl: "./functions.component.html",
-  styleUrls: ["./functions.component.scss"],
+  selector: "app-functions-detail",
+  templateUrl: "./functions-detail.component.html",
+  styleUrls: ["./functions-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class FunctionsComponent implements OnInit {
+export class FunctionsDetailComponent implements OnInit {
   loading: boolean;
-  functions: Array<Object>;
-  dataSource = new MatTableDataSource();
-  displayedColumns = ["Vendor", "Name", "Version", "Status"];
+
+  name: string;
+  author: string;
+  version: string;
+  vendor: string;
+  type: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  status: string;
 
   constructor(
     private servicePlatformService: ServicePlatformService,
-    private router: Router,
     private dialogData: DialogDataService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.requestFunctions();
-  }
-
-  searchFieldData(search) {
-    this.requestFunctions(search);
+    this.route.params.subscribe(params => {
+      let uuid = params["id"];
+      this.requestFunction(uuid);
+    });
   }
 
   /**
-   * Generates the HTTP request to get the list of functions.
+   * Generates the HTTP request of a function by UUID.
    *
-   * @param search [Optional] Function attributes that must be
-   *                          matched by the returned list of
-   *                          functions.
+   * @param uuid ID of the selected function to be displayed.
+   *             Comming from the route.
    */
-  requestFunctions(search?) {
+  requestFunction(uuid) {
     this.loading = true;
+
     this.servicePlatformService
-      .getFunctions(search)
+      .getOneFunction(uuid)
       .then(response => {
         this.loading = false;
 
-        this.functions = response;
-        this.dataSource = new MatTableDataSource(this.functions);
+        this.name = response.name;
+        this.author = response.author;
+        this.version = response.version;
+        this.vendor = response.vendor;
+        this.type = response.type;
+        this.description = response.description;
+        this.createdAt = response.createdAt;
+        this.updatedAt = response.updatedAt;
+        this.status = response.status;
       })
       .catch(err => {
         this.loading = false;
@@ -62,12 +74,13 @@ export class FunctionsComponent implements OnInit {
           this.dialogData.openDialog(title, content, action, () => {
             this.router.navigate(["/login"]);
           });
+        } else {
+          this.close();
         }
       });
   }
 
-  openFunction(row) {
-    let uuid = row.uuid;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  close() {
+    this.router.navigate(["service-platform/functions"]);
   }
 }

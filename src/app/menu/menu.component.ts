@@ -62,8 +62,8 @@ export class MenuComponent implements OnInit {
   setSection(e, buttonId) {
     if (buttonId === "packages") {
       this.router.navigate(["service-platform/packages"]);
-    } else if (buttonId === "services") {
-      this.router.navigate(["service-platform/services"]);
+    } else if (buttonId === "sp-network-services") {
+      this.router.navigate(["service-platform/sp-network-services"]);
     } else if (buttonId === "functions") {
       this.router.navigate(["service-platform/functions"]);
     } else if (buttonId === "policies") {
@@ -76,8 +76,8 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["service-management/sm-network-services"]);
     } else if (buttonId === "requests") {
       this.router.navigate(["service-management/requests"]);
-    } else if (buttonId === "sm-network-service-instances") {
-      this.router.navigate(["service-management/sm-network-service-instances"]);
+    } else if (buttonId === "network-service-instances") {
+      this.router.navigate(["service-management/network-service-instances"]);
     } else if (buttonId === "licences") {
       this.subsection = "";
       this.router.navigate(["service-management/licences"]);

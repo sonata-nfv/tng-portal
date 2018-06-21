@@ -58,7 +58,6 @@ export class RequestsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        console.error(err);
 
         // Dialog informing the user to log in again when token expired
         if (err === "Unauthorized") {

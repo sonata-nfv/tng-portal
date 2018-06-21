@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
@@ -17,13 +18,11 @@ export class SlaTemplatesComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
 
-  // TODO request NS
-  listNS = ["A", "B"];
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
@@ -44,7 +43,8 @@ export class SlaTemplatesComponent implements OnInit {
    */
   requestTemplates(search?) {
     this.loading = true;
-    this.servicePlatformService
+
+    this.commonService
       .getSLATemplates(search)
       .then(response => {
         this.loading = false;
@@ -69,12 +69,31 @@ export class SlaTemplatesComponent implements OnInit {
       });
   }
 
-  remove(element) {
-    // TODO send request to remove SLA from list
+  deleteTemplate(uuid) {
+    this.loading = true;
+
+    this.servicePlatformService
+      .deleteOneSLATemplate(uuid)
+      .then(response => {
+        this.requestTemplates();
+      })
+      .catch(err => {
+        this.loading = false;
+        // TODO display request status in toast
+      });
   }
 
   openTemplate(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+
+    this.router.events.subscribe(event => {
+      if (
+        event instanceof NavigationEnd &&
+        this.route.url["value"].length === 3
+      ) {
+        this.requestTemplates();
+      }
+    });
   }
 }

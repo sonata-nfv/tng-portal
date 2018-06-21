@@ -16,6 +16,8 @@ import { FormControl } from "@angular/forms";
 })
 export class CalendarComponent implements OnInit {
   date = new FormControl();
+  hidePlaceholder: boolean = true;
+  placeholderMsg: string;
 
   /**
    * [Optional] Fixes the initial value whenever set
@@ -24,7 +26,26 @@ export class CalendarComponent implements OnInit {
   set value(item: string) {
     this.date.setValue(item);
   }
-
+  /**
+   * [Optional] Defines the placeholder for the datepicker.
+   *            In case none is defined it will be hidden.
+   */
+  @Input()
+  set placeholder(placeholder: string) {
+    this.placeholderMsg = placeholder;
+    this.hidePlaceholder = false;
+  }
+  /**
+   * [Optional] Disables the calendar whenever active
+   */
+  @Input()
+  set disabled(disabled: boolean) {
+    if (disabled) {
+      this.date.disable();
+    } else {
+      this.date.enable();
+    }
+  }
   /**
    * Provides the selected element.
    */
