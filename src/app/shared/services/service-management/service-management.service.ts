@@ -31,52 +31,33 @@ export class ServiceManagementService {
    */
   getNSRequests(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base +
-      //       this.config.requests +
-      //       "/" +
-      //       this.config.services +
-      //       search
-      //     : this.config.base +
-      //       this.config.requests +
-      //       "/" +
-      //       this.config.services;
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.requests + search
+          : this.config.base + this.config.requests;
 
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => ({
-      //           requestId: item.id,
-      //           type: item.request_type,
-      //           createdAt: item.created_at,
-      //           serviceId: item.service_uuid,
-      //           status: item.status
-      //         }))
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve([
-          {
-            requestId: "1233-9564-88558-ab55",
-            type: "public",
-            createdAt: new Date().toISOString(),
-            serviceId: "872135-32145-123465",
-            status: "active"
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => ({
+                requestId: item.id,
+                type: item.request_type,
+                createdAt: item.created_at,
+                serviceId: item.service_uuid,
+                status: item.status
+              }))
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
@@ -87,46 +68,28 @@ export class ServiceManagementService {
    */
   getOneNSRequest(uuid: string): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // this.http
-      //   .get(
-      //     this.config.base +
-      //       this.config.requests +
-      //       "/" +
-      //       this.config.services +
-      //       "/" +
-      //       uuid,
-      //     {
-      //       headers: headers
-      //     }
-      //   )
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response.hasOwnProperty("id")) {
-      //       resolve({
-      //         requestID: response["id"],
-      //         type: response["request_type"],
-      //         createdAt: response["created_at"],
-      //         updatedAt: response["updated_at"],
-      //         serviceID: response["service_uuid"],
-      //         status: response["status"]
-      //       });
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(err => reject(err.statusText));
+      let headers = this.authService.getAuthHeaders();
 
-      setTimeout(() => {
-        resolve({
-          requestID: "1233-9564-88558-ab55",
-          type: "public",
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          serviceID: "872135-32145-123465",
-          status: "active"
-        });
-      }, 1000);
+      this.http
+        .get(this.config.base + this.config.requests + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("id")) {
+            resolve({
+              requestID: response["id"],
+              type: response["request_type"],
+              createdAt: response["created_at"],
+              updatedAt: response["updated_at"],
+              serviceID: response["service_uuid"],
+              status: response["status"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
