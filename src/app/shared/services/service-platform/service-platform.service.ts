@@ -250,7 +250,8 @@ export class ServicePlatformService {
 
       this.http
         .delete(this.config.base + this.config.templates + "/" + uuid, {
-          headers: headers
+          headers: headers,
+          responseType: "text"
         })
         .toPromise()
         .then(response => {
