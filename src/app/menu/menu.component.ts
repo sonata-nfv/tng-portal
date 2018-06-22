@@ -72,6 +72,9 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "slas") {
       this.subsection = "sla-templates";
       this.router.navigate(["service-platform/slas/sla-templates"]);
+    } else if (buttonId === "slices") {
+      this.subsection = "slices-templates";
+      this.router.navigate(["service-platform/slices/slices-templates"]);
     } else if (buttonId === "sm-network-services") {
       this.router.navigate(["service-management/sm-network-services"]);
     } else if (buttonId === "requests") {
@@ -92,6 +95,12 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "sla-agreements") {
       this.subsection = "sla-agreements";
       this.router.navigate(["service-platform/slas/sla-agreements"]);
+    } else if (buttonId === "slices-templates") {
+      this.subsection = "slices-templates";
+      this.router.navigate(["service-platform/slices/slices-templates"]);
+    } else if (buttonId === "slices-instances") {
+      this.subsection = "slices-instances";
+      this.router.navigate(["service-platform/slices/slices-instances"]);
     } else if (buttonId === "service-licences") {
       this.subsection = "service-licences";
       this.router.navigate(["service-management/licences/service-licences"]);

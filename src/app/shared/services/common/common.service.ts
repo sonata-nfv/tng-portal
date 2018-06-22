@@ -32,8 +32,8 @@ export class CommonService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.templates + search
-          : this.config.base + this.config.templates;
+          ? this.config.base + this.config.slaTemplates + search
+          : this.config.base + this.config.slaTemplates;
       this.http
         .get(url, {
           headers: headers
