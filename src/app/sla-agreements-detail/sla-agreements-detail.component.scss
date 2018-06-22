@@ -68,9 +68,12 @@ app-sla-agreements-detail {
       border-bottom: 1px solid $border-line-color;
 
       table {
-        width: 50%;
+        // width: 50%;
         margin-left: 30px;
-        font-size: 15px;
+        // font-size: 15px;
+        width: 100%;
+        margin-right: 30px;
+        font-size: 20px;
         td {
           width: auto;
           overflow: hidden;
@@ -82,23 +85,23 @@ app-sla-agreements-detail {
           text-align: center;
         }
       }
-      .availability,
-      .cost {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 25%;
-        margin-left: 20px;
-        font-size: 20px;
-        .number {
-          margin-top: 10px;
-          font-size: 24px;
-          color: $primary-font-color_light;
-        }
-      }
-      .cost {
-        margin-right: 30px;
-      }
+      // .availability,
+      // .cost {
+      //   display: flex;
+      //   flex-direction: column;
+      //   align-items: center;
+      //   width: 25%;
+      //   margin-left: 20px;
+      //   font-size: 20px;
+      //   .number {
+      //     margin-top: 10px;
+      //     font-size: 24px;
+      //     color: $primary-font-color_light;
+      //   }
+      // }
+      // .cost {
+      //   margin-right: 30px;
+      // }
     }
   }
 }
