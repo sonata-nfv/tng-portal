@@ -77,6 +77,19 @@ export class SlicesTemplatesComponent implements OnInit {
       });
   }
 
+  deleteTemplate(uuid) {
+    this.loading = true;
+    this.servicePlatformService
+      .deleteOneSlicesTemplate(uuid)
+      .then(response => {
+        this.requestTemplates();
+      })
+      .catch(err => {
+        this.loading = false;
+        // TODO display request status in toast
+      });
+  }
+
   openTemplate(row) {
     let uuid = row.uuid;
     // this.router.navigate(["detail/", uuid], { relativeTo: this.route });

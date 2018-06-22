@@ -434,4 +434,28 @@ export class ServicePlatformService {
         .catch(err => reject(err.statusText));
     });
   }
+
+  /**
+   * Removes the specified template from the database
+   *
+   * @param uuid UUID of the desired Slices Template.
+   */
+  deleteOneSlicesTemplate(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers,
+          responseType: "text"
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
+    });
+  }
 }
