@@ -56,7 +56,9 @@ export class InstantiateDialogComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
-        this.slas = response.map(x => x.name);
+        this.slas = response
+          .filter(x => x.nsUUID === this.data.serviceUUID)
+          .map(x => x.name);
       })
       .catch(err => {
         this.loading = false;
