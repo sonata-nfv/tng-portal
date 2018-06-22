@@ -3,26 +3,24 @@ import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
-import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-sla-templates",
-  templateUrl: "./sla-templates.component.html",
-  styleUrls: ["./sla-templates.component.scss"],
+  selector: "app-slices-templates",
+  templateUrl: "./slices-templates.component.html",
+  styleUrls: ["./slices-templates.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SlaTemplatesComponent implements OnInit {
+export class SlicesTemplatesComponent implements OnInit {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
+  displayedColumns = ["status", "name", "ID", "author", "usageState", "delete"];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
@@ -45,17 +43,17 @@ export class SlaTemplatesComponent implements OnInit {
   }
 
   /**
-   * Generates the HTTP request to get the list of SLA templates.
+   * Generates the HTTP request to get the list of Slices templates.
    *
-   * @param search [Optional] SLA template attributes that
+   * @param search [Optional] Slices template attributes that
    *                          must be matched by the returned
    *                          list of templates.
    */
   requestTemplates(search?) {
     this.loading = true;
 
-    this.commonService
-      .getSLATemplates(search)
+    this.servicePlatformService
+      .getSlicesTemplates(search)
       .then(response => {
         this.loading = false;
 
@@ -81,9 +79,8 @@ export class SlaTemplatesComponent implements OnInit {
 
   deleteTemplate(uuid) {
     this.loading = true;
-
     this.servicePlatformService
-      .deleteOneSLATemplate(uuid)
+      .deleteOneSlicesTemplate(uuid)
       .then(response => {
         this.requestTemplates();
       })
@@ -93,12 +90,8 @@ export class SlaTemplatesComponent implements OnInit {
       });
   }
 
-  createNew() {
-    this.router.navigate(["new"], { relativeTo: this.route });
-  }
-
   openTemplate(row) {
     let uuid = row.uuid;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    // this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }

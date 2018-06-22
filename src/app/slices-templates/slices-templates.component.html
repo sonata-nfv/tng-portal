@@ -1,0 +1,63 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<div class="header">
+  <h2 class="subsectionTitle">Templates</h2>
+  <!-- <button class="add" (click)="createNew()">
+    <i class="wui wui-plus"></i>
+    <span>Create New Template</span>
+  </button> -->
+</div>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+  <button class="reload" (click)="requestTemplates()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<table mat-table [dataSource]="templates">
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="ID">
+    <th mat-header-cell *matHeaderCellDef> Template ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.uuid }} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+  </ng-container>
+  <ng-container matColumnDef="version">
+    <th mat-header-cell *matHeaderCellDef> Version </th>
+    <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
+  </ng-container>
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> Author </th>
+    <td mat-cell *matCellDef="let element"> {{ element.author }} </td>
+  </ng-container>
+  <ng-container matColumnDef="usageState">
+    <th mat-header-cell *matHeaderCellDef> Usage State </th>
+    <td mat-cell *matCellDef="let element"> {{ element.usageState }} </td>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>
+    </th>
+    <td mat-cell *matCellDef="let element" (click)="deleteTemplate(element.uuid)" (click)="$event.stopPropagation()">
+      <button class="row-options" mat-button>
+        <i class="wui wui-trash-alt"></i>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openTemplate(row)">
+  </tr>
+</table>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

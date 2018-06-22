@@ -10,10 +10,11 @@ export class ConfigService {
   instances: string = "records/services";
   licences: string = "licences/";
   packages: string = "packages";
-  templates: string = "slas/templates";
-  agreements: string = "slas/agreements";
+  slaTemplates: string = "slas/templates";
+  slaAgreements: string = "slas/agreements";
   guarantees: string = "slas/configurations/guaranteesList";
   functions: string = "functions";
+  slicesTemplates: string = "slices";
 
   constructor() {}
 

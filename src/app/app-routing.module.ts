@@ -22,6 +22,7 @@ import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-template
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
+import { SlicesTemplatesComponent } from "./slices-templates/slices-templates.component";
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
 import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
 import { RequestsComponent } from "./requests/requests.component";
@@ -95,6 +96,10 @@ const routes: Routes = [
         children: [
           { path: "detail/:id", component: SlaAgreementsDetailComponent }
         ]
+      },
+      {
+        path: "service-platform/slices/slices-templates",
+        component: SlicesTemplatesComponent
       },
       // Service Management section
       {

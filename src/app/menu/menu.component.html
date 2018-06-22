@@ -49,6 +49,14 @@
         <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">SLA Agreements</button>
       </div>
       <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">Slices</button>
+
+      <div class="section" *ngIf="section === 'slices'">
+        <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
+        <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
+      </div>
+
+
+
     </div>
 
     <div class="options" *ngIf="menu === 'service-management'">

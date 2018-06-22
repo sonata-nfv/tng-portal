@@ -176,7 +176,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.templates + "/" + uuid, {
+        .get(this.config.base + this.config.slaTemplates + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -229,7 +229,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       this.http
         .post(
-          this.config.base + this.config.templates,
+          this.config.base + this.config.slaTemplates,
           this.urlEncode(template),
           {
             headers: {
@@ -277,7 +277,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .delete(this.config.base + this.config.templates + "/" + uuid, {
+        .delete(this.config.base + this.config.slaTemplates + "/" + uuid, {
           headers: headers,
           responseType: "text"
         })
@@ -304,8 +304,8 @@ export class ServicePlatformService {
       // let headers = this.authService.getAuthHeaders();
       // let url =
       //   search != undefined
-      //     ? this.config.base + this.config.agreements + search
-      //     : this.config.base + this.config.agreements;
+      //     ? this.config.base + this.config.slaAgreements + search
+      //     : this.config.base + this.config.slaAgreements;
       // this.http
       //   .get(url, {
       //     headers: headers
@@ -389,6 +389,73 @@ export class ServicePlatformService {
           cost: "100€/month"
         });
       }, 1000);
+    });
+  }
+
+  /**
+   * Retrieves a list of Slices Templates.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Template attributes that must be
+   *                          matched by the returned list of
+   *                          Slices Templates.
+   */
+  getSlicesTemplates(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slicesTemplates + search
+          : this.config.base + this.config.slicesTemplates;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.nstd.name,
+                  version: item.nstd.version,
+                  usageState: item.nstd.usageState,
+                  author: item.nstd.author,
+                  status: item.status
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Removes the specified template from the database
+   *
+   * @param uuid UUID of the desired Slices Template.
+   */
+  deleteOneSlicesTemplate(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers,
+          responseType: "text"
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
     });
   }
 }

@@ -25,17 +25,19 @@ import { UsersComponent } from "./users/users.component";
 
 import { ValidationComponent } from "./validation/validation.component";
 
-import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
 import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
+import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
+import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
+import { SlicesTemplatesComponent } from "./slices-templates/slices-templates.component";
 
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
 import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
@@ -61,7 +63,6 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
-import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -84,11 +85,13 @@ export function initConfiguration(configService: ConfigService): Function {
     SpNetworkServicesDetailComponent,
     FunctionsComponent,
     FunctionsDetailComponent,
+    PlacementPolicyComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
+    SlaTemplatesCreateComponent,
     SlaAgreementsComponent,
     SlaAgreementsDetailComponent,
-    PlacementPolicyComponent,
+    SlicesTemplatesComponent,
     SmNetworkServicesComponent,
     SmNetworkServicesDetailComponent,
     RequestsComponent,
@@ -105,8 +108,7 @@ export function initConfiguration(configService: ConfigService): Function {
     SearchBarComponent,
     DialogComponent,
     FilterPipe,
-    FeatureAvailableDirective,
-    SlaTemplatesCreateComponent
+    FeatureAvailableDirective
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [
