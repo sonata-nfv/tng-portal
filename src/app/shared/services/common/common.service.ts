@@ -46,6 +46,7 @@ export class CommonService {
                 return {
                   uuid: item.uuid,
                   name: item.slad.name,
+                  nsUUID: item.slad.sla_template.ns.ns_uuid,
                   ns: item.slad.sla_template.ns.ns_name,
                   expirationDate: new Date(item.slad.sla_template.valid_until)
                     .toISOString()
