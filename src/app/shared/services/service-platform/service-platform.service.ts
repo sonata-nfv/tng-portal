@@ -199,6 +199,75 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a list with all the service guarantees
+   */
+  getServiceGuarantees(): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.guarantees, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve(response["guaranteeTerms"]);
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
+    });
+  }
+
+  /**
+   * Creates a new SLA Template.
+   *
+   * @param template Object containing the nsd_uuid, guaranteeId, expireDate
+   *                 and templateName for the creation of a new template.
+   */
+  postOneSLATemplate(template): any {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(
+          this.config.base + this.config.templates,
+          this.urlEncode(template),
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          }
+        )
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  urlEncode(obj: Object): string {
+    let str: string = "";
+    Object.keys(obj).forEach(key => {
+      if (obj[key] instanceof Array) {
+        obj[key].forEach(item => {
+          str +=
+            (str.length > 0 ? "&" : "") +
+            encodeURI(key) +
+            "=" +
+            encodeURI(item);
+        });
+      } else {
+        str +=
+          (str.length > 0 ? "&" : "") +
+          encodeURI(key) +
+          "=" +
+          encodeURI(obj[key]);
+      }
+    });
+    return str;
+  }
+
+  /**
    * Removes the specified template from the database
    *
    * @param uuid UUID of the desired SLA Template.

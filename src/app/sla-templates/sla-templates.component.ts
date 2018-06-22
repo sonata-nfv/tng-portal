@@ -28,6 +28,15 @@ export class SlaTemplatesComponent implements OnInit {
 
   ngOnInit() {
     this.requestTemplates();
+
+    this.router.events.subscribe(event => {
+      if (
+        event instanceof NavigationEnd &&
+        this.route.url["value"].length === 3
+      ) {
+        this.requestTemplates();
+      }
+    });
   }
 
   searchFieldData(search) {
@@ -83,17 +92,12 @@ export class SlaTemplatesComponent implements OnInit {
       });
   }
 
+  createNew() {
+    this.router.navigate(["new"], { relativeTo: this.route });
+  }
+
   openTemplate(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
-
-    this.router.events.subscribe(event => {
-      if (
-        event instanceof NavigationEnd &&
-        this.route.url["value"].length === 3
-      ) {
-        this.requestTemplates();
-      }
-    });
   }
 }

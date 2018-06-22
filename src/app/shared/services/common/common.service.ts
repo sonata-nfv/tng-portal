@@ -47,7 +47,12 @@ export class CommonService {
                   uuid: item.uuid,
                   name: item.slad.name,
                   ns: item.slad.sla_template.ns.ns_name,
-                  expirationDate: item.slad.sla_template.valid_until,
+                  expirationDate: new Date(item.slad.sla_template.valid_until)
+                    .toISOString()
+                    .replace(/T.*/, "")
+                    .split("-")
+                    .reverse()
+                    .join("/"),
                   status: item.status
                 };
               })
