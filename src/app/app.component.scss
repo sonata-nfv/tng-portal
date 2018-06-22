@@ -159,6 +159,9 @@ app-spinner {
 .save {
   background-color: $button-save-color;
 }
+.save.disabledButton {
+  background-color: $button-disabled-color;
+}
 .cancel {
   background-color: $button-close-color;
 }

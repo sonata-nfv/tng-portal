@@ -61,6 +61,7 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
 import { FilterPipe } from "./shared/filter.pipe";
+import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -104,7 +105,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SearchBarComponent,
     DialogComponent,
     FilterPipe,
-    FeatureAvailableDirective
+    FeatureAvailableDirective,
+    SlaTemplatesCreateComponent
   ],
   entryComponents: [DialogComponent, InstantiateDialogComponent],
   imports: [

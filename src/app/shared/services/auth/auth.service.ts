@@ -10,7 +10,9 @@ import {
 export class AuthService {
   authHeaders: HttpHeaders;
 
-  constructor(private config: ConfigService, private http: HttpClient) {}
+  constructor(private config: ConfigService, private http: HttpClient) {
+    this.setAuthHeaders();
+  }
 
   login(username: string, password: string): any {
     return new Promise((resolve, reject) => {
@@ -126,19 +128,20 @@ export class AuthService {
   }
 
   private setAuthHeaders() {
-    this.authHeaders = new HttpHeaders().set(
-      "Content-Type",
-      "application/json"
-    );
-    this.authHeaders.set(
-      "Authorization",
-      "Bearer " + localStorage.getItem("token")
-    );
+    this.authHeaders = new HttpHeaders();
+    // this.authHeaders.set(
+    //   "Content-Type",
+    //   "application/json"
+    // );
+    // this.authHeaders.set(
+    //   "Authorization",
+    //   "Bearer " + localStorage.getItem("token")
+    // );
   }
 
   getAuthHeaders() {
-    // return this.authHeaders;
-    return null;
+    return this.authHeaders;
+    //return new HttpHeaders();
   }
 
   isAuthenticated(): boolean {

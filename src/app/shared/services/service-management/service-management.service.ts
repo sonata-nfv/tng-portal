@@ -177,7 +177,6 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          console.log(response);
           resolve();
         })
         .catch(err => reject(err.statusText));

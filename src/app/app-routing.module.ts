@@ -19,6 +19,7 @@ import { FunctionsDetailComponent } from "./functions-detail/functions-detail.co
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
+import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
@@ -78,7 +79,14 @@ const routes: Routes = [
         path: "service-platform/slas/sla-templates",
         component: SlaTemplatesComponent,
         children: [
-          { path: "detail/:id", component: SlaTemplatesDetailComponent }
+          {
+            path: "detail/:id",
+            component: SlaTemplatesDetailComponent
+          },
+          {
+            path: "new",
+            component: SlaTemplatesCreateComponent
+          }
         ]
       },
       {
