@@ -37,10 +37,11 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
   // Use authGuard module to authenticate user in every step
+
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "registered", component: RegisteredComponent },
-  { path: "portal", redirectTo: "index", pathMatch: "full" },
+  { path: "portal", redirectTo: "" },
   {
     path: "",
     component: IndexComponent,
