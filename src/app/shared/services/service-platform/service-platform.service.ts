@@ -458,4 +458,47 @@ export class ServicePlatformService {
         });
     });
   }
+
+  /**
+   * Retrieves a Slices Template by UUID
+   *
+   * @param uuid UUID of the desired Slices Template.
+   */
+  getOneSlicesTemplate(uuid): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+
+      // this.http
+      //   .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       // uuid: response["uuid"],
+      //       // name: response["slad"]["name"],
+      //       // author: response["slad"]["author"],
+      //       // createdAt: response["created_at"],
+      //       // version: ,
+      //       //   expirationDate: new Date(
+      //       //     Date.parse(response["slad"]["sla_template"]["valid_until"])
+      //       //   ),
+      //       //   ns: response["slad"]["sla_template"]["ns"]["ns_name"],
+      //       //   storedGuarantees:
+      //       //     response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+      //     });
+      //   })
+      //   .catch(err => reject(err.statusText));
+
+      setTimeout(() => {
+        resolve({
+          uuid: "uuid",
+          name: "name",
+          author: "author",
+          createdAt: "8745821937561",
+          version: "0.5"
+        });
+      }, 1000);
+    });
+  }
 }

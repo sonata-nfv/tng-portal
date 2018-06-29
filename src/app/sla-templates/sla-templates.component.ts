@@ -94,7 +94,8 @@ export class SlaTemplatesComponent implements OnInit {
   }
 
   createNew() {
-    this.router.navigate(["new"], { relativeTo: this.route });
+    // DISABLED FOR NOW
+    // this.router.navigate(["new"], { relativeTo: this.route });
   }
 
   openTemplate(row) {
