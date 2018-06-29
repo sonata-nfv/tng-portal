@@ -1,8 +1,12 @@
+[![Build Status](https://jenkins.sonata-nfv.eu/buildStatus/icon?job=tng-portal/master)](https://jenkins.sonata-nfv.eu/job/tng-portal/master)
+
+<p align="center"><img src="https://github.com/sonata-nfv/tng-portal/wiki/images/sonata-5gtango-logo-500px.png" /></p>
+
 # 5GTANGO Portal
 
 This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
 
-![](https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif)
+<p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
 
 ## Installing
 
