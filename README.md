@@ -62,6 +62,10 @@ To remove any of them from the menu just erase the desired item from the configu
 
 The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
 
+## Documentation
+
+The documentation relative to this project can be found in the [Wiki page](https://github.com/sonata-nfv/tng-portal/wiki) of this repository.
+
 ## License
 
 The tng-gui is published under Apache 2.0 license. Please see the LICENSE file for more details.
