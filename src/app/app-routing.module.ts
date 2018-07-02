@@ -85,11 +85,11 @@ const routes: Routes = [
           {
             path: "detail/:id",
             component: SlaTemplatesDetailComponent
+          },
+          {
+            path: "new",
+            component: SlaTemplatesCreateComponent
           }
-          // {
-          //   path: "new",
-          //   component: SlaTemplatesCreateComponent
-          // }
         ]
       },
       {

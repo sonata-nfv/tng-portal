@@ -50,7 +50,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
     this.loading = true;
 
     this.servicePlatformService
-      .getOneSlicesTemplate(uuid)
+      .getOneSliceTemplate(uuid)
       .then(response => {
         this.loading = false;
 

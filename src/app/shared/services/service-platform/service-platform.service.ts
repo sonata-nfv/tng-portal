@@ -464,7 +464,7 @@ export class ServicePlatformService {
    *
    * @param uuid UUID of the desired Slices Template.
    */
-  getOneSlicesTemplate(uuid): any {
+  getOneSliceTemplate(uuid): any {
     return new Promise((resolve, reject) => {
       // let headers = this.authService.getAuthHeaders();
 
