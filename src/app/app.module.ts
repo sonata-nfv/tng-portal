@@ -39,6 +39,7 @@ import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.componen
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
 import { SlicesTemplatesComponent } from "./slices-templates/slices-templates.component";
 import { SlicesTemplatesDetailComponent } from "./slices-templates-detail/slices-templates-detail.component";
+import { SlicesInstancesComponent } from "./slices-instances/slices-instances.component";
 
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
 import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
@@ -94,6 +95,7 @@ export function initConfiguration(configService: ConfigService): Function {
     SlaAgreementsDetailComponent,
     SlicesTemplatesComponent,
     SlicesTemplatesDetailComponent,
+    SlicesInstancesComponent,
     SmNetworkServicesComponent,
     SmNetworkServicesDetailComponent,
     RequestsComponent,
