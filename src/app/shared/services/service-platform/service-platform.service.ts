@@ -466,39 +466,31 @@ export class ServicePlatformService {
    */
   getOneSliceTemplate(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
+      let headers = this.authService.getAuthHeaders();
 
-      // this.http
-      //   .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       // uuid: response["uuid"],
-      //       // name: response["slad"]["name"],
-      //       // author: response["slad"]["author"],
-      //       // createdAt: response["created_at"],
-      //       // version: ,
-      //       //   expirationDate: new Date(
-      //       //     Date.parse(response["slad"]["sla_template"]["valid_until"])
-      //       //   ),
-      //       //   ns: response["slad"]["sla_template"]["ns"]["ns_name"],
-      //       //   storedGuarantees:
-      //       //     response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: "uuid",
-          name: "name",
-          author: "author",
-          createdAt: "8745821937561",
-          version: "0.5"
-        });
-      }, 1000);
+      this.http
+        .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            status: response["status"],
+            name: response["nstd"]["name"],
+            author: response["nstd"]["author"],
+            createdAt: response["created_at"],
+            version: response["nstd"]["version"],
+            vendor: response["nstd"]["vendor"],
+            notificationType: response["nstd"]["notificationTypes"],
+            userDefinedData: response["nstd"]["userDefinedData"],
+            usageState: response["nstd"]["usageState"],
+            onboardingState: response["nstd"]["onboardingState"],
+            operationalState: response["nstd"]["operationalState"],
+            nstNsdIds: response["nstd"]["nstNsdIds"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 }

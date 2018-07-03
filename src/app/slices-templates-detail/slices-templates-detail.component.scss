@@ -56,4 +56,21 @@ app-slices-templates-detail {
       }
     }
   }
+  form {
+    width: 60%;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    .mat-form-field {
+      width: 100%;
+      margin-left: 70px;
+      .descriptorID {
+        margin-bottom: 5px;
+      }
+    }
+    .sameRow {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
 }

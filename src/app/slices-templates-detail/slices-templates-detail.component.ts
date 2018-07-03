@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormGroup, FormControl } from "@angular/forms";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
@@ -14,12 +13,7 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 export class SlicesTemplatesDetailComponent implements OnInit {
   loading: boolean;
 
-  uuid: string;
-  name: string;
-  author: string;
-  version: string;
-  createdAt: string;
-  // templateForm: FormGroup;
+  detail = {};
 
   constructor(
     private router: Router,
@@ -29,14 +23,8 @@ export class SlicesTemplatesDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.templateForm = new FormGroup({
-    //   ns: new FormControl(),
-    //   guarantee: new FormControl()
-    // });
-
     this.route.params.subscribe(params => {
-      this.uuid = params["id"];
-      this.requestSlicesTemplate(this.uuid);
+      this.requestSlicesTemplate(params["id"]);
     });
   }
 
@@ -54,11 +42,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
-        this.name = response.name;
-        this.author = response.author;
-        this.createdAt = response.createdAt;
-        this.version = response.version;
-        this.createdAt = response.createdAt;
+        this.detail = response;
       })
       .catch(err => {
         this.loading = false;
@@ -79,10 +63,10 @@ export class SlicesTemplatesDetailComponent implements OnInit {
       });
   }
 
-  deleteTemplate(uuid) {
+  deleteTemplate() {
     this.loading = true;
     this.servicePlatformService
-      .deleteOneSlicesTemplate(uuid)
+      .deleteOneSlicesTemplate(this.detail["uuid"])
       .then(response => {
         this.close();
       })
