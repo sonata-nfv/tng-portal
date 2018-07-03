@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { Subscriber, Subscription } from "rxjs";
 
 @Component({
   selector: "app-sla-templates",
@@ -12,11 +13,12 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
   styleUrls: ["./sla-templates.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SlaTemplatesComponent implements OnInit {
+export class SlaTemplatesComponent implements OnInit, OnDestroy {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -30,14 +32,20 @@ export class SlaTemplatesComponent implements OnInit {
     this.requestTemplates();
 
     // Reloads the template list every when children are closed
-    this.router.events.subscribe(event => {
+    this.subscription = this.router.events.subscribe(event => {
       if (
         event instanceof NavigationEnd &&
-        this.route.url["value"].length === 3
+        event.url === "/service-platform/slas/slas-templates" &&
+        this.route.url["value"].length === 3 &&
+        this.route.url["value"][2].path === "slas-templates"
       ) {
         this.requestTemplates();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchFieldData(search) {

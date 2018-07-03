@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-slices-templates",
@@ -16,6 +17,7 @@ export class SlicesTemplatesComponent implements OnInit {
   templates = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = ["status", "name", "ID", "author", "usageState", "delete"];
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -28,14 +30,20 @@ export class SlicesTemplatesComponent implements OnInit {
     this.requestTemplates();
 
     // Reloads the template list every when children are closed
-    this.router.events.subscribe(event => {
+    this.subscription = this.router.events.subscribe(event => {
       if (
         event instanceof NavigationEnd &&
-        this.route.url["value"].length === 3
+        event.url === "/service-platform/slices/slices-templates" &&
+        this.route.url["value"].length === 3 &&
+        this.route.url["value"][2].path === "slices-templates"
       ) {
         this.requestTemplates();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchFieldData(search) {
