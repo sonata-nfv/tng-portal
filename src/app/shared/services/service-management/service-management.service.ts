@@ -166,7 +166,7 @@ export class ServiceManagementService {
       let headers = new HttpHeaders();
       let data = {
         sla_id: slaUUID,
-        uuid: serviceUUID,
+        service_uuid: serviceUUID,
         ingresses: ingress,
         egresses: egress
       };
