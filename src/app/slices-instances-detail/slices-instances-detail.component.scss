@@ -35,7 +35,7 @@ app-slices-instances-detail {
     margin-bottom: 20px;
     .mat-form-field {
       width: 100%;
-      margin-left: 70px;
+      margin-left: 25px;
       .element {
         margin-bottom: 5px;
       }
@@ -46,34 +46,11 @@ app-slices-instances-detail {
       width: 100%;
     }
 
-    .stop {
-      display: flex;
-      flex-direction: row;
-      button {
-        border: none;
-        cursor: pointer;
-        outline: none;
-        padding: 15px 0 25px 0;
-        background-color: $basic-background-color;
-      }
-      i:before {
-        font-size: 18px;
-        border-radius: 20%;
-        color: $stop-color;
-        background-color: $stop-color;
-      }
-      span {
-        margin-left: 10px;
-        font-size: 22px;
-        color: $secondary-font-color;
-      }
-    }
-
     .description {
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      margin-top: 40px;
       span {
         width: 100%;
         &.title {

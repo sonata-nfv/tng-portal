@@ -22,21 +22,6 @@ app-slices-instances {
       margin: 0;
       width: 90%;
     }
-    .add {
-      display: flex;
-      justify-content: center;
-      width: 20%;
-      span {
-        margin-left: 5px;
-        font-size: 18px;
-        color: $button-font-color_light;
-      }
-      .wui-plus::before {
-        margin-right: 5px;
-        font-size: 20px;
-        color: $reload-color;
-      }
-    }
   }
   .tools {
     display: flex;

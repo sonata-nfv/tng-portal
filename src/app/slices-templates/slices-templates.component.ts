@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
 import { Subscription } from "rxjs";
+import { SlicesInstancesCreateComponent } from "../slices-instances-create/slices-instances-create.component";
 
 @Component({
   selector: "app-slices-templates",
@@ -16,14 +17,23 @@ export class SlicesTemplatesComponent implements OnInit {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "author", "usageState", "delete"];
+  displayedColumns = [
+    "status",
+    "name",
+    "ID",
+    "author",
+    "usageState",
+    "instantiate",
+    "delete"
+  ];
   subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -83,6 +93,17 @@ export class SlicesTemplatesComponent implements OnInit {
           });
         }
       });
+  }
+
+  instantiate(nst) {
+    this.instantiateDialog.open(SlicesInstancesCreateComponent, {
+      data: {
+        nstId: nst.uuid,
+        vendor: nst.vendor,
+        name: nst.name,
+        version: nst.version
+      }
+    });
   }
 
   deleteTemplate(uuid) {

@@ -35,13 +35,6 @@
     </mat-form-field>
   </div>
 
-  <div class="stop" *ngIf="detail.state==='INSTANTIATED'">
-    <button (click)="stopInstance()">
-      <i class="wui wui-stop-alt"></i>
-      <span>Terminate instance</span>
-    </button>
-  </div>
-
   <div class="description" *ngIf="detail.description">
     <span class="title">DESCRIPTION</span>
     <span class="content">

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
 
-import { InstantiateDialogComponent } from "../instantiate-dialog/instantiate-dialog.component";
+import { NsInstantiateDialogComponent } from "../ns-instantiate-dialog/ns-instantiate-dialog.component";
 
 import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
@@ -83,7 +83,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
   }
 
   instanciate() {
-    this.instantiateDialog.open(InstantiateDialogComponent, {
+    this.instantiateDialog.open(NsInstantiateDialogComponent, {
       data: {
         serviceUUID: this.serviceID,
         serviceName: this.name

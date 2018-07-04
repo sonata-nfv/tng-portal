@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Subscription } from "rxjs";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
@@ -83,10 +83,6 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
           });
         }
       });
-  }
-
-  createNew() {
-    // this.router.navigate(["new"], { relativeTo: this.route });
   }
 
   stopInstance(item) {

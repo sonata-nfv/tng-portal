@@ -421,6 +421,7 @@ export class ServicePlatformService {
                   uuid: item.uuid,
                   name: item.nstd.name,
                   version: item.nstd.version,
+                  vendor: item.nstd.vendor,
                   usageState: item.nstd.usageState,
                   author: item.nstd.author,
                   status: item.status
@@ -590,6 +591,27 @@ export class ServicePlatformService {
           version: "0.4"
         });
       }, 1000);
+    });
+  }
+
+  /**
+   * Generates a Slice Instance
+   *
+   * @param instance Data of the desired Slice Instance.
+   */
+  postOneSliceInstance(instance): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .post(this.config.base + this.config.slicesInstances, instance, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

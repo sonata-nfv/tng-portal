@@ -47,6 +47,13 @@
         <input matInput placeholder="Notification Types" value="{{ detail.notificationType }}" disabled>
     </mat-form-field>
 
+    <div class="launch" *ngIf="detail.uuid || detail.vendor || detail.name  || detail.version">
+        <button (click)="instantiate()">
+            <i class="wui wui-caret-right"></i>
+            <span class="play">Ready to use</span>
+        </button>
+    </div>
+
     <mat-form-field *ngIf="detail.nstNsdIds">
         <div *ngFor="let item of detail.nstNsdIds">
             <input class="element" matInput placeholder="Network service descriptors" value="{{ item }}" disabled>

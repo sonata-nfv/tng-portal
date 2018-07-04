@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { SlicesInstancesCreateComponent } from "../slices-instances-create/slices-instances-create.component";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-slices-templates-detail",
@@ -19,7 +21,8 @@ export class SlicesTemplatesDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -61,6 +64,17 @@ export class SlicesTemplatesDetailComponent implements OnInit {
           this.close();
         }
       });
+  }
+
+  instantiate() {
+    this.instantiateDialog.open(SlicesInstancesCreateComponent, {
+      data: {
+        nstId: this.detail["uuid"],
+        vendor: this.detail["vendor"],
+        name: this.detail["name"],
+        version: this.detail["version"]
+      }
+    });
   }
 
   deleteTemplate() {

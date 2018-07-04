@@ -1,0 +1,43 @@
+<button class="closeIcon" (click)="close()">
+  <i class="wui wui-times"></i>
+</button>
+
+<h2 mat-dialog-title> New network slice instance </h2>
+
+<!-- <app-select class="select" placeholder="Available NST" [list]="availableNst" [disabled]="loading" (selectEvent)="receiveNst($event)"></app-select> -->
+<mat-dialog-content>
+
+  <form [formGroup]="instantiationForm" class="form">
+    <div class="nstDetails">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Vendor" [value]="data.vendor" disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Name" [value]="data.name" disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Version" [value]="data.version" disabled>
+      </mat-form-field>
+    </div>
+
+    <div class="nsiDetails">
+      <mat-form-field>
+        <input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required>
+      </mat-form-field>
+      <mat-form-field class="description">
+        <span class="title">Description</span>
+        <textarea class="content" matInput type="text" formControlName="nsiDescription" required></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="buttonContainer">
+    <button class="secondary" mat-button mat-dialog-close>CANCEL</button>
+    <button class="primary" mat-button cdkFocusInitial [disabled]="!nst" (click)="instantiate()">INSTANTIATE</button>
+  </div>
+</mat-dialog-actions>
+
+<app-spinner *ngIf="loading"></app-spinner>
