@@ -1,0 +1,54 @@
+<div class="title" *ngIf="detail.name">
+  <h1 class="sectionTitle">Instances</h1>
+</div>
+
+<div class="header" *ngIf="detail.name">
+  <h2 class="subsectionTitle"> {{ detail.name }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="versionDiv" *ngIf="detail.version">
+  <span class="text">Current version</span>
+  <div class="version">
+    <span>{{ detail.version }}</span>
+  </div>
+</div>
+
+<form class="detail">
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail.uuid">
+      <input matInput placeholder="Template ID" value="{{ detail.uuid }}" disabled>
+    </mat-form-field>
+    <mat-form-field *ngIf="detail.vendor">
+      <input matInput placeholder="Vendor" value="{{ detail.vendor }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail.netServInstanceUUID">
+      <div *ngFor="let item of detail.netServInstanceUUID">
+        <input class="element" matInput placeholder="Network service instances ID" value="{{ item }}" disabled>
+      </div>
+    </mat-form-field>
+    <mat-form-field *ngIf="detail.nstName">
+      <input matInput placeholder="NST Name" value="{{ detail.nstName }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="stop" *ngIf="detail.state==='INSTANTIATED'">
+    <button (click)="stop()">
+      <i class="wui wui-stop-alt"></i>
+      <span>Terminate instance</span>
+    </button>
+  </div>
+
+  <div class="description" *ngIf="detail.description">
+    <span class="title">DESCRIPTION</span>
+    <span class="content">
+      <p>{{ detail.description }}</p>
+    </span>
+  </div>
+
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

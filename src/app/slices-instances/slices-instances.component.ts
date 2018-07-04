@@ -90,7 +90,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
   }
 
   openInstance(row) {
-    // let uuid = row.uuid;
-    // this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }
 }

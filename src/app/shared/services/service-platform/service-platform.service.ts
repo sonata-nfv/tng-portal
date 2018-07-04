@@ -547,4 +547,50 @@ export class ServicePlatformService {
       }, 1000);
     });
   }
+
+  /**
+   * Retrieves a Slices Instances by UUID
+   *
+   * @param uuid UUID of the desired Slices Instance.
+   */
+  getOneSliceInstance(uuid): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+
+      // this.http
+      //   .get(this.config.base + this.config.slicesInstances + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       uuid: response["uuid"],
+      //       name: response["name"],
+      //       version: response["version"],
+      //       vendor: response["vendor"],
+      //       state: response["nsiState"],
+      //       description: response["description"],
+      //       netServInstanceUUID: response["netServInstance_Uuid"]
+      //       nstName: response["nstName"]
+
+      //     });
+      //   })
+      //   .catch(err => reject(err.statusText));
+
+      setTimeout(() => {
+        resolve({
+          uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
+          name: "Rubik_name",
+          vendor: "5gTango",
+          state: "INSTANTIATED",
+          description: "Rubik_descriptor",
+          netServInstanceUUID: ["dc8fafaf-6fab-4b4c-a6c7-a1fb5d4c2ce8"],
+
+          nstName: "nstName",
+          version: "0.4",
+
+        });
+      }, 1000);
+    });
+  }
 }
