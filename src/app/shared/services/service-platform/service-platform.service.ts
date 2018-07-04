@@ -301,44 +301,36 @@ export class ServicePlatformService {
    */
   getSLAAgreements(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.slaAgreements + search
-      //     : this.config.base + this.config.slaAgreements;
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve(
-      //       response["cust_sla"].map(item => {
-      //         return {
-      //           uuid: item.sla_uuid,
-      //           name: item.sla_name,
-      //           ns: item.ns_name,
-      //           customer: item.cust_email,
-      //           date: item.sla_date,
-      //           status: item.sla_status
-      //         };
-      //       })
-      //     );
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve([
-          {
-            status: "active",
-            uuid: "45217851155",
-            name: "sla1",
-            ns: "ns1",
-            customer: "customer1",
-            date: new Date().toISOString()
-          }
-        ]);
-      }, 1000);
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slaAgreements + search
+          : this.config.base + this.config.slaAgreements;
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve(
+            response["agreements"].map(item => {
+              return {
+                uuid: item.sla_uuid,
+                name: item.sla_name,
+                ns: item.ns_name,
+                customer: item.cust_email,
+                date: new Date(Date.parse(item.sla_date))
+                  .toISOString()
+                  .replace(/T.*/, "")
+                  .split("-")
+                  .reverse()
+                  .join("/"),
+                status: item.sla_status
+              };
+            })
+          );
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
