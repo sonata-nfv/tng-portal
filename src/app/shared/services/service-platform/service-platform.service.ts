@@ -587,10 +587,41 @@ export class ServicePlatformService {
           netServInstanceUUID: ["dc8fafaf-6fab-4b4c-a6c7-a1fb5d4c2ce8"],
 
           nstName: "nstName",
-          version: "0.4",
-
+          version: "0.4"
         });
       }, 1000);
+    });
+  }
+
+  /**
+   * Terminates a Slice Instance by UUID
+   *
+   * @param uuid UUID of the desired Slices Instance.
+   */
+  postOneSliceInstanceTermination(uuid): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      const terminateTime = {
+        terminateTime: new Date().toISOString()
+      };
+
+      this.http
+        .post(
+          this.config.base +
+            this.config.slicesInstances +
+            "/" +
+            uuid +
+            "/terminate",
+          terminateTime,
+          {
+            headers: headers
+          }
+        )
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 }

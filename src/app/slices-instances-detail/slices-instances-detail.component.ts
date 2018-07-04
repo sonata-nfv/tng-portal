@@ -62,6 +62,12 @@ export class SlicesInstancesDetailComponent implements OnInit {
       });
   }
 
+  stopInstance() {
+    this.servicePlatformService.postOneSliceInstanceTermination(
+      this.detail["uuid"]
+    );
+  }
+
   close() {
     this.router.navigate(["service-platform/slices/slices-instances"]);
   }

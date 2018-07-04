@@ -89,6 +89,10 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
     // this.router.navigate(["new"], { relativeTo: this.route });
   }
 
+  stopInstance(item) {
+    this.servicePlatformService.postOneSliceInstanceTermination(item.uuid);
+  }
+
   openInstance(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
