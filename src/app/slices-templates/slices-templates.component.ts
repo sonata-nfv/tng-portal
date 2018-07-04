@@ -19,8 +19,9 @@ export class SlicesTemplatesComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns = [
     "status",
+    "vendor",
     "name",
-    "ID",
+    "version",
     "author",
     "usageState",
     "instantiate",
