@@ -97,7 +97,8 @@ table {
   //   Include scroll in table
   tbody {
     display: block;
-    max-height: 500px;
+    max-height: 70vh;
+    // max-height: 610px;
     overflow-y: overlay;
   }
   thead,
