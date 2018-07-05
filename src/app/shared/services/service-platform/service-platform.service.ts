@@ -241,7 +241,7 @@ export class ServicePlatformService {
         .then(response => {
           resolve();
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject(err));
     });
   }
 
@@ -306,6 +306,7 @@ export class ServicePlatformService {
         search != undefined
           ? this.config.base + this.config.slaAgreements + search
           : this.config.base + this.config.slaAgreements;
+
       this.http
         .get(url, {
           headers: headers
@@ -341,46 +342,27 @@ export class ServicePlatformService {
    */
   getOneSLAAgreement(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // this.http
-      //   .get(this.config.base + this.config + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["name"],
-      //       author: response["author"],
-      //       date: response["date"],
-      //       ns: response["ns"],
-      //       customer: response["customer"],
-      //       propertyList: response["propertyList"],
-      //       availability: response["availability"],
-      //       cost: response["cost"],
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: uuid,
-          name: "name",
-          author: "author",
-          date: new Date().toISOString(),
-          ns: "A",
-          customer: "customer1",
-          propertyList: [
-            {
-              property: "property_1",
-              guarantee: "guarantee_1"
-            },
-            { property: "property_22", guarantee: "guarantee_22" }
-          ],
-          availability: "90%",
-          cost: "100€/month"
-        });
-      }, 1000);
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.slaAgreements + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["slad"]["name"],
+            author: response["slad"]["author"],
+            date: response["updated_at"],
+            ns: response["slad"]["sla_template"]["ns"]["ns_name"],
+            customer: response["customer"],
+            propertyList:
+              response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+            // availability: response["availability"],
+            // cost: response["cost"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
@@ -559,7 +541,6 @@ export class ServicePlatformService {
       //     resolve({
       //       uuid: response["uuid"],
       //       name: response["name"],
-      //       version: response["version"],
       //       vendor: response["vendor"],
       //       state: response["nsiState"],
       //       description: response["description"],
@@ -579,8 +560,7 @@ export class ServicePlatformService {
           description: "Rubik_descriptor",
           netServInstanceUUID: ["dc8fafaf-6fab-4b4c-a6c7-a1fb5d4c2ce8"],
 
-          nstName: "nstName",
-          version: "0.4"
+          nstName: "nstName"
         });
       }, 1000);
     });

@@ -24,9 +24,9 @@
   <div class="details" *ngIf="propertyList">
     <table>
       <tr *ngFor="let entry of propertyList">
-        <td>{{ entry.property }}</td>
+        <td>{{ entry.name }}</td>
         <td class="dash"> - </td>
-        <td>{{ entry.guarantee }}</td>
+        <td>{{ entry.operator }}</td>
       </tr>
     </table>
 
