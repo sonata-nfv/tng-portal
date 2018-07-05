@@ -1,37 +1,37 @@
-<div class="title" *ngIf="detail.name">
+<div class="title" *ngIf="detail['name']">
   <h1 class="sectionTitle">Instances</h1>
 </div>
 
-<div class="header" *ngIf="detail.name">
-  <h2 class="subsectionTitle"> {{ detail.name }}</h2>
+<div class="header" *ngIf="detail['name']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
 <form class="detail">
   <div class="sameRow">
-    <mat-form-field *ngIf="detail.uuid">
-      <input matInput placeholder="Template ID" value="{{ detail.uuid }}" disabled>
+    <mat-form-field *ngIf="detail['uuid']">
+      <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled>
     </mat-form-field>
-    <mat-form-field *ngIf="detail.vendor">
-      <input matInput placeholder="Vendor" value="{{ detail.vendor }}" disabled>
+    <mat-form-field *ngIf="detail['vendor']">
+      <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
     </mat-form-field>
   </div>
 
   <div class="sameRow">
-    <mat-form-field *ngIf="detail.netServInstanceUUID">
-      <div *ngFor="let item of detail.netServInstanceUUID">
+    <mat-form-field *ngIf="detail['netServInstanceUUID']">
+      <div *ngFor="let item of detail['netServInstanceUUID']">
         <input class="element" matInput placeholder="Network service instances ID" value="{{ item }}" disabled>
       </div>
     </mat-form-field>
-    <mat-form-field *ngIf="detail.nstName">
-      <input matInput placeholder="NST Name" value="{{ detail.nstName }}" disabled>
+    <mat-form-field *ngIf="detail['nstName']">
+      <input matInput placeholder="NST Name" value="{{ detail['nstName'] }}" disabled>
     </mat-form-field>
   </div>
 
-  <div class="description" *ngIf="detail.description">
+  <div class="description" *ngIf="detail['description']">
     <span class="title">DESCRIPTION</span>
     <span class="content">
-      <p>{{ detail.description }}</p>
+      <p>{{ detail['description'] }}</p>
     </span>
   </div>
 

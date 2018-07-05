@@ -65,9 +65,10 @@
 
     </div>
 
-    <app-select class="guarantiesList" placeholder="Select NS Guarantee" [reset]="reset" [list]="guarantiesList" (selectEvent)="addGuarantee($event)"></app-select>
+    <app-select *ngIf="guarantiesList.length > 0" class="guarantiesList" placeholder="Select NS Guarantee" [reset]="reset" [list]="guarantiesList"
+      (selectEvent)="addGuarantee($event)"></app-select>
 
-    <span class="note">Add a new guarantee selecting a NS</span>
+    <span *ngIf="guarantiesList.length > 0" class="note">Add a new guarantee selecting a NS</span>
   </form>
 </div>
 

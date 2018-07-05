@@ -35,9 +35,9 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
     this.subscription = this.router.events.subscribe(event => {
       if (
         event instanceof NavigationEnd &&
-        event.url === "/service-platform/slas/slas-templates" &&
+        event.url === "/service-platform/slas/sla-templates" &&
         this.route.url["value"].length === 3 &&
-        this.route.url["value"][2].path === "slas-templates"
+        this.route.url["value"][2].path === "sla-templates"
       ) {
         this.requestTemplates();
       }
@@ -83,6 +83,8 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
           this.dialogData.openDialog(title, content, action, () => {
             this.router.navigate(["/login"]);
           });
+        } else {
+          console.error("There was an error in the template creation");
         }
       });
   }
