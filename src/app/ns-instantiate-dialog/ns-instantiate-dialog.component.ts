@@ -7,12 +7,12 @@ import { ServiceManagementService } from "../shared/services/service-management/
 import { CommonService } from "../shared/services/common/common.service";
 
 @Component({
-  selector: "app-instantiate-dialog",
-  templateUrl: "./instantiate-dialog.component.html",
-  styleUrls: ["./instantiate-dialog.component.scss"],
+  selector: "app-ns-instantiate-dialog",
+  templateUrl: "./ns-instantiate-dialog.component.html",
+  styleUrls: ["./ns-instantiate-dialog.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class InstantiateDialogComponent implements OnInit {
+export class NsInstantiateDialogComponent implements OnInit {
   loading: boolean;
   continue: boolean = false;
   reset: boolean = false;
@@ -25,7 +25,7 @@ export class InstantiateDialogComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
-    public dialogRef: MatDialogRef<InstantiateDialogComponent>,
+    public dialogRef: MatDialogRef<NsInstantiateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private serviceManagementService: ServiceManagementService
   ) {}

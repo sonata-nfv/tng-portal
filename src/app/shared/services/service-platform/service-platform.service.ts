@@ -241,7 +241,7 @@ export class ServicePlatformService {
         .then(response => {
           resolve();
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject(err));
     });
   }
 
@@ -301,44 +301,37 @@ export class ServicePlatformService {
    */
   getSLAAgreements(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.slaAgreements + search
-      //     : this.config.base + this.config.slaAgreements;
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve(
-      //       response["cust_sla"].map(item => {
-      //         return {
-      //           uuid: item.sla_uuid,
-      //           name: item.sla_name,
-      //           ns: item.ns_name,
-      //           customer: item.cust_email,
-      //           date: item.sla_date,
-      //           status: item.sla_status
-      //         };
-      //       })
-      //     );
-      //   })
-      //   .catch(err => reject(err.statusText));
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slaAgreements + search
+          : this.config.base + this.config.slaAgreements;
 
-      setTimeout(() => {
-        resolve([
-          {
-            status: "active",
-            uuid: "45217851155",
-            name: "sla1",
-            ns: "ns1",
-            customer: "customer1",
-            date: new Date().toISOString()
-          }
-        ]);
-      }, 1000);
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve(
+            response["agreements"].map(item => {
+              return {
+                uuid: item.sla_uuid,
+                name: item.sla_name,
+                ns: item.ns_name,
+                customer: item.cust_email,
+                date: new Date(Date.parse(item.sla_date))
+                  .toISOString()
+                  .replace(/T.*/, "")
+                  .split("-")
+                  .reverse()
+                  .join("/"),
+                status: item.sla_status
+              };
+            })
+          );
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
@@ -349,46 +342,27 @@ export class ServicePlatformService {
    */
   getOneSLAAgreement(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // this.http
-      //   .get(this.config.base + this.config + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["name"],
-      //       author: response["author"],
-      //       date: response["date"],
-      //       ns: response["ns"],
-      //       customer: response["customer"],
-      //       propertyList: response["propertyList"],
-      //       availability: response["availability"],
-      //       cost: response["cost"],
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: uuid,
-          name: "name",
-          author: "author",
-          date: new Date().toISOString(),
-          ns: "A",
-          customer: "customer1",
-          propertyList: [
-            {
-              property: "property_1",
-              guarantee: "guarantee_1"
-            },
-            { property: "property_22", guarantee: "guarantee_22" }
-          ],
-          availability: "90%",
-          cost: "100€/month"
-        });
-      }, 1000);
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .get(this.config.base + this.config.slaAgreements + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["slad"]["name"],
+            author: response["slad"]["author"],
+            date: response["updated_at"],
+            ns: response["slad"]["sla_template"]["ns"]["ns_name"],
+            customer: response["customer"],
+            propertyList:
+              response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+            // availability: response["availability"],
+            // cost: response["cost"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 
@@ -421,6 +395,7 @@ export class ServicePlatformService {
                   uuid: item.uuid,
                   name: item.nstd.name,
                   version: item.nstd.version,
+                  vendor: item.nstd.vendor,
                   usageState: item.nstd.usageState,
                   author: item.nstd.author,
                   status: item.status
@@ -464,41 +439,183 @@ export class ServicePlatformService {
    *
    * @param uuid UUID of the desired Slices Template.
    */
-  getOneSlicesTemplate(uuid): any {
+  getOneSliceTemplate(uuid): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            status: response["status"],
+            name: response["nstd"]["name"],
+            author: response["nstd"]["author"],
+            createdAt: response["created_at"],
+            version: response["nstd"]["version"],
+            vendor: response["nstd"]["vendor"],
+            notificationType: response["nstd"]["notificationTypes"],
+            userDefinedData: response["nstd"]["userDefinedData"],
+            usageState: response["nstd"]["usageState"],
+            onboardingState: response["nstd"]["onboardingState"],
+            operationalState: response["nstd"]["operationalState"],
+            nstNsdIds: response["nstd"]["nstNsdIds"]
+          });
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a list of Slices Instances.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Instances attributes that must be
+   *                          matched by the returned list of
+   *                          Slices instances.
+   */
+  getSlicesInstances(search?): any {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+      // let url =
+      //   search != undefined
+      //     ? this.config.base + this.config.slicesInstances + search
+      //     : this.config.base + this.config.slicesInstances;
+
+      // this.http
+      //   .get(url, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     if (response instanceof Array) {
+      //       resolve(
+      //         response.map(item => {
+      //           return {
+      //             uuid: item.id,
+      //             name: item.name,
+      //             vendor: item.vendor,
+      //             nstRef: item.nstd.nstRef,
+      //             state: item.nsiState
+      //           };
+      //         })
+      //       );
+      //     } else {
+      //       reject();
+      //     }
+      //   })
+      //   .catch(err => reject(err.statusText));
+
+      setTimeout(() => {
+        resolve([
+          {
+            uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
+            name: "Rubik_name",
+            vendor: "5gTango",
+            nstRef: "item.nstRef",
+            state: "INSTANTIATED"
+          }
+        ]);
+      }, 1000);
+    });
+  }
+
+  /**
+   * Retrieves a Slices Instances by UUID
+   *
+   * @param uuid UUID of the desired Slices Instance.
+   */
+  getOneSliceInstance(uuid): any {
     return new Promise((resolve, reject) => {
       // let headers = this.authService.getAuthHeaders();
 
       // this.http
-      //   .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+      //   .get(this.config.base + this.config.slicesInstances + "/" + uuid, {
       //     headers: headers
       //   })
       //   .toPromise()
       //   .then(response => {
       //     resolve({
-      //       // uuid: response["uuid"],
-      //       // name: response["slad"]["name"],
-      //       // author: response["slad"]["author"],
-      //       // createdAt: response["created_at"],
-      //       // version: ,
-      //       //   expirationDate: new Date(
-      //       //     Date.parse(response["slad"]["sla_template"]["valid_until"])
-      //       //   ),
-      //       //   ns: response["slad"]["sla_template"]["ns"]["ns_name"],
-      //       //   storedGuarantees:
-      //       //     response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
+      //       uuid: response["uuid"],
+      //       name: response["name"],
+      //       vendor: response["vendor"],
+      //       state: response["nsiState"],
+      //       description: response["description"],
+      //       netServInstanceUUID: response["netServInstance_Uuid"]
+      //       nstName: response["nstName"]
+
       //     });
       //   })
       //   .catch(err => reject(err.statusText));
 
       setTimeout(() => {
         resolve({
-          uuid: "uuid",
-          name: "name",
-          author: "author",
-          createdAt: "8745821937561",
-          version: "0.5"
+          uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
+          name: "Rubik_name",
+          vendor: "5gTango",
+          state: "INSTANTIATED",
+          description: "Rubik_descriptor",
+          netServInstanceUUID: ["dc8fafaf-6fab-4b4c-a6c7-a1fb5d4c2ce8"],
+
+          nstName: "nstName"
         });
       }, 1000);
+    });
+  }
+
+  /**
+   * Generates a Slice Instance
+   *
+   * @param instance Data of the desired Slice Instance.
+   */
+  postOneSliceInstance(instance): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .post(this.config.base + this.config.slicesInstances, instance, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Terminates a Slice Instance by UUID
+   *
+   * @param uuid UUID of the desired Slices Instance.
+   */
+  postOneSliceInstanceTermination(uuid): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      const terminateTime = {
+        terminateTime: new Date().toISOString()
+      };
+
+      this.http
+        .post(
+          this.config.base +
+            this.config.slicesInstances +
+            "/" +
+            uuid +
+            "/terminate",
+          terminateTime,
+          {
+            headers: headers
+          }
+        )
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 }

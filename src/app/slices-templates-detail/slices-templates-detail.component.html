@@ -1,45 +1,68 @@
-<div class="title" *ngIf="name">
-  <h1 class="sectionTitle">TEMPLATES</h1>
-  <button (click)="deleteTemplate()">Delete template</button>
+<div class="title" *ngIf="detail['name']">
+    <h1 class="sectionTitle">TEMPLATES</h1>
+    <button *ngIf="detail.usageState!=='IN_USE'" (click)="deleteTemplate()">Delete template</button>
 </div>
-<div class="header" *ngIf="name">
-  <h2 class="subsectionTitle"> {{ name }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+<div class="header" *ngIf="detail['name']">
+    <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
+    <button class="close" (click)="close()">CLOSE</button>
 </div>
-<div class="subheader" *ngIf="author">
-  <h3 class="subtitle author">Created by {{ author }}</h3>
-  <h3 class="subtitle date">{{ createdAt }}</h3>
-</div>
-
-<div class="versionDiv" *ngIf="version">
-  <span class="text">Current version</span>
-  <div class="version">
-    <span>{{ version }}</span>
-  </div>
+<div class="subheader" *ngIf="detail['author']">
+    <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
+    <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
 </div>
 
-<!-- <form class="detail">
-    <mat-form-field class="vendor" *ngIf="vendor">
-        <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
+<div class="versionDiv" *ngIf="detail['version']">
+    <span class="text">Current version</span>
+    <div class="version">
+        <span>{{ detail['version'] }}</span>
+    </div>
+</div>
+
+<form class="detail">
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['uuid']">
+            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['vendor']">
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['usageState']">
+            <input matInput placeholder="Usage state" value="{{ detail['usageState'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['status']">
+            <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['onboardingState']">
+            <input matInput placeholder="Onboarding state" value="{{ detail['onboardingState'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['operationalState']">
+            <input matInput placeholder="Operational state" value="{{ detail['operationalState'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <mat-form-field *ngIf="detail['notificationType']">
+        <input matInput placeholder="Notification Types" value="{{ detail['notificationType'] }}" disabled>
     </mat-form-field>
-    <mat-form-field class="serviceId" *ngIf="serviceID">
-        <input matInput placeholder="Service id" value="{{ serviceID }}" disabled>
-    </mat-form-field>
-    <mat-form-field class="type" *ngIf="type">
-        <input matInput placeholder="Type" value="{{ type }}" disabled>
-    </mat-form-field>
-    <div class="launch" *ngIf="vendor || serviceID || type">
-        <button (click)="instanciate()">
+
+    <div class="launch" *ngIf="detail['uuid'] || detail['vendor'] || detail['name']  || detail['version']">
+        <button (click)="instantiate()">
             <i class="wui wui-caret-right"></i>
             <span class="play">Ready to use</span>
         </button>
     </div>
-    <div class="description" *ngIf="description">
-        <span class="title">DESCRIPTION</span>
-        <span class="content">
-            <p>{{ description }}</p>
-        </span>
-    </div>
-</form> -->
+
+    <mat-form-field *ngIf="detail['nstNsdIds']">
+        <div *ngFor="let item of detail['nstNsdIds']">
+            <input class="element" matInput placeholder="Network service descriptors" value="{{ item }}" disabled>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['userDefinedData']">
+        <input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled>
+    </mat-form-field>
+</form>
 
 <app-spinner *ngIf="loading"></app-spinner>

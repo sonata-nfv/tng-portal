@@ -97,7 +97,8 @@ table {
   //   Include scroll in table
   tbody {
     display: block;
-    max-height: 500px;
+    max-height: 70vh;
+    // max-height: 610px;
     overflow-y: overlay;
   }
   thead,
@@ -176,7 +177,7 @@ table {
     }
     .wui-stop-alt::before {
       font-size: 12px;
-      border-radius: 25%;
+      border-radius: 20%;
       color: $stop-color;
       background-color: $stop-color;
     }

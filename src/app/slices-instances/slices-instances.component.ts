@@ -1,45 +1,43 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
+import { Subscription } from "rxjs";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
-import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { Subscriber, Subscription } from "rxjs";
 
 @Component({
-  selector: "app-sla-templates",
-  templateUrl: "./sla-templates.component.html",
-  styleUrls: ["./sla-templates.component.scss"],
+  selector: "app-slices-instances",
+  templateUrl: "./slices-instances.component.html",
+  styleUrls: ["./slices-instances.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SlaTemplatesComponent implements OnInit, OnDestroy {
+export class SlicesInstancesComponent implements OnInit, OnDestroy {
   loading: boolean;
-  templates = new Array();
+  instances = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
+  displayedColumns = ["vendor", "name", "ID", "nstRef", "state", "stop"];
   subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
-    this.requestTemplates();
+    this.requestInstances();
 
     // Reloads the template list every when children are closed
     this.subscription = this.router.events.subscribe(event => {
       if (
         event instanceof NavigationEnd &&
-        event.url === "/service-platform/slas/sla-templates" &&
+        event.url === "/service-platform/slices/slices-instances" &&
         this.route.url["value"].length === 3 &&
-        this.route.url["value"][2].path === "sla-templates"
+        this.route.url["value"][2].path === "slices-instances"
       ) {
-        this.requestTemplates();
+        this.requestInstances();
       }
     });
   }
@@ -49,26 +47,26 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
   }
 
   searchFieldData(search) {
-    this.requestTemplates(search);
+    this.requestInstances(search);
   }
 
   /**
-   * Generates the HTTP request to get the list of SLA templates.
+   * Generates the HTTP request to get the list of Slice instances.
    *
-   * @param search [Optional] SLA template attributes that
+   * @param search [Optional] Slice instances attributes that
    *                          must be matched by the returned
-   *                          list of templates.
+   *                          list of instances.
    */
-  requestTemplates(search?) {
+  requestInstances(search?) {
     this.loading = true;
 
-    this.commonService
-      .getSLATemplates(search)
+    this.servicePlatformService
+      .getSlicesInstances(search)
       .then(response => {
         this.loading = false;
 
-        this.templates = response;
-        this.dataSource = new MatTableDataSource(this.templates);
+        this.instances = response;
+        this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
         this.loading = false;
@@ -83,31 +81,15 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
           this.dialogData.openDialog(title, content, action, () => {
             this.router.navigate(["/login"]);
           });
-        } else {
-          console.error("There was an error in the template creation");
         }
       });
   }
 
-  deleteTemplate(uuid) {
-    this.loading = true;
-
-    this.servicePlatformService
-      .deleteOneSLATemplate(uuid)
-      .then(response => {
-        this.requestTemplates();
-      })
-      .catch(err => {
-        this.loading = false;
-        // TODO display request status in toast
-      });
+  stopInstance(item) {
+    this.servicePlatformService.postOneSliceInstanceTermination(item.uuid);
   }
 
-  createNew() {
-    this.router.navigate(["new"], { relativeTo: this.route });
-  }
-
-  openTemplate(row) {
+  openInstance(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }

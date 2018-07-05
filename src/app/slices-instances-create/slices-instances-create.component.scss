@@ -1,0 +1,87 @@
+@import "../../constants.scss";
+app-slices-instances-create {
+  position: relative;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: auto;
+  min-height: 450px;
+  background-color: $basic-background-color;
+  color: $secondary-font-color;
+  .closeIcon {
+    right: -5px;
+    top: -10px;
+  }
+  .mat-dialog-title {
+    width: 100%;
+    margin: 0 20px;
+    text-align: center;
+    color: $primary-title-color;
+    font-size: 17px;
+  }
+  .mat-dialog-content {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 22px;
+    .form {
+      width: 60%;
+      .nstDetails {
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      .description {
+        display: flex;
+        flex-direction: column;
+        .title {
+          color: $secondary-title-color;
+        }
+        .content {
+          margin-top: 5px;
+          min-height: 100px;
+          background-color: $pannel-background-color;
+          border-top: 1px solid $border-line-color;
+          border-bottom: 1px solid $border-line-color;
+        }
+        .mat-form-field-underline {
+          display: none;
+        }
+      }
+    }
+  }
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  .buttonContainer {
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      height: 42px;
+      width: 180px;
+      font-size: 18px;
+      font-weight: bold;
+      &.secondary {
+        margin-right: 15px;
+        color: $button-font-color;
+        background-color: $button-close-color;
+      }
+      &.primary {
+        margin-left: 15px;
+        color: $button-font-color;
+        background-color: $primary-button-color;
+      }
+    }
+    button:disabled {
+      background-color: $button-disabled-color;
+    }
+  }
+}

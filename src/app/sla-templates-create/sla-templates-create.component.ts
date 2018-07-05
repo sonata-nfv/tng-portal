@@ -53,9 +53,12 @@ export class SlaTemplatesCreateComponent implements OnInit {
 
         // Save guarantees and NS data to display
         this.nsList = responses[0].map(x => x.serviceName);
-        this.guarantiesList = responses[1].map(
-          x => x.guaranteeID + " - " + x.name
-        );
+
+        // Filter by the only guarantee ids supported at the moment
+        this.guarantiesList = responses[1]
+          .filter(x => x.guaranteeID === "g1" || x.guaranteeID === "g2")
+          .map(x => x.guaranteeID + " - " + x.name);
+
         // Save complete data from guarantees and NS
         this.nss = responses[0];
         this.guaranties = responses[1];
@@ -109,17 +112,34 @@ export class SlaTemplatesCreateComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        // TODO change close to toast displaying error.
-        this.close();
+
+        // TODO add date error message checking to be sure this is the right message
+        if (err.statusText === "Bad Request") {
+          let title = "oh oh...";
+          let content =
+            "The expire date is not a future date. Please choose another.";
+
+          let action = "Accept";
+
+          this.dialogData.openDialog(title, content, action, () => {});
+        }
       });
   }
 
   addGuarantee(guarantee) {
     if (guarantee != null) {
       const id = guarantee.split(" - ")[0];
+
+      // Include the selected guarantee in the displayed list
       this.storedGuarantees.push(
         this.guaranties.find(x => x.guaranteeID === id)
       );
+
+      // Remove the selected guarantee from the guarantees list offered
+      this.guarantiesList = this.guarantiesList.filter(
+        x => x.split(" - ")[0] !== id
+      );
+
       this._onFormChanges();
 
       this.reset = true;
@@ -130,9 +150,13 @@ export class SlaTemplatesCreateComponent implements OnInit {
   }
 
   eraseEntry(item) {
+    // Remove item from the list of stored guarantees displayed
     this.storedGuarantees = this.storedGuarantees.filter(
       x => x.guaranteeID !== item.guaranteeID
     );
+
+    // Save item in the offered guarantees
+    this.guarantiesList.push(item.guaranteeID + " - " + item.name);
   }
 
   close() {

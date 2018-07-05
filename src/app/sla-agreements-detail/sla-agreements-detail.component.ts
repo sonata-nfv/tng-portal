@@ -21,8 +21,8 @@ export class SlaAgreementsDetailComponent implements OnInit {
   ns: string;
   customer: string;
   propertyList: Array<Object>;
-  availability: string;
-  cost: string;
+  // availability: string;
+  // cost: string;
 
   constructor(
     private router: Router,
@@ -58,8 +58,8 @@ export class SlaAgreementsDetailComponent implements OnInit {
         this.ns = response.ns;
         this.customer = response.customer;
         this.propertyList = response.propertyList;
-        this.availability = response.availability;
-        this.cost = response.cost;
+        // this.availability = response.availability;
+        // this.cost = response.cost;
       })
       .catch(err => {
         this.loading = false;

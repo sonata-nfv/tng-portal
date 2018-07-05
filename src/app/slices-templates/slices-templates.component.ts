@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { Subscription } from "rxjs";
+import { SlicesInstancesCreateComponent } from "../slices-instances-create/slices-instances-create.component";
 
 @Component({
   selector: "app-slices-templates",
@@ -15,27 +17,44 @@ export class SlicesTemplatesComponent implements OnInit {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "author", "usageState", "delete"];
+  displayedColumns = [
+    "status",
+    "vendor",
+    "name",
+    "version",
+    "author",
+    "usageState",
+    "instantiate",
+    "delete"
+  ];
+  subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.requestTemplates();
 
     // Reloads the template list every when children are closed
-    this.router.events.subscribe(event => {
+    this.subscription = this.router.events.subscribe(event => {
       if (
         event instanceof NavigationEnd &&
-        this.route.url["value"].length === 3
+        event.url === "/service-platform/slices/slices-templates" &&
+        this.route.url["value"].length === 3 &&
+        this.route.url["value"][2].path === "slices-templates"
       ) {
         this.requestTemplates();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchFieldData(search) {
@@ -75,6 +94,17 @@ export class SlicesTemplatesComponent implements OnInit {
           });
         }
       });
+  }
+
+  instantiate(nst) {
+    this.instantiateDialog.open(SlicesInstancesCreateComponent, {
+      data: {
+        nstId: nst.uuid,
+        vendor: nst.vendor,
+        name: nst.name,
+        version: nst.version
+      }
+    });
   }
 
   deleteTemplate(uuid) {
