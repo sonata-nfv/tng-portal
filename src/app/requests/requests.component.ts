@@ -16,9 +16,12 @@ export class RequestsComponent implements OnInit {
   requests = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = [
+    // "vendor",
+    // "name",
+    // "version",
+    "Created at",
     "Request ID",
     "Type",
-    "Created at",
     "Service ID",
     "Status"
   ];

@@ -43,10 +43,14 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
+          // console.log(response);
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
                 requestId: item.id,
+                // vendor:
+                // name:
+                // version:
                 type: item.request_type,
                 createdAt: item.created_at,
                 serviceId: item.uuid,
@@ -150,6 +154,7 @@ export class ServiceManagementService {
   }
 
   /**
+   * Network service instantiation
    *
    * @param service Information about the service about to be instantiated
    * @param ingress Ingress points of the instantiation
