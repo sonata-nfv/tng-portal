@@ -36,7 +36,7 @@
 <mat-dialog-actions>
   <div class="buttonContainer">
     <button class="secondary" mat-button mat-dialog-close>CANCEL</button>
-    <button class="primary" mat-button cdkFocusInitial [disabled]="!nst" (click)="instantiate()">INSTANTIATE</button>
+    <button class="primary" mat-button cdkFocusInitial [disabled]="!instantiationForm.valid" (click)="instantiate()">INSTANTIATE</button>
   </div>
 </mat-dialog-actions>
 

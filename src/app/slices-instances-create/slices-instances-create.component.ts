@@ -11,7 +11,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class SlicesInstancesCreateComponent implements OnInit {
   loading: boolean;
-  instance = {};
   instantiationForm: FormGroup;
 
   constructor(
@@ -21,11 +20,6 @@ export class SlicesInstancesCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.data);
-
-    // description: this.description,
-    // name: this.name
-
     this.instantiationForm = new FormGroup({
       nsiName: new FormControl(null, Validators.required),
       nsiDescription: new FormControl(null, Validators.required)
@@ -34,7 +28,22 @@ export class SlicesInstancesCreateComponent implements OnInit {
 
   instantiate() {
     this.loading = true;
-    this.servicePlatformService.postOneSliceInstance(this.instance);
+
+    const instance = {
+      nstId: this.data.nstId,
+      nsiName: this.instantiationForm.get("nsiName").value,
+      nsiDescription: this.instantiationForm.get("nsiDescription").value
+    };
+
+    this.servicePlatformService
+      .postOneSliceInstance(instance)
+      .then(response => {
+        this.loading = false;
+      })
+      .catch(err => {
+        this.loading = false;
+        this.close();
+      });
     // set loading to false when response received
     this.close();
   }
