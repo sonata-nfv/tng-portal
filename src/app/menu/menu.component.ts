@@ -48,9 +48,10 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "users") {
       this.router.navigate(["/users"]);
     } else if (buttonId === "validation") {
+      this.section = "vv-packages";
       this.router.navigate(["/validation"]);
     } else if (buttonId === "service-platform") {
-      this.section = "packages";
+      this.section = "sp-packages";
       this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "service-management") {
       this.section = "sm-network-services";
@@ -60,19 +61,21 @@ export class MenuComponent implements OnInit {
   }
 
   setSection(e, buttonId) {
-    if (buttonId === "packages") {
+    if (buttonId === "vv-packages") {
+      // this.router.navigate(["validation/packages"]);
+    } else if (buttonId === "sp-packages") {
       this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "sp-network-services") {
       this.router.navigate(["service-platform/sp-network-services"]);
-    } else if (buttonId === "functions") {
+    } else if (buttonId === "sp-functions") {
       this.router.navigate(["service-platform/functions"]);
-    } else if (buttonId === "policies") {
+    } else if (buttonId === "sp-policies") {
       this.subsection = "placement-policy";
       this.router.navigate(["service-platform/policies/placement-policy"]);
-    } else if (buttonId === "slas") {
+    } else if (buttonId === "sp-slas") {
       this.subsection = "sla-templates";
       this.router.navigate(["service-platform/slas/sla-templates"]);
-    } else if (buttonId === "slices") {
+    } else if (buttonId === "sp-slices") {
       this.subsection = "slices-templates";
       this.router.navigate(["service-platform/slices/slices-templates"]);
     } else if (buttonId === "sm-network-services") {
