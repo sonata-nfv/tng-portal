@@ -33,24 +33,29 @@
   </mat-sidenav-content>
 
   <mat-sidenav class="menu-options" position="end" #sidenav mode="side">
-    <div class="options" *ngIf="menu === 'validation'"></div>
+    <div class="options" *ngIf="menu === 'validation'">
+      <button [ngClass]="{ active: section === 'vv-packages' }" (click)="setSection($event, 'vv-packages')">Packages</button>
+      <button [ngClass]="{ active: section === 'vv-network-services' }" (click)="setSection($event, 'vv-network-services')">Network Services</button>
+      <button [ngClass]="{ active: section === 'vv-functions' }" (click)="setSection($event, 'vv-functions')">Functions</button>
+      <button [ngClass]="{ active: section === 'vv-tests' }" (click)="setSection($event, 'vv-tests')">Tests</button>
+    </div>
     <div class="options" *ngIf="menu === 'service-platform'">
-      <button [ngClass]="{ active: section === 'packages' }" (click)="setSection($event, 'packages')">Packages</button>
+      <button [ngClass]="{ active: section === 'sp-packages' }" (click)="setSection($event, 'sp-packages')">Packages</button>
       <button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')">Network Services</button>
-      <button [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')">Functions</button>
-      <button [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')">Policies</button>
-      <div class="section" *ngIf="section === 'policies'">
+      <button [ngClass]="{ active: section === 'sp-functions' }" (click)="setSection($event, 'sp-functions')">Functions</button>
+      <button [ngClass]="{ active: section === 'sp-policies' }" (click)="setSection($event, 'sp-policies')">Policies</button>
+      <div class="section" *ngIf="section === 'sp-policies'">
         <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement Policy</button>
         <button [ngClass]="{ active: subsection === 'runtime-policy' }" (click)="setSubsection($event, 'runtime-policy')">Runtime Policies</button>
       </div>
-      <button [ngClass]="{ active: section === 'slas' }" (click)="setSection($event, 'slas')">SLA</button>
-      <div class="section" *ngIf="section === 'slas'">
+      <button [ngClass]="{ active: section === 'sp-slas' }" (click)="setSection($event, 'sp-slas')">SLA</button>
+      <div class="section" *ngIf="section === 'sp-slas'">
         <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">Agreements</button>
       </div>
-      <button [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')">Slices</button>
+      <button [ngClass]="{ active: section === 'sp-slices' }" (click)="setSection($event, 'sp-slices')">Slices</button>
 
-      <div class="section" *ngIf="section === 'slices'">
+      <div class="section" *ngIf="section === 'sp-slices'">
         <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
       </div>

@@ -50,7 +50,7 @@ These are the sections that can be activated:
   features_available:  [
     "DASHBOARD",
     "USERS",
-    "V&V",
+    "VALIDATION",
     "SERVICE PLATFORM",
     "SERVICE MANAGEMENT"
   ]

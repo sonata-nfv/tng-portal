@@ -22,6 +22,7 @@ export class NsInstantiateDialogComponent implements OnInit {
   egress = new Array();
   locations = new Array();
   slas = new Array();
+  slasWithUUID = new Array();
 
   constructor(
     private commonService: CommonService,
@@ -59,6 +60,10 @@ export class NsInstantiateDialogComponent implements OnInit {
         this.slas = response
           .filter(x => x.nsUUID === this.data.serviceUUID)
           .map(x => x.name);
+
+        this.slasWithUUID = response.filter(
+          x => x.nsUUID === this.data.serviceUUID
+        );
       })
       .catch(err => {
         this.loading = false;
@@ -113,7 +118,9 @@ export class NsInstantiateDialogComponent implements OnInit {
       serviceUUID,
       this.ingress,
       this.egress,
-      this.instantiationForm.controls.sla.value
+      this.slasWithUUID
+        .filter(x => x.name === this.instantiationForm.controls.sla.value)
+        .map(x => x.uuid)[0]
     );
     this.close();
   }

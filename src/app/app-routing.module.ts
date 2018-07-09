@@ -100,7 +100,10 @@ const routes: Routes = [
         path: "service-platform/slas/sla-agreements",
         component: SlaAgreementsComponent,
         children: [
-          { path: "detail/:id", component: SlaAgreementsDetailComponent }
+          {
+            path: "detail/:id_sla/:id_ns",
+            component: SlaAgreementsDetailComponent
+          }
         ]
       },
       {

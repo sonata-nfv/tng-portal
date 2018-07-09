@@ -20,6 +20,7 @@ export class SlaAgreementsDetailComponent implements OnInit {
   date: string;
   ns: string;
   customer: string;
+  status: string;
   propertyList: Array<Object>;
   // availability: string;
   // cost: string;
@@ -33,8 +34,9 @@ export class SlaAgreementsDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let uuid = params["id"];
-      this.requestSLAAgreement(uuid);
+      let sla_uuid = params["id_sla"];
+      let ns_uuid = params["id_ns"];
+      this.requestSLAAgreement(sla_uuid, ns_uuid);
     });
   }
 
@@ -44,11 +46,11 @@ export class SlaAgreementsDetailComponent implements OnInit {
    * @param uuid ID of the selected agreement to be displayed.
    *             Comming from the route.
    */
-  requestSLAAgreement(uuid) {
+  requestSLAAgreement(sla_uuid, ns_uuid) {
     this.loading = true;
 
     this.servicePlatformService
-      .getOneSLAAgreement(uuid)
+      .getOneSLAAgreement(sla_uuid, ns_uuid)
       .then(response => {
         this.loading = false;
 
@@ -57,6 +59,7 @@ export class SlaAgreementsDetailComponent implements OnInit {
         this.date = response.date;
         this.ns = response.ns;
         this.customer = response.customer;
+        this.status = response.status;
         this.propertyList = response.propertyList;
         // this.availability = response.availability;
         // this.cost = response.cost;

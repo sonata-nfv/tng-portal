@@ -7,9 +7,9 @@
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
-<form class="detail">
+<form>
   <div class="sameRow">
-    <mat-form-field *ngIf="detail['uuid']">
+    <mat-form-field class="longField" *ngIf="detail['uuid']">
       <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled>
     </mat-form-field>
     <mat-form-field *ngIf="detail['vendor']">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="sameRow">
-    <mat-form-field *ngIf="detail['netServInstanceUUID']">
+    <mat-form-field class="longField" *ngIf="detail['netServInstanceUUID']">
       <div *ngFor="let item of detail['netServInstanceUUID']">
         <input class="element" matInput placeholder="Network service instances ID" value="{{ item }}" disabled>
       </div>
