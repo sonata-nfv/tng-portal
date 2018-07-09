@@ -15,7 +15,6 @@ app-slices-instances-detail {
     flex: 0 0 auto;
   }
   .title {
-    display: flex;
     flex-direction: row;
     width: 95%;
     min-height: 30px;
@@ -30,12 +29,18 @@ app-slices-instances-detail {
     }
   }
   form {
+    flex: 1 0;
+    justify-content: center;
     width: 60%;
-    align-items: flex-start;
     margin-bottom: 20px;
     .mat-form-field {
-      width: 100%;
-      margin-left: 25px;
+      margin-left: 10px;
+      .mat-input-element:disabled {
+        text-overflow: ellipsis;
+      }
+      &.longField {
+        width: 70%;
+      }
       .element {
         margin-bottom: 5px;
       }
