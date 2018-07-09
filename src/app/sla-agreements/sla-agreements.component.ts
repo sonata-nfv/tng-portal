@@ -15,7 +15,7 @@ export class SlaAgreementsComponent implements OnInit {
   loading: boolean;
   agreements = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ns", "customer", "date"];
+  displayedColumns = ["name", "status", "ns", "customer", "date"];
 
   constructor(
     private router: Router,

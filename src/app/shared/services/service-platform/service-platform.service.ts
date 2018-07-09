@@ -366,6 +366,7 @@ export class ServicePlatformService {
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
               response["slad"]["sla_template"]["customer_info"]["cust_email"],
+            status: response["status"],
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],

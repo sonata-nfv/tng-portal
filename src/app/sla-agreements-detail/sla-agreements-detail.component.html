@@ -21,12 +21,18 @@
     <input matInput placeholder="Customer" value="{{ customer }}" disabled>
   </mat-form-field>
 
+  <mat-form-field class="status" *ngIf="status">
+    <input matInput placeholder="Status" value="{{ status }}" disabled>
+  </mat-form-field>
+
   <div class="details" *ngIf="propertyList">
     <table>
       <tr *ngFor="let entry of propertyList">
         <td>{{ entry.name }}</td>
         <td class="dash"> - </td>
         <td>{{ entry.operator }}</td>
+        <td class="dash"> - </td>
+        <td>{{ entry.serviceLevelObjetive.serviceLevel }}</td>
       </tr>
     </table>
 

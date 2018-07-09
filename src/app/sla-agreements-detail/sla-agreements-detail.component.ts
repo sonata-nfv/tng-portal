@@ -20,6 +20,7 @@ export class SlaAgreementsDetailComponent implements OnInit {
   date: string;
   ns: string;
   customer: string;
+  status: string;
   propertyList: Array<Object>;
   // availability: string;
   // cost: string;
@@ -58,6 +59,7 @@ export class SlaAgreementsDetailComponent implements OnInit {
         this.date = response.date;
         this.ns = response.ns;
         this.customer = response.customer;
+        this.status = response.status;
         this.propertyList = response.propertyList;
         // this.availability = response.availability;
         // this.cost = response.cost;
