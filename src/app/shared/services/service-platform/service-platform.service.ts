@@ -319,6 +319,7 @@ export class ServicePlatformService {
                 uuid: item.sla_uuid,
                 name: item.sla_name,
                 ns: item.ns_name,
+                ns_uuid: item.ns_uuid, //----
                 customer: item.cust_email,
                 date: new Date(Date.parse(item.sla_date))
                   .toISOString()
@@ -340,13 +341,21 @@ export class ServicePlatformService {
    *
    * @param uuid UUID of the desired SLA Agreement.
    */
-  getOneSLAAgreement(uuid): any {
+  getOneSLAAgreement(sla_uuid: string, ns_uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.slaAgreements + "/" + uuid, {
-          headers: headers
-        })
+        .get(
+          this.config.base +
+            this.config.slaAgreements +
+            "/" +
+            sla_uuid +
+            "/" +
+            ns_uuid,
+          {
+            headers: headers
+          }
+        )
         .toPromise()
         .then(response => {
           resolve({
@@ -355,14 +364,15 @@ export class ServicePlatformService {
             author: response["slad"]["author"],
             date: response["updated_at"],
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
-            customer: response["customer"],
+            customer:
+              response["slad"]["sla_template"]["customer_info"]["cust_email"],
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],
             // cost: response["cost"]
           });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject(err));
     });
   }
 
