@@ -53,7 +53,7 @@ export class ServiceManagementService {
                 // version:
                 type: item.request_type,
                 createdAt: item.created_at,
-                serviceId: item.uuid,
+                serviceId: item.service_uuid,
                 status: item.status
               }))
             );
