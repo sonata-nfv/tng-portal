@@ -7,6 +7,13 @@
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
+<div class="versionDiv" *ngIf="detail['version']">
+  <span class="text">Current version</span>
+  <div class="version">
+    <span>{{ detail['version'] }}</span>
+  </div>
+</div>
+
 <form>
   <div class="sameRow">
     <mat-form-field class="longField" *ngIf="detail['uuid']">
