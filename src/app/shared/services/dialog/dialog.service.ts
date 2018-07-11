@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material";
 
-import { DialogComponent } from "./../../../dialog/dialog.component";
+import { DialogComponent } from "../../../dialog/dialog.component";
 
 @Injectable()
 export class DialogDataService {

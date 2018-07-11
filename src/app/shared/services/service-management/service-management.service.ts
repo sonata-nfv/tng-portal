@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { ConfigService } from ".././config/config.service";
-import { AuthService } from ".././auth/auth.service";
-import { CommonService } from ".././common/common.service";
+import { ConfigService } from "../config/config.service";
+import { AuthService } from "../auth/auth.service";
+import { CommonService } from "../common/common.service";
 
 import {
   HttpClient,

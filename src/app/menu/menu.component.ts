@@ -47,9 +47,9 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["/dashboard"]);
     } else if (buttonId === "users") {
       this.router.navigate(["/users"]);
-    } else if (buttonId === "validation") {
-      this.section = "vv-packages";
-      this.router.navigate(["/validation"]);
+    } else if (buttonId === "validation-and-verification") {
+      this.section = "vv-tests";
+      this.router.navigate(["/validation-and-verification"]);
     } else if (buttonId === "service-platform") {
       this.section = "sp-packages";
       this.router.navigate(["service-platform/packages"]);
@@ -62,7 +62,13 @@ export class MenuComponent implements OnInit {
 
   setSection(e, buttonId) {
     if (buttonId === "vv-packages") {
-      // this.router.navigate(["validation/packages"]);
+      // this.router.navigate(["validation-and-verification/packages"]);
+    } else if (buttonId === "vv-services") {
+      // this.router.navigate(["validation-and-verification/packages"]);
+    } else if (buttonId === "vv-functions") {
+      // this.router.navigate(["validation-and-verification/packages"]);
+    } else if (buttonId === "vv-tests") {
+      this.router.navigate(["validation-and-verification/tests"]);
     } else if (buttonId === "sp-packages") {
       this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "sp-network-services") {
@@ -121,7 +127,7 @@ export class MenuComponent implements OnInit {
       this.menu = url[1];
 
       if (
-        url[1] === "validation" ||
+        url[1] === "validation-and-verification" ||
         url[1] === "service-platform" ||
         url[1] === "service-management"
       ) {

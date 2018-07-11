@@ -15,7 +15,7 @@ export class ConfigService {
   guarantees: string = "slas/configurations/guaranteesList";
   functions: string = "functions";
   slicesTemplates: string = "slices";
-  slicesInstances: string = "slices";
+  slicesInstances: string = "slice-instances";
 
   constructor() {}
 

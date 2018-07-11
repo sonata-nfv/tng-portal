@@ -23,7 +23,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 
 import { UsersComponent } from "./users/users.component";
 
-import { ValidationComponent } from "./validation/validation.component";
+import { TestsComponent } from "./tests/tests.component";
 
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
@@ -82,7 +82,7 @@ export function initConfiguration(configService: ConfigService): Function {
     IndexComponent,
     DashboardComponent,
     UsersComponent,
-    ValidationComponent,
+    TestsComponent,
     PackagesComponent,
     PackagesDetailComponent,
     SpNetworkServicesComponent,
