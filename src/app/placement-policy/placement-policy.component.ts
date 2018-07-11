@@ -11,7 +11,6 @@ import { CommonService } from "../shared/services/common/common.service";
   encapsulation: ViewEncapsulation.None
 })
 export class PlacementPolicyComponent implements OnInit {
-  loading: boolean;
   placementPolicyForm: FormGroup;
   prioritiseForm: FormGroup;
   error: boolean;
@@ -52,19 +51,10 @@ export class PlacementPolicyComponent implements OnInit {
     this.prioritise = values.placementPolicy === "Prioritise" ? true : false;
 
     if (this.prioritise && !this.requested) {
-      this.loading = true;
-      setTimeout(() => {
-        this.commonService
-          .requestVims()
-          .then(response => {
-            this.loading = false;
-            this.datacenters = response;
-            this.requested = true;
-          })
-          .catch(err => {
-            this.loading = false;
-          });
-      }, 1000);
+      this.requested = true;
+
+      // TODO request to 5GTANGO endpoint the actual vim_cities
+      this.datacenters = this.commonService.requestVims();
     }
   }
 

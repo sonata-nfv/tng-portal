@@ -10,7 +10,5 @@ import { CommonService } from "../shared/services/common/common.service";
 export class IndexComponent implements OnInit {
   constructor(private commonService: CommonService) {}
 
-  ngOnInit() {
-    this.commonService.getVimsRequestUUID();
-  }
+  ngOnInit() {}
 }

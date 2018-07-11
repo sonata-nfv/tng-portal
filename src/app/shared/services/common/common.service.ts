@@ -89,8 +89,6 @@ export class CommonService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            this.getVimsRequestUUID();
-
             resolve(
               response.map(item => ({
                 serviceName: item.nsd.name,
@@ -148,56 +146,9 @@ export class CommonService {
   }
 
   /**
-   * Initiates the server side process to recover existing vims
-   *
-   * @param request_uuid Identifier to request the vims later
-   */
-  getVimsRequestUUID(): any {
-    let headers = this.authService.getAuthHeaders();
-    this.http
-      .get("https://sp.int3.sonata-nfv.eu/api/v2/vims", {
-        headers: headers
-      })
-      .subscribe(
-        response => {
-          if (response instanceof Object) {
-            this.request_uuid = response["items"]["request_uuid"];
-          }
-        },
-        (error: HttpErrorResponse) => {}
-      );
-  }
-
-  /**
    * Retrieves the existing vims represented by the city name
    */
   requestVims(): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      if (this.request_uuid === undefined) {
-        resolve(["None"]);
-      }
-      this.http
-        .get("https://sp.int3.sonata-nfv.eu/api/v2/vims/" + this.request_uuid, {
-          headers: headers
-        })
-        .subscribe(
-          response => {
-            if (response instanceof Array) {
-              let datacenters = response.map(a => a.vim_city);
-              if (datacenters.length == 0) {
-                resolve(["None"]);
-              } else {
-                resolve(datacenters);
-              }
-            } else {
-              throw new Error("Response is not an array of Objects");
-            }
-          },
-          (error: HttpErrorResponse) => {
-            reject(error.statusText);
-          }
-        );
-    });
+    return ["Athens", "Aveiro", "Barcelona", "Paderborn"];
   }
 }
