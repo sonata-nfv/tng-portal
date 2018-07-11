@@ -490,47 +490,37 @@ export class ServicePlatformService {
    */
   getSlicesInstances(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.slicesInstances + search
-      //     : this.config.base + this.config.slicesInstances;
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slicesInstances + search
+          : this.config.base + this.config.slicesInstances;
 
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => {
-      //           return {
-      //             uuid: item.id,
-      //             name: item.name,
-      //             vendor: item.vendor,
-      //             nstRef: item.nstd.nstRef,
-      //             state: item.nsiState
-      //           };
-      //         })
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve([
-          {
-            uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
-            name: "Rubik_name",
-            vendor: "5gTango",
-            nstRef: "item.nstRef",
-            state: "INSTANTIATED"
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.name,
+                  vendor: item.vendor,
+                  version: item.version,
+                  state: item.nsiState
+                };
+              })
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
     });
   }
 

@@ -16,7 +16,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
   loading: boolean;
   instances = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["vendor", "name", "ID", "nstRef", "state", "stop"];
+  displayedColumns = ["vendor", "name", "version", "ID", "state", "stop"];
   subscription: Subscription;
 
   constructor(
