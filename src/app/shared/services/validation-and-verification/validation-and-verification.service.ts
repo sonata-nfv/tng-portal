@@ -80,6 +80,12 @@ export class ValidationAndVerificationPlatformService {
       //         name: response["name"],
       //         vendor: response["vendor"],
       //         version: response["version"]
+      // timesExecuted:
+      // author:
+      // createdAt:
+      // status:
+      // lastTimeExecuted:
+      // services:
       //       });
       //     })
       //     .catch(err => reject(err.statusText));

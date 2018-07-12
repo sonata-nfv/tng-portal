@@ -507,9 +507,9 @@ export class ServicePlatformService {
               response.map(item => {
                 return {
                   uuid: item.uuid,
-                  name: item.name,
-                  vendor: item.vendor,
-                  version: item.version,
+                  name: item.nstName,
+                  vendor: item.nstVendor,
+                  version: item.nstVersion,
                   state: item.nsiState
                 };
               })
@@ -541,13 +541,13 @@ export class ServicePlatformService {
         .then(response => {
           resolve({
             uuid: response["uuid"],
-            name: response["name"],
-            vendor: response["vendor"],
+            name: response["nstName"],
+            vendor: response["nstVendor"],
             state: response["nsiState"],
             description: response["description"],
             netServInstanceUUID: response["netServInstance_Uuid"],
             nstName: response["nstName"],
-            version: response["version"]
+            version: response["nstVersion"]
           });
         })
         .catch(err => reject(err.statusText));
