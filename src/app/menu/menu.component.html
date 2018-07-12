@@ -16,7 +16,8 @@
         <i class="wui wui-user-group-alt"></i>
         <span>USERS</span>
       </button>
-      <button [ngClass]="{ active: menu === 'validation' }" (click)="setMenu($event, 'validation')" ifFeatureAvailable="validation">
+      <button [ngClass]="{ active: menu === 'validation-and-verification' }" (click)="setMenu($event, 'validation-and-verification')"
+        ifFeatureAvailable="validation">
         <i class="wui wui-check-circle-alt"></i>
         <span>V&V</span>
       </button>
@@ -33,7 +34,7 @@
   </mat-sidenav-content>
 
   <mat-sidenav class="menu-options" position="end" #sidenav mode="side">
-    <div class="options" *ngIf="menu === 'validation'">
+    <div class="options" *ngIf="menu === 'validation-and-verification'">
       <button [ngClass]="{ active: section === 'vv-packages' }" (click)="setSection($event, 'vv-packages')">Packages</button>
       <button [ngClass]="{ active: section === 'vv-network-services' }" (click)="setSection($event, 'vv-network-services')">Network Services</button>
       <button [ngClass]="{ active: section === 'vv-functions' }" (click)="setSection($event, 'vv-functions')">Functions</button>

@@ -40,17 +40,8 @@ export class NsInstantiateDialogComponent implements OnInit {
       sla: new FormControl()
     });
 
-    setTimeout(() => {
-      this.commonService
-        .requestVims()
-        .then(response => {
-          this.loading = false;
-          this.locations = response;
-        })
-        .catch(err => {
-          this.loading = false;
-        });
-    }, 1000);
+    // TODO request to 5GTANGO endpoint the actual vim_cities
+    this.locations = this.commonService.requestVims();
 
     this.commonService
       .getSLATemplates()

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ConfigService } from ".././config/config.service";
-import { AuthService } from ".././auth/auth.service";
+import { ConfigService } from "../config/config.service";
+import { AuthService } from "../auth/auth.service";
 
 import {
   HttpClient,
@@ -490,47 +490,37 @@ export class ServicePlatformService {
    */
   getSlicesInstances(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.slicesInstances + search
-      //     : this.config.base + this.config.slicesInstances;
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slicesInstances + search
+          : this.config.base + this.config.slicesInstances;
 
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => {
-      //           return {
-      //             uuid: item.id,
-      //             name: item.name,
-      //             vendor: item.vendor,
-      //             nstRef: item.nstd.nstRef,
-      //             state: item.nsiState
-      //           };
-      //         })
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve([
-          {
-            uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
-            name: "Rubik_name",
-            vendor: "5gTango",
-            nstRef: "item.nstRef",
-            state: "INSTANTIATED"
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.nstName,
+                  vendor: item.nstVendor,
+                  version: item.nstVersion,
+                  state: item.nsiState
+                };
+              })
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
     });
   }
 
@@ -541,39 +531,26 @@ export class ServicePlatformService {
    */
   getOneSliceInstance(uuid): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
+      let headers = this.authService.getAuthHeaders();
 
-      // this.http
-      //   .get(this.config.base + this.config.slicesInstances + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["name"],
-      //       vendor: response["vendor"],
-      //       state: response["nsiState"],
-      //       description: response["description"],
-      //       netServInstanceUUID: response["netServInstance_Uuid"]
-      //       nstName: response["nstName"]
-
-      //     });
-      //   })
-      //   .catch(err => reject(err.statusText));
-
-      setTimeout(() => {
-        resolve({
-          uuid: "deb3a1fc-2493-4d76-a65d-9ac129a213fb",
-          name: "Rubik_name",
-          vendor: "5gTango",
-          state: "INSTANTIATED",
-          description: "Rubik_descriptor",
-          netServInstanceUUID: ["dc8fafaf-6fab-4b4c-a6c7-a1fb5d4c2ce8"],
-
-          nstName: "nstName"
-        });
-      }, 1000);
+      this.http
+        .get(this.config.base + this.config.slicesInstances + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["nstName"],
+            vendor: response["nstVendor"],
+            state: response["nsiState"],
+            description: response["description"],
+            netServInstanceUUID: response["netServInstance_Uuid"],
+            nstName: response["nstName"],
+            version: response["nstVersion"]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

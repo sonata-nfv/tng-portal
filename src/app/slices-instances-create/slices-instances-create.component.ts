@@ -31,8 +31,8 @@ export class SlicesInstancesCreateComponent implements OnInit {
 
     const instance = {
       nstId: this.data.nstId,
-      nsiName: this.instantiationForm.get("nsiName").value,
-      nsiDescription: this.instantiationForm.get("nsiDescription").value
+      name: this.instantiationForm.get("nsiName").value,
+      description: this.instantiationForm.get("nsiDescription").value
     };
 
     this.servicePlatformService

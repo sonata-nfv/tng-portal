@@ -23,7 +23,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 
 import { UsersComponent } from "./users/users.component";
 
-import { ValidationComponent } from "./validation/validation.component";
+import { TestsComponent } from "./tests/tests.component";
+import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
 
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
@@ -59,6 +60,7 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
 import { AuthService } from "./shared/services/auth/auth.service";
 import { ConfigService } from "./shared/services/config/config.service";
 import { CommonService } from "./shared/services/common/common.service";
+import { ValidationAndVerificationPlatformService } from "./shared/services/validation-and-verification/validation-and-verification.service";
 import { ServiceManagementService } from "./shared/services/service-management/service-management.service";
 import { DataTransferService } from "./shared/services/service-management/dataTransfer.service";
 import { ServicePlatformService } from "./shared/services/service-platform/service-platform.service";
@@ -82,7 +84,8 @@ export function initConfiguration(configService: ConfigService): Function {
     IndexComponent,
     DashboardComponent,
     UsersComponent,
-    ValidationComponent,
+    TestsComponent,
+    TestsDetailComponent,
     PackagesComponent,
     PackagesDetailComponent,
     SpNetworkServicesComponent,
@@ -131,6 +134,7 @@ export function initConfiguration(configService: ConfigService): Function {
     AuthService,
     ConfigService,
     CommonService,
+    ValidationAndVerificationPlatformService,
     ServiceManagementService,
     DataTransferService,
     ServicePlatformService,
