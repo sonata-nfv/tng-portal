@@ -18,6 +18,7 @@ export class ConfigService {
   slicesInstances: string = "slice-instances";
 
   tests: string = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/tests";
+  testsDetail: string = "";
 
   constructor() {}
 

@@ -10,6 +10,7 @@ import { RegisteredComponent } from "./registered/registered.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { UsersComponent } from "./users/users.component";
 import { TestsComponent } from "./tests/tests.component";
+import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
 import { PackagesComponent } from "./packages/packages.component";
 import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
@@ -62,10 +63,8 @@ const routes: Routes = [
       },
       {
         path: "validation-and-verification/tests",
-        component: TestsComponent
-        // children: [
-        //   { path: "detail/:id", component: TestsDetailComponent }
-        // ]
+        component: TestsComponent,
+        children: [{ path: "detail/:id", component: TestsDetailComponent }]
       },
 
       // Service Platform section

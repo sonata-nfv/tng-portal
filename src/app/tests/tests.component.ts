@@ -47,11 +47,12 @@ export class TestsComponent implements OnInit {
         this.loading = false;
         this.tests = response;
         this.dataSource = new MatTableDataSource(this.tests);
-      });
+      })
+      .catch(err => console.error(err));
   }
 
-  // openTemplate(row) {
-  //   let uuid = row.uuid;
-  //   this.router.navigate(["detail/", uuid], { relativeTo: this.route });
-  // }
+  openTest(row) {
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }
