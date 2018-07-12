@@ -40,24 +40,21 @@ export class ValidationAndVerificationPlatformService {
         })
         .toPromise()
         .then(response => {
-          console.log(response);
-          resolve(response);
-
-          // if (response instanceof Array) {
-          //   resolve(
-          //     response.map(item => {
-          //       return {
-          //         uuid: item.uuid,
-          //         name: item.pd.name,
-          //         vendor: item.pd.vendor,
-          //         version: item.pd.version,
-          //         status: item.pd.version
-          //       };
-          //     })
-          //   );
-          // } else {
-          //   reject();
-          // }
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.testd.name,
+                  vendor: item.testd.vendor,
+                  version: item.testd.version,
+                  status: item.status
+                };
+              })
+            );
+          } else {
+            reject();
+          }
         })
         .catch(err => reject(err.statusText));
     });
