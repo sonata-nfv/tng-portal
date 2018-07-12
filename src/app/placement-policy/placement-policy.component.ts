@@ -11,6 +11,7 @@ import { CommonService } from "../shared/services/common/common.service";
   encapsulation: ViewEncapsulation.None
 })
 export class PlacementPolicyComponent implements OnInit {
+  loading: boolean = false;
   placementPolicyForm: FormGroup;
   prioritiseForm: FormGroup;
   error: boolean;
