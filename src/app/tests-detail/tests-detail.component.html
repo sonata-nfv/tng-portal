@@ -28,7 +28,6 @@
   </div>
 </div>
 
-
 <form class="detail">
   <mat-form-field class="vendor" *ngIf="detail['vendor']">
     <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
@@ -39,6 +38,13 @@
   <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
     <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}" disabled>
   </mat-form-field>
+
+  <div class="description" *ngIf="detail['description']">
+    <span class="title">DESCRIPTION</span>
+    <span class="content">
+      <p>{{ detail['description'] }}</p>
+    </span>
+  </div>
 
   <div class="description" *ngIf="detail['services']">
     <span class="title">AGAINST WHICH SERVICES</span>
