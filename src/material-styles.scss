@@ -106,12 +106,16 @@ table {
     display: table;
     width: 100%;
     table-layout: fixed;
+    // cursor: pointer;
   }
 
   //   Center cells
   th.mat-header-cell,
   td.mat-cell {
     text-align: center;
+  }
+  td.mat-cell {
+    cursor: pointer;
   }
   td.mat-cell:first-child,
   td.mat-footer-cell:first-child,
