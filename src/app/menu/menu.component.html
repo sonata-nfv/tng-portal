@@ -16,6 +16,10 @@
         <i class="wui wui-user-group-alt"></i>
         <span>USERS</span>
       </button>
+      <button [ngClass]="{ active: menu === 'configuration' }" (click)="setMenu($event, 'configuration')" ifFeatureAvailable="configuration">
+        <i class="wui wui-gear-alt"></i>
+        <span>CONFIGURATION</span>
+      </button>
       <button [ngClass]="{ active: menu === 'validation-and-verification' }" (click)="setMenu($event, 'validation-and-verification')"
         ifFeatureAvailable="validation">
         <i class="wui wui-check-circle-alt"></i>
@@ -60,9 +64,6 @@
         <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
       </div>
-
-
-
     </div>
 
     <div class="options" *ngIf="menu === 'service-management'">

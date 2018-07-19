@@ -37,7 +37,11 @@ export class MenuComponent implements OnInit {
   }
 
   setMenu(e, buttonId) {
-    if (buttonId === "dashboard" || buttonId === "users") {
+    if (
+      buttonId === "dashboard" ||
+      buttonId === "users" ||
+      buttonId === "configuration"
+    ) {
       this.sideNav.close();
     } else {
       this.sideNav.open();
@@ -47,6 +51,8 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["/dashboard"]);
     } else if (buttonId === "users") {
       this.router.navigate(["/users"]);
+    } else if (buttonId === "configuration") {
+      // this.router.navigate(["/configuration"]);
     } else if (buttonId === "validation-and-verification") {
       this.section = "vv-tests";
       this.router.navigate(["/validation-and-verification"]);
