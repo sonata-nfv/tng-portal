@@ -17,7 +17,7 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
+  displayedColumns = ["name", "ID", "ns", "status", "expirationDate", "delete"];
   subscription: Subscription;
 
   constructor(

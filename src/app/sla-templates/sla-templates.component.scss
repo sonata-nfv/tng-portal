@@ -50,19 +50,12 @@ app-sla-templates {
   tr.mat-row {
     background-image: linear-gradient(
       to right,
-      $basic-background-color 4%,
-      $underline-color 4%,
+      $basic-background-color 1%,
+      $underline-color 1%,
       $underline-color 95%,
       $basic-background-color 95%,
       $basic-background-color 100%
     );
-  }
-
-  .mat-cell:nth-child(1),
-  .mat-header-cell:nth-child(1) {
-    padding-bottom: 8px;
-    width: 40px;
-    font-size: 8px;
   }
   .mat-cell:nth-child(6),
   .mat-header-cell:nth-child(6) {
