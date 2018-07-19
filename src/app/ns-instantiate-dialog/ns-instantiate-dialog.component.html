@@ -95,7 +95,7 @@
 <mat-dialog-actions *ngIf="continue">
   <div class="buttonContainer">
     <button class="cancel" mat-button mat-dialog-close>REJECT</button>
-    <button class="next" mat-button cdkFocusInitial [disabled]="!instantiationForm.controls.sla.value" (click)="instantiate(data.serviceUUID)">INSTANTIATE</button>
+    <button class="next" mat-button cdkFocusInitial (click)="instantiate(data.serviceUUID)">INSTANTIATE</button>
   </div>
 </mat-dialog-actions>
 
