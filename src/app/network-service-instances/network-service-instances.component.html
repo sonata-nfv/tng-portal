@@ -29,7 +29,7 @@
         <th mat-header-cell *matHeaderCellDef> Latest version </th>
         <td mat-cell *matCellDef="let element"> {{ element.latestVersion }} </td>
     </ng-container>
-    <ng-container matColumnDef="reload">
+    <!-- <ng-container matColumnDef="reload">
         <th mat-header-cell *matHeaderCellDef>
         </th>
         <td mat-cell *matCellDef="let element" (click)="reloadInstance(element)" (click)="$event.stopPropagation()">
@@ -37,7 +37,7 @@
                 <i class="wui wui-undo"></i>
             </button>
         </td>
-    </ng-container>
+    </ng-container> -->
     <ng-container matColumnDef="stop">
         <th mat-header-cell *matHeaderCellDef>
         </th>
