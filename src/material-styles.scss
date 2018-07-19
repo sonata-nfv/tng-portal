@@ -163,6 +163,9 @@ table {
       border-radius: 50%;
       background-color: $active-color;
     }
+    &.wui-lock::before {
+      color: $secondary-font-color;
+    }
   }
   .row-options {
     border: none;
