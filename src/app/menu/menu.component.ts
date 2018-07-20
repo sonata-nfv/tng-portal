@@ -104,7 +104,13 @@ export class MenuComponent implements OnInit {
   }
 
   setSubsection(e, buttonId) {
-    if (buttonId === "sla-templates") {
+    if (buttonId === "placement-policy") {
+      this.subsection = "placement-policy";
+      this.router.navigate(["service-platform/policies/placement-policy"]);
+    } else if (buttonId === "runtime-policies") {
+      this.subsection = "runtime-policies";
+      this.router.navigate(["service-platform/policies/runtime-policies"]);
+    } else if (buttonId === "sla-templates") {
       this.subsection = "sla-templates";
       this.router.navigate(["service-platform/slas/sla-templates"]);
     } else if (buttonId === "sla-agreements") {

@@ -18,6 +18,7 @@ import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/s
 import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
+import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -93,6 +94,17 @@ const routes: Routes = [
       {
         path: "service-platform/policies/placement-policy",
         component: PlacementPolicyComponent
+      },
+
+      {
+        path: "service-platform/policies/runtime-policies",
+        component: RuntimePoliciesComponent
+        // children: [
+        //   {
+        //     path: "new",
+        //     component:
+        //   }
+        // ]
       },
       {
         path: "service-platform/slas/sla-templates",

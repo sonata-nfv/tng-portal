@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { Subscriber, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-sla-templates",

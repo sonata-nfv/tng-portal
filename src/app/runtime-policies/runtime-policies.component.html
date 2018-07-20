@@ -1,0 +1,17 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<div class="header">
+  <h2 class="subsectionTitle">Runtime Policies</h2>
+  <button class="add" (click)="createNew()">
+    <i class="wui wui-plus"></i>
+    <span>Create New Policy</span>
+  </button>
+</div>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+  <app-select class="select" placeholder="Network Service" [list]="nsList" [disabled]="loading" [reset]="reset" (selectEvent)="receiveNS($event)"></app-select>
+  <button class="reload" (click)="requestRuntimePolicies()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
