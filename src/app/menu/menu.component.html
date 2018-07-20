@@ -16,6 +16,10 @@
         <i class="wui wui-user-group-alt"></i>
         <span>USERS</span>
       </button>
+      <button [ngClass]="{ active: menu === 'configuration' }" (click)="setMenu($event, 'configuration')" ifFeatureAvailable="configuration">
+        <i class="wui wui-gear-alt"></i>
+        <span>CONFIGURATION</span>
+      </button>
       <button [ngClass]="{ active: menu === 'validation-and-verification' }" (click)="setMenu($event, 'validation-and-verification')"
         ifFeatureAvailable="validation">
         <i class="wui wui-check-circle-alt"></i>
@@ -47,7 +51,7 @@
       <button [ngClass]="{ active: section === 'sp-policies' }" (click)="setSection($event, 'sp-policies')">Policies</button>
       <div class="section" *ngIf="section === 'sp-policies'">
         <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement Policy</button>
-        <button [ngClass]="{ active: subsection === 'runtime-policy' }" (click)="setSubsection($event, 'runtime-policy')">Runtime Policies</button>
+        <button [ngClass]="{ active: subsection === 'runtime-policies' }" (click)="setSubsection($event, 'runtime-policies')">Runtime Policies</button>
       </div>
       <button [ngClass]="{ active: section === 'sp-slas' }" (click)="setSection($event, 'sp-slas')">SLA</button>
       <div class="section" *ngIf="section === 'sp-slas'">
@@ -60,15 +64,12 @@
         <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
       </div>
-
-
-
     </div>
 
     <div class="options" *ngIf="menu === 'service-management'">
       <button [ngClass]="{ active: section === 'sm-network-services' }" (click)="setSection($event, 'sm-network-services')">Available network services</button>
-      <button [ngClass]="{ active: section === 'requests' }" (click)="setSection($event, 'requests')">Requests</button>
-      <button [ngClass]="{ active: section === 'network-service-instances' }" (click)="setSection($event, 'network-service-instances')">Network service instances</button>
+      <button [ngClass]="{ active: section === 'sm-requests' }" (click)="setSection($event, 'sm-requests')">Requests</button>
+      <button [ngClass]="{ active: section === 'sm-network-service-instances' }" (click)="setSection($event, 'sm-network-service-instances')">Network service instances</button>
       <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')" ifFeatureAvailable="licences">Licence store</button>
       <div class="section" *ngIf="section === 'licences'" ifFeatureAvailable="licences">
         <button [ngClass]="{ active: subsection === 'service-licences' }" (click)="setSubsection($event, 'service-licences')">Service licences</button>

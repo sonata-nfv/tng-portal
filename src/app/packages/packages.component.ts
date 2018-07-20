@@ -15,7 +15,7 @@ export class PackagesComponent implements OnInit {
   loading: boolean;
   packages = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["Vendor", "Name", "Version", "Created at", "Type"];
+  displayedColumns = ["type", "vendor", "name", "version", "createdAt"];
 
   constructor(
     private servicePlatformService: ServicePlatformService,

@@ -18,6 +18,8 @@ import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/s
 import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
+import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -79,7 +81,7 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
       },
       {
-        path: "service-platform/sp-network-services",
+        path: "service-platform/network-services",
         component: SpNetworkServicesComponent,
         children: [
           { path: "detail/:id", component: SpNetworkServicesDetailComponent }
@@ -93,6 +95,17 @@ const routes: Routes = [
       {
         path: "service-platform/policies/placement-policy",
         component: PlacementPolicyComponent
+      },
+
+      {
+        path: "service-platform/policies/runtime-policies",
+        component: RuntimePoliciesComponent,
+        children: [
+          {
+            path: "new",
+            component: RuntimePoliciesCreateComponent
+          }
+        ]
       },
       {
         path: "service-platform/slas/sla-templates",
@@ -136,11 +149,11 @@ const routes: Routes = [
       // Service Management section
       {
         path: "service-management",
-        redirectTo: "service-management/sm-network-services",
+        redirectTo: "service-management/network-services",
         pathMatch: "full"
       },
       {
-        path: "service-management/sm-network-services",
+        path: "service-management/network-services",
         component: SmNetworkServicesComponent,
         children: [
           { path: "detail/:id", component: SmNetworkServicesDetailComponent }

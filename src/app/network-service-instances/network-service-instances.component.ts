@@ -22,7 +22,7 @@ export class NetworkServiceInstancesComponent implements OnInit {
     "serviceId",
     "version",
     "latestVersion",
-    "reload",
+    // "reload",
     "stop"
   ];
 
@@ -74,7 +74,7 @@ export class NetworkServiceInstancesComponent implements OnInit {
       });
   }
 
-  reloadInstance(row) {}
+  // reloadInstance(row) {}
 
   stopInstance(row) {}
 }

@@ -33,6 +33,8 @@ import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/s
 import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
+import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -68,8 +70,6 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
-import { FilterPipe } from "./shared/filter.pipe";
-
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
 }
@@ -93,6 +93,8 @@ export function initConfiguration(configService: ConfigService): Function {
     FunctionsComponent,
     FunctionsDetailComponent,
     PlacementPolicyComponent,
+    RuntimePoliciesComponent,
+    RuntimePoliciesCreateComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
     SlaTemplatesCreateComponent,
@@ -118,7 +120,6 @@ export function initConfiguration(configService: ConfigService): Function {
     SelectComponent,
     SearchBarComponent,
     DialogComponent,
-    FilterPipe,
     FeatureAvailableDirective
   ],
   entryComponents: [DialogComponent, NsInstantiateDialogComponent],

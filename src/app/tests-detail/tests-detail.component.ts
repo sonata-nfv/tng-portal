@@ -38,7 +38,6 @@ export class TestsDetailComponent implements OnInit {
       .getOneTest(uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
       })
       .catch(err => console.error(err));

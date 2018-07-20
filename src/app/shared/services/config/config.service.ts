@@ -16,17 +16,15 @@ export class ConfigService {
   functions: string = "functions";
   slicesTemplates: string = "slices";
   slicesInstances: string = "slice-instances";
-
-  tests: string =
-    "https://pre-int-vnv-bcn.5gtango.eu/api/v3/tests/descriptors";
-  testsDetail: string = "";
+  tests: string = "tests/descriptors";
 
   constructor() {}
 
   init() {
     if (window.location.origin.includes("localhost")) {
       this.base = "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
-      this.tests = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/tests/descriptors";
+      this.tests =
+        "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/tests/descriptors";
     }
   }
 }

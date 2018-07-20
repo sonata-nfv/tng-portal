@@ -67,54 +67,43 @@ export class ValidationAndVerificationPlatformService {
    */
   getOneTest(uuid: string) {
     return new Promise((resolve, reject) => {
-      //   let headers = this.authService.getAuthHeaders();
+      let headers = this.authService.getAuthHeaders();
 
-      //   this.http
-      //     .get(this.config.testsDetail + "/" + uuid, {
-      //       headers: headers
-      //     })
-      //     .toPromise()
-      //     .then(response => {
-      //       resolve({
-      //         uuid: response["uuid"],
-      //         name: response["name"],
-      //         vendor: response["vendor"],
-      //         version: response["version"]
-      // timesExecuted:
-      // author:
-      // createdAt:
-      // status:
-      // lastTimeExecuted:
-      // services:
-      //       });
-      //     })
-      //     .catch(err => reject(err.statusText));
-      // });
-
-      setTimeout(() => {
-        resolve({
-          name: "test1",
-          vendor: "5gtango",
-          version: "0.4",
-          timesExecuted: "20",
-          author: "author",
-          createdAt: "date",
-          status: "status",
-          lastTimeExecuted: "this is date",
-          services: [
-            {
-              sVendor: "svendor",
-              sName: "sname",
-              sVersion: "0.3"
-            },
-            {
-              sVendor: "svendor2",
-              sName: "sname2",
-              sVersion: "0.2"
-            }
-          ]
-        });
-      }, 1000);
+      this.http
+        .get(this.config.tests + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["testd"]["name"],
+            vendor: response["testd"]["vendor"],
+            version: response["testd"]["version"],
+            // timesExecuted: response["testd"]
+            timesExecuted: "20",
+            author: response["testd"]["author"],
+            description: response["testd"]["description"],
+            createdAt: response["created_at"],
+            status: response["status"],
+            // lastTimeExecuted: response["testd"]
+            lastTimeExecuted: "this is date",
+            // services: response["testd"]
+            services: [
+              {
+                sVendor: "svendor",
+                sName: "sname",
+                sVersion: "0.3"
+              },
+              {
+                sVendor: "svendor2",
+                sName: "sname2",
+                sVersion: "0.2"
+              }
+            ]
+          });
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 }

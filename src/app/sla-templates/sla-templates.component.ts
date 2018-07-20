@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 import { CommonService } from "../shared/services/common/common.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
-import { Subscriber, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-sla-templates",
@@ -17,7 +17,7 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
   loading: boolean;
   templates = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["status", "name", "ID", "ns", "expirationDate", "delete"];
+  displayedColumns = ["name", "ID", "ns", "status", "expirationDate", "delete"];
   subscription: Subscription;
 
   constructor(

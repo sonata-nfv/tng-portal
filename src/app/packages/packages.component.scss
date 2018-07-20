@@ -21,13 +21,19 @@ app-packages {
     border-bottom: none;
     background-image: linear-gradient(
       to right,
-      $basic-background-color 2%,
-      $underline-color 2%,
+      $basic-background-color 4%,
+      $underline-color 4%,
       $underline-color 98%,
       $basic-background-color 98%,
       $basic-background-color 100%
     );
     align-items: baseline;
     min-height: 29px;
+  }
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1) {
+    padding-bottom: 2px;
+    width: 40px;
+    font-size: 14px;
   }
 }

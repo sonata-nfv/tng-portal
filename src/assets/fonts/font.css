@@ -1,17 +1,19 @@
 @font-face {
-  font-family: 'WUI-Project-iconfont';
-  src:  url('fonts/WUI-Project-iconfont.eot?dpyhj6');
-  src:  url('fonts/WUI-Project-iconfont.eot?dpyhj6#iefix') format('embedded-opentype'),
-    url('fonts/WUI-Project-iconfont.ttf?dpyhj6') format('truetype'),
-    url('fonts/WUI-Project-iconfont.woff?dpyhj6') format('woff'),
-    url('fonts/WUI-Project-iconfont.svg?dpyhj6#WUI-Project-iconfont') format('svg');
+  font-family: "WUI-Project-iconfont";
+  src: url("fonts/WUI-Project-iconfont.eot?dpyhj6");
+  src: url("fonts/WUI-Project-iconfont.eot?dpyhj6#iefix")
+      format("embedded-opentype"),
+    url("fonts/WUI-Project-iconfont.ttf?dpyhj6") format("truetype"),
+    url("fonts/WUI-Project-iconfont.woff?dpyhj6") format("woff"),
+    url("fonts/WUI-Project-iconfont.svg?dpyhj6#WUI-Project-iconfont")
+      format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 .wui {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'WUI-Project-iconfont' !important;
+  font-family: "WUI-Project-iconfont" !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -24,6 +26,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.wui-lock:before {
+  content: "\e901";
+  color: #000;
+}
+.wui-lock-alt:before {
+  content: "\e900";
+  color: #000;
+}
+.wui-gear:before {
+  content: "\e902";
+  color: #000;
+}
+.wui-gear-alt:before {
+  content: "\e903";
+  color: #000;
+}
 .wui-caret-right:before {
   content: "\e93f";
   color: #000;
