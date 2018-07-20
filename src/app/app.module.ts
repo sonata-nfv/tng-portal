@@ -69,8 +69,6 @@ import { DialogDataService } from "./shared/services/dialog/dialog.service";
 
 import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
 
-import { FilterPipe } from "./shared/filter.pipe";
-
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
 }
@@ -120,7 +118,6 @@ export function initConfiguration(configService: ConfigService): Function {
     SelectComponent,
     SearchBarComponent,
     DialogComponent,
-    FilterPipe,
     FeatureAvailableDirective
   ],
   entryComponents: [DialogComponent, NsInstantiateDialogComponent],
