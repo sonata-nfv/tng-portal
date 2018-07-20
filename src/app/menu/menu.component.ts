@@ -61,7 +61,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "service-management") {
       this.section = "sm-network-services";
-      this.router.navigate(["service-management/sm-network-services"]);
+      this.router.navigate(["service-management/network-services"]);
     }
     this.menu = buttonId;
   }
@@ -78,7 +78,7 @@ export class MenuComponent implements OnInit {
     } else if (buttonId === "sp-packages") {
       this.router.navigate(["service-platform/packages"]);
     } else if (buttonId === "sp-network-services") {
-      this.router.navigate(["service-platform/sp-network-services"]);
+      this.router.navigate(["service-platform/network-services"]);
     } else if (buttonId === "sp-functions") {
       this.router.navigate(["service-platform/functions"]);
     } else if (buttonId === "sp-policies") {
@@ -91,10 +91,10 @@ export class MenuComponent implements OnInit {
       this.subsection = "slices-templates";
       this.router.navigate(["service-platform/slices/slices-templates"]);
     } else if (buttonId === "sm-network-services") {
-      this.router.navigate(["service-management/sm-network-services"]);
-    } else if (buttonId === "requests") {
+      this.router.navigate(["service-management/network-services"]);
+    } else if (buttonId === "sm-requests") {
       this.router.navigate(["service-management/requests"]);
-    } else if (buttonId === "network-service-instances") {
+    } else if (buttonId === "sm-network-service-instances") {
       this.router.navigate(["service-management/network-service-instances"]);
     } else if (buttonId === "licences") {
       this.subsection = "";
@@ -149,7 +149,15 @@ export class MenuComponent implements OnInit {
       this.menu = "dashboard";
     }
     if (url.length > 2) {
-      this.section = url[2];
+      if (this.menu === "validation-and-verification") {
+        this.section = "vv-" + url[2];
+      } else if (this.menu === "service-platform") {
+        this.section = "sp-" + url[2];
+      } else if (this.menu === "service-management") {
+        this.section = "sm-" + url[2];
+      } else {
+        this.section = url[2];
+      }
     }
     if (url.length > 3) {
       this.subsection = url[3];

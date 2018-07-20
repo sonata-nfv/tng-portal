@@ -80,7 +80,7 @@ const routes: Routes = [
         children: [{ path: "detail/:id", component: PackagesDetailComponent }]
       },
       {
-        path: "service-platform/sp-network-services",
+        path: "service-platform/network-services",
         component: SpNetworkServicesComponent,
         children: [
           { path: "detail/:id", component: SpNetworkServicesDetailComponent }
@@ -148,11 +148,11 @@ const routes: Routes = [
       // Service Management section
       {
         path: "service-management",
-        redirectTo: "service-management/sm-network-services",
+        redirectTo: "service-management/network-services",
         pathMatch: "full"
       },
       {
-        path: "service-management/sm-network-services",
+        path: "service-management/network-services",
         component: SmNetworkServicesComponent,
         children: [
           { path: "detail/:id", component: SmNetworkServicesDetailComponent }
