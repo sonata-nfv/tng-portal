@@ -76,6 +76,11 @@ export class SelectComponent implements OnInit {
   }
 
   private _onFormChanges(values) {
-    this.selectEvent.emit(values);
+    if (
+      values != null &&
+      !(values.hasOwnProperty("disabled") || values.hasOwnProperty("required"))
+    ) {
+      this.selectEvent.emit(values);
+    }
   }
 }

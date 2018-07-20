@@ -16,13 +16,11 @@ export class RequestsComponent implements OnInit {
   requests = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    // "vendor",
-    // "name",
-    // "version",
+    "vendor",
+    "name",
+    "version",
     "Created at",
-    "Request ID",
     "Type",
-    "Service ID",
     "Status"
   ];
   searchText: string;

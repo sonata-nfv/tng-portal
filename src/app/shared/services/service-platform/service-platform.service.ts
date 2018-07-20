@@ -508,7 +508,7 @@ export class ServicePlatformService {
                 return {
                   uuid: item.uuid,
                   name: item.nstName,
-                  vendor: item.nstVendor,
+                  vendor: item.vendor,
                   version: item.nstVersion,
                   state: item.nsiState
                 };
