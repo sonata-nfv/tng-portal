@@ -19,6 +19,7 @@ import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -98,13 +99,13 @@ const routes: Routes = [
 
       {
         path: "service-platform/policies/runtime-policies",
-        component: RuntimePoliciesComponent
-        // children: [
-        //   {
-        //     path: "new",
-        //     component:
-        //   }
-        // ]
+        component: RuntimePoliciesComponent,
+        children: [
+          {
+            path: "new",
+            component: RuntimePoliciesCreateComponent
+          }
+        ]
       },
       {
         path: "service-platform/slas/sla-templates",

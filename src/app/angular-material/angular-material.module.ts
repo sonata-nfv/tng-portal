@@ -11,7 +11,8 @@ import {
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatCheckboxModule
 } from "@angular/material";
 
 const modules = [
@@ -25,7 +26,8 @@ const modules = [
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

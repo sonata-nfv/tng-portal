@@ -36,6 +36,6 @@ export class RuntimePoliciesComponent implements OnInit {
   receiveNS(ns) {}
 
   createNew() {
-    // this.router.navigate(["new"], { relativeTo: this.route });
+    this.router.navigate(["new"], { relativeTo: this.route });
   }
 }
