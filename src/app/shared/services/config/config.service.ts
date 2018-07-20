@@ -16,8 +16,7 @@ export class ConfigService {
   functions: string = "functions";
   slicesTemplates: string = "slices";
   slicesInstances: string = "slice-instances";
-
-  tests: string = "https://pre-int-vnv-bcn.5gtango.eu/api/v3/tests/descriptors";
+  tests: string = "tests/descriptors";
 
   constructor() {}
 
