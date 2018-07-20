@@ -43,17 +43,16 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          // console.log(response);
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
                 requestId: item.id,
-                // vendor:
-                // name:
-                // version:
+                vendor: item.service.vendor,
+                name: item.service.name,
+                version: item.service.version,
                 type: item.request_type,
                 createdAt: item.created_at,
-                serviceId: item.service_uuid,
+                serviceId: item.service.uuid,
                 status: item.status
               }))
             );
