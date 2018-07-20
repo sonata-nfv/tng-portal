@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class RuntimePoliciesComponent implements OnInit {
   loading: boolean;
+  reset: boolean;
   nsList = new Array();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -31,6 +32,8 @@ export class RuntimePoliciesComponent implements OnInit {
   requestRuntimePolicies(search?) {
     this.nsList = ["A", "B"];
   }
+
+  receiveNS(ns) {}
 
   createNew() {
     // this.router.navigate(["new"], { relativeTo: this.route });
