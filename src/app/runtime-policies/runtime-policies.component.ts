@@ -112,7 +112,19 @@ export class RuntimePoliciesComponent implements OnInit {
     }
   }
 
-  deletePolicy(uuid) {}
+  deletePolicy(uuid) {
+    this.loading = true;
+
+    this.servicePlatformService
+      .deleteOneRuntimePolicy(uuid)
+      .then(response => {
+        this.requestRuntimePolicies();
+      })
+      .catch(err => {
+        this.loading = false;
+        // TODO display request status in toast
+      });
+  }
 
   openPolicy(policy) {}
 

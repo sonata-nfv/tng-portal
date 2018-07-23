@@ -426,6 +426,30 @@ export class ServicePlatformService {
   }
 
   /**
+   * Removes the specified runtime policy from the database
+   *
+   * @param uuid UUID of the desired Runtime Policy.
+   */
+  deleteOneRuntimePolicy(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.base + this.config.runtimePolicies + "/" + uuid, {
+          headers: headers,
+          responseType: "text"
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err.statusText);
+        });
+    });
+  }
+
+  /**
    * Retrieves a list of Slices Templates.
    * Either following a search pattern or not.
    *
