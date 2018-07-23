@@ -17,6 +17,7 @@ export class ConfigService {
   slicesTemplates: string = "slices";
   slicesInstances: string = "slice-instances";
   tests: string = "tests/descriptors";
+  runtimePolicies: string = "policies";
 
   constructor() {}
 

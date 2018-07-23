@@ -378,6 +378,54 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a list of Runtime Policies.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Policy attributes that must be
+   *                          matched by the returned list of
+   *                          Runtime Policies.
+   */
+  getRuntimePolicies(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.runtimePolicies + search
+          : this.config.base + this.config.runtimePolicies;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  uuid: item.uuid,
+                  name: item.pld.name,
+                  version: item.pld.version,
+                  vendor: item.pld.vendor,
+                  ns: item.pld.network_service.name,
+                  ns_uuid: item.pld.network_service.name,
+                  status: item.status,
+                  date: item.updated_at,
+                  // default: item.default_policy,
+                  default: false,
+                  enforced: item.enforced
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Retrieves a list of Slices Templates.
    * Either following a search pattern or not.
    *
