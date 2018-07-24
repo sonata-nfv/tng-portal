@@ -134,7 +134,7 @@ table {
     background-position: bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
-    // align-items: baseline;
+    align-items: baseline;
   }
   td.mat-cell,
   th.mat-header-cell {
@@ -169,10 +169,12 @@ table {
     }
   }
   .row-options {
+    display: flex;
     border: none;
     cursor: pointer;
     outline: none;
     background-color: $basic-background-color;
+    padding: 0;
     .wui-caret-right:before {
       color: $ready-color;
     }
@@ -190,7 +192,7 @@ table {
       background-color: $stop-color;
     }
     .wui-trash-alt::before {
-      font-size: 18px;
+      font-size: 21px;
     }
   }
 

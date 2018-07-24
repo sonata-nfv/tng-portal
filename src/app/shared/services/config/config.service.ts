@@ -17,6 +17,7 @@ export class ConfigService {
   slicesTemplates: string = "slices";
   slicesInstances: string = "slice-instances";
   tests: string = "tests/descriptors";
+  runtimePolicies: string = "policies";
 
   constructor() {}
 
@@ -24,7 +25,7 @@ export class ConfigService {
     if (window.location.origin.includes("localhost")) {
       this.base = "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
       this.tests =
-        "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/tests/descriptors";
+        "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";
     }
   }
 }

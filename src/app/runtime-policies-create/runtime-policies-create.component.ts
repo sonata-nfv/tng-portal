@@ -36,6 +36,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       monitoringRule: new FormControl()
     });
 
+    this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
+
     this.loading = true;
     this.commonService
       .getNetworkServices()
@@ -48,37 +50,82 @@ export class RuntimePoliciesCreateComponent implements OnInit {
         // Save complete data from NS
         this.nsListComplete = response;
       })
-      .catch(err => (this.loading = false));
+      .catch(err => {
+        this.loading = false;
+
+        this.nsList.push("None");
+      });
   }
 
   receiveNS(ns) {
-    const ns_uuid = this.nsListComplete.filter(x => x.serviceName === ns)[0]
-      .serviceId;
-    this.policyForm.controls.ns.setValue(ns_uuid);
+    let ns_uuid: string;
 
-    this.loading = true;
-    this.commonService
-      .getSLATemplates()
-      .then(response => {
-        this.loading = false;
+    if (ns === "None") {
+      this.policyForm.controls.ns.setValue(null);
+      ns_uuid = null;
+    } else {
+      ns_uuid = this.nsListComplete.filter(x => x.serviceName === ns)[0]
+        .serviceId;
+      this.policyForm.controls.ns.setValue(ns_uuid);
 
-        // Save SLA data to display
-        this.slaList = response
-          .filter(x => x.nsUUID === ns_uuid)
-          .map(x => x.name);
+      this.loading = true;
+      this.commonService
+        .getSLATemplates()
+        .then(response => {
+          this.loading = false;
 
-        // Save complete data from SLA
-        this.slaListComplete = response;
-      })
-      .catch(err => (this.loading = false));
+          // Save SLA data to display
+          this.slaList = response
+            .filter(x => x.nsUUID === ns_uuid)
+            .map(x => x.name);
+
+          if (this.slaList.length < 1) {
+            this.slaList.push("None");
+          }
+
+          // Save complete data from SLA
+          this.slaListComplete = response;
+        })
+        .catch(err => {
+          this.loading = false;
+
+          this.slaList.push("None");
+        });
+    }
   }
 
   receiveSLA(sla) {
-    const sla_uuid = this.slaListComplete.filter(x => x.name === sla)[0].uuid;
-    this.policyForm.controls.sla.setValue(sla_uuid);
+    if (sla !== "None") {
+      const sla_uuid = this.slaListComplete.filter(x => x.name === sla)[0].uuid;
+      this.policyForm.controls.sla.setValue(sla_uuid);
+    } else {
+      this.policyForm.controls.sla.setValue(null);
+    }
   }
 
-  createPolicy() {}
+  private _onFormChanges(value?) {
+    console.log(this.policyForm);
+    if (
+      this.policyForm.get("ns").value != null &&
+      this.policyForm.get("name").value != null
+    ) {
+      this.disabledButton = false;
+    }
+
+    // Check optional default, sla, add monitoring rules
+  }
+
+  createPolicy() {
+    const policy = {
+      name: this.policyForm.get("name").value,
+      ns: this.policyForm.get("ns").value,
+      default: this.policyForm.get("default").value,
+      sla: this.policyForm.get("sla").value,
+      monitoringRule: this.policyForm.get("monitoringRule").value
+    };
+
+    console.log(policy);
+  }
 
   close() {
     this.router.navigate(["service-platform/policies/runtime-policies"]);

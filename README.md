@@ -4,21 +4,35 @@
 
 # 5GTANGO Portal
 
-This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) (web) Portal.
+This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) Portal.
+
+The main function of this web application is to provide a method to unify monitoring, user management and interactions with the Validation and Verification Platform, the Service Platform and with the Service Management.
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
 
-## Installing
+## Dependencies
 
-Make sure that you have npm installed. Then, run the following command to install all the required packages and dependences.
+- Node.js >= v8.9
+
+```
+[sudo] sudo apt-get install -y nodejs
+
+[sudo] npm install -g npm
+```
+
+- Angular >= v6
+
+```
+[sudo] npm install -g @angular/cli
+```
+
+## Installation
+
+Make sure that you have all the dependencies installed. Then, run the following command to install all the required modules.
 
 ```
 npm install
 ```
-
-### Installation dependencies
-
-- Node.js >= v8.9
 
 ## Running a dev server
 
@@ -34,11 +48,35 @@ Requests made from the Portal in the development mode need the VPN in order to r
 
 - Athens VPN credentials
 
+## Running a docker container
+
+If you want to launch a container locally, place yourself in the Dockerfile folder and try the following:
+
+```
+[sudo] docker build -t tng-portal .
+[sudo] docker run -p 80:4200 tng-portal
+```
+
+The container should be up and running in http://0.0.0.0:80.
+
+### Exposed port in docker container
+
+The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
+
+### Docker dependencies
+
+Make sure you have installed Docker >= 18.06.0-ce
+
+- [https://docs.docker.com/install/](https://docs.docker.com/install/)
+
 ## Configuration parameters
 
 The routes to the services for this project are defined in the config.service.ts file placed in `/src/app/shared/services/config/config.service.ts`.
 
-By default, if the Portal is launched locally, the used services will be those in `http://pre-int-sp-ath.5gtango.eu:32002`.
+By default, if the Portal is launched locally, the used services come from:
+
+- For SP: `http://pre-int-sp-ath.5gtango.eu:32002`
+- For V&V: `http://pre-int-vnv-bcn.5gtango.eu:32002`
 
 ### Menu sections displayed
 
@@ -50,6 +88,7 @@ These are the sections that can be activated:
   features_available:  [
     "DASHBOARD",
     "USERS",
+    "CONFIGURATION",
     "VALIDATION",
     "SERVICE PLATFORM",
     "SERVICE MANAGEMENT"
@@ -57,10 +96,6 @@ These are the sections that can be activated:
 ```
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
-
-### Exposed port in docker container
-
-The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
 
 ## Documentation
 
@@ -74,8 +109,9 @@ The tng-gui is published under Apache 2.0 license. Please see the LICENSE file f
 
 The following lead developers are responsible for this repository and have admin rights. They can, for example, merge pull requests.
 
-- Antón Román Portabales
-- Ana Pol González
+- Antón Román Portabales (anton.roman@quobis.com)
+- Ana Pol González (ana.pol@quobis.com)
+- Daniel Fernandez Calvo (daniel.fernandez@quobis.es)
 
 #### Feedback-Chanel
 

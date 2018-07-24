@@ -12,7 +12,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatPaginatorModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatRadioModule
 } from "@angular/material";
 
 const modules = [
@@ -27,7 +28,8 @@ const modules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatPaginatorModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatRadioModule
 ];
 
 @NgModule({
