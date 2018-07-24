@@ -82,9 +82,17 @@ app-runtime-policies {
       $basic-background-color 100%
     );
   }
-  mat-radio-button {
-    margin-left: 10px;
+  .circle-button {
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid $secondary-color;
+    cursor: pointer;
   }
+  .circle-button.active {
+    border: 1px solid $primary-color-light;
+    background-color: $primary-color-light;
+  }
+
   .mat-cell:nth-child(6),
   .mat-header-cell:nth-child(6) {
     width: 70px;

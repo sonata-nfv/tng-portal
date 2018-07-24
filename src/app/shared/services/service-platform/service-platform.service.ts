@@ -408,12 +408,11 @@ export class ServicePlatformService {
                   version: item.pld.version,
                   vendor: item.pld.vendor,
                   ns: item.pld.network_service.name,
-                  ns_uuid: item.pld.network_service.name,
+                  ns_uuid: item.pld.network_service.ns_id,
                   status: item.status,
                   date: item.updated_at,
-                  // default: item.default_policy,
-                  default: false,
-                  enforced: item.enforced
+                  default: item.default_policy,
+                  enforced: item.enforced ? "Yes" : "No"
                 };
               })
             );

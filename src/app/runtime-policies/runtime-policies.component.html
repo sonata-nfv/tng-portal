@@ -38,26 +38,27 @@
     <td mat-cell *matCellDef="let element"> {{ element.ns }} </td>
   </ng-container>
 
-  <ng-container matColumnDef="date">
+  <!-- <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="enforced">
+    <th mat-header-cell *matHeaderCellDef> Enforced </th>
+    <td mat-cell *matCellDef="let element"> {{ element.enforced }} </td>
   </ng-container>
 
   <ng-container matColumnDef="default">
     <th mat-header-cell *matHeaderCellDef> Select Default </th>
     <td mat-cell *matCellDef="let element" (click)="setDefaultPolicy(element.uuid)" (click)="$event.stopPropagation()">
-      <form #defaultSelection>
-        <mat-radio-group #radiogroup>
-          <mat-radio-button id="{{ element.uuid }}" [value]="element.default" [checked]="element.default"></mat-radio-button>
-        </mat-radio-group>
-      </form>
+      <button [ngClass]="{active: element.default}" class="circle-button" mat-button></button>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>
     </th>
-    <td mat-cell *matCellDef="let element" (click)="deletePolicy(element.uuid)" (click)="$event.stopPropagation()">
+    <td mat-cell *matCellDef="let element" (click)="deletePolicy(element)" (click)="$event.stopPropagation()">
       <button class="row-options" mat-button>
         <i class="wui wui-trash-alt"></i>
       </button>

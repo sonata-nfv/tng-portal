@@ -93,14 +93,6 @@ form {
   }
 }
 
-// Radio button styles
-.mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background-color: $primary-color-light;
-}
-.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: $primary-color-light;
-}
-
 // Mat table styles
 table {
   //   Include scroll in table

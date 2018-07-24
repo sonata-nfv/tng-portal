@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ViewChild,
-  ElementRef
-} from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MatTableDataSource } from "@angular/material";
 
@@ -18,11 +12,6 @@ import { ServicePlatformService } from "../shared/services/service-platform/serv
   encapsulation: ViewEncapsulation.None
 })
 export class RuntimePoliciesComponent implements OnInit {
-  // @ViewChild("radioButton", { read: ElementRef })
-  // private elRadioButton: ElementRef;
-
-  @ViewChild("defaultSelection") elDefaultSelection: ElementRef;
-
   loading: boolean;
   reset: boolean;
   policiesDisplayed = new Array();
@@ -34,7 +23,8 @@ export class RuntimePoliciesComponent implements OnInit {
     "name",
     "version",
     "ns",
-    "date",
+    // "date",
+    "enforced",
     "default",
     "delete"
   ];
@@ -92,16 +82,22 @@ export class RuntimePoliciesComponent implements OnInit {
   }
 
   setDefaultPolicy(uuid) {
-    // Check-uncheck radio button
+    // Check-uncheck button
+    const policy = this.policies.find(x => x.uuid === uuid);
+    this.policies
+      .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
+      .forEach(x => (x.default = false));
+
     this.policies.filter(
-      x => x.uuid === uuid
-    )[0].default = !this.policies.filter(x => x.uuid === uuid)[0].default;
+      x => x.uuid === policy.uuid
+    )[0].default = !this.policies.filter(x => x.uuid === policy.uuid)[0]
+      .default;
 
-    // console.log(this.policies.map(x => x.default));
-    console.log(this.elDefaultSelection.nativeElement);
-    // this.elRadioButton.nativeElement.style.backgroundColor = "cyan";
+    // TODO request this policy to be default and false the previous
 
-    // TODO request this policy to be default
+    this.policiesDisplayed = this.policies;
+
+    // TODO order default = true in top
   }
 
   receiveNS(ns) {
