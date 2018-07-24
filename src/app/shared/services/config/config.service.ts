@@ -25,7 +25,7 @@ export class ConfigService {
     if (window.location.origin.includes("localhost")) {
       this.base = "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
       this.tests =
-        "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/tests/descriptors";
+        "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";
     }
   }
 }
