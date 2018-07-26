@@ -42,16 +42,12 @@
     <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
 
       <mat-form-field class="gName">
-        <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}">
-      </mat-form-field>
-
-      <mat-form-field class="gOperator">
-        <input matInput placeholder="Operator" value="{{ item.operator }}">
+        <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}">
       </mat-form-field>
 
       <div class="timePeriod">
         <mat-form-field class="gPeriodValue">
-          <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.serviceLevel }}">
+          <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
         </mat-form-field>
 
         <mat-form-field class="gPeriod">
