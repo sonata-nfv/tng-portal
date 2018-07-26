@@ -578,7 +578,7 @@ export class ServicePlatformService {
               response.map(item => {
                 return {
                   uuid: item.uuid,
-                  name: item.nstName,
+                  name: item.name,
                   vendor: item.vendor,
                   version: item.nstVersion,
                   state: item.nsiState
