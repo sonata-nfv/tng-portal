@@ -139,6 +139,39 @@ export class ServiceManagementService {
   }
 
   /**
+   * Retrieves a Network Service Instance by UUID
+   *
+   * @param uuid UUID of the desired NS instance.
+   */
+  getOneNSInstance(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.instances + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("uuid")) {
+            resolve({
+              uuid: response["uuid"],
+              status: response["status"],
+              serviceID: response["descriptor_reference"],
+              version: response["version"],
+              updatedAt: response["updated_at"],
+              vnf: response["network_functions"],
+              virtualLinks: response["virtual_links"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Network service instantiation
    *
    * @param service Information about the service about to be instantiated

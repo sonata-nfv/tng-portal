@@ -1,4 +1,4 @@
-<h1 class="sectionTitle">PACKAGES</h1>
+<h1 class="sectionTitle" *ngIf="name">PACKAGES</h1>
 <div class="header" *ngIf="name">
   <h2 class="subsectionTitle"> {{ name }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
