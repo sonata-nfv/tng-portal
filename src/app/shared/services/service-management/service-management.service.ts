@@ -106,49 +106,35 @@ export class ServiceManagementService {
    */
   getNSInstances(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.instances + search
-      //     : this.config.base + this.config.instances;
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.instances + search
+          : this.config.base + this.config.instances;
 
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => ({
-      //           instanceID: item.uuid,
-      //           status: item.status,
-      //           serviceID: item.descriptor_reference,
-      //           version: item.version,
-      //           latestVersion: ""
-      //         }))
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(
-      //     err => (err.status === 404 ? resolve([]) : reject(err.statusText))
-      //   );
-
-      setTimeout(() => {
-        resolve([
-          {
-            instanceID: "1233-9564-88558-ab55",
-            type: "public",
-            createdAt: new Date().toISOString(),
-            serviceID: "872135-32145-123465",
-            status: "active",
-            version: "0.4",
-            latestVersion: "0.1"
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => ({
+                uuid: item.uuid,
+                status: item.status,
+                serviceID: item.descriptor_reference,
+                version: item.version,
+                latestVersion: "not in response"
+              }))
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(
+          err => (err.status === 404 ? resolve([]) : reject(err.statusText))
+        );
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
@@ -29,7 +29,8 @@ export class NetworkServiceInstancesComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -77,4 +78,9 @@ export class NetworkServiceInstancesComponent implements OnInit {
   // reloadInstance(row) {}
 
   stopInstance(row) {}
+
+  openInstance(row) {
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }
