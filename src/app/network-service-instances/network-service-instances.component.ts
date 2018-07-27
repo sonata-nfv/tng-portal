@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 import { DialogDataService } from "../shared/services/dialog/dialog.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-network-service-instances",
@@ -11,11 +12,12 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
   styleUrls: ["./network-service-instances.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class NetworkServiceInstancesComponent implements OnInit {
+export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
   loading: boolean;
   searchText: string;
   instances: Array<Object>;
   dataSource = new MatTableDataSource();
+  subscription: Subscription;
   displayedColumns = [
     "instanceId",
     "status",
@@ -29,11 +31,28 @@ export class NetworkServiceInstancesComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.requestNSInstances();
+
+    // Reloads the template list every when children are closed
+    this.subscription = this.router.events.subscribe(event => {
+      if (
+        event instanceof NavigationEnd &&
+        event.url === "/service-management/network-service-instances" &&
+        this.route.url["value"].length === 2 &&
+        this.route.url["value"][1].path === "network-service-instances"
+      ) {
+        this.requestNSInstances();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchFieldData(search) {
@@ -77,4 +96,9 @@ export class NetworkServiceInstancesComponent implements OnInit {
   // reloadInstance(row) {}
 
   stopInstance(row) {}
+
+  openInstance(row) {
+    let uuid = row.uuid;
+    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
 }

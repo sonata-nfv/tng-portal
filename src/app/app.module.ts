@@ -34,7 +34,7 @@ import { APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { MAT_DATE_LOCALE } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -66,6 +66,7 @@ import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
@@ -86,6 +87,7 @@ import { DialogComponent } from "./dialog/dialog.component";
 import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
+import { NetworkServiceInstancesDetailComponent } from "./network-service-instances-detail/network-service-instances-detail.component";
 import { LicencesComponent } from "./licences/licences.component";
 import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
@@ -126,6 +128,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
+    RuntimePoliciesDetailComponent,
     RuntimePoliciesCreateComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
@@ -142,6 +145,7 @@ export function initConfiguration(configService: ConfigService): Function {
     RequestsComponent,
     RequestDetailComponent,
     NetworkServiceInstancesComponent,
+    NetworkServiceInstancesDetailComponent,
     LicencesComponent,
     LicencesDetailComponent,
     ServiceLicencesComponent,

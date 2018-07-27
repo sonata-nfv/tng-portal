@@ -44,18 +44,33 @@ export class ServiceManagementService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            resolve(
-              response.map(item => ({
-                requestId: item.id,
-                vendor: item.service.vendor,
-                name: item.service.name,
-                version: item.service.version,
-                type: item.request_type,
-                createdAt: item.created_at,
-                serviceId: item.service.uuid,
-                status: item.status
-              }))
-            );
+            if (response["service"] != undefined) {
+              resolve(
+                response.map(item => ({
+                  requestId: item.id,
+                  serviceId: item.service.uuid,
+                  vendor: item.service.vendor,
+                  name: item.service.name,
+                  version: item.service.version,
+                  type: item.request_type,
+                  createdAt: item.created_at,
+                  status: item.status
+                }))
+              );
+            } else {
+              resolve(
+                response.map(item => ({
+                  requestId: item.id,
+                  vendor: null,
+                  name: null,
+                  version: null,
+                  type: item.request_type,
+                  createdAt: item.created_at,
+                  serviceId: null,
+                  status: item.status
+                }))
+              );
+            }
           } else {
             reject();
           }
@@ -106,49 +121,68 @@ export class ServiceManagementService {
    */
   getNSInstances(search?): any {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
-      // let url =
-      //   search != undefined
-      //     ? this.config.base + this.config.instances + search
-      //     : this.config.base + this.config.instances;
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.instances + search
+          : this.config.base + this.config.instances;
 
-      // this.http
-      //   .get(url, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     if (response instanceof Array) {
-      //       resolve(
-      //         response.map(item => ({
-      //           instanceID: item.uuid,
-      //           status: item.status,
-      //           serviceID: item.descriptor_reference,
-      //           version: item.version,
-      //           latestVersion: ""
-      //         }))
-      //       );
-      //     } else {
-      //       reject();
-      //     }
-      //   })
-      //   .catch(
-      //     err => (err.status === 404 ? resolve([]) : reject(err.statusText))
-      //   );
-
-      setTimeout(() => {
-        resolve([
-          {
-            instanceID: "1233-9564-88558-ab55",
-            type: "public",
-            createdAt: new Date().toISOString(),
-            serviceID: "872135-32145-123465",
-            status: "active",
-            version: "0.4",
-            latestVersion: "0.1"
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => ({
+                uuid: item.uuid,
+                status: item.status,
+                serviceID: item.descriptor_reference,
+                version: item.version,
+                latestVersion: "not in response"
+              }))
+            );
+          } else {
+            reject();
           }
-        ]);
-      }, 1000);
+        })
+        .catch(
+          err => (err.status === 404 ? resolve([]) : reject(err.statusText))
+        );
+    });
+  }
+
+  /**
+   * Retrieves a Network Service Instance by UUID
+   *
+   * @param uuid UUID of the desired NS instance.
+   */
+  getOneNSInstance(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.instances + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("uuid")) {
+            resolve({
+              uuid: response["uuid"],
+              status: response["status"],
+              serviceID: response["descriptor_reference"],
+              version: response["version"],
+              updatedAt: response["updated_at"],
+              vnf: response["network_functions"],
+              virtualLinks: response["virtual_links"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

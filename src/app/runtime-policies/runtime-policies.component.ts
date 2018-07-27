@@ -122,7 +122,9 @@ export class RuntimePoliciesComponent implements OnInit {
       });
   }
 
-  openPolicy(policy) {}
+  openPolicy(policy) {
+    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route });
+  }
 
   createNew() {
     this.router.navigate(["new"], { relativeTo: this.route });
