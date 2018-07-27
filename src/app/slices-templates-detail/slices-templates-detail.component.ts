@@ -14,7 +14,6 @@ import { MatDialog } from "@angular/material";
 })
 export class SlicesTemplatesDetailComponent implements OnInit {
   loading: boolean;
-
   detail = {};
 
   constructor(

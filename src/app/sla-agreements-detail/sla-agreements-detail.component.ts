@@ -14,16 +14,7 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 export class SlaAgreementsDetailComponent implements OnInit {
   loading: boolean;
   agreementForm: FormGroup;
-
-  name: string;
-  author: string;
-  date: string;
-  ns: string;
-  customer: string;
-  status: string;
-  propertyList: Array<Object>;
-  // availability: string;
-  // cost: string;
+  detail = {};
 
   constructor(
     private router: Router,
@@ -54,13 +45,14 @@ export class SlaAgreementsDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
-        this.name = response.name;
-        this.author = response.author;
-        this.date = response.date;
-        this.ns = response.ns;
-        this.customer = response.customer;
-        this.status = response.status;
-        this.propertyList = response.propertyList;
+        this.detail = response;
+        // this.name = response.name;
+        // this.author = response.author;
+        // this.date = response.date;
+        // this.ns = response.ns;
+        // this.customer = response.customer;
+        // this.status = response.status;
+        // this.propertyList = response.propertyList;
         // this.availability = response.availability;
         // this.cost = response.cost;
       })

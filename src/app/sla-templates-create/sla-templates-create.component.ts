@@ -62,7 +62,6 @@ export class SlaTemplatesCreateComponent implements OnInit {
         // Save complete data from guarantees and NS
         this.nss = responses[0];
         this.guaranties = responses[1];
-        console.log(this.guaranties);
       })
       .catch(err => (this.loading = false));
   }
