@@ -44,18 +44,33 @@ export class ServiceManagementService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            resolve(
-              response.map(item => ({
-                requestId: item.id,
-                vendor: item.service.vendor,
-                name: item.service.name,
-                version: item.service.version,
-                type: item.request_type,
-                createdAt: item.created_at,
-                serviceId: item.service.uuid,
-                status: item.status
-              }))
-            );
+            if (response["service"] != undefined) {
+              resolve(
+                response.map(item => ({
+                  requestId: item.id,
+                  serviceId: item.service.uuid,
+                  vendor: item.service.vendor,
+                  name: item.service.name,
+                  version: item.service.version,
+                  type: item.request_type,
+                  createdAt: item.created_at,
+                  status: item.status
+                }))
+              );
+            } else {
+              resolve(
+                response.map(item => ({
+                  requestId: item.id,
+                  vendor: null,
+                  name: null,
+                  version: null,
+                  type: item.request_type,
+                  createdAt: item.created_at,
+                  serviceId: null,
+                  status: item.status
+                }))
+              );
+            }
           } else {
             reject();
           }
