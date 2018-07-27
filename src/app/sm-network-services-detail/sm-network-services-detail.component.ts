@@ -15,15 +15,7 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 })
 export class SmNetworkServicesDetailComponent implements OnInit {
   loading: boolean;
-
-  name: string;
-  author: string;
-  version: string;
-  vendor: string;
-  serviceID: string;
-  type: string;
-  description: string;
-  createdAt: string;
+  detail = {};
 
   constructor(
     private commonService: CommonService,
@@ -54,14 +46,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
-        this.name = response.name;
-        this.author = response.author;
-        this.version = response.version;
-        this.vendor = response.vendor;
-        this.serviceID = response.serviceID;
-        this.type = response.type;
-        this.description = response.description;
-        this.createdAt = response.createdAt;
+        this.detail = response;
       })
       .catch(err => {
         this.loading = false;
@@ -85,13 +70,13 @@ export class SmNetworkServicesDetailComponent implements OnInit {
   instanciate() {
     this.instantiateDialog.open(NsInstantiateDialogComponent, {
       data: {
-        serviceUUID: this.serviceID,
-        serviceName: this.name
+        serviceUUID: this.detail["serviceID"],
+        serviceName: this.detail["name"]
       }
     });
   }
 
   close() {
-    this.router.navigate(["service-management/sm-network-services"]);
+    this.router.navigate(["service-management/network-services"]);
   }
 }

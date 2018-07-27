@@ -46,15 +46,6 @@ export class SlaAgreementsDetailComponent implements OnInit {
         this.loading = false;
 
         this.detail = response;
-        // this.name = response.name;
-        // this.author = response.author;
-        // this.date = response.date;
-        // this.ns = response.ns;
-        // this.customer = response.customer;
-        // this.status = response.status;
-        // this.propertyList = response.propertyList;
-        // this.availability = response.availability;
-        // this.cost = response.cost;
       })
       .catch(err => {
         this.loading = false;
