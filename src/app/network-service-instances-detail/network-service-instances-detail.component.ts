@@ -82,6 +82,8 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       });
   }
 
+  terminate() {}
+
   close() {
     this.router.navigate(["service-management/network-service-instances"]);
   }

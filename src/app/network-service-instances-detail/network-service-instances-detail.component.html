@@ -24,6 +24,13 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
+  <div class="stop" *ngIf="detail['serviceID'] || detail['status']">
+    <button (click)="terminate()">
+      <i class="wui wui-stop"></i>
+      <span>Terminate instance</span>
+    </button>
+  </div>
+
   <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
