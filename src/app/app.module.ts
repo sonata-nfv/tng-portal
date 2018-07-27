@@ -34,7 +34,7 @@ import { APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { MAT_DATE_LOCALE } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -66,6 +66,7 @@ import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
@@ -126,6 +127,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
+    RuntimePoliciesDetailComponent,
     RuntimePoliciesCreateComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
