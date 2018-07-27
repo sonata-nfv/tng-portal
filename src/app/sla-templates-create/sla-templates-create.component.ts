@@ -55,9 +55,9 @@ export class SlaTemplatesCreateComponent implements OnInit {
         this.nsList = responses[0].map(x => x.serviceName);
 
         // Filter by the only guarantee ids supported at the moment
-        this.guarantiesList = responses[1]
-          .filter(x => x.guaranteeID === "g1" || x.guaranteeID === "g2")
-          .map(x => x.guaranteeID + " - " + x.name);
+        this.guarantiesList = responses[1].map(
+          x => x.guaranteeID + " - " + x.name + ": " + x.value + " " + x.unit
+        );
 
         // Save complete data from guarantees and NS
         this.nss = responses[0];

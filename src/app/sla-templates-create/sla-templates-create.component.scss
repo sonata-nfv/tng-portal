@@ -111,21 +111,18 @@ app-sla-templates-create {
           width: 95%;
         }
         .gName {
-          width: 35%;
-        }
-        .gOperator {
-          width: 35%;
+          width: 55%;
         }
         .timePeriod {
           display: flex;
           flex-direction: column;
-          width: 30%;
+          width: 40%;
           // .mat-form-field-wrapper {
           //   padding-bottom: 10px;
           // }
         }
         button {
-          width: 10%;
+          width: 5%;
           margin-top: 20px;
           font-size: 16px;
         }

@@ -97,15 +97,12 @@ app-sla-templates-detail {
           font-size: 16px;
         }
         .gName {
-          width: 40%;
-        }
-        .gOperator {
-          width: 45%;
+          width: 55%;
         }
         .timePeriod {
           display: flex;
           flex-direction: column;
-          width: 15%;
+          width: 45%;
           .mat-form-field-wrapper {
             padding-bottom: 10px;
           }

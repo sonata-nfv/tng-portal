@@ -45,7 +45,9 @@ export class CommonService {
               response.map(item => {
                 return {
                   uuid: item.uuid,
+                  vendor: item.slad.vendor,
                   name: item.slad.name,
+                  version: item.slad.version,
                   nsUUID: item.slad.sla_template.ns.ns_uuid,
                   ns: item.slad.sla_template.ns.ns_name,
                   expirationDate: new Date(item.slad.sla_template.valid_until)
