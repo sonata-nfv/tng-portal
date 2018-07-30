@@ -410,7 +410,6 @@ export class ServicePlatformService {
                   vendor: item.pld.vendor,
                   ns: item.pld.network_service.name,
                   ns_uuid: item.pld.network_service.ns_id,
-                  status: item.status,
                   date: item.updated_at,
                   default: item.pld.default_policy || false,
                   enforced: item.enforced ? "Yes" : "No"
@@ -422,6 +421,55 @@ export class ServicePlatformService {
           }
         })
         .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Runtime Policy by UUID
+   *
+   * @param uuid UUID of the desired Runtime Policy.
+   */
+  getOneRuntimePolicy(uuid: string) {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+
+      // this.http
+      //   .get(this.config.base + this.config.runtimePolicies + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       uuid: response["uuid"],
+      //       name: response["pld"]["name"],
+      //       author: response["pld"]["author"],
+      //       date: response["updated_at"],
+      //       nsUUID: response["pld"]["network_service"],
+      //       version: response["pld"]["version"],
+      //       default: response["pld"]["default_policy"] || false,
+      //       enforced: response["enforced"] ? "Yes" : "No",
+      //       sla: response["sla"],
+      //       policyRules: [],
+      //       monitoringRules: []
+      //     });
+      //   })
+      //   .catch(err => reject(err));
+
+      setTimeout(() => {
+        resolve({
+          uuid: "uuid",
+          name: "name",
+          author: "author",
+          date: "updated_at",
+          nsUUID: "1ef82ba1-aab5-482e-944e-c85f8f34a252",
+          version: "0.1",
+          default: true,
+          enforced: "Yes",
+          sla: "65a165c1-1a18-444b-a073-abedc157b942",
+          policyRules: [],
+          monitoringRules: []
+        });
+      }, 500);
     });
   }
 
