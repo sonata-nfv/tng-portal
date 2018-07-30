@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { MatTableDataSource } from "@angular/material";
 
 import { CommonService } from "../shared/services/common/common.service";
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
@@ -24,12 +23,10 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     "name",
     "version",
     "ns",
-    // "date",
     "enforced",
     "default",
     "delete"
   ];
-  dataSource = new MatTableDataSource();
   subscription: Subscription;
 
   constructor(
@@ -93,8 +90,18 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         this.nsListComplete = responses[0];
 
         this.policies = responses[1];
+
+        // Sort table of policies
+        this.policies.sort((a, b) => {
+          const keyA = a.default;
+          const keyB = b.default;
+
+          if (keyA > keyB) return -1;
+          if (keyA < keyB) return 1;
+          return 0;
+        });
+
         this.policiesDisplayed = responses[1];
-        this.dataSource = new MatTableDataSource(this.policiesDisplayed);
       })
       .catch(err => (this.loading = false));
   }

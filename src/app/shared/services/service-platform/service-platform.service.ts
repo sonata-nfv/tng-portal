@@ -412,7 +412,7 @@ export class ServicePlatformService {
                   ns_uuid: item.pld.network_service.ns_id,
                   status: item.status,
                   date: item.updated_at,
-                  default: item.pld.default_policy,
+                  default: item.pld.default_policy || false,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
