@@ -400,6 +400,7 @@ export class ServicePlatformService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
+            response.shift();
             resolve(
               response.map(item => {
                 return {
@@ -411,7 +412,7 @@ export class ServicePlatformService {
                   ns_uuid: item.pld.network_service.ns_id,
                   status: item.status,
                   date: item.updated_at,
-                  default: item.default_policy,
+                  default: item.pld.default_policy,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
@@ -419,6 +420,27 @@ export class ServicePlatformService {
           } else {
             reject();
           }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Generates a Runtime Policy
+   *
+   * @param policy Data of the desired Runtime Policy
+   */
+  postOneRuntimePolicy(policy): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .post(this.config.base + this.config.runtimePolicies, policy, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
         })
         .catch(err => reject(err.statusText));
     });

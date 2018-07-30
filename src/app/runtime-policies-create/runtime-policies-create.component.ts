@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { CommonService } from "../shared/services/common/common.service";
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 
 @Component({
   selector: "app-runtime-policies-create",
@@ -23,8 +24,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
@@ -55,6 +56,17 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
         this.nsList.push("None");
       });
+  }
+
+  private _onFormChanges(value?) {
+    if (
+      this.policyForm.get("ns").value != null &&
+      this.policyForm.get("name").value != null
+    ) {
+      this.disabledButton = false;
+    }
+
+    // Check optional default, sla, add monitoring rules
   }
 
   receiveNS(ns) {
@@ -103,28 +115,29 @@ export class RuntimePoliciesCreateComponent implements OnInit {
     }
   }
 
-  private _onFormChanges(value?) {
-    console.log(this.policyForm);
-    if (
-      this.policyForm.get("ns").value != null &&
-      this.policyForm.get("name").value != null
-    ) {
-      this.disabledButton = false;
-    }
-
-    // Check optional default, sla, add monitoring rules
-  }
-
   createPolicy() {
     const policy = {
+      vendor: "5GTANGO",
       name: this.policyForm.get("name").value,
-      ns: this.policyForm.get("ns").value,
-      default: this.policyForm.get("default").value,
+      version: "0.1",
+      network_service: this.policyForm.get("ns").value,
+      default_policy: this.policyForm.get("default").value,
       sla: this.policyForm.get("sla").value,
-      monitoringRule: this.policyForm.get("monitoringRule").value
+      policyRules: [],
+      monitoringRules: this.policyForm.get("monitoringRule").value
     };
 
-    console.log(policy);
+    this.loading = true;
+    this.servicePlatformService
+      .postOneRuntimePolicy(policy)
+      .then(response => {
+        this.loading = false;
+        this.close();
+      })
+      .catch(err => {
+        this.loading = false;
+        // TODO display request status in toast
+      });
   }
 
   close() {
