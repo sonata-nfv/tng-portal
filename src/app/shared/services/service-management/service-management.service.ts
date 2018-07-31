@@ -61,12 +61,12 @@ export class ServiceManagementService {
               resolve(
                 response.map(item => ({
                   requestId: item.id,
-                  vendor: null,
-                  name: null,
-                  version: null,
+                  vendor: "Not available",
+                  name: "Not available",
+                  version: "Not available",
                   type: item.request_type,
                   createdAt: item.created_at,
-                  serviceId: null,
+                  serviceId: "Not available",
                   status: item.status
                 }))
               );
@@ -140,7 +140,7 @@ export class ServiceManagementService {
                 status: item.status,
                 serviceID: item.descriptor_reference,
                 version: item.version,
-                latestVersion: "not in response"
+                latestVersion: "Not available"
               }))
             );
           } else {
