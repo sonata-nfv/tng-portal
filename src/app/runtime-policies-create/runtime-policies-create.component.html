@@ -22,8 +22,6 @@
   <mat-checkbox formControlName="default">Mark as default</mat-checkbox>
 
   <app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
-  <app-select class="select" placeholder="Select SLA" *ngIf="policyForm.get('ns').valid" [reset]="reset" required="false" [list]="slaList"
-    (selectEvent)="receiveSLA($event)"></app-select>
 </form>
 
 <div class="advanceSection">
@@ -54,9 +52,9 @@
   </form>
 
   <!-- TODO rules -->
-  <div class="rulesForm">
+  <!-- <div class="rulesForm">
     <span class="sectionTitle">Rules</span>
-  </div>
+  </div> -->
 
 </div>
 

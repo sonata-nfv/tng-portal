@@ -18,8 +18,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
   closed: boolean = true;
   nsList = new Array();
   nsListComplete = new Array();
-  slaList = new Array();
-  slaListComplete = new Array();
   monitoringRules: string = "This is a monitoring rule for this example!";
 
   constructor(
@@ -33,7 +31,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       name: new FormControl(),
       default: new FormControl(),
       ns: new FormControl(null, Validators.required),
-      sla: new FormControl(),
       monitoringRule: new FormControl()
     });
 
@@ -66,7 +63,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       this.disabledButton = false;
     }
 
-    // Check optional default, sla, add monitoring rules
+    // Check optional default, add monitoring rules
   }
 
   receiveNS(ns) {
@@ -79,39 +76,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       ns_uuid = this.nsListComplete.filter(x => x.serviceName === ns)[0]
         .serviceId;
       this.policyForm.controls.ns.setValue(ns_uuid);
-
-      this.loading = true;
-      this.commonService
-        .getSLATemplates()
-        .then(response => {
-          this.loading = false;
-
-          // Save SLA data to display
-          this.slaList = response
-            .filter(x => x.nsUUID === ns_uuid)
-            .map(x => x.name);
-
-          if (this.slaList.length < 1) {
-            this.slaList.push("None");
-          }
-
-          // Save complete data from SLA
-          this.slaListComplete = response;
-        })
-        .catch(err => {
-          this.loading = false;
-
-          this.slaList.push("None");
-        });
-    }
-  }
-
-  receiveSLA(sla) {
-    if (sla !== "None") {
-      const sla_uuid = this.slaListComplete.filter(x => x.name === sla)[0].uuid;
-      this.policyForm.controls.sla.setValue(sla_uuid);
-    } else {
-      this.policyForm.controls.sla.setValue(null);
     }
   }
 
@@ -122,7 +86,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       version: "0.1",
       network_service: this.policyForm.get("ns").value,
       default_policy: this.policyForm.get("default").value,
-      sla: this.policyForm.get("sla").value,
       policyRules: [],
       monitoringRules: this.policyForm.get("monitoringRule").value
     };
