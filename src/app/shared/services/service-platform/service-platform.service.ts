@@ -400,7 +400,6 @@ export class ServicePlatformService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            response.shift();
             resolve(
               response.map(item => {
                 return {
