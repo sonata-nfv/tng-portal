@@ -460,11 +460,11 @@ export class ServicePlatformService {
           name: "name",
           author: "author",
           date: "updated_at",
-          nsUUID: "1ef82ba1-aab5-482e-944e-c85f8f34a252",
+          nsUUID: "b4baff48-bf3a-4b36-ada7-e2d5120ba858",
           version: "0.1",
           default: true,
           enforced: "Yes",
-          sla: "65a165c1-1a18-444b-a073-abedc157b942",
+          sla: null,
           policyRules: [],
           monitoringRules: []
         });

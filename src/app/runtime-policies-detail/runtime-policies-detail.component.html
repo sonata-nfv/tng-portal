@@ -26,12 +26,11 @@
   </div>
 </div>
 
-<form [formGroup]="policyForm" *ngIf="policyForm.controls.ns.value">
+<form [formGroup]="policyForm" *ngIf="detail['nsUUID']">
   <mat-checkbox formControlName="default">Mark as default</mat-checkbox>
 
-  <app-select class="select" placeholder="Network Service" [list]="nsList" [value]="policyForm.controls.ns.value" (selectEvent)="receiveNS($event)"></app-select>
-  <app-select class="select" placeholder="Select SLA" [value]="policyForm.controls.sla.value" [reset]="reset" required="false"
-    [list]="slaList" (selectEvent)="receiveSLA($event)"></app-select>
+  <app-select class="select" placeholder="Network Service" [list]="nsList" [value]="nsName" (selectEvent)="receiveNS($event)"></app-select>
+  <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"></app-select>
 </form>
 
 <div class="advanceSection" *ngIf="detail['name']">
@@ -54,7 +53,7 @@
         </span>
       </div>
 
-      <mat-form-field class="monitoringRules">
+      <mat-form-field class="monitoringRules" *ngIf="detail['name']">
         <span class="title">Add new monitoring rules</span>
         <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
       </mat-form-field>
@@ -62,9 +61,9 @@
   </form>
 
   <!-- TODO rules -->
-  <div class="rulesForm" *ngIf="detail['name']">
+  <!-- <div class="rulesForm" *ngIf="detail['name']">
     <span class="sectionTitle">Rules</span>
-  </div>
+  </div> -->
 
 </div>
 

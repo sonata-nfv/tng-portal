@@ -14,12 +14,15 @@ import { CommonService } from "../shared/services/common/common.service";
 export class RuntimePoliciesDetailComponent implements OnInit {
   loading: boolean = false;
   closed: boolean = true;
+  nsName: string;
+  slaName: string;
   policyForm: FormGroup;
   nsList = new Array();
   nsListComplete = new Array();
   slaList = new Array();
   slaListComplete = new Array();
   detail = {};
+  monitoringRules: string = "This is a monitoring rule for this example!";
 
   constructor(
     private router: Router,
@@ -45,13 +48,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
   }
 
-  private _onFormChanges(value?) {
-    // if (
-    //   this.policyForm.get("ns").value != null &&
-    //   this.policyForm.get("name").value != null
-    // ) {
-    // }
-  }
+  private _onFormChanges(value?) {}
 
   /**
    * Generates the HTTP request of a Runtime Policy by UUID.
@@ -97,15 +94,23 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           // Save complete data from NS
           this.nsListComplete = response;
 
-          const nsName =
+          if (
             this.nsListComplete.find(x => x.serviceId === this.detail["nsUUID"])
-              .serviceName || this.detail["nsUUID"];
+          ) {
+            this.nsName = this.nsListComplete.find(
+              x => x.serviceId === this.detail["nsUUID"]
+            ).serviceName;
+          } else {
+            this.nsList.push(this.detail["nsUUID"]);
+            this.nsName = this.detail["nsUUID"];
+          }
 
-          this.policyForm.get("ns").setValue(nsName);
+          this.policyForm.get("ns").setValue(this.detail["nsUUID"]);
+
           resolve();
         })
         .catch(err => {
-          this.nsList.push("None", this.detail["nsUUID"]);
+          this.nsList.unshift("None", this.detail["nsUUID"]);
           this.policyForm.get("ns").setValue(this.detail["nsUUID"]);
           reject();
         });
@@ -122,29 +127,58 @@ export class RuntimePoliciesDetailComponent implements OnInit {
             .filter(x => x.nsUUID === ns_uuid)
             .map(x => x.name);
 
-          if (this.slaList.length < 1) {
-            this.slaList.push("None", this.detail["sla"]);
-          }
-
           // Save complete data from SLA
           this.slaListComplete = response;
 
-          if (this.detail["sla"]) {
-            const slaName =
-              this.slaListComplete.find(x => x.uuid === this.detail["sla"])
-                .name || this.detail["sla"];
-            this.policyForm.get("sla").setValue(slaName);
+          if (
+            this.detail["sla"] &&
+            this.slaListComplete.find(x => x.uuid === this.detail["sla"])
+          ) {
+            this.slaName = this.slaListComplete.find(
+              x => x.uuid === this.detail["sla"]
+            ).name;
+            this.policyForm.get("sla").setValue(this.detail["sla"]);
+          } else if (this.detail["sla"]) {
+            this.slaList.push(this.detail["sla"]);
+            this.slaName = this.detail["sla"];
+            this.policyForm.get("sla").setValue(this.detail["sla"]);
           }
+
+          this.slaList.unshift("None");
+
           resolve();
         })
         .catch(err => {
-          this.slaList.push("None");
+          this.slaList.unshift("None");
           reject();
         });
     });
   }
 
-  editPolicy() {}
+  receiveNS(ns) {
+    if (ns === "None") {
+      this.policyForm.controls.ns.setValue(null);
+    } else if (this.nsListComplete.find(x => x.serviceName === ns)) {
+      const ns_uuid = this.nsListComplete.find(x => x.serviceName === ns)
+        .serviceId;
+      this.policyForm.controls.ns.setValue(ns_uuid);
+    } else {
+      this.policyForm.controls.ns.setValue(ns);
+    }
+  }
+
+  receiveSLA(sla) {
+    if (sla !== "None") {
+      const sla_uuid = this.slaListComplete.find(x => x.name === sla).uuid;
+      this.policyForm.get("sla").setValue(sla_uuid);
+    } else {
+      this.policyForm.get("sla").setValue(null);
+    }
+  }
+
+  editPolicy() {
+    console.log(this.policyForm.controls);
+  }
 
   close() {
     this.router.navigate(["service-platform/policies/runtime-policies"]);
