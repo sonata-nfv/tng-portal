@@ -681,8 +681,8 @@ export class ServicePlatformService {
         .then(response => {
           resolve({
             uuid: response["uuid"],
-            name: response["nstName"],
-            vendor: response["nstVendor"],
+            name: response["name"],
+            vendor: response["vendor"],
             state: response["nsiState"],
             description: response["description"],
             netServInstanceUUID: response["netServInstance_Uuid"],
@@ -724,7 +724,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       const terminateTime = {
-        terminateTime: new Date().toISOString()
+        terminateTime: "0"
       };
 
       this.http
