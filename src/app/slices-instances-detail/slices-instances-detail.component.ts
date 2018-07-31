@@ -40,7 +40,6 @@ export class SlicesInstancesDetailComponent implements OnInit {
       .getOneSliceInstance(uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
       })
       .catch(err => {

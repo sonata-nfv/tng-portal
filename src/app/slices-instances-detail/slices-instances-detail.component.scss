@@ -34,12 +34,13 @@ app-slices-instances-detail {
     width: 60%;
     margin-bottom: 20px;
     .mat-form-field {
+      width: 40%;
       margin-left: 10px;
       .mat-input-element:disabled {
         text-overflow: ellipsis;
       }
       &.longField {
-        width: 70%;
+        width: 60%;
       }
       .element {
         margin-bottom: 5px;
@@ -51,11 +52,35 @@ app-slices-instances-detail {
       width: 100%;
     }
 
+    .stop {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      padding: 15px 0 15px 10px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      font-size: 18px;
+      color: $primary-font-color;
+      background-color: $basic-background-color;
+
+      i:before {
+        border-radius: 20%;
+        color: $stop-color;
+        background-color: $stop-color;
+      }
+      span {
+        margin-left: 10px;
+        color: $secondary-font-color-dark;
+      }
+    }
+
     .description {
       width: 100%;
       display: flex;
       flex-direction: column;
-      margin-top: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
       span {
         width: 100%;
         &.title {

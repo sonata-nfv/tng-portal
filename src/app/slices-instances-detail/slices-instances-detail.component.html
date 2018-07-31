@@ -31,8 +31,21 @@
       </div>
     </mat-form-field>
     <mat-form-field *ngIf="detail['nstName']">
-      <input matInput placeholder="NST Name" value="{{ detail['nstName'] }}" disabled>
+      <input matInput placeholder="Network Slice Template Name" value="{{ detail['nstName'] }}" disabled>
     </mat-form-field>
+  </div>
+
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail['state']">
+      <input matInput placeholder="State" value="{{ detail['state'] }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="sameRow" *ngIf="detail['uuid'] && detail['state'] != 'TERMINATED'">
+    <button class="stop" (click)="stopInstance()">
+      <i class="wui wui-stop-alt"></i>
+      <span>Terminate instance</span>
+    </button>
   </div>
 
   <div class="description" *ngIf="detail['description']">
