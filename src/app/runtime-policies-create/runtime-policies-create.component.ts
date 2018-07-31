@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { CommonService } from "../shared/services/common/common.service";
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 
 @Component({
   selector: "app-runtime-policies-create",
@@ -17,14 +18,12 @@ export class RuntimePoliciesCreateComponent implements OnInit {
   closed: boolean = true;
   nsList = new Array();
   nsListComplete = new Array();
-  slaList = new Array();
-  slaListComplete = new Array();
   monitoringRules: string = "This is a monitoring rule for this example!";
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
@@ -32,7 +31,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       name: new FormControl(),
       default: new FormControl(),
       ns: new FormControl(null, Validators.required),
-      sla: new FormControl(),
       monitoringRule: new FormControl()
     });
 
@@ -57,6 +55,17 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       });
   }
 
+  private _onFormChanges(value?) {
+    if (
+      this.policyForm.get("ns").value != null &&
+      this.policyForm.get("name").value != null
+    ) {
+      this.disabledButton = false;
+    }
+
+    // Check optional default, add monitoring rules
+  }
+
   receiveNS(ns) {
     let ns_uuid: string;
 
@@ -67,64 +76,31 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       ns_uuid = this.nsListComplete.filter(x => x.serviceName === ns)[0]
         .serviceId;
       this.policyForm.controls.ns.setValue(ns_uuid);
-
-      this.loading = true;
-      this.commonService
-        .getSLATemplates()
-        .then(response => {
-          this.loading = false;
-
-          // Save SLA data to display
-          this.slaList = response
-            .filter(x => x.nsUUID === ns_uuid)
-            .map(x => x.name);
-
-          if (this.slaList.length < 1) {
-            this.slaList.push("None");
-          }
-
-          // Save complete data from SLA
-          this.slaListComplete = response;
-        })
-        .catch(err => {
-          this.loading = false;
-
-          this.slaList.push("None");
-        });
     }
-  }
-
-  receiveSLA(sla) {
-    if (sla !== "None") {
-      const sla_uuid = this.slaListComplete.filter(x => x.name === sla)[0].uuid;
-      this.policyForm.controls.sla.setValue(sla_uuid);
-    } else {
-      this.policyForm.controls.sla.setValue(null);
-    }
-  }
-
-  private _onFormChanges(value?) {
-    console.log(this.policyForm);
-    if (
-      this.policyForm.get("ns").value != null &&
-      this.policyForm.get("name").value != null
-    ) {
-      this.disabledButton = false;
-    }
-
-    // Check optional default, sla, add monitoring rules
   }
 
   createPolicy() {
     const policy = {
+      vendor: "5GTANGO",
       name: this.policyForm.get("name").value,
-      ns: this.policyForm.get("ns").value,
-      default: this.policyForm.get("default").value,
-      sla: this.policyForm.get("sla").value,
-      monitoringRule: this.policyForm.get("monitoringRule").value
+      version: "0.1",
+      network_service: this.policyForm.get("ns").value,
+      default_policy: this.policyForm.get("default").value,
+      policyRules: [],
+      monitoringRules: this.policyForm.get("monitoringRule").value
     };
 
-    console.log(policy);
+    this.loading = true;
+    this.servicePlatformService
+      .postOneRuntimePolicy(policy)
+      .then(response => {
+        this.loading = false;
+        this.close();
+      })
+      .catch(err => {
+        this.loading = false;
+        // TODO display request status in toast
+      });
   }
 
   close() {

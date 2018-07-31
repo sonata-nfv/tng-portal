@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { MatTableDataSource } from "@angular/material";
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 
 import { CommonService } from "../shared/services/common/common.service";
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-runtime-policies",
@@ -11,7 +11,7 @@ import { ServicePlatformService } from "../shared/services/service-platform/serv
   styleUrls: ["./runtime-policies.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class RuntimePoliciesComponent implements OnInit {
+export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   loading: boolean;
   reset: boolean;
   policiesDisplayed = new Array();
@@ -23,12 +23,11 @@ export class RuntimePoliciesComponent implements OnInit {
     "name",
     "version",
     "ns",
-    // "date",
     "enforced",
     "default",
     "delete"
   ];
-  dataSource = new MatTableDataSource();
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -39,6 +38,22 @@ export class RuntimePoliciesComponent implements OnInit {
 
   ngOnInit() {
     this.requestRuntimePolicies();
+
+    // Reloads the template list every when children are closed
+    this.subscription = this.router.events.subscribe(event => {
+      if (
+        event instanceof NavigationEnd &&
+        event.url === "/service-platform/policies/runtime-policies" &&
+        this.route.url["value"].length === 3 &&
+        this.route.url["value"][2].path === "runtime-policies"
+      ) {
+        this.requestRuntimePolicies();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   searchFieldData(search) {
@@ -75,8 +90,18 @@ export class RuntimePoliciesComponent implements OnInit {
         this.nsListComplete = responses[0];
 
         this.policies = responses[1];
+
+        // Sort table of policies
+        this.policies.sort((a, b) => {
+          const keyA = a.default;
+          const keyB = b.default;
+
+          if (keyA > keyB) return -1;
+          if (keyA < keyB) return 1;
+          return 0;
+        });
+
         this.policiesDisplayed = responses[1];
-        this.dataSource = new MatTableDataSource(this.policiesDisplayed);
       })
       .catch(err => (this.loading = false));
   }

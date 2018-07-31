@@ -135,7 +135,11 @@ app-network-service-instances-detail {
         }
         .mat-cell:nth-child(3),
         .mat-header-cell:nth-child(3) {
-          width: 10%;
+          width: 15%;
+        }
+        .mat-cell:nth-child(4),
+        .mat-header-cell:nth-child(4) {
+          width: 30%;
         }
         .mat-cell:nth-child(5),
         .mat-header-cell:nth-child(5) {

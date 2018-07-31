@@ -409,9 +409,8 @@ export class ServicePlatformService {
                   vendor: item.pld.vendor,
                   ns: item.pld.network_service.name,
                   ns_uuid: item.pld.network_service.ns_id,
-                  status: item.status,
                   date: item.updated_at,
-                  default: item.default_policy,
+                  default: item.pld.default_policy || false,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
@@ -419,6 +418,76 @@ export class ServicePlatformService {
           } else {
             reject();
           }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Runtime Policy by UUID
+   *
+   * @param uuid UUID of the desired Runtime Policy.
+   */
+  getOneRuntimePolicy(uuid: string) {
+    return new Promise((resolve, reject) => {
+      // let headers = this.authService.getAuthHeaders();
+
+      // this.http
+      //   .get(this.config.base + this.config.runtimePolicies + "/" + uuid, {
+      //     headers: headers
+      //   })
+      //   .toPromise()
+      //   .then(response => {
+      //     resolve({
+      //       uuid: response["uuid"],
+      //       name: response["pld"]["name"],
+      //       author: response["pld"]["author"],
+      //       date: response["updated_at"],
+      //       nsUUID: response["pld"]["network_service"],
+      //       version: response["pld"]["version"],
+      //       default: response["pld"]["default_policy"] || false,
+      //       enforced: response["enforced"] ? "Yes" : "No",
+      //       sla: response["sla"],
+      //       policyRules: [],
+      //       monitoringRules: []
+      //     });
+      //   })
+      //   .catch(err => reject(err));
+
+      setTimeout(() => {
+        resolve({
+          uuid: "uuid",
+          name: "name",
+          author: "author",
+          date: "updated_at",
+          nsUUID: "b4baff48-bf3a-4b36-ada7-e2d5120ba858",
+          version: "0.1",
+          default: true,
+          enforced: "Yes",
+          sla: null,
+          policyRules: [],
+          monitoringRules: []
+        });
+      }, 500);
+    });
+  }
+
+  /**
+   * Generates a Runtime Policy
+   *
+   * @param policy Data of the desired Runtime Policy
+   */
+  postOneRuntimePolicy(policy): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .post(this.config.base + this.config.runtimePolicies, policy, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
         })
         .catch(err => reject(err.statusText));
     });
@@ -612,8 +681,8 @@ export class ServicePlatformService {
         .then(response => {
           resolve({
             uuid: response["uuid"],
-            name: response["nstName"],
-            vendor: response["nstVendor"],
+            name: response["name"],
+            vendor: response["vendor"],
             state: response["nsiState"],
             description: response["description"],
             netServInstanceUUID: response["netServInstance_Uuid"],
@@ -655,7 +724,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       const terminateTime = {
-        terminateTime: new Date().toISOString()
+        terminateTime: "0"
       };
 
       this.http

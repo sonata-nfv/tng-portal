@@ -77,6 +77,6 @@ export class SpNetworkServicesDetailComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["service-platform/sp-network-services"]);
+    this.router.navigate(["service-platform/network-services"]);
   }
 }

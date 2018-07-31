@@ -86,7 +86,11 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
   }
 
   stopInstance(item) {
-    this.servicePlatformService.postOneSliceInstanceTermination(item.uuid);
+    if (item.state != "TERMINATED") {
+      this.servicePlatformService.postOneSliceInstanceTermination(item.uuid);
+    } else {
+      this.openInstance(item);
+    }
   }
 
   openInstance(row) {
