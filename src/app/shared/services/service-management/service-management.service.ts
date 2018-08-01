@@ -44,7 +44,7 @@ export class ServiceManagementService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            if (response["service"] != undefined) {
+            if (response[0]["service"] != undefined) {
               resolve(
                 response.map(item => ({
                   requestId: item.id,
