@@ -44,38 +44,40 @@ export class ServiceManagementService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            if (response[0]["service"] != undefined) {
-              resolve(
-                response.map(item => ({
-                  requestId: item.id,
-                  serviceId: item.service.uuid,
-                  vendor: item.service.vendor,
-                  name: item.service.name,
-                  version: item.service.version,
-                  type: item.request_type,
-                  createdAt: item.created_at,
-                  status: item.status
-                }))
-              );
-            } else {
-              resolve(
-                response.map(item => ({
-                  requestId: item.id,
+            let requests = new Array();
+            response.forEach(res => {
+              if (res["service"]) {
+                requests.push({
+                  requestId: res.id,
+                  serviceId: res.service.uuid,
+                  vendor: res.service.vendor,
+                  name: res.service.name,
+                  version: res.service.version,
+                  type: res.request_type,
+                  createdAt: res.created_at,
+                  status: res.status
+                });
+              } else {
+                requests.push({
+                  requestId: res.id,
                   vendor: "Not available",
                   name: "Not available",
                   version: "Not available",
-                  type: item.request_type,
-                  createdAt: item.created_at,
+                  type: res.request_type,
+                  createdAt: res.created_at,
                   serviceId: "Not available",
-                  status: item.status
-                }))
-              );
-            }
+                  status: res.status
+                });
+              }
+            });
+            resolve(requests);
           } else {
             reject();
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => {
+          reject(err.statusText);
+        });
     });
   }
 
@@ -124,8 +126,8 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.instances + search
-          : this.config.base + this.config.instances;
+          ? this.config.base + this.config.serviceRecords + search
+          : this.config.base + this.config.serviceRecords;
 
       this.http
         .get(url, {
@@ -163,7 +165,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.instances + "/" + uuid, {
+        .get(this.config.base + this.config.serviceRecords + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -176,6 +178,38 @@ export class ServiceManagementService {
               version: response["version"],
               updatedAt: response["updated_at"],
               vnf: response["network_functions"],
+              virtualLinks: response["virtual_links"]
+            });
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Retrieves a Function Record by UUID
+   *
+   * @param uuid UUID of the desired Function Record.
+   */
+  getFunctionRecords(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.base + this.config.functionRecords + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("uuid")) {
+            resolve({
+              uuid: response["uuid"],
+              status: response["status"],
+              version: response["version"],
+              updatedAt: response["updated_at"],
+              vdus: response["virtual_deployment_units"],
               virtualLinks: response["virtual_links"]
             });
           } else {

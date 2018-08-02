@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
@@ -14,7 +13,6 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 export class RequestsComponent implements OnInit {
   loading: boolean;
   requests = new Array();
-  dataSource = new MatTableDataSource();
   displayedColumns = [
     "vendor",
     "name",
@@ -53,9 +51,7 @@ export class RequestsComponent implements OnInit {
       .getNSRequests(search)
       .then(response => {
         this.loading = false;
-
         this.requests = response;
-        this.dataSource = new MatTableDataSource(this.requests);
       })
       .catch(err => {
         this.loading = false;
