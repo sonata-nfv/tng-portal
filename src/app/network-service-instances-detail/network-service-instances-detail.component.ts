@@ -51,7 +51,6 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       .getOneNSInstance(uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
 
         // Set VNF fake until they come in response
@@ -80,6 +79,10 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       .catch(err => {
         this.loading = false;
       });
+  }
+
+  openVNF(vnf) {
+    this.router.navigate(["vnf/", vnf.vnfr_id], { relativeTo: this.route });
   }
 
   terminate() {}

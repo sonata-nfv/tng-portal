@@ -88,6 +88,7 @@ import { RequestsComponent } from "./requests/requests.component";
 import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
 import { NetworkServiceInstancesDetailComponent } from "./network-service-instances-detail/network-service-instances-detail.component";
+import { FunctionRecordsDetailComponent } from "./function-records-detail/function-records-detail.component";
 import { LicencesComponent } from "./licences/licences.component";
 import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
@@ -146,6 +147,7 @@ export function initConfiguration(configService: ConfigService): Function {
     RequestDetailComponent,
     NetworkServiceInstancesComponent,
     NetworkServiceInstancesDetailComponent,
+    FunctionRecordsDetailComponent,
     LicencesComponent,
     LicencesDetailComponent,
     ServiceLicencesComponent,

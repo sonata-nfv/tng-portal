@@ -1,0 +1,88 @@
+@import "../../constants.scss";
+app-function-records-detail {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h2 {
+      margin: 0;
+      width: 95%;
+    }
+  }
+
+  form {
+    width: 70%;
+    align-items: flex-start;
+
+    .mat-form-field {
+      width: 65%;
+    }
+
+    .updatedAt {
+      margin-bottom: 50px;
+
+      .mat-input-element:disabled {
+        font-size: 14px;
+        color: $form-disabled-color;
+      }
+      .mat-form-field-label-wrapper .mat-form-field-label {
+        display: none;
+      }
+      .mat-form-field-infix {
+        border-top: 0;
+        padding: 0;
+      }
+    }
+
+    .sectionTitle {
+      font-size: 24px;
+      color: $primary-font-color-light;
+    }
+
+    .message {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      color: $secondary-font-color;
+    }
+
+    .mat-table {
+      width: 100%;
+      margin-bottom: 80px;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      .mat-header-row {
+        width: 60%;
+        // min-width: 150px;
+        border-bottom: none;
+      }
+      .mat-row {
+        width: 100%;
+        // min-width: 150px;
+        border-bottom: none;
+        background-image: linear-gradient(
+          to right,
+          $basic-background-color 0%,
+          $underline-color 0%,
+          $underline-color 100%,
+          $basic-background-color 100%,
+          $basic-background-color 100%
+        );
+      }
+    }
+  }
+}

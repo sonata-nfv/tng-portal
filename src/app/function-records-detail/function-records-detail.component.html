@@ -1,0 +1,53 @@
+<h1 class="sectionTitle" *ngIf="detail['uuid']">VNFs</h1>
+
+<div class="header" *ngIf="detail['uuid']">
+  <h2 class="subsectionTitle"> {{ detail["uuid"] }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="versionDiv" *ngIf="detail['version']">
+  <span class="text">Current version</span>
+  <div class="version">
+    <span>{{ detail["version"] }}</span>
+  </div>
+</div>
+
+<form>
+  <mat-form-field class="status" *ngIf="detail['status']">
+    <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
+  </mat-form-field>
+
+  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
+  </mat-form-field>
+
+  <div class="virtualLinks" *ngIf="detail['virtualLinks']">
+    <span class="sectionTitle">Virtual Links</span>
+    <span class="message" *ngIf="detail['virtualLinks'].length == 0">There are no virtual links to display</span>
+    <table mat-table class="virtualLinks" *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+      </ng-container>
+      <ng-container matColumnDef="connectivity_type">
+        <th mat-header-cell *matHeaderCellDef> Connectivity Type </th>
+        <td mat-cell *matCellDef="let element"> {{ element.connectivity_type }} </td>
+      </ng-container>
+      <ng-container matColumnDef="connection_points_reference">
+        <th mat-header-cell *matHeaderCellDef> Connection points </th>
+        <td mat-cell *matCellDef="let element"> {{ element.connection_points_reference }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsConnPoints">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsConnPoints;">
+      </tr>
+    </table>
+  </div>
+
+  <div class="vdus" *ngIf="detail['vdus']">
+    <span class="sectionTitle">VNF Summary</span>
+    <span class="message" *ngIf="detail['vdus'].length == 0">There are no Virtual Deployment Units to display</span>
+  </div>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>
