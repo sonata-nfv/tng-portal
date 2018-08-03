@@ -7,7 +7,8 @@ export class ConfigService {
   login: string = "sessions/";
   services: string = "services";
   requests: string = "requests";
-  instances: string = "records/services";
+  serviceRecords: string = "records/services";
+  functionRecords: string = "records/functions";
   licences: string = "licences/";
   packages: string = "packages";
   slaTemplates: string = "slas/templates";
