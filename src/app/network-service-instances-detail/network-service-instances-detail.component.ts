@@ -1,5 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
+import { DataSource } from "@angular/cdk/table";
+import { Observable, of } from "rxjs";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from "@angular/animations";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
 
@@ -7,11 +16,29 @@ import { ServiceManagementService } from "../shared/services/service-management/
   selector: "app-network-service-instances-detail",
   templateUrl: "./network-service-instances-detail.component.html",
   styleUrls: ["./network-service-instances-detail.component.scss"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger("detailExpand", [
+      state(
+        "collapsed",
+        style({ height: "0px", minHeight: "0", visibility: "hidden" })
+      ),
+      state("expanded", style({ height: "*", visibility: "visible" })),
+      transition(
+        "expanded <=> collapsed",
+        animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")
+      )
+    ])
+  ]
 })
 export class NetworkServiceInstancesDetailComponent implements OnInit {
   loading: boolean = false;
   detail = {};
+  open: boolean = false;
+  dataSource = new CustomDataSource();
+  expandedElement: any;
+  isExpansionDetailRow = (i: number, row: Object) =>
+    row.hasOwnProperty("detailRow");
   displayedColumns = [
     "uuid",
     "version",
@@ -66,7 +93,10 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
               .reverse()
               .join("/");
           });
+
+          this.dataSource.data = this.detail["vnf"];
         }
+
         // TODO change the string with commas for a view and pop up
         if (this.detail["virtualLinks"]) {
           this.detail["virtualLinks"].forEach(x => {
@@ -81,13 +111,24 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       });
   }
 
-  openVNF(vnf) {
-    this.router.navigate(["vnf/", vnf.vnfr_id], { relativeTo: this.route });
-  }
-
   terminate() {}
 
   close() {
     this.router.navigate(["service-management/network-service-instances"]);
   }
+}
+
+export class CustomDataSource extends DataSource<any> {
+  data = new Array();
+
+  // Connect function called by the table to retrieve one stream containing the data to render.
+  connect(): Observable<any[]> {
+    const rows = [];
+    this.data.forEach(element =>
+      rows.push(element, { detailRow: true, element })
+    );
+    return of(rows);
+  }
+
+  disconnect() {}
 }

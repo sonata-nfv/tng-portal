@@ -23,23 +23,7 @@ app-network-service-instances-detail {
       width: 95%;
     }
   }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   .detail {
     width: 70%;
     align-items: flex-start;
@@ -146,6 +130,23 @@ app-network-service-instances-detail {
           width: 15%;
         }
       }
+    }
+
+    // Table expansion
+    .element-row {
+      position: relative;
+    }
+
+    .element-row:not(.expanded) {
+      cursor: pointer;
+    }
+
+    .element-row:not(.expanded):hover {
+      background: #f5f5f5;
+    }
+
+    .element-row.expanded {
+      border-bottom-color: transparent;
     }
   }
 }
