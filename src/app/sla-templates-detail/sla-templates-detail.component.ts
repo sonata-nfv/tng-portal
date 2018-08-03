@@ -13,19 +13,10 @@ import { DialogDataService } from "../shared/services/dialog/dialog.service";
 })
 export class SlaTemplatesDetailComponent implements OnInit {
   loading: boolean;
-
-  uuid: string;
-  date: string;
+  detail = {};
   templateForm: FormGroup;
-  listNS = new Array();
-  storedGuarantees: Array<Object>;
   closed: boolean = false;
-
-  name: string;
-  author: string;
-  createdAt: string;
-  expirationDate: Date;
-  ns: string;
+  listNS = new Array();
 
   constructor(
     private router: Router,
@@ -41,8 +32,8 @@ export class SlaTemplatesDetailComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      this.uuid = params["id"];
-      this.requestSLATemplate(this.uuid);
+      let uuid = params["id"];
+      this.requestSLATemplate(uuid);
     });
   }
 
@@ -59,14 +50,10 @@ export class SlaTemplatesDetailComponent implements OnInit {
       .getOneSLATemplate(uuid)
       .then(response => {
         this.loading = false;
+        this.detail = response;
 
-        this.name = response.name;
-        this.author = response.author;
-        this.createdAt = response.createdAt;
-        this.expirationDate = response.expirationDate;
         this.listNS = [response.ns];
         this.templateForm.controls.ns.setValue(response.ns);
-        this.storedGuarantees = response.storedGuarantees;
       })
       .catch(err => {
         this.loading = false;
@@ -97,7 +84,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
     this.loading = true;
 
     this.servicePlatformService
-      .deleteOneSLATemplate(this.uuid)
+      .deleteOneSLATemplate(this.detail["uuid"])
       .then(response => {
         this.loading = false;
         this.close();

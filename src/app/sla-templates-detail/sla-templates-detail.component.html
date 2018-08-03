@@ -1,27 +1,31 @@
-<div class="title" *ngIf="name">
+<div class="title" *ngIf="detail['name']">
   <h1 class="sectionTitle">SLA Templates</h1>
   <button (click)="deleteTemplate()">Delete template</button>
 </div>
 
-<div class="header" *ngIf="name">
-  <h2 class="subsectionTitle"> {{ name }}</h2>
+<div class="header" *ngIf="detail['name']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
-<div class="subheader" *ngIf="author">
-  <h3 class="subtitle author">Created by {{ author }}</h3>
-  <h3 class="subtitle date">{{ createdAt }}</h3>
+<div class="subheader" *ngIf="detail['author']">
+  <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
+  <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
 </div>
 
 <form [formGroup]="templateForm">
+  <mat-form-field class="uuid" *ngIf="detail['uuid']">
+    <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true">
+  </mat-form-field>
+
   <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
     (selectEvent)="receiveNS($event)" [disabled]="true"></app-select>
 
-  <app-calendar *ngIf="expirationDate" placeholder="Expiration Date" [value]="expirationDate" (dateEvent)="receiveDate($event)"
+  <app-calendar *ngIf="detail['expirationDate']" placeholder="Expiration Date" [value]="detail['expirationDate']" (dateEvent)="receiveDate($event)"
     [disabled]="true"></app-calendar>
 </form>
 
-<div class="advanceSection" *ngIf="storedGuarantees">
+<div class="advanceSection" *ngIf="detail['storedGuarantees']">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Service Guarantees</span>
@@ -36,7 +40,7 @@
   <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
     <span class="sectionTitle">Service Guaranties</span>
 
-    <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
+    <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']">
 
       <mat-form-field class="gName">
         <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}" [disabled]="true">

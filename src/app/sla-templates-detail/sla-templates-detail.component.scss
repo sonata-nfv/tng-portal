@@ -62,6 +62,9 @@ app-sla-templates-detail {
         width: 100%;
       }
     }
+    .mat-input-element:disabled {
+      font-size: 18px;
+    }
     &.advancedForm {
       width: 100%;
       .sectionTitle {
