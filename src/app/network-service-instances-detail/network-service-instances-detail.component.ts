@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { DataSource } from "@angular/cdk/table";
-import { Observable, of } from "rxjs";
 import {
   animate,
   state,
@@ -11,6 +9,7 @@ import {
 } from "@angular/animations";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { CustomDataSource } from "./custom-data-source.component";
 
 @Component({
   selector: "app-network-service-instances-detail",
@@ -21,7 +20,12 @@ import { ServiceManagementService } from "../shared/services/service-management/
     trigger("detailExpand", [
       state(
         "collapsed",
-        style({ height: "0px", minHeight: "0", visibility: "hidden" })
+        style({
+          height: "0px",
+          minHeight: "0",
+          visibility: "hidden",
+          display: "none"
+        })
       ),
       state("expanded", style({ height: "*", visibility: "visible" })),
       transition(
@@ -34,11 +38,13 @@ import { ServiceManagementService } from "../shared/services/service-management/
 export class NetworkServiceInstancesDetailComponent implements OnInit {
   loading: boolean = false;
   detail = {};
+  vnfDetail = {};
   open: boolean = false;
   dataSource = new CustomDataSource();
   expandedElement: any;
   isExpansionDetailRow = (i: number, row: Object) =>
     row.hasOwnProperty("detailRow");
+
   displayedColumns = [
     "uuid",
     "version",
@@ -83,8 +89,8 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
         // Set VNF fake until they come in response
         if (this.detail["vnf"]) {
           this.detail["vnf"].forEach(x => {
-            x.version = "0";
-            x.status = "active";
+            // x.version = "0";
+            // x.status = "active";
             x.descriptorReference = "435219d-d773-4517-a5df-f97681f23456457";
             x.updatedAt = new Date()
               .toISOString()
@@ -111,24 +117,36 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       });
   }
 
+  /**
+   * Generates the HTTP request of a VNF record by UUID.
+   *
+   * @param uuid ID of the selected VNF to be displayed.
+   *             Comming from the route.
+   */
+  requestVNF(uuid) {
+    this.serviceManagementService
+      .getFunctionRecords(uuid)
+      .then(response => {
+        this.vnfDetail = response;
+
+        // TODO change the string with commas for a view and pop up
+        if (this.vnfDetail["virtualLinks"]) {
+          this.vnfDetail["virtualLinks"].forEach(x => {
+            x.connection_points_reference = x.connection_points_reference.join(
+              ", "
+            );
+          });
+        }
+      })
+      .catch(err => {
+        this.vnfDetail["virtualLinks"] = new Array();
+        this.vnfDetail["vdus"] = new Array();
+      });
+  }
+
   terminate() {}
 
   close() {
     this.router.navigate(["service-management/network-service-instances"]);
   }
-}
-
-export class CustomDataSource extends DataSource<any> {
-  data = new Array();
-
-  // Connect function called by the table to retrieve one stream containing the data to render.
-  connect(): Observable<any[]> {
-    const rows = [];
-    this.data.forEach(element =>
-      rows.push(element, { detailRow: true, element })
-    );
-    return of(rows);
-  }
-
-  disconnect() {}
 }

@@ -64,14 +64,14 @@
       <!-- Expanded Content Column - The detail row is made up of this one column -->
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let detail">
-          This is the detail of the VNF... WORK IN PROGRESS!
+          <app-function-records-detail [virtualLinks]="vnfDetail['virtualLinks']" [vdus]="vnfDetail['vdus']"></app-function-records-detail>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="expandedElement == row"
-        (click)="open = !open; expandedElement = row;">
+        (click)="open = !open; expandedElement = row; requestVNF(row.vnfr_id)">
       </tr>
 
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="(row.element == expandedElement && open) ? 'expanded' : 'collapsed'"
@@ -84,7 +84,7 @@
   <div class="virtualLinks" *ngIf="detail['virtualLinks']">
     <span class="sectionTitle">Virtual Links</span>
     <span class="message" *ngIf="detail['virtualLinks'].length == 0">There are no virtual links to display</span>
-    <table mat-table class="virtualLinks" *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
+    <table mat-table *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{ element.id }} </td>

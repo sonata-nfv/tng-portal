@@ -1,55 +1,18 @@
 @import "../../constants.scss";
 app-function-records-detail {
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   flex: 1 1;
-  position: absolute;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
-  .header {
+  background-color: $pannel-background-color;
+
+  .VNFDetail {
     display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-
-  form {
-    width: 70%;
+    flex-direction: column;
     align-items: flex-start;
+    margin: 10px;
 
-    .mat-form-field {
-      width: 65%;
-    }
-
-    .updatedAt {
-      margin-bottom: 50px;
-
-      .mat-input-element:disabled {
-        font-size: 14px;
-        color: $form-disabled-color;
-      }
-      .mat-form-field-label-wrapper .mat-form-field-label {
-        display: none;
-      }
-      .mat-form-field-infix {
-        border-top: 0;
-        padding: 0;
-      }
-    }
-
-    .sectionTitle {
-      font-size: 24px;
+    .tableDetailTitle {
+      font-size: 18px;
       color: $primary-font-color-light;
     }
 
@@ -59,30 +22,49 @@ app-function-records-detail {
       color: $secondary-font-color;
     }
 
-    .mat-table {
+    .mat-table.innerTable {
       width: 100%;
-      margin-bottom: 80px;
-      text-align: center;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      .mat-header-row {
-        width: 60%;
-        // min-width: 150px;
-        border-bottom: none;
+      margin-bottom: 30px;
+      background-color: $pannel-background-color;
+
+      td.mat-cell {
+        cursor: auto;
       }
-      .mat-row {
-        width: 100%;
-        // min-width: 150px;
-        border-bottom: none;
-        background-image: linear-gradient(
-          to right,
-          $basic-background-color 0%,
-          $underline-color 0%,
-          $underline-color 100%,
-          $basic-background-color 100%,
-          $basic-background-color 100%
-        );
+
+      &.virtualLinks {
+        .mat-cell:nth-child(1),
+        .mat-header-cell:nth-child(1) {
+          width: 15%;
+        }
       }
+      &.vdus {
+        .mat-cell:nth-child(1),
+        .mat-header-cell:nth-child(1) {
+          width: 60%;
+        }
+        .mat-cell:nth-child(3),
+        .mat-header-cell:nth-child(3) {
+          width: 40%;
+        }
+        .mat-cell:nth-child(5),
+        .mat-header-cell:nth-child(5) {
+          width: 20%;
+        }
+      }
+    }
+
+    .ineerTableRow.mat-row {
+      width: 100%;
+      // min-width: 150px;
+      border-bottom: none;
+      background-image: linear-gradient(
+        to right,
+        $pannel-background-color 0%,
+        $underline-color 0%,
+        $underline-color 100%,
+        $pannel-background-color 100%,
+        $pannel-background-color 100%
+      );
     }
   }
 }

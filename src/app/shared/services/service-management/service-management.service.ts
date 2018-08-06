@@ -205,10 +205,6 @@ export class ServiceManagementService {
         .then(response => {
           if (response.hasOwnProperty("uuid")) {
             resolve({
-              uuid: response["uuid"],
-              status: response["status"],
-              version: response["version"],
-              updatedAt: response["updated_at"],
               vdus: response["virtual_deployment_units"],
               virtualLinks: response["virtual_links"]
             });

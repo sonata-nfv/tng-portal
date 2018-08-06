@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-
-import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
+import { Component, OnInit, ViewEncapsulation, Input } from "@angular/core";
 
 @Component({
   selector: "app-function-records-detail",
@@ -10,53 +7,38 @@ import { ServiceManagementService } from "../shared/services/service-management/
   encapsulation: ViewEncapsulation.None
 })
 export class FunctionRecordsDetailComponent implements OnInit {
-  loading: boolean = false;
-  detail = {};
+  _virtualLinks: Array<any>;
+  _vdus: Array<any>;
   displayedColumnsConnPoints = [
     "id",
     "connectivity_type",
     "connection_points_reference"
   ];
+  displayedColumnsVDUs = [
+    "vduRef",
+    "numInstances",
+    "monitoringParam",
+    "resourceReq",
+    "vnfcInstance"
+  ];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private serviceManagementService: ServiceManagementService
-  ) {}
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      let uuid = params["vnfr_id"];
-      this.requestVNF(uuid);
-    });
+  /**
+   * [Mandatory] Defines the virtual links displayed in the table.
+   */
+  @Input()
+  set virtualLinks(virtualLinks: Array<string>) {
+    this._virtualLinks = virtualLinks;
   }
 
-  requestVNF(uuid) {
-    this.loading = true;
-
-    this.serviceManagementService
-      .getFunctionRecords(uuid)
-      .then(response => {
-        console.log(response);
-
-        this.loading = false;
-        this.detail = response;
-
-        // TODO change the string with commas for a view and pop up
-        if (this.detail["virtualLinks"]) {
-          this.detail["virtualLinks"].forEach(x => {
-            x.connection_points_reference = x.connection_points_reference.join(
-              ", "
-            );
-          });
-        }
-      })
-      .catch(err => {
-        this.loading = false;
-      });
+  /**
+   * [Mandatory] Defines the VDUs displayed in the table.
+   */
+  @Input()
+  set vdus(vdus: Array<string>) {
+    this._vdus = vdus;
   }
 
-  close() {
-    this.router.navigate(["../../"], { relativeTo: this.route });
-  }
+  constructor() {}
+
+  ngOnInit() {}
 }
