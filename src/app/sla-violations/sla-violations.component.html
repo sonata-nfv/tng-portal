@@ -1,0 +1,12 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<h2 class="subsectionTitle">SLA Violations</h2>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+  <button class="reload" (click)="requestViolations()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

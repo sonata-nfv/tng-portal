@@ -26,6 +26,7 @@ import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-template
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
 import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
 import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
+import { SlaViolationsComponent } from "./sla-violations/sla-violations.component";
 import { SlicesTemplatesComponent } from "./slices-templates/slices-templates.component";
 import { SlicesTemplatesDetailComponent } from "./slices-templates-detail/slices-templates-detail.component";
 import { SlicesInstancesComponent } from "./slices-instances/slices-instances.component";
@@ -137,6 +138,10 @@ const routes: Routes = [
             component: SlaAgreementsDetailComponent
           }
         ]
+      },
+      {
+        path: "service-platform/slas/sla-violations",
+        component: SlaViolationsComponent
       },
       {
         path: "service-platform/slices/slices-templates",

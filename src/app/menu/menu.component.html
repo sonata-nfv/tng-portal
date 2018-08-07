@@ -57,6 +57,7 @@
       <div class="section" *ngIf="section === 'sp-slas'">
         <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">Agreements</button>
+        <button [ngClass]="{ active: subsection === 'sla-violations' }" (click)="setSubsection($event, 'sla-violations')">Violations</button>
       </div>
       <button [ngClass]="{ active: section === 'sp-slices' }" (click)="setSection($event, 'sp-slices')">Slices</button>
 
