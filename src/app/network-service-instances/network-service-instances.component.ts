@@ -95,7 +95,9 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 
   // reloadInstance(row) {}
 
-  stopInstance(row) {}
+  terminate(row) {
+    this.serviceManagementService.postOneNSInstanceTermination(row.uuid);
+  }
 
   openInstance(row) {
     let uuid = row.uuid;

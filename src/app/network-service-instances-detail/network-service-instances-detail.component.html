@@ -21,7 +21,7 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <div class="stop" *ngIf="detail['serviceID'] || detail['status']">
+  <div class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'">
     <button (click)="terminate()">
       <i class="wui wui-stop"></i>
       <span>Terminate instance</span>

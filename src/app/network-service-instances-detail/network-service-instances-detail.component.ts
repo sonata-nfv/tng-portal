@@ -132,7 +132,11 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       });
   }
 
-  terminate() {}
+  terminate() {
+    this.serviceManagementService.postOneNSInstanceTermination(
+      this.detail["uuid"]
+    );
+  }
 
   close() {
     this.router.navigate(["service-management/network-service-instances"]);

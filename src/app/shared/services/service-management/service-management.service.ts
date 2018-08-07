@@ -251,6 +251,33 @@ export class ServiceManagementService {
       // Show pop up saying success/error with id xxxxx
     });
   }
+
+  /*
+  * Terminates a Network Service Instance by UUID
+  *
+  * @param uuid UUID of the desired Network Service Instance.
+  */
+  postOneNSInstanceTermination(uuid): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      let data = {
+        instance_uuid: uuid,
+        request_type: "TERMINATE_SERVICE"
+      };
+
+      this.http
+        .post(this.config.base + this.config.requests, data, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
   getLicences(): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
