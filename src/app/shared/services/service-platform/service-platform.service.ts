@@ -407,8 +407,8 @@ export class ServicePlatformService {
                   name: item.pld.name,
                   version: item.pld.version,
                   vendor: item.pld.vendor,
-                  ns: item.pld.network_service.name,
-                  ns_uuid: item.pld.network_service.ns_id,
+                  ns: item.pld.network_service,
+                  ns_uuid: item.pld.network_service,
                   date: item.updated_at,
                   default: item.pld.default_policy || false,
                   enforced: item.enforced ? "Yes" : "No"

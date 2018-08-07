@@ -91,6 +91,12 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
         this.policies = responses[1];
 
+        this.policies.forEach(policy => {
+          policy.ns =
+            this.nsListComplete.find(ns => ns.serviceId == policy.ns)
+              .serviceName || policy.ns;
+        });
+
         // Sort table of policies
         this.policies.sort((a, b) => {
           const keyA = a.default;
@@ -129,15 +135,15 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     if (ns === "None") {
       this.policiesDisplayed = this.policies;
     } else {
-      this.policiesDisplayed = this.policies.filter(x => x.ns_uuid === ns);
+      this.policiesDisplayed = this.policies.filter(x => x.ns === ns);
     }
   }
 
-  deletePolicy(uuid) {
+  deletePolicy(policy) {
     this.loading = true;
 
     this.servicePlatformService
-      .deleteOneRuntimePolicy(uuid)
+      .deleteOneRuntimePolicy(policy.uuid)
       .then(response => {
         this.requestRuntimePolicies();
       })
