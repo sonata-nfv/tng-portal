@@ -11,6 +11,9 @@
     <button class="edit-options save" (click)="editPolicy()">SAVE</button>
     <button class="edit-options cancel" (click)="close()">CANCEL</button>
   </div>
+  <div class="headerButtons" *ngIf="!detail['name'] || !policyForm.dirty">
+    <button class="edit-options cancel" (click)="close()">CLOSE</button>
+  </div>
 
 </form>
 
