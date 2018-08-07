@@ -27,7 +27,9 @@ export class FunctionRecordsDetailComponent implements OnInit {
    */
   @Input()
   set virtualLinks(virtualLinks: Array<string>) {
-    this._virtualLinks = virtualLinks;
+    virtualLinks != undefined
+      ? (this._virtualLinks = virtualLinks)
+      : (this._virtualLinks = new Array());
   }
 
   /**
@@ -35,7 +37,7 @@ export class FunctionRecordsDetailComponent implements OnInit {
    */
   @Input()
   set vdus(vdus: Array<string>) {
-    this._vdus = vdus;
+    vdus != undefined ? (this._vdus = vdus) : (this._vdus = new Array());
   }
 
   constructor() {}

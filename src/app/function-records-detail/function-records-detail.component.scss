@@ -2,8 +2,8 @@
 app-function-records-detail {
   display: flex;
   flex-direction: column;
-  flex: 1 1;
   background-color: $pannel-background-color;
+  border-bottom: 1px solid $primary-color-light;
 
   .VNFDetail {
     display: flex;
@@ -30,7 +30,11 @@ app-function-records-detail {
       td.mat-cell {
         cursor: auto;
       }
-
+      &.vdus {
+        .mat-cell {
+          vertical-align: inherit;
+        }
+      }
       &.virtualLinks {
         .mat-cell:nth-child(1),
         .mat-header-cell:nth-child(1) {

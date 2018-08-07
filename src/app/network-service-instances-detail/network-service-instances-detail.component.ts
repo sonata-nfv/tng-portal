@@ -5,7 +5,8 @@ import {
   state,
   style,
   transition,
-  trigger
+  trigger,
+  keyframes
 } from "@angular/animations";
 
 import { ServiceManagementService } from "../shared/services/service-management/service-management.service";
@@ -21,16 +22,16 @@ import { CustomDataSource } from "./custom-data-source.component";
       state(
         "collapsed",
         style({
-          height: "0px",
-          minHeight: "0",
-          visibility: "hidden",
-          display: "none"
+          display: "none",
+          opacity: 0,
+          transform: "translateY(-100%)"
         })
       ),
-      state("expanded", style({ height: "*", visibility: "visible" })),
+      state("expanded", style({ height: "*" })),
       transition(
-        "expanded <=> collapsed",
-        animate("225ms cubic-bezier(0.4, 0.0, 0.2, 1)")
+        "collapsed <=> expanded",
+        // animate("1000ms cubic-bezier(0.68, -0.10s, 0.265, 1.10)")
+        animate("600ms ease-in")
       )
     ])
   ]
@@ -38,13 +39,6 @@ import { CustomDataSource } from "./custom-data-source.component";
 export class NetworkServiceInstancesDetailComponent implements OnInit {
   loading: boolean = false;
   detail = {};
-  vnfDetail = {};
-  open: boolean = false;
-  dataSource = new CustomDataSource();
-  expandedElement: any;
-  isExpansionDetailRow = (i: number, row: Object) =>
-    row.hasOwnProperty("detailRow");
-
   displayedColumns = [
     "uuid",
     "version",
@@ -57,6 +51,13 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
     "connectivity_type",
     "connection_points_reference"
   ];
+  // Detail in row and animations
+  dataSource = new CustomDataSource();
+  vnfDetail = {};
+  state: string = "collapsed";
+  expandedElement: any;
+  isExpansionDetailRow = (i: number, row: Object) =>
+    row.hasOwnProperty("detailRow");
 
   constructor(
     private router: Router,
@@ -86,12 +87,8 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
         this.loading = false;
         this.detail = response;
 
-        // Set VNF fake until they come in response
         if (this.detail["vnf"]) {
           this.detail["vnf"].forEach(x => {
-            // x.version = "0";
-            // x.status = "active";
-            x.descriptorReference = "435219d-d773-4517-a5df-f97681f23456457";
             x.updatedAt = new Date()
               .toISOString()
               .replace(/T.*/, "")
@@ -102,19 +99,19 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
 
           this.dataSource.data = this.detail["vnf"];
         }
-
-        // TODO change the string with commas for a view and pop up
-        if (this.detail["virtualLinks"]) {
-          this.detail["virtualLinks"].forEach(x => {
-            x.connection_points_reference = x.connection_points_reference.join(
-              ", "
-            );
-          });
-        }
       })
       .catch(err => {
         this.loading = false;
       });
+  }
+
+  toggleDetail(row) {
+    if (this.state == "expanded") {
+      this.state = "collapsed";
+    } else {
+      this.requestVNF(row.vnfr_id);
+      this.expandedElement = row;
+    }
   }
 
   /**
@@ -128,19 +125,10 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
       .getFunctionRecords(uuid)
       .then(response => {
         this.vnfDetail = response;
-
-        // TODO change the string with commas for a view and pop up
-        if (this.vnfDetail["virtualLinks"]) {
-          this.vnfDetail["virtualLinks"].forEach(x => {
-            x.connection_points_reference = x.connection_points_reference.join(
-              ", "
-            );
-          });
-        }
+        this.state = "expanded";
       })
       .catch(err => {
-        this.vnfDetail["virtualLinks"] = new Array();
-        this.vnfDetail["vdus"] = new Array();
+        this.state = "expanded";
       });
   }
 

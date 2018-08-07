@@ -15,7 +15,12 @@
 
     <ng-container matColumnDef="connection_points_reference">
       <th mat-header-cell *matHeaderCellDef> Connection points </th>
-      <td mat-cell *matCellDef="let element"> {{ element.connection_points_reference }} </td>
+      <td mat-cell *matCellDef="let element">
+        <div *ngFor="let item of element.connection_points_reference">
+          <span>{{ item }}</span>
+          <br>
+        </div>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumnsConnPoints">
@@ -60,9 +65,13 @@
     <ng-container matColumnDef="vnfcInstance">
       <th mat-header-cell *matHeaderCellDef> VNFC Instance </th>
       <td mat-cell *matCellDef="let element">
-        <a routerLink="">View</a>
-
-        <!-- {{ element.vnfc_instance }}  -->
+        <span>ID: {{ element.vnfc_instance.id }}</span>
+        <br>
+        <span>Type: {{ element.vnfc_instance.type }}</span>
+        <br>
+        <span>IP: {{ element.vnfc_instance.ip }}</span>
+        <br>
+        <span>MAC: {{ element.vnfc_instance.mac }}</span>
       </td>
     </ng-container>
 

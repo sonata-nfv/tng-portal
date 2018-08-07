@@ -35,6 +35,7 @@
   <div class="vnf" *ngIf="detail['vnf']">
     <span class="sectionTitle">VNFs</span>
     <span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
+
     <table mat-table class="vnfs" *ngIf="detail['vnf'].length > 0" [dataSource]="dataSource">
       <ng-container matColumnDef="uuid">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -70,12 +71,11 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="expandedElement == row"
-        (click)="open = !open; expandedElement = row; requestVNF(row.vnfr_id)">
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="state == 'expanded'"
+        (click)="toggleDetail(row)">
       </tr>
 
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="(row.element == expandedElement && open) ? 'expanded' : 'collapsed'"
-        style="overflow: hidden">
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="state" class="detail-row">
       </tr>
 
     </table>
@@ -84,19 +84,28 @@
   <div class="virtualLinks" *ngIf="detail['virtualLinks']">
     <span class="sectionTitle">Virtual Links</span>
     <span class="message" *ngIf="detail['virtualLinks'].length == 0">There are no virtual links to display</span>
+
     <table mat-table *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
       </ng-container>
+
       <ng-container matColumnDef="connectivity_type">
         <th mat-header-cell *matHeaderCellDef> Connectivity Type </th>
         <td mat-cell *matCellDef="let element"> {{ element.connectivity_type }} </td>
       </ng-container>
+
       <ng-container matColumnDef="connection_points_reference">
         <th mat-header-cell *matHeaderCellDef> Connection points </th>
-        <td mat-cell *matCellDef="let element"> {{ element.connection_points_reference }} </td>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let item of element.connection_points_reference">
+            <span>{{ item }}</span>
+            <br>
+          </div>
+        </td>
       </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumnsConnPoints">
       </tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsConnPoints;">
