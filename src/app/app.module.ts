@@ -67,6 +67,7 @@ import { FunctionsComponent } from "./functions/functions.component";
 import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
+import { RuntimePolicyBindDialogComponent } from "./runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
 import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
@@ -131,6 +132,7 @@ export function initConfiguration(configService: ConfigService): Function {
     FunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
+    RuntimePolicyBindDialogComponent,
     RuntimePoliciesDetailComponent,
     RuntimePoliciesCreateComponent,
     SlaTemplatesComponent,
@@ -163,7 +165,11 @@ export function initConfiguration(configService: ConfigService): Function {
     DialogComponent,
     FeatureAvailableDirective
   ],
-  entryComponents: [DialogComponent, NsInstantiateDialogComponent],
+  entryComponents: [
+    RuntimePolicyBindDialogComponent,
+    DialogComponent,
+    NsInstantiateDialogComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

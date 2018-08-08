@@ -1,0 +1,23 @@
+<button class="closeIcon" (click)="close()">
+  <i class="wui wui-times"></i>
+</button>
+
+<h2 mat-dialog-title> Bind the policy with an SLA </h2>
+
+<mat-dialog-content>
+  <form [formGroup]="bindingForm">
+    <span>Please select an SLA Template from the list to bind this policy.</span>
+    <br>
+    <br>
+    <app-select class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" (selectEvent)="receiveSLA($event)"></app-select>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="buttonContainer">
+    <button class="cancel" mat-button mat-dialog-close>CANCEL</button>
+    <button class="next" mat-button cdkFocusInitial [disabled]="!bindingForm.get('sla').value" (click)="bindPolicy()">BIND</button>
+  </div>
+</mat-dialog-actions>
+
+<app-spinner *ngIf="loading"></app-spinner>

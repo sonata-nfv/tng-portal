@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { Subscription } from "rxjs";
+import { MatDialog } from "@angular/material";
 
 import { CommonService } from "../shared/services/common/common.service";
 import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
-import { Subscription } from "rxjs";
+import { RuntimePolicyBindDialogComponent } from "../runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
 
 @Component({
   selector: "app-runtime-policies",
@@ -33,7 +35,8 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
-    private servicePlatformService: ServicePlatformService
+    private servicePlatformService: ServicePlatformService,
+    private instantiateDialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -97,17 +100,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
               .serviceName || policy.ns;
         });
 
-        // Sort table of policies
-        this.policies.sort((a, b) => {
-          const keyA = a.default;
-          const keyB = b.default;
-
-          if (keyA > keyB) return -1;
-          if (keyA < keyB) return 1;
-          return 0;
-        });
-
-        this.policiesDisplayed = responses[1];
+        this.policiesDisplayed = this.sortPolicies(this.policies);
       })
       .catch(err => (this.loading = false));
   }
@@ -118,17 +111,12 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       x => x.ns_uuid === policy.ns_uuid && x.default == true
     );
 
-    console.log(previousPolicy);
-    console.log(policy);
-
     // Set this policy to be the default one and false the previous
     this.loading = true;
     this.servicePlatformService
       .patchRuntimePolicy(policy.uuid, null, !policy.default, policy.ns_uuid) //sla
       .then(response => {
         this.loading = false;
-
-        console.log(response);
 
         // Mark only one policy for ns
         this.policies
@@ -138,11 +126,22 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
           x => x.uuid === policy.uuid
         ).default = !policy.default;
 
-        this.policiesDisplayed = this.policies;
+        this.policiesDisplayed = this.sortPolicies(this.policies);
       })
       .catch(err => {
         this.loading = false;
       });
+  }
+
+  sortPolicies(policies) {
+    return policies.sort((a, b) => {
+      const keyA = a.default;
+      const keyB = b.default;
+
+      if (keyA > keyB) return -1;
+      if (keyA < keyB) return 1;
+      return 0;
+    });
   }
 
   receiveNS(ns) {
@@ -168,7 +167,10 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   openPolicy(policy) {
-    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route });
+    // this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
+    this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
+      data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
+    });
   }
 
   createNew() {
