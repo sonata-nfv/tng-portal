@@ -113,22 +113,36 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   setDefaultPolicy(uuid) {
-    // Check-uncheck button
     const policy = this.policies.find(x => x.uuid === uuid);
-    this.policies
-      .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
-      .forEach(x => (x.default = false));
+    const previousPolicy = this.policies.find(
+      x => x.ns_uuid === policy.ns_uuid && x.default == true
+    );
 
-    this.policies.filter(
-      x => x.uuid === policy.uuid
-    )[0].default = !this.policies.filter(x => x.uuid === policy.uuid)[0]
-      .default;
+    console.log(previousPolicy);
+    console.log(policy);
 
-    // TODO request this policy to be default and false the previous
+    // Set this policy to be the default one and false the previous
+    this.loading = true;
+    this.servicePlatformService
+      .patchRuntimePolicy(policy.uuid, null, !policy.default, policy.ns_uuid) //sla
+      .then(response => {
+        this.loading = false;
 
-    this.policiesDisplayed = this.policies;
+        console.log(response);
 
-    // TODO order default = true in top
+        // Mark only one policy for ns
+        this.policies
+          .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
+          .forEach(x => (x.default = false));
+        this.policies.find(
+          x => x.uuid === policy.uuid
+        ).default = !policy.default;
+
+        this.policiesDisplayed = this.policies;
+      })
+      .catch(err => {
+        this.loading = false;
+      });
   }
 
   receiveNS(ns) {

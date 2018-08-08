@@ -535,6 +535,40 @@ export class ServicePlatformService {
   }
 
   /**
+   * Edits a Runtime Policy
+   *
+   * @param uuid UUID of the desired Runtime Policy
+   * @param slaid UUID of the sla template associated
+   * @param defaultPolicy Boolean setting the binding with its ns
+   * @param nsid UUID of the ns associated
+   */
+  patchRuntimePolicy(uuid, slaid, defaultPolicy, nsid) {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      let data = {
+        slaid,
+        defaultPolicy,
+        nsid
+      };
+
+      this.http
+        .patch(
+          this.config.base + this.config.runtimePolicies + "/" + uuid,
+          data,
+          {
+            headers: headers
+          }
+        )
+        .toPromise()
+        .then(response => {
+          resolve(response);
+        })
+        .catch(err => reject(err));
+    });
+  }
+
+  /**
    * Removes the specified runtime policy from the database
    *
    * @param uuid UUID of the desired Runtime Policy.
