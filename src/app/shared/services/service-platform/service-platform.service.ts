@@ -378,6 +378,47 @@ export class ServicePlatformService {
   }
 
   /**
+   * Retrieves a list of SLA Violations.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Violation attributes that must be
+   *                          matched by the returned list of
+   *                          SLA Violations.
+   */
+  getSLAViolations(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.base + this.config.slaViolations + search
+          : this.config.base + this.config.slaViolations;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  nsInstanceUUID: item.nsi_uuid,
+                  slaUUID: item.sla_uuid,
+                  date: new Date(Date.parse(item.violation_time)).toUTCString(),
+                  customerUUID: item.cust_uuid
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
    * Retrieves a list of Runtime Policies.
    * Either following a search pattern or not.
    *

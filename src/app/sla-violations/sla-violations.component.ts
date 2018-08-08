@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { ServicePlatformService } from "../shared/services/service-platform/service-platform.service";
 
 @Component({
   selector: "app-sla-violations",
@@ -9,8 +10,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 export class SlaViolationsComponent implements OnInit {
   loading: boolean = false;
   violations = new Array();
+  displayedColumns = ["nsInstanceUUID", "slaUUID", "customerUUID", "date"];
 
-  constructor() {}
+  constructor(private servicePlatformService: ServicePlatformService) {}
 
   ngOnInit() {
     this.requestViolations();
@@ -20,5 +22,24 @@ export class SlaViolationsComponent implements OnInit {
     this.requestViolations(search);
   }
 
-  requestViolations(search?) {}
+  /**
+   * Generates the HTTP request to get the list of SLA violations.
+   *
+   * @param search [Optional] SLA violations attributes that
+   *                          must be matched by the returned
+   *                          list of violations.
+   */
+  requestViolations(search?) {
+    this.loading = true;
+
+    this.servicePlatformService
+      .getSLAViolations(search)
+      .then(response => {
+        this.loading = false;
+        this.violations = response;
+      })
+      .catch(err => {
+        this.loading = false;
+      });
+  }
 }

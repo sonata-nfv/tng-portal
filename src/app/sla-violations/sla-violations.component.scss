@@ -14,17 +14,20 @@ app-sla-violations {
     justify-content: center;
     align-items: center;
   }
-  //   table {
-  //     width: 95%;
-  //   }
-  //   tr.mat-row {
-  //     background-image: linear-gradient(
-  //       to right,
-  //       $basic-background-color 4%,
-  //       $underline-color 4%,
-  //       $underline-color 95%,
-  //       $basic-background-color 95%,
-  //       $basic-background-color 100%
-  //     );
-  //   }
+  table {
+    width: 95%;
+  }
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 0%,
+      $underline-color 0%,
+      $underline-color 100%,
+      $basic-background-color 100%,
+      $basic-background-color 100%
+    );
+  }
+  td.mat-cell {
+    cursor: auto;
+  }
 }

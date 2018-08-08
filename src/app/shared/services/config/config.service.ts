@@ -13,6 +13,7 @@ export class ConfigService {
   packages: string = "packages";
   slaTemplates: string = "slas/templates";
   slaAgreements: string = "slas/agreements";
+  slaViolations: string = "slas/violations";
   guarantees: string = "slas/configurations/guaranteesList";
   functions: string = "functions";
   slicesTemplates: string = "slices";
