@@ -17,49 +17,6 @@ export class ServicePlatformService {
   ) {}
 
   /**
-   * Retrieves a list of Packages.
-   * Either following a search pattern or not.
-   *
-   * @param search [Optional] Packages attributes that must be
-   *                          matched by the returned list of
-   *                          packages.
-   */
-  getPackages(search?): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      let url =
-        search != undefined
-          ? this.config.baseSP + this.config.packages + search
-          : this.config.baseSP + this.config.packages;
-
-      this.http
-        .get(url, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          if (response instanceof Array) {
-            resolve(
-              response.map(item => {
-                return {
-                  uuid: item.uuid,
-                  name: item.pd.name,
-                  vendor: item.pd.vendor,
-                  createdAt: item.created_at,
-                  version: item.pd.version,
-                  type: "public"
-                };
-              })
-            );
-          } else {
-            reject();
-          }
-        })
-        .catch(err => reject(err.statusText));
-    });
-  }
-
-  /**
    * Retrieves a Package by UUID
    *
    * @param uuid UUID of the desired Package.
@@ -83,49 +40,6 @@ export class ServicePlatformService {
             type: "public",
             package_file_id: response["package_file_id"]
           });
-        })
-        .catch(err => reject(err.statusText));
-    });
-  }
-
-  /**
-   * Retrieves a list of Functions.
-   * Either following a search pattern or not.
-   *
-   * @param search [Optional] Packages attributes that must be
-   *                          matched by the returned list of
-   *                          packages.
-   */
-  getFunctions(search?): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      let url =
-        search != undefined
-          ? this.config.baseSP + this.config.functions + search
-          : this.config.baseSP + this.config.functions;
-
-      this.http
-        .get(url, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          if (response instanceof Array) {
-            resolve(
-              response.map(item => {
-                return {
-                  uuid: item.uuid,
-                  name: item.vnfd.name,
-                  vendor: item.vnfd.vendor,
-                  status: item.status,
-                  version: item.vnfd.version,
-                  type: "public"
-                };
-              })
-            );
-          } else {
-            reject();
-          }
         })
         .catch(err => reject(err.statusText));
     });

@@ -18,7 +18,8 @@ export class MenuComponent implements OnInit {
   username: string;
   email: string;
 
-  @ViewChild("sidenav") sideNav: MatSidenav;
+  @ViewChild("sidenav")
+  sideNav: MatSidenav;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
@@ -78,7 +79,7 @@ export class MenuComponent implements OnInit {
         // this.router.navigate(["validation-and-verification/services"]);
         break;
       case "vv-functions":
-        // this.router.navigate(["validation-and-verification/functions"]);
+        this.router.navigate(["validation-and-verification/functions"]);
         break;
       case "vv-tests":
         this.router.navigate(["validation-and-verification/tests"]);

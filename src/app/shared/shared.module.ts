@@ -16,6 +16,7 @@ import { SelectComponent } from "./components/select/select.component";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { FeatureAvailableDirective } from "./directives/feature-available.directive";
 import { AngularMaterialModule } from "../angular-material/angular-material.module";
+import { FunctionsComponent } from "./components/functions/functions.component";
 
 export function initConfiguration(configService: ConfigService): Function {
   return () => configService.init();
@@ -28,7 +29,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SearchBarComponent,
     SelectComponent,
     SpinnerComponent,
-    FeatureAvailableDirective
+    FeatureAvailableDirective,
+    FunctionsComponent
   ],
   entryComponents: [DialogComponent],
   imports: [
@@ -44,7 +46,8 @@ export function initConfiguration(configService: ConfigService): Function {
     SearchBarComponent,
     SelectComponent,
     SpinnerComponent,
-    FeatureAvailableDirective
+    FeatureAvailableDirective,
+    FunctionsComponent
   ],
   providers: [
     ConfigService,

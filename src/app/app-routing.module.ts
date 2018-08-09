@@ -19,7 +19,7 @@ import { SpPackagesComponent } from "./service-platform/sp-packages/sp-packages.
 import { SpPackagesDetailComponent } from "./service-platform/sp-packages-detail/sp-packages-detail.component";
 import { SpNetworkServicesComponent } from "./service-platform/sp-network-services/sp-network-services.component";
 import { SpNetworkServicesDetailComponent } from "./service-platform/sp-network-services-detail/sp-network-services-detail.component";
-import { SpFunctionsComponent } from "./service-platform/sp-functions/sp-functions.component";
+import { FunctionsComponent } from "./shared/components/functions/functions.component";
 import { SpFunctionsDetailComponent } from "./service-platform/sp-functions-detail/sp-functions-detail.component";
 import { PlacementPolicyComponent } from "./service-platform/placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./service-platform/runtime-policies/runtime-policies.component";
@@ -77,6 +77,10 @@ const routes: Routes = [
         component: VnvPackagesComponent
       },
       {
+        path: "validation-and-verification/functions",
+        component: FunctionsComponent
+      },
+      {
         path: "validation-and-verification/tests",
         component: TestsComponent,
         children: [{ path: "detail/:id", component: TestsDetailComponent }]
@@ -102,7 +106,7 @@ const routes: Routes = [
       },
       {
         path: "service-platform/functions",
-        component: SpFunctionsComponent,
+        component: FunctionsComponent,
         children: [
           { path: "detail/:id", component: SpFunctionsDetailComponent }
         ]

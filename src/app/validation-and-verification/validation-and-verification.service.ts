@@ -17,49 +17,6 @@ export class ValidationAndVerificationPlatformService {
   ) {}
 
   /**
-   * Retrieves a list of Packages.
-   * Either following a search pattern or not.
-   *
-   * @param search [Optional] Packages attributes that must be
-   *                          matched by the returned list of
-   *                          packages.
-   */
-  getPackages(search?): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      let url =
-        search != undefined
-          ? this.config.baseVNV + this.config.packages + search
-          : this.config.baseVNV + this.config.packages;
-
-      this.http
-        .get(url, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          if (response instanceof Array) {
-            resolve(
-              response.map(item => {
-                return {
-                  uuid: item.uuid,
-                  name: item.pd.name,
-                  vendor: item.pd.vendor,
-                  version: item.pd.version,
-                  status: item.status,
-                  type: "public"
-                };
-              })
-            );
-          } else {
-            reject();
-          }
-        })
-        .catch(err => reject(err.statusText));
-    });
-  }
-
-  /**
    * Retrieves a list of tests.
    * Either following a search pattern or not.
    *

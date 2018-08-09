@@ -2,29 +2,31 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../services/common/common.service";
 
 @Component({
-  selector: "app-sp-functions",
-  templateUrl: "./sp-functions.component.html",
-  styleUrls: ["./sp-functions.component.scss"],
+  selector: "app-functions",
+  templateUrl: "./functions.component.html",
+  styleUrls: ["./functions.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class SpFunctionsComponent implements OnInit {
+export class FunctionsComponent implements OnInit {
   loading: boolean;
+  section: string;
   functions: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = ["Vendor", "Name", "Version", "Status"];
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private router: Router,
-    private dialogData: DialogDataService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
     this.requestFunctions();
   }
 
@@ -41,8 +43,8 @@ export class SpFunctionsComponent implements OnInit {
    */
   requestFunctions(search?) {
     this.loading = true;
-    this.servicePlatformService
-      .getFunctions(search)
+    this.commonService
+      .getFunctions(this.section, search)
       .then(response => {
         this.loading = false;
 
@@ -51,23 +53,12 @@ export class SpFunctionsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        }
       });
   }
 
   openFunction(row) {
-    let uuid = row.uuid;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    if (this.section == "SERVICE PLATFORM") {
+      this.router.navigate(["detail/", row.uuid], { relativeTo: this.route });
+    }
   }
 }

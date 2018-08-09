@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
+import { ActivatedRoute } from "@angular/router";
+
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-vnv-packages",
@@ -9,14 +11,19 @@ import { ValidationAndVerificationPlatformService } from "../validation-and-veri
 })
 export class VnvPackagesComponent implements OnInit {
   loading: boolean;
+  section: string;
   packages = new Array();
   displayedColumns = ["type", "vendor", "name", "version", "status"];
 
   constructor(
-    private validationAndVerificationPlatformService: ValidationAndVerificationPlatformService
+    private commonService: CommonService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
     this.requestPackages();
   }
 
@@ -34,8 +41,8 @@ export class VnvPackagesComponent implements OnInit {
   requestPackages(search?) {
     this.loading = true;
 
-    this.validationAndVerificationPlatformService
-      .getPackages(search)
+    this.commonService
+      .getPackages(this.section, search)
       .then(response => {
         this.loading = false;
         this.packages = response;

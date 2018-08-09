@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { ServicePlatformService } from "../service-platform.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sp-packages",
@@ -11,16 +11,20 @@ import { ServicePlatformService } from "../service-platform.service";
 })
 export class SpPackagesComponent implements OnInit {
   loading: boolean;
+  section: string;
   packages = new Array();
   displayedColumns = ["type", "vendor", "name", "version", "createdAt"];
 
   constructor(
-    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
     this.requestPackages();
   }
 
@@ -38,8 +42,8 @@ export class SpPackagesComponent implements OnInit {
   requestPackages(search?) {
     this.loading = true;
 
-    this.servicePlatformService
-      .getPackages(search)
+    this.commonService
+      .getPackages(this.section, search)
       .then(response => {
         this.loading = false;
         this.packages = response;

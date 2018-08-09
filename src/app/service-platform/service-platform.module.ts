@@ -12,7 +12,6 @@ import { SpPackagesComponent } from "./sp-packages/sp-packages.component";
 import { SpPackagesDetailComponent } from "./sp-packages-detail/sp-packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
-import { SpFunctionsComponent } from "./sp-functions/sp-functions.component";
 import { SpFunctionsDetailComponent } from "./sp-functions-detail/sp-functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
@@ -37,7 +36,6 @@ import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices
     SpPackagesDetailComponent,
     SpNetworkServicesComponent,
     SpNetworkServicesDetailComponent,
-    SpFunctionsComponent,
     SpFunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
