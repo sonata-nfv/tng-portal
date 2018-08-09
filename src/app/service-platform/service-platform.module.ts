@@ -8,12 +8,12 @@ import { SharedModule } from "../shared/shared.module";
 
 import { ServicePlatformService } from "./service-platform.service";
 
-import { PackagesComponent } from "./packages/packages.component";
-import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
+import { SpPackagesComponent } from "./sp-packages/sp-packages.component";
+import { SpPackagesDetailComponent } from "./sp-packages-detail/sp-packages-detail.component";
 import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
 import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
-import { FunctionsComponent } from "./functions/functions.component";
-import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
+import { SpFunctionsComponent } from "./sp-functions/sp-functions.component";
+import { SpFunctionsDetailComponent } from "./sp-functions-detail/sp-functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
 import { RuntimePolicyBindDialogComponent } from "./runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
@@ -33,12 +33,12 @@ import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices
 
 @NgModule({
   declarations: [
-    PackagesComponent,
-    PackagesDetailComponent,
+    SpPackagesComponent,
+    SpPackagesDetailComponent,
     SpNetworkServicesComponent,
     SpNetworkServicesDetailComponent,
-    FunctionsComponent,
-    FunctionsDetailComponent,
+    SpFunctionsComponent,
+    SpFunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
     RuntimePolicyBindDialogComponent,

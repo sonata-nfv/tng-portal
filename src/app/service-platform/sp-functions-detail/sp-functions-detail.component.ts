@@ -5,12 +5,12 @@ import { ServicePlatformService } from "../service-platform.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-functions-detail",
-  templateUrl: "./functions-detail.component.html",
-  styleUrls: ["./functions-detail.component.scss"],
+  selector: "app-sp-functions-detail",
+  templateUrl: "./sp-functions-detail.component.html",
+  styleUrls: ["./sp-functions-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class FunctionsDetailComponent implements OnInit {
+export class SpFunctionsDetailComponent implements OnInit {
   loading: boolean;
 
   name: string;

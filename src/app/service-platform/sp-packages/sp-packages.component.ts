@@ -6,16 +6,16 @@ import { ServicePlatformService } from "../service-platform.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-functions",
-  templateUrl: "./functions.component.html",
-  styleUrls: ["./functions.component.scss"],
+  selector: "app-sp-packages",
+  templateUrl: "./sp-packages.component.html",
+  styleUrls: ["./sp-packages.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class FunctionsComponent implements OnInit {
+export class SpPackagesComponent implements OnInit {
   loading: boolean;
-  functions: Array<Object>;
+  packages = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["Vendor", "Name", "Version", "Status"];
+  displayedColumns = ["type", "vendor", "name", "version", "createdAt"];
 
   constructor(
     private servicePlatformService: ServicePlatformService,
@@ -25,29 +25,29 @@ export class FunctionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.requestFunctions();
+    this.requestPackages();
   }
 
   searchFieldData(search) {
-    this.requestFunctions(search);
+    this.requestPackages(search);
   }
 
   /**
-   * Generates the HTTP request to get the list of functions.
+   * Generates the HTTP request to get the list of packages.
    *
-   * @param search [Optional] Function attributes that must be
+   * @param search [Optional] Package attributes that must be
    *                          matched by the returned list of
-   *                          functions.
+   *                          packages.
    */
-  requestFunctions(search?) {
+  requestPackages(search?) {
     this.loading = true;
+
     this.servicePlatformService
-      .getFunctions(search)
+      .getPackages(search)
       .then(response => {
         this.loading = false;
-
-        this.functions = response;
-        this.dataSource = new MatTableDataSource(this.functions);
+        this.packages = response;
+        this.dataSource = new MatTableDataSource(this.packages);
       })
       .catch(err => {
         this.loading = false;
@@ -66,7 +66,7 @@ export class FunctionsComponent implements OnInit {
       });
   }
 
-  openFunction(row) {
+  openPackage(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
   }

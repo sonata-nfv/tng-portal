@@ -15,12 +15,12 @@ import { UsersComponent } from "./users/users.component";
 import { TestsComponent } from "./validation-and-verification/tests/tests.component";
 import { TestsDetailComponent } from "./validation-and-verification/tests-detail/tests-detail.component";
 
-import { PackagesComponent } from "./service-platform/packages/packages.component";
-import { PackagesDetailComponent } from "./service-platform/packages-detail/packages-detail.component";
+import { SpPackagesComponent } from "./service-platform/sp-packages/sp-packages.component";
+import { SpPackagesDetailComponent } from "./service-platform/sp-packages-detail/sp-packages-detail.component";
 import { SpNetworkServicesComponent } from "./service-platform/sp-network-services/sp-network-services.component";
 import { SpNetworkServicesDetailComponent } from "./service-platform/sp-network-services-detail/sp-network-services-detail.component";
-import { FunctionsComponent } from "./service-platform/functions/functions.component";
-import { FunctionsDetailComponent } from "./service-platform/functions-detail/functions-detail.component";
+import { SpFunctionsComponent } from "./service-platform/sp-functions/sp-functions.component";
+import { SpFunctionsDetailComponent } from "./service-platform/sp-functions-detail/sp-functions-detail.component";
 import { PlacementPolicyComponent } from "./service-platform/placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./service-platform/runtime-policies/runtime-policies.component";
 import { RuntimePoliciesDetailComponent } from "./service-platform/runtime-policies-detail/runtime-policies-detail.component";
@@ -85,8 +85,8 @@ const routes: Routes = [
       },
       {
         path: "service-platform/packages",
-        component: PackagesComponent,
-        children: [{ path: "detail/:id", component: PackagesDetailComponent }]
+        component: SpPackagesComponent,
+        children: [{ path: "detail/:id", component: SpPackagesDetailComponent }]
       },
       {
         path: "service-platform/network-services",
@@ -97,8 +97,10 @@ const routes: Routes = [
       },
       {
         path: "service-platform/functions",
-        component: FunctionsComponent,
-        children: [{ path: "detail/:id", component: FunctionsDetailComponent }]
+        component: SpFunctionsComponent,
+        children: [
+          { path: "detail/:id", component: SpFunctionsDetailComponent }
+        ]
       },
       {
         path: "service-platform/policies/placement-policy",

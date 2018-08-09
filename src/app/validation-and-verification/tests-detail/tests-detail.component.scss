@@ -48,6 +48,9 @@ app-tests-detail {
   .bubbles {
     display: flex;
     flex-direction: row;
+    .versionDiv {
+      margin-top: 0;
+    }
     .timesExecuted {
       display: flex;
       flex-direction: column;

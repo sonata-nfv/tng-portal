@@ -5,12 +5,12 @@ import { ServicePlatformService } from "../service-platform.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-packages-detail",
-  templateUrl: "./packages-detail.component.html",
-  styleUrls: ["./packages-detail.component.scss"],
+  selector: "app-sp-packages-detail",
+  templateUrl: "./sp-packages-detail.component.html",
+  styleUrls: ["./sp-packages-detail.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class PackagesDetailComponent implements OnInit {
+export class SpPackagesDetailComponent implements OnInit {
   displayedColumns = ["name", "vendor", "version"];
   displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
   loading: boolean;
