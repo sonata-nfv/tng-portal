@@ -29,8 +29,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.packages + search
-          : this.config.base + this.config.packages;
+          ? this.config.baseSP + this.config.packages + search
+          : this.config.baseSP + this.config.packages;
 
       this.http
         .get(url, {
@@ -68,7 +68,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.packages + "/" + uuid, {
+        .get(this.config.baseSP + this.config.packages + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -101,8 +101,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.functions + search
-          : this.config.base + this.config.functions;
+          ? this.config.baseSP + this.config.functions + search
+          : this.config.baseSP + this.config.functions;
 
       this.http
         .get(url, {
@@ -140,7 +140,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.functions + "/" + uuid, {
+        .get(this.config.baseSP + this.config.functions + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -171,7 +171,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.slaTemplates + "/" + uuid, {
+        .get(this.config.baseSP + this.config.slaTemplates + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -201,7 +201,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.guarantees, {
+        .get(this.config.baseSP + this.config.guarantees, {
           headers: headers
         })
         .toPromise()
@@ -224,7 +224,7 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       this.http
         .post(
-          this.config.base + this.config.slaTemplates,
+          this.config.baseSP + this.config.slaTemplates,
           this.urlEncode(template),
           {
             headers: {
@@ -272,7 +272,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .delete(this.config.base + this.config.slaTemplates + "/" + uuid, {
+        .delete(this.config.baseSP + this.config.slaTemplates + "/" + uuid, {
           headers: headers,
           responseType: "text"
         })
@@ -299,8 +299,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slaAgreements + search
-          : this.config.base + this.config.slaAgreements;
+          ? this.config.baseSP + this.config.slaAgreements + search
+          : this.config.baseSP + this.config.slaAgreements;
 
       this.http
         .get(url, {
@@ -341,7 +341,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       this.http
         .get(
-          this.config.base +
+          this.config.baseSP +
             this.config.slaAgreements +
             "/" +
             sla_uuid +
@@ -385,8 +385,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slaViolations + search
-          : this.config.base + this.config.slaViolations;
+          ? this.config.baseSP + this.config.slaViolations + search
+          : this.config.baseSP + this.config.slaViolations;
 
       this.http
         .get(url, {
@@ -426,8 +426,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.runtimePolicies + search
-          : this.config.base + this.config.runtimePolicies;
+          ? this.config.baseSP + this.config.runtimePolicies + search
+          : this.config.baseSP + this.config.runtimePolicies;
 
       this.http
         .get(url, {
@@ -469,7 +469,7 @@ export class ServicePlatformService {
       // let headers = this.authService.getAuthHeaders();
 
       // this.http
-      //   .get(this.config.base + this.config.runtimePolicies + "/" + uuid, {
+      //   .get(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
       //     headers: headers
       //   })
       //   .toPromise()
@@ -518,7 +518,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .post(this.config.base + this.config.runtimePolicies, policy, {
+        .post(this.config.baseSP + this.config.runtimePolicies, policy, {
           headers: headers
         })
         .toPromise()
@@ -549,7 +549,7 @@ export class ServicePlatformService {
 
       this.http
         .patch(
-          this.config.base + this.config.runtimePolicies + "/" + uuid,
+          this.config.baseSP + this.config.runtimePolicies + "/" + uuid,
           data,
           {
             headers: headers
@@ -573,7 +573,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .delete(this.config.base + this.config.runtimePolicies + "/" + uuid, {
+        .delete(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
           headers: headers,
           responseType: "text"
         })
@@ -600,8 +600,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slicesTemplates + search
-          : this.config.base + this.config.slicesTemplates;
+          ? this.config.baseSP + this.config.slicesTemplates + search
+          : this.config.baseSP + this.config.slicesTemplates;
 
       this.http
         .get(url, {
@@ -641,7 +641,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .delete(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+        .delete(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
           headers: headers,
           responseType: "text"
         })
@@ -665,7 +665,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.slicesTemplates + "/" + uuid, {
+        .get(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -703,8 +703,8 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slicesInstances + search
-          : this.config.base + this.config.slicesInstances;
+          ? this.config.baseSP + this.config.slicesInstances + search
+          : this.config.baseSP + this.config.slicesInstances;
 
       this.http
         .get(url, {
@@ -744,7 +744,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.slicesInstances + "/" + uuid, {
+        .get(this.config.baseSP + this.config.slicesInstances + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -774,7 +774,7 @@ export class ServicePlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .post(this.config.base + this.config.slicesInstances, instance, {
+        .post(this.config.baseSP + this.config.slicesInstances, instance, {
           headers: headers
         })
         .toPromise()
@@ -799,7 +799,7 @@ export class ServicePlatformService {
 
       this.http
         .post(
-          this.config.base +
+          this.config.baseSP +
             this.config.slicesInstances +
             "/" +
             uuid +

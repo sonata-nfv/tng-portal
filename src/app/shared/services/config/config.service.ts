@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ConfigService {
-  base: string = window.location.origin + "/api/v3/";
+  baseSP: string = window.location.origin + "/api/v3/";
+  baseVNV: string = window.location.origin + "/api/v3/";
   register: string = "users/";
   login: string = "sessions/";
   services: string = "services";
@@ -25,8 +26,8 @@ export class ConfigService {
 
   init() {
     if (window.location.origin.includes("localhost")) {
-      this.base = "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
-      this.tests = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";
+      this.baseSP = "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
+      this.baseVNV = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";
     }
   }
 }

@@ -30,8 +30,8 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.requests + search
-          : this.config.base + this.config.requests;
+          ? this.config.baseSP + this.config.requests + search
+          : this.config.baseSP + this.config.requests;
 
       this.http
         .get(url, {
@@ -87,7 +87,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.requests + "/" + uuid, {
+        .get(this.config.baseSP + this.config.requests + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -122,8 +122,8 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.serviceRecords + search
-          : this.config.base + this.config.serviceRecords;
+          ? this.config.baseSP + this.config.serviceRecords + search
+          : this.config.baseSP + this.config.serviceRecords;
 
       this.http
         .get(url, {
@@ -161,7 +161,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.serviceRecords + "/" + uuid, {
+        .get(this.config.baseSP + this.config.serviceRecords + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -194,7 +194,7 @@ export class ServiceManagementService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.functionRecords + "/" + uuid, {
+        .get(this.config.baseSP + this.config.functionRecords + "/" + uuid, {
           headers: headers
         })
         .toPromise()
@@ -236,7 +236,7 @@ export class ServiceManagementService {
       };
 
       this.http
-        .post(this.config.base + this.config.requests, data, {
+        .post(this.config.baseSP + this.config.requests, data, {
           headers: headers
         })
         .toPromise()
@@ -263,7 +263,7 @@ export class ServiceManagementService {
       };
 
       this.http
-        .post(this.config.base + this.config.requests, data, {
+        .post(this.config.baseSP + this.config.requests, data, {
           headers: headers
         })
         .toPromise()
@@ -278,7 +278,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.base + this.config.licences, {
+        .get(this.config.baseSP + this.config.licences, {
           headers: headers
         })
         .toPromise()

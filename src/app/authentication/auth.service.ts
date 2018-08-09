@@ -53,7 +53,7 @@ export class AuthService {
       headers.set("Content-Type", "application/json");
 
       this.http
-        .get(this.config.base + this.config.register + uuid, {
+        .get(this.config.baseSP + this.config.register + uuid, {
           headers: headers
         })
         .subscribe(
@@ -77,7 +77,7 @@ export class AuthService {
       let headers = this.getAuthHeaders();
 
       this.http
-        .delete(this.config.base + this.config.login, {
+        .delete(this.config.baseSP + this.config.login, {
           headers: headers
         })
         .subscribe(

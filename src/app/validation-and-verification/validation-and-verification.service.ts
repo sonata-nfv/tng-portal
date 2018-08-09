@@ -28,7 +28,9 @@ export class ValidationAndVerificationPlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       let url =
-        search != undefined ? this.config.tests + search : this.config.tests;
+        search != undefined
+          ? this.config.baseVNV + this.config.tests + search
+          : this.config.baseVNV + this.config.tests;
 
       this.http
         .get(url, {
@@ -66,7 +68,7 @@ export class ValidationAndVerificationPlatformService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.tests + "/" + uuid, {
+        .get(this.config.baseVNV + this.config.tests + "/" + uuid, {
           headers: headers
         })
         .toPromise()

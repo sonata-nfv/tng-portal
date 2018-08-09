@@ -32,8 +32,8 @@ export class CommonService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.slaTemplates + search
-          : this.config.base + this.config.slaTemplates;
+          ? this.config.baseSP + this.config.slaTemplates + search
+          : this.config.baseSP + this.config.slaTemplates;
       this.http
         .get(url, {
           headers: headers
@@ -81,8 +81,8 @@ export class CommonService {
       let headers = this.authService.getAuthHeaders();
       let url =
         search != undefined
-          ? this.config.base + this.config.services + search
-          : this.config.base + this.config.services;
+          ? this.config.baseSP + this.config.services + search
+          : this.config.baseSP + this.config.services;
 
       this.http
         .get(url, {
@@ -121,7 +121,7 @@ export class CommonService {
       let headers = this.authService.getAuthHeaders();
 
       this.http
-        .get(this.config.base + this.config.services + "/" + uuid, {
+        .get(this.config.baseSP + this.config.services + "/" + uuid, {
           headers: headers
         })
         .toPromise()
