@@ -14,6 +14,8 @@ import { UsersComponent } from "./users/users.component";
 
 import { TestsComponent } from "./validation-and-verification/tests/tests.component";
 import { TestsDetailComponent } from "./validation-and-verification/tests-detail/tests-detail.component";
+import { VnvNetworkServicesComponent } from "./validation-and-verification/vnv-network-services/vnv-network-services.component";
+import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
 
 import { SpPackagesComponent } from "./service-platform/sp-packages/sp-packages.component";
 import { SpPackagesDetailComponent } from "./service-platform/sp-packages-detail/sp-packages-detail.component";
@@ -48,7 +50,6 @@ import { LicencesComponent } from "./service-management/licences/licences.compon
 import { LicencesDetailComponent } from "./service-management/licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-management/service-licences/service-licences.component";
 import { UserLicencesComponent } from "./service-management/user-licences/user-licences.component";
-import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
 
 const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path: "validation-and-verification/packages",
         component: VnvPackagesComponent
+      },
+      {
+        path: "validation-and-verification/network-services",
+        component: VnvNetworkServicesComponent
       },
       {
         path: "validation-and-verification/functions",

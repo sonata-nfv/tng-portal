@@ -16,6 +16,7 @@ import { RuntimePolicyBindDialogComponent } from "../runtime-policy-bind-dialog/
 })
 export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   loading: boolean;
+  section: string;
   reset: boolean;
   policiesDisplayed = new Array();
   policies = new Array();
@@ -41,6 +42,10 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
+
     this.requestRuntimePolicies();
 
     // Reloads the template list every when children are closed
@@ -80,14 +85,14 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     }, 5);
 
     Promise.all([
-      this.commonService.getNetworkServices(),
+      this.commonService.getNetworkServices(this.section),
       this.servicePlatformService.getRuntimePolicies(search)
     ])
       .then(responses => {
         this.loading = false;
 
         // Save NS data to display
-        this.nsList = responses[0].map(x => x.serviceName);
+        this.nsList = responses[0].map(x => x.name);
         this.nsList.unshift("None");
 
         // Save complete data from NS
@@ -96,9 +101,8 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         this.policies = responses[1];
 
         this.policies.forEach(policy => {
-          policy.ns =
-            this.nsListComplete.find(ns => ns.serviceId == policy.ns)
-              .serviceName || policy.ns;
+          policy.ns = this.nsListComplete.find(ns => ns.serviceId == policy.ns);
+          name || policy.ns;
         });
 
         this.policiesDisplayed = this.sortPolicies(this.policies);

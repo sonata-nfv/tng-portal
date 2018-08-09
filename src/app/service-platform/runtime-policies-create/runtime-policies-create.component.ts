@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
 import { ServicePlatformService } from "../service-platform.service";
@@ -13,6 +13,7 @@ import { ServicePlatformService } from "../service-platform.service";
 })
 export class RuntimePoliciesCreateComponent implements OnInit {
   loading: boolean = false;
+  section: string;
   reset: boolean = false;
   policyForm: FormGroup;
   disabledButton: boolean = true;
@@ -23,11 +24,16 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private commonService: CommonService,
     private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
+
     this.policyForm = new FormGroup({
       name: new FormControl(),
       default: new FormControl(),
@@ -39,12 +45,12 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
     this.loading = true;
     this.commonService
-      .getNetworkServices()
+      .getNetworkServices(this.section)
       .then(response => {
         this.loading = false;
 
         // Save NS data to display
-        this.nsList = response.map(x => x.serviceName);
+        this.nsList = response.map(x => x.name);
 
         // Save complete data from NS
         this.nsListComplete = response;
@@ -74,8 +80,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       this.policyForm.controls.ns.setValue(null);
       ns_uuid = null;
     } else {
-      ns_uuid = this.nsListComplete.filter(x => x.serviceName === ns)[0]
-        .serviceId;
+      ns_uuid = this.nsListComplete.filter(x => x.name === ns)[0].serviceId;
       this.policyForm.controls.ns.setValue(ns_uuid);
     }
   }

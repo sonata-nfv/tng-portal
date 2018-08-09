@@ -14,6 +14,7 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 })
 export class SlaTemplatesCreateComponent implements OnInit {
   loading: boolean;
+  section: string;
   closed: boolean = false;
   reset: boolean = false;
   disabledButton: boolean = true;
@@ -33,6 +34,10 @@ export class SlaTemplatesCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
+
     this.templateForm = new FormGroup({
       name: new FormControl(),
       ns: new FormControl(),
@@ -45,14 +50,14 @@ export class SlaTemplatesCreateComponent implements OnInit {
 
     this.loading = true;
     Promise.all([
-      this.commonService.getNetworkServices(),
+      this.commonService.getNetworkServices(this.section),
       this.servicePlatformService.getServiceGuarantees()
     ])
       .then(responses => {
         this.loading = false;
 
         // Save guarantees and NS data to display
-        this.nsList = responses[0].map(x => x.serviceName);
+        this.nsList = responses[0].map(x => x.name);
 
         // Filter by the only guarantee ids supported at the moment
         this.guarantiesList = responses[1].map(
@@ -93,7 +98,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
 
     const guarantees = this.storedGuarantees.map(x => x.guaranteeID);
     const nsd_uuid = this.nss.find(
-      x => x.serviceName === this.templateForm.controls.ns.value
+      x => x.name === this.templateForm.controls.ns.value
     ).serviceId;
     const expireDate = this.templateForm.controls.expirationDate.value;
 

@@ -10,9 +10,10 @@ import { TestsComponent } from "./tests/tests.component";
 import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
 import { SharedModule } from "../shared/shared.module";
 import { VnvPackagesComponent } from './vnv-packages/vnv-packages.component';
+import { VnvNetworkServicesComponent } from './vnv-network-services/vnv-network-services.component';
 
 @NgModule({
-  declarations: [TestsComponent, TestsDetailComponent, VnvPackagesComponent],
+  declarations: [TestsComponent, TestsDetailComponent, VnvPackagesComponent, VnvNetworkServicesComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,

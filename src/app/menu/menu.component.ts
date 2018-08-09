@@ -75,8 +75,8 @@ export class MenuComponent implements OnInit {
       case "vv-packages":
         this.router.navigate(["validation-and-verification/packages"]);
         break;
-      case "vv-services":
-        // this.router.navigate(["validation-and-verification/services"]);
+      case "vv-network-services":
+        this.router.navigate(["validation-and-verification/network-services"]);
         break;
       case "vv-functions":
         this.router.navigate(["validation-and-verification/functions"]);

@@ -13,6 +13,7 @@ import { CommonService } from "../../shared/services/common/common.service";
 })
 export class RuntimePoliciesDetailComponent implements OnInit {
   loading: boolean = false;
+  section: string;
   closed: boolean = true;
   nsName: string;
   slaName: string;
@@ -32,6 +33,10 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
+
     this.route.params.subscribe(params => {
       let uuid = params["id"];
       this.requestRuntimePolicy(uuid);
@@ -86,10 +91,10 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   requestNetworkServices() {
     return new Promise((resolve, reject) => {
       this.commonService
-        .getNetworkServices()
+        .getNetworkServices(this.section)
         .then(response => {
           // Save NS data to display
-          this.nsList = response.map(x => x.serviceName);
+          this.nsList = response.map(x => x.name);
 
           // Save complete data from NS
           this.nsListComplete = response;
@@ -99,7 +104,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           ) {
             this.nsName = this.nsListComplete.find(
               x => x.serviceId === this.detail["nsUUID"]
-            ).serviceName;
+            ).name;
           } else {
             this.nsList.push(this.detail["nsUUID"]);
             this.nsName = this.detail["nsUUID"];
@@ -158,9 +163,8 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   receiveNS(ns) {
     if (ns === "None") {
       this.policyForm.controls.ns.setValue(null);
-    } else if (this.nsListComplete.find(x => x.serviceName === ns)) {
-      const ns_uuid = this.nsListComplete.find(x => x.serviceName === ns)
-        .serviceId;
+    } else if (this.nsListComplete.find(x => x.name === ns)) {
+      const ns_uuid = this.nsListComplete.find(x => x.name === ns).serviceId;
       this.policyForm.controls.ns.setValue(ns_uuid);
     } else {
       this.policyForm.controls.ns.setValue(ns);

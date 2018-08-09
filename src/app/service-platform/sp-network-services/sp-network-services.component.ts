@@ -13,6 +13,7 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 })
 export class SpNetworkServicesComponent implements OnInit {
   loading: boolean;
+  section: string;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
   displayedColumns = [
@@ -36,6 +37,9 @@ export class SpNetworkServicesComponent implements OnInit {
   }
 
   searchFieldData(search) {
+    this.section = this.route.url["value"][0].path
+      .replace(/-/g, " ")
+      .toUpperCase();
     this.requestServices(search);
   }
 
@@ -49,7 +53,7 @@ export class SpNetworkServicesComponent implements OnInit {
   requestServices(search?) {
     this.loading = true;
     this.commonService
-      .getNetworkServices(search)
+      .getNetworkServices(this.section, search)
       .then(response => {
         this.loading = false;
 

@@ -181,13 +181,22 @@ export class CommonService {
    *                          must be matched by the returned
    *                          list of NS.
    */
-  getNetworkServices(search?): any {
+  getNetworkServices(section, search?): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
-      let url =
-        search != undefined
-          ? this.config.baseSP + this.config.services + search
-          : this.config.baseSP + this.config.services;
+
+      let url: string;
+      if (section == "VALIDATION AND VERIFICATION") {
+        url =
+          search != undefined
+            ? this.config.baseVNV + this.config.services + search
+            : this.config.baseVNV + this.config.services;
+      } else {
+        url =
+          search != undefined
+            ? this.config.baseSP + this.config.services + search
+            : this.config.baseSP + this.config.services;
+      }
 
       this.http
         .get(url, {
@@ -198,7 +207,7 @@ export class CommonService {
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
-                serviceName: item.nsd.name,
+                name: item.nsd.name,
                 serviceId: item.uuid,
                 vendor: item.nsd.vendor,
                 version: item.nsd.version,

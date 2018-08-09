@@ -71,7 +71,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
     this.instantiateDialog.open(NsInstantiateDialogComponent, {
       data: {
         serviceUUID: this.detail["serviceID"],
-        serviceName: this.detail["name"]
+       name: this.detail["name"]
       }
     });
   }
