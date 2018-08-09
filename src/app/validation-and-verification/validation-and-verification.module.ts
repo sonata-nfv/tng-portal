@@ -9,9 +9,10 @@ import { AngularMaterialModule } from "../angular-material/angular-material.modu
 import { TestsComponent } from "./tests/tests.component";
 import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
 import { SharedModule } from "../shared/shared.module";
+import { VnvPackagesComponent } from './vnv-packages/vnv-packages.component';
 
 @NgModule({
-  declarations: [TestsComponent, TestsDetailComponent],
+  declarations: [TestsComponent, TestsDetailComponent, VnvPackagesComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,

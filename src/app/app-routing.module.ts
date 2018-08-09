@@ -48,6 +48,7 @@ import { LicencesComponent } from "./service-management/licences/licences.compon
 import { LicencesDetailComponent } from "./service-management/licences-detail/licences-detail.component";
 import { ServiceLicencesComponent } from "./service-management/service-licences/service-licences.component";
 import { UserLicencesComponent } from "./service-management/user-licences/user-licences.component";
+import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
 
 const routes: Routes = [
   // Redirect to login while there is no dashboard/menu to display
@@ -68,8 +69,12 @@ const routes: Routes = [
       // Validation and verification
       {
         path: "validation-and-verification",
-        redirectTo: "validation-and-verification/tests",
+        redirectTo: "validation-and-verification/packages",
         pathMatch: "full"
+      },
+      {
+        path: "validation-and-verification/packages",
+        component: VnvPackagesComponent
       },
       {
         path: "validation-and-verification/tests",

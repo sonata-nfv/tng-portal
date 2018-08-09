@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit {
         // this.router.navigate(["/configuration"]);
         break;
       case "validation-and-verification":
-        this.section = "vv-tests";
+        this.section = "vv-packages";
         this.router.navigate(["/validation-and-verification"]);
         break;
       case "service-platform":
@@ -72,13 +72,13 @@ export class MenuComponent implements OnInit {
   setSection(e, buttonId) {
     switch (buttonId) {
       case "vv-packages":
-        // this.router.navigate(["validation-and-verification/packages"]);
+        this.router.navigate(["validation-and-verification/packages"]);
         break;
       case "vv-services":
-        // this.router.navigate(["validation-and-verification/packages"]);
+        // this.router.navigate(["validation-and-verification/services"]);
         break;
       case "vv-functions":
-        // this.router.navigate(["validation-and-verification/packages"]);
+        // this.router.navigate(["validation-and-verification/functions"]);
         break;
       case "vv-tests":
         this.router.navigate(["validation-and-verification/tests"]);
