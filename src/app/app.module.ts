@@ -30,7 +30,6 @@
 // acknowledge the contributions of their colleagues of the 5GTANGO
 // partner consortium (www.5gtango.eu).
 
-import { APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -41,134 +40,25 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { AngularMaterialModule } from "./angular-material/angular-material.module";
 import { AppRoutingModule } from "./app-routing.module";
-import { SpinnerComponent } from "./spinner/spinner.component";
-import { CalendarComponent } from "./calendar/calendar.component";
-import { SelectComponent } from "./select/select.component";
-
-import { LoginComponent } from "./login/login.component";
-import { SignupComponent } from "./signup/signup.component";
-import { RegisteredComponent } from "./registered/registered.component";
 
 import { MenuComponent } from "./menu/menu.component";
 import { IndexComponent } from "./index/index.component";
-
 import { DashboardComponent } from "./dashboard/dashboard.component";
-
 import { UsersComponent } from "./users/users.component";
 
-import { TestsComponent } from "./tests/tests.component";
-import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
-
-import { PackagesComponent } from "./packages/packages.component";
-import { PackagesDetailComponent } from "./packages-detail/packages-detail.component";
-import { SpNetworkServicesComponent } from "./sp-network-services/sp-network-services.component";
-import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/sp-network-services-detail.component";
-import { FunctionsComponent } from "./functions/functions.component";
-import { FunctionsDetailComponent } from "./functions-detail/functions-detail.component";
-import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
-import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
-import { RuntimePolicyBindDialogComponent } from "./runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
-import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
-import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
-import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
-import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
-import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
-import { SlaAgreementsComponent } from "./sla-agreements/sla-agreements.component";
-import { SlaAgreementsDetailComponent } from "./sla-agreements-detail/sla-agreements-detail.component";
-import { SlaViolationsComponent } from "./sla-violations/sla-violations.component";
-import { SlicesTemplatesComponent } from "./slices-templates/slices-templates.component";
-import { SlicesTemplatesDetailComponent } from "./slices-templates-detail/slices-templates-detail.component";
-import { SlicesInstancesComponent } from "./slices-instances/slices-instances.component";
-import { SlicesInstancesDetailComponent } from "./slices-instances-detail/slices-instances-detail.component";
-import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices-instances-create.component";
-
-import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
-import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
-import { NsInstantiateDialogComponent } from "./ns-instantiate-dialog/ns-instantiate-dialog.component";
-import { SearchBarComponent } from "./search-bar/search-bar.component";
-import { DialogComponent } from "./dialog/dialog.component";
-import { RequestsComponent } from "./requests/requests.component";
-import { RequestDetailComponent } from "./request-detail/request-detail.component";
-import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
-import { NetworkServiceInstancesDetailComponent } from "./network-service-instances-detail/network-service-instances-detail.component";
-import { FunctionRecordsDetailComponent } from "./function-records-detail/function-records-detail.component";
-import { LicencesComponent } from "./licences/licences.component";
-import { LicencesDetailComponent } from "./licences-detail/licences-detail.component";
-import { ServiceLicencesComponent } from "./service-licences/service-licences.component";
-import { UserLicencesComponent } from "./user-licences/user-licences.component";
-
-import { AuthService } from "./shared/services/auth/auth.service";
-import { ConfigService } from "./shared/services/config/config.service";
-import { CommonService } from "./shared/services/common/common.service";
-import { ValidationAndVerificationPlatformService } from "./shared/services/validation-and-verification/validation-and-verification.service";
-import { ServiceManagementService } from "./shared/services/service-management/service-management.service";
-import { DataTransferService } from "./shared/services/service-management/dataTransfer.service";
-import { ServicePlatformService } from "./shared/services/service-platform/service-platform.service";
-import { DialogDataService } from "./shared/services/dialog/dialog.service";
-
-import { FeatureAvailableDirective } from "./shared/directives/feature-available.directive";
-
-export function initConfiguration(configService: ConfigService): Function {
-  return () => configService.init();
-}
+import { AuthenticationModule } from "./authentication/authentication.module";
+import { ValidationAndVerificationModule } from "./validation-and-verification/validation-and-verification.module";
+import { ServicePlatformModule } from "./service-platform/service-platform.module";
+import { ServiceManagementModule } from "./service-management/service-management.module";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
-    RegisteredComponent,
     MenuComponent,
     IndexComponent,
     DashboardComponent,
-    UsersComponent,
-    TestsComponent,
-    TestsDetailComponent,
-    PackagesComponent,
-    PackagesDetailComponent,
-    SpNetworkServicesComponent,
-    SpNetworkServicesDetailComponent,
-    FunctionsComponent,
-    FunctionsDetailComponent,
-    PlacementPolicyComponent,
-    RuntimePoliciesComponent,
-    RuntimePolicyBindDialogComponent,
-    RuntimePoliciesDetailComponent,
-    RuntimePoliciesCreateComponent,
-    SlaTemplatesComponent,
-    SlaTemplatesDetailComponent,
-    SlaTemplatesCreateComponent,
-    SlaAgreementsComponent,
-    SlaAgreementsDetailComponent,
-    SlaViolationsComponent,
-    SlicesTemplatesComponent,
-    SlicesTemplatesDetailComponent,
-    SlicesInstancesComponent,
-    SlicesInstancesDetailComponent,
-    SlicesInstancesCreateComponent,
-    SmNetworkServicesComponent,
-    SmNetworkServicesDetailComponent,
-    RequestsComponent,
-    RequestDetailComponent,
-    NetworkServiceInstancesComponent,
-    NetworkServiceInstancesDetailComponent,
-    FunctionRecordsDetailComponent,
-    LicencesComponent,
-    LicencesDetailComponent,
-    ServiceLicencesComponent,
-    UserLicencesComponent,
-    SpinnerComponent,
-    NsInstantiateDialogComponent,
-    CalendarComponent,
-    SelectComponent,
-    SearchBarComponent,
-    DialogComponent,
-    FeatureAvailableDirective
-  ],
-  entryComponents: [
-    RuntimePolicyBindDialogComponent,
-    DialogComponent,
-    NsInstantiateDialogComponent
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -177,25 +67,14 @@ export function initConfiguration(configService: ConfigService): Function {
     ReactiveFormsModule,
     AngularMaterialModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ValidationAndVerificationModule,
+    ServiceManagementModule,
+    ServicePlatformModule,
+    SharedModule,
+    AuthenticationModule
   ],
-  providers: [
-    AuthService,
-    ConfigService,
-    CommonService,
-    ValidationAndVerificationPlatformService,
-    ServiceManagementService,
-    DataTransferService,
-    ServicePlatformService,
-    DialogDataService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initConfiguration,
-      deps: [ConfigService],
-      multi: true
-    },
-    { provide: MAT_DATE_LOCALE, useValue: "en-GB" }
-  ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: "en-GB" }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

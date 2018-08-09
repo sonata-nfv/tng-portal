@@ -1,0 +1,10 @@
+@import "../../../constants.scss";
+app-user-licences {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+}

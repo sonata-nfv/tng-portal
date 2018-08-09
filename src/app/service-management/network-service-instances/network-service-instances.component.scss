@@ -1,0 +1,48 @@
+@import "../../../constants.scss";
+app-network-service-instances {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+  .tools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  table {
+    width: 95%;
+  }
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 0%,
+      $underline-color 0%,
+      $underline-color 95%,
+      $basic-background-color 95%,
+      $basic-background-color 100%
+    );
+  }
+
+  // Set width for columns
+  .mat-cell:nth-child(4),
+  .mat-header-cell:nth-child(4) {
+    width: 15%;
+  }
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
+    width: 15%;
+  }
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    width: 30px;
+  }
+  // .mat-cell:nth-child(7),
+  // .mat-header-cell:nth-child(7) {
+  //   width: 30px;
+  // }
+}

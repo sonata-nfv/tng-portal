@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ConfigService } from "../config/config.service";
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from "../../../authentication/auth.service";
 
 import {
   HttpClient,

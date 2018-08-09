@@ -1,0 +1,30 @@
+@import "../../../constants.scss";
+app-sla-agreements {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+  .tools {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+  table {
+    width: 95%;
+  }
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 4%,
+      $underline-color 4%,
+      $underline-color 95%,
+      $basic-background-color 95%,
+      $basic-background-color 100%
+    );
+  }
+}

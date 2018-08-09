@@ -1,0 +1,53 @@
+@import "../../../constants.scss";
+app-registered {
+  .container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 635px;
+    width: calc(100% - 2em);
+    max-height: 550px;
+    padding: 2em;
+    border-radius: 10px;
+    background-color: $pannel-background-color;
+    text-align: center;
+    #header {
+      height: 8em;
+      background: url("../../../assets/images/sonata_powered_by_5gtango_logo.svg")
+        no-repeat center $pannel-background-color;
+      background-size: 18em;
+      margin-bottom: 2em;
+      background-repeat: no-repeat;
+    }
+    #thanks {
+      font-size: 1.4em;
+      color: $secondary-font-color-dark;
+      width: 45%;
+      margin-bottom: -30px;
+    }
+    #success {
+      color: $font-color-success;
+      font-size: 2.4em;
+      margin-bottom: 6em;
+    }
+    a {
+      display: flex;
+      color: $primary-font-color;
+      font-size: 1.2em;
+      &#login {
+        flex-direction: column;
+        bottom: 40px;
+      }
+      &#help {
+        position: absolute;
+        bottom: 20px;
+        left: 23%;
+      }
+    }
+  }
+}

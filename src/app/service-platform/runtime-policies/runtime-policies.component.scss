@@ -1,0 +1,104 @@
+@import "../../../constants.scss";
+app-runtime-policies {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h2 {
+      margin: 0;
+      width: 80%;
+    }
+    .add {
+      display: flex;
+      justify-content: center;
+      width: 20%;
+      span {
+        margin-left: 5px;
+        font-size: 18px;
+        color: $button-font-color_light;
+      }
+      .wui-plus::before {
+        margin-right: 5px;
+        font-size: 20px;
+        color: $reload-color;
+      }
+    }
+  }
+  .tools {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    .search {
+      margin-right: 10px;
+    }
+    .select {
+      width: 30%;
+      margin-left: 10px;
+
+      .mat-focused .mat-form-field-label,
+      .mat-focused .mat-form-field-required-marker,
+      .mat-focused .mat-form-field-invalid .mat-form-field-label.mat-accent {
+        color: $form-options-color;
+      }
+      .mat-form-field-ripple {
+        background-color: $form-focus;
+      }
+      .mat-form-field-underline {
+        background-color: $underline-color;
+      }
+
+      // Set select options color to grey
+      .mat-option {
+        color: $form-options-color;
+      }
+    }
+  }
+  table {
+    width: 95%;
+  }
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 1%,
+      $underline-color 1%,
+      $underline-color 91%,
+      $basic-background-color 91%,
+      $basic-background-color 100%
+    );
+  }
+  .circle-button {
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid $secondary-color;
+    cursor: pointer;
+  }
+  .circle-button.active {
+    border: 1px solid $primary-color-light;
+    background-color: $primary-color-light;
+  }
+
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    width: 70px;
+  }
+  .mat-cell:nth-child(7),
+  .mat-header-cell:nth-child(7) {
+    width: 25px;
+  }
+}

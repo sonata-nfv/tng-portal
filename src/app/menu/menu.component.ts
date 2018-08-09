@@ -1,13 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ViewChild,
-  HostListener
-} from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
 
-import { AuthService } from "../shared/services/auth/auth.service";
-import { Router, NavigationEnd } from "@angular/router";
+import { AuthService } from "../authentication/auth.service";
+import { Router } from "@angular/router";
 
 import { MatSidenav } from "@angular/material";
 

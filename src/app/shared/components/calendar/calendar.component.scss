@@ -1,0 +1,43 @@
+@import "../../../../constants.scss";
+app-calendar {
+  .mat-form-field {
+    font-size: 16px;
+    color: $form-selected-color;
+    width: 180px;
+    input.mat-input-element {
+      font-size: 16px;
+      color: $form-selected-color;
+    }
+    .mat-datepicker-toggle-active {
+      color: $form-focus;
+    }
+    .mat-datepicker-toggle-default-icon {
+      color: $form-focus;
+    }
+  }
+  .mat-form-field .mat-form-field-underline {
+    background-color: $underline-color;
+  }
+  // Hide placeholder
+  .hidePlaceholder .mat-form-field-can-float.mat-form-field-should-float {
+    .mat-form-field-label {
+      display: none;
+    }
+  }
+}
+
+.mat-calendar-table-header {
+  color: $font-primary-light;
+}
+.mat-calendar-header,
+.mat-calendar-body-label,
+.mat-calendar-body-cell-content {
+  color: $form-options-color;
+}
+.mat-calendar-body-selected {
+  background-color: $basic-background-color;
+  color: $form-alert-color;
+}
+.mat-datepicker-content {
+  transform: translate(-58px, 0);
+}

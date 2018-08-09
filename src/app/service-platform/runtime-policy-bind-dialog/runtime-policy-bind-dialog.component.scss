@@ -1,0 +1,75 @@
+@import "../../../constants.scss";
+app-runtime-policy-bind-dialog {
+  position: relative;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: auto;
+  min-height: 450px;
+  background-color: $basic-background-color;
+  color: $secondary-font-color;
+
+  .closeIcon {
+    right: -5px;
+    top: -10px;
+  }
+  .mat-dialog-title {
+    width: 100%;
+    margin: 0 20px;
+    text-align: center;
+    color: $primary-title-color;
+    font-size: 17px;
+  }
+  .mat-dialog-content {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 19px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      .mat-form-field {
+        text-align: center;
+      }
+      .select {
+        width: 70%;
+      }
+    }
+  }
+  .buttonContainer {
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      height: 42px;
+      width: 180px;
+      font-size: 18px;
+      font-weight: bold;
+      &.cancel {
+        margin-right: 15px;
+        color: $button-font-color;
+        background-color: $button-close-color;
+      }
+      &.next {
+        margin-left: 15px;
+        color: $button-font-color;
+        background-color: $primary-button-color;
+      }
+    }
+    button:disabled {
+      background-color: $button-disabled-color;
+    }
+  }
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+}

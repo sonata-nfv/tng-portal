@@ -1,0 +1,185 @@
+@import "../../../constants.scss";
+app-runtime-policies-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+  .title {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 30px;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    .subsectionTitle {
+      margin: 0;
+      width: 40%;
+      .mat-input-element,
+      .mat-form-field-appearance-legacy .mat-form-field-label {
+        font-size: 37px;
+      }
+      .mat-form-field-infix {
+        border-top: 0;
+      }
+      .mat-form-field-label-wrapper {
+        font-size: 33px;
+      }
+      &.mat-form-field-should-float {
+        .mat-form-field-label-wrapper {
+          display: none;
+        }
+      }
+    }
+    .headerButtons {
+      display: flex;
+      flex-direction: row;
+      width: 60%;
+      justify-content: flex-end;
+    }
+  }
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    h3 {
+      margin-top: -10px;
+      margin-right: 15px;
+      font-size: 12px;
+      &.author {
+        color: $third-title-color;
+      }
+    }
+  }
+  form {
+    width: 55%;
+    .mat-form-field {
+      &.select {
+        width: 100%;
+      }
+    }
+    &.advancedForm {
+      width: 100%;
+    }
+    // Checkbox styles
+    .mat-checkbox {
+      margin-bottom: 15px;
+    }
+    .mat-checkbox-layout .mat-checkbox-label {
+      color: $secondary-font-color;
+    }
+    .mat-checkbox-frame {
+      border-color: $secondary-font-color;
+    }
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+      background-color: $primary-background-color;
+    }
+  }
+  .rules {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    .monitoringRules {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      &.left {
+        margin-right: 20px;
+      }
+      .title {
+        width: 100%;
+        color: $primary-font-color_light;
+      }
+      .content {
+        width: 100%;
+        min-height: 200px;
+        color: $secondary-font-color-dark;
+        background-color: $pannel-background-color;
+        border-top: 1px solid $border-line-color;
+        border-bottom: 1px solid $border-line-color;
+        p {
+          margin: 5px;
+        }
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      .mat-form-field-infix {
+        padding: 0;
+        border: 0;
+        .content {
+          padding-top: 5px;
+          padding-left: 5px;
+          min-height: 195px;
+        }
+      }
+      .mat-input-element {
+        padding: 0;
+        margin-top: 0;
+      }
+    }
+  }
+  .advanceSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 55%;
+    .advanceButton {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      width: auto;
+      color: $button-hyperlink-color;
+      .open {
+        span {
+          margin-right: 25px;
+        }
+        i:before {
+          font-size: 8px;
+        }
+        .wui-caret-down:before {
+          color: $button-hyperlink-color;
+        }
+        .wui-caret-up:before {
+          color: $opened-color;
+        }
+      }
+      .underline {
+        margin: 2px auto;
+        width: 150px;
+        border-bottom: 1px solid $underline-color;
+        &.opened {
+          margin: 4px auto;
+          border-bottom: 1px solid $opened-color;
+        }
+      }
+    }
+  }
+
+  // RULES PART
+  .rulesForm {
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .sectionTitle {
+      font-size: 24px;
+      color: $primary-font-color-light;
+    }
+  }
+}
