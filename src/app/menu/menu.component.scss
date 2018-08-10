@@ -4,10 +4,12 @@ app-menu {
     flex: 1 0;
     display: flex;
     height: 100%;
+
     .mat-drawer-container,
     .mat-drawer {
       background-color: $pannel-background-color;
     }
+
     background: linear-gradient(
       to right,
       $pannel-background-color,
@@ -15,6 +17,7 @@ app-menu {
       darken($pannel-background-color, 10%) 97%
     );
   }
+
   .menu-items {
     display: flex;
     flex: 1 1;
@@ -23,6 +26,7 @@ app-menu {
     overflow-x: hidden;
     overflow-y: hidden;
   }
+
   .avatar {
     margin: auto;
     margin-top: 20px;
@@ -35,18 +39,22 @@ app-menu {
     background-position: top center;
     border-radius: 50%;
   }
+
   p {
     margin: auto;
     color: $primary-font-color;
     text-overflow: ellipsis;
     overflow: hidden;
+
     &.name {
       font-size: 21px;
     }
+
     &.email {
       font-size: 12px;
     }
   }
+
   .logout {
     display: flex;
     align-items: center;
@@ -57,14 +65,17 @@ app-menu {
     background: none;
     color: $secondary-font-color-light;
     cursor: pointer;
+
     span {
       text-decoration: underline;
       padding: 3px;
     }
   }
+
   .logout:focus {
     outline: none;
   }
+
   .sections {
     flex: 1 0;
     display: flex;
@@ -72,6 +83,7 @@ app-menu {
     justify-content: center;
     margin-bottom: 10px;
     border-right: 2px solid $border-line-color;
+
     button {
       display: flex;
       flex-direction: column;
@@ -82,10 +94,12 @@ app-menu {
       color: $secondary-font-color-light;
       cursor: pointer;
       outline: none;
+
       i:before {
         font-size: 35px;
         color: $secondary-font-color-light;
       }
+
       span {
         margin-top: 5px;
         font-size: 11px;
@@ -94,14 +108,17 @@ app-menu {
         margin-left: 15px;
       }
     }
+
     button.active {
       color: $primary-button-color-light;
+
       i:before {
         font-size: 35px;
         color: $primary-button-color-light;
       }
     }
   }
+
   .logo {
     height: 50px;
     width: 100%;
@@ -111,6 +128,7 @@ app-menu {
     background-repeat: no-repeat;
     background-size: 100px;
   }
+
   .menu-options {
     flex: 1 0;
     display: flex;
@@ -119,10 +137,12 @@ app-menu {
     width: 225px;
     overflow-x: hidden;
     overflow-y: hidden;
+
     .options {
       display: flex;
       flex-direction: column;
       margin-left: 10px;
+
       button {
         padding: 2px;
         border: none;
@@ -135,15 +155,18 @@ app-menu {
         cursor: pointer;
         outline: none;
       }
+
       button.active {
         outline: none;
         color: $primary-button-color-light;
         border-bottom: 2px solid $primary-button-color-light;
       }
+
       .section {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+
         button {
           margin-top: 10px;
           margin-left: 10px;
@@ -152,6 +175,7 @@ app-menu {
           border-bottom: 1px solid $button-underline-color-light;
           outline: none;
         }
+
         button.active {
           outline: none;
           color: $primary-button-color-light;
