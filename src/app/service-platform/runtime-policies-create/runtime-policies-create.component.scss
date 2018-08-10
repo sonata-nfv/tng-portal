@@ -59,7 +59,7 @@ app-runtime-policies-create {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
     }
   }
@@ -78,10 +78,10 @@ app-runtime-policies-create {
       margin-bottom: 15px;
     }
     .mat-checkbox-layout .mat-checkbox-label {
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
     }
     .mat-checkbox-frame {
-      border-color: $secondary-font-color;
+      border-color: $secondary-font-color-light;
     }
     .mat-checkbox-checked.mat-accent .mat-checkbox-background,
     .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -103,12 +103,12 @@ app-runtime-policies-create {
       }
       .title {
         width: 100%;
-        color: $primary-font-color_light;
+        color: $primary-font-color-light;
       }
       .content {
         width: 100%;
         min-height: 200px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
         background-color: $pannel-background-color;
         border-top: 1px solid $border-line-color;
         border-bottom: 1px solid $border-line-color;
@@ -145,7 +145,7 @@ app-runtime-policies-create {
       align-items: center;
       margin-bottom: 20px;
       width: auto;
-      color: $button-hyperlink-color;
+      color: $secondary-button-color-light;
       .open {
         span {
           margin-right: 25px;
@@ -154,7 +154,7 @@ app-runtime-policies-create {
           font-size: 8px;
         }
         .wui-caret-down:before {
-          color: $button-hyperlink-color;
+          color: $secondary-button-color-light;
         }
         .wui-caret-up:before {
           color: $opened-color;

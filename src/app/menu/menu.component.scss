@@ -6,13 +6,13 @@ app-menu {
     height: 100%;
     .mat-drawer-container,
     .mat-drawer {
-      background-color: $menu-background-color;
+      background-color: $pannel-background-color;
     }
     background: linear-gradient(
       to right,
-      $menu-background-color,
-      darken($menu-background-color, 2%) 91%,
-      darken($menu-background-color, 10%) 97%
+      $pannel-background-color,
+      darken($pannel-background-color, 2%) 91%,
+      darken($pannel-background-color, 10%) 97%
     );
   }
   .menu-items {
@@ -55,7 +55,7 @@ app-menu {
     font-size: 10px;
     border: none;
     background: none;
-    color: $secondary-font-color;
+    color: $secondary-font-color-light;
     cursor: pointer;
     span {
       text-decoration: underline;
@@ -79,12 +79,12 @@ app-menu {
       padding: 15px;
       border: none;
       background: none;
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
       cursor: pointer;
       outline: none;
       i:before {
         font-size: 35px;
-        color: $secondary-font-color;
+        color: $secondary-font-color-light;
       }
       span {
         margin-top: 5px;
@@ -95,10 +95,10 @@ app-menu {
       }
     }
     button.active {
-      color: $button-active-color;
+      color: $primary-button-color-light;
       i:before {
         font-size: 35px;
-        color: $button-active-color;
+        color: $primary-button-color-light;
       }
     }
   }
@@ -131,14 +131,14 @@ app-menu {
         margin-top: 45px;
         font-size: 16px;
         text-align: left;
-        color: $secondary-button-color;
+        color: $secondary-button-color-light;
         cursor: pointer;
         outline: none;
       }
       button.active {
         outline: none;
-        color: $button-active-color;
-        border-bottom: 2px solid $button-active-color;
+        color: $primary-button-color-light;
+        border-bottom: 2px solid $primary-button-color-light;
       }
       .section {
         display: flex;
@@ -149,13 +149,13 @@ app-menu {
           margin-left: 10px;
           font-size: 15px;
           width: 80%;
-          border-bottom: 1px solid $secondary-button-color-light;
+          border-bottom: 1px solid $button-underline-color-light;
           outline: none;
         }
         button.active {
           outline: none;
-          color: $button-active-color;
-          border-bottom: 2px solid $button-active-color;
+          color: $primary-button-color-light;
+          border-bottom: 2px solid $primary-button-color-light;
         }
       }
     }

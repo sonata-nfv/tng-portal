@@ -7,7 +7,7 @@ form {
     flex-direction: column;
     font-size: 18px;
     text-align: left;
-    color: $form-selected-color;
+    color: $secondary-font-color;
     .mat-select.mat-select-invalid .mat-select-arrow {
       color: $form-focus-label;
     }
@@ -165,7 +165,7 @@ table {
       background-color: $active-color;
     }
     &.wui-lock::before {
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
     }
   }
   .row-options {

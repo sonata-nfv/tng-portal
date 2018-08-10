@@ -26,7 +26,7 @@ app-slices-templates-detail {
       cursor: pointer;
       outline: none;
       text-decoration: underline;
-      color: $button-delete-color;
+      color: $primary-button-color;
       background-color: $basic-background-color;
     }
   }
@@ -49,10 +49,10 @@ app-slices-templates-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -93,7 +93,7 @@ app-slices-templates-detail {
       }
       span {
         margin-left: 5px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
       }
     }
   }

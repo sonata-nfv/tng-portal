@@ -71,7 +71,7 @@ app-slices-instances-detail {
       }
       span {
         margin-left: 10px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
       }
     }
 
@@ -84,11 +84,11 @@ app-slices-instances-detail {
       span {
         width: 100%;
         &.title {
-          color: $secondary-title-color;
+          color: $secondary-font-color-light;
         }
         &.content {
           min-height: 200px;
-          color: $secondary-font-color-dark;
+          color: $secondary-font-color;
           background-color: $pannel-background-color;
           border-top: 1px solid $border-line-color;
           border-bottom: 1px solid $border-line-color;

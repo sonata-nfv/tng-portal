@@ -38,10 +38,10 @@ app-tests-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -60,7 +60,7 @@ app-tests-detail {
       margin-left: 20px;
       margin-right: 20px;
       .text {
-        color: $secondary-font-color;
+        color: $secondary-font-color-light;
         font-size: 21px;
         margin-bottom: 10px;
       }
@@ -73,7 +73,7 @@ app-tests-detail {
         border-radius: 50%;
         border: 2px solid $primary-background-color;
         span {
-          color: $secondary-font-color-dark;
+          color: $secondary-font-color;
           font-size: 40px;
         }
       }
@@ -107,11 +107,11 @@ app-tests-detail {
     span {
       width: 65%;
       &.title {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
       &.content {
         min-height: 200px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
         background-color: $pannel-background-color;
         border-top: 1px solid $border-line-color;
         border-bottom: 1px solid $border-line-color;

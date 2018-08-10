@@ -29,7 +29,7 @@ app-runtime-policies {
       span {
         margin-left: 5px;
         font-size: 18px;
-        color: $button-font-color_light;
+        color: $primary-color-light;
       }
       .wui-plus::before {
         margin-right: 5px;
@@ -54,7 +54,7 @@ app-runtime-policies {
       .mat-focused .mat-form-field-label,
       .mat-focused .mat-form-field-required-marker,
       .mat-focused .mat-form-field-invalid .mat-form-field-label.mat-accent {
-        color: $form-options-color;
+        color: $secondary-font-color-light;
       }
       .mat-form-field-ripple {
         background-color: $form-focus;
@@ -65,7 +65,7 @@ app-runtime-policies {
 
       // Set select options color to grey
       .mat-option {
-        color: $form-options-color;
+        color: $secondary-font-color-light;
       }
     }
   }

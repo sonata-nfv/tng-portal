@@ -34,10 +34,10 @@ app-sp-packages-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -68,7 +68,7 @@ app-sp-packages-detail {
     .message {
       margin-top: 15px;
       margin-bottom: 30px;
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
     }
     .mat-table {
       width: 100%;

@@ -50,7 +50,7 @@ app-network-service-instances-detail {
       }
       span {
         margin-left: 10px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
       }
     }
 
@@ -85,7 +85,7 @@ app-network-service-instances-detail {
     .message {
       margin-top: 15px;
       margin-bottom: 30px;
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
     }
 
     .mat-table {

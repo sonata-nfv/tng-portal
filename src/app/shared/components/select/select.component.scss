@@ -8,7 +8,7 @@ app-select {
     color: $form-focus-label;
   }
   .mat-select-value-text {
-    color: $form-selected-color;
+    color: $secondary-font-color;
   }
   .mat-focused .mat-select-value-text,
   .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
@@ -23,7 +23,7 @@ app-select {
   .mat-focused .mat-form-field-label,
   .mat-focused .mat-form-field-required-marker,
   .mat-focused .mat-form-field-invalid .mat-form-field-label.mat-accent {
-    color: $form-options-color;
+    color: $secondary-font-color-light;
   }
   .mat-form-field-disabled .mat-form-field-underline {
     background-color: $form-disabled-color;
@@ -39,7 +39,7 @@ app-select {
 }
 // Set select options color to grey
 .mat-option {
-  color: $form-options-color;
+  color: $secondary-font-color-light;
 }
 // Set select focused option color to primary
 .mat-option.mat-active,

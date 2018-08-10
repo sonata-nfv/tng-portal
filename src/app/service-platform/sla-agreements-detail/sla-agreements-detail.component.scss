@@ -39,10 +39,10 @@ app-sla-agreements-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -58,7 +58,7 @@ app-sla-agreements-detail {
       width: 100%;
       .sectionTitle {
         font-size: 24px;
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       .sectionTitle:after {
         background: none;

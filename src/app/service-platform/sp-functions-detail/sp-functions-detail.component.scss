@@ -33,10 +33,10 @@ app-sp-functions-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -67,11 +67,11 @@ app-sp-functions-detail {
     span {
       width: 65%;
       &.title {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
       &.content {
         min-height: 200px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
         background-color: $pannel-background-color;
         border-top: 1px solid $border-line-color;
         border-bottom: 1px solid $border-line-color;

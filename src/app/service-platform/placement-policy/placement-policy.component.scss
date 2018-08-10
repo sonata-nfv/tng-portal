@@ -34,7 +34,7 @@ app-placement-policy {
         color: $form-focus;
       }
       .mat-select-disabled .mat-select-value {
-        color: $form-selected-color;
+        color: $secondary-font-color;
       }
     }
     .placementPolicy {
@@ -81,7 +81,7 @@ app-placement-policy {
     margin-right: 10px;
     content: counter(item) ". ";
     background: $basic-background-color;
-    color: $list-bullet-color;
+    color: $secondary-font-color-light;
     width: 1em;
     font-size: 40px;
     font-weight: bold;
@@ -91,7 +91,7 @@ app-placement-policy {
     font-size: 0.8em;
     margin-top: -25px;
     margin-bottom: 10px;
-    color: $font-color-alert;
+    color: $primary-font-color-light;
     text-align: right;
     width: 24%;
   }
@@ -107,11 +107,11 @@ app-placement-policy {
       border: none;
       cursor: pointer;
       outline: none;
-      color: $button-font-color_light;
+      color: $primary-color-light;
       background-color: $basic-background-color;
       i:before {
         font-size: 12px;
-        color: $button-font-color_light;
+        color: $primary-color-light;
       }
     }
   }

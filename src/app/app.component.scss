@@ -43,12 +43,12 @@ app-index {
   margin-top: 15px;
   margin-bottom: 3px;
   width: 95%;
-  color: $primary-title-color;
+  color: $primary-font-color-light;
   font-size: 17px;
   font-weight: normal;
 }
 .sectionTitle:after {
-  background: none repeat scroll 0 0 $primary-title-color;
+  background: none repeat scroll 0 0 $primary-font-color-light;
   content: "";
   display: block;
   height: 1px;
@@ -57,7 +57,7 @@ app-index {
 .subsectionTitle {
   width: 95%;
   margin: 0px 15px 0px 15px;
-  color: $secondary-title-color;
+  color: $secondary-font-color-light;
   font-size: 37px;
   font-weight: normal;
 }
@@ -76,7 +76,7 @@ app-index {
   margin-right: 20px;
   margin-top: 40px;
   .text {
-    color: $secondary-font-color;
+    color: $secondary-font-color-light;
     font-size: 21px;
     margin-bottom: 10px;
   }
@@ -89,7 +89,7 @@ app-index {
     border-radius: 50%;
     background-color: $primary-background-color;
     span {
-      color: $button-font-color;
+      color: $button-basic-font-color;
       font-size: 40px;
     }
   }
@@ -111,11 +111,11 @@ app-spinner {
   border: none;
   cursor: pointer;
   outline: none;
-  color: $button-font-color_light;
+  color: $primary-color-light;
   background-color: $basic-background-color;
   i:before {
     font-size: 10px;
-    color: $button-font-color_light;
+    color: $primary-color-light;
   }
 }
 
@@ -128,7 +128,7 @@ app-spinner {
   height: 35px;
   font-weight: bold;
   font-size: 17px;
-  color: $button-font-color;
+  color: $button-basic-font-color;
   background-color: $button-close-color;
 }
 
@@ -157,13 +157,13 @@ app-spinner {
   margin-left: 5px;
   font-weight: bold;
   font-size: 17px;
-  color: $button-font-color;
+  color: $button-basic-font-color;
 }
 .save {
-  background-color: $button-save-color;
+  background-color: $primary-button-color;
 }
 .save.disabledButton {
-  background-color: $button-disabled-color;
+  background-color: $secondary-button-color;
 }
 .cancel {
   background-color: $button-close-color;

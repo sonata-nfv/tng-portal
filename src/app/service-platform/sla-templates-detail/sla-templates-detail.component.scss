@@ -26,7 +26,7 @@ app-sla-templates-detail {
       cursor: pointer;
       outline: none;
       text-decoration: underline;
-      color: $button-delete-color;
+      color: $primary-button-color;
     }
   }
   .header {
@@ -48,10 +48,10 @@ app-sla-templates-detail {
       margin-right: 15px;
       font-size: 12px;
       &.author {
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       &.date {
-        color: $secondary-title-color;
+        color: $secondary-font-color-light;
       }
     }
   }
@@ -70,7 +70,7 @@ app-sla-templates-detail {
       .sectionTitle {
         margin-bottom: 20px;
         font-size: 24px;
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       .sectionTitle:after {
         background: none;
@@ -86,7 +86,7 @@ app-sla-templates-detail {
       // margin-bottom: 300px;
       //   margin-top: -16px;
       //   font-size: 13px;
-      //   color: $font-color-alert;
+      //   color: $primary-font-color-light;
       // }
       .guaranteeRow {
         display: flex;
@@ -129,7 +129,7 @@ app-sla-templates-detail {
       align-items: center;
       margin-bottom: 20px;
       width: auto;
-      color: $button-hyperlink-color;
+      color: $secondary-button-color-light;
       .open {
         span {
           margin-right: 25px;
@@ -138,7 +138,7 @@ app-sla-templates-detail {
           font-size: 8px;
         }
         .wui-caret-down:before {
-          color: $button-hyperlink-color;
+          color: $secondary-button-color-light;
         }
         .wui-caret-up:before {
           color: $opened-color;

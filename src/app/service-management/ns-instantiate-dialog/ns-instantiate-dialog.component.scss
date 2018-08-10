@@ -9,7 +9,7 @@ app-ns-instantiate-dialog {
   height: auto;
   min-height: 450px;
   background-color: $basic-background-color;
-  color: $secondary-font-color;
+  color: $secondary-font-color-light;
   .closeIcon {
     right: -5px;
     top: -10px;
@@ -18,7 +18,7 @@ app-ns-instantiate-dialog {
     width: 100%;
     margin: 0 20px;
     text-align: center;
-    color: $primary-title-color;
+    color: $primary-font-color-light;
     font-size: 17px;
   }
   .mat-dialog-content {
@@ -35,14 +35,14 @@ app-ns-instantiate-dialog {
       button {
         padding: 10px;
         font-size: 37px;
-        color: $disabled-font-color;
+        color: $button-disabled-font-color;
         background-color: $basic-background-color;
       }
       button.active {
-        color: $button-active-color;
+        color: $primary-button-color-light;
       }
       .dash {
-        color: $disabled-font-color;
+        color: $button-disabled-font-color;
         font-size: 30px;
       }
     }
@@ -50,7 +50,7 @@ app-ns-instantiate-dialog {
       display: flex;
       flex-direction: column;
       margin-top: 15px;
-      color: $primary-font-color_light;
+      color: $primary-font-color-light;
 
       dt {
         display: flex;
@@ -87,17 +87,17 @@ app-ns-instantiate-dialog {
         padding: 8px;
         padding-right: 0px;
         font-size: 16px;
-        color: $button-font-color_light;
+        color: $primary-color-light;
         background-color: $basic-background-color;
         i:before {
           font-size: 12px;
-          color: $button-font-color_light;
+          color: $primary-color-light;
         }
       }
       button:disabled {
-        color: $disabled-font-color;
+        color: $button-disabled-font-color;
         i:before {
-          color: $disabled-font-color;
+          color: $button-disabled-font-color;
         }
       }
     }
@@ -152,17 +152,17 @@ app-ns-instantiate-dialog {
       font-weight: bold;
       &.cancel {
         margin-right: 15px;
-        color: $button-font-color;
+        color: $button-basic-font-color;
         background-color: $button-close-color;
       }
       &.next {
         margin-left: 15px;
-        color: $button-font-color;
+        color: $button-basic-font-color;
         background-color: $primary-button-color;
       }
     }
     button:disabled {
-      background-color: $button-disabled-color;
+      background-color: $secondary-button-color;
     }
   }
   button {
