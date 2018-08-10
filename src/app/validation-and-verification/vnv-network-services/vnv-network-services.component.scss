@@ -8,21 +8,17 @@ app-vnv-network-services {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .tools {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
+
   tr.mat-row {
     background-image: linear-gradient(
       to right,
       $basic-background-color 4%,
-      $underline-color 4%,
-      $underline-color 98%,
+      $table-underline-color 4%,
+      $table-underline-color 98%,
       $basic-background-color 98%,
       $basic-background-color 100%
     );

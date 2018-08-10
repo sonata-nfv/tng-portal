@@ -7,7 +7,7 @@ app-dialog {
   width: 630px;
   height: 370px;
   background-color: $basic-background-color;
-  color: $secondary-font-color;
+  color: $secondary-font-color-light;
   font-size: 19px;
   .buttonContainer {
     display: flex;
@@ -29,14 +29,14 @@ app-dialog {
     &.action {
       margin-left: 15px;
       color: $basic-background-color;
-      background-color: $button-active-color;
+      background-color: $primary-button-color-light;
     }
   }
   .mat-dialog-title {
     width: 100%;
     margin: 55px 0 40px;
     text-align: center;
-    color: $primary-title-color;
+    color: $primary-font-color-light;
     font-size: 29px;
   }
   .mat-dialog-content {

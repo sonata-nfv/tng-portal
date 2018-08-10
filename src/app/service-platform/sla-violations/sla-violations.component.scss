@@ -8,12 +8,7 @@ app-sla-violations {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .tools {
-    display: flex;
-    width: 95%;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
@@ -21,8 +16,8 @@ app-sla-violations {
     background-image: linear-gradient(
       to right,
       $basic-background-color 0%,
-      $underline-color 0%,
-      $underline-color 100%,
+      $table-underline-color 0%,
+      $table-underline-color 100%,
       $basic-background-color 100%,
       $basic-background-color 100%
     );

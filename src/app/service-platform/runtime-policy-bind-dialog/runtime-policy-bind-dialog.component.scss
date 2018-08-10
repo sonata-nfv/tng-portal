@@ -9,7 +9,7 @@ app-runtime-policy-bind-dialog {
   height: auto;
   min-height: 450px;
   background-color: $basic-background-color;
-  color: $secondary-font-color;
+  color: $secondary-font-color-light;
 
   .closeIcon {
     right: -5px;
@@ -19,7 +19,7 @@ app-runtime-policy-bind-dialog {
     width: 100%;
     margin: 0 20px;
     text-align: center;
-    color: $primary-title-color;
+    color: $primary-font-color-light;
     font-size: 17px;
   }
   .mat-dialog-content {
@@ -54,17 +54,17 @@ app-runtime-policy-bind-dialog {
       font-weight: bold;
       &.cancel {
         margin-right: 15px;
-        color: $button-font-color;
+        color: $button-basic-font-color;
         background-color: $button-close-color;
       }
       &.next {
         margin-left: 15px;
-        color: $button-font-color;
+        color: $button-basic-font-color;
         background-color: $primary-button-color;
       }
     }
     button:disabled {
-      background-color: $button-disabled-color;
+      background-color: $secondary-button-color;
     }
   }
   button {

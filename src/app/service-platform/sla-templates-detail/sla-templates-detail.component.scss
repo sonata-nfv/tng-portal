@@ -14,47 +14,7 @@ app-sla-templates-detail {
   > * {
     flex: 0 0 auto;
   }
-  .title {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 30px;
-    button {
-      min-width: 150px;
-      font-size: 15px;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      text-decoration: underline;
-      color: $button-delete-color;
-    }
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   form {
     width: 55%;
     .mat-form-field {
@@ -70,7 +30,7 @@ app-sla-templates-detail {
       .sectionTitle {
         margin-bottom: 20px;
         font-size: 24px;
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
       .sectionTitle:after {
         background: none;
@@ -86,7 +46,7 @@ app-sla-templates-detail {
       // margin-bottom: 300px;
       //   margin-top: -16px;
       //   font-size: 13px;
-      //   color: $font-color-alert;
+      //   color: $primary-font-color-light;
       // }
       .guaranteeRow {
         display: flex;
@@ -115,43 +75,6 @@ app-sla-templates-detail {
         //   margin-top: 20px;
         //   font-size: 16px;
         // }
-      }
-    }
-  }
-  .advanceSection {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 55%;
-    .advanceButton {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-      width: auto;
-      color: $button-hyperlink-color;
-      .open {
-        span {
-          margin-right: 25px;
-        }
-        i:before {
-          font-size: 8px;
-        }
-        .wui-caret-down:before {
-          color: $button-hyperlink-color;
-        }
-        .wui-caret-up:before {
-          color: $opened-color;
-        }
-      }
-      .underline {
-        margin: 2px auto;
-        width: 150px;
-        border-bottom: 1px solid $underline-color;
-        &.opened {
-          margin: 4px auto;
-          border-bottom: 1px solid $opened-color;
-        }
       }
     }
   }

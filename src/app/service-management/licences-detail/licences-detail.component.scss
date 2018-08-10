@@ -17,7 +17,7 @@ app-licences-detail {
     h2 {
       margin: 0px 15px 0 0;
       width: 95%;
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
       font-size: 32px;
     }
     .close {
@@ -27,7 +27,7 @@ app-licences-detail {
       border: none;
       cursor: pointer;
       outline: none;
-      color: $button-font-color;
+      color: $button-basic-font-color;
       background-color: $button-close-color;
     }
   }
@@ -49,12 +49,12 @@ app-licences-detail {
     }
     .mat-input-element:disabled {
       font-size: 20px;
-      color: $secondary-font-color-dark;
+      color: $secondary-font-color;
     }
     // Change input underline styles
     .mat-form-field-disabled .mat-form-field-underline {
       background-image: none;
-      background-color: $underline-color;
+      background-color: $table-underline-color;
       height: 3px;
     }
     .buy {
@@ -76,26 +76,6 @@ app-licences-detail {
       }
       span {
         text-decoration: underline;
-      }
-    }
-    .description {
-      width: 65%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      span {
-        width: 100%;
-        &.title {
-          color: $secondary-title-color;
-        }
-        &.content {
-          width: 100%;
-          min-height: 200px;
-          color: $secondary-font-color-dark;
-          background-color: $pannel-background-color;
-          border-top: 1px solid $border-line-color;
-          border-bottom: 1px solid $border-line-color;
-        }
       }
     }
   }

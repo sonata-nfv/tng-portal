@@ -14,81 +14,13 @@ app-sm-network-services-detail {
   > * {
     flex: 0 0 auto;
   }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   .detail {
-    width: 95%;
+    width: 65%;
     align-items: center;
     margin-bottom: 20px;
     .mat-form-field {
-      width: 65%;
-    }
-    .launch {
-      width: 65%;
-      display: flex;
-      flex-direction: row;
-      button {
-        border: none;
-        cursor: pointer;
-        outline: none;
-        padding: 15px 0 25px 0;
-        font-size: 18px;
-        color: $primary-font-color;
-        background-color: $basic-background-color;
-      }
-      i:before {
-        color: $ready-color;
-      }
-      span {
-        margin-left: 10px;
-        color: $secondary-font-color-dark;
-      }
-    }
-    .description {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      span {
-        width: 65%;
-        &.title {
-          color: $secondary-title-color;
-        }
-        &.content {
-          min-height: 200px;
-          color: $secondary-font-color-dark;
-          background-color: $pannel-background-color;
-          border-top: 1px solid $border-line-color;
-          border-bottom: 1px solid $border-line-color;
-          p {
-            margin: 5px;
-          }
-        }
-      }
     }
   }
 }

@@ -14,55 +14,29 @@ app-sla-agreements-detail {
   > * {
     flex: 0 0 auto;
   }
-  .title {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 30px;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   form {
     width: 60%;
     align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 5%;
+
     .mat-form-field {
       width: 100%;
     }
+
     .details {
       width: 100%;
+
       .sectionTitle {
         font-size: 24px;
-        color: $third-title-color;
+        color: $primary-font-color-light;
       }
+
       .sectionTitle:after {
         background: none;
       }
+
       .guaranteeRow {
         display: flex;
         flex-direction: row;
@@ -76,12 +50,15 @@ app-sla-agreements-detail {
           .mat-form-field-label {
           font-size: 16px;
         }
+
         .mat-form-field-appearance-legacy .mat-form-field-underline {
           width: 95%;
         }
+
         .gName {
           width: 55%;
         }
+
         .timePeriod {
           display: flex;
           flex-direction: column;

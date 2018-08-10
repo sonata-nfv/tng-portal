@@ -14,128 +14,36 @@ app-tests-detail {
   > * {
     flex: 0 0 auto;
   }
-  .title {
-    flex-direction: row;
-    width: 95%;
-    min-height: 30px;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   .bubbles {
     display: flex;
     flex-direction: row;
-    .versionDiv {
-      margin-top: 0;
-    }
-    .timesExecuted {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 150px;
-      margin-bottom: 50px;
-      margin-left: 20px;
-      margin-right: 20px;
-      .text {
-        color: $secondary-font-color;
-        font-size: 21px;
-        margin-bottom: 10px;
-      }
-      .times {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 120px;
-        min-height: 120px;
-        border-radius: 50%;
+
+    .bubbleDiv .number {
+      &.times {
         border: 2px solid $primary-background-color;
+        background-color: $basic-background-color;
+
         span {
-          color: $secondary-font-color-dark;
+          color: $secondary-font-color;
           font-size: 40px;
         }
       }
     }
   }
+
   .detail {
-    width: 95%;
+    width: 65%;
     align-items: center;
     margin-bottom: 20px;
     .mat-form-field {
-      width: 65%;
-    }
-    .lastTimeExecuted .mat-input-element:disabled {
-      font-size: 14px;
-      color: $form-disabled-color;
-    }
-    .lastTimeExecuted .mat-form-field-label {
-      display: none;
-    }
-    .lastTimeExecuted .mat-form-field-infix {
-      border-top: 0;
-      padding: 0;
+      width: 100%;
     }
   }
-  .description {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-    span {
-      width: 65%;
-      &.title {
-        color: $secondary-title-color;
-      }
-      &.content {
-        min-height: 200px;
-        color: $secondary-font-color-dark;
-        background-color: $pannel-background-color;
-        border-top: 1px solid $border-line-color;
-        border-bottom: 1px solid $border-line-color;
-        p {
-          margin: 5px;
-        }
-        table th.mat-header-cell,
-        table td.mat-cell {
-          background-color: $pannel-background-color;
-        }
 
-        //   Underline styles
-        tr.mat-row {
-          background-position: bottom;
-          background-size: 100% 1px;
-          background-repeat: no-repeat;
-          //   color: red;
-        }
-      }
-    }
-  }
   // RESULTS PART
   .results {
-    width: 62%;
+    width: 65%;
     align-items: flex-start;
     margin-top: 20px;
     margin-bottom: 20px;

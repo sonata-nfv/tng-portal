@@ -14,41 +14,16 @@ app-request-detail {
   > * {
     flex: 0 0 auto;
   }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0px 15px 0 0;
-      width: 95%;
-      color: $secondary-title-color;
-      font-size: 21px;
-    }
-    .close {
-      border: none;
-      cursor: pointer;
-      outline: none;
-    }
-  }
+
   .detail {
     width: 95%;
     flex: 1 1;
     margin-top: 100px;
     align-items: center;
     justify-content: flex-start;
+
     .mat-form-field {
       width: 65%;
-    }
-    .updatedAt .mat-input-element:disabled {
-      font-size: 14px;
-      color: $form-disabled-color;
-    }
-    .updatedAt .mat-form-field-label {
-      display: none;
-    }
-    .updatedAt .mat-form-field-infix {
-      border-top: 0;
-      padding: 0;
     }
   }
 }

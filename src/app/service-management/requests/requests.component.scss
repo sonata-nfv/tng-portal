@@ -8,12 +8,7 @@ app-requests {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .tools {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
@@ -21,8 +16,8 @@ app-requests {
     background-image: linear-gradient(
       to right,
       $basic-background-color 1%,
-      $underline-color 1%,
-      $underline-color 98%,
+      $table-underline-color 1%,
+      $table-underline-color 98%,
       $basic-background-color 98%,
       $basic-background-color 100%
     );

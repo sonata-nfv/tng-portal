@@ -10,11 +10,11 @@ app-service-licences {
   h1 {
     margin-top: 15px;
     width: 95%;
-    color: $primary-title-color;
+    color: $primary-font-color-light;
     font-size: 14px;
   }
   h1:after {
-    background: none repeat scroll 0 0 $primary-title-color;
+    background: none repeat scroll 0 0 $primary-font-color-light;
     content: "";
     display: block;
     height: 1px;
@@ -23,7 +23,7 @@ app-service-licences {
   h2 {
     width: 95%;
     margin: 0px 15px 25px 15px;
-    color: $secondary-title-color;
+    color: $secondary-font-color-light;
     font-size: 32px;
   }
 }

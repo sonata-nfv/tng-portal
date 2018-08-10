@@ -14,48 +14,7 @@ app-slices-templates-detail {
   > * {
     flex: 0 0 auto;
   }
-  .title {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 30px;
-    button {
-      min-width: 150px;
-      font-size: 15px;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      text-decoration: underline;
-      color: $button-delete-color;
-      background-color: $basic-background-color;
-    }
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   form {
     width: 60%;
     align-items: flex-start;
@@ -93,7 +52,7 @@ app-slices-templates-detail {
       }
       span {
         margin-left: 5px;
-        color: $secondary-font-color-dark;
+        color: $secondary-font-color;
       }
     }
   }

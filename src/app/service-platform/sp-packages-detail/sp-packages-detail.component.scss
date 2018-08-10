@@ -14,43 +14,20 @@ app-sp-packages-detail {
   > * {
     flex: 0 0 auto;
   }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 38px;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
-  .subheader {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    min-height: 60px;
-    h3 {
-      margin-top: 0;
-      margin-right: 15px;
-      font-size: 12px;
-      &.author {
-        color: $third-title-color;
-      }
-      &.date {
-        color: $secondary-title-color;
-      }
-    }
-  }
+
   form {
     width: 60%;
     align-items: flex-start;
     margin-bottom: 20px;
+
     .mat-form-field {
       width: 100%;
     }
+
     .type {
       margin-bottom: 20px;
     }
+
     .ns,
     .vnf,
     .tests {
@@ -61,15 +38,18 @@ app-sp-packages-detail {
         min-height: 25px;
       }
     }
+
     .sectionTitle {
       font-size: 24px;
       color: $primary-font-color-light;
     }
+
     .message {
       margin-top: 15px;
       margin-bottom: 30px;
-      color: $secondary-font-color;
+      color: $secondary-font-color-light;
     }
+
     .mat-table {
       width: 100%;
       margin-top: 55px;
@@ -77,11 +57,13 @@ app-sp-packages-detail {
       text-align: center;
       overflow-x: hidden;
       overflow-y: hidden;
+
       .mat-header-row {
         width: 60%;
         // min-width: 150px;
         border-bottom: none;
       }
+
       .mat-row {
         width: 100%;
         // min-width: 150px;
@@ -89,17 +71,19 @@ app-sp-packages-detail {
         background-image: linear-gradient(
           to right,
           $basic-background-color 0%,
-          $underline-color 0%,
-          $underline-color 100%,
+          $table-underline-color 0%,
+          $table-underline-color 100%,
           $basic-background-color 100%,
           $basic-background-color 100%
         );
       }
     }
+
     .mat-cell:nth-child(4),
     .mat-header-cell:nth-child(4) {
       flex: 0 0 25%;
     }
+
     .list {
       display: flex;
       flex-direction: column;

@@ -14,20 +14,7 @@ app-slices-instances-detail {
   > * {
     flex: 0 0 auto;
   }
-  .title {
-    flex-direction: row;
-    width: 95%;
-    min-height: 30px;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
+
   form {
     flex: 1 0;
     justify-content: center;
@@ -52,51 +39,8 @@ app-slices-instances-detail {
       width: 100%;
     }
 
-    .stop {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      padding: 15px 0 15px 10px;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      font-size: 18px;
-      color: $primary-font-color;
-      background-color: $basic-background-color;
-
-      i:before {
-        border-radius: 20%;
-        color: $stop-color;
-        background-color: $stop-color;
-      }
-      span {
-        margin-left: 10px;
-        color: $secondary-font-color-dark;
-      }
-    }
-
     .description {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      span {
-        width: 100%;
-        &.title {
-          color: $secondary-title-color;
-        }
-        &.content {
-          min-height: 200px;
-          color: $secondary-font-color-dark;
-          background-color: $pannel-background-color;
-          border-top: 1px solid $border-line-color;
-          border-bottom: 1px solid $border-line-color;
-          p {
-            margin: 5px;
-          }
-        }
-      }
     }
   }
 }

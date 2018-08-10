@@ -1,19 +1,24 @@
 <div class="title" *ngIf="detail['name']">
     <h1 class="sectionTitle">TEMPLATES</h1>
-    <button *ngIf="detail.usageState!=='IN_USE'" (click)="deleteTemplate()">Delete template</button>
+    <div class="delete" *ngIf="detail.usageState!=='IN_USE'">
+        <button class="deleteButton" (click)="deleteTemplate()">Delete template</button>
+        <div class="underline"></div>
+    </div>
 </div>
+
 <div class="header" *ngIf="detail['name']">
     <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
     <button class="close" (click)="close()">CLOSE</button>
 </div>
+
 <div class="subheader" *ngIf="detail['author']">
     <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
     <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
 </div>
 
-<div class="versionDiv" *ngIf="detail['version']">
+<div class="bubbleDiv" *ngIf="detail['version']">
     <span class="text">Current version</span>
-    <div class="version">
+    <div class="number">
         <span>{{ detail['version'] }}</span>
     </div>
 </div>

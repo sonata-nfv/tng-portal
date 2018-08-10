@@ -8,12 +8,7 @@ app-sp-network-services {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .tools {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
@@ -21,8 +16,8 @@ app-sp-network-services {
     background-image: linear-gradient(
       to right,
       $basic-background-color 0%,
-      $underline-color 0%,
-      $underline-color 99%,
+      $table-underline-color 0%,
+      $table-underline-color 99%,
       $basic-background-color 99%,
       $basic-background-color 100%
     );

@@ -8,42 +8,7 @@ app-sla-templates {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  button {
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 80%;
-    }
-    .add {
-      display: flex;
-      justify-content: center;
-      width: 20%;
-      span {
-        margin-left: 5px;
-        font-size: 18px;
-        color: $button-font-color_light;
-      }
-      .wui-plus::before {
-        margin-right: 5px;
-        font-size: 20px;
-        color: $reload-color;
-      }
-    }
-  }
-  .tools {
-    display: flex;
-    width: 95%;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
@@ -51,8 +16,8 @@ app-sla-templates {
     background-image: linear-gradient(
       to right,
       $basic-background-color 1%,
-      $underline-color 1%,
-      $underline-color 95%,
+      $table-underline-color 1%,
+      $table-underline-color 95%,
       $basic-background-color 95%,
       $basic-background-color 100%
     );

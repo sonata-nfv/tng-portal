@@ -1,6 +1,4 @@
-<div class="title" *ngIf="detail['name']">
-  <h1 class="sectionTitle">RUNTIME POLICIES</h1>
-</div>
+<h1 class="sectionTitle" *ngIf="detail['name']">RUNTIME POLICIES</h1>
 
 <form [formGroup]="policyForm" class="header" *ngIf="detail['name']">
   <mat-form-field class="subsectionTitle">
@@ -22,9 +20,9 @@
   <h3 class="subtitle date">{{ detail['date'] }}</h3>
 </div>
 
-<div class="versionDiv" *ngIf="detail['version']">
+<div class="bubbleDiv" *ngIf="detail['version']">
   <span class="text">Current version</span>
-  <div class="version">
+  <div class="number">
     <span>{{ detail.version }}</span>
   </div>
 </div>

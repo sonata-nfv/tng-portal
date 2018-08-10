@@ -62,18 +62,18 @@ app-signup {
         width: 60%;
         padding: 10px;
         background-color: $primary-button-color;
-        color: $button-font-color;
+        color: $button-basic-font-color;
         font-size: 18px;
         border-radius: 10px;
       }
       button:disabled {
-        background-color: $button-disabled-color;
+        background-color: $secondary-button-color;
       }
       .error {
         font-size: 13px;
         margin-top: -15px;
         margin-bottom: -3px;
-        color: $font-color-alert;
+        color: $primary-font-color-light;
         text-align: right;
         width: 60%;
       }
@@ -86,7 +86,7 @@ app-signup {
         margin-bottom: auto;
         margin-right: 6px;
         margin-left: 130px;
-        color: $button-hyperlink-color;
+        color: $secondary-button-color-light;
         font-size: 15px;
       }
       .redLine {
