@@ -8,18 +8,15 @@ app-vnv-packages {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .tools {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   table {
     width: 95%;
   }
+
   td.mat-cell {
     cursor: auto;
   }
+
   tr.mat-row {
     border-bottom: none;
     background-image: linear-gradient(
@@ -33,6 +30,7 @@ app-vnv-packages {
     align-items: baseline;
     min-height: 29px;
   }
+
   .mat-cell:nth-child(1),
   .mat-header-cell:nth-child(1) {
     padding-bottom: 2px;

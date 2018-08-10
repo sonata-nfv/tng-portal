@@ -4,9 +4,11 @@
   font-family: "Calibri";
   src: url("../assets/fonts/fonts/Calibri.ttf");
 }
+
 * {
   font-family: "Calibri";
 }
+
 body {
   overflow-x: hidden;
   overflow-y: hidden;
@@ -38,15 +40,53 @@ app-index {
   width: 100%;
 }
 
-// Section title and subtitle styles
+// Spinner styles to center in component
+app-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+// Section title styles
+.title {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+
+  .delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    .deleteButton {
+      min-width: 150px;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      background-color: $basic-background-color;
+      color: $primary-button-color;
+    }
+
+    .underline {
+      width: 100%;
+      border-bottom: 1px solid $primary-button-color;
+    }
+  }
+}
+
 .sectionTitle {
+  width: 95%;
   margin-top: 15px;
   margin-bottom: 3px;
-  width: 95%;
   color: $primary-font-color-light;
   font-size: 17px;
   font-weight: normal;
 }
+
 .sectionTitle:after {
   background: none repeat scroll 0 0 $primary-font-color-light;
   content: "";
@@ -54,19 +94,118 @@ app-index {
   height: 1px;
   width: 260px;
 }
+
+// Page title styles
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 95%;
+
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  // Button edit options in page
+  .headerButtons {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: flex-end;
+
+    button {
+      min-width: 160px;
+      height: 35px;
+      font-size: 17px;
+      font-weight: bold;
+      color: $button-basic-font-color;
+    }
+
+    .edit-options {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+
+    .save {
+      background-color: $primary-button-color;
+    }
+
+    .save.disabledButton {
+      background-color: $secondary-button-color;
+    }
+
+    .cancel {
+      background-color: $button-close-color;
+    }
+  }
+
+  // Close button in detailed views
+  .close {
+    min-width: 160px;
+    height: 35px;
+    font-size: 17px;
+    font-weight: bold;
+    color: $button-basic-font-color;
+    background-color: $button-close-color;
+  }
+
+  // Create new button in list views
+  .add {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    background-color: $basic-background-color;
+
+    span {
+      margin-left: 5px;
+      font-size: 18px;
+      color: $primary-color-light;
+    }
+
+    .wui-plus::before {
+      margin-right: 5px;
+      font-size: 20px;
+      color: $reload-color;
+    }
+  }
+}
+
 .subsectionTitle {
   width: 95%;
-  margin: 0px 15px 0px 15px;
+  margin-top: 0;
+  margin-bottom: 3px;
   color: $secondary-font-color-light;
   font-size: 37px;
   font-weight: normal;
 }
-.subtitle {
-  font-weight: normal;
+
+// Page subtitle styles
+.subheader {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  min-height: 60px;
+
+  .subtitle {
+    margin-top: 0;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: normal;
+
+    &.author {
+      color: $primary-font-color-light;
+    }
+
+    &.date {
+      color: $secondary-font-color-light;
+    }
+  }
 }
 
-/* Set styles for version circles*/
-.versionDiv {
+// Set styles for version circles
+.bubbleDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,12 +214,14 @@ app-index {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 40px;
+
   .text {
     color: $secondary-font-color-light;
     font-size: 21px;
     margin-bottom: 10px;
   }
-  .version {
+
+  .number {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,6 +229,7 @@ app-index {
     min-height: 120px;
     border-radius: 50%;
     background-color: $primary-background-color;
+
     span {
       color: $button-basic-font-color;
       font-size: 40px;
@@ -95,13 +237,27 @@ app-index {
   }
 }
 
-// Spinner styles to center in component
-app-spinner {
+// Set tools bar (search and reload) styles
+.tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5vh;
+}
+
+.reload {
+  border: none;
+  cursor: pointer;
+  outline: none;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  right: 6.5vw;
+  background-color: $basic-background-color;
+
+  .wui-undo::before {
+    font-size: 20px;
+    color: $reload-color;
+  }
 }
 
 // Close icon
@@ -113,58 +269,96 @@ app-spinner {
   outline: none;
   color: $primary-color-light;
   background-color: $basic-background-color;
+
   i:before {
     font-size: 10px;
     color: $primary-color-light;
   }
 }
 
-// Close button in detailed views
-.close {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  min-width: 160px;
-  height: 35px;
-  font-weight: bold;
-  font-size: 17px;
-  color: $button-basic-font-color;
-  background-color: $button-close-color;
-}
+// Description field in detailed views and instantiations
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
 
-// Reload button
-.reload {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  position: absolute;
-  right: 120px;
-  background-color: $basic-background-color;
-  .wui-undo::before {
-    font-size: 20px;
-    color: $reload-color;
+  span {
+    width: 100%;
+
+    &.title {
+      color: $secondary-font-color-light;
+    }
+
+    &.content {
+      min-height: 200px;
+      color: $secondary-font-color;
+      background-color: $pannel-background-color;
+      border-top: 1px solid $border-line-color;
+      border-bottom: 1px solid $border-line-color;
+
+      p {
+        margin: 5px;
+      }
+
+      // Styles for a table inside the description div
+      table th.mat-header-cell,
+      table td.mat-cell {
+        background-color: $pannel-background-color;
+      }
+
+      // Underline styles
+      tr.mat-row {
+        background-position: bottom;
+        background-size: 100% 1px;
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
 
-// Button edit options in page
-.edit-options {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  min-width: 160px;
-  height: 35px;
-  margin-right: 5px;
-  margin-left: 5px;
-  font-weight: bold;
-  font-size: 17px;
-  color: $button-basic-font-color;
-}
-.save {
-  background-color: $primary-button-color;
-}
-.save.disabledButton {
-  background-color: $secondary-button-color;
-}
-.cancel {
-  background-color: $button-close-color;
+// Styles for advanced section in detailed views
+.advanceSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 55%;
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+  }
+  .advanceButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: auto;
+    color: $secondary-button-color-light;
+    .open {
+      span {
+        margin-right: 25px;
+      }
+      i:before {
+        font-size: 8px;
+      }
+      .wui-caret-down:before {
+        color: $secondary-button-color-light;
+      }
+      .wui-caret-up:before {
+        color: $opened-color;
+      }
+    }
+    .underline {
+      margin: 2px auto;
+      width: 150px;
+      border-bottom: 1px solid $underline-color;
+      &.opened {
+        margin: 4px auto;
+        border-bottom: 1px solid $opened-color;
+      }
+    }
+  }
 }

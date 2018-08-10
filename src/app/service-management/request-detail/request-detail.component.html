@@ -1,8 +1,10 @@
 <h1 class="sectionTitle" *ngIf="requestID">REQUESTS</h1>
+
 <div class="header" *ngIf="requestID">
   <h2 class="subsectionTitle"> {{ requestID }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
+
 <!-- TODO include created by and createdAt at subheader if in response -->
 <form class="detail">
   <mat-form-field class="serviceId" *ngIf="serviceID">

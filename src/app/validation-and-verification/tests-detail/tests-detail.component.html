@@ -1,6 +1,4 @@
-<div class="title" *ngIf="detail['name']">
-  <h1 class="sectionTitle">Tests</h1>
-</div>
+<h1 class="sectionTitle" *ngIf="detail['name']">Tests</h1>
 
 <div class="header" *ngIf="detail['name']">
   <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
@@ -13,16 +11,16 @@
 </div>
 
 <div class="bubbles">
-  <div class="versionDiv" *ngIf="detail['version']">
+  <div class="bubbleDiv" *ngIf="detail['version']">
     <span class="text">Current version</span>
-    <div class="version">
+    <div class="number">
       <span>{{ detail['version'] }}</span>
     </div>
   </div>
 
-  <div class="timesExecuted" *ngIf="detail['timesExecuted']">
+  <div class="bubbleDiv" *ngIf="detail['timesExecuted']">
     <span class="text">Times executed</span>
-    <div class="times">
+    <div class="number times">
       <span>{{ detail['timesExecuted'] }}</span>
     </div>
   </div>

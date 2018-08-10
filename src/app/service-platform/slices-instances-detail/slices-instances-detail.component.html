@@ -1,15 +1,13 @@
-<div class="title" *ngIf="detail['name']">
-  <h1 class="sectionTitle">Instances</h1>
-</div>
+<h1 class="sectionTitle" *ngIf="detail['name']">INSTANCES</h1>
 
 <div class="header" *ngIf="detail['name']">
   <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
-<div class="versionDiv" *ngIf="detail['version']">
+<div class="bubbleDiv" *ngIf="detail['version']">
   <span class="text">Current version</span>
-  <div class="version">
+  <div class="number">
     <span>{{ detail['version'] }}</span>
   </div>
 </div>
@@ -43,7 +41,7 @@
 
   <div class="sameRow" *ngIf="detail['uuid'] && detail['state'] != 'TERMINATED'">
     <button class="stop" (click)="stopInstance()">
-      <i class="wui wui-stop-alt"></i>
+      <i class="wui wui-stop"></i>
       <span>Terminate instance</span>
     </button>
   </div>

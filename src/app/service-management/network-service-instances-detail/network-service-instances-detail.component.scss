@@ -14,15 +14,6 @@ app-network-service-instances-detail {
   > * {
     flex: 0 0 auto;
   }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 95%;
-    }
-  }
 
   .detail {
     width: 70%;
@@ -30,43 +21,6 @@ app-network-service-instances-detail {
 
     .mat-form-field {
       width: 65%;
-    }
-
-    .stop {
-      width: 65%;
-      display: flex;
-      flex-direction: row;
-      button {
-        border: none;
-        cursor: pointer;
-        outline: none;
-        padding: 15px 0 25px 0;
-        font-size: 18px;
-        color: $primary-font-color;
-        background-color: $basic-background-color;
-      }
-      i:before {
-        color: $stop-color;
-      }
-      span {
-        margin-left: 10px;
-        color: $secondary-font-color;
-      }
-    }
-
-    .updatedAt {
-      margin-bottom: 50px;
-    }
-    .updatedAt .mat-input-element:disabled {
-      font-size: 14px;
-      color: $form-disabled-color;
-    }
-    .updatedAt .mat-form-field-label {
-      display: none;
-    }
-    .updatedAt .mat-form-field-infix {
-      border-top: 0;
-      padding: 0;
     }
 
     .vnf {

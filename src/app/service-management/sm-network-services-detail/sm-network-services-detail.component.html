@@ -1,16 +1,18 @@
 <h1 class="sectionTitle" *ngIf="detail['name']">AVAILABLE NETWORK SERVICES</h1>
+
 <div class="header" *ngIf="detail['name']">
     <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
     <button class="close" (click)="close()">CLOSE</button>
 </div>
+
 <div class="subheader" *ngIf="detail['author']">
     <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
     <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
 </div>
 
-<div class="versionDiv" *ngIf="detail['version']">
+<div class="bubbleDiv" *ngIf="detail['version']">
     <span class="text">Current version</span>
-    <div class="version">
+    <div class="number">
         <span>{{ detail['version'] }}</span>
     </div>
 </div>
@@ -19,18 +21,20 @@
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
         <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
     </mat-form-field>
+
     <mat-form-field class="serviceId" *ngIf="detail['serviceID']">
         <input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled>
     </mat-form-field>
+
     <mat-form-field class="type" *ngIf="detail['type']">
         <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
     </mat-form-field>
-    <div class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']">
-        <button (click)="instanciate()">
-            <i class="wui wui-caret-right"></i>
-            <span class="play">Ready to use</span>
-        </button>
-    </div>
+
+    <button class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']" (click)="instanciate()">
+        <i class="wui wui-caret-right"></i>
+        <span class="play">Ready to use</span>
+    </button>
+
     <div class="description" *ngIf="detail['description']">
         <span class="title">DESCRIPTION</span>
         <span class="content">

@@ -1,6 +1,9 @@
 <div class="title" *ngIf="detail['name']">
   <h1 class="sectionTitle">SLA Templates</h1>
-  <button (click)="deleteTemplate()">Delete template</button>
+  <div class="delete">
+    <button class="deleteButton" (click)="deleteTemplate()">Delete template</button>
+    <div class="underline"></div>
+  </div>
 </div>
 
 <div class="header" *ngIf="detail['name']">

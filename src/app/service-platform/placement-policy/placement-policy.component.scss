@@ -8,15 +8,7 @@ app-placement-policy {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      width: 95%;
-      margin: 0px;
-    }
-  }
+
   form {
     display: flex;
     align-items: center;

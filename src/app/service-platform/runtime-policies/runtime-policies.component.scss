@@ -8,42 +8,8 @@ app-runtime-policies {
   width: auto;
   height: 100%;
   background-color: $basic-background-color;
-  button {
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    h2 {
-      margin: 0;
-      width: 80%;
-    }
-    .add {
-      display: flex;
-      justify-content: center;
-      width: 20%;
-      span {
-        margin-left: 5px;
-        font-size: 18px;
-        color: $primary-color-light;
-      }
-      .wui-plus::before {
-        margin-right: 5px;
-        font-size: 20px;
-        color: $reload-color;
-      }
-    }
-  }
+
   .tools {
-    display: flex;
-    width: 95%;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
     .search {
       margin-right: 10px;
     }
@@ -69,6 +35,7 @@ app-runtime-policies {
       }
     }
   }
+
   table {
     width: 95%;
   }

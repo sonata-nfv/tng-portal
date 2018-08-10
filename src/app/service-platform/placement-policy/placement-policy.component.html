@@ -2,8 +2,10 @@
 
 <div class="header">
     <h2 class="subsectionTitle">Placement Policy</h2>
-    <button *ngIf="show" class="edit-options save" (click)="save()">SAVE</button>
-    <button *ngIf="show" class="edit-options cancel" (click)="cancel()">CANCEL</button>
+    <div class="headerButtons">
+        <button *ngIf="show" class="edit-options save" (click)="save()">SAVE</button>
+        <button *ngIf="show" class="edit-options cancel" (click)="cancel()">CANCEL</button>
+    </div>
 </div>
 
 <form [formGroup]="placementPolicyForm" class="policyForm">

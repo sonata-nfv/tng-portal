@@ -78,25 +78,5 @@ app-licences-detail {
         text-decoration: underline;
       }
     }
-    .description {
-      width: 65%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      span {
-        width: 100%;
-        &.title {
-          color: $secondary-font-color-light;
-        }
-        &.content {
-          width: 100%;
-          min-height: 200px;
-          color: $secondary-font-color;
-          background-color: $pannel-background-color;
-          border-top: 1px solid $border-line-color;
-          border-bottom: 1px solid $border-line-color;
-        }
-      }
-    }
   }
 }

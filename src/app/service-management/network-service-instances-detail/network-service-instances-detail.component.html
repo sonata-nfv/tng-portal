@@ -1,13 +1,13 @@
 <h1 class="sectionTitle" *ngIf="detail['uuid']">NETWORK SERVICE INSTANCES</h1>
+
 <div class="header" *ngIf="detail['uuid']">
   <h2 class="subsectionTitle"> {{ detail.uuid }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
-
-<div class="versionDiv" *ngIf="detail['version']">
+<div class="bubbleDiv" *ngIf="detail['version']">
   <span class="text">Current version</span>
-  <div class="version">
+  <div class="number">
     <span>{{ detail.version }}</span>
   </div>
 </div>
@@ -21,12 +21,10 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <div class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'">
-    <button (click)="terminate()">
-      <i class="wui wui-stop"></i>
-      <span>Terminate instance</span>
-    </button>
-  </div>
+  <button class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'" (click)="terminate()">
+    <i class="wui wui-stop"></i>
+    <span>Terminate instance</span>
+  </button>
 
   <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
