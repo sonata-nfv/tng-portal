@@ -27,16 +27,16 @@ form {
 
   // Change input underline styles
   .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: $underline-color;
+    background-color: $form-underline-color;
   }
 
   .mat-form-field-disabled .mat-form-field-underline {
     background-image: none;
-    background-color: $underline-color;
+    background-color: $form-underline-color;
   }
 
   .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $underline-color;
+    background-color: $form-underline-color;
   }
 
   .mat-form-field.mat-focused .mat-form-field-ripple,

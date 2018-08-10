@@ -101,8 +101,9 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         this.policies = responses[1];
 
         this.policies.forEach(policy => {
-          policy.ns = this.nsListComplete.find(ns => ns.serviceId == policy.ns);
-          name || policy.ns;
+          policy.ns =
+            this.nsListComplete.find(ns => ns.serviceId == policy.ns).name ||
+            policy.ns;
         });
 
         this.policiesDisplayed = this.sortPolicies(this.policies);

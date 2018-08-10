@@ -54,7 +54,7 @@ app-licences-detail {
     // Change input underline styles
     .mat-form-field-disabled .mat-form-field-underline {
       background-image: none;
-      background-color: $underline-color;
+      background-color: $table-underline-color;
       height: 3px;
     }
     .buy {

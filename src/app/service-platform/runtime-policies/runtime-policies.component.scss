@@ -26,7 +26,7 @@ app-runtime-policies {
         background-color: $form-focus;
       }
       .mat-form-field-underline {
-        background-color: $underline-color;
+        background-color: $form-underline-color;
       }
 
       // Set select options color to grey
@@ -43,18 +43,25 @@ app-runtime-policies {
     background-image: linear-gradient(
       to right,
       $basic-background-color 1%,
-      $underline-color 1%,
-      $underline-color 91%,
+      $table-underline-color 1%,
+      $table-underline-color 91%,
       $basic-background-color 91%,
       $basic-background-color 100%
     );
   }
+
+  tr.activeRow + tr:not(.activeRow) {
+    border-top: 1px solid $secondary-underline-color-light;
+    margin-top: 20px;
+  }
+
   .circle-button {
     padding: 8px;
     border-radius: 50%;
     border: 1px solid $secondary-color;
     cursor: pointer;
   }
+
   .circle-button.active {
     border: 1px solid $primary-color-light;
     background-color: $primary-color-light;
@@ -64,6 +71,7 @@ app-runtime-policies {
   .mat-header-cell:nth-child(6) {
     width: 70px;
   }
+
   .mat-cell:nth-child(7),
   .mat-header-cell:nth-child(7) {
     width: 25px;

@@ -2,7 +2,7 @@
 $primary-color: rgb(121, 33, 33);
 $primary-color-light: rgb(212, 11, 13);
 $secondary-color: rgb(65, 65, 65);
-$secondary-color-light: rgb(155, 155, 155);
+$secondary-color-light: rgba(155, 155, 155, 1);
 
 // Background colors
 $init-background-color: rgb(237, 237, 237);
@@ -50,7 +50,10 @@ $shopping-cart-color: rgb(235, 165, 79);
 // Table colors
 $header-color: $primary-color-light;
 $cell-color: $secondary-color;
-$underline-color: $primary-color;
+$form-underline-color: rgba(121, 33, 33, 1);
+$table-underline-color: rgba(212, 11, 13, 0.2);
+$advanced-button-underline-color: rgba(212, 11, 13, 0.65);
+$secondary-underline-color-light: rgba(151, 151, 151, 0.18);
 
 // Scrollbar colors
 $track-color: rgb(232, 198, 201);

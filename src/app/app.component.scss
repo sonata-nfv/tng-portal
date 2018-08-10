@@ -348,16 +348,15 @@ app-spinner {
         color: $secondary-button-color-light;
       }
       .wui-caret-up:before {
-        color: $opened-color;
+        color: $advanced-button-underline-color;
       }
     }
     .underline {
       margin: 2px auto;
       width: 150px;
-      border-bottom: 1px solid $underline-color;
+      border-bottom: 1px solid $advanced-button-underline-color;
       &.opened {
         margin: 4px auto;
-        border-bottom: 1px solid $opened-color;
       }
     }
   }
