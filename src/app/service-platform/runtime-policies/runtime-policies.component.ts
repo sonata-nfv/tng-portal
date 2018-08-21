@@ -120,7 +120,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     // Set this policy to be the default one and false the previous
     this.loading = true;
     this.servicePlatformService
-      .patchRuntimePolicy(policy.uuid, null, !policy.default, policy.ns_uuid)
+      .setDefaultRuntimePolicy(policy.uuid, !policy.default)
       .then(response => {
         this.loading = false;
 
@@ -174,9 +174,9 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
   openPolicy(policy) {
     // this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
-    this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
-      data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
-    });
+    // this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
+    //   data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
+    // });
   }
 
   createNew() {

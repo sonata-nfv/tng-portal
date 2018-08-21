@@ -56,21 +56,21 @@ export class RuntimePolicyBindDialogComponent implements OnInit {
 
   bindPolicy() {
     this.loading = true;
-    this.servicePlatformService
-      .patchRuntimePolicy(
-        this.data.uuid,
-        this.bindingForm.get("sla").value,
-        true,
-        this.data.serviceUUID
-      )
-      .then(response => {
-        this.loading = false;
-        this.close();
-      })
-      .catch(err => {
-        this.loading = false;
-        this.close();
-      });
+    // this.servicePlatformService
+    //   .setDefaultRuntimePolicy(
+    //     this.data.uuid,
+    //     this.bindingForm.get("sla").value,
+    //     true,
+    //     this.data.serviceUUID
+    //   )
+    //   .then(response => {
+    //     this.loading = false;
+    //     this.close();
+    //   })
+    //   .catch(err => {
+    //     this.loading = false;
+    //     this.close();
+    //   });
   }
 
   close() {

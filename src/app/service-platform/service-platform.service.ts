@@ -443,33 +443,22 @@ export class ServicePlatformService {
   }
 
   /**
-   * Edits a Runtime Policy
+   * Sets a Runtime Policy as default
    *
    * @param uuid UUID of the desired Runtime Policy
-   * @param slaid UUID of the sla template associated
    * @param defaultPolicy Boolean setting the binding with its ns
-   * @param nsid UUID of the ns associated
    */
-  patchRuntimePolicy(uuid, slaid, defaultPolicy, nsid) {
+  setDefaultRuntimePolicy(uuid, defaultPolicy) {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
-      let data = {};
-      if (slaid != null) {
-        data = {
-          slaid,
-          defaultPolicy,
-          nsid
-        };
-      } else {
-        data = {
-          defaultPolicy
-        };
-      }
+      let data = {
+        defaultPolicy
+      };
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/" + uuid,
+          this.config.baseSP + this.config.runtimePolicies + "/default/" + uuid,
           data,
           {
             headers: headers
