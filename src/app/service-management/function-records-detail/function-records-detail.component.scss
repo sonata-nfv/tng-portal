@@ -2,7 +2,7 @@
 app-function-records-detail {
   display: flex;
   flex-direction: column;
-  background-color: $pannel-background-color;
+  background-color: $panel-background-color;
   border-bottom: 1px solid $primary-color-light;
 
   .VNFDetail {
@@ -25,7 +25,7 @@ app-function-records-detail {
     .mat-table.innerTable {
       width: 100%;
       margin-bottom: 30px;
-      background-color: $pannel-background-color;
+      background-color: $panel-background-color;
 
       td.mat-cell {
         cursor: auto;
@@ -63,11 +63,11 @@ app-function-records-detail {
       border-bottom: none;
       background-image: linear-gradient(
         to right,
-        $pannel-background-color 0%,
+        $panel-background-color 0%,
         $table-underline-color 0%,
         $table-underline-color 100%,
-        $pannel-background-color 100%,
-        $pannel-background-color 100%
+        $panel-background-color 100%,
+        $panel-background-color 100%
       );
     }
   }

@@ -5,16 +5,15 @@ app-menu {
     display: flex;
     height: 100%;
 
-    .mat-drawer-container,
     .mat-drawer {
-      background-color: $pannel-background-color;
+      background-color: transparent;
     }
 
     background: linear-gradient(
-      to right,
-      $pannel-background-color,
-      darken($pannel-background-color, 2%) 91%,
-      darken($pannel-background-color, 10%) 97%
+      to left,
+      darken($panel-background-color, 10%) 3px,
+      darken($panel-background-color, 2%) 14px,
+      $panel-background-color
     );
   }
 
