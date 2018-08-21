@@ -286,6 +286,7 @@ app-spinner {
 
   span {
     width: 100%;
+    min-height: 20px;
 
     &.title {
       color: $secondary-font-color-light;
