@@ -28,7 +28,7 @@
 </div>
 
 <form [formGroup]="policyForm" *ngIf="detail['nsUUID']">
-  <mat-checkbox formControlName="default">Mark as default</mat-checkbox>
+  <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)">Mark as default</mat-checkbox>
 
   <app-select class="select" placeholder="Network Service" [list]="nsList" [value]="nsName" (selectEvent)="receiveNS($event)"></app-select>
   <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"></app-select>

@@ -23,6 +23,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   slaList = new Array();
   slaListComplete = new Array();
   detail = {};
+  defaultPolicy: boolean;
   monitoringRules: string = "This is a monitoring rule for this example!";
 
   constructor(
@@ -44,16 +45,11 @@ export class RuntimePoliciesDetailComponent implements OnInit {
 
     this.policyForm = new FormGroup({
       name: new FormControl(),
-      default: new FormControl(),
       ns: new FormControl(),
       sla: new FormControl(),
       monitoringRule: new FormControl()
     });
-
-    this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
   }
-
-  private _onFormChanges(value?) {}
 
   /**
    * Generates the HTTP request of a Runtime Policy by UUID.
@@ -81,7 +77,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           });
 
         this.policyForm.get("name").setValue(this.detail["name"]);
-        this.policyForm.get("default").setValue(this.detail["default"]);
+        this.defaultPolicy = this.detail["default"];
       })
       .catch(err => {
         this.loading = false;
@@ -178,6 +174,19 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     } else {
       this.policyForm.get("sla").setValue(null);
     }
+  }
+
+  setDefaultPolicy(value) {
+    this.loading = true;
+    this.servicePlatformService
+      .setDefaultRuntimePolicy(this.detail["uuid"], value)
+      .then(response => {
+        this.loading = false;
+        this.defaultPolicy = value;
+      })
+      .catch(err => {
+        this.loading = false;
+      });
   }
 
   editPolicy() {

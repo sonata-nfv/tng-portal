@@ -173,7 +173,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   openPolicy(policy) {
-    // this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
+    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
     // this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
     //   data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
     // });

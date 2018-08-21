@@ -379,45 +379,29 @@ export class ServicePlatformService {
    */
   getOneRuntimePolicy(uuid: string) {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
+      let headers = this.authService.getAuthHeaders();
 
-      // this.http
-      //   .get(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["pld"]["name"],
-      //       author: response["pld"]["author"],
-      //       date: response["updated_at"],
-      //       nsUUID: response["pld"]["network_service"],
-      //       version: response["pld"]["version"],
-      //       default: response["pld"]["default_policy"] || false,
-      //       enforced: response["enforced"] ? "Yes" : "No",
-      //       sla: response["sla"],
-      //       policyRules: [],
-      //       monitoringRules: []
-      //     });
-      //   })
-      //   .catch(err => reject(err));
-
-      setTimeout(() => {
-        resolve({
-          uuid: "uuid",
-          name: "name",
-          author: "author",
-          date: "updated_at",
-          nsUUID: "b4baff48-bf3a-4b36-ada7-e2d5120ba858",
-          version: "0.1",
-          default: true,
-          enforced: "Yes",
-          sla: null,
-          policyRules: [],
-          monitoringRules: []
-        });
-      }, 500);
+      this.http
+        .get(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["pld"]["name"],
+            author: response["pld"]["author"],
+            date: response["updated_at"],
+            nsUUID: response["ns_uuid"],
+            version: response["pld"]["version"],
+            default: response["default_policy"],
+            enforced: response["enforced"] ? "Yes" : "No",
+            sla: response["sla"], //missing field
+            policyRules: [],
+            monitoringRules: []
+          });
+        })
+        .catch(err => reject(err));
     });
   }
 
