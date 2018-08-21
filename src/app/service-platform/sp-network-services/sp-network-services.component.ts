@@ -16,14 +16,7 @@ export class SpNetworkServicesComponent implements OnInit {
   section: string;
   networkServices: Array<Object>;
   dataSource = new MatTableDataSource();
-  displayedColumns = [
-    "Vendor",
-    "Name",
-    "Version",
-    "Status",
-    "SLAs",
-    "Policies"
-  ];
+  displayedColumns = ["Vendor", "Name", "Version", "Status", "SLAs"];
 
   constructor(
     private commonService: CommonService,

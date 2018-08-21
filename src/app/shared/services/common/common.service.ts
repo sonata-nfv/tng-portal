@@ -213,8 +213,7 @@ export class CommonService {
                 version: item.nsd.version,
                 status: item.status,
                 licenses: "None",
-                slas: "/service-platform/slas/sla-templates",
-                policies: "/service-platform/policies/placement-policy"
+                slas: "/service-platform/slas/sla-templates"
               }))
             );
           } else {
