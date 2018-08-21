@@ -60,15 +60,18 @@ export class SelectComponent implements OnInit {
   /**
    * [Mandatory] Defines the placeholder for the select.
    */
-  @Input() placeholder: string;
+  @Input()
+  placeholder: string;
   /**
    * [Mandatory] Defines the list displayed in the select.
    */
-  @Input() list: Array<string>;
+  @Input()
+  list: Array<string>;
   /**
    * Provides the selected element.
    */
-  @Output() selectEvent = new EventEmitter<string>();
+  @Output()
+  selectEvent = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit() {
@@ -78,6 +81,7 @@ export class SelectComponent implements OnInit {
   private _onFormChanges(values) {
     if (
       values != null &&
+      values != undefined &&
       !(values.hasOwnProperty("disabled") || values.hasOwnProperty("required"))
     ) {
       this.selectEvent.emit(values);

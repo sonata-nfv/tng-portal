@@ -44,7 +44,6 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     });
 
     this.policyForm = new FormGroup({
-      name: new FormControl(),
       ns: new FormControl(),
       sla: new FormControl(),
       monitoringRule: new FormControl()
@@ -165,6 +164,10 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     } else {
       this.policyForm.controls.ns.setValue(ns);
     }
+
+    if (ns != this.nsName) {
+      this.policyForm.markAsTouched();
+    }
   }
 
   receiveSLA(sla) {
@@ -173,6 +176,10 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       this.policyForm.get("sla").setValue(sla_uuid);
     } else {
       this.policyForm.get("sla").setValue(null);
+    }
+
+    if (sla != this.slaName) {
+      this.policyForm.markAsTouched();
     }
   }
 

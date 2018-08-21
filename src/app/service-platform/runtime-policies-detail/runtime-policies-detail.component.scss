@@ -15,33 +15,33 @@ app-runtime-policies-detail {
     flex: 0 0 auto;
   }
 
-  .subsectionTitle {
-    margin: 0;
-    width: 45vw;
+  // .subsectionTitle {
+  //   margin: 0;
+  //   width: 45vw;
 
-    .mat-input-element,
-    .mat-form-field-appearance-legacy .mat-form-field-label {
-      font-size: 37px;
-    }
+  //   .mat-input-element,
+  //   .mat-form-field-appearance-legacy .mat-form-field-label {
+  //     font-size: 37px;
+  //   }
 
-    .mat-form-field-infix {
-      border-top: 0;
-    }
+  //   .mat-form-field-infix {
+  //     border-top: 0;
+  //   }
 
-    .mat-form-field-label-wrapper {
-      font-size: 33px;
-    }
+  //   .mat-form-field-label-wrapper {
+  //     font-size: 33px;
+  //   }
 
-    &.mat-form-field-should-float {
-      .mat-form-field-label-wrapper {
-        display: none;
-      }
-    }
-  }
+  //   &.mat-form-field-should-float {
+  //     .mat-form-field-label-wrapper {
+  //       display: none;
+  //     }
+  //   }
+  // }
 
-  .subheader .subtitle {
-    margin-top: -10px;
-  }
+  // .subheader .subtitle {
+  //   margin-top: -10px;
+  // }
 
   form {
     width: 55%;
