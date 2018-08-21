@@ -102,8 +102,8 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
         this.policies.forEach(policy => {
           policy.ns =
-            this.nsListComplete.find(ns => ns.serviceId == policy.ns).name ||
-            policy.ns;
+            this.nsListComplete.find(ns => ns.serviceId == policy.ns_uuid)
+              .name || policy.ns;
         });
 
         this.policiesDisplayed = this.sortPolicies(this.policies);
@@ -120,7 +120,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     // Set this policy to be the default one and false the previous
     this.loading = true;
     this.servicePlatformService
-      .patchRuntimePolicy(policy.uuid, null, !policy.default, policy.ns_uuid) //sla
+      .patchRuntimePolicy(policy.uuid, null, !policy.default, policy.ns_uuid)
       .then(response => {
         this.loading = false;
 

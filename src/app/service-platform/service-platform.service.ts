@@ -357,10 +357,9 @@ export class ServicePlatformService {
                   name: item.pld.name,
                   version: item.pld.version,
                   vendor: item.pld.vendor,
-                  ns: item.pld.network_service,
-                  ns_uuid: item.pld.network_service,
-                  date: item.updated_at,
-                  default: item.pld.default_policy || false,
+                  ns: item.pld.network_service.name,
+                  ns_uuid: item.ns_uuid,
+                  default: item.default_policy,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
@@ -455,11 +454,18 @@ export class ServicePlatformService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
-      let data = {
-        slaid,
-        defaultPolicy,
-        nsid
-      };
+      let data = {};
+      if (slaid != null) {
+        data = {
+          slaid,
+          defaultPolicy,
+          nsid
+        };
+      } else {
+        data = {
+          defaultPolicy
+        };
+      }
 
       this.http
         .patch(
