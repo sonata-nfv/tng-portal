@@ -1,19 +1,22 @@
 <h1 class="sectionTitle" *ngIf="detail['name']">RUNTIME POLICIES</h1>
 
-<form [formGroup]="policyForm" class="header" *ngIf="detail['name']">
-  <mat-form-field class="subsectionTitle">
-    <input matInput type="text" placeholder="Policy Name" formControlName="name" required>
-  </mat-form-field>
+<!-- <div class="header" >
+  <h2 class="subsectionTitle" *ngIf="detail['name']"> {{ detail.name }}</h2>
+  <button class="close" (click)="close()">CLOSE</button>
+</div> -->
 
-  <div class="headerButtons" *ngIf="detail['name'] && policyForm.dirty">
+<div class="header" *ngIf="detail['name']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
+
+  <div class="headerButtons" *ngIf="policyForm.touched">
     <button class="edit-options save" (click)="editPolicy()">SAVE</button>
     <button class="edit-options cancel" (click)="close()">CANCEL</button>
   </div>
-  <div class="headerButtons" *ngIf="!detail['name'] || !policyForm.dirty">
+
+  <div class="headerButtons" *ngIf="! policyForm.touched">
     <button class="edit-options cancel" (click)="close()">CLOSE</button>
   </div>
-
-</form>
+</div>
 
 <div class="subheader" *ngIf="detail['author']">
   <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
@@ -28,7 +31,7 @@
 </div>
 
 <form [formGroup]="policyForm" *ngIf="detail['nsUUID']">
-  <mat-checkbox formControlName="default">Mark as default</mat-checkbox>
+  <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)">Mark as default</mat-checkbox>
 
   <app-select class="select" placeholder="Network Service" [list]="nsList" [value]="nsName" (selectEvent)="receiveNS($event)"></app-select>
   <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"></app-select>

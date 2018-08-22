@@ -286,6 +286,7 @@ app-spinner {
 
   span {
     width: 100%;
+    min-height: 20px;
 
     &.title {
       color: $secondary-font-color-light;
@@ -294,7 +295,7 @@ app-spinner {
     &.content {
       min-height: 200px;
       color: $secondary-font-color;
-      background-color: $pannel-background-color;
+      background-color: $panel-background-color;
       border-top: 1px solid $border-line-color;
       border-bottom: 1px solid $border-line-color;
 
@@ -305,7 +306,7 @@ app-spinner {
       // Styles for a table inside the description div
       table th.mat-header-cell,
       table td.mat-cell {
-        background-color: $pannel-background-color;
+        background-color: $panel-background-color;
       }
 
       // Underline styles
@@ -314,6 +315,29 @@ app-spinner {
         background-size: 100% 1px;
         background-repeat: no-repeat;
       }
+    }
+  }
+
+  .mat-form-field-wrapper {
+    width: 100%;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-infix {
+    padding: 0;
+    border: 0;
+
+    .content {
+      min-height: 100px;
+      padding-top: 5px;
+      padding-left: 5px;
+      margin-top: 5px;
+      background-color: $panel-background-color;
+      border-top: 1px solid $border-line-color;
+      border-bottom: 1px solid $border-line-color;
     }
   }
 }

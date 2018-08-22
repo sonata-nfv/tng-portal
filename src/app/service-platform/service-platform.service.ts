@@ -357,10 +357,9 @@ export class ServicePlatformService {
                   name: item.pld.name,
                   version: item.pld.version,
                   vendor: item.pld.vendor,
-                  ns: item.pld.network_service,
-                  ns_uuid: item.pld.network_service,
-                  date: item.updated_at,
-                  default: item.pld.default_policy || false,
+                  ns: item.pld.network_service.name,
+                  ns_uuid: item.ns_uuid,
+                  default: item.default_policy,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
@@ -380,45 +379,29 @@ export class ServicePlatformService {
    */
   getOneRuntimePolicy(uuid: string) {
     return new Promise((resolve, reject) => {
-      // let headers = this.authService.getAuthHeaders();
+      let headers = this.authService.getAuthHeaders();
 
-      // this.http
-      //   .get(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
-      //     headers: headers
-      //   })
-      //   .toPromise()
-      //   .then(response => {
-      //     resolve({
-      //       uuid: response["uuid"],
-      //       name: response["pld"]["name"],
-      //       author: response["pld"]["author"],
-      //       date: response["updated_at"],
-      //       nsUUID: response["pld"]["network_service"],
-      //       version: response["pld"]["version"],
-      //       default: response["pld"]["default_policy"] || false,
-      //       enforced: response["enforced"] ? "Yes" : "No",
-      //       sla: response["sla"],
-      //       policyRules: [],
-      //       monitoringRules: []
-      //     });
-      //   })
-      //   .catch(err => reject(err));
-
-      setTimeout(() => {
-        resolve({
-          uuid: "uuid",
-          name: "name",
-          author: "author",
-          date: "updated_at",
-          nsUUID: "b4baff48-bf3a-4b36-ada7-e2d5120ba858",
-          version: "0.1",
-          default: true,
-          enforced: "Yes",
-          sla: null,
-          policyRules: [],
-          monitoringRules: []
-        });
-      }, 500);
+      this.http
+        .get(this.config.baseSP + this.config.runtimePolicies + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["pld"]["name"],
+            author: response["pld"]["author"],
+            date: response["updated_at"],
+            nsUUID: response["ns_uuid"],
+            version: response["pld"]["version"],
+            default: response["default_policy"],
+            enforced: response["enforced"] ? "Yes" : "No",
+            sla: response["sla"], //missing field
+            policyRules: [],
+            monitoringRules: []
+          });
+        })
+        .catch(err => reject(err));
     });
   }
 
@@ -444,26 +427,54 @@ export class ServicePlatformService {
   }
 
   /**
-   * Edits a Runtime Policy
+   * Sets a Runtime Policy as default
    *
    * @param uuid UUID of the desired Runtime Policy
-   * @param slaid UUID of the sla template associated
    * @param defaultPolicy Boolean setting the binding with its ns
-   * @param nsid UUID of the ns associated
    */
-  patchRuntimePolicy(uuid, slaid, defaultPolicy, nsid) {
+  setDefaultRuntimePolicy(uuid, defaultPolicy) {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      let data = {
+        defaultPolicy
+      };
+
+      this.http
+        .patch(
+          this.config.baseSP + this.config.runtimePolicies + "/default/" + uuid,
+          data,
+          {
+            headers: headers
+          }
+        )
+        .toPromise()
+        .then(response => {
+          resolve(response);
+        })
+        .catch(err => reject(err));
+    });
+  }
+
+  /**
+   * Binds a Runtime Policy to an SLA
+   *
+   * @param uuid UUID of the desired Runtime Policy
+   * @param slaid UUID of the desired SLA
+   * @param nsid UUID of the desired NS
+   */
+  bindRuntimePolicy(uuid, slaid, nsid) {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
       let data = {
         slaid,
-        defaultPolicy,
         nsid
       };
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/" + uuid,
+          this.config.baseSP + this.config.runtimePolicies + "/bind/" + uuid,
           data,
           {
             headers: headers
