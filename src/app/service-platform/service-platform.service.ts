@@ -351,7 +351,7 @@ export class ServicePlatformService {
         .then(response => {
           if (response instanceof Array) {
             resolve(
-              response.map(item => {
+              response.filter(policy => policy.ns_uuid).map(item => {
                 return {
                   uuid: item.uuid,
                   name: item.pld.name,
