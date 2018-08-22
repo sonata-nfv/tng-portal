@@ -110,12 +110,13 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   }
 
   receiveSLA(sla) {
-    if (sla !== "None") {
+    if (sla !== "None" && this.slaName != sla) {
       const slaUUID = this.slaListComplete.find(x => x.name === sla).uuid;
       this.bindSLA(slaUUID);
-    } else {
+    } else if (this.slaName != sla) {
       this.bindSLA(null);
     }
+    this.slaName = sla;
   }
 
   setDefaultPolicy(value) {
@@ -125,9 +126,14 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.defaultPolicy = value;
+        this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(
+          "There was an error setting the policy as default!",
+          ""
+        );
       });
   }
 
@@ -137,9 +143,14 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .bindRuntimePolicy(this.detail["uuid"], slaUUID, this.detail["nsUUID"])
       .then(response => {
         this.loading = false;
+        this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(
+          "There was an error binding the policy!",
+          ""
+        );
       });
   }
 

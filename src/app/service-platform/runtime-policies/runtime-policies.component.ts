@@ -104,7 +104,14 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
         this.policiesDisplayed = this.sortPolicies(this.policies);
       })
-      .catch(err => (this.loading = false));
+      .catch(err => {
+        this.loading = false;
+        // TODO message instead of table saying none was found
+        this.commonService.openSnackBar(
+          "There was an error while fetching the policies",
+          ""
+        );
+      });
   }
 
   setDefaultPolicy(uuid) {
@@ -126,9 +133,14 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         ).default = !policy.default;
 
         this.policiesDisplayed = this.sortPolicies(this.policies);
+        this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(
+          "There was an error setting the policy as default!",
+          ""
+        );
       });
   }
 
@@ -157,11 +169,15 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     this.servicePlatformService
       .deleteOneRuntimePolicy(policy.uuid)
       .then(response => {
+        this.commonService.openSnackBar(response["message"], "");
         this.requestRuntimePolicies();
       })
       .catch(err => {
         this.loading = false;
-        // TODO display request status in toast
+        this.commonService.openSnackBar(
+          "There was an error while deleting the policy!",
+          ""
+        );
       });
   }
 

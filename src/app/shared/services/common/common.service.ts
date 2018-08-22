@@ -2,11 +2,8 @@ import { Injectable } from "@angular/core";
 import { ConfigService } from "../config/config.service";
 import { AuthService } from "../../../authentication/auth.service";
 
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders
-} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { MatSnackBar } from "@angular/material";
 
 @Injectable()
 export class CommonService {
@@ -16,8 +13,15 @@ export class CommonService {
   constructor(
     private authService: AuthService,
     private config: ConfigService,
-    private http: HttpClient
+    private http: HttpClient,
+    public snackBar: MatSnackBar
   ) {}
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000
+    });
+  }
 
   /**
    * Retrieves a list of Packages.

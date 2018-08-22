@@ -505,10 +505,10 @@ export class ServicePlatformService {
         })
         .toPromise()
         .then(response => {
-          resolve();
+          resolve(JSON.parse(response));
         })
         .catch(err => {
-          reject(err.statusText);
+          reject(err);
         });
     });
   }
