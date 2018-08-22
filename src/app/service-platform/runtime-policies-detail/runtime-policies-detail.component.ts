@@ -41,7 +41,6 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     });
 
     this.policyForm = new FormGroup({
-      sla: new FormControl(),
       monitoringRule: new FormControl()
     });
   }
@@ -60,10 +59,9 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .then(response => {
         this.detail = response;
         this.defaultPolicy = this.detail["default"];
-        console.log("default", this.defaultPolicy);
 
         this.requestSLAs(this.detail["nsUUID"])
-          .then(responses => {
+          .then(response => {
             this.loading = false;
           })
           .catch(err => {
@@ -95,11 +93,9 @@ export class RuntimePoliciesDetailComponent implements OnInit {
             this.slaName = this.slaListComplete.find(
               x => x.uuid === this.detail["sla"]
             ).name;
-            this.policyForm.get("sla").setValue(this.detail["sla"]);
           } else if (this.detail["sla"]) {
             this.slaList.push(this.detail["sla"]);
             this.slaName = this.detail["sla"];
-            this.policyForm.get("sla").setValue(this.detail["sla"]);
           }
 
           this.slaList.unshift("None");
@@ -115,14 +111,10 @@ export class RuntimePoliciesDetailComponent implements OnInit {
 
   receiveSLA(sla) {
     if (sla !== "None") {
-      const sla_uuid = this.slaListComplete.find(x => x.name === sla).uuid;
-      this.policyForm.get("sla").setValue(sla_uuid);
+      const slaUUID = this.slaListComplete.find(x => x.name === sla).uuid;
+      this.bindSLA(slaUUID);
     } else {
-      this.policyForm.get("sla").setValue(null);
-    }
-
-    if (sla != this.slaName) {
-      this.policyForm.markAsTouched();
+      this.bindSLA(null);
     }
   }
 
@@ -139,8 +131,20 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       });
   }
 
+  bindSLA(slaUUID) {
+    this.loading = true;
+    this.servicePlatformService
+      .bindRuntimePolicy(this.detail["uuid"], slaUUID, this.detail["nsUUID"])
+      .then(response => {
+        this.loading = false;
+      })
+      .catch(err => {
+        this.loading = false;
+      });
+  }
+
   editPolicy() {
-    console.log(this.policyForm.controls);
+    //TODO edit information about the rules of the runtime policy
   }
 
   close() {

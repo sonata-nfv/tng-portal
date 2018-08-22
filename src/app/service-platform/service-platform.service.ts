@@ -397,7 +397,7 @@ export class ServicePlatformService {
             version: response["pld"]["version"],
             default: response["default_policy"],
             enforced: response["enforced"] ? "Yes" : "No",
-            sla: response["sla"], //missing field
+            sla: response["sla_id"], //missing field
             policyRules: [],
             monitoringRules: []
           });
