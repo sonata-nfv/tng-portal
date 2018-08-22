@@ -1,0 +1,45 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<h2 class="subsectionTitle">Generated Actions</h2>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+
+  <button class="reload" (click)="requestGeneratedActions()">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<table mat-table [dataSource]="generatedActions">
+  <ng-container matColumnDef="correlationUUID">
+    <th mat-header-cell *matHeaderCellDef> Correlation ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.correlationUUID }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="vnfName">
+    <th mat-header-cell *matHeaderCellDef> VNF Name </th>
+    <td mat-cell *matCellDef="let element"> {{ element.vnfName }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="scalingType">
+    <th mat-header-cell *matHeaderCellDef> Scaling Type </th>
+    <td mat-cell *matCellDef="let element"> {{ element.scalingType }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="serviceInstanceUUID">
+    <th mat-header-cell *matHeaderCellDef> Service instance ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.serviceInstanceUUID }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef> Value </th>
+    <td mat-cell *matCellDef="let element"> {{ element.value }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>
+
+<app-spinner *ngIf="loading"></app-spinner>

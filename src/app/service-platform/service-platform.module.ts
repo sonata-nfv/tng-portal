@@ -17,6 +17,7 @@ import { PlacementPolicyComponent } from "./placement-policy/placement-policy.co
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
 import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
+import { RuntimePoliciesGeneratedActionsComponent } from "./runtime-policies-generated-actions/runtime-policies-generated-actions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -40,6 +41,7 @@ import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices
     RuntimePoliciesComponent,
     RuntimePoliciesDetailComponent,
     RuntimePoliciesCreateComponent,
+    RuntimePoliciesGeneratedActionsComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
     SlaTemplatesCreateComponent,

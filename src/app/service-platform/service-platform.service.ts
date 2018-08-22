@@ -443,7 +443,7 @@ export class ServicePlatformService {
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/default/" + uuid,
+          this.config.baseSP + this.config.runtimePoliciesDefault + uuid,
           data,
           {
             headers: headers
@@ -475,7 +475,7 @@ export class ServicePlatformService {
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/bind/" + uuid,
+          this.config.baseSP + this.config.runtimePoliciesBind + uuid,
           data,
           {
             headers: headers
@@ -510,6 +510,48 @@ export class ServicePlatformService {
         .catch(err => {
           reject(err);
         });
+    });
+  }
+
+  /**
+   * Retrieves a list of Generated Actions.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Actions attributes that must be
+   *                          matched by the returned list of
+   *                          Generated Actions.
+   */
+  getGeneratedActions(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.baseSP + this.config.runtimePoliciesActions + search
+          : this.config.baseSP + this.config.runtimePoliciesActions;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  correlationUUID: item.correlation_id,
+                  vnfName: item.action["vnf_name"],
+                  scalingType: item.action["scaling_type"],
+                  serviceInstanceUUID: item.action["service_instance_id"],
+                  value: item.action["value"]
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

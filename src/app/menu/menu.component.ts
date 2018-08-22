@@ -132,6 +132,10 @@ export class MenuComponent implements OnInit {
         this.subsection = "runtime-policies";
         this.router.navigate(["service-platform/policies/runtime-policies"]);
         break;
+      case "generated-actions":
+        this.subsection = "generated-actions";
+        this.router.navigate(["service-platform/policies/generated-actions"]);
+        break;
       case "sla-templates":
         this.subsection = "sla-templates";
         this.router.navigate(["service-platform/slas/sla-templates"]);

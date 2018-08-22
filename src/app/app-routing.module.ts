@@ -27,6 +27,7 @@ import { PlacementPolicyComponent } from "./service-platform/placement-policy/pl
 import { RuntimePoliciesComponent } from "./service-platform/runtime-policies/runtime-policies.component";
 import { RuntimePoliciesDetailComponent } from "./service-platform/runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./service-platform/runtime-policies-create/runtime-policies-create.component";
+import { RuntimePoliciesGeneratedActionsComponent } from "./service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component";
 import { SlaTemplatesComponent } from "./service-platform/sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./service-platform/sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./service-platform/sla-templates-create/sla-templates-create.component";
@@ -120,7 +121,6 @@ const routes: Routes = [
         path: "service-platform/policies/placement-policy",
         component: PlacementPolicyComponent
       },
-
       {
         path: "service-platform/policies/runtime-policies",
         component: RuntimePoliciesComponent,
@@ -134,6 +134,10 @@ const routes: Routes = [
             component: RuntimePoliciesCreateComponent
           }
         ]
+      },
+      {
+        path: "service-platform/policies/generated-actions",
+        component: RuntimePoliciesGeneratedActionsComponent
       },
       {
         path: "service-platform/slas/sla-templates",
