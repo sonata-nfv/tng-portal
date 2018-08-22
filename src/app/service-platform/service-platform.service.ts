@@ -390,9 +390,10 @@ export class ServicePlatformService {
           resolve({
             uuid: response["uuid"],
             name: response["pld"]["name"],
-            author: response["pld"]["author"],
-            date: response["updated_at"],
+            vendor: response["pld"]["vendor"],
+            updatedAt: response["updated_at"],
             nsUUID: response["ns_uuid"],
+            nsName: response["pld"]["network_service"]["name"],
             version: response["pld"]["version"],
             default: response["default_policy"],
             enforced: response["enforced"] ? "Yes" : "No",

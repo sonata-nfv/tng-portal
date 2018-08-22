@@ -15,11 +15,8 @@ export class RuntimePoliciesDetailComponent implements OnInit {
   loading: boolean = false;
   section: string;
   closed: boolean = true;
-  nsName: string;
   slaName: string;
   policyForm: FormGroup;
-  nsList = new Array();
-  nsListComplete = new Array();
   slaList = new Array();
   slaListComplete = new Array();
   detail = {};
@@ -44,7 +41,6 @@ export class RuntimePoliciesDetailComponent implements OnInit {
     });
 
     this.policyForm = new FormGroup({
-      ns: new FormControl(),
       sla: new FormControl(),
       monitoringRule: new FormControl()
     });
@@ -63,58 +59,20 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .getOneRuntimePolicy(uuid)
       .then(response => {
         this.detail = response;
+        this.defaultPolicy = this.detail["default"];
+        console.log("default", this.defaultPolicy);
 
-        Promise.all([
-          this.requestNetworkServices(),
-          this.requestSLAs(this.detail["nsUUID"])
-        ])
+        this.requestSLAs(this.detail["nsUUID"])
           .then(responses => {
             this.loading = false;
           })
           .catch(err => {
             this.loading = false;
           });
-
-        this.policyForm.get("name").setValue(this.detail["name"]);
-        this.defaultPolicy = this.detail["default"];
       })
       .catch(err => {
         this.loading = false;
       });
-  }
-
-  requestNetworkServices() {
-    return new Promise((resolve, reject) => {
-      this.commonService
-        .getNetworkServices(this.section)
-        .then(response => {
-          // Save NS data to display
-          this.nsList = response.map(x => x.name);
-
-          // Save complete data from NS
-          this.nsListComplete = response;
-
-          if (
-            this.nsListComplete.find(x => x.serviceId === this.detail["nsUUID"])
-          ) {
-            this.nsName = this.nsListComplete.find(
-              x => x.serviceId === this.detail["nsUUID"]
-            ).name;
-          } else {
-            this.nsList.push(this.detail["nsUUID"]);
-            this.nsName = this.detail["nsUUID"];
-          }
-
-          this.policyForm.get("ns").setValue(this.detail["nsUUID"]);
-
-          resolve();
-        })
-        .catch(err => {
-          this.nsList.unshift("None", this.detail["nsUUID"]);
-          this.policyForm.get("ns").setValue(this.detail["nsUUID"]);
-          reject();
-        });
-    });
   }
 
   requestSLAs(ns_uuid) {
@@ -153,21 +111,6 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           reject();
         });
     });
-  }
-
-  receiveNS(ns) {
-    if (ns === "None") {
-      this.policyForm.controls.ns.setValue(null);
-    } else if (this.nsListComplete.find(x => x.name === ns)) {
-      const ns_uuid = this.nsListComplete.find(x => x.name === ns).serviceId;
-      this.policyForm.controls.ns.setValue(ns_uuid);
-    } else {
-      this.policyForm.controls.ns.setValue(ns);
-    }
-
-    if (ns != this.nsName) {
-      this.policyForm.markAsTouched();
-    }
   }
 
   receiveSLA(sla) {

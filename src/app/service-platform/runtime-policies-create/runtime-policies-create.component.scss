@@ -36,13 +36,12 @@ app-runtime-policies-create {
   }
 
   form {
-    width: 55%;
+    width: 65%;
 
-    .mat-form-field {
-      &.select {
-        width: 100%;
-      }
+    .select {
+      width: 40%;
     }
+
     &.advancedForm {
       width: 100%;
     }
