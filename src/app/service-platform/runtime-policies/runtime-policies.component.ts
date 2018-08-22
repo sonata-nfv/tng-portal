@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { MatDialog } from "@angular/material";
 import { Subscription } from "rxjs";
 
 import { CommonService } from "../../shared/services/common/common.service";
 import { ServicePlatformService } from "../service-platform.service";
-
-import { RuntimePolicyBindDialogComponent } from "../runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
 
 @Component({
   selector: "app-runtime-policies",
@@ -37,8 +34,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
-    private servicePlatformService: ServicePlatformService,
-    private instantiateDialog: MatDialog
+    private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
@@ -113,9 +109,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
   setDefaultPolicy(uuid) {
     const policy = this.policies.find(x => x.uuid === uuid);
-    const previousPolicy = this.policies.find(
-      x => x.ns_uuid === policy.ns_uuid && x.default == true
-    );
 
     // Set this policy to be the default one and false the previous
     this.loading = true;
@@ -174,9 +167,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
   openPolicy(policy) {
     this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
-    // this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
-    //   data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
-    // });
   }
 
   createNew() {
