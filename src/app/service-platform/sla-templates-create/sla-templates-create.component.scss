@@ -44,12 +44,12 @@ app-sla-templates-create {
   }
 
   form {
-    width: 55%;
-    .mat-form-field {
-      &.ns {
-        width: 100%;
-      }
+    width: 65%;
+
+    .ns {
+      width: 40%;
     }
+
     &.advancedForm {
       width: 100%;
       .sectionTitle {

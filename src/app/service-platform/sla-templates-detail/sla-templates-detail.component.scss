@@ -16,12 +16,11 @@ app-sla-templates-detail {
   }
 
   form {
-    width: 55%;
-    .mat-form-field {
-      &.ns {
-        width: 100%;
-      }
+    width: 65%;
+    .ns {
+      width: 40%;
     }
+
     .mat-input-element:disabled {
       font-size: 18px;
     }
