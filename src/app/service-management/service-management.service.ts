@@ -215,12 +215,14 @@ export class ServiceManagementService {
   /**
    * Network service instantiation
    *
+   * @param name Name given to the instance
    * @param service Information about the service about to be instantiated
    * @param ingress Ingress points of the instantiation
    * @param egress Egress points of the instantiation
    * @param sla Selected service level agreement in the instantiation
    */
   postNSRequest(
+    name: string,
     serviceUUID: Object,
     ingress: Array<Object>,
     egress: Array<Object>,
