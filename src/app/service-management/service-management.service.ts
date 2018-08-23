@@ -135,8 +135,10 @@ export class ServiceManagementService {
             resolve(
               response.map(item => ({
                 uuid: item.uuid,
+                name: item.name,
                 status: item.status,
                 serviceID: item.descriptor_reference,
+                createdAt: new Date(Date.parse(item.created_at)).toUTCString(),
                 version: item.version,
                 latestVersion: "Not available"
               }))
