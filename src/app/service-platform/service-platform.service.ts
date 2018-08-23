@@ -366,10 +366,10 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the policies");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error while fetching the policies"));
     });
   }
 
@@ -403,7 +403,9 @@ export class ServicePlatformService {
             monitoringRules: []
           });
         })
-        .catch(err => reject(err));
+        .catch(err =>
+          reject("There was an error while loading the policy information")
+        );
     });
   }
 
@@ -454,9 +456,14 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
+          if (response["code"] === "INVALID") {
+            reject("There was an error setting the policy as default!");
+          }
           resolve(response);
         })
-        .catch(err => reject(err));
+        .catch(err =>
+          reject("There was an error setting the policy as default!")
+        );
     });
   }
 
@@ -486,9 +493,12 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
+          if (response["code"] === "INVALID") {
+            reject("There was an error binding the sla!");
+          }
           resolve(response);
         })
-        .catch(err => reject(err));
+        .catch(err => reject("There was an error binding the sla!"));
     });
   }
 
@@ -511,7 +521,7 @@ export class ServicePlatformService {
           resolve(JSON.parse(response));
         })
         .catch(err => {
-          reject(err);
+          reject("There was an error while deleting the policy!");
         });
     });
   }

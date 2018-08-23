@@ -107,11 +107,8 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       })
       .catch(err => {
         this.loading = false;
-        // TODO message instead of table saying none was found
-        this.commonService.openSnackBar(
-          "There was an error while fetching the policies",
-          ""
-        );
+        // TODO message inside the table saying none was found
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -138,10 +135,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(
-          "There was an error setting the policy as default!",
-          ""
-        );
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -175,10 +169,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(
-          "There was an error while deleting the policy!",
-          ""
-        );
+        this.commonService.openSnackBar(err, "");
       });
   }
 

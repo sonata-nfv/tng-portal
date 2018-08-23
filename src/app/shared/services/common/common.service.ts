@@ -170,10 +170,10 @@ export class CommonService {
               })
             );
           } else {
-            reject();
+            reject("There was an error fetching the sla templates");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the sla templates"));
     });
   }
 

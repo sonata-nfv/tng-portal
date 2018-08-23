@@ -66,10 +66,12 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           })
           .catch(err => {
             this.loading = false;
+            this.commonService.openSnackBar(err, "");
           });
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -104,7 +106,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
         })
         .catch(err => {
           this.slaList.unshift("None");
-          reject();
+          reject(err);
         });
     });
   }
@@ -135,10 +137,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(
-          "There was an error setting the policy as default!",
-          ""
-        );
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -152,10 +151,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(
-          "There was an error binding the policy!",
-          ""
-        );
+        this.commonService.openSnackBar(err, "");
       });
   }
 
