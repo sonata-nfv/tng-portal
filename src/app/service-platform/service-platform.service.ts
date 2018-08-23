@@ -359,6 +359,7 @@ export class ServicePlatformService {
                   vendor: item.pld.vendor,
                   ns: item.pld.network_service.name,
                   ns_uuid: item.ns_uuid,
+                  sla: item.sla_name || "None",
                   default: item.default_policy,
                   enforced: item.enforced ? "Yes" : "No"
                 };
@@ -397,7 +398,7 @@ export class ServicePlatformService {
             version: response["pld"]["version"],
             default: response["default_policy"],
             enforced: response["enforced"] ? "Yes" : "No",
-            sla: response["sla_id"], //missing field
+            sla: response["sla_id"],
             policyRules: [],
             monitoringRules: []
           });
