@@ -66,10 +66,12 @@ export class RuntimePoliciesDetailComponent implements OnInit {
           })
           .catch(err => {
             this.loading = false;
+            this.commonService.openSnackBar(err, "");
           });
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -104,30 +106,38 @@ export class RuntimePoliciesDetailComponent implements OnInit {
         })
         .catch(err => {
           this.slaList.unshift("None");
-          reject();
+          reject(err);
         });
     });
   }
 
   receiveSLA(sla) {
-    if (sla !== "None") {
+    if (sla !== "None" && this.slaName != sla) {
       const slaUUID = this.slaListComplete.find(x => x.name === sla).uuid;
       this.bindSLA(slaUUID);
-    } else {
+    } else if (this.slaName != sla) {
       this.bindSLA(null);
     }
+    this.slaName = sla;
   }
 
   setDefaultPolicy(value) {
     this.loading = true;
+
     this.servicePlatformService
-      .setDefaultRuntimePolicy(this.detail["uuid"], value)
+      .setDefaultRuntimePolicy(
+        this.detail["uuid"],
+        value,
+        this.detail["nsUUID"]
+      )
       .then(response => {
         this.loading = false;
         this.defaultPolicy = value;
+        this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -137,9 +147,11 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .bindRuntimePolicy(this.detail["uuid"], slaUUID, this.detail["nsUUID"])
       .then(response => {
         this.loading = false;
+        this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 

@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { MatDialog } from "@angular/material";
 import { Subscription } from "rxjs";
 
 import { CommonService } from "../../shared/services/common/common.service";
 import { ServicePlatformService } from "../service-platform.service";
-
-import { RuntimePolicyBindDialogComponent } from "../runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
 
 @Component({
   selector: "app-runtime-policies",
@@ -28,6 +25,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     "version",
     "ns",
     "enforced",
+    "sla",
     "default",
     "delete"
   ];
@@ -37,8 +35,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
-    private servicePlatformService: ServicePlatformService,
-    private instantiateDialog: MatDialog
+    private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
@@ -106,41 +103,44 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
               .name || policy.ns;
         });
 
-        this.policiesDisplayed = this.sortPolicies(this.policies);
-      })
-      .catch(err => (this.loading = false));
-  }
-
-  setDefaultPolicy(uuid) {
-    const policy = this.policies.find(x => x.uuid === uuid);
-    const previousPolicy = this.policies.find(
-      x => x.ns_uuid === policy.ns_uuid && x.default == true
-    );
-
-    // Set this policy to be the default one and false the previous
-    this.loading = true;
-    this.servicePlatformService
-      .setDefaultRuntimePolicy(policy.uuid, !policy.default)
-      .then(response => {
-        this.loading = false;
-
-        // Mark only one policy for ns
-        this.policies
-          .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
-          .forEach(x => (x.default = false));
-        this.policies.find(
-          x => x.uuid === policy.uuid
-        ).default = !policy.default;
-
-        this.policiesDisplayed = this.sortPolicies(this.policies);
+        this.sortPolicies(this.policies);
       })
       .catch(err => {
         this.loading = false;
+        // TODO message inside the table saying none was found
+        this.commonService.openSnackBar(err, "");
+      });
+  }
+
+  setDefaultPolicy(uuid) {
+    this.loading = true;
+    const policy = this.policies.find(x => x.uuid === uuid);
+
+    this.servicePlatformService
+      .setDefaultRuntimePolicy(policy.uuid, !policy.default, policy.ns_uuid)
+      .then(response => {
+        this.requestRuntimePolicies();
+
+        // Set all the other policies of the ns to false
+        this.policiesDisplayed
+          .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
+          .forEach(x => (x.default = false));
+
+        // Set the default value of the selected policy
+        this.policiesDisplayed.find(
+          x => x.uuid === policy.uuid
+        ).default = !policy.default;
+
+        this.commonService.openSnackBar(response["message"], "");
+      })
+      .catch(err => {
+        this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
   sortPolicies(policies) {
-    return policies.sort((a, b) => {
+    this.policiesDisplayed = policies.sort((a, b) => {
       const keyA = a.default;
       const keyB = b.default;
 
@@ -164,19 +164,17 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     this.servicePlatformService
       .deleteOneRuntimePolicy(policy.uuid)
       .then(response => {
+        this.commonService.openSnackBar(response["message"], "");
         this.requestRuntimePolicies();
       })
       .catch(err => {
         this.loading = false;
-        // TODO display request status in toast
+        this.commonService.openSnackBar(err, "");
       });
   }
 
   openPolicy(policy) {
     this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
-    // this.instantiateDialog.open(RuntimePolicyBindDialogComponent, {
-    //   data: { uuid: policy.uuid, serviceUUID: policy.ns_uuid }
-    // });
   }
 
   createNew() {

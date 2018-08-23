@@ -15,9 +15,9 @@ import { SpNetworkServicesDetailComponent } from "./sp-network-services-detail/s
 import { SpFunctionsDetailComponent } from "./sp-functions-detail/sp-functions-detail.component";
 import { PlacementPolicyComponent } from "./placement-policy/placement-policy.component";
 import { RuntimePoliciesComponent } from "./runtime-policies/runtime-policies.component";
-import { RuntimePolicyBindDialogComponent } from "./runtime-policy-bind-dialog/runtime-policy-bind-dialog.component";
 import { RuntimePoliciesDetailComponent } from "./runtime-policies-detail/runtime-policies-detail.component";
 import { RuntimePoliciesCreateComponent } from "./runtime-policies-create/runtime-policies-create.component";
+import { RuntimePoliciesGeneratedActionsComponent } from "./runtime-policies-generated-actions/runtime-policies-generated-actions.component";
 import { SlaTemplatesComponent } from "./sla-templates/sla-templates.component";
 import { SlaTemplatesDetailComponent } from "./sla-templates-detail/sla-templates-detail.component";
 import { SlaTemplatesCreateComponent } from "./sla-templates-create/sla-templates-create.component";
@@ -39,9 +39,9 @@ import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices
     SpFunctionsDetailComponent,
     PlacementPolicyComponent,
     RuntimePoliciesComponent,
-    RuntimePolicyBindDialogComponent,
     RuntimePoliciesDetailComponent,
     RuntimePoliciesCreateComponent,
+    RuntimePoliciesGeneratedActionsComponent,
     SlaTemplatesComponent,
     SlaTemplatesDetailComponent,
     SlaTemplatesCreateComponent,
@@ -54,7 +54,7 @@ import { SlicesInstancesCreateComponent } from "./slices-instances-create/slices
     SlicesInstancesDetailComponent,
     SlicesInstancesCreateComponent
   ],
-  entryComponents: [RuntimePolicyBindDialogComponent],
+  entryComponents: [],
   imports: [
     CommonModule,
     AngularMaterialModule,

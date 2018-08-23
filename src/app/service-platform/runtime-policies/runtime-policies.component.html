@@ -1,12 +1,12 @@
 <h1 class="sectionTitle">SERVICE PLATFORM</h1>
 
-<div class="header">
-  <h2 class="subsectionTitle">Runtime Policies</h2>
-  <button class="add" (click)="createNew()">
+<!-- <div class="header"> -->
+<h2 class="subsectionTitle">Runtime Policies</h2>
+<!-- <button class="add" (click)="createNew()">
     <i class="wui wui-plus"></i>
     <span>Create New Policy</span>
-  </button>
-</div>
+  </button> -->
+<!-- </div> -->
 
 <div class="tools">
   <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
@@ -41,6 +41,11 @@
   <ng-container matColumnDef="enforced">
     <th mat-header-cell *matHeaderCellDef> Enforced </th>
     <td mat-cell *matCellDef="let element"> {{ element.enforced }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sla">
+    <th mat-header-cell *matHeaderCellDef> SLA </th>
+    <td mat-cell *matCellDef="let element"> {{ element.sla }} </td>
   </ng-container>
 
   <ng-container matColumnDef="default">

@@ -359,16 +359,17 @@ export class ServicePlatformService {
                   vendor: item.pld.vendor,
                   ns: item.pld.network_service.name,
                   ns_uuid: item.ns_uuid,
+                  sla: item.sla_name || "None",
                   default: item.default_policy,
                   enforced: item.enforced ? "Yes" : "No"
                 };
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the policies");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error while fetching the policies"));
     });
   }
 
@@ -397,12 +398,14 @@ export class ServicePlatformService {
             version: response["pld"]["version"],
             default: response["default_policy"],
             enforced: response["enforced"] ? "Yes" : "No",
-            sla: response["sla_id"], //missing field
+            sla: response["sla_id"],
             policyRules: [],
             monitoringRules: []
           });
         })
-        .catch(err => reject(err));
+        .catch(err =>
+          reject("There was an error while loading the policy information")
+        );
     });
   }
 
@@ -432,18 +435,20 @@ export class ServicePlatformService {
    *
    * @param uuid UUID of the desired Runtime Policy
    * @param defaultPolicy Boolean setting the binding with its ns
+   * @param nsid UUID of the desired NS
    */
-  setDefaultRuntimePolicy(uuid, defaultPolicy) {
+  setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
       let data = {
-        defaultPolicy
+        defaultPolicy,
+        nsid
       };
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/default/" + uuid,
+          this.config.baseSP + this.config.runtimePoliciesDefault + uuid,
           data,
           {
             headers: headers
@@ -451,9 +456,14 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
+          if (response["code"] === "INVALID") {
+            reject("There was an error setting the policy as default!");
+          }
           resolve(response);
         })
-        .catch(err => reject(err));
+        .catch(err =>
+          reject("There was an error setting the policy as default!")
+        );
     });
   }
 
@@ -475,7 +485,7 @@ export class ServicePlatformService {
 
       this.http
         .patch(
-          this.config.baseSP + this.config.runtimePolicies + "/bind/" + uuid,
+          this.config.baseSP + this.config.runtimePoliciesBind + uuid,
           data,
           {
             headers: headers
@@ -483,9 +493,12 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
+          if (response["code"] === "INVALID") {
+            reject("There was an error binding the sla!");
+          }
           resolve(response);
         })
-        .catch(err => reject(err));
+        .catch(err => reject("There was an error binding the sla!"));
     });
   }
 
@@ -505,11 +518,54 @@ export class ServicePlatformService {
         })
         .toPromise()
         .then(response => {
-          resolve();
+          resolve(JSON.parse(response));
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error while deleting the policy!");
         });
+    });
+  }
+
+  /**
+   * Retrieves a list of Generated Actions.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Actions attributes that must be
+   *                          matched by the returned list of
+   *                          Generated Actions.
+   */
+  getGeneratedActions(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.baseSP + this.config.runtimePoliciesActions + search
+          : this.config.baseSP + this.config.runtimePoliciesActions;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            resolve(
+              response.map(item => {
+                return {
+                  correlationUUID: item.correlation_id,
+                  vnfName: item.action["vnf_name"],
+                  scalingType: item.action["scaling_type"],
+                  serviceInstanceUUID: item.action["service_instance_id"],
+                  value: item.action["value"],
+                  date: item.inDateTime
+                };
+              })
+            );
+          } else {
+            reject();
+          }
+        })
+        .catch(err => reject(err.statusText));
     });
   }
 

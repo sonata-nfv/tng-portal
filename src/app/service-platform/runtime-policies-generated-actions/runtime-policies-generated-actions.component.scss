@@ -1,0 +1,30 @@
+@import "../../../constants.scss";
+app-runtime-policies-generated-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $basic-background-color;
+
+  table {
+    width: 90%;
+  }
+
+  tr.mat-row {
+    background-image: linear-gradient(
+      to right,
+      $basic-background-color 0%,
+      $table-underline-color 0%,
+      $table-underline-color 100%,
+      $basic-background-color 100%,
+      $basic-background-color 100%
+    );
+  }
+
+  td.mat-cell {
+    cursor: auto;
+  }
+}
