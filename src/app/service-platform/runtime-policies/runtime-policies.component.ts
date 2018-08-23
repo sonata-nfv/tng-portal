@@ -25,6 +25,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     "version",
     "ns",
     "enforced",
+    "sla",
     "default",
     "delete"
   ];

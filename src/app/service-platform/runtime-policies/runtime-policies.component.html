@@ -43,6 +43,11 @@
     <td mat-cell *matCellDef="let element"> {{ element.enforced }} </td>
   </ng-container>
 
+  <ng-container matColumnDef="sla">
+    <th mat-header-cell *matHeaderCellDef> SLA </th>
+    <td mat-cell *matCellDef="let element"> {{ element.sla }} </td>
+  </ng-container>
+
   <ng-container matColumnDef="default">
     <th mat-header-cell *matHeaderCellDef> Select Default </th>
     <td mat-cell *matCellDef="let element" (click)="setDefaultPolicy(element.uuid)" (click)="$event.stopPropagation()">

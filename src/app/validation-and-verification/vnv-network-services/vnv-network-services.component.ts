@@ -13,14 +13,7 @@ export class VnvNetworkServicesComponent implements OnInit {
   loading: boolean;
   section: string;
   networkServices: Array<Object>;
-  displayedColumns = [
-    "type",
-    "vendor",
-    "name",
-    "version",
-    "status",
-    "policies"
-  ];
+  displayedColumns = ["type", "vendor", "name", "version", "status"];
 
   constructor(
     private commonService: CommonService,
