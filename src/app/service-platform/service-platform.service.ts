@@ -545,7 +545,8 @@ export class ServicePlatformService {
                   vnfName: item.action["vnf_name"],
                   scalingType: item.action["scaling_type"],
                   serviceInstanceUUID: item.action["service_instance_id"],
-                  value: item.action["value"]
+                  value: item.action["value"],
+                  date: item.inDateTime
                 };
               })
             );

@@ -17,7 +17,8 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
     "vnfName",
     "scalingType",
     "serviceInstanceUUID",
-    "value"
+    "value",
+    "date"
   ];
 
   constructor(
