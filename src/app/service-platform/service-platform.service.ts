@@ -432,13 +432,15 @@ export class ServicePlatformService {
    *
    * @param uuid UUID of the desired Runtime Policy
    * @param defaultPolicy Boolean setting the binding with its ns
+   * @param nsid UUID of the desired NS
    */
-  setDefaultRuntimePolicy(uuid, defaultPolicy) {
+  setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
       let data = {
-        defaultPolicy
+        defaultPolicy,
+        nsid
       };
 
       this.http

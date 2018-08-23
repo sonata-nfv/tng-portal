@@ -121,8 +121,13 @@ export class RuntimePoliciesDetailComponent implements OnInit {
 
   setDefaultPolicy(value) {
     this.loading = true;
+
     this.servicePlatformService
-      .setDefaultRuntimePolicy(this.detail["uuid"], value)
+      .setDefaultRuntimePolicy(
+        this.detail["uuid"],
+        value,
+        this.detail["nsUUID"]
+      )
       .then(response => {
         this.loading = false;
         this.defaultPolicy = value;

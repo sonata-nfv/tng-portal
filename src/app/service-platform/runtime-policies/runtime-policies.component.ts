@@ -115,12 +115,11 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   setDefaultPolicy(uuid) {
+    this.loading = true;
     const policy = this.policies.find(x => x.uuid === uuid);
 
-    // Set this policy to be the default one and false the previous
-    this.loading = true;
     this.servicePlatformService
-      .setDefaultRuntimePolicy(policy.uuid, !policy.default)
+      .setDefaultRuntimePolicy(policy.uuid, !policy.default, policy.ns_uuid)
       .then(response => {
         this.requestRuntimePolicies();
 
