@@ -102,7 +102,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
               .name || policy.ns;
         });
 
-        this.policiesDisplayed = this.sortPolicies(this.policies);
+        this.sortPolicies(this.policies);
       })
       .catch(err => {
         this.loading = false;
@@ -122,17 +122,18 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     this.servicePlatformService
       .setDefaultRuntimePolicy(policy.uuid, !policy.default)
       .then(response => {
-        this.loading = false;
+        this.requestRuntimePolicies();
 
-        // Mark only one policy for ns
-        this.policies
+        // Set all the other policies of the ns to false
+        this.policiesDisplayed
           .filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
           .forEach(x => (x.default = false));
-        this.policies.find(
+
+        // Set the default value of the selected policy
+        this.policiesDisplayed.find(
           x => x.uuid === policy.uuid
         ).default = !policy.default;
 
-        this.policiesDisplayed = this.sortPolicies(this.policies);
         this.commonService.openSnackBar(response["message"], "");
       })
       .catch(err => {
@@ -145,7 +146,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   sortPolicies(policies) {
-    return policies.sort((a, b) => {
+    this.policiesDisplayed = policies.sort((a, b) => {
       const keyA = a.default;
       const keyB = b.default;
 
