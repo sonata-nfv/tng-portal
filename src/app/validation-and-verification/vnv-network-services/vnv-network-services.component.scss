@@ -18,8 +18,8 @@ app-vnv-network-services {
       to right,
       $basic-background-color 4%,
       $table-underline-color 4%,
-      $table-underline-color 98%,
-      $basic-background-color 98%,
+      $table-underline-color 95%,
+      $basic-background-color 95%,
       $basic-background-color 100%
     );
   }
@@ -30,5 +30,10 @@ app-vnv-network-services {
     padding-bottom: 2px;
     width: 40px;
     font-size: 14px;
+  }
+
+  .mat-cell:nth-child(6),
+  .mat-header-cell:nth-child(6) {
+    width: 30px;
   }
 }

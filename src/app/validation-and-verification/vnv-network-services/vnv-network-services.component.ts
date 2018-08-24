@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
+import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
 
 @Component({
   selector: "app-vnv-network-services",
@@ -13,11 +14,12 @@ export class VnvNetworkServicesComponent implements OnInit {
   loading: boolean;
   section: string;
   networkServices: Array<Object>;
-  displayedColumns = ["type", "vendor", "name", "version", "status"];
+  displayedColumns = ["type", "vendor", "name", "version", "status", "launch"];
 
   constructor(
     private commonService: CommonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,17 @@ export class VnvNetworkServicesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+      });
+  }
+
+  launch(row) {
+    this.verificationAndValidationPlatformService
+      .postOneTest("service", row["uuid"])
+      .then(response => {
+        this.commonService.openSnackBar("Success!", "");
+      })
+      .catch(err => {
+        this.commonService.openSnackBar(err, "");
       });
   }
 }
