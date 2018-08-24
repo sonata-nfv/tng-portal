@@ -23,6 +23,23 @@ export class CommonService {
     });
   }
 
+  compareObjects(obj1, obj2) {
+    var obj1Props = Object.getOwnPropertyNames(obj1);
+    var obj2Props = Object.getOwnPropertyNames(obj2);
+
+    if (obj1Props.length != obj2Props.length) {
+      return false;
+    }
+
+    obj1Props.forEach(prop => {
+      if (obj1[prop] !== obj2[prop]) {
+        return false;
+      }
+    });
+
+    return true;
+  }
+
   /**
    * Retrieves a list of Packages.
    * Either following a search pattern or not.
