@@ -357,7 +357,7 @@ export class ServicePlatformService {
                   name: item.pld.name,
                   version: item.pld.version,
                   vendor: item.pld.vendor,
-                  ns: item.pld.network_service.name,
+                  ns: item.pld.network_service,
                   ns_uuid: item.ns_uuid,
                   sla: item.sla_name || "None",
                   default: item.default_policy,

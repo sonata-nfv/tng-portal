@@ -88,20 +88,18 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       .then(responses => {
         this.loading = false;
 
+        console.log(responses[1]);
+
         // Save NS data to display
-        this.nsList = responses[0].map(x => x.name);
+        this.nsList = responses[0].map(
+          x => x.vendor + ": " + x.name + " - v" + x.version
+        );
         this.nsList.unshift("None");
 
         // Save complete data from NS
         this.nsListComplete = responses[0];
 
         this.policies = responses[1];
-
-        this.policies.forEach(policy => {
-          policy.ns =
-            this.nsListComplete.find(ns => ns.serviceId == policy.ns_uuid)
-              .name || policy.ns;
-        });
 
         this.sortPolicies(this.policies);
       })
@@ -151,10 +149,18 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   receiveNS(ns) {
+    ns = {
+      vendor: ns.split(":")[0],
+      name: ns.split(":")[1].split(" - v")[0],
+      version: ns.split(":")[1].split(" - v")[1]
+    };
+
     if (ns === "None") {
       this.policiesDisplayed = this.policies;
     } else {
-      this.policiesDisplayed = this.policies.filter(x => x.ns === ns);
+      this.policiesDisplayed = this.policies.filter(x =>
+        this.commonService.compareObjects(x.ns, ns)
+      );
     }
   }
 
