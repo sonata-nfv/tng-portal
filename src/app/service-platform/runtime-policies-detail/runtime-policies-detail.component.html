@@ -47,6 +47,18 @@
     </mat-form-field>
   </div>
 
+  <!-- <div class="sameRow">
+      <mat-form-field *ngIf="detail['nsUUID']">
+        <input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled>
+      </mat-form-field>
+  
+      <mat-form-field *ngIf="detail['nsName']">
+        <input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled>
+      </mat-form-field>
+  </div> -->
+
+
+
   <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
