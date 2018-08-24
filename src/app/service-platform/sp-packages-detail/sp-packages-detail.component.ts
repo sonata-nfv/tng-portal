@@ -12,7 +12,6 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 })
 export class SpPackagesDetailComponent implements OnInit {
   displayedColumns = ["name", "vendor", "version"];
-  displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
   loading: boolean;
 
   name: string;
@@ -23,7 +22,6 @@ export class SpPackagesDetailComponent implements OnInit {
   type: string;
   ns: Array<Object>;
   vnf: Array<Object>;
-  tests: Array<Object>;
 
   constructor(
     private servicePlatformService: ServicePlatformService,
@@ -63,7 +61,6 @@ export class SpPackagesDetailComponent implements OnInit {
         // TODO request to /packages/package_file_id
         this.ns = [];
         this.vnf = [];
-        this.tests = [];
       })
       .catch(err => {
         this.loading = false;
