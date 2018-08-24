@@ -88,8 +88,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       .then(responses => {
         this.loading = false;
 
-        console.log(responses[1]);
-
         // Save NS data to display
         this.nsList = responses[0].map(
           x => x.vendor + ": " + x.name + " - v" + x.version

@@ -395,6 +395,8 @@ export class ServicePlatformService {
             updatedAt: response["updated_at"],
             nsUUID: response["ns_uuid"],
             nsName: response["pld"]["network_service"]["name"],
+            nsVendor: response["pld"]["network_service"]["vendor"],
+            nsVersion: response["pld"]["network_service"]["version"],
             version: response["pld"]["version"],
             default: response["default_policy"],
             enforced: response["enforced"] ? "Yes" : "No",
