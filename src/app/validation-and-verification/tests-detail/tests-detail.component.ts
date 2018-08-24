@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-tests-detail",
@@ -17,6 +18,7 @@ export class TestsDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private commonService: CommonService,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
@@ -42,6 +44,17 @@ export class TestsDetailComponent implements OnInit {
         this.detail = response;
       })
       .catch(err => console.error(err));
+  }
+
+  launch() {
+    this.verificationAndValidationPlatformService
+      .postOneTest("test", this.detail["uuid"])
+      .then(response => {
+        this.commonService.openSnackBar("Success!", "");
+      })
+      .catch(err => {
+        this.commonService.openSnackBar(err, "");
+      });
   }
 
   close() {
