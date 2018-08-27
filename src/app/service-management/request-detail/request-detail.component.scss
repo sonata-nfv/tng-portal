@@ -16,14 +16,17 @@ app-request-detail {
   }
 
   .detail {
-    width: 95%;
-    flex: 1 1;
+    width: 65%;
     margin-top: 100px;
-    align-items: center;
-    justify-content: flex-start;
 
-    .mat-form-field {
-      width: 65%;
+    .sameRow {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      .mat-form-field {
+        width: 50%;
+      }
     }
   }
 }

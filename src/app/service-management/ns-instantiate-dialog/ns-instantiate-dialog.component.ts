@@ -36,7 +36,8 @@ export class NsInstantiateDialogComponent implements OnInit {
     this.instantiationForm = new FormGroup({
       location: new FormControl(null, Validators.required),
       nap: new FormControl(),
-      sla: new FormControl()
+      sla: new FormControl(),
+      instanceName: new FormControl()
     });
 
     // TODO request to 5GTANGO endpoint the actual vim_cities
@@ -50,6 +51,7 @@ export class NsInstantiateDialogComponent implements OnInit {
         this.slas = response
           .filter(x => x.nsUUID === this.data.serviceUUID)
           .map(x => x.name);
+        this.slas.unshift("None");
 
         this.slasWithUUID = response.filter(
           x => x.nsUUID === this.data.serviceUUID
@@ -57,6 +59,7 @@ export class NsInstantiateDialogComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -100,19 +103,30 @@ export class NsInstantiateDialogComponent implements OnInit {
   }
 
   receiveSLA(sla) {
-    this.instantiationForm.controls.sla.setValue(sla);
+    if (sla != "None") {
+      this.instantiationForm.controls.sla.setValue(sla);
+    }
   }
 
   instantiate(serviceUUID) {
-    this.serviceManagementService.postNSRequest(
-      serviceUUID,
-      this.ingress,
-      this.egress,
-      this.slasWithUUID
-        .filter(x => x.name === this.instantiationForm.controls.sla.value)
-        .map(x => x.uuid)[0]
-    );
-    this.close();
+    this.serviceManagementService
+      .postNSRequest(
+        this.instantiationForm.get("instanceName").value,
+        serviceUUID,
+        this.ingress,
+        this.egress,
+        this.slasWithUUID
+          .filter(x => x.name === this.instantiationForm.controls.sla.value)
+          .map(x => x.uuid)[0]
+      )
+      .then(response => {
+        this.commonService.openSnackBar("Instantiating...", "");
+        this.close();
+      })
+      .catch(err => {
+        this.commonService.openSnackBar(err, "");
+        this.close();
+      });
   }
 
   close() {

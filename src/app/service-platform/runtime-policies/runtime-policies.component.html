@@ -24,7 +24,7 @@
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <th mat-header-cell *matHeaderCellDef> Policy name </th>
     <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
   </ng-container>
 
@@ -35,7 +35,19 @@
 
   <ng-container matColumnDef="ns">
     <th mat-header-cell *matHeaderCellDef> Network Service </th>
-    <td mat-cell *matCellDef="let element"> {{ element.ns }} </td>
+    <td mat-cell *matCellDef="let element">
+      <span>
+        {{ element.ns.vendor }}
+      </span>
+      <br>
+      <span>
+        {{ element.ns.name }}
+      </span>
+      <br>
+      <span>
+        Version: {{ element.ns.version }}
+      </span>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="enforced">
@@ -44,7 +56,7 @@
   </ng-container>
 
   <ng-container matColumnDef="sla">
-    <th mat-header-cell *matHeaderCellDef> SLA </th>
+    <th mat-header-cell *matHeaderCellDef> SLA name</th>
     <td mat-cell *matCellDef="let element"> {{ element.sla }} </td>
   </ng-container>
 

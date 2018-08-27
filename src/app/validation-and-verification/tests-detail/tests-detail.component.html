@@ -30,9 +30,16 @@
   <mat-form-field class="vendor" *ngIf="detail['vendor']">
     <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
   </mat-form-field>
+
   <mat-form-field class="status" *ngIf="detail['status']">
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
+
+  <button class="launch" *ngIf="detail['uuid']" (click)="launch()">
+    <i class="wui wui-caret-right"></i>
+    <span class="play">Execute test</span>
+  </button>
+
   <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
     <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}" disabled>
   </mat-form-field>

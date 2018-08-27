@@ -50,6 +50,7 @@ export class SpPackagesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 

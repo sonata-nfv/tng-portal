@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 import { ServicePlatformService } from "../service-platform.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sla-violations",
@@ -13,7 +14,10 @@ export class SlaViolationsComponent implements OnInit {
   violations = new Array();
   displayedColumns = ["nsInstanceUUID", "slaUUID", "customerUUID", "date"];
 
-  constructor(private servicePlatformService: ServicePlatformService) {}
+  constructor(
+    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
     this.requestViolations();
@@ -41,6 +45,7 @@ export class SlaViolationsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 }

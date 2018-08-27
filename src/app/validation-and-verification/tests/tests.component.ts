@@ -4,6 +4,7 @@ import { MatTableDataSource } from "@angular/material";
 import { Subscription } from "rxjs";
 
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-tests",
@@ -15,12 +16,13 @@ export class TestsComponent implements OnInit {
   loading: boolean;
   tests = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["vendor", "name", "version", "status"];
+  displayedColumns = ["vendor", "name", "version", "status", "launch"];
   subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private commonService: CommonService,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
@@ -55,5 +57,16 @@ export class TestsComponent implements OnInit {
   openTest(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
+
+  launch(row) {
+    this.verificationAndValidationPlatformService
+      .postOneTest("test", row["uuid"])
+      .then(response => {
+        this.commonService.openSnackBar("Success!", "");
+      })
+      .catch(err => {
+        this.commonService.openSnackBar(err, "");
+      });
   }
 }

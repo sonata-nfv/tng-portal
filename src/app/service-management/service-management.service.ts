@@ -68,11 +68,11 @@ export class ServiceManagementService {
             });
             resolve(requests);
           } else {
-            reject();
+            reject("There was an error while fetching the requests!");
           }
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error while fetching the requests!");
         });
     });
   }
@@ -96,16 +96,22 @@ export class ServiceManagementService {
             resolve({
               requestID: response["id"],
               type: response["request_type"],
-              createdAt: response["created_at"],
               updatedAt: response["updated_at"],
-              serviceID: response["service_uuid"],
-              status: response["status"]
+              status: response["status"],
+              slaUUID: response["sla_id"],
+              serviceVendor: response["service"]["vendor"],
+              serviceName: response["service"]["name"],
+              serviceVersion: response["service"]["version"],
+              serviceUUID: response["service"]["uuid"],
+              blacklist: response["blacklist"],
+              ingresses: response["ingresses"],
+              egresses: response["egresses"]
             });
           } else {
-            reject();
+            reject("Unable to fetch the request record!");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("Unable to fetch the request record!"));
     });
   }
 
@@ -135,8 +141,10 @@ export class ServiceManagementService {
             resolve(
               response.map(item => ({
                 uuid: item.uuid,
+                name: item.name,
                 status: item.status,
                 serviceID: item.descriptor_reference,
+                createdAt: new Date(Date.parse(item.created_at)).toUTCString(),
                 version: item.version,
                 latestVersion: "Not available"
               }))
@@ -215,12 +223,14 @@ export class ServiceManagementService {
   /**
    * Network service instantiation
    *
+   * @param name Name given to the instance
    * @param service Information about the service about to be instantiated
    * @param ingress Ingress points of the instantiation
    * @param egress Egress points of the instantiation
    * @param sla Selected service level agreement in the instantiation
    */
   postNSRequest(
+    name: string,
     serviceUUID: Object,
     ingress: Array<Object>,
     egress: Array<Object>,
@@ -229,6 +239,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       let data = {
+        name,
         sla_id: slaUUID,
         service_uuid: serviceUUID,
         ingresses: ingress,
@@ -243,8 +254,11 @@ export class ServiceManagementService {
         .then(response => {
           resolve();
         })
-        .catch(err => reject(err.statusText));
-      // Show pop up saying success/error with id xxxxx
+        .catch(err =>
+          reject(
+            "There was an error while trying to instantiate this network service"
+          )
+        );
     });
   }
 
@@ -268,9 +282,11 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          resolve();
+          resolve("Terminated");
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error terminating the network service instance")
+        );
     });
   }
 

@@ -18,9 +18,15 @@ app-tests {
       to right,
       $basic-background-color 0%,
       $table-underline-color 0%,
-      $table-underline-color 100%,
-      $basic-background-color 100%,
+      $table-underline-color 95%,
+      $basic-background-color 95%,
       $basic-background-color 100%
     );
+  }
+
+  // Set width for columns
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
+    width: 30px;
   }
 }

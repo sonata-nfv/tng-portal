@@ -89,7 +89,9 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         this.loading = false;
 
         // Save NS data to display
-        this.nsList = responses[0].map(x => x.name);
+        this.nsList = responses[0].map(
+          x => x.vendor + ": " + x.name + " - v" + x.version
+        );
         this.nsList.unshift("None");
 
         // Save complete data from NS
@@ -97,17 +99,10 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 
         this.policies = responses[1];
 
-        this.policies.forEach(policy => {
-          policy.ns =
-            this.nsListComplete.find(ns => ns.serviceId == policy.ns_uuid)
-              .name || policy.ns;
-        });
-
         this.sortPolicies(this.policies);
       })
       .catch(err => {
         this.loading = false;
-        // TODO message inside the table saying none was found
         this.commonService.openSnackBar(err, "");
       });
   }
@@ -153,9 +148,18 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   receiveNS(ns) {
     if (ns === "None") {
       this.policiesDisplayed = this.policies;
-    } else {
-      this.policiesDisplayed = this.policies.filter(x => x.ns === ns);
+      return;
     }
+
+    ns = {
+      vendor: ns.split(":")[0],
+      name: ns.split(":")[1].split(" - v")[0],
+      version: ns.split(":")[1].split(" - v")[1]
+    };
+
+    this.policiesDisplayed = this.policies.filter(x =>
+      this.commonService.compareObjects(x.ns, ns)
+    );
   }
 
   deletePolicy(policy) {
@@ -174,7 +178,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   openPolicy(policy) {
-    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
+    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route });
   }
 
   createNew() {

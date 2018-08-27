@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl } from "@angular/forms";
 
 import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sla-templates-detail",
@@ -22,7 +22,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -51,26 +51,13 @@ export class SlaTemplatesDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.detail = response;
-
         this.listNS = [response.ns];
         this.templateForm.controls.ns.setValue(response.ns);
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 
@@ -87,12 +74,13 @@ export class SlaTemplatesDetailComponent implements OnInit {
       .deleteOneSLATemplate(this.detail["uuid"])
       .then(response => {
         this.loading = false;
+        this.commonService.openSnackBar("Template deleted", "");
         this.close();
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
         this.close();
-        // TODO display request status in toast
       });
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sp-functions-detail",
@@ -12,22 +12,13 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 })
 export class SpFunctionsDetailComponent implements OnInit {
   loading: boolean;
-
-  name: string;
-  author: string;
-  version: string;
-  vendor: string;
-  type: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  status: string;
+  detail = {};
 
   constructor(
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -50,33 +41,12 @@ export class SpFunctionsDetailComponent implements OnInit {
       .getOneFunction(uuid)
       .then(response => {
         this.loading = false;
-
-        this.name = response.name;
-        this.author = response.author;
-        this.version = response.version;
-        this.vendor = response.vendor;
-        this.type = response.type;
-        this.description = response.description;
-        this.createdAt = response.createdAt;
-        this.updatedAt = response.updatedAt;
-        this.status = response.status;
+        this.detail = response;
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 

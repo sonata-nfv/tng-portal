@@ -52,7 +52,6 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        // TODO message instead of table saying none was found
         this.commonService.openSnackBar(
           "There was an error while fetching the generated actions",
           ""

@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
 
 import { ServicePlatformService } from "../service-platform.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 import { SlicesInstancesCreateComponent } from "../slices-instances-create/slices-instances-create.component";
 
 @Component({
@@ -21,7 +21,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService,
+    private commonService: CommonService,
     private instantiateDialog: MatDialog
   ) {}
 
@@ -44,25 +44,11 @@ export class SlicesTemplatesDetailComponent implements OnInit {
       .getOneSliceTemplate(uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -82,12 +68,13 @@ export class SlicesTemplatesDetailComponent implements OnInit {
     this.servicePlatformService
       .deleteOneSlicesTemplate(this.detail["uuid"])
       .then(response => {
+        this.commonService.openSnackBar("Template deleted", "");
         this.close();
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
         this.close();
-        // TODO display request status in toast
       });
   }
 

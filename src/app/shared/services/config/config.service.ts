@@ -20,6 +20,7 @@ export class ConfigService {
   slicesTemplates: string = "slices";
   slicesInstances: string = "slice-instances";
   tests: string = "tests/descriptors";
+  testExecutions: string = "tests/plans";
   runtimePolicies: string = "policies";
   runtimePoliciesBind: string = "policies/bind/";
   runtimePoliciesDefault: string = "policies/default/";

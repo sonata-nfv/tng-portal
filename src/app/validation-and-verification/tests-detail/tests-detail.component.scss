@@ -34,8 +34,8 @@ app-tests-detail {
 
   .detail {
     width: 65%;
-    align-items: center;
     margin-bottom: 20px;
+
     .mat-form-field {
       width: 100%;
     }
@@ -47,6 +47,7 @@ app-tests-detail {
     align-items: flex-start;
     margin-top: 20px;
     margin-bottom: 20px;
+
     .sectionTitle {
       font-size: 24px;
       color: $primary-font-color-light;

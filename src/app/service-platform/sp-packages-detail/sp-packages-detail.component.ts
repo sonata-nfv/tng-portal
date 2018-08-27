@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sp-packages-detail",
@@ -12,22 +12,12 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 })
 export class SpPackagesDetailComponent implements OnInit {
   displayedColumns = ["name", "vendor", "version"];
-  displayedColumnsTests = ["name", "creationDate", "status", "lastActivity"];
   loading: boolean;
-
-  name: string;
-  author: string;
-  createdAt: string;
-  vendor: string;
-  version: string;
-  type: string;
-  ns: Array<Object>;
-  vnf: Array<Object>;
-  tests: Array<Object>;
+  detail = {};
 
   constructor(
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService,
+    private commonService: CommonService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -52,35 +42,16 @@ export class SpPackagesDetailComponent implements OnInit {
       .getOnePackage(uuid)
       .then(response => {
         this.loading = false;
-
-        this.name = response.name;
-        this.author = response.author;
-        this.createdAt = response.createdAt;
-        this.vendor = response.vendor;
-        this.version = response.version;
-        this.type = response.type;
+        this.detail = response;
 
         // TODO request to /packages/package_file_id
-        this.ns = [];
-        this.vnf = [];
-        this.tests = [];
+        this.detail["ns"] = [];
+        this.detail["vnf"] = [];
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 

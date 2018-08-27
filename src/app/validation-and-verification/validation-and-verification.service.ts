@@ -104,4 +104,40 @@ export class ValidationAndVerificationPlatformService {
         .catch(err => reject(err.statusText));
     });
   }
+
+  /**
+   * Launches a test or the test's of a service by UUID
+   *
+   * @param type Type of tests being launched: a test itself [test]
+   *                   or the tests related to a service [service]
+   * @param uuid UUID of the desired Test or Service
+   */
+  postOneTest(type: string, uuid: string) {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      let data;
+      if (type == "test") {
+        data = {
+          test_uuid: uuid
+        };
+      } else if (type == "service") {
+        data = {
+          service_uuid: uuid
+        };
+      } else {
+        reject("There was an error while trying to execute the tests");
+      }
+
+      this.http
+        .post(this.config.baseVNV + this.config.testExecutions, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve(response);
+        })
+        .catch(err => reject("There was an error executing the test!"));
+    });
+  }
 }

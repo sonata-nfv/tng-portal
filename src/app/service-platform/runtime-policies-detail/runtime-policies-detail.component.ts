@@ -72,6 +72,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
       .catch(err => {
         this.loading = false;
         this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 

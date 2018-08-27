@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServicePlatformService } from "../service-platform.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-slices-instances-detail",
@@ -18,7 +19,8 @@ export class SlicesInstancesDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private dialogData: DialogDataService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -44,27 +46,26 @@ export class SlicesInstancesDetailComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 
   stopInstance() {
-    this.servicePlatformService.postOneSliceInstanceTermination(
-      this.detail["uuid"]
-    );
+    let title = "Are you sure...?";
+    let content = "Are you sure you want to terminate this instance?";
+    let action = "Terminate";
+
+    this.dialogData.openDialog(title, content, action, () => {
+      this.servicePlatformService
+        .postOneSliceInstanceTermination(this.detail["uuid"])
+        .then(response => {
+          this.commonService.openSnackBar(response, "");
+        })
+        .catch(err => {
+          this.commonService.openSnackBar(err, "");
+        });
+    });
   }
 
   close() {

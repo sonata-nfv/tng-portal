@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource, MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 
 import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 import { SlicesInstancesCreateComponent } from "../slices-instances-create/slices-instances-create.component";
 
@@ -17,7 +17,6 @@ import { SlicesInstancesCreateComponent } from "../slices-instances-create/slice
 export class SlicesTemplatesComponent implements OnInit {
   loading: boolean;
   templates = new Array();
-  dataSource = new MatTableDataSource();
   displayedColumns = [
     "vendor",
     "name",
@@ -33,7 +32,7 @@ export class SlicesTemplatesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService,
+    private commonService: CommonService,
     private instantiateDialog: MatDialog
   ) {}
 
@@ -75,24 +74,11 @@ export class SlicesTemplatesComponent implements OnInit {
       .getSlicesTemplates(search)
       .then(response => {
         this.loading = false;
-
         this.templates = response;
-        this.dataSource = new MatTableDataSource(this.templates);
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -113,10 +99,11 @@ export class SlicesTemplatesComponent implements OnInit {
       .deleteOneSlicesTemplate(uuid)
       .then(response => {
         this.requestTemplates();
+        this.commonService.openSnackBar("Template deleted", "");
       })
       .catch(err => {
         this.loading = false;
-        // TODO display request status in toast
+        this.commonService.openSnackBar(err, "");
       });
   }
 
