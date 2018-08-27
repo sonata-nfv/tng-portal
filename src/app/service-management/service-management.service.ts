@@ -141,8 +141,10 @@ export class ServiceManagementService {
             resolve(
               response.map(item => ({
                 uuid: item.uuid,
+                name: item.name,
                 status: item.status,
                 serviceID: item.descriptor_reference,
+                createdAt: new Date(Date.parse(item.created_at)).toUTCString(),
                 version: item.version,
                 latestVersion: "Not available"
               }))
@@ -221,12 +223,14 @@ export class ServiceManagementService {
   /**
    * Network service instantiation
    *
+   * @param name Name given to the instance
    * @param service Information about the service about to be instantiated
    * @param ingress Ingress points of the instantiation
    * @param egress Egress points of the instantiation
    * @param sla Selected service level agreement in the instantiation
    */
   postNSRequest(
+    name: string,
     serviceUUID: Object,
     ingress: Array<Object>,
     egress: Array<Object>,

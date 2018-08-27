@@ -1,7 +1,7 @@
 <h1 class="sectionTitle" *ngIf="detail['uuid']">NETWORK SERVICE INSTANCES</h1>
 
 <div class="header" *ngIf="detail['uuid']">
-  <h2 class="subsectionTitle"> {{ detail.uuid }}</h2>
+  <h2 class="subsectionTitle"> {{ detail.name }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
@@ -13,6 +13,10 @@
 </div>
 
 <form class="detail">
+  <mat-form-field class="instanceID" *ngIf="detail['uuid']">
+    <input matInput placeholder="Instance ID" value="{{ detail['uuid'] }}" disabled>
+  </mat-form-field>
+
   <mat-form-field class="serviceID" *ngIf="detail['serviceID']">
     <input matInput placeholder="Service ID" value="{{ detail['serviceID'] }}" disabled>
   </mat-form-field>
@@ -83,7 +87,7 @@
     <span class="sectionTitle">Virtual Links</span>
     <span class="message" *ngIf="detail['virtualLinks'].length == 0">There are no virtual links to display</span>
 
-    <table mat-table *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
+    <table mat-table class="virtualLinksTable" *ngIf="detail['virtualLinks'].length > 0" [dataSource]="detail['virtualLinks']">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{ element.id }} </td>

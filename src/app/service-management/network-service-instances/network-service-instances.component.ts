@@ -19,11 +19,11 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource();
   subscription: Subscription;
   displayedColumns = [
-    "instanceId",
+    "name",
     "status",
-    "serviceId",
     "version",
     "latestVersion",
+    "createdAt",
     // "reload",
     "stop"
   ];

@@ -32,14 +32,15 @@
 
   <form [formGroup]="instantiationForm" class="form">
 
-    <app-select class="select" placeholder="Location" [list]="locations" [disabled]="loading" [reset]="reset" (selectEvent)="receiveLocation($event)"></app-select>
+    <app-select class="select" placeholder="Location" [list]="locations" [disabled]="loading" [reset]="reset" required="false"
+      (selectEvent)="receiveLocation($event)"></app-select>
 
     <mat-form-field>
-      <input matInput type="text" placeholder="Network attachment point (NAP)" formControlName="nap" required>
+      <input matInput type="text" placeholder="Network attachment point (NAP)" formControlName="nap">
     </mat-form-field>
 
     <div class="addNew">
-      <button [disabled]="!instantiationForm.valid" (click)="addNew()">
+      <button [disabled]="!instantiationForm.valid || !instantiationForm.controls.nap.value" (click)="addNew()">
         <i class="wui wui-plus"></i>
         <span *ngIf="isIngress; else isEgress">
           Add new ingress
@@ -87,7 +88,11 @@
   </div>
 
   <form [formGroup]="instantiationForm">
-    <app-select class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" (selectEvent)="receiveSLA($event)"></app-select>
+    <mat-form-field class="instanceName">
+      <input matInput type="text" placeholder="Instance name" formControlName="instanceName" required>
+    </mat-form-field>
+
+    <app-select class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" required="false" (selectEvent)="receiveSLA($event)"></app-select>
   </form>
 
 </mat-dialog-content>
@@ -95,7 +100,7 @@
 <mat-dialog-actions *ngIf="continue">
   <div class="buttonContainer">
     <button class="cancel" mat-button mat-dialog-close>REJECT</button>
-    <button class="next" mat-button cdkFocusInitial (click)="instantiate(data.serviceUUID)">INSTANTIATE</button>
+    <button class="next" mat-button cdkFocusInitial [disabled]="!instantiationForm.controls.instanceName.value" (click)="instantiate(data.serviceUUID)">INSTANTIATE</button>
   </div>
 </mat-dialog-actions>
 

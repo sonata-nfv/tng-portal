@@ -10,10 +10,12 @@ app-ns-instantiate-dialog {
   min-height: 450px;
   background-color: $basic-background-color;
   color: $secondary-font-color-light;
+
   .closeIcon {
     right: -5px;
     top: -10px;
   }
+
   .mat-dialog-title {
     width: 100%;
     margin: 0 20px;
@@ -21,6 +23,7 @@ app-ns-instantiate-dialog {
     color: $primary-font-color-light;
     font-size: 17px;
   }
+
   .mat-dialog-content {
     display: flex;
     flex: 1 1;
@@ -28,24 +31,29 @@ app-ns-instantiate-dialog {
     align-items: center;
     width: 100%;
     font-size: 22px;
+
     .section {
       display: flex;
       align-items: center;
       justify-content: center;
+
       button {
         padding: 10px;
         font-size: 37px;
         color: $button-disabled-font-color;
         background-color: $basic-background-color;
       }
+
       button.active {
         color: $primary-button-color-light;
       }
+
       .dash {
         color: $button-disabled-font-color;
         font-size: 30px;
       }
     }
+
     dl {
       display: flex;
       flex-direction: column;
@@ -61,20 +69,29 @@ app-ns-instantiate-dialog {
           text-align: center;
           font-size: 17px;
         }
+
         button {
           padding: 8px;
           background-color: $basic-background-color;
+
           i:before {
             font-size: 18px;
           }
         }
       }
     }
+
     .form {
       width: 60%;
+
       .mat-form-field {
         text-align: center;
+
+        &.instanceName {
+          margin-bottom: 5vh;
+        }
       }
+
       .select {
         width: 100%;
       }
@@ -83,37 +100,45 @@ app-ns-instantiate-dialog {
     .addNew {
       display: flex;
       justify-content: flex-end;
+
       button {
         padding: 8px;
         padding-right: 0px;
         font-size: 16px;
         color: $primary-color-light;
         background-color: $basic-background-color;
+
         i:before {
           font-size: 12px;
           color: $primary-color-light;
         }
       }
+
       button:disabled {
         color: $button-disabled-font-color;
+
         i:before {
           color: $button-disabled-font-color;
         }
       }
     }
+
     &.continue {
       display: flex;
       flex-direction: column;
+
       .summary {
         display: flex;
         flex-direction: row;
         width: 100%;
+
         .ingressList,
         .egressList {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           width: 50%;
+
           dl {
             dt {
               span {
@@ -122,14 +147,17 @@ app-ns-instantiate-dialog {
             }
           }
         }
+
         .ingressList {
           margin-left: 90px;
           margin-right: 80px;
         }
+
         .egressList {
           margin-left: 80px;
           margin-right: 80px;
         }
+
         h2 {
           margin-top: 10px;
           margin-bottom: 0;
@@ -137,11 +165,13 @@ app-ns-instantiate-dialog {
           font-weight: normal;
         }
       }
+
       .select {
         width: 300px;
       }
     }
   }
+
   .buttonContainer {
     button {
       margin-top: 20px;
@@ -150,21 +180,25 @@ app-ns-instantiate-dialog {
       width: 180px;
       font-size: 18px;
       font-weight: bold;
+
       &.cancel {
         margin-right: 15px;
         color: $button-basic-font-color;
         background-color: $button-close-color;
       }
+
       &.next {
         margin-left: 15px;
         color: $button-basic-font-color;
         background-color: $primary-button-color;
       }
     }
+
     button:disabled {
       background-color: $secondary-button-color;
     }
   }
+
   button {
     border: none;
     cursor: pointer;

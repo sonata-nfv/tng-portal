@@ -36,7 +36,8 @@ export class NsInstantiateDialogComponent implements OnInit {
     this.instantiationForm = new FormGroup({
       location: new FormControl(null, Validators.required),
       nap: new FormControl(),
-      sla: new FormControl()
+      sla: new FormControl(),
+      instanceName: new FormControl()
     });
 
     // TODO request to 5GTANGO endpoint the actual vim_cities
@@ -50,6 +51,7 @@ export class NsInstantiateDialogComponent implements OnInit {
         this.slas = response
           .filter(x => x.nsUUID === this.data.serviceUUID)
           .map(x => x.name);
+        this.slas.unshift("None");
 
         this.slasWithUUID = response.filter(
           x => x.nsUUID === this.data.serviceUUID
@@ -101,12 +103,15 @@ export class NsInstantiateDialogComponent implements OnInit {
   }
 
   receiveSLA(sla) {
-    this.instantiationForm.controls.sla.setValue(sla);
+    if (sla != "None") {
+      this.instantiationForm.controls.sla.setValue(sla);
+    }
   }
 
   instantiate(serviceUUID) {
     this.serviceManagementService
       .postNSRequest(
+        this.instantiationForm.get("instanceName").value,
         serviceUUID,
         this.ingress,
         this.egress,
@@ -116,6 +121,7 @@ export class NsInstantiateDialogComponent implements OnInit {
       )
       .then(response => {
         this.commonService.openSnackBar("Instantiating...", "");
+        this.close();
       })
       .catch(err => {
         this.commonService.openSnackBar(err, "");
