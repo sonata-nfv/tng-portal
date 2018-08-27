@@ -239,6 +239,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       let data = {
+        name,
         sla_id: slaUUID,
         service_uuid: serviceUUID,
         ingresses: ingress,
