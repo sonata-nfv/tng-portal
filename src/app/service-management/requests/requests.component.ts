@@ -52,6 +52,7 @@ export class RequestsComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.requests = response;
+        this.prepareStringDisplayed();
       })
       .catch(err => {
         this.loading = false;
@@ -73,5 +74,34 @@ export class RequestsComponent implements OnInit {
   openRequest(row) {
     let uuid = row.requestId;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+  }
+
+  prepareStringDisplayed() {
+    this.requests.forEach(request => {
+      request.type =
+        request.type
+          .split("_")[0]
+          .charAt(0)
+          .toUpperCase() +
+        request.type
+          .split("_")[0]
+          .slice(1)
+          .toLowerCase() +
+        " " +
+        request.type
+          .split("_")[1]
+          .charAt(0)
+          .toUpperCase() +
+        request.type
+          .split("_")[1]
+          .slice(1)
+          .toLowerCase();
+
+      request.status =
+        request.status.charAt(0).toUpperCase() +
+        request.status.slice(1).toLowerCase();
+
+      request.createdAt = new Date(Date.parse(request.createdAt)).toUTCString();
+    });
   }
 }
