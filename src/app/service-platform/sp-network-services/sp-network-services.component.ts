@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
@@ -15,7 +14,6 @@ export class SpNetworkServicesComponent implements OnInit {
   loading: boolean;
   section: string;
   networkServices: Array<Object>;
-  dataSource = new MatTableDataSource();
   displayedColumns = ["Vendor", "Name", "Version", "Status", "SLAs"];
 
   constructor(
@@ -49,24 +47,11 @@ export class SpNetworkServicesComponent implements OnInit {
       .getNetworkServices(this.section, search)
       .then(response => {
         this.loading = false;
-
         this.networkServices = response;
-        this.dataSource = new MatTableDataSource(this.networkServices);
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 

@@ -103,7 +103,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
       })
       .catch(err => {
         this.loading = false;
-        // TODO message inside the table saying none was found
         this.commonService.openSnackBar(err, "");
       });
   }
@@ -179,7 +178,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   openPolicy(policy) {
-    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route }); //TODO WHEN POLICY DETAIL WORKS
+    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route });
   }
 
   createNew() {

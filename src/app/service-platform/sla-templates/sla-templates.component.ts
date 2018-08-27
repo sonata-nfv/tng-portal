@@ -5,7 +5,6 @@ import { Subscription } from "rxjs";
 
 import { ServicePlatformService } from "../service-platform.service";
 import { CommonService } from "../../shared/services/common/common.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-sla-templates",
@@ -32,8 +31,7 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private commonService: CommonService,
-    private dialogData: DialogDataService
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -74,26 +72,11 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
       .getSLATemplates(search)
       .then(response => {
         this.loading = false;
-
         this.templates = response;
-        this.dataSource = new MatTableDataSource(this.templates);
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          console.error("There was an error in the template creation");
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -103,11 +86,12 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
     this.servicePlatformService
       .deleteOneSLATemplate(uuid)
       .then(response => {
+        this.commonService.openSnackBar("Template deleted", "");
         this.requestTemplates();
       })
       .catch(err => {
         this.loading = false;
-        // TODO display request status in toast
+        this.commonService.openSnackBar(err, "");
       });
   }
 

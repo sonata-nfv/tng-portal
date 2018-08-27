@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 
 import { ServicePlatformService } from "../service-platform.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-sla-agreements-detail",
@@ -20,7 +20,7 @@ export class SlaAgreementsDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
-    private dialogData: DialogDataService
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -44,25 +44,12 @@ export class SlaAgreementsDetailComponent implements OnInit {
       .getOneSLAAgreement(sla_uuid, ns_uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 

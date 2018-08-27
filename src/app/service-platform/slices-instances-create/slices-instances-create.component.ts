@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { ServicePlatformService } from "../service-platform.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-slices-instances-create",
@@ -17,7 +18,8 @@ export class SlicesInstancesCreateComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<SlicesInstancesCreateComponent>,
-    private servicePlatformService: ServicePlatformService
+    private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit() {
@@ -28,8 +30,6 @@ export class SlicesInstancesCreateComponent implements OnInit {
   }
 
   instantiate() {
-    this.loading = true;
-
     const instance = {
       nstId: this.data.nstId,
       name: this.instantiationForm.get("nsiName").value,
@@ -38,14 +38,12 @@ export class SlicesInstancesCreateComponent implements OnInit {
 
     this.servicePlatformService
       .postOneSliceInstance(instance)
-      .then(response => {
-        this.loading = false;
-      })
+      .then(response => {})
       .catch(err => {
-        this.loading = false;
-        this.close();
+        this.commonService.openSnackBar(err, "");
       });
-    // set loading to false when response received
+
+    this.commonService.openSnackBar("Instantiating...", "");
     this.close();
   }
 

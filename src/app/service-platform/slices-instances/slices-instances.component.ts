@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
-import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 
 import { ServicePlatformService } from "../service-platform.service";
+import { CommonService } from "../../shared/services/common/common.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
@@ -15,7 +15,6 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 export class SlicesInstancesComponent implements OnInit, OnDestroy {
   loading: boolean;
   instances = new Array();
-  dataSource = new MatTableDataSource();
   displayedColumns = ["vendor", "name", "version", "ID", "state", "stop"];
   subscription: Subscription;
 
@@ -23,6 +22,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private servicePlatformService: ServicePlatformService,
+    private commonService: CommonService,
     private dialogData: DialogDataService
   ) {}
 
@@ -64,30 +64,30 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
       .getSlicesInstances(search)
       .then(response => {
         this.loading = false;
-
         this.instances = response;
-        this.dataSource = new MatTableDataSource(this.instances);
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 
   stopInstance(item) {
     if (item.state != "TERMINATED") {
-      this.servicePlatformService.postOneSliceInstanceTermination(item.uuid);
+      let title = "Are you sure...?";
+      let content = "Are you sure you want to terminate this instance?";
+      let action = "Terminate";
+
+      this.dialogData.openDialog(title, content, action, () => {
+        this.servicePlatformService
+          .postOneSliceInstanceTermination(item.uuid)
+          .then(response => {
+            this.commonService.openSnackBar(response, "");
+          })
+          .catch(err => {
+            this.commonService.openSnackBar(err, "");
+          });
+      });
     } else {
       this.openInstance(item);
     }

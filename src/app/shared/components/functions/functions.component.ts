@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { CommonService } from "../../services/common/common.service";
@@ -14,7 +13,6 @@ export class FunctionsComponent implements OnInit {
   loading: boolean;
   section: string;
   functions: Array<Object>;
-  dataSource = new MatTableDataSource();
   displayedColumns = ["Vendor", "Name", "Version", "Status"];
 
   constructor(
@@ -47,12 +45,11 @@ export class FunctionsComponent implements OnInit {
       .getFunctions(this.section, search)
       .then(response => {
         this.loading = false;
-
         this.functions = response;
-        this.dataSource = new MatTableDataSource(this.functions);
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 

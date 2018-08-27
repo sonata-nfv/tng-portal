@@ -277,9 +277,11 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          resolve();
+          resolve("Terminated");
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error terminating the network service instance")
+        );
     });
   }
 

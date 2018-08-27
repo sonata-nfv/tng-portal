@@ -43,7 +43,6 @@ export class SmNetworkServicesDetailComponent implements OnInit {
       .getOneNetworkService(uuid)
       .then(response => {
         this.loading = false;
-
         this.detail = response;
       })
       .catch(err => {

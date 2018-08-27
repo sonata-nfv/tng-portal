@@ -41,7 +41,7 @@ export class ServicePlatformService {
             package_file_id: response["package_file_id"]
           });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the package"));
     });
   }
 
@@ -72,7 +72,7 @@ export class ServicePlatformService {
             description: response["vnfd"]["description"]
           });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the function"));
     });
   }
 
@@ -103,7 +103,7 @@ export class ServicePlatformService {
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
           });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the SLA template"));
     });
   }
 
@@ -123,7 +123,7 @@ export class ServicePlatformService {
           resolve(response["guaranteeTerms"]);
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error fetching the service guarantees");
         });
     });
   }
@@ -195,7 +195,7 @@ export class ServicePlatformService {
           resolve();
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error deleting the sla template");
         });
     });
   }
@@ -241,7 +241,7 @@ export class ServicePlatformService {
             })
           );
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the SLA agreements"));
     });
   }
 
@@ -282,7 +282,7 @@ export class ServicePlatformService {
             // cost: response["cost"]
           });
         })
-        .catch(err => reject(err));
+        .catch(err => reject("There was an error fetching the SLA agreement"));
     });
   }
 
@@ -320,10 +320,12 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the SLA violations");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the SLA violations")
+        );
     });
   }
 
@@ -608,10 +610,12 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the slice templates");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the slice templates")
+        );
     });
   }
 
@@ -634,7 +638,7 @@ export class ServicePlatformService {
           resolve();
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error deleting the slice template");
         });
     });
   }
@@ -709,11 +713,11 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error fetching the slice instances");
           }
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error fetching the slice instances");
         });
     });
   }
@@ -744,7 +748,7 @@ export class ServicePlatformService {
             version: response["nstVersion"]
           });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the slice instance"));
     });
   }
 
@@ -765,7 +769,13 @@ export class ServicePlatformService {
         .then(response => {
           resolve();
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => {
+          if (err.status === 500) {
+            resolve();
+          } else {
+            reject("There was an error while trying to instantiate this slice");
+          }
+        });
     });
   }
 
@@ -795,9 +805,11 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
-          resolve();
+          resolve("Terminated");
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error terminating the slice instance")
+        );
     });
   }
 }

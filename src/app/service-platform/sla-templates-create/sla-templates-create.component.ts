@@ -68,7 +68,10 @@ export class SlaTemplatesCreateComponent implements OnInit {
         this.nss = responses[0];
         this.guaranties = responses[1];
       })
-      .catch(err => (this.loading = false));
+      .catch(err => {
+        this.loading = false;
+        this.commonService.openSnackBar(err, "");
+      });
   }
 
   // TODO on form changes check there's ns, expiration date and some guarantees and then activate save
@@ -113,6 +116,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
       .postOneSLATemplate(template)
       .then(response => {
         this.loading = false;
+        this.commonService.openSnackBar("Template successfully created!", "");
         this.close();
       })
       .catch(err => {
@@ -127,6 +131,11 @@ export class SlaTemplatesCreateComponent implements OnInit {
           let action = "Accept";
 
           this.dialogData.openDialog(title, content, action, () => {});
+        } else {
+          this.commonService.openSnackBar(
+            "There was an error in the template creation",
+            ""
+          );
         }
       });
   }
@@ -159,9 +168,10 @@ export class SlaTemplatesCreateComponent implements OnInit {
     this.storedGuarantees = this.storedGuarantees.filter(
       x => x.guaranteeID !== item.guaranteeID
     );
-
     // Save item in the offered guarantees
     this.guarantiesList.push(item.guaranteeID + " - " + item.name);
+
+    this._onFormChanges();
   }
 
   close() {

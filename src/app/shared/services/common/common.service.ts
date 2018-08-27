@@ -79,17 +79,19 @@ export class CommonService {
                   name: item.pd.name,
                   vendor: item.pd.vendor,
                   version: item.pd.version,
-                  createdAt: item.created_at,
+                  createdAt: new Date(
+                    Date.parse(item.created_at)
+                  ).toUTCString(),
                   status: item.status,
                   type: "public"
                 };
               })
             );
           } else {
-            reject();
+            reject("There was an error fetching the packages");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the packages"));
     });
   }
 
@@ -138,10 +140,10 @@ export class CommonService {
               })
             );
           } else {
-            reject();
+            reject("There was an error fetching the functions");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the functions"));
     });
   }
 
@@ -176,12 +178,9 @@ export class CommonService {
                   version: item.slad.version,
                   nsUUID: item.slad.sla_template.ns.ns_uuid,
                   ns: item.slad.sla_template.ns.ns_name,
-                  expirationDate: new Date(item.slad.sla_template.valid_until)
-                    .toISOString()
-                    .replace(/T.*/, "")
-                    .split("-")
-                    .reverse()
-                    .join("/"),
+                  expirationDate: new Date(
+                    Date.parse(item.slad.sla_template.valid_until)
+                  ).toUTCString(),
                   status: item.status
                 };
               })
@@ -238,11 +237,11 @@ export class CommonService {
               }))
             );
           } else {
-            reject("There was an error while fetching the network services!");
+            reject("There was an error while fetching the network services");
           }
         })
         .catch(err =>
-          reject("There was an error while fetching the network services!")
+          reject("There was an error while fetching the network services")
         );
     });
   }
@@ -272,8 +271,12 @@ export class CommonService {
               serviceID: response["uuid"],
               type: response["user_licence"],
               description: response["nsd"]["description"],
-              createdAt: response["created_at"],
-              updatedAt: response["updated_at"]
+              createdAt: new Date(
+                Date.parse(response["created_at"])
+              ).toUTCString(),
+              updatedAt: new Date(
+                Date.parse(response["updated_at"])
+              ).toUTCString()
             });
           } else {
             reject("There was an error while fetching the network service!");

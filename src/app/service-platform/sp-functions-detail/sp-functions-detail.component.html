@@ -1,39 +1,43 @@
-<h1 class="sectionTitle" *ngIf="name">FUNCTIONS</h1>
+<h1 class="sectionTitle" *ngIf="detail['name']">FUNCTIONS</h1>
 
-<div class="header" *ngIf="name">
-  <h2 class="subsectionTitle"> {{ name }}</h2>
+<div class="header" *ngIf="detail['name']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
-<div class="subheader" *ngIf="author">
-  <h3 class="subtitle author">Created by {{ author }}</h3>
-  <h3 class="subtitle date">{{ createdAt }}</h3>
+<div class="subheader" *ngIf="detail['author']">
+  <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
+  <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
 </div>
 
-<div class="bubbleDiv" *ngIf="version">
+<div class="bubbleDiv" *ngIf="detail['version']">
   <span class="text">Current version</span>
   <div class="number">
-    <span>{{ version }}</span>
+    <span>{{ detail['version'] }}</span>
   </div>
 </div>
 
 <form class="detail">
-  <mat-form-field class="vendor" *ngIf="vendor">
-    <input matInput placeholder="Vendor" value="{{ vendor }}" disabled>
+  <mat-form-field class="vendor" *ngIf="detail['vendor']">
+    <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
   </mat-form-field>
-  <mat-form-field class="type" *ngIf="type">
-    <input matInput placeholder="Type" value="{{ type }}" disabled>
+
+  <mat-form-field class="type" *ngIf="detail['type']">
+    <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
   </mat-form-field>
-  <mat-form-field class="status" *ngIf="status">
-    <input matInput placeholder="Status" value="{{ status }}" disabled>
+
+  <mat-form-field class="status" *ngIf="detail['status']">
+    <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
-  <mat-form-field class="updatedAt" *ngIf="updatedAt">
-    <input matInput placeholder="Updated at" value="Last update: {{ updatedAt }}" disabled>
+
+  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
-  <div class="description" *ngIf="description">
+
+  <div class="description" *ngIf="detail['description']">
     <span class="title">DESCRIPTION</span>
     <span class="content">
-      <p>{{ description }}</p>
+      <p>{{ detail['description'] }}</p>
     </span>
   </div>
 </form>
