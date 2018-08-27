@@ -96,16 +96,22 @@ export class ServiceManagementService {
             resolve({
               requestID: response["id"],
               type: response["request_type"],
-              createdAt: response["created_at"],
               updatedAt: response["updated_at"],
-              serviceID: response["service_uuid"],
-              status: response["status"]
+              status: response["status"],
+              slaUUID: response["sla_id"],
+              serviceVendor: response["service"]["vendor"],
+              serviceName: response["service"]["name"],
+              serviceVersion: response["service"]["version"],
+              serviceUUID: response["service"]["uuid"],
+              blacklist: response["blacklist"],
+              ingresses: response["ingresses"],
+              egresses: response["egresses"]
             });
           } else {
-            reject();
+            reject("Unable to fetch the request record");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("Unable to fetch the request record"));
     });
   }
 
