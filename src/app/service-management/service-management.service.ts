@@ -94,7 +94,8 @@ export class ServiceManagementService {
         .then(response => {
           if (response.hasOwnProperty("id")) {
             resolve({
-              requestID: response["id"],
+              requestUUID: response["id"],
+              name: response["name"],
               type: response["request_type"],
               updatedAt: response["updated_at"],
               status: response["status"],
