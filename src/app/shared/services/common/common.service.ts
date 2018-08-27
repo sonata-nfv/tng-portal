@@ -238,10 +238,12 @@ export class CommonService {
               }))
             );
           } else {
-            reject();
+            reject("There was an error while fetching the network services!");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the network services!")
+        );
     });
   }
 
@@ -274,10 +276,12 @@ export class CommonService {
               updatedAt: response["updated_at"]
             });
           } else {
-            reject();
+            reject("There was an error while fetching the network service!");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the network service!")
+        );
     });
   }
 

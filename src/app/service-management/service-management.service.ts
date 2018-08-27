@@ -68,11 +68,11 @@ export class ServiceManagementService {
             });
             resolve(requests);
           } else {
-            reject();
+            reject("There was an error while fetching the requests!");
           }
         })
         .catch(err => {
-          reject(err.statusText);
+          reject("There was an error while fetching the requests!");
         });
     });
   }
@@ -108,10 +108,10 @@ export class ServiceManagementService {
               egresses: response["egresses"]
             });
           } else {
-            reject("Unable to fetch the request record");
+            reject("Unable to fetch the request record!");
           }
         })
-        .catch(err => reject("Unable to fetch the request record"));
+        .catch(err => reject("Unable to fetch the request record!"));
     });
   }
 
@@ -249,8 +249,11 @@ export class ServiceManagementService {
         .then(response => {
           resolve();
         })
-        .catch(err => reject(err.statusText));
-      // Show pop up saying success/error with id xxxxx
+        .catch(err =>
+          reject(
+            "There was an error while trying to instantiate this network service"
+          )
+        );
     });
   }
 

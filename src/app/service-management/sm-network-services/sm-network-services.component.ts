@@ -62,6 +62,7 @@ export class SmNetworkServicesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 

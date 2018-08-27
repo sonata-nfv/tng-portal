@@ -57,6 +57,7 @@ export class NsInstantiateDialogComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -104,15 +105,22 @@ export class NsInstantiateDialogComponent implements OnInit {
   }
 
   instantiate(serviceUUID) {
-    this.serviceManagementService.postNSRequest(
-      serviceUUID,
-      this.ingress,
-      this.egress,
-      this.slasWithUUID
-        .filter(x => x.name === this.instantiationForm.controls.sla.value)
-        .map(x => x.uuid)[0]
-    );
-    this.close();
+    this.serviceManagementService
+      .postNSRequest(
+        serviceUUID,
+        this.ingress,
+        this.egress,
+        this.slasWithUUID
+          .filter(x => x.name === this.instantiationForm.controls.sla.value)
+          .map(x => x.uuid)[0]
+      )
+      .then(response => {
+        this.commonService.openSnackBar("Instantiating...", "");
+      })
+      .catch(err => {
+        this.commonService.openSnackBar(err, "");
+        this.close();
+      });
   }
 
   close() {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ServiceManagementService } from "../service-management.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
+import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-requests",
@@ -26,7 +26,7 @@ export class RequestsComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private router: Router,
-    private dialogData: DialogDataService,
+    private commonService: CommonService,
     private route: ActivatedRoute
   ) {}
 
@@ -56,18 +56,7 @@ export class RequestsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        }
+        this.commonService.openSnackBar(err, "");
       });
   }
 

@@ -5,7 +5,6 @@ import { MatDialog } from "@angular/material";
 import { NsInstantiateDialogComponent } from "../ns-instantiate-dialog/ns-instantiate-dialog.component";
 
 import { CommonService } from "../../shared/services/common/common.service";
-import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-sm-network-services-detail",
@@ -19,7 +18,6 @@ export class SmNetworkServicesDetailComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
-    private dialogData: DialogDataService,
     private router: Router,
     private route: ActivatedRoute,
     private instantiateDialog: MatDialog
@@ -50,20 +48,8 @@ export class SmNetworkServicesDetailComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-
-        // Dialog informing the user to log in again when token expired
-        if (err === "Unauthorized") {
-          let title = "Your session has expired";
-          let content =
-            "Please, LOG IN again because your access token has expired.";
-          let action = "Log in";
-
-          this.dialogData.openDialog(title, content, action, () => {
-            this.router.navigate(["/login"]);
-          });
-        } else {
-          this.close();
-        }
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 
@@ -71,7 +57,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
     this.instantiateDialog.open(NsInstantiateDialogComponent, {
       data: {
         serviceUUID: this.detail["serviceID"],
-       name: this.detail["name"]
+        name: this.detail["name"]
       }
     });
   }
