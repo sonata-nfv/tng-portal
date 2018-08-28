@@ -45,10 +45,8 @@ export class ServiceManagementService {
             response.forEach(res => {
               let req = this.prepareNSRequest({
                 requestId: res.id,
-                serviceId: res["service"] ? res.service.uuid : this.NA,
-                vendor: res["service"] ? res.service.vendor : this.NA,
-                name: res["service"] ? res.service.name : this.NA,
-                version: res["service"] ? res.service.version : this.NA,
+                name: res.name,
+                serviceName: res["service"] ? res.service.name : this.NA,
                 type: res.request_type,
                 createdAt: this.commonService.formatUTCDate(res.created_at),
                 status: res.status

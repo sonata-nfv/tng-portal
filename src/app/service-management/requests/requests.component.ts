@@ -13,14 +13,7 @@ import { CommonService } from "../../shared/services/common/common.service";
 export class RequestsComponent implements OnInit {
   loading: boolean;
   requests = new Array();
-  displayedColumns = [
-    "vendor",
-    "name",
-    "version",
-    "Created at",
-    "Type",
-    "Status"
-  ];
+  displayedColumns = ["name", "serviceName", "createdAt", "type", "status"];
   searchText: string;
 
   constructor(

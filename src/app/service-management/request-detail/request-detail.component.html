@@ -1,6 +1,6 @@
 <h1 class="sectionTitle" *ngIf="detail['requestUUID']">REQUESTS</h1>
 
-<div class="header" *ngIf="detail['name']">
+<div class="header" *ngIf="detail['requestUUID']">
   <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
