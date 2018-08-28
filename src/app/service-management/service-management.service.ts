@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { ConfigService } from "../shared/services/config/config.service";
 import { AuthService } from "../authentication/auth.service";
 import { CommonService } from "../shared/services/common/common.service";
-
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class ServiceManagementService {
   authHeaders: HttpHeaders;
   request_uuid: string;
+  NA = "Not available";
 
   constructor(
     private commonService: CommonService,
@@ -42,29 +43,17 @@ export class ServiceManagementService {
           if (response instanceof Array) {
             let requests = new Array();
             response.forEach(res => {
-              if (res["service"]) {
-                requests.push({
-                  requestId: res.id,
-                  serviceId: res.service.uuid,
-                  vendor: res.service.vendor,
-                  name: res.service.name,
-                  version: res.service.version,
-                  type: res.request_type,
-                  createdAt: res.created_at,
-                  status: res.status
-                });
-              } else {
-                requests.push({
-                  requestId: res.id,
-                  vendor: "Not available",
-                  name: "Not available",
-                  version: "Not available",
-                  type: res.request_type,
-                  createdAt: res.created_at,
-                  serviceId: "Not available",
-                  status: res.status
-                });
-              }
+              let req = this.prepareNSRequest({
+                requestId: res.id,
+                serviceId: res["service"] ? res.service.uuid : this.NA,
+                vendor: res["service"] ? res.service.vendor : this.NA,
+                name: res["service"] ? res.service.name : this.NA,
+                version: res["service"] ? res.service.version : this.NA,
+                type: res.request_type,
+                createdAt: this.commonService.formatUTCDate(res.created_at),
+                status: res.status
+              });
+              requests.push(req);
             });
             resolve(requests);
           } else {
@@ -93,11 +82,13 @@ export class ServiceManagementService {
         .toPromise()
         .then(response => {
           if (response.hasOwnProperty("id")) {
-            resolve({
+            let request = {
               requestUUID: response["id"],
               name: response["name"],
               type: response["request_type"],
-              updatedAt: response["updated_at"],
+              updatedAt: this.commonService.formatUTCDate(
+                response["updated_at"]
+              ),
               status: response["status"],
               slaUUID: response["sla_id"],
               serviceVendor: response["service"]["vendor"],
@@ -107,13 +98,33 @@ export class ServiceManagementService {
               blacklist: response["blacklist"],
               ingresses: response["ingresses"],
               egresses: response["egresses"]
-            });
+            };
+            this.prepareNSRequest(request);
+            resolve(request);
           } else {
             reject("Unable to fetch the request record!");
           }
         })
         .catch(err => reject("Unable to fetch the request record!"));
     });
+  }
+
+  prepareNSRequest(item) {
+    const parts = item.type.split("_");
+    let str: string = "";
+
+    parts.forEach(part => {
+      str = str.concat(
+        part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + " "
+      );
+    });
+
+    item.type = str;
+
+    item.status =
+      item.status.charAt(0).toUpperCase() + item.status.slice(1).toLowerCase();
+
+    return item;
   }
 
   /**
@@ -145,7 +156,7 @@ export class ServiceManagementService {
                 name: item.name,
                 status: item.status,
                 serviceID: item.descriptor_reference,
-                createdAt: new Date(Date.parse(item.created_at)).toUTCString(),
+                createdAt: this.commonService.formatUTCDate(item.created_at),
                 version: item.version,
                 latestVersion: "Not available"
               }))

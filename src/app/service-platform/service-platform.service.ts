@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { ConfigService } from "../shared/services/config/config.service";
 import { AuthService } from "../authentication/auth.service";
-
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { CommonService } from "../shared/services/common/common.service";
 
 @Injectable()
 export class ServicePlatformService {
@@ -11,6 +12,7 @@ export class ServicePlatformService {
   // pagination: string = "?page_size=20&page_number=1";
 
   constructor(
+    private commonService: CommonService,
     private authService: AuthService,
     private config: ConfigService,
     private http: HttpClient
@@ -314,7 +316,7 @@ export class ServicePlatformService {
                 return {
                   nsInstanceUUID: item.nsi_uuid,
                   slaUUID: item.sla_uuid,
-                  date: new Date(Date.parse(item.violation_time)).toUTCString(),
+                  date: this.commonService.formatUTCDate(item.violation_time),
                   customerUUID: item.cust_uuid
                 };
               })
@@ -603,7 +605,7 @@ export class ServicePlatformService {
                   name: item.nstd.name,
                   version: item.nstd.version,
                   vendor: item.nstd.vendor,
-                  usageState: item.nstd.usageState,
+                  usageState: this.prepareUsageState(item.nstd.usageState),
                   author: item.nstd.author,
                   status: item.status
                 };
@@ -617,6 +619,19 @@ export class ServicePlatformService {
           reject("There was an error while fetching the slice templates")
         );
     });
+  }
+
+  prepareUsageState(item) {
+    const parts = item.split("_");
+    let str: string = "";
+
+    parts.forEach(part => {
+      str = str.concat(
+        part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + " "
+      );
+    });
+
+    return str;
   }
 
   /**
