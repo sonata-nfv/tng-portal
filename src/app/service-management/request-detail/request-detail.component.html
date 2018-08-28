@@ -1,16 +1,20 @@
-<h1 class="sectionTitle" *ngIf="detail['requestID']">REQUESTS</h1>
+<h1 class="sectionTitle" *ngIf="detail['requestUUID']">REQUESTS</h1>
 
-<div class="header" *ngIf="detail['requestID']">
-  <h2 class="subsectionTitle"> {{ detail['requestID'] }}</h2>
+<div class="header" *ngIf="detail['requestUUID']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
   <button class="close" (click)="close()">CLOSE</button>
 </div>
 
 <form class="detail">
-  <mat-form-field class="status" *ngIf="detail['status']">
+  <mat-form-field *ngIf="detail['requestUUID']">
+    <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="detail['status']">
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <mat-form-field class="type" *ngIf="detail['type']">
+  <mat-form-field *ngIf="detail['type']">
     <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
   </mat-form-field>
 

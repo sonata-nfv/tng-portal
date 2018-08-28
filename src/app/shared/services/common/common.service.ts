@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { ConfigService } from "../config/config.service";
-import { AuthService } from "../../../authentication/auth.service";
-
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MatSnackBar } from "@angular/material";
+
+import { ConfigService } from "../config/config.service";
+import { AuthService } from "../../../authentication/auth.service";
 
 @Injectable()
 export class CommonService {
@@ -38,6 +38,10 @@ export class CommonService {
     });
 
     return true;
+  }
+
+  formatUTCDate(dateIn) {
+    return new Date(Date.parse(dateIn)).toUTCString();
   }
 
   /**
@@ -79,9 +83,7 @@ export class CommonService {
                   name: item.pd.name,
                   vendor: item.pd.vendor,
                   version: item.pd.version,
-                  createdAt: new Date(
-                    Date.parse(item.created_at)
-                  ).toUTCString(),
+                  createdAt: this.formatUTCDate(item.created_at),
                   status: item.status,
                   type: "public"
                 };
@@ -178,9 +180,9 @@ export class CommonService {
                   version: item.slad.version,
                   nsUUID: item.slad.sla_template.ns.ns_uuid,
                   ns: item.slad.sla_template.ns.ns_name,
-                  expirationDate: new Date(
-                    Date.parse(item.slad.sla_template.valid_until)
-                  ).toUTCString(),
+                  expirationDate: this.formatUTCDate(
+                    item.slad.sla_template.valid_until
+                  ),
                   status: item.status
                 };
               })
@@ -271,12 +273,8 @@ export class CommonService {
               serviceID: response["uuid"],
               type: response["user_licence"],
               description: response["nsd"]["description"],
-              createdAt: new Date(
-                Date.parse(response["created_at"])
-              ).toUTCString(),
-              updatedAt: new Date(
-                Date.parse(response["updated_at"])
-              ).toUTCString()
+              createdAt: this.formatUTCDate(response["created_at"]),
+              updatedAt: this.formatUTCDate(response["updated_at"])
             });
           } else {
             reject("There was an error while fetching the network service!");

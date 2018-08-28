@@ -42,42 +42,12 @@ export class RequestDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.detail = response;
-        this.prepareStringDisplayed();
       })
       .catch(err => {
         this.loading = false;
         this.commonService.openSnackBar(err, "");
         this.close();
       });
-  }
-
-  prepareStringDisplayed() {
-    this.detail["type"] =
-      this.detail["type"]
-        .split("_")[0]
-        .charAt(0)
-        .toUpperCase() +
-      this.detail["type"]
-        .split("_")[0]
-        .slice(1)
-        .toLowerCase() +
-      " " +
-      this.detail["type"]
-        .split("_")[1]
-        .charAt(0)
-        .toUpperCase() +
-      this.detail["type"]
-        .split("_")[1]
-        .slice(1)
-        .toLowerCase();
-
-    this.detail["status"] =
-      this.detail["status"].charAt(0).toUpperCase() +
-      this.detail["status"].slice(1).toLowerCase();
-
-    this.detail["updatedAt"] = new Date(
-      Date.parse(this.detail["updatedAt"])
-    ).toUTCString();
   }
 
   close() {
