@@ -262,7 +262,7 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          resolve();
+          resolve(response["name"]);
         })
         .catch(err =>
           reject(

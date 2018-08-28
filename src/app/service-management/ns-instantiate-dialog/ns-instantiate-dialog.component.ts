@@ -120,7 +120,10 @@ export class NsInstantiateDialogComponent implements OnInit {
           .map(x => x.uuid)[0]
       )
       .then(response => {
-        this.commonService.openSnackBar("Instantiating...", "");
+        this.commonService.openSnackBar(
+          "Instantiating " + response + "...",
+          ""
+        );
         this.close();
       })
       .catch(err => {
