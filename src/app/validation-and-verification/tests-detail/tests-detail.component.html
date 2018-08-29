@@ -78,9 +78,14 @@
 </form>
 
 <!-- TODO change this ngIf to if test results -->
-<div class="results" *ngIf="detail['name']">
+<div class="results" > <!-- *ngIf="detail['name']" -->
   <span class="sectionTitle">RESULTS</span>
   <!-- todo include results and graphs from tests -->
+  <div class="chart">
+      <div id="multychart">
+        <!-- <td> <canvas height="140" id="lineChart"></canvas> </td> -->
+      </div>
+  </div>
 </div>
 
 <app-spinner *ngIf=" loading "></app-spinner>

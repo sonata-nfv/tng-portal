@@ -4,7 +4,6 @@ import { MatTableDataSource } from "@angular/material";
 import { Subscription } from "rxjs";
 
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
-import { CommonService } from "../../shared/services/common/common.service";
 
 @Component({
   selector: "app-tests",
@@ -16,13 +15,13 @@ export class TestsComponent implements OnInit {
   loading: boolean;
   tests = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["vendor", "name", "version", "status", "launch"];
+  detail = {};
+  displayedColumns = ["vendor", "name", "version", "status"];
   subscription: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private commonService: CommonService,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
@@ -41,15 +40,16 @@ export class TestsComponent implements OnInit {
    *                          must be matched by the returned
    *                          list of tests.
    */
+
   requestTests(search?) {
     this.loading = true;
-
     this.verificationAndValidationPlatformService
       .getTests(search)
       .then(response => {
         this.loading = false;
         this.tests = response;
         this.dataSource = new MatTableDataSource(this.tests);
+
       })
       .catch(err => console.error(err));
   }
@@ -57,16 +57,5 @@ export class TestsComponent implements OnInit {
   openTest(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });
-  }
-
-  launch(row) {
-    this.verificationAndValidationPlatformService
-      .postOneTest("test", row["uuid"])
-      .then(response => {
-        this.commonService.openSnackBar("Success!", "");
-      })
-      .catch(err => {
-        this.commonService.openSnackBar(err, "");
-      });
   }
 }
