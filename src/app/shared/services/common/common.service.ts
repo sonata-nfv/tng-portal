@@ -19,7 +19,7 @@ export class CommonService {
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 2000
+      duration: 5000
     });
   }
 
