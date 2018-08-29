@@ -132,30 +132,13 @@ form {
   .launch {
     display: flex;
     width: 20%;
-    border: none;
     cursor: pointer;
-    outline: none;
-    padding: 15px 0 25px 0;
-    font-size: 18px;
-    background-color: $basic-background-color;
-  }
+    margin-bottom: 25px;
 
-  .launch i:before {
-    color: $ready-color;
-  }
-
-  .launch span {
-    margin-left: 10px;
-    color: $secondary-font-color;
-  }
-
-  .stop i:before {
-    color: $stop-color;
-  }
-
-  .stop span {
-    margin-left: 10px;
-    color: $secondary-font-color;
+    span {
+      margin-left: 10px;
+      color: $secondary-font-color;
+    }
   }
 }
 
@@ -244,42 +227,6 @@ table {
     }
   }
 
-  .row-options {
-    display: flex;
-    padding: 0;
-    width: 23px;
-    height: 23px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-    box-shadow: 2px 1px 2px 0 $shadow-buttons;
-
-    .wui-caret-right:before {
-      color: $ready-color;
-    }
-
-    .wui-shopping-cart:before {
-      color: $shopping-cart-color;
-    }
-
-    .wui-undo::before {
-      font-size: 12px;
-      color: $relaunch-color;
-    }
-
-    .wui-stop-alt::before {
-      font-size: 12px;
-      border-radius: 20%;
-      color: $stop-color;
-      background-color: $stop-color;
-    }
-
-    .wui-trash-alt::before {
-      font-size: 21px;
-    }
-  }
-
   // Table scrollbar
   tbody::-webkit-scrollbar {
     width: 10px;
@@ -296,5 +243,43 @@ table {
     background-color: $thumb-background-color;
     outline: 1px solid $thumb-outline-color;
     border-radius: 10px;
+  }
+}
+
+// Actions
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  width: 23px;
+  height: 23px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: $basic-background-color;
+  box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+  .wui-caret-right:before {
+    color: $ready-color;
+  }
+
+  .wui-shopping-cart:before {
+    color: $shopping-cart-color;
+  }
+
+  .wui-undo::before {
+    font-size: 12px;
+    color: $relaunch-color;
+  }
+
+  .wui-stop-alt::before {
+    font-size: 12px;
+    border-radius: 20%;
+    color: $stop-color;
+    background-color: $stop-color;
+  }
+
+  .wui-trash-alt::before {
+    font-size: 21px;
   }
 }

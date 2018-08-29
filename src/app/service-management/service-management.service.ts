@@ -292,7 +292,7 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          resolve("Terminated");
+          resolve("Instance " + response["name"] + " terminated");
         })
         .catch(err =>
           reject("There was an error terminating the network service instance")

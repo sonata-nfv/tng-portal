@@ -4,7 +4,7 @@
 
 <div class="tools">
     <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-    <button class="reload" (click)="requestTests()">
+    <button class="reload" (click)="requestTests()" matTooltip="Reload data">
         <i class="wui wui-undo"></i>
     </button>
 </div>
@@ -33,7 +33,7 @@
     <ng-container matColumnDef="launch">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" (click)="launch(element)" (click)="$event.stopPropagation()">
-            <button class="row-options" mat-button>
+            <button class="actions" mat-button>
                 <i class="wui wui-caret-right"></i>
             </button>
         </td>

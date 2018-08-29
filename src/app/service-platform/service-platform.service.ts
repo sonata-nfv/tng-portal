@@ -683,7 +683,7 @@ export class ServicePlatformService {
             vendor: response["nstd"]["vendor"],
             notificationType: response["nstd"]["notificationTypes"],
             userDefinedData: response["nstd"]["userDefinedData"],
-            usageState: response["nstd"]["usageState"],
+            usageState: this.prepareUsageState(response["nstd"]["usageState"]),
             onboardingState: response["nstd"]["onboardingState"],
             operationalState: response["nstd"]["operationalState"],
             nstNsdIds: response["nstd"]["nstNsdIds"]
@@ -820,7 +820,7 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
-          resolve("Terminated");
+          resolve("Instance " + response["name"] + " terminated");
         })
         .catch(err =>
           reject("There was an error terminating the slice instance")
