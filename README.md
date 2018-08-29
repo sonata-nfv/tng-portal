@@ -12,7 +12,7 @@ The main function of this web application is to provide a method to unify monito
 
 ## Dependencies
 
-- Node.js >= v8.9
+- Node.js >= v8.91
 
 ```
 [sudo] sudo apt-get install -y nodejs
