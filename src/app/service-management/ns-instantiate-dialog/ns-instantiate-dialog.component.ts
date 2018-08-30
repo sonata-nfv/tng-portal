@@ -109,6 +109,7 @@ export class NsInstantiateDialogComponent implements OnInit {
   }
 
   instantiate(serviceUUID) {
+    this.close();
     this.serviceManagementService
       .postNSRequest(
         this.instantiationForm.get("instanceName").value,
@@ -124,11 +125,9 @@ export class NsInstantiateDialogComponent implements OnInit {
           "Instantiating " + response + "...",
           ""
         );
-        this.close();
       })
       .catch(err => {
         this.commonService.openSnackBar(err, "");
-        this.close();
       });
   }
 
