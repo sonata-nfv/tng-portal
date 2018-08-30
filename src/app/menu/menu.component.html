@@ -70,6 +70,13 @@
 
       <button [ngClass]="{ active: section === 'sp-functions' }" (click)="setSection($event, 'sp-functions')">Functions</button>
 
+      <button [ngClass]="{ active: section === 'sp-slas' }" (click)="setSection($event, 'sp-slas')">SLA</button>
+      <div class="section" *ngIf="section === 'sp-slas'">
+        <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">Templates</button>
+        <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">Agreements</button>
+        <button [ngClass]="{ active: subsection === 'sla-violations' }" (click)="setSubsection($event, 'sla-violations')">Violations</button>
+      </div>
+
       <button [ngClass]="{ active: section === 'sp-policies' }" (click)="setSection($event, 'sp-policies')">Policies</button>
       <div class="section" *ngIf="section === 'sp-policies'">
         <button [ngClass]="{ active: subsection === 'placement-policy' }" (click)="setSubsection($event, 'placement-policy')">Placement
@@ -81,13 +88,6 @@
         <button [ngClass]="{ active: subsection === 'generated-actions' }" (click)="setSubsection($event, 'generated-actions')">Generated
           Actions
         </button>
-      </div>
-
-      <button [ngClass]="{ active: section === 'sp-slas' }" (click)="setSection($event, 'sp-slas')">SLA</button>
-      <div class="section" *ngIf="section === 'sp-slas'">
-        <button [ngClass]="{ active: subsection === 'sla-templates' }" (click)="setSubsection($event, 'sla-templates')">Templates</button>
-        <button [ngClass]="{ active: subsection === 'sla-agreements' }" (click)="setSubsection($event, 'sla-agreements')">Agreements</button>
-        <button [ngClass]="{ active: subsection === 'sla-violations' }" (click)="setSubsection($event, 'sla-violations')">Violations</button>
       </div>
 
       <button [ngClass]="{ active: section === 'sp-slices' }" (click)="setSection($event, 'sp-slices')">Slices</button>
