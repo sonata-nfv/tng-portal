@@ -40,15 +40,18 @@ app-placement-policy {
     padding: 0;
     margin-top: 30px;
     margin-bottom: 0;
+
     .line {
       display: flex;
       justify-content: start;
       flex-direction: row;
       margin-bottom: 10px;
+
       .mat-form-field,
       .select {
         width: 86%;
       }
+
       button {
         border: none;
         cursor: pointer;
@@ -56,29 +59,14 @@ app-placement-policy {
         padding: 6px;
         margin-left: 10px;
         background-color: $basic-background-color;
+
         i:before {
           font-size: 20px;
         }
       }
     }
   }
-  ol {
-    list-style: none;
-  }
-  li {
-    counter-increment: item;
-    margin-bottom: 5px;
-  }
-  li:before {
-    margin-right: 10px;
-    content: counter(item) ". ";
-    background: $basic-background-color;
-    color: $secondary-font-color-light;
-    width: 1em;
-    font-size: 40px;
-    font-weight: bold;
-    transform: translate(0, 9px);
-  }
+
   .error {
     font-size: 0.8em;
     margin-top: -25px;

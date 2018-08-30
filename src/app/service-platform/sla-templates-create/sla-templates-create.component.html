@@ -22,7 +22,7 @@
   <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
 
-<div class="advanceSection">
+<div class="advanceSection" *ngIf="guarantiesList.length > 0">
   <button class="advanceButton" (click)="closed=!closed">
     <div class="open">
       <span>Service Guarantees</span>

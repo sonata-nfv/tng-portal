@@ -184,6 +184,27 @@ app-spinner {
   font-weight: normal;
 }
 
+// Ordered lists
+ol {
+  list-style: none;
+}
+
+li {
+  counter-increment: item;
+  margin-bottom: 5px;
+}
+
+li:before {
+  margin-right: 10px;
+  content: counter(item) ". ";
+  background: $basic-background-color;
+  color: $secondary-font-color-light;
+  width: 1em;
+  font-size: 40px;
+  font-weight: bold;
+  transform: translate(0, 9px);
+}
+
 // Page subtitle styles
 .subheader {
   display: flex;

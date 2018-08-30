@@ -70,7 +70,12 @@ export class SlaTemplatesCreateComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(err, "");
+        let title = "oh oh...";
+        let content =
+          "Unable to create any template without network services and guarantees!";
+        let action = "Accept";
+        this.dialogData.openDialog(title, content, action, () => {});
+        this.close();
       });
   }
 

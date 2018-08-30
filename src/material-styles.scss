@@ -2,143 +2,144 @@
 form {
   display: flex;
   flex-direction: column;
+}
 
-  .mat-form-field {
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    text-align: left;
-    color: $secondary-font-color;
-    .mat-select.mat-select-invalid .mat-select-arrow {
-      color: $form-focus-label;
-    }
+.mat-form-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  text-align: left;
+  color: $secondary-font-color;
+
+  .mat-select.mat-select-invalid .mat-select-arrow {
+    color: $form-focus-label;
   }
+}
 
-  // Input text styles
-  .mat-focused .mat-input-element {
-    color: $form-focus;
-  }
+// Input text styles
+.mat-focused .mat-input-element {
+  color: $form-focus;
+}
 
-  .mat-input-element:disabled {
+.mat-input-element:disabled {
+  font-size: 20px;
+  color: $form-focus;
+  overflow: hidden;
+}
+
+// Change input underline styles
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $form-underline-color;
+}
+
+.mat-form-field-disabled .mat-form-field-underline {
+  background-image: none;
+  background-color: $form-underline-color;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: $form-underline-color;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple,
+.mat-form-field-ripple {
+  background-color: $form-focus;
+}
+
+.mat-form-field-disabled .mat-form-field-underline {
+  display: none;
+}
+
+// Input styles for updated at field
+.mat-form-field.updatedAt,
+.mat-form-field.lastTimeExecuted {
+  margin-bottom: 20px;
+}
+
+.mat-form-field.updatedAt .mat-input-element:disabled,
+.mat-form-field.lastTimeExecuted .mat-input-element:disabled {
+  font-size: 14px;
+  color: $form-disabled-color;
+}
+
+.mat-form-field.updatedAt .mat-form-field-label,
+.mat-form-field.lastTimeExecuted .mat-form-field-label {
+  display: none;
+}
+
+.mat-form-field.updatedAt .mat-form-field-infix,
+.mat-form-field.lastTimeExecuted .mat-form-field-infix {
+  border-top: 0;
+  padding: 0;
+}
+
+// Label styles
+.mat-form-field-appearance-legacy .mat-form-field-label,
+.mat-form-field-label:not(.mat-form-field-empty) {
+  color: $form-focus-label;
+  text-align: start;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $form-focus-label;
+  text-align: left;
+}
+
+.mat-form-field-invalid .mat-input-element,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: $form-focus-label;
+  caret-color: $form-focus-label;
+}
+
+.mat-form-field-can-float.mat-form-field-should-float {
+  .mat-form-field-label {
     font-size: 20px;
-    color: $form-focus;
-    overflow: hidden;
+  }
+}
+
+// Focused styles
+.mat-focused {
+  color: $form-focus;
+}
+
+.mat-focused .mat-form-field-required-marker {
+  color: $form-focus-label;
+}
+
+// Generic invalid styles
+.mat-form-field.mat-form-field-invalid
+  .mat-form-field-label
+  .mat-form-field-required-marker,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
+  color: $form-focus-label;
+}
+
+// Styles when form field contains error
+.errorFormField {
+  .mat-input-element {
+    color: $form-alert-color;
   }
 
-  // Change input underline styles
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field-disabled .mat-form-field-underline {
-    background-image: none;
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-ripple,
   .mat-form-field-ripple {
-    background-color: $form-focus;
+    background-color: $form-alert-color;
   }
 
-  .mat-form-field-disabled .mat-form-field-underline {
-    display: none;
+  .mat-form-field-underline {
+    background-color: $form-alert-color;
   }
+}
 
-  // Input styles for updated at field
-  .mat-form-field.updatedAt,
-  .mat-form-field.lastTimeExecuted {
-    margin-bottom: 20px;
-  }
+// Styles for stop and launch buttons in detailed view
+.stop,
+.launch {
+  display: flex;
+  width: 20%;
+  cursor: pointer;
+  margin-bottom: 25px;
 
-  .mat-form-field.updatedAt .mat-input-element:disabled,
-  .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
-    font-size: 14px;
-    color: $form-disabled-color;
-  }
-
-  .mat-form-field.updatedAt .mat-form-field-label,
-  .mat-form-field.lastTimeExecuted .mat-form-field-label {
-    display: none;
-  }
-
-  .mat-form-field.updatedAt .mat-form-field-infix,
-  .mat-form-field.lastTimeExecuted .mat-form-field-infix {
-    border-top: 0;
-    padding: 0;
-  }
-
-  // Label styles
-  .mat-form-field-appearance-legacy .mat-form-field-label,
-  .mat-form-field-label:not(.mat-form-field-empty) {
-    color: $form-focus-label;
-    text-align: start;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-label {
-    color: $form-focus-label;
-    text-align: left;
-  }
-
-  .mat-form-field-invalid .mat-input-element,
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    color: $form-focus-label;
-    caret-color: $form-focus-label;
-  }
-
-  .mat-form-field-can-float.mat-form-field-should-float {
-    .mat-form-field-label {
-      font-size: 20px;
-    }
-  }
-
-  // Focused styles
-  .mat-focused {
-    color: $form-focus;
-  }
-
-  .mat-focused .mat-form-field-required-marker {
-    color: $form-focus-label;
-  }
-
-  // Generic invalid styles
-  .mat-form-field.mat-form-field-invalid
-    .mat-form-field-label
-    .mat-form-field-required-marker,
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
-    color: $form-focus-label;
-  }
-
-  // Styles when form field contains error
-  .errorFormField {
-    .mat-input-element {
-      color: $form-alert-color;
-    }
-
-    .mat-form-field-ripple {
-      background-color: $form-alert-color;
-    }
-
-    .mat-form-field-underline {
-      background-color: $form-alert-color;
-    }
-  }
-
-  // Styles for stop and launch buttons in detailed view
-  .stop,
-  .launch {
-    display: flex;
-    width: 20%;
-    cursor: pointer;
-    margin-bottom: 25px;
-
-    span {
-      margin-left: 10px;
-      color: $secondary-font-color;
-    }
+  span {
+    margin-left: 10px;
+    color: $secondary-font-color;
   }
 }
 
