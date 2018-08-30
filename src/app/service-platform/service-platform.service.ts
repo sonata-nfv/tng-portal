@@ -238,7 +238,9 @@ export class ServicePlatformService {
                   .split("-")
                   .reverse()
                   .join("/"),
-                status: item.sla_status
+                status:
+                  item.sla_status.charAt(0).toUpperCase() +
+                  item.sla_status.slice(1).toLowerCase()
               };
             })
           );
@@ -277,7 +279,9 @@ export class ServicePlatformService {
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
               response["slad"]["sla_template"]["customer_info"]["cust_email"],
-            status: response["status"],
+            status:
+              response["status"].charAt(0).toUpperCase() +
+              response["status"].slice(1).toLowerCase(),
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],
