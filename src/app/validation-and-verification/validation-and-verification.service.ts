@@ -137,10 +137,10 @@ export class ValidationAndVerificationPlatformService {
                   "graphs": [
                     { 
                         "data": {
-                          "s1x":[ 1,2,3,4,5 ],
-                          "s1y":[ 100, 200, 300 ],
+                          "s1x":[ 0,1,2,3,4 ],
+                          "s1y":[ 154, 230, 350, 1000, 3000 ],
                           "s2x":[ 1,2,3,4,5 ],
-                          "s2y":[ 1000, 2000, 2500, 3000 ],
+                          "s2y":[ 1000, 2000, 2500, 3230, 5000 ],
                         },
                         "title":"Http Benchmark test",
                         "type":"line",

@@ -9,7 +9,7 @@ export class ChartService {
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
 
-  chartBar(axis2, id, type, title, xTitle, yAxis, yAxis2, yTitle, xAxis, yScale) {
+  chartBar(axis2, id, type, title, xTitle, yAxis, yAxis2, yTitle, xAxis) {
 
     Chart.defaults.global.defaultFontFamily = "Calibri";
     Chart.defaults.global.defaultFontSize = 16;
@@ -41,7 +41,7 @@ export class ChartService {
           }
         ]
       },
-      hover: "new mode",
+      // hover: "new mode",
       options: {
         title: {
           display: true,
@@ -69,15 +69,15 @@ export class ChartService {
               title: function(tooltipItem, data) { return '';                       }, // tooltipItem[0].xLabel
             },
         },
-    
+        elements: { point: { radius: 4 } },
         scales: {
           yAxes: [
             {
               ticks: { 
                 beginAtZero: true, 
-                // steps: 10,
-                // stepValue: 5,
-                max: yScale,
+                // max: 5,
+                // min: 1,
+                suggestedMax: Math.max(...yAxis2)*1.2
               },
               scaleLabel: {
                 display: true,

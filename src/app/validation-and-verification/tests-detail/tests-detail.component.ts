@@ -44,95 +44,86 @@ export class TestsDetailComponent implements OnInit {
         this.loading = false;
         this.detail = response;
         this.verificationAndValidationPlatformService
-        .getRslTest2()
-        .then(response => {
-          this.loading = false;
-          let index;
-          console.log("result", response);
-          // let getData = response["data"]["details"]["graphs"].map(item => {
-          //   return { data: item.data };
-          // });
-          console.log("I. Input ==================================");   
-          console.log("descpt [uuid]", uuid); 
+          .getRslTest2()
+          .then(response => {
+            this.loading = false;
+            let index;
 
-          for (var j = 0; j < response["data"].length; j++) {                                             // uuid == test_uuid
-            if (uuid == response["data"][j]["test_uuid"]) {
-              console.log('{cnd} uuid == test_uuid', "(true)", "| index:", j);                                         
-              index = j; 
+            for (var j = 0; j < response["data"].length; j++) {
+              if (uuid == response["data"][j]["test_uuid"]) {
+                index = j;
+              }
             }
-          }
-          
-          let details = response["data"][index];
-          console.log('​TestsDetailComponent -> requestTestResult -> details', details);                 
 
-          let multiChart = {
-            chart:   [],
-            type:    [], 
-            title:   [],
-            xTitle:  [],
-            yTitle:  [],
-            s1x:     [],
-            s1y:     [],
-            s2x:     [],
-            s2y:     [],
-          };
+            let details = response["data"][index];
 
-          console.log('II. Processing ================================');                                                           // !
+            let multiChart = {
+              chart: [],
+              type: [],
+              title: [],
+              xTitle: [],
+              yTitle: [],
+              s1x: [],
+              s1y: [],
+              s2x: [],
+              s2y: []
+            };
 
-          if (details !== undefined && details["details"] !== null) {
-            console.log('{cnd} response["data"][index][details] !== null', '{true}', response["data"][index]["details"] );          // !
-            console.log('(sav) response["data"][index]["details"]["graphs"] > graphs', );                                           // !
-            let graphs = response["data"][index]["details"]["graphs"];
+            if (details !== undefined && details["details"] !== null) {
+              let graphs = response["data"][index]["details"]["graphs"];
 
-            for (var i = 0; i < graphs.length; i++) {
-            
-              console.log('--------------------------' );                                                                            // ! 
-              console.log(i, 'Charts ',     graphs[i]);                                                                              // ! 
-              console.log('| ​title ',       graphs[i]["title"] );                                                                    // !       
-              console.log('| x-axis-title', graphs[i]["x-axis-title"] );                                                             // ! 
-              console.log('| y-axis-title', graphs[i]["y-axis-title"] );                                                             // ! 
-              console.log('| type',         graphs[i]["type"] );                                                                     // ! 
-              console.log('(set) [html] div > canvas(id="chrat+1") ', );                                                             // !                                                           
-              
-              let div     = document.createElement("div"),
+              for (var i = 0; i < graphs.length; i++) {
+                let div = document.createElement("div"),
                   canvas = document.createElement("canvas");
-                  canvas.setAttribute("id", "chrat-" + i );
-                  document.getElementById("multychart").appendChild(div).appendChild(canvas);
-                  multiChart.chart.push(i);
-                  multiChart.type.push(graphs[i]["type"]);   
-                  multiChart.title.push(graphs[i]["title"]); 
-                  multiChart.xTitle.push(graphs[i]["x-axis-title"]); 
-                  multiChart.yTitle.push(graphs[i]["y-axis-title"]); 
-                  multiChart.s1x.push(graphs[i]["data"]["s1x"]); 
-                  multiChart.s1y.push(graphs[i]["data"]["s1y"]); 
-                  multiChart.s2x.push(graphs[i]["data"]["s2x"]); 
-                  multiChart.s2y.push(graphs[i]["data"]["s2y"]); 
-  
-                  console.log('(sav) ', multiChart);                                                                              // !
-            }
-
-            for ( let i = 0; i < multiChart.chart.length; i++ ) {
-              if (multiChart.type[i] == "line" && multiChart.s2y[i] !== undefined) {
-                console.log(multiChart.s2y[i] !== undefined );                                                                      // !
-                let max = Math.max(...multiChart.s1y[i],...multiChart.s2y[i]) * 1.2;
-                //                        (axis2 |             id                |        type       |       title        |         xTitle      |        yAxis     |      yAxis-2     |        yTitle       |       xAxis      | yScale)
-                this.chartService.chartBar(false,  "chrat-" + multiChart.chart[i], multiChart.type[i], multiChart.title[i], multiChart.xTitle[i], multiChart.s1y[i], multiChart.s2y[i], multiChart.yTitle[i], multiChart.s1x[i], max); 
+                canvas.setAttribute("id", "chrat-" + i);
+                document
+                  .getElementById("multychart")
+                  .appendChild(div)
+                  .appendChild(canvas);
+                multiChart.chart.push(i);
+                multiChart.type.push(graphs[i]["type"]);
+                multiChart.title.push(graphs[i]["title"]);
+                multiChart.xTitle.push(graphs[i]["x-axis-title"]);
+                multiChart.yTitle.push(graphs[i]["y-axis-title"]);
+                multiChart.s1x.push(graphs[i]["data"]["s1x"]);
+                multiChart.s1y.push(graphs[i]["data"]["s1y"]);
+                multiChart.s2x.push(graphs[i]["data"]["s2x"]);
+                multiChart.s2y.push(graphs[i]["data"]["s2y"]);
               }
-              else {
-                console.log(multiChart.s2y[i] == undefined );                                                                       // !
-                let max = Math.max(...multiChart.s1y[i]) * 1.2;
-                //                        (axis2 |             id               |        type       |       title        |         xTitle      |        yAxis     |      yAxis-2     |        yTitle       |       xAxis      |  yScale )
-                this.chartService.chartBar(true,  "chrat-" + multiChart.chart[i], multiChart.type[i], multiChart.title[i], multiChart.xTitle[i], multiChart.s1y[i], multiChart.s2y[i], multiChart.yTitle[i], multiChart.s1x[i], max); 
+
+              for (let i = 0; i < multiChart.chart.length; i++) {
+                if (
+                  multiChart.type[i] == "line" &&
+                  multiChart.s2y[i] !== undefined
+                ) {
+                  this.chartService.chartBar(
+                    false,
+                    "chrat-" + multiChart.chart[i],
+                    multiChart.type[i],
+                    multiChart.title[i],
+                    multiChart.xTitle[i],
+                    multiChart.s1y[i],
+                    multiChart.s2y[i],
+                    multiChart.yTitle[i],
+                    multiChart.s1x[i]
+                  );
+                } else {
+                  this.chartService.chartBar(
+                    true,
+                    "chrat-" + multiChart.chart[i],
+                    multiChart.type[i],
+                    multiChart.title[i],
+                    multiChart.xTitle[i],
+                    multiChart.s1y[i],
+                    multiChart.s2y[i],
+                    multiChart.yTitle[i],
+                    multiChart.s1x[i]
+                  );
+                }
               }
+            } else {
             }
-
-
-          } else {
-
-          }
-          
-        });
-
+          });
       })
       .catch(err => console.error(err));
   }
