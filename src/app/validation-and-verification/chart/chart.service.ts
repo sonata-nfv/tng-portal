@@ -9,7 +9,7 @@ export class ChartService {
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
 
-  chartBar(axis2, id, type, title, xTitle, yAxis, yAxis2, yTitle, xAxis) {
+  chartBar(axis2, axis2Title, id, type, title, xTitle, yAxis, yAxis2, yTitle, xAxis) {
 
     Chart.defaults.global.defaultFontFamily = "Calibri";
     Chart.defaults.global.defaultFontSize = 16;
@@ -21,7 +21,7 @@ export class ChartService {
         labels: xAxis,
         datasets: [
           {
-            label: "",
+            label: "[ s1 ]",
             data: yAxis,
             fill: false,
             lineTension: 0.2,
@@ -31,7 +31,7 @@ export class ChartService {
           },
           {
             hidden: axis2,
-            label: "",
+            label: "[ s2 ]",
             data: yAxis2,
             fill: false,
             lineTension: 0.2,
@@ -41,18 +41,18 @@ export class ChartService {
           }
         ]
       },
-      // hover: "new mode",
       options: {
-        title: {
+        title: { 
           display: true,
           text: title,
         },
         legend: {
-          // x axis: sorting
-          display: false,
+          display: axis2Title,
           labels: {
-            padding: 20,
+            boxWidth: 0,
+            padding: 10,
             fontSize: 14,
+            // hidden: true,
             fontFamily: "Lato"
           }
         },
@@ -65,18 +65,20 @@ export class ChartService {
             tooltip.xPadding = 10; 
             },  
             callbacks: {                                                               
-              label: function(tooltipItem, data) { return '' + tooltipItem.yLabel;  }, // tooltipItem.yLabel
-              title: function(tooltipItem, data) { return '';                       }, // tooltipItem[0].xLabel
+              label: function(tooltipItem, data) { return '' + tooltipItem.yLabel;  }, 
+              title: function(tooltipItem, data) { return '';                       }, 
             },
         },
-        elements: { point: { radius: 4 } },
+        elements: { 
+          point: { 
+            radius: 4 
+          } 
+        },
         scales: {
           yAxes: [
             {
-              ticks: { 
+              ticks: {
                 beginAtZero: true, 
-                // max: 5,
-                // min: 1,
                 suggestedMax: Math.max(...yAxis2)*1.2
               },
               scaleLabel: {
@@ -97,8 +99,6 @@ export class ChartService {
                 fontFamily: "Helvetica",
                 fontColor: "#000"
               },
-              // categoryPercentage: .4,
-              // barPercentage: 1.1
             }
           ]
         },
