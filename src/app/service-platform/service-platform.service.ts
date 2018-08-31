@@ -238,7 +238,9 @@ export class ServicePlatformService {
                   .split("-")
                   .reverse()
                   .join("/"),
-                status: item.sla_status
+                status:
+                  item.sla_status.charAt(0).toUpperCase() +
+                  item.sla_status.slice(1).toLowerCase()
               };
             })
           );
@@ -277,7 +279,9 @@ export class ServicePlatformService {
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
               response["slad"]["sla_template"]["customer_info"]["cust_email"],
-            status: response["status"],
+            status:
+              response["status"].charAt(0).toUpperCase() +
+              response["status"].slice(1).toLowerCase(),
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],
@@ -683,7 +687,7 @@ export class ServicePlatformService {
             vendor: response["nstd"]["vendor"],
             notificationType: response["nstd"]["notificationTypes"],
             userDefinedData: response["nstd"]["userDefinedData"],
-            usageState: response["nstd"]["usageState"],
+            usageState: this.prepareUsageState(response["nstd"]["usageState"]),
             onboardingState: response["nstd"]["onboardingState"],
             operationalState: response["nstd"]["operationalState"],
             nstNsdIds: response["nstd"]["nstNsdIds"]
@@ -820,7 +824,7 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
-          resolve("Terminated");
+          resolve("Instance " + response["name"] + " terminated");
         })
         .catch(err =>
           reject("There was an error terminating the slice instance")

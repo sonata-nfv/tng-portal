@@ -25,10 +25,12 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <button class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'" (click)="terminate()">
-    <i class="wui wui-stop"></i>
+  <div class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'" (click)="terminate()">
+    <button class="actions" mat-button matTooltip="Terminate">
+      <i class="wui wui-stop-alt"></i>
+    </button>
     <span>Terminate instance</span>
-  </button>
+  </div>
 
   <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>

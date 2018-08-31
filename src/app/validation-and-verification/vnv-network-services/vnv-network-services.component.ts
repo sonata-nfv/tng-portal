@@ -14,7 +14,7 @@ export class VnvNetworkServicesComponent implements OnInit {
   loading: boolean;
   section: string;
   networkServices: Array<Object>;
-  displayedColumns = ["type", "vendor", "name", "version", "status", "launch"];
+  displayedColumns = ["type", "vendor", "name", "version", "status", "execute"];
 
   constructor(
     private commonService: CommonService,
@@ -53,7 +53,7 @@ export class VnvNetworkServicesComponent implements OnInit {
       });
   }
 
-  launch(row) {
+  execute(row) {
     this.verificationAndValidationPlatformService
       .postOneTest("service", row["uuid"])
       .then(response => {

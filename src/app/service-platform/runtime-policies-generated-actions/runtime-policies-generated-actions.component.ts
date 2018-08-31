@@ -13,7 +13,6 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
   loading: boolean;
   generatedActions = new Array();
   displayedColumns = [
-    "correlationUUID",
     "vnfName",
     "scalingType",
     "serviceInstanceUUID",

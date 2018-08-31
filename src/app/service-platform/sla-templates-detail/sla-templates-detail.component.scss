@@ -17,6 +17,7 @@ app-sla-templates-detail {
 
   form {
     width: 65%;
+
     .ns {
       width: 40%;
     }
@@ -24,13 +25,16 @@ app-sla-templates-detail {
     .mat-input-element:disabled {
       font-size: 18px;
     }
+
     &.advancedForm {
       width: 100%;
+
       .sectionTitle {
         margin-bottom: 20px;
         font-size: 24px;
         color: $primary-font-color-light;
       }
+
       .sectionTitle:after {
         background: none;
       }
@@ -47,28 +51,44 @@ app-sla-templates-detail {
       //   font-size: 13px;
       //   color: $primary-font-color-light;
       // }
+
       .guaranteeRow {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
         width: 100%;
+
+        .sloInfo {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+        }
+
+        p {
+          color: $primary-font-color;
+        }
+
         &.mat-input-element,
         .mat-input-element:disabled,
         .mat-form-field-can-float.mat-form-field-should-float
           .mat-form-field-label {
           font-size: 16px;
         }
+
         .gName {
           width: 55%;
         }
+
         .timePeriod {
           display: flex;
           flex-direction: column;
           width: 45%;
+
           .mat-form-field-wrapper {
             padding-bottom: 10px;
           }
         }
+
         // button {
         //   width: 10%;
         //   margin-top: 20px;

@@ -54,6 +54,8 @@ app-slices-instances-create {
       width: 180px;
       font-size: 18px;
       font-weight: bold;
+      box-shadow: 2px 2px 4px 0 $shadow-buttons;
+
       &.secondary {
         margin-right: 15px;
         color: $button-basic-font-color;

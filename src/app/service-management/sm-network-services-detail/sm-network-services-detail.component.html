@@ -30,10 +30,12 @@
         <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
     </mat-form-field>
 
-    <button class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']" (click)="instanciate()">
-        <i class="wui wui-caret-right"></i>
+    <div class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']" (click)="instantiate()">
+        <button class="actions" mat-button matTooltip="Instantiate">
+            <i class="wui wui-caret-right"></i>
+        </button>
         <span class="play">Ready to use</span>
-    </button>
+    </div>
 
     <div class="description" *ngIf="detail['description']">
         <span class="title">DESCRIPTION</span>

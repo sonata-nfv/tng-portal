@@ -4,7 +4,7 @@
 
 <div class="tools">
   <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-  <button class="reload" (click)="requestPackages()">
+  <button class="reload" (click)="requestPackages()" matTooltip="Reload data">
     <i class="wui wui-undo"></i>
   </button>
 </div>

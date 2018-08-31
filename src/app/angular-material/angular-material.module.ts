@@ -14,7 +14,8 @@ import {
   MatPaginatorModule,
   MatCheckboxModule,
   MatRadioModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTooltipModule
 } from "@angular/material";
 
 const modules = [
@@ -31,7 +32,8 @@ const modules = [
   MatPaginatorModule,
   MatCheckboxModule,
   MatRadioModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTooltipModule
 ];
 
 @NgModule({

@@ -2,158 +2,144 @@
 form {
   display: flex;
   flex-direction: column;
+}
 
-  .mat-form-field {
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    text-align: left;
-    color: $secondary-font-color;
-    .mat-select.mat-select-invalid .mat-select-arrow {
-      color: $form-focus-label;
-    }
+.mat-form-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  text-align: left;
+  color: $secondary-font-color;
+
+  .mat-select.mat-select-invalid .mat-select-arrow {
+    color: $form-focus-label;
   }
+}
 
-  // Input text styles
-  .mat-focused .mat-input-element {
-    color: $form-focus;
-  }
+// Input text styles
+.mat-focused .mat-input-element {
+  color: $form-focus;
+}
 
-  .mat-input-element:disabled {
+.mat-input-element:disabled {
+  font-size: 20px;
+  color: $form-focus;
+  overflow: hidden;
+}
+
+// Change input underline styles
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $form-underline-color;
+}
+
+.mat-form-field-disabled .mat-form-field-underline {
+  background-image: none;
+  background-color: $form-underline-color;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: $form-underline-color;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple,
+.mat-form-field-ripple {
+  background-color: $form-focus;
+}
+
+.mat-form-field-disabled .mat-form-field-underline {
+  display: none;
+}
+
+// Label styles
+.mat-form-field-appearance-legacy .mat-form-field-label,
+.mat-form-field-label:not(.mat-form-field-empty) {
+  color: $form-focus-label;
+  text-align: start;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $form-focus-label;
+  text-align: left;
+}
+
+.mat-form-field-invalid .mat-input-element,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: $form-focus-label;
+  caret-color: $form-focus-label;
+}
+
+.mat-form-field-can-float.mat-form-field-should-float {
+  .mat-form-field-label {
     font-size: 20px;
-    color: $form-focus;
-    overflow: hidden;
+  }
+}
+
+// Input styles for updated at field
+.mat-form-field.updatedAt,
+.mat-form-field.lastTimeExecuted {
+  margin-bottom: 20px;
+}
+
+.mat-form-field.updatedAt .mat-input-element:disabled,
+.mat-form-field.lastTimeExecuted .mat-input-element:disabled {
+  font-size: 14px;
+  color: $form-disabled-color;
+}
+
+.mat-form-field.updatedAt .mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field.lastTimeExecuted
+  .mat-form-field-label-wrapper
+  .mat-form-field-label {
+  display: none;
+}
+
+.mat-form-field.updatedAt .mat-form-field-infix,
+.mat-form-field.lastTimeExecuted .mat-form-field-infix {
+  border-top: 0;
+  padding: 0;
+}
+
+// Focused styles
+.mat-focused {
+  color: $form-focus;
+}
+
+.mat-focused .mat-form-field-required-marker {
+  color: $form-focus-label;
+}
+
+// Generic invalid styles
+.mat-form-field.mat-form-field-invalid
+  .mat-form-field-label
+  .mat-form-field-required-marker,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
+  color: $form-focus-label;
+}
+
+// Styles when form field contains error
+.errorFormField {
+  .mat-input-element {
+    color: $form-alert-color;
   }
 
-  // Change input underline styles
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field-disabled .mat-form-field-underline {
-    background-image: none;
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-    background-color: $form-underline-color;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-ripple,
   .mat-form-field-ripple {
-    background-color: $form-focus;
+    background-color: $form-alert-color;
   }
 
-  .mat-form-field-disabled .mat-form-field-underline {
-    display: none;
+  .mat-form-field-underline {
+    background-color: $form-alert-color;
   }
+}
 
-  // Input styles for updated at field
-  .mat-form-field.updatedAt,
-  .mat-form-field.lastTimeExecuted {
-    margin-bottom: 20px;
-  }
+// Styles for stop and launch buttons in detailed view
+.stop,
+.launch {
+  display: flex;
+  width: 20%;
+  cursor: pointer;
+  margin-bottom: 25px;
 
-  .mat-form-field.updatedAt .mat-input-element:disabled,
-  .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
-    font-size: 14px;
-    color: $form-disabled-color;
-  }
-
-  .mat-form-field.updatedAt .mat-form-field-label,
-  .mat-form-field.lastTimeExecuted .mat-form-field-label {
-    display: none;
-  }
-
-  .mat-form-field.updatedAt .mat-form-field-infix,
-  .mat-form-field.lastTimeExecuted .mat-form-field-infix {
-    border-top: 0;
-    padding: 0;
-  }
-
-  // Label styles
-  .mat-form-field-appearance-legacy .mat-form-field-label,
-  .mat-form-field-label:not(.mat-form-field-empty) {
-    color: $form-focus-label;
-    text-align: start;
-  }
-
-  .mat-form-field.mat-focused .mat-form-field-label {
-    color: $form-focus-label;
-    text-align: left;
-  }
-
-  .mat-form-field-invalid .mat-input-element,
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    color: $form-focus-label;
-    caret-color: $form-focus-label;
-  }
-
-  .mat-form-field-can-float.mat-form-field-should-float {
-    .mat-form-field-label {
-      font-size: 20px;
-    }
-  }
-
-  // Focused styles
-  .mat-focused {
-    color: $form-focus;
-  }
-
-  .mat-focused .mat-form-field-required-marker {
-    color: $form-focus-label;
-  }
-
-  // Generic invalid styles
-  .mat-form-field.mat-form-field-invalid
-    .mat-form-field-label
-    .mat-form-field-required-marker,
-  .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
-    color: $form-focus-label;
-  }
-
-  // Styles when form field contains error
-  .errorFormField {
-    .mat-input-element {
-      color: $form-alert-color;
-    }
-
-    .mat-form-field-ripple {
-      background-color: $form-alert-color;
-    }
-
-    .mat-form-field-underline {
-      background-color: $form-alert-color;
-    }
-  }
-
-  // Styles for stop and launch buttons in detailed view
-  .stop,
-  .launch {
-    display: flex;
-    width: 20%;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 15px 0 25px 0;
-    font-size: 18px;
-    background-color: $basic-background-color;
-  }
-
-  .launch i:before {
-    color: $ready-color;
-  }
-
-  .launch span {
-    margin-left: 10px;
-    color: $secondary-font-color;
-  }
-
-  .stop i:before {
-    color: $stop-color;
-  }
-
-  .stop span {
+  span {
     margin-left: 10px;
     color: $secondary-font-color;
   }
@@ -244,39 +230,6 @@ table {
     }
   }
 
-  .row-options {
-    display: flex;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-    padding: 0;
-
-    .wui-caret-right:before {
-      color: $ready-color;
-    }
-
-    .wui-shopping-cart:before {
-      color: $shopping-cart-color;
-    }
-
-    .wui-undo::before {
-      font-size: 12px;
-      color: $relaunch-color;
-    }
-
-    .wui-stop-alt::before {
-      font-size: 12px;
-      border-radius: 20%;
-      color: $stop-color;
-      background-color: $stop-color;
-    }
-
-    .wui-trash-alt::before {
-      font-size: 21px;
-    }
-  }
-
   // Table scrollbar
   tbody::-webkit-scrollbar {
     width: 10px;
@@ -293,5 +246,43 @@ table {
     background-color: $thumb-background-color;
     outline: 1px solid $thumb-outline-color;
     border-radius: 10px;
+  }
+}
+
+// Actions
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  width: 23px;
+  height: 23px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: $basic-background-color;
+  box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+  .wui-caret-right:before {
+    color: $ready-color;
+  }
+
+  .wui-shopping-cart:before {
+    color: $shopping-cart-color;
+  }
+
+  .wui-undo::before {
+    font-size: 12px;
+    color: $relaunch-color;
+  }
+
+  .wui-stop-alt::before {
+    font-size: 12px;
+    border-radius: 20%;
+    color: $stop-color;
+    background-color: $stop-color;
+  }
+
+  .wui-trash-alt::before {
+    font-size: 21px;
   }
 }

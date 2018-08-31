@@ -70,7 +70,12 @@ export class SlaTemplatesCreateComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(err, "");
+        let title = "oh oh...";
+        let content =
+          "Unable to create any template without network services and guarantees!";
+        let action = "Accept";
+        this.dialogData.openDialog(title, content, action, () => {});
+        this.close();
       });
   }
 
@@ -122,12 +127,18 @@ export class SlaTemplatesCreateComponent implements OnInit {
       .catch(err => {
         this.loading = false;
 
-        // TODO add date error message checking to be sure this is the right message
-        if (err.statusText === "Bad Request") {
+        if (err.error["ERROR: "] === "Conflict") {
+          let title = "oh oh...";
+          let content = "This template name is already taken!";
+          let action = "Accept";
+
+          this.dialogData.openDialog(title, content, action, () => {});
+        } else if (
+          err.error["ERROR: "] === "The expire date is not a future date."
+        ) {
           let title = "oh oh...";
           let content =
             "The expire date is not a future date. Please choose another.";
-
           let action = "Accept";
 
           this.dialogData.openDialog(title, content, action, () => {});
