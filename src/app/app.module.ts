@@ -51,6 +51,7 @@ import { ValidationAndVerificationModule } from "./validation-and-verification/v
 import { ServicePlatformModule } from "./service-platform/service-platform.module";
 import { ServiceManagementModule } from "./service-management/service-management.module";
 import { SharedModule } from "./shared/shared.module";
+import { ChartService } from "./validation-and-verification/chart/chart.service";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { SharedModule } from "./shared/shared.module";
     SharedModule,
     AuthenticationModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: "en-GB" }],
+  providers: [ ChartService, { provide: MAT_DATE_LOCALE, useValue: "en-GB" }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

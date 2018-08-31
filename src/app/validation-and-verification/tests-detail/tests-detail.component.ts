@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
 import { CommonService } from "../../shared/services/common/common.service";
+import { ChartService } from "../chart/chart.service";
 
 @Component({
   selector: "app-tests-detail",
@@ -19,12 +20,14 @@ export class TestsDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
+    private chartService: ChartService,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.requestTest(params["id"]);
+      this.requestTestResult(params["id"]);
     });
   }
 
@@ -36,14 +39,99 @@ export class TestsDetailComponent implements OnInit {
    */
   requestTest(uuid) {
     this.loading = true;
-
     this.verificationAndValidationPlatformService
       .getOneTest(uuid)
       .then(response => {
         this.loading = false;
         this.detail = response;
+
       })
       .catch(err => console.error(err));
+  }
+
+  requestTestResult(uuid) {
+    this.verificationAndValidationPlatformService
+    .getRslTest()
+    .then(response => {
+      this.loading = false;
+      let index;
+
+      for (var j = 0; j < response["data"].length; j++) {
+        if (uuid == response["data"][j]["test_uuid"]) {
+          index = j;
+        }
+      }
+
+      let details = response["data"][index];
+
+      let multiChart = {
+        chart: [],
+        type: [],
+        title: [],
+        xTitle: [],
+        yTitle: [],
+        s1x: [],
+        s1y: [],
+        s2x: [],
+        s2y: []
+      };
+
+      if (details["details"] !== null) {
+        
+        let graphs = response["data"][index]["details"]["graphs"];
+
+        for (var i = 0; i < graphs.length; i++) {
+          let div = document.createElement("div"),
+            canvas = document.createElement("canvas");
+          canvas.setAttribute("id", "chrat-" + i);
+          document
+            .getElementById("multychart")
+            .appendChild(div)
+            .appendChild(canvas);
+          multiChart.chart.push(i);
+          multiChart.type.push(graphs[i]["type"]);
+          multiChart.title.push(graphs[i]["title"]);
+          multiChart.xTitle.push(graphs[i]["x-axis-title"]);
+          multiChart.yTitle.push(graphs[i]["y-axis-title"]);
+          multiChart.s1x.push(graphs[i]["data"]["s1x"]);
+          multiChart.s1y.push(graphs[i]["data"]["s1y"]);
+          multiChart.s2x.push(graphs[i]["data"]["s2x"]);
+          multiChart.s2y.push(graphs[i]["data"]["s2y"]);
+        }
+
+        for (let i = 0; i < multiChart.chart.length; i++) {
+          if (
+            multiChart.type[i] == "line" &&
+            multiChart.s2y[i] !== undefined
+          ) {
+            this.chartService.chartBar(
+              false, true,
+              "chrat-" + multiChart.chart[i],
+              multiChart.type[i],
+              multiChart.title[i],
+              multiChart.xTitle[i],
+              multiChart.s1y[i],
+              multiChart.s2y[i],
+              multiChart.yTitle[i],
+              multiChart.s1x[i]
+            );
+          } else {
+            this.chartService.chartBar(
+              true, false,
+              "chrat-" + multiChart.chart[i],
+              multiChart.type[i],
+              multiChart.title[i],
+              multiChart.xTitle[i],
+              multiChart.s1y[i],
+              multiChart.s2y[i],
+              multiChart.yTitle[i],
+              multiChart.s1x[i]
+            );
+          }
+        }
+      } else {
+      }
+    });
   }
 
   launch() {

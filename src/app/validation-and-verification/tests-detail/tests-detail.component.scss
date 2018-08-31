@@ -35,10 +35,13 @@ app-tests-detail {
   .detail {
     width: 65%;
     margin-bottom: 20px;
-
     .mat-form-field {
       width: 100%;
     }
+  }
+
+  canvas {
+    margin: 2.5%;
   }
 
   // RESULTS PART
@@ -47,7 +50,6 @@ app-tests-detail {
     align-items: flex-start;
     margin-top: 20px;
     margin-bottom: 20px;
-
     .sectionTitle {
       font-size: 24px;
       color: $primary-font-color-light;
