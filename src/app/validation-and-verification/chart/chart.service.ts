@@ -49,6 +49,7 @@ export class ChartService {
         legend: {
           display: axis2Title,
           labels: {
+            fontColor: "#d40b0d",
             boxWidth: 0,
             padding: 10,
             fontSize: 14,
