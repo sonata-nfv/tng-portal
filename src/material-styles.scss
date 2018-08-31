@@ -50,29 +50,6 @@ form {
   display: none;
 }
 
-// Input styles for updated at field
-.mat-form-field.updatedAt,
-.mat-form-field.lastTimeExecuted {
-  margin-bottom: 20px;
-}
-
-.mat-form-field.updatedAt .mat-input-element:disabled,
-.mat-form-field.lastTimeExecuted .mat-input-element:disabled {
-  font-size: 14px;
-  color: $form-disabled-color;
-}
-
-.mat-form-field.updatedAt .mat-form-field-label,
-.mat-form-field.lastTimeExecuted .mat-form-field-label {
-  display: none;
-}
-
-.mat-form-field.updatedAt .mat-form-field-infix,
-.mat-form-field.lastTimeExecuted .mat-form-field-infix {
-  border-top: 0;
-  padding: 0;
-}
-
 // Label styles
 .mat-form-field-appearance-legacy .mat-form-field-label,
 .mat-form-field-label:not(.mat-form-field-empty) {
@@ -95,6 +72,31 @@ form {
   .mat-form-field-label {
     font-size: 20px;
   }
+}
+
+// Input styles for updated at field
+.mat-form-field.updatedAt,
+.mat-form-field.lastTimeExecuted {
+  margin-bottom: 20px;
+}
+
+.mat-form-field.updatedAt .mat-input-element:disabled,
+.mat-form-field.lastTimeExecuted .mat-input-element:disabled {
+  font-size: 14px;
+  color: $form-disabled-color;
+}
+
+.mat-form-field.updatedAt .mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field.lastTimeExecuted
+  .mat-form-field-label-wrapper
+  .mat-form-field-label {
+  display: none;
+}
+
+.mat-form-field.updatedAt .mat-form-field-infix,
+.mat-form-field.lastTimeExecuted .mat-form-field-infix {
+  border-top: 0;
+  padding: 0;
 }
 
 // Focused styles

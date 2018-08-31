@@ -38,25 +38,28 @@
     <span class="sectionTitle">Service Guaranties</span>
 
     <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
+      <p>{{ item.definition }}</p>
 
-      <mat-form-field class="gName">
-        <input matInput placeholder="Name" disabled value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}">
-      </mat-form-field>
+      <div class="sloInfo">
 
-      <div class="timePeriod">
-        <mat-form-field class="gPeriodValue">
-          <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
+        <mat-form-field class="gName">
+          <input matInput placeholder="Name" disabled value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}">
         </mat-form-field>
 
-        <mat-form-field class="gPeriod">
-          <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
-        </mat-form-field>
+        <div class="timePeriod">
+          <mat-form-field class="gPeriodValue">
+            <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
+          </mat-form-field>
+
+          <mat-form-field class="gPeriod">
+            <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
+          </mat-form-field>
+        </div>
+
+        <button (click)="eraseEntry(item)">
+          <i class="wui wui-trash-alt"></i>
+        </button>
       </div>
-
-      <button (click)="eraseEntry(item)">
-        <i class="wui wui-trash-alt"></i>
-      </button>
-
     </div>
 
     <app-select *ngIf="guarantiesList.length > 0" class="guarantiesList" placeholder="Select NS Guarantee" [reset]="reset" [list]="guarantiesList"

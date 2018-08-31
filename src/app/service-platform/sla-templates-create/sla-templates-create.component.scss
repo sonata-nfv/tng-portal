@@ -43,18 +43,22 @@ app-sla-templates-create {
 
     &.advancedForm {
       width: 100%;
+
       .sectionTitle {
         margin-bottom: 20px;
         font-size: 24px;
         color: $primary-font-color-light;
       }
+
       .sectionTitle:after {
         background: none;
       }
+
       .guarantiesList {
         width: 50%;
         margin-top: 20px;
       }
+
       .note {
         display: flex;
         justify-content: flex-end;
@@ -64,23 +68,38 @@ app-sla-templates-create {
         font-size: 13px;
         color: $primary-font-color-light;
       }
+
       .guaranteeRow {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
         width: 100%;
+
+        .sloInfo {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+        }
+
+        p {
+          color: $primary-font-color;
+        }
+
         &.mat-input-element,
         .mat-input-element:disabled,
         .mat-form-field-can-float.mat-form-field-should-float
           .mat-form-field-label {
           font-size: 16px;
         }
+
         .mat-form-field-appearance-legacy .mat-form-field-underline {
           width: 95%;
         }
+
         .gName {
           width: 55%;
         }
+
         .timePeriod {
           display: flex;
           flex-direction: column;
@@ -89,6 +108,7 @@ app-sla-templates-create {
           //   padding-bottom: 10px;
           // }
         }
+
         button {
           width: 5%;
           margin-top: 20px;
