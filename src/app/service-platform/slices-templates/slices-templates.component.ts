@@ -103,6 +103,7 @@ export class SlicesTemplatesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.requestTemplates();
         this.commonService.openSnackBar(err, "");
       });
   }

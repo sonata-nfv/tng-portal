@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-
-// import { ServicePlatformService } from "../service-platform.service";
 import { FormGroup, FormControl } from "@angular/forms";
-import { CommonService } from "../../shared/services/common/common.service";
 
+import { CommonService } from "../../shared/services/common/common.service";
+import { ServicePlatformService } from "../service-platform.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
@@ -30,7 +29,8 @@ export class SlicesTemplatesCreateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dialogData: DialogDataService,
-    private commonService: CommonService // private servicePlatformService: ServicePlatformService
+    private commonService: CommonService,
+    private servicePlatformService: ServicePlatformService
   ) {}
 
   ngOnInit() {
@@ -133,7 +133,31 @@ export class SlicesTemplatesCreateComponent implements OnInit {
   }
 
   createSliceTemplate() {
-    // TODO request to create slice template
+    const template = {
+      name: this.templateForm.get("name").value,
+      vendor: this.templateForm.get("vendor").value,
+      version: this.templateForm.get("version").value,
+      author: this.templateForm.get("author").value,
+      nstNsdIds: this.storedNS.map(x => {
+        return { NsdId: x.uuid, slaID: x.slaUUID };
+      })
+    };
+
+    this.loading = true;
+    this.servicePlatformService
+      .postOneSliceTemplate(template)
+      .then(response => {
+        this.loading = false;
+        this.commonService.openSnackBar("Template successfully created!", "");
+        this.close();
+      })
+      .catch(err => {
+        this.loading = false;
+        this.commonService.openSnackBar(
+          "There was an error in the template creation",
+          ""
+        );
+      });
   }
 
   close() {
