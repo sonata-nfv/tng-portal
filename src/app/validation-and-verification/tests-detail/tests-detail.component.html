@@ -35,10 +35,12 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <button class="launch" *ngIf="detail['uuid']" (click)="launch()">
-    <i class="wui wui-caret-right"></i>
+  <div class="launch" *ngIf="detail['uuid']" (click)="launch()">
+    <button class="actions" mat-button>
+      <i class="wui wui-caret-right"></i>
+    </button>
     <span class="play">Execute test</span>
-  </button>
+  </div>
 
   <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
     <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}" disabled>
@@ -78,8 +80,8 @@
 </form>
 
 <!-- TODO change this ngIf to if test results -->
-<div class="results" > <!-- *ngIf="detail['name']" -->
-  <span class="sectionTitle">RESULTS</span>
+<div class="results" *ngIf="detail['name']">
+  <span class="sectionTitle">TEST EXECUTIONS</span>
   <!-- todo include results and graphs from tests -->
   <div class="chart">
       <div id="multychart">

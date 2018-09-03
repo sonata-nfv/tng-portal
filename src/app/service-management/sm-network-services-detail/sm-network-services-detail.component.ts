@@ -52,7 +52,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
       });
   }
 
-  instanciate() {
+  instantiate() {
     this.instantiateDialog.open(NsInstantiateDialogComponent, {
       data: {
         serviceUUID: this.detail["serviceID"],

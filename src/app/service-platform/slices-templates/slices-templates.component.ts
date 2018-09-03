@@ -103,8 +103,13 @@ export class SlicesTemplatesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.requestTemplates();
         this.commonService.openSnackBar(err, "");
       });
+  }
+
+  createNew() {
+    this.router.navigate(["new"], { relativeTo: this.route });
   }
 
   openTemplate(row) {

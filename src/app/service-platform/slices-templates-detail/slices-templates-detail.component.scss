@@ -16,7 +16,7 @@ app-slices-templates-detail {
   }
 
   form {
-    width: 60%;
+    width: 65%;
     align-items: flex-start;
     margin-bottom: 20px;
 
@@ -29,37 +29,15 @@ app-slices-templates-detail {
       }
     }
 
+    .launch {
+      margin-left: 25px;
+      margin-bottom: 25px;
+    }
+
     .sameRow {
       display: flex;
       flex-direction: row;
       width: 100%;
-    }
-
-    .launch {
-      display: flex;
-      flex-direction: row;
-      margin-left: 25px;
-      margin-top: 15px;
-      margin-bottom: 20px;
-
-      button {
-        border: none;
-        cursor: pointer;
-        outline: none;
-        padding: 15px 0 25px 0;
-        font-size: 18px;
-        color: $primary-font-color;
-        background-color: $basic-background-color;
-      }
-
-      i:before {
-        color: $ready-color;
-      }
-
-      span {
-        margin-left: 5px;
-        color: $secondary-font-color;
-      }
     }
   }
 }

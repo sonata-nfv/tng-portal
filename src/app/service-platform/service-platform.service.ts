@@ -238,7 +238,9 @@ export class ServicePlatformService {
                   .split("-")
                   .reverse()
                   .join("/"),
-                status: item.sla_status
+                status:
+                  item.sla_status.charAt(0).toUpperCase() +
+                  item.sla_status.slice(1).toLowerCase()
               };
             })
           );
@@ -277,7 +279,9 @@ export class ServicePlatformService {
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
               response["slad"]["sla_template"]["customer_info"]["cust_email"],
-            status: response["status"],
+            status:
+              response["status"].charAt(0).toUpperCase() +
+              response["status"].slice(1).toLowerCase(),
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],
@@ -621,6 +625,11 @@ export class ServicePlatformService {
     });
   }
 
+  /**
+   * Formats the usageState property of the slices to be displayed in the browser
+   *
+   * @param item usageState string
+   */
   prepareUsageState(item) {
     const parts = item.split("_");
     let str: string = "";
@@ -632,30 +641,6 @@ export class ServicePlatformService {
     });
 
     return str;
-  }
-
-  /**
-   * Removes the specified template from the database
-   *
-   * @param uuid UUID of the desired Slices Template.
-   */
-  deleteOneSlicesTemplate(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-
-      this.http
-        .delete(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
-          headers: headers,
-          responseType: "text"
-        })
-        .toPromise()
-        .then(response => {
-          resolve();
-        })
-        .catch(err => {
-          reject("There was an error deleting the slice template");
-        });
-    });
   }
 
   /**
@@ -683,13 +668,59 @@ export class ServicePlatformService {
             vendor: response["nstd"]["vendor"],
             notificationType: response["nstd"]["notificationTypes"],
             userDefinedData: response["nstd"]["userDefinedData"],
-            usageState: response["nstd"]["usageState"],
+            usageState: this.prepareUsageState(response["nstd"]["usageState"]),
             onboardingState: response["nstd"]["onboardingState"],
             operationalState: response["nstd"]["operationalState"],
             nstNsdIds: response["nstd"]["nstNsdIds"]
           });
         })
         .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Creates a Slice Template
+   *
+   * @param template Data of the new slice template
+   */
+  postOneSliceTemplate(template): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .post(this.config.baseSP + this.config.slicesTemplates, template, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject("There was an error creating the slice template");
+        });
+    });
+  }
+
+  /**
+   * Removes the specified template from the database
+   *
+   * @param uuid UUID of the desired Slices Template.
+   */
+  deleteOneSlicesTemplate(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers,
+          responseType: "text"
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject("There was an error deleting the slice template");
+        });
     });
   }
 
@@ -820,7 +851,7 @@ export class ServicePlatformService {
         )
         .toPromise()
         .then(response => {
-          resolve("Terminated");
+          resolve("Instance " + response["name"] + " terminated");
         })
         .catch(err =>
           reject("There was an error terminating the slice instance")

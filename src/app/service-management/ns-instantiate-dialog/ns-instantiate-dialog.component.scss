@@ -180,6 +180,7 @@ app-ns-instantiate-dialog {
       width: 180px;
       font-size: 18px;
       font-weight: bold;
+      box-shadow: 2px 2px 4px 0 $shadow-buttons;
 
       &.cancel {
         margin-right: 15px;

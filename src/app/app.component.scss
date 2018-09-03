@@ -121,6 +121,7 @@ app-spinner {
       font-size: 17px;
       font-weight: bold;
       color: $button-basic-font-color;
+      box-shadow: 2px 2px 4px 0 $shadow-buttons;
     }
 
     .edit-options {
@@ -149,6 +150,7 @@ app-spinner {
     font-weight: bold;
     color: $button-basic-font-color;
     background-color: $button-close-color;
+    box-shadow: 2px 2px 4px 0 $shadow-buttons;
   }
 
   // Create new button in list views
@@ -157,6 +159,7 @@ app-spinner {
     justify-content: center;
     width: 20%;
     background-color: $basic-background-color;
+    box-shadow: 2px 2px 4px 0 $shadow-buttons;
 
     span {
       margin-left: 5px;
@@ -179,6 +182,48 @@ app-spinner {
   color: $secondary-font-color-light;
   font-size: 37px;
   font-weight: normal;
+}
+
+// Ordered lists
+ol {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  counter-increment: item;
+  margin-bottom: 10px;
+
+  button {
+    margin: auto;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+    box-shadow: 2px 1px 2px 0 $shadow-buttons;
+  }
+
+  .wui-trash-alt:before {
+    font-size: 20px;
+  }
+}
+
+li:before {
+  margin-right: 10px;
+  content: counter(item) ". ";
+  background: $basic-background-color;
+  color: $secondary-font-color-light;
+  width: 1em;
+  font-size: 40px;
+  font-weight: bold;
+  transform: translate(0, 9px);
 }
 
 // Page subtitle styles
@@ -253,6 +298,7 @@ app-spinner {
   position: absolute;
   right: 6.5vw;
   background-color: $basic-background-color;
+  box-shadow: 2px 1px 2px 0 $shadow-buttons;
 
   .wui-undo::before {
     font-size: 20px;

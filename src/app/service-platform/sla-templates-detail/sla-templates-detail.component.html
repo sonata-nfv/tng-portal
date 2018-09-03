@@ -44,26 +44,29 @@
     <span class="sectionTitle">Service Guaranties</span>
 
     <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']">
+      <p>{{ item.definition }}</p>
 
-      <mat-form-field class="gName">
-        <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}" [disabled]="true">
-      </mat-form-field>
-
-      <div class="timePeriod">
-        <mat-form-field class="gPeriodValue">
-          <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
-            [disabled]="true">
+      <div class="sloInfo">
+        <mat-form-field class="gName">
+          <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}" [disabled]="true">
         </mat-form-field>
 
-        <mat-form-field class="gPeriod">
-          <input matInput placeholder="Time Period" value="{{ item.serviceLevelObjetive.period }}" [disabled]="true">
-        </mat-form-field>
-      </div>
+        <div class="timePeriod">
+          <mat-form-field class="gPeriodValue">
+            <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+              [disabled]="true">
+          </mat-form-field>
 
-      <!-- <button (click)="eraseEntry(entry)">
+          <mat-form-field class="gPeriod">
+            <input matInput placeholder="Time Period" value="{{ item.serviceLevelObjetive.period }}" [disabled]="true">
+          </mat-form-field>
+        </div>
+
+        <!-- <button (click)="eraseEntry(entry)">
         <i class="wui wui-trash-alt"></i>
       </button> -->
 
+      </div>
     </div>
 
     <!-- <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select> -->
