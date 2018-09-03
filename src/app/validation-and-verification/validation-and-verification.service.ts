@@ -105,6 +105,93 @@ export class ValidationAndVerificationPlatformService {
     });
   }
 
+  getRslTest() {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+        this.http 
+        .get(this.config.baseVNV + this.config.testsResults, { headers: headers })   
+        .toPromise()
+        .then(response => { 
+          resolve({
+            // data: response,
+            "data": [
+              {
+                "test_uuid":"2c20cee4-1312-49b4-b8b2-e15ec5982646",
+                "details": {
+                  "graphs": [
+                    { 
+                      "data": {
+                        "s1x":[ 0,1,2,3,4 ],
+                        "s1y":[ 154, 230, 350, 1000, 3000 ],
+                        "s2x":[ 1,2,3,4,5 ],
+                        "s2y":[ 1000, 2000, 2500, 3230, 5000 ],
+                      },
+                      "title":"Http Benchmark test",
+                      "type":"line",
+                      "x-axis-title":"Iteration",
+                      "x-axis-unit":"#",
+                      "y-axis-title":"Requests per second",
+                      "y-axis-unit":"rps"
+                    },
+                    { 
+                      "data": { 
+                        "s1x":[ 50, 75, 90, 99, 99.9, 99.99, 99.999, 100 ],
+                        "s1y":[ 103547000, 148242000, 175243000, 190710000, 193069000, 194249000, 194773000, 194904000 ],
+                        "s2x":[ 1 ],
+                        "s2y":[ 2000 ],
+                      },
+                        "title":"Latency Distribution",
+                        "type":"bar",
+                        "x-axis-title":"Percentile",
+                        "x-axis-unit":"Percentage",
+                        "y-axis-unit":"Microseconds",
+                        "y-axis-title":"Latency"
+                    }
+                  ],
+                },
+              },
+              {
+                "test_uuid":"2c20cee4-1312-49b4-b8b2-e15ec5982657",
+                "details": {
+                  "graphs": [
+                    { 
+                      "data": { 
+                        "s1x":[ 1 ],
+                        "s1y":[ 717.04 ],
+                        "s2x":[ 1 ],
+                        "s2y":[ 2000 ],
+                        "title":"Http Benchmark test",
+                        "type":"line",
+                        "x-axis-title":"Iteration",
+                        "x-axis-unit":"#",
+                        "y-axis-title":"Requests per second",
+                        "y-axis-unit":"rps"
+                      }, 
+                    },
+                    { 
+                      "data": { 
+                        "s1x":[ 50, 75, 90, 99, 99.9, 99.99, 99.999, 100 ],
+                        "s1y":[ 103547000, 148242000, 175243000, 190710000, 193069000, 194249000, 194773000, 194904000 ],
+                        "s2x":[ 1 ],
+                        "s2y":[ 2000 ],
+                        "title":"Latency Distribution",
+                        "type":"bar",
+                        "x-axis-title":"Percentile",
+                        "x-axis-unit":"Percentage",
+                        "y-axis-unit":"Microseconds",
+                        "y-axix-title":"Latency"
+                      }, 
+                    }
+                  ],
+                },
+              }
+            ],
+          }); 
+        })
+        .catch(err => reject(err.statusText));
+    });    
+  }
+
   /**
    * Launches a test or the test's of a service by UUID
    *

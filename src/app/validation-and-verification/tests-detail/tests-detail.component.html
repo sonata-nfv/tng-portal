@@ -83,6 +83,11 @@
 <div class="results" *ngIf="detail['name']">
   <span class="sectionTitle">TEST EXECUTIONS</span>
   <!-- todo include results and graphs from tests -->
+  <div class="chart">
+      <div id="multychart">
+        <!-- <td> <canvas height="140" id="lineChart"></canvas> </td> -->
+      </div>
+  </div>
 </div>
 
 <app-spinner *ngIf=" loading "></app-spinner>
