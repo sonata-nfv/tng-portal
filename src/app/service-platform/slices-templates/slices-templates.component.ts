@@ -107,6 +107,10 @@ export class SlicesTemplatesComponent implements OnInit {
       });
   }
 
+  createNew() {
+    this.router.navigate(["new"], { relativeTo: this.route });
+  }
+
   openTemplate(row) {
     let uuid = row.uuid;
     this.router.navigate(["detail/", uuid], { relativeTo: this.route });

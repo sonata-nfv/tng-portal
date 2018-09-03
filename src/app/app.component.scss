@@ -186,12 +186,33 @@ app-spinner {
 
 // Ordered lists
 ol {
+  display: flex;
+  flex-direction: column;
   list-style: none;
+  padding: 0;
 }
 
 li {
+  display: flex;
+  flex-direction: row;
   counter-increment: item;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+
+  button {
+    margin: auto;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+    box-shadow: 2px 1px 2px 0 $shadow-buttons;
+  }
+
+  .wui-trash-alt:before {
+    font-size: 20px;
+  }
 }
 
 li:before {
