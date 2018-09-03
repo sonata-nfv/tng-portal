@@ -1,0 +1,68 @@
+@import "../../../constants.scss";
+app-slices-templates-create {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  .subsectionTitle {
+    margin: 0;
+    width: 40%;
+
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    &.mat-form-field-should-float {
+      .mat-form-field-label-wrapper {
+        display: none;
+      }
+    }
+  }
+
+  .subheader .subtitle {
+    margin-top: -35px;
+  }
+
+  form {
+    width: 65%;
+
+    .inputBelow {
+      width: 25%;
+    }
+
+    .inputBelow:last-child {
+      margin-bottom: 50px;
+    }
+  }
+
+  span.sectionTitle {
+    width: 65%;
+  }
+
+  ol {
+    width: 65%;
+  }
+
+  li {
+    margin-top: 15px;
+  }
+
+  li app-select {
+    width: 45%;
+
+    &.slaList {
+      margin-left: 20px;
+    }
+  }
+}

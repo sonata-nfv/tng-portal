@@ -17,12 +17,24 @@ export class CommonService {
     public snackBar: MatSnackBar
   ) {}
 
+  /**
+   * Opens a snack bar for notifications on the bottom of the screen
+   *
+   * @param message Message to be displayed
+   * @param action Action displayed in the button
+   */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000
     });
   }
 
+  /**
+   * Compares two objects property to property
+   *
+   * @param obj1 First object to compare
+   * @param obj2 Second object to compare
+   */
   compareObjects(obj1, obj2) {
     var obj1Props = Object.getOwnPropertyNames(obj1);
     var obj2Props = Object.getOwnPropertyNames(obj2);
@@ -40,6 +52,11 @@ export class CommonService {
     return true;
   }
 
+  /**
+   * Prepares the received date to be displayed in the screen
+   *
+   * @param dateIn Date to be displayed
+   */
   formatUTCDate(dateIn) {
     return new Date(Date.parse(dateIn)).toUTCString();
   }
