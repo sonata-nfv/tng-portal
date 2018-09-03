@@ -625,6 +625,11 @@ export class ServicePlatformService {
     });
   }
 
+  /**
+   * Formats the usageState property of the slices to be displayed in the browser
+   *
+   * @param item usageState string
+   */
   prepareUsageState(item) {
     const parts = item.split("_");
     let str: string = "";
@@ -636,30 +641,6 @@ export class ServicePlatformService {
     });
 
     return str;
-  }
-
-  /**
-   * Removes the specified template from the database
-   *
-   * @param uuid UUID of the desired Slices Template.
-   */
-  deleteOneSlicesTemplate(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-
-      this.http
-        .delete(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
-          headers: headers,
-          responseType: "text"
-        })
-        .toPromise()
-        .then(response => {
-          resolve();
-        })
-        .catch(err => {
-          reject("There was an error deleting the slice template");
-        });
-    });
   }
 
   /**
@@ -694,6 +675,52 @@ export class ServicePlatformService {
           });
         })
         .catch(err => reject(err.statusText));
+    });
+  }
+
+  /**
+   * Creates a Slice Template
+   *
+   * @param template Data of the new slice template
+   */
+  postOneSliceTemplate(template): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      this.http
+        .post(this.config.baseSP + this.config.slicesTemplates, template, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject("There was an error creating the slice template");
+        });
+    });
+  }
+
+  /**
+   * Removes the specified template from the database
+   *
+   * @param uuid UUID of the desired Slices Template.
+   */
+  deleteOneSlicesTemplate(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .delete(this.config.baseSP + this.config.slicesTemplates + "/" + uuid, {
+          headers: headers,
+          responseType: "text"
+        })
+        .toPromise()
+        .then(response => {
+          resolve();
+        })
+        .catch(err => {
+          reject("There was an error deleting the slice template");
+        });
     });
   }
 
