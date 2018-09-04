@@ -59,15 +59,19 @@
         <span class="play">Ready to use</span>
     </div>
 
-    <mat-form-field *ngIf="detail['nstNsdIds']">
-        <div *ngFor="let item of detail['nstNsdIds']">
-            <input class="element" matInput placeholder="Network service descriptors" value="{{ item }}" disabled>
-        </div>
-    </mat-form-field>
-
     <mat-form-field *ngIf="detail['userDefinedData']">
         <input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled>
     </mat-form-field>
+
+    <span class="sectionTitle" *ngIf="detail['nstNsdIds']">Network Services</span>
+
+    <ol *ngIf="detail['nstNsdIds']">
+        <li *ngFor="let item of detail['nstNsdIds']">
+            <app-select placeholder="Network service descriptor" [list]="[item.nsdID]" [value]="item.nsdID" [disabled]="true"></app-select>
+
+            <app-select *ngIf="item.slaID" class="slaList " placeholder="SLA Template" [list]="[item.slaID]" [value]="item.slaID" [disabled]="true"></app-select>
+        </li>
+    </ol>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>
