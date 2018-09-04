@@ -55,6 +55,10 @@ export class SlicesTemplatesCreateComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
+        if (response.length < 1) {
+          throw "No network services";
+        }
+
         this.nsList = response.map(
           x => x.vendor + ": " + x.name + " - v" + x.version
         );
