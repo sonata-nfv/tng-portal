@@ -56,10 +56,14 @@ export class SlaTemplatesCreateComponent implements OnInit {
       .then(responses => {
         this.loading = false;
 
+        if (responses[0].length < 1 || responses[1].length < 1) {
+          throw "No network services";
+        }
+
         // Save guarantees and NS data to display
         this.nsList = responses[0].map(x => x.name);
 
-        // Filter by the only guarantee ids supported at the moment
+        // Create a list of guarantees to display in the select
         this.guarantiesList = responses[1].map(
           x => x.guaranteeID + " - " + x.name + ": " + x.value + " " + x.unit
         );
