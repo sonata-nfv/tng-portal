@@ -41,12 +41,12 @@ app-tests-detail {
     }
   }
 
-  // RESULTS PART
-  .results {
+  // TEST EXECUTIONS PART
+  .executions {
     width: 65%;
     align-items: flex-start;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     .sectionTitle {
       font-size: 24px;
