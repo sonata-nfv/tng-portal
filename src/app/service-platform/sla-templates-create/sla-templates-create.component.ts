@@ -158,6 +158,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
   addGuarantee(guarantee) {
     if (guarantee != null) {
       const id = guarantee.split(" - ")[0];
+      const prop = guarantee.split(" - ")[1].split(": ")[0];
 
       // Include the selected guarantee in the displayed list
       this.storedGuarantees.push(
@@ -167,6 +168,11 @@ export class SlaTemplatesCreateComponent implements OnInit {
       // Remove the selected guarantee from the guarantees list offered
       this.guarantiesList = this.guarantiesList.filter(
         x => x.split(" - ")[0] !== id
+      );
+
+      // Remove other guarantees with same goals
+      this.guarantiesList = this.guarantiesList.filter(
+        x => x.split(" - ")[1].split(": ")[0] !== prop
       );
 
       this._onFormChanges();
@@ -183,8 +189,14 @@ export class SlaTemplatesCreateComponent implements OnInit {
     this.storedGuarantees = this.storedGuarantees.filter(
       x => x.guaranteeID !== item.guaranteeID
     );
-    // Save item in the offered guarantees
-    this.guarantiesList.push(item.guaranteeID + " - " + item.name);
+    // Save all items with that property in the offered guarantees
+    this.guarantiesList = this.guarantiesList.concat(
+      this.guaranties
+        .filter(x => x.name == item.name)
+        .map(
+          x => x.guaranteeID + " - " + x.name + ": " + x.value + " " + x.unit
+        )
+    );
 
     this._onFormChanges();
   }
