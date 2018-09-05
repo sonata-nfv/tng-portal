@@ -69,7 +69,8 @@
         <dt *ngFor="let item of detail['nstNsdIds']">
             <app-select placeholder="Network service descriptor" [list]="[item.nsdID]" [value]="item.nsdID" [disabled]="true"></app-select>
 
-            <app-select *ngIf="item.slaID" class="slaList " placeholder="SLA Template" [list]="[item.slaID]" [value]="item.slaID" [disabled]="true"></app-select>
+            <app-select class="slaList " placeholder="SLA Template" [list]="[item.slaID ? item.slaID : 'None']" [value]="item.slaID ? item.slaID : 'None'"
+                [disabled]="true"></app-select>
         </dt>
     </dl>
 </form>
