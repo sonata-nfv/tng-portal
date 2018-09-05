@@ -132,7 +132,7 @@ export class ValidationAndVerificationPlatformService {
       }
 
       this.http
-        .post(this.config.baseVNV + this.config.testExecute, {
+        .post(this.config.baseVNV + this.config.testExecute, data, {
           headers: headers
         })
         .toPromise()
