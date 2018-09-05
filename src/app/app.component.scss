@@ -185,14 +185,16 @@ app-spinner {
 }
 
 // Ordered lists
-ol {
+ol,
+dl {
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
 
-li {
+li,
+dt {
   display: flex;
   flex-direction: row;
   counter-increment: item;
