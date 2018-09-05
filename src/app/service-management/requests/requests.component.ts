@@ -54,6 +54,6 @@ export class RequestsComponent implements OnInit {
 
   openRequest(row) {
     let uuid = row.requestId;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    this.router.navigate([uuid], { relativeTo: this.route });
   }
 }

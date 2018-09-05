@@ -109,9 +109,11 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumnsExecutions">
     </tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions;">
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions;" (click)="openTestResults(row)">
     </tr>
   </table>
 </div>
 
 <app-spinner *ngIf=" loading "></app-spinner>
+
+<router-outlet></router-outlet>

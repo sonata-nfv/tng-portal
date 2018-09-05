@@ -78,6 +78,12 @@ export class TestsDetailComponent implements OnInit {
       });
   }
 
+  openTestResults(row) {
+    this.router.navigate(["results", row["uuid"]], {
+      relativeTo: this.route
+    });
+  }
+
   close() {
     this.router.navigate(["validation-and-verification/tests"]);
   }
