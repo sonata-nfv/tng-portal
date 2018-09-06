@@ -185,14 +185,16 @@ app-spinner {
 }
 
 // Ordered lists
-ol {
+ol,
+dl {
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
 }
 
-li {
+li,
+dt {
   display: flex;
   flex-direction: row;
   counter-increment: item;
@@ -329,62 +331,64 @@ li:before {
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
+}
 
-  span {
-    width: 100%;
-    min-height: 20px;
+.description span {
+  width: 100%;
+  min-height: 20px;
 
-    &.title {
-      color: $secondary-font-color-light;
+  &.title {
+    color: $secondary-font-color-light;
+  }
+
+  &.content {
+    overflow-y: auto;
+    min-height: 200px;
+    max-height: 200px;
+    color: $secondary-font-color;
+    background-color: $panel-background-color;
+    border-top: 1px solid $border-line-color;
+    border-bottom: 1px solid $border-line-color;
+
+    p {
+      margin: 5px;
     }
 
-    &.content {
-      min-height: 200px;
-      color: $secondary-font-color;
+    // Styles for a table inside the description div
+    table th.mat-header-cell,
+    table td.mat-cell {
       background-color: $panel-background-color;
-      border-top: 1px solid $border-line-color;
-      border-bottom: 1px solid $border-line-color;
+    }
 
-      p {
-        margin: 5px;
-      }
-
-      // Styles for a table inside the description div
-      table th.mat-header-cell,
-      table td.mat-cell {
-        background-color: $panel-background-color;
-      }
-
-      // Underline styles
-      tr.mat-row {
-        background-position: bottom;
-        background-size: 100% 1px;
-        background-repeat: no-repeat;
-      }
+    // Underline styles
+    tr.mat-row {
+      background-position: bottom;
+      background-size: 100% 1px;
+      background-repeat: no-repeat;
     }
   }
+}
 
-  .mat-form-field-wrapper {
-    width: 100%;
-  }
+.description .mat-form-field-wrapper {
+  width: 100%;
+}
 
-  .mat-form-field-underline {
-    display: none;
-  }
+.description .mat-form-field-underline {
+  display: none;
+}
 
-  .mat-form-field-infix {
-    padding: 0;
-    border: 0;
+.description .mat-form-field-infix {
+  padding: 0;
+  border: 0;
 
-    .content {
-      min-height: 100px;
-      padding-top: 5px;
-      padding-left: 5px;
-      margin-top: 5px;
-      background-color: $panel-background-color;
-      border-top: 1px solid $border-line-color;
-      border-bottom: 1px solid $border-line-color;
-    }
+  .content {
+    min-height: 100px;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-top: 5px;
+    background-color: $panel-background-color;
+    border-top: 1px solid $border-line-color;
+    border-bottom: 1px solid $border-line-color;
   }
 }
 

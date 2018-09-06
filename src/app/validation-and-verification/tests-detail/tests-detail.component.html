@@ -1,4 +1,4 @@
-<h1 class="sectionTitle" *ngIf="detail['name']">Tests</h1>
+<h1 class="sectionTitle" *ngIf="detail['name']">TESTS</h1>
 
 <div class="header" *ngIf="detail['name']">
   <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
@@ -55,16 +55,20 @@
 
   <div class="description" *ngIf="detail['services']">
     <span class="title">AGAINST WHICH SERVICES</span>
+
     <span class="content">
+
       <table mat-table [dataSource]="detail['services']">
         <ng-container matColumnDef="vendor">
           <th mat-header-cell *matHeaderCellDef> Vendor </th>
           <td mat-cell *matCellDef="let element"> {{ element.sVendor }} </td>
         </ng-container>
+
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{ element.sName }} </td>
         </ng-container>
+
         <ng-container matColumnDef="version">
           <th mat-header-cell *matHeaderCellDef> Version </th>
           <td mat-cell *matCellDef="let element"> {{ element.sVersion }} </td>
@@ -79,10 +83,37 @@
   </div>
 </form>
 
-<!-- TODO change this ngIf to if test results -->
-<div class="results" *ngIf="detail['name']">
+<div class="executions" *ngIf="executions && executions.length > 0">
   <span class="sectionTitle">TEST EXECUTIONS</span>
-  <!-- todo include results and graphs from tests -->
+
+  <table mat-table [dataSource]="executions">
+    <ng-container matColumnDef="uuid">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{ element.uuid }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="serviceUUID">
+      <th mat-header-cell *matHeaderCellDef> Service ID </th>
+      <td mat-cell *matCellDef="let element"> {{ element.serviceUUID }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{ element.createdAt }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsExecutions">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions;" (click)="openTestResults(row)">
+    </tr>
+  </table>
 </div>
 
-<app-spinner *ngIf=" loading "></app-spinner>
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

@@ -117,7 +117,7 @@ export class SlicesTemplatesCreateComponent implements OnInit {
       const slaObj =
         sla != "None" ? this.slaListComplete.find(x => x.name === sla) : null;
 
-      this.nsObj["sla"] = slaObj ? slaObj.name : null;
+      this.nsObj["sla"] = slaObj ? slaObj.name : "None";
       this.nsObj["slaUUID"] = slaObj ? slaObj.uuid : null;
 
       this.storedNS.push(Object.assign({}, this.nsObj));

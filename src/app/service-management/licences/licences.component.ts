@@ -70,7 +70,7 @@ export class LicencesComponent implements OnInit {
   openLicences(row) {
     let uuid = row.licenceId;
     this.getLicenceById(uuid);
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    this.router.navigate([uuid], { relativeTo: this.route });
   }
 
   getLicenceById(uuid) {

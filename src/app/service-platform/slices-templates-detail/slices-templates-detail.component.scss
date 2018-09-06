@@ -45,15 +45,15 @@ app-slices-templates-detail {
     margin-top: 20px;
   }
 
-  ol {
+  dl {
     width: 100%;
   }
 
-  li {
+  dt {
     margin-top: 15px;
   }
 
-  li app-select {
+  dt app-select {
     width: 45%;
 
     &.slaList {

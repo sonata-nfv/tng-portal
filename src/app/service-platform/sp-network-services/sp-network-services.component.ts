@@ -57,6 +57,6 @@ export class SpNetworkServicesComponent implements OnInit {
 
   openNetworkService(row) {
     let uuid = row.serviceId;
-    this.router.navigate(["detail/", uuid], { relativeTo: this.route });
+    this.router.navigate([uuid], { relativeTo: this.route });
   }
 }
