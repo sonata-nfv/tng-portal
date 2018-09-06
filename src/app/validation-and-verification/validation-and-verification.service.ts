@@ -80,14 +80,14 @@ export class ValidationAndVerificationPlatformService {
             name: response["testd"]["name"],
             vendor: response["testd"]["vendor"],
             version: response["testd"]["version"],
-            // timesExecuted: response["testd"]
-            timesExecuted: "20",
+            timesExecuted: response["executions"],
             author: response["testd"]["author"],
             description: response["testd"]["description"],
             createdAt: response["created_at"],
             status: response["status"],
-            // lastTimeExecuted: response["testd"]
-            lastTimeExecuted: "this is date",
+            lastTimeExecuted: this.commonService.formatUTCDate(
+              response["last_time_executed"]
+            ),
             // services: response["testd"]
             services: [
               {
