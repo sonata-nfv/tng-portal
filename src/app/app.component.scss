@@ -343,6 +343,7 @@ li:before {
 
   &.content {
     overflow-y: auto;
+    white-space: pre-line;
     min-height: 200px;
     max-height: 200px;
     color: $secondary-font-color;

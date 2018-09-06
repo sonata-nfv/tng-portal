@@ -131,12 +131,12 @@ const routes: Routes = [
         component: RuntimePoliciesComponent,
         children: [
           {
-            path: ":id",
-            component: RuntimePoliciesDetailComponent
-          },
-          {
             path: "new",
             component: RuntimePoliciesCreateComponent
+          },
+          {
+            path: ":id",
+            component: RuntimePoliciesDetailComponent
           }
         ]
       },
@@ -149,12 +149,12 @@ const routes: Routes = [
         component: SlaTemplatesComponent,
         children: [
           {
-            path: ":id",
-            component: SlaTemplatesDetailComponent
-          },
-          {
             path: "new",
             component: SlaTemplatesCreateComponent
+          },
+          {
+            path: ":id",
+            component: SlaTemplatesDetailComponent
           }
         ]
       },
@@ -176,16 +176,16 @@ const routes: Routes = [
         path: "service-platform/slices/slices-templates",
         component: SlicesTemplatesComponent,
         children: [
-          { path: ":id", component: SlicesTemplatesDetailComponent },
-          { path: "new", component: SlicesTemplatesCreateComponent }
+          { path: "new", component: SlicesTemplatesCreateComponent },
+          { path: ":id", component: SlicesTemplatesDetailComponent }
         ]
       },
       {
         path: "service-platform/slices/slices-instances",
         component: SlicesInstancesComponent,
         children: [
-          { path: ":id", component: SlicesInstancesDetailComponent },
-          { path: "new", component: SlicesInstancesCreateComponent }
+          { path: "new", component: SlicesInstancesCreateComponent },
+          { path: ":id", component: SlicesInstancesDetailComponent }
         ]
       },
       // Service Management section
