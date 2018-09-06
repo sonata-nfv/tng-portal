@@ -1,4 +1,4 @@
-<h1 class="sectionTitle" *ngIf="detail['name']">Tests</h1>
+<h1 class="sectionTitle" *ngIf="detail['name']">TESTS</h1>
 
 <div class="header" *ngIf="detail['name']">
   <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
@@ -114,6 +114,6 @@
   </table>
 </div>
 
-<app-spinner *ngIf=" loading "></app-spinner>
+<app-spinner *ngIf="loading"></app-spinner>
 
 <router-outlet></router-outlet>

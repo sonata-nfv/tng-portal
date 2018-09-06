@@ -143,6 +143,11 @@ export class ValidationAndVerificationPlatformService {
     });
   }
 
+  /**
+   * Recovers the list of test executions for a test
+   *
+   * @param uuid UUID of the desired test
+   */
   getTestExecutions(uuid): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
@@ -173,6 +178,38 @@ export class ValidationAndVerificationPlatformService {
           }
         })
         .catch(err => resolve([]));
+    });
+  }
+
+  /**
+   * Recovers the results of a test execution
+   *
+   * @param uuid UUID of the desired test execution
+   */
+  getTestResults(uuid): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      let url = this.config.baseVNV + this.config.testExecutions + "/" + uuid;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            status: response["status"],
+            updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
+            testerResultText: response["tester_result_text"],
+            sterr: response["sterr"],
+            details: response["details"]["details"]
+          });
+        })
+        .catch(err =>
+          reject("There was an error while fetching the test execution results")
+        );
     });
   }
 }
