@@ -33,10 +33,11 @@ export class ConfigService {
   init() {
     if (window.location.origin.includes("localhost")) {
       this.baseSP =  "http://pre-int-sp-ath.5gtango.eu:32002/api/v3/";
-      this.baseVNV = "http://sta-vnv-ath-v4-0.5gtango.eu:32002/api/v3/";                       
+      this.baseVNV = "https://pre-int-vnv-bcn.5gtango.eu/api/v3/"; 
+                            
       // this.baseVNV = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";                        
       this.baseATH = "http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/";      
 
-    }
+    } // https://pre-int-vnv-bcn.5gtango.eu/api/v3/tests/descriptors
   }
 }
