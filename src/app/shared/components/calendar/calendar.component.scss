@@ -4,21 +4,30 @@ app-calendar {
     font-size: 16px;
     color: $secondary-font-color;
     width: 180px;
+
     input.mat-input-element {
       font-size: 16px;
       color: $secondary-font-color;
     }
+
+    .mat-input-element:disabled {
+      color: $primary-font-color;
+    }
+
     .mat-datepicker-toggle-active {
       color: $form-focus;
     }
+
     .mat-datepicker-toggle-default-icon {
       color: $form-focus;
       font-size: 22px;
     }
   }
+
   .mat-form-field .mat-form-field-underline {
     background-color: $form-underline-color;
   }
+
   // Hide placeholder
   .hidePlaceholder .mat-form-field-can-float.mat-form-field-should-float {
     .mat-form-field-label {

@@ -22,7 +22,7 @@ app-slices-templates-detail {
 
     .mat-form-field {
       width: 100%;
-      margin-left: 25px;
+      // margin-left: 25px;
 
       .element {
         margin-bottom: 5px;
@@ -30,7 +30,7 @@ app-slices-templates-detail {
     }
 
     .launch {
-      margin-left: 25px;
+      // margin-left: 25px;
       margin-bottom: 25px;
     }
 
@@ -38,6 +38,26 @@ app-slices-templates-detail {
       display: flex;
       flex-direction: row;
       width: 100%;
+    }
+  }
+
+  span.sectionTitle {
+    margin-top: 20px;
+  }
+
+  dl {
+    width: 100%;
+  }
+
+  dt {
+    margin-top: 15px;
+  }
+
+  dt app-select {
+    width: 45%;
+
+    &.slaList {
+      margin-left: 20px;
     }
   }
 }

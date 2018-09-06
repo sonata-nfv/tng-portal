@@ -31,25 +31,25 @@
 
 <span class="sectionTitle">Network Services</span>
 
-<ol *ngIf="storedNS">
-  <li *ngFor="let item of storedNS; let i = index">
-    <app-select *ngIf="storedNS.length > 0" placeholder="Select Network Service" [list]="[item.name]" [value]="item.name" [disabled]="true"></app-select>
+<dl *ngIf="storedNS">
+  <dt *ngFor="let item of storedNS; let i = index">
+    <app-select *ngIf="storedNS.length > 0" placeholder="Network Service" [list]="[item.name]" [value]="item.name" [disabled]="true"></app-select>
 
-    <app-select *ngIf="storedNS.length > 0 && item.sla != null" class="slaList " placeholder="Select SLA Template" [list]="[item.sla]"
+    <app-select *ngIf="storedNS.length > 0 && item.sla != null" class="slaList " placeholder="SLA Template" [list]="[item.sla]"
       [value]="item.sla" [disabled]="true"></app-select>
 
     <button class="actions " mat-button (click)="eraseEntry(i) ">
       <i class="wui wui-trash-alt "></i>
     </button>
-  </li>
+  </dt>
 
-  <li>
+  <dt>
     <app-select *ngIf="nsList.length> 0" placeholder="Select Network Service" [reset]="reset" [list]="nsList" (selectEvent)="receiveNS($event)">
     </app-select>
 
     <app-select *ngIf="nsObj && nsObj != null" class="slaList" placeholder="Select SLA Template" [reset]="reset" [list]="slaList"
       (selectEvent)="receiveSLA($event)"></app-select>
-  </li>
-</ol>
+  </dt>
+</dl>
 
 <app-spinner *ngIf="loading"></app-spinner>

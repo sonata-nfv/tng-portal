@@ -14,7 +14,9 @@ import { ChartService } from "../chart/chart.service";
 export class TestsDetailComponent implements OnInit {
   loading: boolean;
   detail = {};
+  executions = new Array();
   displayedColumns = ["vendor", "name", "version"];
+  displayedColumnsExecutions = ["uuid", "serviceUUID", "date", "status"];
 
   constructor(
     private router: Router,
@@ -42,11 +44,30 @@ export class TestsDetailComponent implements OnInit {
     this.verificationAndValidationPlatformService
       .getOneTest(uuid)
       .then(response => {
-        this.loading = false;
         this.detail = response;
 
       })
-      .catch(err => console.error(err));
+      .then(() => {
+        this.verificationAndValidationPlatformService
+          .getTestExecutions(this.detail["uuid"])
+          .then(response => {
+            this.loading = false;
+
+            if (response.length < 1) {
+              this.commonService.openSnackBar(
+                "There are no test executions available",
+                ""
+              );
+            } else {
+              this.executions = response;
+            }
+          });
+      })
+      .catch(err => {
+        this.loading = false;
+        this.commonService.openSnackBar(err, "");
+        this.close();
+      });
   }
 
   requestTestResult(uuid) {
@@ -131,6 +152,7 @@ export class TestsDetailComponent implements OnInit {
         }
       } else {
       }
+
     });
   }
 
@@ -143,6 +165,12 @@ export class TestsDetailComponent implements OnInit {
       .catch(err => {
         this.commonService.openSnackBar(err, "");
       });
+  }
+
+  openTestResults(row) {
+    this.router.navigate(["results", row["uuid"]], {
+      relativeTo: this.route
+    });
   }
 
   close() {

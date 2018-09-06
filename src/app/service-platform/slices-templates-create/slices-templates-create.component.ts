@@ -55,6 +55,10 @@ export class SlicesTemplatesCreateComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
+        if (response.length < 1) {
+          throw "No network services";
+        }
+
         this.nsList = response.map(
           x => x.vendor + ": " + x.name + " - v" + x.version
         );
@@ -113,7 +117,7 @@ export class SlicesTemplatesCreateComponent implements OnInit {
       const slaObj =
         sla != "None" ? this.slaListComplete.find(x => x.name === sla) : null;
 
-      this.nsObj["sla"] = slaObj ? slaObj.name : null;
+      this.nsObj["sla"] = slaObj ? slaObj.name : "None";
       this.nsObj["slaUUID"] = slaObj ? slaObj.uuid : null;
 
       this.storedNS.push(Object.assign({}, this.nsObj));

@@ -14,6 +14,7 @@ import { UsersComponent } from "./users/users.component";
 
 import { TestsComponent } from "./validation-and-verification/tests/tests.component";
 import { TestsDetailComponent } from "./validation-and-verification/tests-detail/tests-detail.component";
+import { TestResultsComponent } from "./validation-and-verification/test-results/test-results.component";
 import { VnvNetworkServicesComponent } from "./validation-and-verification/vnv-network-services/vnv-network-services.component";
 import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
 
@@ -91,7 +92,13 @@ const routes: Routes = [
       {
         path: "validation-and-verification/tests",
         component: TestsComponent,
-        children: [{ path: "detail/:id", component: TestsDetailComponent }]
+        children: [
+          { path: ":id", component: TestsDetailComponent },
+          {
+            path: ":id/results/:results_uuid",
+            component: TestResultsComponent
+          }
+        ]
       },
 
       // Service Platform section
@@ -103,21 +110,17 @@ const routes: Routes = [
       {
         path: "service-platform/packages",
         component: SpPackagesComponent,
-        children: [{ path: "detail/:id", component: SpPackagesDetailComponent }]
+        children: [{ path: ":id", component: SpPackagesDetailComponent }]
       },
       {
         path: "service-platform/network-services",
         component: SpNetworkServicesComponent,
-        children: [
-          { path: "detail/:id", component: SpNetworkServicesDetailComponent }
-        ]
+        children: [{ path: ":id", component: SpNetworkServicesDetailComponent }]
       },
       {
         path: "service-platform/functions",
         component: FunctionsComponent,
-        children: [
-          { path: "detail/:id", component: SpFunctionsDetailComponent }
-        ]
+        children: [{ path: ":id", component: SpFunctionsDetailComponent }]
       },
       {
         path: "service-platform/policies/placement-policy",
@@ -128,7 +131,7 @@ const routes: Routes = [
         component: RuntimePoliciesComponent,
         children: [
           {
-            path: "detail/:id",
+            path: ":id",
             component: RuntimePoliciesDetailComponent
           },
           {
@@ -146,7 +149,7 @@ const routes: Routes = [
         component: SlaTemplatesComponent,
         children: [
           {
-            path: "detail/:id",
+            path: ":id",
             component: SlaTemplatesDetailComponent
           },
           {
@@ -160,7 +163,7 @@ const routes: Routes = [
         component: SlaAgreementsComponent,
         children: [
           {
-            path: "detail/:id_sla/:id_ns",
+            path: ":id_sla/:id_ns",
             component: SlaAgreementsDetailComponent
           }
         ]
@@ -173,7 +176,7 @@ const routes: Routes = [
         path: "service-platform/slices/slices-templates",
         component: SlicesTemplatesComponent,
         children: [
-          { path: "detail/:id", component: SlicesTemplatesDetailComponent },
+          { path: ":id", component: SlicesTemplatesDetailComponent },
           { path: "new", component: SlicesTemplatesCreateComponent }
         ]
       },
@@ -181,7 +184,7 @@ const routes: Routes = [
         path: "service-platform/slices/slices-instances",
         component: SlicesInstancesComponent,
         children: [
-          { path: "detail/:id", component: SlicesInstancesDetailComponent },
+          { path: ":id", component: SlicesInstancesDetailComponent },
           { path: "new", component: SlicesInstancesCreateComponent }
         ]
       },
@@ -194,25 +197,23 @@ const routes: Routes = [
       {
         path: "service-management/network-services",
         component: SmNetworkServicesComponent,
-        children: [
-          { path: "detail/:id", component: SmNetworkServicesDetailComponent }
-        ]
+        children: [{ path: ":id", component: SmNetworkServicesDetailComponent }]
       },
       {
         path: "service-management/requests",
         component: RequestsComponent,
-        children: [{ path: "detail/:id", component: RequestDetailComponent }]
+        children: [{ path: ":id", component: RequestDetailComponent }]
       },
       {
         path: "service-management/network-service-instances",
         component: NetworkServiceInstancesComponent,
         children: [
           {
-            path: "detail/:id",
+            path: ":id",
             component: NetworkServiceInstancesDetailComponent
           },
           {
-            path: "detail/:id/vnf/:vnfr_id",
+            path: ":id/vnf/:vnfr_id",
             component: FunctionRecordsDetailComponent
           }
         ]
@@ -220,7 +221,7 @@ const routes: Routes = [
       {
         path: "service-management/licences",
         component: LicencesComponent,
-        children: [{ path: "detail/:id", component: LicencesDetailComponent }]
+        children: [{ path: ":id", component: LicencesDetailComponent }]
       },
       {
         path: "service-management/licences/service-licences",

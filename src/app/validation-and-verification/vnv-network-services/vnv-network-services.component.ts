@@ -55,7 +55,7 @@ export class VnvNetworkServicesComponent implements OnInit {
 
   execute(row) {
     this.verificationAndValidationPlatformService
-      .postOneTest("service", row["uuid"])
+      .postOneTest("service", row["serviceId"])
       .then(response => {
         this.commonService.openSnackBar("Success!", "");
       })

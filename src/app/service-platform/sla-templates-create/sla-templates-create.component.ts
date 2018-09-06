@@ -56,10 +56,14 @@ export class SlaTemplatesCreateComponent implements OnInit {
       .then(responses => {
         this.loading = false;
 
+        if (responses[0].length < 1 || responses[1].length < 1) {
+          throw "No network services";
+        }
+
         // Save guarantees and NS data to display
         this.nsList = responses[0].map(x => x.name);
 
-        // Filter by the only guarantee ids supported at the moment
+        // Create a list of guarantees to display in the select
         this.guarantiesList = responses[1].map(
           x => x.guaranteeID + " - " + x.name + ": " + x.value + " " + x.unit
         );
@@ -154,6 +158,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
   addGuarantee(guarantee) {
     if (guarantee != null) {
       const id = guarantee.split(" - ")[0];
+      const prop = guarantee.split(" - ")[1].split(": ")[0];
 
       // Include the selected guarantee in the displayed list
       this.storedGuarantees.push(
@@ -163,6 +168,11 @@ export class SlaTemplatesCreateComponent implements OnInit {
       // Remove the selected guarantee from the guarantees list offered
       this.guarantiesList = this.guarantiesList.filter(
         x => x.split(" - ")[0] !== id
+      );
+
+      // Remove other guarantees with same goals
+      this.guarantiesList = this.guarantiesList.filter(
+        x => x.split(" - ")[1].split(": ")[0] !== prop
       );
 
       this._onFormChanges();
@@ -179,8 +189,14 @@ export class SlaTemplatesCreateComponent implements OnInit {
     this.storedGuarantees = this.storedGuarantees.filter(
       x => x.guaranteeID !== item.guaranteeID
     );
-    // Save item in the offered guarantees
-    this.guarantiesList.push(item.guaranteeID + " - " + item.name);
+    // Save all items with that property in the offered guarantees
+    this.guarantiesList = this.guarantiesList.concat(
+      this.guaranties
+        .filter(x => x.name == item.name)
+        .map(
+          x => x.guaranteeID + " - " + x.name + ": " + x.value + " " + x.unit
+        )
+    );
 
     this._onFormChanges();
   }
