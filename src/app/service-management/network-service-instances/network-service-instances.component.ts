@@ -22,7 +22,6 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
     "name",
     "status",
     "version",
-    "latestVersion",
     "createdAt",
     // "reload",
     "stop"

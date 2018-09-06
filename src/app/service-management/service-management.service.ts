@@ -155,8 +155,7 @@ export class ServiceManagementService {
                 status: item.status,
                 serviceID: item.descriptor_reference,
                 createdAt: this.commonService.formatUTCDate(item.created_at),
-                version: item.version,
-                latestVersion: "Not available"
+                version: item.version
               }))
             );
           } else {
