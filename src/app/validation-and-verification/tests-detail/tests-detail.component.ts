@@ -29,7 +29,6 @@ export class TestsDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.requestTest(params["id"]);
-      this.requestTestResult(params["id"]);
     });
   }
 
@@ -68,14 +67,6 @@ export class TestsDetailComponent implements OnInit {
         this.commonService.openSnackBar(err, "");
         this.close();
       });
-  }
-
-  requestTestResult(uuid) {
-    this.verificationAndValidationPlatformService
-    .getRslTest()
-    .then(response => {
-      this.loading = false;
-    });
   }
 
   launch() {

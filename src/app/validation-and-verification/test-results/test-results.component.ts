@@ -14,6 +14,7 @@ import { ChartService } from "../chart/chart.service";
 export class TestResultsComponent implements OnInit {
   loading: boolean;
   detail = {};
+  charts = {};
   testUUID: string;
 
   constructor(
@@ -38,78 +39,33 @@ export class TestResultsComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.detail = response;
-
-        let multiChart = {
-          chart: [],
-          type: [],
-          title: [],
-          xTitle: [],
-          yTitle: [],
-          s1x: [],
-          s1y: [],
-          s2x: [],
-          s2y: []
+        this.charts = {
+          ds: {
+            chart: [],
+            type_: [],
+            title: [],
+            xTtle: [],
+            yTtle: []
+          },
+          s1: {
+            serie: [],
+            xAxis: [],
+            yAxis: []
+          },
+          s2: {
+            serie: [],
+            xAxis: [],
+            yAxis: []
+          },
+          s3: {
+            serie: [],
+            xAxis: [],
+            yAxis: []
+          }
         };
-
         if (this.detail["graphs"] !== null) {
-          for (var i = 0; i < this.detail["graphs"].length; i++) {
-            let div = document.createElement("div"),
-              canvas = document.createElement("canvas");
-
-            canvas.setAttribute("id", "chrat-" + i);
-            document
-              .getElementById("multychart")
-              .appendChild(div)
-              .appendChild(canvas);
-
-            multiChart.chart.push(i);
-            multiChart.type.push(this.detail["graphs"][i]["type"]);
-            multiChart.title.push(this.detail["graphs"][i]["title"]);
-            multiChart.xTitle.push(this.detail["graphs"][i]["x-axis-title"]);
-            multiChart.yTitle.push(this.detail["graphs"][i]["y-axis-title"]);
-            multiChart.s1x.push(this.detail["graphs"][i]["data"]["s1x"]);
-            multiChart.s1y.push(this.detail["graphs"][i]["data"]["s1y"]);
-            multiChart.s2x.push(this.detail["graphs"][i]["data"]["s2x"]);
-            multiChart.s2y.push(this.detail["graphs"][i]["data"]["s2y"]);
-          }
-
-          console.log(
-            "TCL: TestResultsComponent -> requestResults -> multiChart",
-            multiChart
-          );
-
-          for (let i = 0; i < multiChart.chart.length; i++) {
-            if (
-              multiChart.type[i] == "line" &&
-              multiChart.s2y[i] !== undefined
-            ) {
-              this.chartService.chartBar(
-                false,
-                true,
-                "chrat-" + multiChart.chart[i],
-                multiChart.type[i],
-                multiChart.title[i],
-                multiChart.xTitle[i],
-                multiChart.s1y[i],
-                multiChart.s2y[i],
-                multiChart.yTitle[i],
-                multiChart.s1x[i]
-              );
-            } else {
-              this.chartService.chartBar(
-                true,
-                false,
-                "chrat-" + multiChart.chart[i],
-                multiChart.type[i],
-                multiChart.title[i],
-                multiChart.xTitle[i],
-                multiChart.s1y[i],
-                multiChart.s2y[i],
-                multiChart.yTitle[i],
-                multiChart.s1x[i]
-              );
-            }
-          }
+          this.savData("div", "canvas", this.charts, this.detail);        // save api data
+          this.setData(this.charts);                                      // display data in charts
         }
       })
       .then(() => {})
@@ -118,6 +74,89 @@ export class TestResultsComponent implements OnInit {
         this.commonService.openSnackBar(err, "");
         this.close();
       });
+  }
+
+  savData(parent, child, charts, detail) {
+    for (var i = 0; i < detail["graphs"].length; i++) {
+      let div = document.createElement(parent),
+        canvas = document.createElement(child);
+      canvas.setAttribute("id", "chrat-" + i);
+      document
+        .getElementById("charts")
+        .appendChild(div)
+        .appendChild(canvas);
+      charts["ds"]["chart"].push(i);
+      charts["ds"]["type_"].push(detail["graphs"][i]["type"]);
+      charts["ds"]["title"].push(detail["graphs"][i]["title"]);
+      charts["ds"]["xTtle"].push(detail["graphs"][i]["x-axis-title"]);
+      charts["ds"]["yTtle"].push(detail["graphs"][i]["y-axis-title"]);
+      charts["s1"]["serie"].push(detail["graphs"][i]["series"]["s1"]);
+      charts["s1"]["xAxis"].push(detail["graphs"][i]["data"]["s1x"]);
+      charts["s1"]["yAxis"].push(detail["graphs"][i]["data"]["s1y"]);
+      charts["s2"]["serie"].push(detail["graphs"][i]["series"]["s2"]);
+      charts["s2"]["yAxis"].push(detail["graphs"][i]["data"]["s2y"]);
+      charts["s3"]["serie"].push(detail["graphs"][i]["series"]["s3"]);
+      charts["s3"]["yAxis"].push(detail["graphs"][i]["data"]["s3y"]);
+    }
+  }
+  
+  setData(display) {
+    for (let i = 0; i < display["ds"]["chart"].length; i++) {
+      let s1Line = [
+          {
+            label: "[ " + "s1: " + ' " ' + display["s1"]["serie"][i] + ' " ' + " ]",
+            data: display["s1"]["yAxis"][i],
+            fill: false,
+            lineTension: 0.2,
+            backgroundColor: "#f0f0f0",
+            borderColor: "red",
+            borderWidth: 0.8
+          }
+        ],
+        s2Line = [
+          s1Line[0],
+          {
+            label: "[ " + "s2: " + ' " ' + display["s2"]["serie"][i] + ' " ' + " ]",
+            data: display["s2"]["yAxis"][i],
+            fill: false,
+            lineTension: 0.2,
+            backgroundColor: "#f0f0f0",
+            borderColor: "blue",
+            borderWidth: 0.8
+          }
+        ],
+        s3Line = [
+          s2Line[0],
+          s2Line[1],
+          {
+            label: "[ " + "s3: " + ' " ' + display["s3"]["serie"][i] + ' " ' + " ]",
+            data: display["s3"]["yAxis"][i],
+            fill: false,
+            lineTension: 0.2,
+            backgroundColor: "#f0f0f0",
+            borderColor: "brown",
+            borderWidth: 0.8
+          }
+        ],
+        setCharts = {
+          chart: "chrat-" + display["ds"]["chart"][i],
+          type_: display["ds"]["type_"][i],
+          title: display["ds"]["title"][i],
+          xTtle: display["ds"]["xTtle"][i],
+          xAxis: display["s1"]["xAxis"][i],
+          yTtle: display["ds"]["yTtle"][i],
+          yAxis: display["s2"]["yAxis"][i],
+        };
+      if (display["s1"]["yAxis"][i] !== undefined) {
+        this.chartService.chartBar(false, s1Line, setCharts);
+      }
+      if (display["s1"]["yAxis"][i] !== undefined && display["s2"]["yAxis"][i] !== undefined ) {
+        this.chartService.chartBar(true, s2Line, setCharts);
+      }
+      if (display["s1"]["yAxis"][i] !== undefined && display["s2"]["yAxis"][i] !== undefined && display["s3"]["yAxis"][i] !== undefined ) {
+        this.chartService.chartBar(true, s3Line, setCharts);
+      }
+    }
   }
 
   close() {
