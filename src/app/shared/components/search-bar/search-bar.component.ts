@@ -15,12 +15,13 @@ import {
 export class SearchBarComponent implements OnInit {
   searchText: string;
 
-  @Output() searchTextEvent = new EventEmitter<string>();
+  @Output()
+  searchTextEvent = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit() {}
 
   sendMessage() {
-    this.searchTextEvent.emit(this.searchText);
+    this.searchTextEvent.emit("?" + this.searchText);
   }
 }
