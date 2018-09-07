@@ -143,7 +143,7 @@ export class SlicesTemplatesCreateComponent implements OnInit {
       version: this.templateForm.get("version").value,
       author: this.templateForm.get("author").value,
       nstNsdIds: this.storedNS.map(x => {
-        return { nsdID: x.uuid, slaID: x.slaUUID };
+        return { servname: x.name, nsdID: x.uuid, slaID: x.slaUUID };
       })
     };
 
