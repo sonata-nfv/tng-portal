@@ -16,6 +16,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
   loading: boolean;
   section: string;
   closed: boolean = false;
+  closedSLO: Array<Boolean> = new Array();
   reset: boolean = false;
   disabledButton: boolean = true;
   templateForm: FormGroup;
@@ -164,6 +165,9 @@ export class SlaTemplatesCreateComponent implements OnInit {
       this.storedGuarantees.push(
         this.guaranties.find(x => x.guaranteeID === id)
       );
+
+      // Enable opening only the selected SLO
+      this.closedSLO.push(false);
 
       // Remove the selected guarantee from the guarantees list offered
       this.guarantiesList = this.guarantiesList.filter(

@@ -29,7 +29,7 @@
 </form>
 
 <div class="advanceSection" *ngIf="detail['storedGuarantees']">
-  <button class="advanceButton" (click)="closed=!closed">
+  <button class="dropdownButton" (click)="closed=!closed">
     <div class="open">
       <span>Service Guarantees</span>
       <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>

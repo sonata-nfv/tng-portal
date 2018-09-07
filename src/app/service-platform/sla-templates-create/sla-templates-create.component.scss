@@ -77,12 +77,24 @@ app-sla-templates-create {
 
         .sloInfo {
           display: flex;
-          flex-direction: row;
-          width: 100%;
+          flex-direction: column;
+          width: 95%;
+          margin-top: 3vh;
+          margin-left: 1vw;
+          margin-right: 1vw;
+
+          p {
+            margin: 0;
+          }
         }
 
-        p {
-          color: $primary-font-color;
+        .timePeriod {
+          display: flex;
+          flex-direction: row;
+
+          .mat-form-field {
+            width: 50%;
+          }
         }
 
         &.mat-input-element,
@@ -94,25 +106,6 @@ app-sla-templates-create {
 
         .mat-form-field-appearance-legacy .mat-form-field-underline {
           width: 95%;
-        }
-
-        .gName {
-          width: 55%;
-        }
-
-        .timePeriod {
-          display: flex;
-          flex-direction: column;
-          width: 40%;
-          // .mat-form-field-wrapper {
-          //   padding-bottom: 10px;
-          // }
-        }
-
-        button {
-          width: 5%;
-          margin-top: 20px;
-          font-size: 16px;
         }
       }
     }
