@@ -43,35 +43,46 @@
   <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
     <span class="sectionTitle">Service Guaranties</span>
 
-    <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']">
-      <p>{{ item.definition }}</p>
+    <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']; let i = index">
 
-      <div class="sloInfo">
-        <mat-form-field class="gName">
-          <input matInput placeholder="Name" value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}" [disabled]="true">
-        </mat-form-field>
+      <div class="description" *ngIf="item">
 
-        <div class="timePeriod">
-          <mat-form-field class="gPeriodValue">
-            <input matInput placeholder="Service Level" value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
-              [disabled]="true">
-          </mat-form-field>
+        <div class="header">
+          <span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
 
-          <mat-form-field class="gPeriod">
-            <input matInput placeholder="Time Period" value="{{ item.serviceLevelObjetive.period }}" [disabled]="true">
-          </mat-form-field>
+          <button class="dropdownButton" (click)="closedSLO[i]=!closedSLO[i]">
+            <i class="wui wui-caret-down" *ngIf="closedSLO[i]; else openedSLO"></i>
+
+            <ng-template #openedSLO>
+              <i class="wui wui-caret-up"></i>
+            </ng-template>
+          </button>
+
         </div>
 
-        <!-- <button (click)="eraseEntry(entry)">
-        <i class="wui wui-trash-alt"></i>
-      </button> -->
+        <span class="content" *ngIf="!closedSLO[i]">
+
+          <div class="sloInfo">
+
+            <div class="timePeriod">
+              <mat-form-field class="gPeriodValue">
+                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
+              </mat-form-field>
+
+              <mat-form-field class="gPeriod">
+                <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
+              </mat-form-field>
+            </div>
+
+            <p>{{ item.definition }}</p>
+
+          </div>
+
+        </span>
 
       </div>
     </div>
 
-    <!-- <app-select class="guarantiesList" placeholder="Select NS Guarantee" [list]="guaranties" (selectEvent)="receiveGuarantee($event)"></app-select> -->
-
-    <!-- <span class="note">Add a new guarantee selecting a NS</span> -->
   </form>
 </div>
 

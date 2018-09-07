@@ -17,6 +17,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
   templateForm: FormGroup;
   closed: boolean = false;
   listNS = new Array();
+  closedSLO: Array<Boolean> = new Array();
 
   constructor(
     private router: Router,
