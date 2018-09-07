@@ -151,7 +151,7 @@ export class ServiceManagementService {
             resolve(
               response.map(item => ({
                 uuid: item.uuid,
-                name: item.name,
+                name: item.instance_name,
                 status: item.status,
                 serviceID: item.descriptor_reference,
                 createdAt: this.commonService.formatUTCDate(item.created_at),
