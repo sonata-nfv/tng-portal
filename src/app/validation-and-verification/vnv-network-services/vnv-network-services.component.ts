@@ -50,6 +50,7 @@ export class VnvNetworkServicesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 

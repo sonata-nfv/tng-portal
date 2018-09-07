@@ -49,6 +49,7 @@ export class VnvPackagesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 }

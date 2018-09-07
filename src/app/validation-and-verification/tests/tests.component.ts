@@ -51,7 +51,7 @@ export class TestsComponent implements OnInit {
         this.tests = response;
         this.dataSource = new MatTableDataSource(this.tests);
       })
-      .catch(err => console.error(err));
+      .catch(err => this.commonService.openSnackBar(err, ""));
   }
 
   openTest(row) {
