@@ -94,6 +94,7 @@
       <div class="section" *ngIf="section === 'sp-slices'">
         <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
+        <button [ngClass]="{ active: subsection === 'slices-requests' }" (click)="setSubsection($event, 'slices-requests')">Requests</button>
       </div>
     </div>
 

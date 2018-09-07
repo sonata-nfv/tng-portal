@@ -156,6 +156,10 @@ export class MenuComponent implements OnInit {
         this.subsection = "slices-instances";
         this.router.navigate(["service-platform/slices/slices-instances"]);
         break;
+      case "slices-requests":
+        this.subsection = "slices-requests";
+        this.router.navigate(["service-platform/slices/slices-requests"]);
+        break;
       case "service-licences":
         this.subsection = "service-licences";
         this.router.navigate(["service-management/licences/service-licences"]);

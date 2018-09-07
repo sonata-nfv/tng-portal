@@ -11,8 +11,6 @@ import { ServiceManagementService } from "./service-management.service";
 import { SmNetworkServicesComponent } from "./sm-network-services/sm-network-services.component";
 import { SmNetworkServicesDetailComponent } from "./sm-network-services-detail/sm-network-services-detail.component";
 import { NsInstantiateDialogComponent } from "./ns-instantiate-dialog/ns-instantiate-dialog.component";
-import { RequestsComponent } from "./requests/requests.component";
-import { RequestDetailComponent } from "./request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./network-service-instances/network-service-instances.component";
 import { NetworkServiceInstancesDetailComponent } from "./network-service-instances-detail/network-service-instances-detail.component";
 import { FunctionRecordsDetailComponent } from "./function-records-detail/function-records-detail.component";
@@ -26,8 +24,6 @@ import { UserLicencesComponent } from "./user-licences/user-licences.component";
     SmNetworkServicesComponent,
     SmNetworkServicesDetailComponent,
     NsInstantiateDialogComponent,
-    RequestsComponent,
-    RequestDetailComponent,
     NetworkServiceInstancesComponent,
     NetworkServiceInstancesDetailComponent,
     FunctionRecordsDetailComponent,
