@@ -572,10 +572,12 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the generated actions");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the generated actions")
+        );
     });
   }
 

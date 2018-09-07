@@ -51,10 +51,7 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.commonService.openSnackBar(
-          "There was an error while fetching the generated actions",
-          ""
-        );
+        this.commonService.openSnackBar(err, "");
       });
   }
 }
