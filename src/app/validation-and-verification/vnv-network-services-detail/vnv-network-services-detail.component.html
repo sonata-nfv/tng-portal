@@ -21,18 +21,30 @@
   <mat-form-field class="vendor" *ngIf="detail['vendor']">
     <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
   </mat-form-field>
+
   <mat-form-field class="serviceId" *ngIf="detail['serviceID']">
     <input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled>
   </mat-form-field>
+
   <mat-form-field class="status" *ngIf="detail['status']">
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
+
   <mat-form-field class="type" *ngIf="detail['type']">
     <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
   </mat-form-field>
+
   <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
+
+  <div class="launch" *ngIf="detail['uuid']" (click)="execute()">
+    <button class="actions" mat-button matTooltip="Execute related tests">
+      <i class="wui wui-caret-right"></i>
+    </button>
+    <span class="play">Execute related tests</span>
+  </div>
+
   <div class="description" *ngIf="detail['description']">
     <span class="title">DESCRIPTION</span>
     <span class="content">

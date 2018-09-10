@@ -40,7 +40,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
     this.loading = true;
 
     this.commonService
-      .getOneNetworkService(uuid)
+      .getOneNetworkService("sm", uuid)
       .then(response => {
         this.loading = false;
         this.detail = response;

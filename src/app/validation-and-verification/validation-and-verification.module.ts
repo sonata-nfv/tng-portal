@@ -13,6 +13,7 @@ import { SharedModule } from "../shared/shared.module";
 import { VnvPackagesComponent } from "./vnv-packages/vnv-packages.component";
 import { VnvPackagesDetailComponent } from "./vnv-packages-detail/vnv-packages-detail.component";
 import { VnvNetworkServicesComponent } from "./vnv-network-services/vnv-network-services.component";
+import { VnvNetworkServicesDetailComponent } from "./vnv-network-services-detail/vnv-network-services-detail.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VnvNetworkServicesComponent } from "./vnv-network-services/vnv-network-
     TestResultsComponent,
     VnvPackagesComponent,
     VnvPackagesDetailComponent,
-    VnvNetworkServicesComponent
+    VnvNetworkServicesComponent,
+    VnvNetworkServicesDetailComponent
   ],
   imports: [
     CommonModule,

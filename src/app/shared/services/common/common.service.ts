@@ -315,6 +315,7 @@ export class CommonService {
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
+                uuid: item.uuid,
                 name: item.nsd.name,
                 serviceId: item.uuid,
                 vendor: item.nsd.vendor,
@@ -339,18 +340,20 @@ export class CommonService {
    *
    * @param uuid UUID of the desired Network Service.
    */
-  getOneNetworkService(uuid: string): any {
+  getOneNetworkService(section, uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
+      const uri = section === "vnv" ? this.config.baseVNV : this.config.baseSP;
 
       this.http
-        .get(this.config.baseSP + this.config.services + "/" + uuid, {
+        .get(uri + this.config.services + "/" + uuid, {
           headers: headers
         })
         .toPromise()
         .then(response => {
           if (response.hasOwnProperty("nsd")) {
             resolve({
+              uuid: response["uuid"],
               name: response["nsd"]["name"],
               author: response["nsd"]["author"],
               version: response["nsd"]["version"],
