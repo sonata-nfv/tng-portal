@@ -44,9 +44,12 @@ export class SpPackagesDetailComponent implements OnInit {
         this.loading = false;
         this.detail = response;
 
-        // TODO request to /packages/package_file_id
-        this.detail["ns"] = [];
-        this.detail["vnf"] = [];
+        if (this.detail["ns"].lenght < 1) {
+          this.detail["ns"] = [];
+        }
+        if (this.detail["vnf"].lenght < 1) {
+          this.detail["vnf"] = [];
+        }
       })
       .catch(err => {
         this.loading = false;
