@@ -53,8 +53,13 @@ app-menu {
     }
 
     &.email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-left: 10px;
+      margin-right: 10px;
+      max-width: 8vw;
       font-size: 12px;
-      margin-left: 4px;
+      white-space: nowrap;
     }
   }
 
