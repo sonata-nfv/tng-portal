@@ -17,11 +17,42 @@ app-sp-network-services-detail {
 
   .detail {
     width: 65%;
-    align-items: center;
     margin-bottom: 20px;
 
     .mat-form-field {
       width: 100%;
+    }
+
+    .description {
+      margin-bottom: 50px;
+    }
+
+    .sectionTitle {
+      font-size: 24px;
+    }
+
+    .message {
+      color: $secondary-font-color-light;
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+
+    tr.mat-row {
+      background-image: linear-gradient(
+        to right,
+        $basic-background-color 0%,
+        $table-underline-color 0%,
+        $table-underline-color 99%,
+        $basic-background-color 99%,
+        $basic-background-color 100%
+      );
+    }
+
+    td.mat-cell {
+      cursor: auto;
     }
   }
 }

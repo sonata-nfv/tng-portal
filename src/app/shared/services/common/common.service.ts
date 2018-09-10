@@ -360,7 +360,8 @@ export class CommonService {
               type: response["user_licence"],
               description: response["nsd"]["description"],
               createdAt: this.formatUTCDate(response["created_at"]),
-              updatedAt: this.formatUTCDate(response["updated_at"])
+              updatedAt: this.formatUTCDate(response["updated_at"]),
+              vnf: response["nsd"]["network_functions"]
             });
           } else {
             reject("There was an error while fetching the network service!");

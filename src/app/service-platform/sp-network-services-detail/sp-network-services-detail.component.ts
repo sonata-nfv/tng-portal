@@ -12,6 +12,7 @@ import { CommonService } from "../../shared/services/common/common.service";
 export class SpNetworkServicesDetailComponent implements OnInit {
   loading: boolean;
   detail = {};
+  displayedColumns = ["id", "name", "vendor", "version"];
 
   constructor(
     private commonService: CommonService,
@@ -34,6 +35,10 @@ export class SpNetworkServicesDetailComponent implements OnInit {
       .then(response => {
         this.loading = false;
         this.detail = response;
+
+        if (this.detail["vnf"].lenght < 1) {
+          this.detail["vnf"] = [];
+        }
       })
       .catch(err => {
         this.loading = false;
@@ -43,6 +48,6 @@ export class SpNetworkServicesDetailComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate(["service-platform/network-services"]);
+    this.router.navigate(["../", { relativeTo: this.route }]);
   }
 }
