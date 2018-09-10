@@ -19,65 +19,6 @@ export class ServicePlatformService {
   ) {}
 
   /**
-   * Retrieves a Package by UUID
-   *
-   * @param uuid UUID of the desired Package.
-   */
-  getOnePackage(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.baseSP + this.config.packages + "/" + uuid, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          resolve({
-            uuid: response["uuid"],
-            name: response["pd"]["name"],
-            author: response["pd"]["maintainer"],
-            createdAt: this.commonService.formatUTCDate(response["created_at"]),
-            updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
-            vendor: response["pd"]["vendor"],
-            version: response["pd"]["version"],
-            type: "public",
-            ns: this.getPackageContent(response["pd"]["package_content"], "ns"),
-            vnf: this.getPackageContent(
-              response["pd"]["package_content"],
-              "vnf"
-            )
-          });
-        })
-        .catch(err => reject("There was an error fetching the package"));
-    });
-  }
-
-  getPackageContent(content, type) {
-    let obj: string;
-    let result = new Array();
-
-    content.forEach(item => {
-      if (item["content-type"] === "application/vnd.5gtango.nsd") {
-        obj = "ns";
-      } else if (item["content-type"] === "application/vnd.5gtango.vnfd") {
-        obj = "vnf";
-      } else {
-        obj = null;
-      }
-
-      if (obj === type) {
-        result.push({
-          vendor: item.id.vendor,
-          name: item.id.name,
-          version: item.id.version
-        });
-      }
-    });
-
-    return result;
-  }
-
-  /**
    * Retrieves a Function by UUID
    *
    * @param uuid UUID of the desired Function.

@@ -116,6 +116,74 @@ export class CommonService {
   }
 
   /**
+   * Retrieves a Package by UUID
+   *
+   * @param uuid UUID of the desired Package.
+   */
+  getOnePackage(section, uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      const uri = section === "vnv" ? this.config.baseVNV : this.config.baseSP;
+
+      this.http
+        .get(uri + this.config.packages + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["pd"]["name"],
+            author: response["pd"]["maintainer"],
+            createdAt: this.formatUTCDate(response["created_at"]),
+            updatedAt: this.formatUTCDate(response["updated_at"]),
+            vendor: response["pd"]["vendor"],
+            version: response["pd"]["version"],
+            status: response["status"],
+            type: "public",
+            ns: this.getPackageContent(response["pd"]["package_content"], "ns"),
+            vnf: this.getPackageContent(
+              response["pd"]["package_content"],
+              "vnf"
+            ),
+            tests: this.getPackageContent(
+              response["pd"]["package_content"],
+              "tests"
+            )
+          });
+        })
+        .catch(err => reject("There was an error fetching the package"));
+    });
+  }
+
+  getPackageContent(content, type) {
+    let obj: string;
+    let result = new Array();
+
+    content.forEach(item => {
+      if (item["content-type"] === "application/vnd.5gtango.nsd") {
+        obj = "ns";
+      } else if (item["content-type"] === "application/vnd.5gtango.vnfd") {
+        obj = "vnf";
+      } else if (item["content-type"] === "application/vnd.5gtango.tstd") {
+        obj = "tests";
+      } else {
+        obj = null;
+      }
+
+      if (obj === type) {
+        result.push({
+          vendor: item.id.vendor,
+          name: item.id.name,
+          version: item.id.version
+        });
+      }
+    });
+
+    return result;
+  }
+
+  /**
    * Retrieves a list of Functions.
    * Either following a search pattern or not.
    *

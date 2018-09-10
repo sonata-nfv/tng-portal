@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-sp-packages-detail {
+app-vnv-packages-detail {
   display: flex;
   flex-direction: column;
   flex: 1 1;
@@ -24,7 +24,8 @@ app-sp-packages-detail {
     }
 
     .vnf,
-    .ns {
+    .ns,
+    .tests {
       margin-bottom: 50px;
     }
 

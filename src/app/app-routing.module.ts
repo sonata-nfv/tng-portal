@@ -17,6 +17,7 @@ import { TestsDetailComponent } from "./validation-and-verification/tests-detail
 import { TestResultsComponent } from "./validation-and-verification/test-results/test-results.component";
 import { VnvNetworkServicesComponent } from "./validation-and-verification/vnv-network-services/vnv-network-services.component";
 import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
+import { VnvPackagesDetailComponent } from "./validation-and-verification/vnv-packages-detail/vnv-packages-detail.component";
 
 import { SpPackagesComponent } from "./service-platform/sp-packages/sp-packages.component";
 import { SpPackagesDetailComponent } from "./service-platform/sp-packages-detail/sp-packages-detail.component";
@@ -79,7 +80,8 @@ const routes: Routes = [
       },
       {
         path: "validation-and-verification/packages",
-        component: VnvPackagesComponent
+        component: VnvPackagesComponent,
+        children: [{ path: ":id", component: VnvPackagesDetailComponent }]
       },
       {
         path: "validation-and-verification/network-services",

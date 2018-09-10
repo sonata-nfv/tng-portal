@@ -6,7 +6,7 @@
 </div>
 
 <div class="bubbleDiv" *ngIf="detail['version']">
-  <span class="text">Current version</span>
+  <span class="text">Version</span>
   <div class="number">
     <span>{{ detail.version }}</span>
   </div>
@@ -79,7 +79,8 @@
         (click)="toggleDetail(row)">
       </tr>
 
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="state" class="detail-row">
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="state"
+        class="detail-row">
       </tr>
 
     </table>

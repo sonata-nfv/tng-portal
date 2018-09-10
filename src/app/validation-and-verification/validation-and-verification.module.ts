@@ -11,6 +11,7 @@ import { TestsDetailComponent } from "./tests-detail/tests-detail.component";
 import { TestResultsComponent } from "./test-results/test-results.component";
 import { SharedModule } from "../shared/shared.module";
 import { VnvPackagesComponent } from "./vnv-packages/vnv-packages.component";
+import { VnvPackagesDetailComponent } from "./vnv-packages-detail/vnv-packages-detail.component";
 import { VnvNetworkServicesComponent } from "./vnv-network-services/vnv-network-services.component";
 
 @NgModule({
@@ -19,6 +20,7 @@ import { VnvNetworkServicesComponent } from "./vnv-network-services/vnv-network-
     TestsDetailComponent,
     TestResultsComponent,
     VnvPackagesComponent,
+    VnvPackagesDetailComponent,
     VnvNetworkServicesComponent
   ],
   imports: [

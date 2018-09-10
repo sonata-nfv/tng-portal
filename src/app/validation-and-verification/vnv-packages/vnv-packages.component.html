@@ -40,8 +40,10 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns">
   </tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPackage(row)">
   </tr>
 </table>
 
 <app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>
