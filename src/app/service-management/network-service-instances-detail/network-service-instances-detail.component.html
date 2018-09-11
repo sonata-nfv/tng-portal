@@ -36,6 +36,7 @@
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
 
+  <!-- VNFs table section -->
   <div class="vnf" *ngIf="detail['vnf']">
     <span class="sectionTitle">VNFs</span>
     <span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
@@ -86,6 +87,7 @@
     </table>
   </div>
 
+  <!-- Virtual links table section -->
   <div class="virtualLinks" *ngIf="detail['virtualLinks']">
     <span class="sectionTitle">Virtual Links</span>
     <span class="message" *ngIf="detail['virtualLinks'].length == 0">There are no virtual links to display</span>

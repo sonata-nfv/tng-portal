@@ -50,6 +50,7 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
     "connectivity_type",
     "connection_points_reference"
   ];
+
   // Detail in row and animations
   dataSource = new CustomDataSource();
   vnfDetail = {};

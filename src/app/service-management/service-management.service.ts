@@ -78,10 +78,13 @@ export class ServiceManagementService {
           if (response.hasOwnProperty("uuid")) {
             resolve({
               uuid: response["uuid"],
+              name: response["instance_name"],
               status: response["status"],
               serviceID: response["descriptor_reference"],
               version: response["version"],
-              updatedAt: response["updated_at"],
+              updatedAt: this.commonService.formatUTCDate(
+                response["updated_at"]
+              ),
               vnf: response["network_functions"],
               virtualLinks: response["virtual_links"]
             });

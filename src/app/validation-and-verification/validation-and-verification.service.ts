@@ -87,20 +87,8 @@ export class ValidationAndVerificationPlatformService {
             status: response["status"],
             lastTimeExecuted: this.commonService.formatUTCDate(
               response["last_time_executed"]
-            ),
+            )
             // services: response["testd"]
-            services: [
-              {
-                sVendor: "svendor",
-                sName: "sname",
-                sVersion: "0.3"
-              },
-              {
-                sVendor: "svendor2",
-                sName: "sname2",
-                sVersion: "0.2"
-              }
-            ]
           });
         })
         .catch(err => reject("There was an error while fetching the test"));
@@ -207,12 +195,9 @@ export class ValidationAndVerificationPlatformService {
             details: response["details"] ? response["details"]["details"] : null
           });
         })
-        .catch(err => {
-          console.log("err", err);
-          reject(
-            "There was an error while fetching the test execution results"
-          );
-        });
+        .catch(err =>
+          reject("There was an error while fetching the test execution results")
+        );
     });
   }
 }
