@@ -192,7 +192,10 @@ export class ValidationAndVerificationPlatformService {
             updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
             testerResultText: response["tester_result_text"],
             sterr: response["sterr"],
-            details: response["details"] ? response["details"]["details"] : null
+            details: response["details"]
+              ? response["details"]["details"]
+              : null,
+            graphs: response["details"] ? response["details"]["graphs"] : null
           });
         })
         .catch(err =>
