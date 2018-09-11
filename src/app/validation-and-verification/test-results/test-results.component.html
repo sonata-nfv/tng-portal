@@ -29,8 +29,9 @@
   </div>
 </form>
 
-<!-- TODO change this *ngIf="detail[''] to the variable containing the results -->
-<div class="results">
+<div class="results" *ngIf="detail['graphs']">
   <span class="sectionTitle">RESULTS</span>
-  <div id="charts"> </div>
+  <div id="charts" *ngFor = 'let lst of charts["ds"]["chart"]'> 
+    <canvas id="chart-{{lst}}"> </canvas> 
+  </div>
 </div>

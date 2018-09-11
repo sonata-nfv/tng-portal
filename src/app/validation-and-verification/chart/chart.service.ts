@@ -8,7 +8,8 @@ export class ChartService {
   @Output()
   change: EventEmitter<boolean> = new EventEmitter();
 
-  chartBar( menu, series, chart, ) {
+  chartBar(menu, series, chart) {
+
     Chart.defaults.global.defaultFontFamily = "Calibri";
     Chart.defaults.global.defaultFontSize = 16;
     Chart.defaults.global.defaultFontColor = "#828188";

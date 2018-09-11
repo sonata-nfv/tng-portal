@@ -11,7 +11,7 @@ import { ValidationAndVerificationPlatformService } from "../validation-and-veri
   styleUrls: ["./tests.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class TestsComponent implements OnInit {
+export class TestsComponent implements OnInit { 
   loading: boolean;
   tests = new Array();
   dataSource = new MatTableDataSource();

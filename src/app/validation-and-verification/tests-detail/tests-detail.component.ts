@@ -17,7 +17,7 @@ export class TestsDetailComponent implements OnInit {
   executions = new Array();
   displayedColumns = ["vendor", "name", "version"];
   displayedColumnsExecutions = ["uuid", "serviceUUID", "date", "status"];
-
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -51,7 +51,6 @@ export class TestsDetailComponent implements OnInit {
           .getTestExecutions(this.detail["uuid"])
           .then(response => {
             this.loading = false;
-
             if (response.length < 1) {
               this.commonService.openSnackBar(
                 "There are no test executions available",
