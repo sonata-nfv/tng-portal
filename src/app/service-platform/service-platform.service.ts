@@ -202,7 +202,7 @@ export class ServicePlatformService {
                 name: item.sla_name,
                 ns: item.ns_name,
                 ns_uuid: item.ns_uuid, //----
-                customer: item.cust_email,
+                customer: item.cust_uuid,
                 date: new Date(Date.parse(item.sla_date))
                   .toISOString()
                   .replace(/T.*/, "")
@@ -249,7 +249,7 @@ export class ServicePlatformService {
             date: response["updated_at"],
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
-              response["slad"]["sla_template"]["customer_info"]["cust_email"],
+              response["slad"]["sla_template"]["customer_info"]["cust_uuid"],
             status:
               response["status"].charAt(0).toUpperCase() +
               response["status"].slice(1).toLowerCase(),
