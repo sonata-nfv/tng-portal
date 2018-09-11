@@ -23,10 +23,6 @@
 <form [formGroup]="policyForm" *ngIf="detail['uuid']">
   <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)">Mark as default</mat-checkbox>
 
-  <mat-form-field *ngIf="detail['enforced']">
-    <input matInput placeholder="Enforced" value="{{ detail['enforced'] }}" disabled>
-  </mat-form-field>
-
   <div class="sameRow">
     <mat-form-field *ngIf="detail['uuid']">
       <input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled>
@@ -61,13 +57,14 @@
     <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
   </mat-form-field>
 
-  <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"></app-select>
+  <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList"
+    (selectEvent)="receiveSLA($event)"></app-select>
 
 </form>
 
 <!--
 <div class="advanceSection" *ngIf="detail['name']">
-  <button class="advanceButton" (click)="closed=!closed">
+  <button class="dropdownButton" (click)="closed=!closed">
     <div class="open">
       <span>Monitoring Rules</span>
       <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>

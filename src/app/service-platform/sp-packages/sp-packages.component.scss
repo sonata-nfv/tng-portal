@@ -14,7 +14,6 @@ app-sp-packages {
   }
 
   tr.mat-row {
-    border-bottom: none;
     background-image: linear-gradient(
       to right,
       $basic-background-color 4%,
@@ -23,8 +22,6 @@ app-sp-packages {
       $basic-background-color 98%,
       $basic-background-color 100%
     );
-    align-items: baseline;
-    min-height: 29px;
   }
 
   .mat-cell:nth-child(1),

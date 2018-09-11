@@ -57,7 +57,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-
         this.nsList.push("None");
       });
   }
@@ -69,8 +68,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
     ) {
       this.disabledButton = false;
     }
-
-    // Check optional default, add monitoring rules
   }
 
   receiveNS(ns) {

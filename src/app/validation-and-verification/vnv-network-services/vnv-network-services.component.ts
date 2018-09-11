@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
@@ -18,6 +18,7 @@ export class VnvNetworkServicesComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
+    private router: Router,
     private route: ActivatedRoute,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
@@ -50,6 +51,7 @@ export class VnvNetworkServicesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
   }
 
@@ -62,5 +64,9 @@ export class VnvNetworkServicesComponent implements OnInit {
       .catch(err => {
         this.commonService.openSnackBar(err, "");
       });
+  }
+
+  openNetworkService(row) {
+    this.router.navigate([row.uuid], { relativeTo: this.route });
   }
 }

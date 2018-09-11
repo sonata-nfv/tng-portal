@@ -15,8 +15,10 @@ import { UsersComponent } from "./users/users.component";
 import { TestsComponent } from "./validation-and-verification/tests/tests.component";
 import { TestsDetailComponent } from "./validation-and-verification/tests-detail/tests-detail.component";
 import { TestResultsComponent } from "./validation-and-verification/test-results/test-results.component";
-import { VnvNetworkServicesComponent } from "./validation-and-verification/vnv-network-services/vnv-network-services.component";
+import { VnvNetworkServicesComponent } from ".//validation-and-verification/vnv-network-services/vnv-network-services.component";
+import { VnvNetworkServicesDetailComponent } from "./validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component";
 import { VnvPackagesComponent } from "./validation-and-verification/vnv-packages/vnv-packages.component";
+import { VnvPackagesDetailComponent } from "./validation-and-verification/vnv-packages-detail/vnv-packages-detail.component";
 
 import { SpPackagesComponent } from "./service-platform/sp-packages/sp-packages.component";
 import { SpPackagesDetailComponent } from "./service-platform/sp-packages-detail/sp-packages-detail.component";
@@ -45,8 +47,8 @@ import { SlicesInstancesCreateComponent } from "./service-platform/slices-instan
 
 import { SmNetworkServicesComponent } from "./service-management/sm-network-services/sm-network-services.component";
 import { SmNetworkServicesDetailComponent } from "./service-management/sm-network-services-detail/sm-network-services-detail.component";
-import { RequestsComponent } from "./service-management/requests/requests.component";
-import { RequestDetailComponent } from "./service-management/request-detail/request-detail.component";
+import { RequestsComponent } from "./shared/components/requests/requests.component";
+import { RequestDetailComponent } from "./shared/components/request-detail/request-detail.component";
 import { NetworkServiceInstancesComponent } from "./service-management/network-service-instances/network-service-instances.component";
 import { NetworkServiceInstancesDetailComponent } from "./service-management/network-service-instances-detail/network-service-instances-detail.component";
 import { FunctionRecordsDetailComponent } from "./service-management/function-records-detail/function-records-detail.component";
@@ -79,11 +81,15 @@ const routes: Routes = [
       },
       {
         path: "validation-and-verification/packages",
-        component: VnvPackagesComponent
+        component: VnvPackagesComponent,
+        children: [{ path: ":id", component: VnvPackagesDetailComponent }]
       },
       {
         path: "validation-and-verification/network-services",
-        component: VnvNetworkServicesComponent
+        component: VnvNetworkServicesComponent,
+        children: [
+          { path: ":id", component: VnvNetworkServicesDetailComponent }
+        ]
       },
       {
         path: "validation-and-verification/functions",
@@ -131,12 +137,12 @@ const routes: Routes = [
         component: RuntimePoliciesComponent,
         children: [
           {
-            path: ":id",
-            component: RuntimePoliciesDetailComponent
-          },
-          {
             path: "new",
             component: RuntimePoliciesCreateComponent
+          },
+          {
+            path: ":id",
+            component: RuntimePoliciesDetailComponent
           }
         ]
       },
@@ -149,12 +155,12 @@ const routes: Routes = [
         component: SlaTemplatesComponent,
         children: [
           {
-            path: ":id",
-            component: SlaTemplatesDetailComponent
-          },
-          {
             path: "new",
             component: SlaTemplatesCreateComponent
+          },
+          {
+            path: ":id",
+            component: SlaTemplatesDetailComponent
           }
         ]
       },
@@ -176,17 +182,22 @@ const routes: Routes = [
         path: "service-platform/slices/slices-templates",
         component: SlicesTemplatesComponent,
         children: [
-          { path: ":id", component: SlicesTemplatesDetailComponent },
-          { path: "new", component: SlicesTemplatesCreateComponent }
+          { path: "new", component: SlicesTemplatesCreateComponent },
+          { path: ":id", component: SlicesTemplatesDetailComponent }
         ]
       },
       {
         path: "service-platform/slices/slices-instances",
         component: SlicesInstancesComponent,
         children: [
-          { path: ":id", component: SlicesInstancesDetailComponent },
-          { path: "new", component: SlicesInstancesCreateComponent }
+          { path: "new", component: SlicesInstancesCreateComponent },
+          { path: ":id", component: SlicesInstancesDetailComponent }
         ]
+      },
+      {
+        path: "service-platform/slices/slices-requests",
+        component: RequestsComponent,
+        children: [{ path: ":id", component: RequestDetailComponent }]
       },
       // Service Management section
       {

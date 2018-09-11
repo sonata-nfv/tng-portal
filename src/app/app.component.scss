@@ -15,6 +15,24 @@ body {
   margin: 0;
 }
 
+// Generic scrollbar for the app
+::-webkit-scrollbar {
+  width: 10px;
+  padding-top: 100px;
+}
+
+::-webkit-scrollbar-track {
+  background: $track-color;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $thumb-background-color;
+  outline: 1px solid $thumb-outline-color;
+  border-radius: 10px;
+}
+
 // App basic background
 app-root {
   position: absolute;
@@ -333,6 +351,21 @@ li:before {
   margin-bottom: 30px;
 }
 
+// Header when the item has an icon on the right
+// Allows dropdown action
+.description .header {
+  width: 100%;
+
+  button {
+    font-size: 16px;
+  }
+
+  .dropdownButton {
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+}
+
 .description span {
   width: 100%;
   min-height: 20px;
@@ -343,6 +376,8 @@ li:before {
 
   &.content {
     overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-line;
     min-height: 200px;
     max-height: 200px;
     color: $secondary-font-color;
@@ -398,37 +433,43 @@ li:before {
   flex-direction: column;
   align-items: flex-end;
   width: 65%;
+
   button {
     border: none;
     cursor: pointer;
     outline: none;
     background-color: $basic-background-color;
   }
-  .advanceButton {
+
+  .dropdownButton {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
     width: auto;
     color: $secondary-button-color-light;
-    .open {
-      span {
-        margin-right: 25px;
-      }
-      i:before {
-        font-size: 8px;
-      }
-      .wui-caret-down:before {
-        color: $secondary-button-color-light;
-      }
-      .wui-caret-up:before {
-        color: $advanced-button-underline-color;
-      }
+
+    span {
+      margin-right: 25px;
     }
+
+    i:before {
+      font-size: 10px;
+    }
+
+    .wui-caret-down:before {
+      color: $secondary-button-color-light;
+    }
+
+    .wui-caret-up:before {
+      color: $advanced-button-underline-color;
+    }
+
     .underline {
       margin: 2px auto;
       width: 150px;
       border-bottom: 1px solid $advanced-button-underline-color;
+
       &.opened {
         margin: 4px auto;
       }

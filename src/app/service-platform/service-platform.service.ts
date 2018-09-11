@@ -19,35 +19,6 @@ export class ServicePlatformService {
   ) {}
 
   /**
-   * Retrieves a Package by UUID
-   *
-   * @param uuid UUID of the desired Package.
-   */
-  getOnePackage(uuid: string): any {
-    return new Promise((resolve, reject) => {
-      let headers = this.authService.getAuthHeaders();
-      this.http
-        .get(this.config.baseSP + this.config.packages + "/" + uuid, {
-          headers: headers
-        })
-        .toPromise()
-        .then(response => {
-          resolve({
-            uuid: response["uuid"],
-            name: response["pd"]["name"],
-            author: response["pd"]["maintainer"],
-            createdAt: response["created_at"],
-            vendor: response["pd"]["vendor"],
-            version: response["pd"]["version"],
-            type: "public",
-            package_file_id: response["package_file_id"]
-          });
-        })
-        .catch(err => reject("There was an error fetching the package"));
-    });
-  }
-
-  /**
    * Retrieves a Function by UUID
    *
    * @param uuid UUID of the desired Function.
@@ -231,7 +202,7 @@ export class ServicePlatformService {
                 name: item.sla_name,
                 ns: item.ns_name,
                 ns_uuid: item.ns_uuid, //----
-                customer: item.cust_email,
+                customer: item.cust_uuid,
                 date: new Date(Date.parse(item.sla_date))
                   .toISOString()
                   .replace(/T.*/, "")
@@ -278,7 +249,7 @@ export class ServicePlatformService {
             date: response["updated_at"],
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
-              response["slad"]["sla_template"]["customer_info"]["cust_email"],
+              response["slad"]["sla_template"]["customer_info"]["cust_uuid"],
             status:
               response["status"].charAt(0).toUpperCase() +
               response["status"].slice(1).toLowerCase(),
@@ -572,10 +543,12 @@ export class ServicePlatformService {
               })
             );
           } else {
-            reject();
+            reject("There was an error while fetching the generated actions");
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error while fetching the generated actions")
+        );
     });
   }
 

@@ -1,6 +1,7 @@
 <h1 class="sectionTitle">SLA TEMPLATES</h1>
 
 <form [formGroup]="templateForm" class="header">
+
   <mat-form-field class="subsectionTitle">
     <input matInput type="text" placeholder="Template Name" formControlName="name" required>
   </mat-form-field>
@@ -17,48 +18,74 @@
 </div>
 
 <form [formGroup]="templateForm">
-  <app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
 
+  <app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
   <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"></app-calendar>
+
 </form>
 
 <div class="advanceSection" *ngIf="guarantiesList.length > 0 || storedGuarantees.length > 0">
-  <button class="advanceButton" (click)="closed=!closed">
+
+  <button class="dropdownButton" (click)="closed=!closed">
+
     <div class="open">
       <span>Service Guarantees</span>
+
       <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
+
       <ng-template #opened>
         <i class="wui wui-caret-up"></i>
       </ng-template>
     </div>
+
     <div class="underline" [ngClass]="{ opened : !closed }"></div>
+
   </button>
 
   <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
     <span class="sectionTitle">Service Guaranties</span>
 
-    <div class="guaranteeRow" *ngFor="let item of storedGuarantees">
-      <p>{{ item.definition }}</p>
+    <div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
 
-      <div class="sloInfo">
+      <div class="description" *ngIf="item">
 
-        <mat-form-field class="gName">
-          <input matInput placeholder="Name" disabled value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}">
-        </mat-form-field>
+        <div class="header">
+          <span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
 
-        <div class="timePeriod">
-          <mat-form-field class="gPeriodValue">
-            <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
-          </mat-form-field>
+          <button (click)="eraseEntry(item)">
+            <i class="wui wui-trash-alt"></i>
+          </button>
 
-          <mat-form-field class="gPeriod">
-            <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
-          </mat-form-field>
+          <button class="dropdownButton" (click)="closedSLO[i]=!closedSLO[i]">
+            <i class="wui wui-caret-down" *ngIf="closedSLO[i]; else openedSLO"></i>
+
+            <ng-template #openedSLO>
+              <i class="wui wui-caret-up"></i>
+            </ng-template>
+          </button>
+
         </div>
 
-        <button (click)="eraseEntry(item)">
-          <i class="wui wui-trash-alt"></i>
-        </button>
+        <span class="content" *ngIf="!closedSLO[i]">
+
+          <div class="sloInfo">
+
+            <div class="timePeriod">
+              <mat-form-field class="gPeriodValue">
+                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
+              </mat-form-field>
+
+              <mat-form-field class="gPeriod">
+                <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
+              </mat-form-field>
+            </div>
+
+            <p>{{ item.definition }}</p>
+
+          </div>
+
+        </span>
+
       </div>
     </div>
 

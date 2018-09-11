@@ -59,39 +59,17 @@ app-network-service-instances-detail {
       &.vnfs {
         .mat-cell:nth-child(2),
         .mat-header-cell:nth-child(2) {
-          width: 8%;
+          width: 10%;
         }
 
         .mat-cell:nth-child(3),
         .mat-header-cell:nth-child(3) {
-          width: 15%;
+          width: 20%;
         }
 
         .mat-cell:nth-child(4),
         .mat-header-cell:nth-child(4) {
           width: 30%;
-        }
-
-        .mat-cell:nth-child(5),
-        .mat-header-cell:nth-child(5) {
-          width: 15%;
-        }
-      }
-
-      &.virtualLinksTable {
-        .mat-cell:nth-child(1),
-        .mat-header-cell:nth-child(1) {
-          width: 20%;
-        }
-
-        .mat-cell:nth-child(2),
-        .mat-header-cell:nth-child(2) {
-          width: 20%;
-        }
-
-        .mat-cell:nth-child(3),
-        .mat-header-cell:nth-child(3) {
-          width: 20%;
         }
       }
     }

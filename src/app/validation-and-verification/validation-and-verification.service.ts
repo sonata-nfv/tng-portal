@@ -80,27 +80,15 @@ export class ValidationAndVerificationPlatformService {
             name: response["testd"]["name"],
             vendor: response["testd"]["vendor"],
             version: response["testd"]["version"],
-            // timesExecuted: response["testd"]
-            timesExecuted: "20",
+            timesExecuted: response["executions"],
             author: response["testd"]["author"],
             description: response["testd"]["description"],
             createdAt: response["created_at"],
             status: response["status"],
-            // lastTimeExecuted: response["testd"]
-            lastTimeExecuted: "this is date",
+            lastTimeExecuted: this.commonService.formatUTCDate(
+              response["last_time_executed"]
+            )
             // services: response["testd"]
-            services: [
-              {
-                sVendor: "svendor",
-                sName: "sname",
-                sVersion: "0.3"
-              },
-              {
-                sVendor: "svendor2",
-                sName: "sname2",
-                sVersion: "0.2"
-              }
-            ]
           });
         })
         .catch(err => reject("There was an error while fetching the test"));
@@ -204,8 +192,10 @@ export class ValidationAndVerificationPlatformService {
             updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
             testerResultText: response["tester_result_text"],
             sterr: response["sterr"],
-            details: response["details"]["details"],
-            graphs: response["details"]["graphs"]
+            details: response["details"]
+              ? response["details"]["details"]
+              : null,
+            graphs: response["details"] ? response["details"]["graphs"] : null
           });
         })
         .catch(err =>

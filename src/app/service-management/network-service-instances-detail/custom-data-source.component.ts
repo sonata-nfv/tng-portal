@@ -7,9 +7,10 @@ export class CustomDataSource extends DataSource<any> {
   // Connect function called by the table to retrieve one stream containing the data to render.
   connect(): Observable<any[]> {
     let rows = [];
-    this.data.forEach(element =>
-      rows.push(element, { detailRow: true, element })
-    );
+    this.data.forEach(element => {
+      element.state = "collapsed";
+      rows.push(element, { detailRow: true, element });
+    });
     return of(rows);
   }
 

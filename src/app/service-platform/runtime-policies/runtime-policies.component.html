@@ -10,8 +10,8 @@
 
 <div class="tools">
   <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-  <app-select class="select" placeholder="Network Service" [list]="nsList" [disabled]="loading" required="false" [reset]="reset"
-    (selectEvent)="receiveNS($event)"></app-select>
+  <app-select class="select" placeholder="Network Service" [list]="nsList" [disabled]="loading" required="false"
+    [reset]="reset" (selectEvent)="receiveNS($event)"></app-select>
   <button class="reload" (click)="requestRuntimePolicies()" matTooltip="Reload data">
     <i class="wui wui-undo"></i>
   </button>
@@ -48,11 +48,6 @@
         Version: {{ element.ns.version }}
       </span>
     </td>
-  </ng-container>
-
-  <ng-container matColumnDef="enforced">
-    <th mat-header-cell *matHeaderCellDef> Enforced </th>
-    <td mat-cell *matCellDef="let element"> {{ element.enforced }} </td>
   </ng-container>
 
   <ng-container matColumnDef="sla">

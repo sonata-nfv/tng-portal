@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
 
@@ -17,6 +17,7 @@ export class VnvPackagesComponent implements OnInit {
 
   constructor(
     private commonService: CommonService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -49,6 +50,11 @@ export class VnvPackagesComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
+        this.commonService.openSnackBar(err, "");
       });
+  }
+
+  openPackage(row) {
+    this.router.navigate([row.uuid], { relativeTo: this.route });
   }
 }

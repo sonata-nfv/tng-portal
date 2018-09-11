@@ -9,6 +9,7 @@ import { AuthService } from "../../../authentication/auth.service";
 export class CommonService {
   authHeaders: HttpHeaders;
   request_uuid: string;
+  NA = "Not available";
 
   constructor(
     private authService: AuthService,
@@ -16,6 +17,21 @@ export class CommonService {
     private http: HttpClient,
     public snackBar: MatSnackBar
   ) {}
+
+  /**
+   * Copies the selected value to the clipboard
+   *
+   * @param value Value to copy to clipboard
+   */
+  copyToClipboard(value) {
+    const el = document.createElement("textarea");
+    el.value = value;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    this.openSnackBar("Copied", "");
+  }
 
   /**
    * Opens a snack bar for notifications on the bottom of the screen
@@ -112,6 +128,74 @@ export class CommonService {
         })
         .catch(err => reject("There was an error fetching the packages"));
     });
+  }
+
+  /**
+   * Retrieves a Package by UUID
+   *
+   * @param uuid UUID of the desired Package.
+   */
+  getOnePackage(section, uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      const uri = section === "vnv" ? this.config.baseVNV : this.config.baseSP;
+
+      this.http
+        .get(uri + this.config.packages + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          resolve({
+            uuid: response["uuid"],
+            name: response["pd"]["name"],
+            author: response["pd"]["maintainer"],
+            createdAt: this.formatUTCDate(response["created_at"]),
+            updatedAt: this.formatUTCDate(response["updated_at"]),
+            vendor: response["pd"]["vendor"],
+            version: response["pd"]["version"],
+            status: response["status"],
+            type: "public",
+            ns: this.getPackageContent(response["pd"]["package_content"], "ns"),
+            vnf: this.getPackageContent(
+              response["pd"]["package_content"],
+              "vnf"
+            ),
+            tests: this.getPackageContent(
+              response["pd"]["package_content"],
+              "tests"
+            )
+          });
+        })
+        .catch(err => reject("There was an error fetching the package"));
+    });
+  }
+
+  getPackageContent(content, type) {
+    let obj: string;
+    let result = new Array();
+
+    content.forEach(item => {
+      if (item["content-type"] === "application/vnd.5gtango.nsd") {
+        obj = "ns";
+      } else if (item["content-type"] === "application/vnd.5gtango.vnfd") {
+        obj = "vnf";
+      } else if (item["content-type"] === "application/vnd.5gtango.tstd") {
+        obj = "tests";
+      } else {
+        obj = null;
+      }
+
+      if (obj === type) {
+        result.push({
+          vendor: item.id.vendor,
+          name: item.id.name,
+          version: item.id.version
+        });
+      }
+    });
+
+    return result;
   }
 
   /**
@@ -246,6 +330,7 @@ export class CommonService {
           if (response instanceof Array) {
             resolve(
               response.map(item => ({
+                uuid: item.uuid,
                 name: item.nsd.name,
                 serviceId: item.uuid,
                 vendor: item.nsd.vendor,
@@ -270,18 +355,20 @@ export class CommonService {
    *
    * @param uuid UUID of the desired Network Service.
    */
-  getOneNetworkService(uuid: string): any {
+  getOneNetworkService(section, uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
+      const uri = section === "vnv" ? this.config.baseVNV : this.config.baseSP;
 
       this.http
-        .get(this.config.baseSP + this.config.services + "/" + uuid, {
+        .get(uri + this.config.services + "/" + uuid, {
           headers: headers
         })
         .toPromise()
         .then(response => {
           if (response.hasOwnProperty("nsd")) {
             resolve({
+              uuid: response["uuid"],
               name: response["nsd"]["name"],
               author: response["nsd"]["author"],
               version: response["nsd"]["version"],
@@ -291,7 +378,8 @@ export class CommonService {
               type: response["user_licence"],
               description: response["nsd"]["description"],
               createdAt: this.formatUTCDate(response["created_at"]),
-              updatedAt: this.formatUTCDate(response["updated_at"])
+              updatedAt: this.formatUTCDate(response["updated_at"]),
+              vnf: response["nsd"]["network_functions"]
             });
           } else {
             reject("There was an error while fetching the network service!");
@@ -301,6 +389,111 @@ export class CommonService {
           reject("There was an error while fetching the network service!")
         );
     });
+  }
+
+  /**
+   * Retrieves a list of Network Service requests.
+   * Either following a search pattern or not.
+   *
+   * @param search [Optional] Request attributes that must be
+   *                          matched by the returned list of
+   *                          NS requests.
+   */
+  getNSRequests(search?): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+      let url =
+        search != undefined
+          ? this.config.baseSP + this.config.requests + search
+          : this.config.baseSP + this.config.requests;
+
+      this.http
+        .get(url, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response instanceof Array) {
+            let requests = new Array();
+            response.forEach(res => {
+              let req = this.prepareNSRequest({
+                requestId: res.id,
+                name: res.name,
+                serviceName: res["service"] ? res.service.name : this.NA,
+                type: res.request_type,
+                createdAt: this.formatUTCDate(res.created_at),
+                status: res.status
+              });
+              requests.push(req);
+            });
+            resolve(requests);
+          } else {
+            reject("There was an error while fetching the requests!");
+          }
+        })
+        .catch(err => {
+          reject("There was an error while fetching the requests!");
+        });
+    });
+  }
+
+  /**
+   * Retrieves a Network Service request by UUID
+   *
+   * @param uuid UUID of the desired NS request.
+   */
+  getOneNSRequest(uuid: string): any {
+    return new Promise((resolve, reject) => {
+      let headers = this.authService.getAuthHeaders();
+
+      this.http
+        .get(this.config.baseSP + this.config.requests + "/" + uuid, {
+          headers: headers
+        })
+        .toPromise()
+        .then(response => {
+          if (response.hasOwnProperty("id")) {
+            let request = {
+              requestUUID: response["id"],
+              name: response["name"],
+              type: response["request_type"],
+              updatedAt: this.formatUTCDate(response["updated_at"]),
+              status: response["status"],
+              slaUUID: response["sla_id"],
+              serviceVendor: response["service"]["vendor"],
+              serviceName: response["service"]["name"],
+              serviceVersion: response["service"]["version"],
+              serviceUUID: response["service"]["uuid"],
+              blacklist: response["blacklist"],
+              ingresses: response["ingresses"],
+              egresses: response["egresses"]
+            };
+            this.prepareNSRequest(request);
+            resolve(request);
+          } else {
+            reject("Unable to fetch the request record!");
+          }
+        })
+        .catch(err => reject("Unable to fetch the request record!"));
+    });
+  }
+
+  prepareNSRequest(item) {
+    const parts = item.type.split("_");
+    let str: string = "";
+
+    parts.forEach(part => {
+      str = str.concat(
+        part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + " "
+      );
+    });
+
+    item.type = str;
+
+    item.status =
+      item.status.charAt(0).toUpperCase() + item.status.slice(1).toLowerCase();
+
+    return item;
   }
 
   /**

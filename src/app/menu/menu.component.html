@@ -5,7 +5,8 @@
     <p class="name">5GTANGO</p>
     <!--{{ username }} -->
 
-    <p class="email">sonata-dev@lists.atos.research.eu</p> <!-- {{ email }}-->
+    <p class="email" (click)="copyToClipboard('sonata-dev@lists.atos.research.eu')">sonata-dev@lists.atos.research.eu</p>
+    <!-- {{ email }}-->
 
     <button class="logout" (click)="logout()">
       <i class="wui wui-power-off"></i>
@@ -23,7 +24,8 @@
         <span>USERS</span>
       </button>
 
-      <button [ngClass]="{ active: menu === 'configuration' }" (click)="setMenu($event, 'configuration')" ifFeatureAvailable="configuration">
+      <button [ngClass]="{ active: menu === 'configuration' }" (click)="setMenu($event, 'configuration')"
+        ifFeatureAvailable="configuration">
         <i class="wui wui-gear-alt"></i>
         <span>CONFIGURATION</span>
       </button>
@@ -34,12 +36,14 @@
         <span>V&V</span>
       </button>
 
-      <button [ngClass]="{ active: menu === 'service-platform' }" (click)="setMenu($event, 'service-platform')" ifFeatureAvailable="service platform">
+      <button [ngClass]="{ active: menu === 'service-platform' }" (click)="setMenu($event, 'service-platform')"
+        ifFeatureAvailable="service platform">
         <i class="wui wui-network-alt"></i>
         <span>SERVICE PLATFORM</span>
       </button>
 
-      <button [ngClass]="{ active: menu === 'service-management' }" (click)="setMenu($event, 'service-management')" ifFeatureAvailable="service management">
+      <button [ngClass]="{ active: menu === 'service-management' }" (click)="setMenu($event, 'service-management')"
+        ifFeatureAvailable="service management">
         <i class="wui wui-table-alt"></i>
         <span>SERVICE MANAGEMENT</span>
       </button>
@@ -94,6 +98,7 @@
       <div class="section" *ngIf="section === 'sp-slices'">
         <button [ngClass]="{ active: subsection === 'slices-templates' }" (click)="setSubsection($event, 'slices-templates')">Templates</button>
         <button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')">Instances</button>
+        <button [ngClass]="{ active: subsection === 'slices-requests' }" (click)="setSubsection($event, 'slices-requests')">Requests</button>
       </div>
     </div>
 
@@ -106,7 +111,8 @@
       <button [ngClass]="{ active: section === 'sm-network-service-instances' }" (click)="setSection($event, 'sm-network-service-instances')">Network
         service instances</button>
 
-      <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')" ifFeatureAvailable="licences">Licence
+      <button [ngClass]="{ active: section === 'licences' }" (click)="setSection($event, 'licences')"
+        ifFeatureAvailable="licences">Licence
         store
       </button>
       <div class="section" *ngIf="section === 'licences'" ifFeatureAvailable="licences">

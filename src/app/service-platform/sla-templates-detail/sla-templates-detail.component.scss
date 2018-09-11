@@ -38,19 +38,6 @@ app-sla-templates-detail {
       .sectionTitle:after {
         background: none;
       }
-      // .guarantiesList {
-      //   width: 50%;
-      //   margin-top: 20px;
-      // }
-      // .note {
-      //   display: flex;
-      //   justify-content: flex-end;
-      //   width: 50%;
-      // margin-bottom: 300px;
-      //   margin-top: -16px;
-      //   font-size: 13px;
-      //   color: $primary-font-color-light;
-      // }
 
       .guaranteeRow {
         display: flex;
@@ -60,12 +47,15 @@ app-sla-templates-detail {
 
         .sloInfo {
           display: flex;
-          flex-direction: row;
-          width: 100%;
+          flex-direction: column;
+          width: 95%;
+          margin-top: 3vh;
+          margin-left: 1vw;
+          margin-right: 1vw;
         }
 
         p {
-          color: $primary-font-color;
+          margin: 0;
         }
 
         &.mat-input-element,
@@ -75,25 +65,14 @@ app-sla-templates-detail {
           font-size: 16px;
         }
 
-        .gName {
-          width: 55%;
-        }
-
         .timePeriod {
           display: flex;
-          flex-direction: column;
-          width: 45%;
+          flex-direction: row;
 
-          .mat-form-field-wrapper {
-            padding-bottom: 10px;
+          .mat-form-field {
+            width: 50%;
           }
         }
-
-        // button {
-        //   width: 10%;
-        //   margin-top: 20px;
-        //   font-size: 16px;
-        // }
       }
     }
   }

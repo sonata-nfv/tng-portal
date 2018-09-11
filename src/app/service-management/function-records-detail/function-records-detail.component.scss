@@ -44,15 +44,11 @@ app-function-records-detail {
       &.vdus {
         .mat-cell:nth-child(1),
         .mat-header-cell:nth-child(1) {
-          width: 60%;
+          width: 10%;
         }
-        .mat-cell:nth-child(3),
-        .mat-header-cell:nth-child(3) {
-          width: 40%;
-        }
-        .mat-cell:nth-child(5),
-        .mat-header-cell:nth-child(5) {
-          width: 20%;
+        .mat-cell:nth-child(2),
+        .mat-header-cell:nth-child(2) {
+          width: 30%;
         }
       }
     }

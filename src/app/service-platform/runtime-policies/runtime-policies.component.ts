@@ -24,7 +24,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     "name",
     "version",
     "ns",
-    "enforced",
     "sla",
     "default",
     "delete"
@@ -178,7 +177,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
   }
 
   openPolicy(policy) {
-    this.router.navigate(["detail", policy.uuid], { relativeTo: this.route });
+    this.router.navigate([policy.uuid], { relativeTo: this.route });
   }
 
   createNew() {
