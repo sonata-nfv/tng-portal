@@ -15,7 +15,6 @@ export class FunctionRecordsDetailComponent implements OnInit {
     "connection_points_reference"
   ];
   displayedColumnsVDUs = [
-    "vduRef",
     "numInstances",
     "monitoringParam",
     "resourceReq",
