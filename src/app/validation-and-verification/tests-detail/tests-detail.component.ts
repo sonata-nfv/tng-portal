@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
 import { CommonService } from "../../shared/services/common/common.service";
+import { ChartService } from "../chart/chart.service";
 
 @Component({
   selector: "app-tests-detail",
@@ -16,11 +17,12 @@ export class TestsDetailComponent implements OnInit {
   executions = new Array();
   displayedColumns = ["vendor", "name", "version"];
   displayedColumnsExecutions = ["uuid", "serviceUUID", "date", "status"];
-
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private commonService: CommonService,
+    private chartService: ChartService,
     private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
   ) {}
 
@@ -38,18 +40,17 @@ export class TestsDetailComponent implements OnInit {
    */
   requestTest(uuid) {
     this.loading = true;
-
     this.verificationAndValidationPlatformService
       .getOneTest(uuid)
       .then(response => {
         this.detail = response;
+
       })
       .then(() => {
         this.verificationAndValidationPlatformService
           .getTestExecutions(this.detail["uuid"])
           .then(response => {
             this.loading = false;
-
             if (response.length < 1) {
               this.commonService.openSnackBar(
                 "There are no test executions available",
@@ -82,6 +83,7 @@ export class TestsDetailComponent implements OnInit {
     this.router.navigate(["results", row["uuid"]], {
       relativeTo: this.route
     });
+
   }
 
   close() {

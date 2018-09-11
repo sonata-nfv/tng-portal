@@ -17,7 +17,7 @@
       <span>{{ detail['version'] }}</span>
     </div>
   </div>
-
+  
   <div class="bubbleDiv" *ngIf="detail['timesExecuted']">
     <span class="text">Times executed</span>
     <div class="number times">
@@ -91,7 +91,7 @@
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let element"> {{ element.uuid }} </td>
     </ng-container>
-
+  
     <ng-container matColumnDef="serviceUUID">
       <th mat-header-cell *matHeaderCellDef> Service ID </th>
       <td mat-cell *matCellDef="let element"> {{ element.serviceUUID }} </td>
