@@ -125,8 +125,7 @@ export class ServiceManagementService {
             name: response["descriptor_version"],
             version: response["version"],
             updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
-            vdus: response["virtual_deployment_units"],
-            virtualLinks: response["virtual_links"]
+            vdus: response["virtual_deployment_units"]
           });
         })
         .catch(err => reject("There was an error fetching the VNF " + uuid));

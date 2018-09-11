@@ -7,32 +7,11 @@ import { Component, OnInit, ViewEncapsulation, Input } from "@angular/core";
   encapsulation: ViewEncapsulation.None
 })
 export class FunctionRecordsDetailComponent implements OnInit {
-  _virtualLinks: Array<any>;
   _vdus: Array<any>;
-  displayedColumnsConnPoints = [
-    "id",
-    "connectivity_type",
-    "connection_points_reference"
-  ];
-  displayedColumnsVDUs = [
-    "numInstances",
-    "monitoringParam",
-    "resourceReq",
-    "vnfcInstance"
-  ];
+  displayedColumns = ["id", "type", "mac", "ip"];
 
   /**
-   * [Mandatory] Defines the virtual links displayed in the table.
-   */
-  @Input()
-  set virtualLinks(virtualLinks: Array<string>) {
-    virtualLinks != undefined
-      ? (this._virtualLinks = virtualLinks)
-      : (this._virtualLinks = new Array());
-  }
-
-  /**
-   * [Mandatory] Defines the VDUs displayed in the table.
+   * [Mandatory] Defines the connection points displayed in the table.
    */
   @Input()
   set vdus(vdus: Array<string>) {

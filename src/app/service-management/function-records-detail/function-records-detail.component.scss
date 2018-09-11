@@ -12,36 +12,27 @@ app-function-records-detail {
     margin: 10px;
 
     .tableDetailTitle {
+      margin-top: 20px;
       font-size: 18px;
       color: $primary-font-color-light;
     }
 
     .message {
       margin-top: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       color: $secondary-font-color-light;
     }
 
     .mat-table.innerTable {
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       background-color: $panel-background-color;
 
       td.mat-cell {
         cursor: auto;
       }
-      &.vdus {
-        .mat-cell {
-          vertical-align: inherit;
-        }
-      }
-      &.virtualLinks {
-        .mat-cell:nth-child(1),
-        .mat-header-cell:nth-child(1) {
-          width: 15%;
-        }
-      }
-      &.vdus {
+
+      &.connectionPoints {
         .mat-cell:nth-child(1),
         .mat-header-cell:nth-child(1) {
           width: 10%;
