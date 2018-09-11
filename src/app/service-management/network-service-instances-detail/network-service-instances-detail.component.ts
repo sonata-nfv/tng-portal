@@ -9,6 +9,7 @@ import {
 } from "@angular/animations";
 
 import { ServiceManagementService } from "../service-management.service";
+import { CommonService } from "../../shared/services/common/common.service";
 import { CustomDataSource } from "./custom-data-source.component";
 
 @Component({
@@ -38,30 +39,18 @@ import { CustomDataSource } from "./custom-data-source.component";
 export class NetworkServiceInstancesDetailComponent implements OnInit {
   loading: boolean = false;
   detail = {};
-  displayedColumns = [
-    "uuid",
-    "version",
-    "status",
-    "descriptorReference",
-    "updatedAt"
-  ];
-  displayedColumnsConnPoints = [
-    "id",
-    "connectivity_type",
-    "connection_points_reference"
-  ];
+  displayedColumns = ["uuid", "version", "status", "updatedAt"];
 
   // Detail in row and animations
   dataSource = new CustomDataSource();
   vnfDetail = {};
-  state: string = "collapsed";
-  expandedElement: any;
   isExpansionDetailRow = (i: number, row: Object) =>
     row.hasOwnProperty("detailRow");
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private commonService: CommonService,
     private serviceManagementService: ServiceManagementService
   ) {}
 
@@ -84,51 +73,28 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
     this.serviceManagementService
       .getOneNSInstance(uuid)
       .then(response => {
-        this.loading = false;
         this.detail = response;
 
         if (this.detail["vnf"]) {
-          this.detail["vnf"].forEach(x => {
-            x.updatedAt = new Date()
-              .toISOString()
-              .replace(/T.*/, "")
-              .split("-")
-              .reverse()
-              .join("/");
-          });
-
-          this.dataSource.data = this.detail["vnf"];
+          Promise.all(
+            this.detail["vnf"].map(item =>
+              this.serviceManagementService.getOneFunctionRecord(item.vnfr_id)
+            )
+          )
+            .then(responses => {
+              this.loading = false;
+              this.dataSource.data = responses;
+            })
+            .catch(err => {
+              this.loading = false;
+              this.commonService.openSnackBar(err, "");
+            });
         }
       })
       .catch(err => {
         this.loading = false;
-      });
-  }
-
-  toggleDetail(row) {
-    if (this.state == "expanded") {
-      this.state = "collapsed";
-    } else {
-      this.requestVNF(row.vnfr_id);
-      this.expandedElement = row;
-    }
-  }
-
-  /**
-   * Generates the HTTP request of a VNF record by UUID.
-   *
-   * @param uuid ID of the selected VNF to be displayed.
-   *             Comming from the route.
-   */
-  requestVNF(uuid) {
-    this.serviceManagementService
-      .getFunctionRecords(uuid)
-      .then(response => {
-        this.vnfDetail = response;
-        this.state = "expanded";
-      })
-      .catch(err => {
-        this.state = "expanded";
+        this.commonService.openSnackBar(err, "");
+        this.close();
       });
   }
 

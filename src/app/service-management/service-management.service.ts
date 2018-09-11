@@ -55,7 +55,12 @@ export class ServiceManagementService {
           }
         })
         .catch(
-          err => (err.status === 404 ? resolve([]) : reject(err.statusText))
+          err =>
+            err.status === 404
+              ? resolve([])
+              : reject(
+                  "There was an error fetching the network service instances"
+                )
         );
     });
   }
@@ -85,23 +90,24 @@ export class ServiceManagementService {
               updatedAt: this.commonService.formatUTCDate(
                 response["updated_at"]
               ),
-              vnf: response["network_functions"],
-              virtualLinks: response["virtual_links"]
+              vnf: response["network_functions"]
             });
           } else {
             reject();
           }
         })
-        .catch(err => reject(err.statusText));
+        .catch(err =>
+          reject("There was an error fetching the network service instance")
+        );
     });
   }
 
   /**
-   * Retrieves a Function Record by UUID
+   * Retrieves a VNF by UUID
    *
-   * @param uuid UUID of the desired Function Record.
+   * @param uuid UUID of the desired VNF.
    */
-  getFunctionRecords(uuid: string): any {
+  getOneFunctionRecord(uuid: string): any {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
 
@@ -111,16 +117,19 @@ export class ServiceManagementService {
         })
         .toPromise()
         .then(response => {
-          if (response.hasOwnProperty("uuid")) {
-            resolve({
-              vdus: response["virtual_deployment_units"],
-              virtualLinks: response["virtual_links"]
-            });
-          } else {
-            reject();
-          }
+          resolve({
+            uuid: response["uuid"],
+            status: response["status"],
+            descriptorRef: response["descriptor_reference"],
+            descriptorVersion: response["descriptor_reference"],
+            name: response["descriptor_version"],
+            version: response["version"],
+            updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
+            vdus: response["virtual_deployment_units"],
+            virtualLinks: response["virtual_links"]
+          });
         })
-        .catch(err => reject(err.statusText));
+        .catch(err => reject("There was an error fetching the VNF " + uuid));
     });
   }
 
