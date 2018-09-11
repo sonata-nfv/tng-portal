@@ -19,6 +19,21 @@ export class CommonService {
   ) {}
 
   /**
+   * Copies the selected value to the clipboard
+   *
+   * @param value Value to copy to clipboard
+   */
+  copyToClipboard(value) {
+    const el = document.createElement("textarea");
+    el.value = value;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    this.openSnackBar("Copied", "");
+  }
+
+  /**
    * Opens a snack bar for notifications on the bottom of the screen
    *
    * @param message Message to be displayed

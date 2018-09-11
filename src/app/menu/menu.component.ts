@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { MatSidenav } from "@angular/material";
 
 import { AuthService } from "../authentication/auth.service";
-import { Router } from "@angular/router";
-
-import { MatSidenav } from "@angular/material";
+import { CommonService } from "../shared/services/common/common.service";
 
 @Component({
   selector: "app-menu",
@@ -20,7 +20,11 @@ export class MenuComponent implements OnInit {
 
   @ViewChild("sidenav")
   sideNav: MatSidenav;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
     this.username = localStorage.getItem("username");
@@ -29,6 +33,10 @@ export class MenuComponent implements OnInit {
 
     // Maintain menu status when reload
     this.maintainStatus();
+  }
+
+  copyToClipboard(value) {
+    this.commonService.copyToClipboard(value);
   }
 
   setMenu(e, buttonId) {
