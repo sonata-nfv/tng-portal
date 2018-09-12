@@ -785,7 +785,7 @@ export class ServicePlatformService {
           resolve();
         })
         .catch(err => {
-          if (err.status === 500) {
+          if (err.status == 500) {
             resolve();
           } else {
             reject("There was an error while trying to instantiate this slice");
@@ -822,9 +822,13 @@ export class ServicePlatformService {
         .then(response => {
           resolve("Instance " + response["name"] + " terminated");
         })
-        .catch(err =>
-          reject("There was an error terminating the slice instance")
-        );
+        .catch(err => {
+          if (err.status == 500) {
+            resolve("Instance terminated");
+          } else {
+            reject("There was an error terminating the slice instance");
+          }
+        });
     });
   }
 }

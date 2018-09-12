@@ -83,6 +83,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
           .postOneSliceInstanceTermination(item.uuid)
           .then(response => {
             this.commonService.openSnackBar(response, "");
+            this.requestInstances();
           })
           .catch(err => {
             this.commonService.openSnackBar(err, "");
