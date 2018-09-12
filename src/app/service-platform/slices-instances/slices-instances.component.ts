@@ -73,7 +73,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
   }
 
   stopInstance(item) {
-    if (item.state != "TERMINATED") {
+    if (item.state.toUpperCase() != "TERMINATED") {
       let title = "Are you sure...?";
       let content = "Are you sure you want to terminate this instance?";
       let action = "Terminate";
