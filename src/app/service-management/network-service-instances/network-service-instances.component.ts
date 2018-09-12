@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 
 import { ServiceManagementService } from "../service-management.service";
 import { CommonService } from "../../shared/services/common/common.service";
+import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-network-service-instances",
@@ -31,7 +32,8 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
     private serviceManagementService: ServiceManagementService,
     private router: Router,
     private commonService: CommonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialogData: DialogDataService
   ) {}
 
   ngOnInit() {
@@ -84,7 +86,25 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
   // reloadInstance(row) {}
 
   terminate(row) {
-    this.serviceManagementService.postOneNSInstanceTermination(row.uuid);
+    if (row.status.toUpperCase() != "TERMINATED") {
+      let title = "Are you sure...?";
+      let content = "Are you sure you want to terminate this instance?";
+      let action = "Terminate";
+
+      this.dialogData.openDialog(title, content, action, () => {
+        this.serviceManagementService
+          .postOneNSInstanceTermination(row.uuid)
+          .then(response => {
+            this.commonService.openSnackBar(response, "");
+            this.requestNSInstances();
+          })
+          .catch(err => {
+            this.commonService.openSnackBar(err, "");
+          });
+      });
+    } else {
+      this.openInstance(row);
+    }
   }
 
   openInstance(row) {

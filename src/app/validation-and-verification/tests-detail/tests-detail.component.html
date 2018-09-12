@@ -17,7 +17,7 @@
       <span>{{ detail['version'] }}</span>
     </div>
   </div>
-  
+
   <div class="bubbleDiv" *ngIf="detail['timesExecuted']">
     <span class="text">Times executed</span>
     <div class="number times">
@@ -35,15 +35,16 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <div class="launch" *ngIf="detail['uuid']" (click)="launch()">
+  <!-- <div class="launch" *ngIf="detail['uuid']" (click)="launch()">
     <button class="actions" mat-button>
       <i class="wui wui-caret-right"></i>
     </button>
     <span class="play">Execute test</span>
-  </div>
+  </div> -->
 
   <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
-    <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}" disabled>
+    <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}"
+      disabled>
   </mat-form-field>
 
   <div class="description" *ngIf="detail['description']">
@@ -84,14 +85,14 @@
 </form>
 
 <div class="executions" *ngIf="executions && executions.length > 0">
-  <span class="sectionTitle">TEST EXECUTIONS</span>
+  <span class="sectionTitle">Test Executions</span>
 
   <table mat-table [dataSource]="executions">
     <ng-container matColumnDef="uuid">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let element"> {{ element.uuid }} </td>
     </ng-container>
-  
+
     <ng-container matColumnDef="serviceUUID">
       <th mat-header-cell *matHeaderCellDef> Service ID </th>
       <td mat-cell *matCellDef="let element"> {{ element.serviceUUID }} </td>

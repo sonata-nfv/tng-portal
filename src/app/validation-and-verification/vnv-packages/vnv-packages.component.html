@@ -14,7 +14,7 @@
     <th mat-header-cell *matHeaderCellDef>
     </th>
     <td mat-cell *matCellDef="let element">
-      <i [ngClass]="{  'wui-lock' : element.type === 'private' }" class="wui"></i>
+      <i [ngClass]="{  'wui-lock' : element.type.toLowerCase() === 'private' }" class="wui"></i>
     </td>
   </ng-container>
 

@@ -16,7 +16,7 @@ export class TestsComponent implements OnInit {
   loading: boolean;
   tests = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ["vendor", "name", "version", "status", "launch"];
+  displayedColumns = ["vendor", "name", "version", "status"]; //"launch"
   subscription: Subscription;
 
   constructor(

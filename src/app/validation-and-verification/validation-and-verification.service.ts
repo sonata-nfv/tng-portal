@@ -48,7 +48,7 @@ export class ValidationAndVerificationPlatformService {
                   name: item.testd.name,
                   vendor: item.testd.vendor,
                   version: item.testd.version,
-                  status: item.status
+                  status: this.commonService.parseString(item.status)
                 };
               })
             );
@@ -84,7 +84,7 @@ export class ValidationAndVerificationPlatformService {
             author: response["testd"]["author"],
             description: response["testd"]["description"],
             createdAt: response["created_at"],
-            status: response["status"],
+            status: this.commonService.parseString(response["status"]),
             lastTimeExecuted: this.commonService.formatUTCDate(
               response["last_time_executed"]
             )
@@ -157,7 +157,7 @@ export class ValidationAndVerificationPlatformService {
                   serviceUUID: item.service_uuid,
                   createdAt: this.commonService.formatUTCDate(item.created_at),
                   testUUID: item.test_uuid,
-                  status: item.status
+                  status: this.commonService.parseString(item.status)
                 };
               })
             );
@@ -188,7 +188,7 @@ export class ValidationAndVerificationPlatformService {
         .then(response => {
           resolve({
             uuid: response["uuid"],
-            status: response["status"],
+            status: this.commonService.parseString(response["status"]),
             updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
             testerResultText: response["tester_result_text"],
             sterr: response["sterr"],

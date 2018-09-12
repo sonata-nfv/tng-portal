@@ -11,6 +11,7 @@ import {
 import { ServiceManagementService } from "../service-management.service";
 import { CommonService } from "../../shared/services/common/common.service";
 import { CustomDataSource } from "./custom-data-source.component";
+import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
   selector: "app-network-service-instances-detail",
@@ -50,6 +51,7 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private dialogData: DialogDataService,
     private commonService: CommonService,
     private serviceManagementService: ServiceManagementService
   ) {}
@@ -99,9 +101,20 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
   }
 
   terminate() {
-    this.serviceManagementService.postOneNSInstanceTermination(
-      this.detail["uuid"]
-    );
+    let title = "Are you sure...?";
+    let content = "Are you sure you want to terminate this instance?";
+    let action = "Terminate";
+
+    this.dialogData.openDialog(title, content, action, () => {
+      this.serviceManagementService
+        .postOneNSInstanceTermination(this.detail["uuid"])
+        .then(response => {
+          this.commonService.openSnackBar(response, "");
+        })
+        .catch(err => {
+          this.commonService.openSnackBar(err, "");
+        });
+    });
   }
 
   close() {

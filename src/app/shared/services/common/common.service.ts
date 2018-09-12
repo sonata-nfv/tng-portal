@@ -19,6 +19,31 @@ export class CommonService {
   ) {}
 
   /**
+   * Formats a string so that only the first letter is a capital one
+   *
+   * @param str string to parse
+   */
+  parseString(str): string {
+    let res = "";
+
+    if (str.includes("_")) {
+      str = str.replace("_", " ");
+    }
+    if (str.includes(" ")) {
+      const parts = str.split(" ");
+
+      parts.forEach(part => {
+        res = res.concat(
+          part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + " "
+        );
+      });
+    } else {
+      res = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+    return res;
+  }
+
+  /**
    * Copies the selected value to the clipboard
    *
    * @param value Value to copy to clipboard
@@ -117,8 +142,8 @@ export class CommonService {
                   vendor: item.pd.vendor,
                   version: item.pd.version,
                   createdAt: this.formatUTCDate(item.created_at),
-                  status: item.status,
-                  type: "public"
+                  status: this.parseString(item.status),
+                  type: "Public"
                 };
               })
             );
@@ -154,8 +179,8 @@ export class CommonService {
             updatedAt: this.formatUTCDate(response["updated_at"]),
             vendor: response["pd"]["vendor"],
             version: response["pd"]["version"],
-            status: response["status"],
-            type: "public",
+            status: this.parseString(response["status"]),
+            type: "Public",
             ns: this.getPackageContent(response["pd"]["package_content"], "ns"),
             vnf: this.getPackageContent(
               response["pd"]["package_content"],
@@ -236,7 +261,7 @@ export class CommonService {
                   uuid: item.uuid,
                   name: item.vnfd.name,
                   vendor: item.vnfd.vendor,
-                  status: item.status,
+                  status: this.parseString(item.status),
                   version: item.vnfd.version,
                   type: "public"
                 };
@@ -283,8 +308,7 @@ export class CommonService {
                   ns: item.slad.sla_template.ns.ns_name,
                   expirationDate: this.formatUTCDate(
                     item.slad.sla_template.valid_until
-                  ),
-                  status: item.status
+                  )
                 };
               })
             );
@@ -335,7 +359,7 @@ export class CommonService {
                 serviceId: item.uuid,
                 vendor: item.nsd.vendor,
                 version: item.nsd.version,
-                status: item.status,
+                status: this.parseString(item.status),
                 licenses: "None",
                 slas: "/service-platform/slas/sla-templates"
               }))
@@ -372,7 +396,7 @@ export class CommonService {
               name: response["nsd"]["name"],
               author: response["nsd"]["author"],
               version: response["nsd"]["version"],
-              status: response["status"],
+              status: this.parseString(response["status"]),
               vendor: response["nsd"]["vendor"],
               serviceID: response["uuid"],
               type: response["user_licence"],
@@ -414,19 +438,16 @@ export class CommonService {
         .toPromise()
         .then(response => {
           if (response instanceof Array) {
-            let requests = new Array();
-            response.forEach(res => {
-              let req = this.prepareNSRequest({
-                requestId: res.id,
-                name: res.name,
-                serviceName: res["service"] ? res.service.name : this.NA,
-                type: res.request_type,
-                createdAt: this.formatUTCDate(res.created_at),
-                status: res.status
-              });
-              requests.push(req);
-            });
-            resolve(requests);
+            resolve(
+              response.map(item => ({
+                requestId: item.id,
+                name: item.name,
+                serviceName: item["service"] ? item.service.name : this.NA,
+                type: this.parseString(item.request_type),
+                createdAt: this.formatUTCDate(item.created_at),
+                status: this.parseString(item.status)
+              }))
+            );
           } else {
             reject("There was an error while fetching the requests!");
           }
@@ -453,47 +474,35 @@ export class CommonService {
         .toPromise()
         .then(response => {
           if (response.hasOwnProperty("id")) {
-            let request = {
+            resolve({
               requestUUID: response["id"],
               name: response["name"],
-              type: response["request_type"],
+              type: this.parseString(response["request_type"]),
               updatedAt: this.formatUTCDate(response["updated_at"]),
-              status: response["status"],
+              status: this.parseString(response["status"]),
               slaUUID: response["sla_id"],
-              serviceVendor: response["service"]["vendor"],
-              serviceName: response["service"]["name"],
-              serviceVersion: response["service"]["version"],
-              serviceUUID: response["service"]["uuid"],
+              serviceVendor: response["service"]
+                ? response["service"]["vendor"]
+                : null,
+              serviceName: response["service"]
+                ? response["service"]["name"]
+                : null,
+              serviceVersion: response["service"]
+                ? response["service"]["version"]
+                : null,
+              serviceUUID: response["service"]
+                ? response["service"]["uuid"]
+                : null,
               blacklist: response["blacklist"],
               ingresses: response["ingresses"],
               egresses: response["egresses"]
-            };
-            this.prepareNSRequest(request);
-            resolve(request);
+            });
           } else {
             reject("Unable to fetch the request record!");
           }
         })
         .catch(err => reject("Unable to fetch the request record!"));
     });
-  }
-
-  prepareNSRequest(item) {
-    const parts = item.type.split("_");
-    let str: string = "";
-
-    parts.forEach(part => {
-      str = str.concat(
-        part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + " "
-      );
-    });
-
-    item.type = str;
-
-    item.status =
-      item.status.charAt(0).toUpperCase() + item.status.slice(1).toLowerCase();
-
-    return item;
   }
 
   /**

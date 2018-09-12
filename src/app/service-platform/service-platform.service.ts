@@ -36,12 +36,12 @@ export class ServicePlatformService {
             uuid: response["uuid"],
             name: response["vnfd"]["name"],
             author: response["vnfd"]["author"],
-            createdAt: response["created_at"],
-            updatedAt: response["updated_at"],
+            createdAt: this.commonService.formatUTCDate(response["created_at"]),
+            updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
             vendor: response["vnfd"]["vendor"],
             version: response["vnfd"]["version"],
-            type: "public",
-            status: response["status"],
+            type: "Public",
+            status: this.commonService.parseString(response["status"]),
             description: response["vnfd"]["description"]
           });
         })
@@ -66,8 +66,9 @@ export class ServicePlatformService {
           resolve({
             uuid: response["uuid"],
             name: response["slad"]["name"],
+            vendor: response["slad"]["vendor"],
             author: response["slad"]["author"],
-            createdAt: response["created_at"],
+            createdAt: this.commonService.formatUTCDate(response["created_at"]),
             expirationDate: new Date(
               Date.parse(response["slad"]["sla_template"]["valid_until"])
             ),
@@ -201,17 +202,10 @@ export class ServicePlatformService {
                 uuid: item.sla_uuid,
                 name: item.sla_name,
                 ns: item.ns_name,
-                ns_uuid: item.ns_uuid, //----
+                ns_uuid: item.ns_uuid,
                 customer: item.cust_uuid,
-                date: new Date(Date.parse(item.sla_date))
-                  .toISOString()
-                  .replace(/T.*/, "")
-                  .split("-")
-                  .reverse()
-                  .join("/"),
-                status:
-                  item.sla_status.charAt(0).toUpperCase() +
-                  item.sla_status.slice(1).toLowerCase()
+                date: this.commonService.formatUTCDate(item.sla_date),
+                status: this.commonService.parseString(item.sla_status)
               };
             })
           );
@@ -246,13 +240,11 @@ export class ServicePlatformService {
             uuid: response["uuid"],
             name: response["slad"]["name"],
             author: response["slad"]["author"],
-            date: response["updated_at"],
+            date: this.commonService.formatUTCDate(response["updated_at"]),
             ns: response["slad"]["sla_template"]["ns"]["ns_name"],
             customer:
               response["slad"]["sla_template"]["customer_info"]["cust_uuid"],
-            status:
-              response["status"].charAt(0).toUpperCase() +
-              response["status"].slice(1).toLowerCase(),
+            status: this.commonService.parseString(response["status"]),
             propertyList:
               response["slad"]["sla_template"]["ns"]["guaranteeTerms"]
             // availability: response["availability"],
@@ -371,7 +363,7 @@ export class ServicePlatformService {
             uuid: response["uuid"],
             name: response["pld"]["name"],
             vendor: response["pld"]["vendor"],
-            updatedAt: response["updated_at"],
+            updatedAt: this.commonService.formatUTCDate(response["updated_at"]),
             nsUUID: response["ns_uuid"],
             nsName: response["pld"]["network_service"]["name"],
             nsVendor: response["pld"]["network_service"]["vendor"],
@@ -633,7 +625,7 @@ export class ServicePlatformService {
         .then(response => {
           resolve({
             uuid: response["uuid"],
-            status: response["status"],
+            status: this.commonService.parseString(response["status"]),
             name: response["nstd"]["name"],
             author: response["nstd"]["author"],
             createdAt: response["created_at"],
@@ -642,8 +634,12 @@ export class ServicePlatformService {
             notificationType: response["nstd"]["notificationTypes"],
             userDefinedData: response["nstd"]["userDefinedData"],
             usageState: this.prepareUsageState(response["nstd"]["usageState"]),
-            onboardingState: response["nstd"]["onboardingState"],
-            operationalState: response["nstd"]["operationalState"],
+            onboardingState: this.commonService.parseString(
+              response["nstd"]["onboardingState"]
+            ),
+            operationalState: this.commonService.parseString(
+              response["nstd"]["operationalState"]
+            ),
             nstNsdIds: response["nstd"]["nstNsdIds"]
           });
         })
@@ -727,7 +723,7 @@ export class ServicePlatformService {
                   name: item.name,
                   vendor: item.vendor,
                   version: item.nstVersion,
-                  state: item.nsiState
+                  state: this.commonService.parseString(item.nsiState)
                 };
               })
             );
@@ -760,7 +756,7 @@ export class ServicePlatformService {
             uuid: response["uuid"],
             name: response["name"],
             vendor: response["vendor"],
-            state: response["nsiState"],
+            state: this.commonService.parseString(response["nsiState"]),
             description: response["description"],
             netServInstanceUUID: response["netServInstance_Uuid"],
             nstName: response["nstName"],
@@ -789,7 +785,7 @@ export class ServicePlatformService {
           resolve();
         })
         .catch(err => {
-          if (err.status === 500) {
+          if (err.status == 500) {
             resolve();
           } else {
             reject("There was an error while trying to instantiate this slice");
@@ -826,9 +822,13 @@ export class ServicePlatformService {
         .then(response => {
           resolve("Instance " + response["name"] + " terminated");
         })
-        .catch(err =>
-          reject("There was an error terminating the slice instance")
-        );
+        .catch(err => {
+          if (err.status == 500) {
+            resolve("Instance terminated");
+          } else {
+            reject("There was an error terminating the slice instance");
+          }
+        });
     });
   }
 }

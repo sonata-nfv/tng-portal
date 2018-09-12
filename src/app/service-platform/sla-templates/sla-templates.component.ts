@@ -21,7 +21,6 @@ export class SlaTemplatesComponent implements OnInit, OnDestroy {
     "name",
     "version",
     "ns",
-    "status",
     "expirationDate",
     "delete"
   ];

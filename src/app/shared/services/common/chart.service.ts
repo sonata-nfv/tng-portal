@@ -3,27 +3,24 @@ import { Chart } from "chart.js";
 
 @Injectable()
 export class ChartService {
-  ChartBar = [];
-
   @Output()
   change: EventEmitter<boolean> = new EventEmitter();
 
-  chartBar(menu, series, chart) {
-
+  createChart(menu, series, chartData): Chart {
     Chart.defaults.global.defaultFontFamily = "Calibri";
     Chart.defaults.global.defaultFontSize = 16;
     Chart.defaults.global.defaultFontColor = "#828188";
 
-    this.ChartBar = new Chart(chart["chart"], {
-      type: chart["type_"],
+    return new Chart(chartData["chart"], {
+      type: chartData["type_"],
       data: {
-        labels: chart["xAxis"], 
-        datasets: series,
+        labels: chartData["xAxis"],
+        datasets: series
       },
       options: {
         title: {
           display: true,
-          text: chart["title"]
+          text: chartData["title"]
         },
         legend: {
           display: menu,
@@ -63,12 +60,12 @@ export class ChartService {
             {
               ticks: {
                 beginAtZero: true,
-                suggestedMax: Math.max(...chart["yAxis"]) * 1.2
+                suggestedMax: Math.max(...chartData["yAxis"]) * 1.2
               },
               scaleLabel: {
                 display: true,
                 fontSize: 14,
-                labelString: chart["yTtle"],
+                labelString: chartData["yTtle"],
                 fontFamily: "Helvetica",
                 fontColor: "#000"
               }
@@ -79,7 +76,7 @@ export class ChartService {
               scaleLabel: {
                 display: true,
                 fontSize: 14,
-                labelString: chart["xTtle"],
+                labelString: chartData["xTtle"],
                 fontFamily: "Helvetica",
                 fontColor: "#000"
               }
@@ -89,6 +86,5 @@ export class ChartService {
         responsive: true
       }
     });
-
   }
 }
