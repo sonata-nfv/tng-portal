@@ -4,7 +4,6 @@ import { AppRoutingModule } from "../app-routing.module";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { ValidationAndVerificationPlatformService } from "./validation-and-verification.service";
-import { ChartService } from "./chart/chart.service";
 
 import { AngularMaterialModule } from "../angular-material/angular-material.module";
 import { TestsComponent } from "./tests/tests.component";
@@ -34,6 +33,6 @@ import { VnvNetworkServicesDetailComponent } from "./vnv-network-services-detail
     AppRoutingModule,
     SharedModule
   ],
-  providers: [ValidationAndVerificationPlatformService, ChartService]
+  providers: [ValidationAndVerificationPlatformService]
 })
 export class ValidationAndVerificationModule {}

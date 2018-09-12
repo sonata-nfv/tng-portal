@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { CommonService } from "../../shared/services/common/common.service";
 import { ValidationAndVerificationPlatformService } from "../validation-and-verification.service";
-import { ChartService } from "../chart/chart.service";
+import { ChartService } from "../../shared/services/common/chart.service";
 
 @Component({
   selector: "app-test-results",
@@ -65,11 +65,10 @@ export class TestResultsComponent implements OnInit {
         this.detail = response;
 
         if (this.detail["graphs"]) {
-          this.savData(this.charts, this.detail["graphs"]);
-          this.setData(this.charts);
+          this.setChartData(this.detail["graphs"]);
+          this.createChart();
         }
       })
-      .then(() => {})
       .catch(err => {
         this.loading = false;
         this.commonService.openSnackBar(err, "");
@@ -77,110 +76,106 @@ export class TestResultsComponent implements OnInit {
       });
   }
 
-  savData(chart, graph) {
+  setChartData(graph) {
     graph.forEach((graph, i) => {
-      chart["ds"]["chart"].push(i);
-      chart["ds"]["type_"].push(graph["type"]);
-      chart["ds"]["title"].push(graph["title"]);
-      chart["ds"]["xTtle"].push(graph["x-axis-title"]);
-      chart["ds"]["yTtle"].push(graph["y-axis-title"]);
-      chart["s1"]["serie"].push(graph["series"]["s1"]);
-      chart["s1"]["xAxis"].push(graph["data"]["s1x"]);
-      chart["s1"]["yAxis"].push(graph["data"]["s1y"]);
-      chart["s2"]["serie"].push(graph["series"]["s2"]);
-      chart["s2"]["yAxis"].push(graph["data"]["s2y"]);
-      chart["s3"]["serie"].push(graph["series"]["s3"]);
-      chart["s3"]["yAxis"].push(graph["data"]["s3y"]);
+      this.charts["ds"]["chart"].push(i);
+      this.charts["ds"]["type_"].push(graph["type"]);
+      this.charts["ds"]["title"].push(graph["title"]);
+      this.charts["ds"]["xTtle"].push(graph["x-axis-title"]);
+      this.charts["ds"]["yTtle"].push(graph["y-axis-title"]);
+      this.charts["s1"]["serie"].push(graph["series"]["s1"]);
+      this.charts["s1"]["xAxis"].push(graph["data"]["s1x"]);
+      this.charts["s1"]["yAxis"].push(graph["data"]["s1y"]);
+      this.charts["s2"]["serie"].push(graph["series"]["s2"]);
+      this.charts["s2"]["yAxis"].push(graph["data"]["s2y"]);
+      this.charts["s3"]["serie"].push(graph["series"]["s3"]);
+      this.charts["s3"]["yAxis"].push(graph["data"]["s3y"]);
     });
   }
 
-  setData(chart) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        for (let i = 0; i < chart["ds"]["chart"].length; i++) {
-          let s1Line = [
-              {
-                label:
-                  "[ " +
-                  "s1: " +
-                  ' " ' +
-                  chart["s1"]["serie"][i] +
-                  ' " ' +
-                  " ]",
-                data: chart["s1"]["yAxis"][i],
-                fill: false,
-                lineTension: 0.2,
-                backgroundColor: "#f0f0f0",
-                borderColor: "red",
-                borderWidth: 0.8
-              }
-            ],
-            s2Line = [
-              s1Line[0],
-              {
-                label:
-                  "[ " +
-                  "s2: " +
-                  ' " ' +
-                  chart["s2"]["serie"][i] +
-                  ' " ' +
-                  " ]",
-                data: chart["s2"]["yAxis"][i],
-                fill: false,
-                lineTension: 0.2,
-                backgroundColor: "#f0f0f0",
-                borderColor: "blue",
-                borderWidth: 0.8
-              }
-            ],
-            s3Line = [
-              s2Line[0],
-              s2Line[1],
-              {
-                label:
-                  "[ " +
-                  "s3: " +
-                  ' " ' +
-                  chart["s3"]["serie"][i] +
-                  ' " ' +
-                  " ]",
-                data: chart["s3"]["yAxis"][i],
-                fill: false,
-                lineTension: 0.2,
-                backgroundColor: "#f0f0f0",
-                borderColor: "brown",
-                borderWidth: 0.8
-              }
-            ],
-            setCharts = {
-              chart: "chart-" + chart["ds"]["chart"][i], // "chrat-" +
-              type_: chart["ds"]["type_"][i],
-              title: chart["ds"]["title"][i],
-              xTtle: chart["ds"]["xTtle"][i],
-              xAxis: chart["s1"]["xAxis"][i],
-              yTtle: chart["ds"]["yTtle"][i],
-              yAxis: chart["s2"]["yAxis"][i]
-            };
+  createChart() {
+    setTimeout(() => {
+      for (let i = 0; i < this.charts["ds"]["chart"].length; i++) {
+        let s1Line = [
+            {
+              label:
+                "[ " +
+                "s1: " +
+                ' " ' +
+                this.charts["s1"]["serie"][i] +
+                ' " ' +
+                " ]",
+              data: this.charts["s1"]["yAxis"][i],
+              fill: false,
+              lineTension: 0.2,
+              backgroundColor: "#f0f0f0",
+              borderColor: "red",
+              borderWidth: 0.8
+            }
+          ],
+          s2Line = [
+            s1Line[0],
+            {
+              label:
+                "[ " +
+                "s2: " +
+                ' " ' +
+                this.charts["s2"]["serie"][i] +
+                ' " ' +
+                " ]",
+              data: this.charts["s2"]["yAxis"][i],
+              fill: false,
+              lineTension: 0.2,
+              backgroundColor: "#f0f0f0",
+              borderColor: "blue",
+              borderWidth: 0.8
+            }
+          ],
+          s3Line = [
+            s2Line[0],
+            s2Line[1],
+            {
+              label:
+                "[ " +
+                "s3: " +
+                ' " ' +
+                this.charts["s3"]["serie"][i] +
+                ' " ' +
+                " ]",
+              data: this.charts["s3"]["yAxis"][i],
+              fill: false,
+              lineTension: 0.2,
+              backgroundColor: "#f0f0f0",
+              borderColor: "brown",
+              borderWidth: 0.8
+            }
+          ],
+          chartData = {
+            chart: "chart-" + this.charts["ds"]["chart"][i], // "chart-" +
+            type_: this.charts["ds"]["type_"][i],
+            title: this.charts["ds"]["title"][i],
+            xTtle: this.charts["ds"]["xTtle"][i],
+            xAxis: this.charts["s1"]["xAxis"][i],
+            yTtle: this.charts["ds"]["yTtle"][i],
+            yAxis: this.charts["s2"]["yAxis"][i]
+          };
 
-          if (chart["s1"]["yAxis"][i] !== undefined) {
-            this.chartService.chartBar(false, s1Line, setCharts);
-          }
-          if (
-            chart["s1"]["yAxis"][i] !== undefined &&
-            chart["s2"]["yAxis"][i] !== undefined
-          ) {
-            this.chartService.chartBar(true, s2Line, setCharts);
-          }
-          if (
-            chart["s1"]["yAxis"][i] !== undefined &&
-            chart["s2"]["yAxis"][i] !== undefined &&
-            chart["s3"]["yAxis"][i] !== undefined
-          ) {
-            this.chartService.chartBar(true, s3Line, setCharts);
-          }
+        if (
+          this.charts["s1"]["yAxis"][i] !== undefined &&
+          this.charts["s2"]["yAxis"][i] !== undefined &&
+          this.charts["s3"]["yAxis"][i] !== undefined
+        ) {
+          this.chartService.createChart(true, s3Line, chartData);
+        } else if (
+          this.charts["s1"]["yAxis"][i] !== undefined &&
+          this.charts["s2"]["yAxis"][i] !== undefined
+        ) {
+          this.chartService.createChart(true, s2Line, chartData);
+        } else if (this.charts["s1"]["yAxis"][i] !== undefined) {
+          this.chartService.createChart(false, s1Line, chartData);
         }
-      }, 400);
-    });
+      }
+    }, 400);
   }
 
   close() {
