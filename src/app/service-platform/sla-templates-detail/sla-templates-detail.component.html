@@ -21,11 +21,15 @@
     <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true">
   </mat-form-field>
 
+  <mat-form-field *ngIf="detail['vendor']">
+    <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" [disabled]="true">
+  </mat-form-field>
+
   <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
     (selectEvent)="receiveNS($event)" [disabled]="true"></app-select>
 
-  <app-calendar *ngIf="detail['expirationDate']" placeholder="Expiration Date" [value]="detail['expirationDate']" (dateEvent)="receiveDate($event)"
-    [disabled]="true"></app-calendar>
+  <app-calendar *ngIf="detail['expirationDate']" placeholder="Expiration Date" [value]="detail['expirationDate']"
+    (dateEvent)="receiveDate($event)" [disabled]="true"></app-calendar>
 </form>
 
 <div class="advanceSection" *ngIf="detail['storedGuarantees']">
