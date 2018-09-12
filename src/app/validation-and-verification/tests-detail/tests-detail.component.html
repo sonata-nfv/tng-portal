@@ -35,12 +35,12 @@
     <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
   </mat-form-field>
 
-  <div class="launch" *ngIf="detail['uuid']" (click)="launch()">
+  <!-- <div class="launch" *ngIf="detail['uuid']" (click)="launch()">
     <button class="actions" mat-button>
       <i class="wui wui-caret-right"></i>
     </button>
     <span class="play">Execute test</span>
-  </div>
+  </div> -->
 
   <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
     <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}"
