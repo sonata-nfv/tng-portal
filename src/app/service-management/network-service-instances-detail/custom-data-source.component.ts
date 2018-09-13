@@ -8,7 +8,6 @@ export class CustomDataSource extends DataSource<any> {
   connect(): Observable<any[]> {
     let rows = [];
     this.data.forEach(element => {
-      element.state = "collapsed";
       rows.push(element, { detailRow: true, element });
     });
     return of(rows);

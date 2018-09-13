@@ -73,7 +73,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" [class.expanded]="vnfDetail == row"
-        [class.collapsed]="vnfDetail != row" (click)="vnfDetail = vnfDetail == row ? null : row">
+        [class.collapsed]="vnfDetail != row" (click)="vnfDetail = vnfDetail == row ? {} : row">
       </tr>
 
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="row.element == vnfDetail ? 'expanded' : 'collapsed'"
