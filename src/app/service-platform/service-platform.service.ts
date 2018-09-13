@@ -823,7 +823,7 @@ export class ServicePlatformService {
           resolve("Instance " + response["name"] + " terminated");
         })
         .catch(err => {
-          if (err.status == 500) {
+          if (err.status == 500 || err.status == 504) {
             resolve("Instance terminated");
           } else {
             reject("There was an error terminating the slice instance");
