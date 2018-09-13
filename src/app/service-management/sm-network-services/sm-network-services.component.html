@@ -30,12 +30,12 @@
         <th mat-header-cell *matHeaderCellDef> Licenses </th>
         <td mat-cell *matCellDef="let element"> {{ element.licenses }} </td>
     </ng-container>
-    <ng-container matColumnDef="SLAs">
+    <!-- <ng-container matColumnDef="SLAs">
         <th mat-header-cell *matHeaderCellDef> SLAs </th>
         <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
             <a routerLink="{{ element.slas }}">View</a>
         </td>
-    </ng-container>
+    </ng-container> -->
     <ng-container matColumnDef="instantiate">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" (click)="instantiate(element)" (click)="$event.stopPropagation()">

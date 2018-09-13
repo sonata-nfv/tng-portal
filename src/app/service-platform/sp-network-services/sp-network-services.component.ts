@@ -14,7 +14,7 @@ export class SpNetworkServicesComponent implements OnInit {
   loading: boolean;
   section: string;
   networkServices: Array<Object>;
-  displayedColumns = ["Vendor", "Name", "Version", "Status", "SLAs"];
+  displayedColumns = ["Vendor", "Name", "Version", "Status"]; //"SLAs"
 
   constructor(
     private commonService: CommonService,

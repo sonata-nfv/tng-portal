@@ -22,7 +22,7 @@ export class SmNetworkServicesComponent implements OnInit {
     "Version",
     "Status",
     "Licenses",
-    "SLAs",
+    // "SLAs",
     "instantiate"
   ];
 
