@@ -87,6 +87,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
           })
           .catch(err => {
             this.commonService.openSnackBar(err, "");
+            this.requestInstances();
           });
       });
     } else {

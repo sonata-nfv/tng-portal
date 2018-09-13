@@ -13,6 +13,7 @@ import { CommonService } from "../../shared/services/common/common.service";
 })
 export class SlicesInstancesDetailComponent implements OnInit {
   loading: boolean;
+  uuid: string;
   detail = {};
 
   constructor(
@@ -25,6 +26,7 @@ export class SlicesInstancesDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      this.uuid = params["id"];
       this.requestSliceInstance(params["id"]);
     });
   }
@@ -61,9 +63,11 @@ export class SlicesInstancesDetailComponent implements OnInit {
         .postOneSliceInstanceTermination(this.detail["uuid"])
         .then(response => {
           this.commonService.openSnackBar(response, "");
+          this.requestSliceInstance(this.uuid);
         })
         .catch(err => {
           this.commonService.openSnackBar(err, "");
+          this.requestSliceInstance(this.uuid);
         });
     });
   }
