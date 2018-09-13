@@ -1,0 +1,41 @@
+<div *ngIf="_vdus">
+  <div *ngFor="let vdu of _vdus">
+
+    <div class="VNFDetail" *ngFor="let instance of vdu.vnfc_instance">
+
+      <span class="tableDetailTitle">Connection Points - {{ vdu.id }} - # {{ instance.vc_id }}</span>
+      <span class="message" *ngIf="instance.connection_points.length == 0">There are no Virtual Deployment Units to
+        display</span>
+
+      <table mat-table class="innerTable connectionPoints" *ngIf="instance.connection_points.length > 0" [dataSource]="instance.connection_points">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ip">
+          <th mat-header-cell *matHeaderCellDef> IP </th>
+          <td mat-cell *matCellDef="let element"> {{ element.interface.address }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mac">
+          <th mat-header-cell *matHeaderCellDef> MAC </th>
+          <td mat-cell *matCellDef="let element"> {{ element.interface.hardware_address }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr mat-row class="ineerTableRow" *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+
+    </div>
+
+  </div>
+</div>

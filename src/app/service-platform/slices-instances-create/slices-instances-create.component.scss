@@ -1,0 +1,88 @@
+@import "../../../constants.scss";
+app-slices-instances-create {
+  position: relative;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: auto;
+  min-height: 450px;
+  background-color: $basic-background-color;
+  color: $secondary-font-color-light;
+
+  .closeIcon {
+    right: -5px;
+    top: -10px;
+  }
+
+  .mat-dialog-title {
+    width: 100%;
+    margin: 0 20px;
+    text-align: center;
+    color: $primary-font-color-light;
+    font-size: 17px;
+  }
+
+  .mat-dialog-content {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 22px;
+
+    .form {
+      width: 60%;
+
+      .nstDetails {
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        .mat-form-field {
+          margin-right: 10px;
+        }
+      }
+
+      .nsiDetails .mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .buttonContainer {
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      height: 42px;
+      width: 180px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 2px 2px 4px 0 $shadow-buttons;
+
+      &.secondary {
+        margin-right: 15px;
+        color: $button-basic-font-color;
+        background-color: $button-close-color;
+      }
+
+      &.primary {
+        margin-left: 15px;
+        color: $button-basic-font-color;
+        background-color: $primary-button-color;
+      }
+    }
+
+    button:disabled {
+      background-color: $secondary-button-color;
+    }
+  }
+}

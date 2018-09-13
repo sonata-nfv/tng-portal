@@ -1,0 +1,113 @@
+@import "../../../constants.scss";
+app-sla-templates-create {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  .subsectionTitle {
+    margin: 0;
+    width: 40%;
+
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    &.mat-form-field-should-float {
+      .mat-form-field-label-wrapper {
+        display: none;
+      }
+    }
+  }
+
+  .subheader .subtitle {
+    margin-top: -35px;
+  }
+
+  form {
+    width: 65%;
+
+    .ns {
+      width: 40%;
+    }
+
+    &.advancedForm {
+      width: 100%;
+
+      .sectionTitle {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: $primary-font-color-light;
+      }
+
+      .sectionTitle:after {
+        background: none;
+      }
+
+      .guarantiesList {
+        width: 50%;
+        margin-top: 20px;
+      }
+
+      .note {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+        margin-bottom: 300px;
+        margin-top: -16px;
+        font-size: 13px;
+        color: $primary-font-color-light;
+      }
+
+      .guaranteeRow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+
+        .sloInfo {
+          display: flex;
+          flex-direction: column;
+          width: 95%;
+          margin-top: 3vh;
+          margin-left: 1vw;
+          margin-right: 1vw;
+
+          p {
+            margin: 0;
+          }
+        }
+
+        .timePeriod {
+          display: flex;
+          flex-direction: row;
+
+          .mat-form-field {
+            width: 50%;
+          }
+        }
+
+        &.mat-input-element,
+        .mat-input-element:disabled,
+        .mat-form-field-can-float.mat-form-field-should-float
+          .mat-form-field-label {
+          font-size: 16px;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-underline {
+          width: 95%;
+        }
+      }
+    }
+  }
+}

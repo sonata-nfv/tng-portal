@@ -4,13 +4,33 @@
   font-family: "Calibri";
   src: url("../assets/fonts/fonts/Calibri.ttf");
 }
+
 * {
   font-family: "Calibri";
 }
+
 body {
   overflow-x: hidden;
   overflow-y: hidden;
   margin: 0;
+}
+
+// Generic scrollbar for the app
+::-webkit-scrollbar {
+  width: 10px;
+  padding-top: 100px;
+}
+
+::-webkit-scrollbar-track {
+  background: $track-color;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $thumb-background-color;
+  outline: 1px solid $thumb-outline-color;
+  border-radius: 10px;
 }
 
 // App basic background
@@ -38,63 +58,6 @@ app-index {
   width: 100%;
 }
 
-// Section title and subtitle styles
-.sectionTitle {
-  margin-top: 15px;
-  margin-bottom: 3px;
-  width: 95%;
-  color: $primary-title-color;
-  font-size: 17px;
-  font-weight: normal;
-}
-.sectionTitle:after {
-  background: none repeat scroll 0 0 $primary-title-color;
-  content: "";
-  display: block;
-  height: 1px;
-  width: 260px;
-}
-.subsectionTitle {
-  width: 95%;
-  margin: 0px 15px 0px 15px;
-  color: $secondary-title-color;
-  font-size: 37px;
-  font-weight: normal;
-}
-.subtitle {
-  font-weight: normal;
-}
-
-/* Set styles for version circles*/
-.versionDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 150px;
-  margin-bottom: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 40px;
-  .text {
-    color: $secondary-font-color;
-    font-size: 21px;
-    margin-bottom: 10px;
-  }
-  .version {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    min-height: 120px;
-    border-radius: 50%;
-    background-color: $primary-background-color;
-    span {
-      color: $button-font-color;
-      font-size: 40px;
-    }
-  }
-}
-
 // Spinner styles to center in component
 app-spinner {
   position: absolute;
@@ -104,6 +67,265 @@ app-spinner {
   -ms-transform: translate(-50%, -50%);
 }
 
+// Section title styles
+.title {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+
+  .delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    .deleteButton {
+      min-width: 150px;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      background-color: $basic-background-color;
+      color: $primary-button-color;
+    }
+
+    .underline {
+      width: 100%;
+      border-bottom: 1px solid $primary-button-color;
+    }
+  }
+}
+
+.sectionTitle {
+  width: 95%;
+  margin-top: 15px;
+  margin-bottom: 3px;
+  color: $primary-font-color-light;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.sectionTitle:after {
+  background: none repeat scroll 0 0 $primary-font-color-light;
+  content: "";
+  display: block;
+  height: 1px;
+  width: 260px;
+}
+
+// Page title styles
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 95%;
+
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  // Button edit options in page
+  .headerButtons {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: flex-end;
+
+    button {
+      min-width: 160px;
+      height: 35px;
+      font-size: 17px;
+      font-weight: bold;
+      color: $button-basic-font-color;
+      box-shadow: 2px 2px 4px 0 $shadow-buttons;
+    }
+
+    .edit-options {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+
+    .save {
+      background-color: $primary-button-color;
+    }
+
+    .save.disabledButton {
+      background-color: $secondary-button-color;
+    }
+
+    .cancel {
+      background-color: $button-close-color;
+    }
+  }
+
+  // Close button in detailed views
+  .close {
+    min-width: 160px;
+    height: 35px;
+    font-size: 17px;
+    font-weight: bold;
+    color: $button-basic-font-color;
+    background-color: $button-close-color;
+    box-shadow: 2px 2px 4px 0 $shadow-buttons;
+  }
+
+  // Create new button in list views
+  .add {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    background-color: $basic-background-color;
+    box-shadow: 2px 2px 4px 0 $shadow-buttons;
+
+    span {
+      margin-left: 5px;
+      font-size: 18px;
+      color: $primary-color-light;
+    }
+
+    .wui-plus::before {
+      margin-right: 5px;
+      font-size: 20px;
+      color: $reload-color;
+    }
+  }
+}
+
+.subsectionTitle {
+  width: 95%;
+  margin-top: 0;
+  margin-bottom: 3px;
+  color: $secondary-font-color-light;
+  font-size: 37px;
+  font-weight: normal;
+}
+
+// Ordered lists
+ol,
+dl {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+
+li,
+dt {
+  display: flex;
+  flex-direction: row;
+  counter-increment: item;
+  margin-bottom: 10px;
+
+  button {
+    margin: auto;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+    box-shadow: 2px 1px 2px 0 $shadow-buttons;
+  }
+
+  .wui-trash-alt:before {
+    font-size: 20px;
+  }
+}
+
+li:before {
+  margin-right: 10px;
+  content: counter(item) ". ";
+  background: $basic-background-color;
+  color: $secondary-font-color-light;
+  width: 1em;
+  font-size: 40px;
+  font-weight: bold;
+  transform: translate(0, 9px);
+}
+
+// Page subtitle styles
+.subheader {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  min-height: 60px;
+
+  .subtitle {
+    margin-top: 0;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: normal;
+
+    &.author {
+      color: $primary-font-color-light;
+    }
+
+    &.date {
+      color: $secondary-font-color-light;
+    }
+  }
+}
+
+// Set styles for version circles
+.bubbleDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 40px;
+
+  .text {
+    color: $secondary-font-color-light;
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+
+  .number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    min-height: 120px;
+    border-radius: 50%;
+    background-color: $primary-background-color;
+
+    span {
+      color: $button-basic-font-color;
+      font-size: 40px;
+    }
+  }
+}
+
+// Set tools bar (search and reload) styles
+.tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5vh;
+}
+
+.reload {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  right: 6.5vw;
+  background-color: $basic-background-color;
+  box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+  .wui-undo::before {
+    font-size: 20px;
+    color: $reload-color;
+  }
+}
+
 // Close icon
 .closeIcon {
   position: absolute;
@@ -111,60 +333,146 @@ app-spinner {
   border: none;
   cursor: pointer;
   outline: none;
-  color: $button-font-color_light;
+  color: $primary-color-light;
   background-color: $basic-background-color;
+
   i:before {
     font-size: 10px;
-    color: $button-font-color_light;
+    color: $primary-color-light;
   }
 }
 
-// Close button in detailed views
-.close {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  min-width: 160px;
-  height: 35px;
-  font-weight: bold;
-  font-size: 17px;
-  color: $button-font-color;
-  background-color: $button-close-color;
+// Description field in detailed views and instantiations
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-// Reload button
-.reload {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  position: absolute;
-  right: 120px;
-  background-color: $basic-background-color;
-  .wui-undo::before {
-    font-size: 20px;
-    color: $reload-color;
+// Header when the item has an icon on the right
+// Allows dropdown action
+.description .header {
+  width: 100%;
+
+  button {
+    font-size: 16px;
+  }
+
+  .dropdownButton {
+    margin-bottom: 10px;
+    font-size: 10px;
   }
 }
 
-// Button edit options in page
-.edit-options {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  min-width: 160px;
-  height: 35px;
-  margin-right: 5px;
-  margin-left: 5px;
-  font-weight: bold;
-  font-size: 17px;
-  color: $button-font-color;
+.description span {
+  width: 100%;
+  min-height: 20px;
+
+  &.title {
+    color: $secondary-font-color-light;
+  }
+
+  &.content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-line;
+    min-height: 200px;
+    max-height: 200px;
+    color: $secondary-font-color;
+    background-color: $panel-background-color;
+    border-top: 1px solid $border-line-color;
+    border-bottom: 1px solid $border-line-color;
+
+    p {
+      margin: 5px;
+    }
+
+    // Styles for a table inside the description div
+    table th.mat-header-cell,
+    table td.mat-cell {
+      background-color: $panel-background-color;
+    }
+
+    // Underline styles
+    tr.mat-row {
+      background-position: bottom;
+      background-size: 100% 1px;
+      background-repeat: no-repeat;
+    }
+  }
 }
-.save {
-  background-color: $button-save-color;
+
+.description .mat-form-field-wrapper {
+  width: 100%;
 }
-.save.disabledButton {
-  background-color: $button-disabled-color;
+
+.description .mat-form-field-underline {
+  display: none;
 }
-.cancel {
-  background-color: $button-close-color;
+
+.description .mat-form-field-infix {
+  padding: 0;
+  border: 0;
+
+  .content {
+    min-height: 100px;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-top: 5px;
+    background-color: $panel-background-color;
+    border-top: 1px solid $border-line-color;
+    border-bottom: 1px solid $border-line-color;
+  }
+}
+
+// Styles for advanced section in detailed views
+.advanceSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 65%;
+
+  button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+  }
+
+  .dropdownButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: auto;
+    color: $secondary-button-color-light;
+
+    span {
+      margin-right: 25px;
+    }
+
+    i:before {
+      font-size: 10px;
+    }
+
+    .wui-caret-down:before {
+      color: $secondary-button-color-light;
+    }
+
+    .wui-caret-up:before {
+      color: $advanced-button-underline-color;
+    }
+
+    .underline {
+      margin: 2px auto;
+      width: 150px;
+      border-bottom: 1px solid $advanced-button-underline-color;
+
+      &.opened {
+        margin: 4px auto;
+      }
+    }
+  }
 }

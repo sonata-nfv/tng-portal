@@ -1,0 +1,48 @@
+<h1 class="sectionTitle" *ngIf="detail['name']">AVAILABLE NETWORK SERVICES</h1>
+
+<div class="header" *ngIf="detail['name']">
+    <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
+    <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="subheader" *ngIf="detail['author']">
+    <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
+    <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
+</div>
+
+<div class="bubbleDiv" *ngIf="detail['version']">
+    <span class="text">Version</span>
+    <div class="number">
+        <span>{{ detail['version'] }}</span>
+    </div>
+</div>
+
+<form class="detail">
+    <mat-form-field class="vendor" *ngIf="detail['vendor']">
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
+    </mat-form-field>
+
+    <mat-form-field class="serviceId" *ngIf="detail['serviceID']">
+        <input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled>
+    </mat-form-field>
+
+    <mat-form-field class="type" *ngIf="detail['type']">
+        <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
+    </mat-form-field>
+
+    <div class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']" (click)="instantiate()">
+        <button class="actions" mat-button matTooltip="Instantiate">
+            <i class="wui wui-caret-right"></i>
+        </button>
+        <span class="play">Ready to use</span>
+    </div>
+
+    <div class="description" *ngIf="detail['description']">
+        <span class="title">DESCRIPTION</span>
+        <span class="content">
+            <p>{{ detail['description'] }}</p>
+        </span>
+    </div>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

@@ -1,15 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ViewChild,
-  HostListener
-} from "@angular/core";
-
-import { AuthService } from "../shared/services/auth/auth.service";
-import { Router, NavigationEnd } from "@angular/router";
-
+import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { MatSidenav } from "@angular/material";
+
+import { AuthService } from "../authentication/auth.service";
+import { CommonService } from "../shared/services/common/common.service";
 
 @Component({
   selector: "app-menu",
@@ -24,8 +18,13 @@ export class MenuComponent implements OnInit {
   username: string;
   email: string;
 
-  @ViewChild("sidenav") sideNav: MatSidenav;
-  constructor(private authService: AuthService, private router: Router) {}
+  @ViewChild("sidenav")
+  sideNav: MatSidenav;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
     this.username = localStorage.getItem("username");
@@ -34,6 +33,10 @@ export class MenuComponent implements OnInit {
 
     // Maintain menu status when reload
     this.maintainStatus();
+  }
+
+  copyToClipboard(value) {
+    this.commonService.copyToClipboard(value);
   }
 
   setMenu(e, buttonId) {
@@ -47,87 +50,132 @@ export class MenuComponent implements OnInit {
       this.sideNav.open();
     }
 
-    if (buttonId === "dashboard") {
-      this.router.navigate(["/dashboard"]);
-    } else if (buttonId === "users") {
-      this.router.navigate(["/users"]);
-    } else if (buttonId === "configuration") {
-      // this.router.navigate(["/configuration"]);
-    } else if (buttonId === "validation-and-verification") {
-      this.section = "vv-tests";
-      this.router.navigate(["/validation-and-verification"]);
-    } else if (buttonId === "service-platform") {
-      this.section = "sp-packages";
-      this.router.navigate(["service-platform/packages"]);
-    } else if (buttonId === "service-management") {
-      this.section = "sm-network-services";
-      this.router.navigate(["service-management/network-services"]);
+    switch (buttonId) {
+      case "dashboard":
+        this.router.navigate(["/dashboard"]);
+        break;
+      case "users":
+        this.router.navigate(["/users"]);
+        break;
+      case "configuration":
+        // this.router.navigate(["/configuration"]);
+        break;
+      case "validation-and-verification":
+        this.section = "vv-packages";
+        this.router.navigate(["/validation-and-verification"]);
+        break;
+      case "service-platform":
+        this.section = "sp-packages";
+        this.router.navigate(["service-platform/packages"]);
+        break;
+      case "service-management":
+        this.section = "sm-network-services";
+        this.router.navigate(["service-management/network-services"]);
+        break;
+      default:
+        this.router.navigate(["/dashboard"]);
     }
     this.menu = buttonId;
   }
 
   setSection(e, buttonId) {
-    if (buttonId === "vv-packages") {
-      // this.router.navigate(["validation-and-verification/packages"]);
-    } else if (buttonId === "vv-services") {
-      // this.router.navigate(["validation-and-verification/packages"]);
-    } else if (buttonId === "vv-functions") {
-      // this.router.navigate(["validation-and-verification/packages"]);
-    } else if (buttonId === "vv-tests") {
-      this.router.navigate(["validation-and-verification/tests"]);
-    } else if (buttonId === "sp-packages") {
-      this.router.navigate(["service-platform/packages"]);
-    } else if (buttonId === "sp-network-services") {
-      this.router.navigate(["service-platform/network-services"]);
-    } else if (buttonId === "sp-functions") {
-      this.router.navigate(["service-platform/functions"]);
-    } else if (buttonId === "sp-policies") {
-      this.subsection = "placement-policy";
-      this.router.navigate(["service-platform/policies/placement-policy"]);
-    } else if (buttonId === "sp-slas") {
-      this.subsection = "sla-templates";
-      this.router.navigate(["service-platform/slas/sla-templates"]);
-    } else if (buttonId === "sp-slices") {
-      this.subsection = "slices-templates";
-      this.router.navigate(["service-platform/slices/slices-templates"]);
-    } else if (buttonId === "sm-network-services") {
-      this.router.navigate(["service-management/network-services"]);
-    } else if (buttonId === "sm-requests") {
-      this.router.navigate(["service-management/requests"]);
-    } else if (buttonId === "sm-network-service-instances") {
-      this.router.navigate(["service-management/network-service-instances"]);
-    } else if (buttonId === "licences") {
-      this.subsection = "";
-      this.router.navigate(["service-management/licences"]);
+    switch (buttonId) {
+      case "vv-packages":
+        this.router.navigate(["validation-and-verification/packages"]);
+        break;
+      case "vv-network-services":
+        this.router.navigate(["validation-and-verification/network-services"]);
+        break;
+      case "vv-functions":
+        this.router.navigate(["validation-and-verification/functions"]);
+        break;
+      case "vv-tests":
+        this.router.navigate(["validation-and-verification/tests"]);
+        break;
+      case "sp-packages":
+        this.router.navigate(["service-platform/packages"]);
+        break;
+      case "sp-network-services":
+        this.router.navigate(["service-platform/network-services"]);
+        break;
+      case "sp-functions":
+        this.router.navigate(["service-platform/functions"]);
+        break;
+      case "sp-policies":
+        this.subsection = "placement-policy";
+        this.router.navigate(["service-platform/policies/placement-policy"]);
+        break;
+      case "sp-slas":
+        this.subsection = "sla-templates";
+        this.router.navigate(["service-platform/slas/sla-templates"]);
+        break;
+      case "sp-slices":
+        this.subsection = "slices-templates";
+        this.router.navigate(["service-platform/slices/slices-templates"]);
+        break;
+      case "sm-network-services":
+        this.router.navigate(["service-management/network-services"]);
+        break;
+      case "sm-requests":
+        this.router.navigate(["service-management/requests"]);
+        break;
+      case "sm-network-service-instances":
+        this.router.navigate(["service-management/network-service-instances"]);
+        break;
+      case "licences":
+        this.subsection = "";
+        this.router.navigate(["service-management/licences"]);
+        break;
     }
     this.section = buttonId;
   }
 
   setSubsection(e, buttonId) {
-    if (buttonId === "placement-policy") {
-      this.subsection = "placement-policy";
-      this.router.navigate(["service-platform/policies/placement-policy"]);
-    } else if (buttonId === "runtime-policies") {
-      this.subsection = "runtime-policies";
-      this.router.navigate(["service-platform/policies/runtime-policies"]);
-    } else if (buttonId === "sla-templates") {
-      this.subsection = "sla-templates";
-      this.router.navigate(["service-platform/slas/sla-templates"]);
-    } else if (buttonId === "sla-agreements") {
-      this.subsection = "sla-agreements";
-      this.router.navigate(["service-platform/slas/sla-agreements"]);
-    } else if (buttonId === "slices-templates") {
-      this.subsection = "slices-templates";
-      this.router.navigate(["service-platform/slices/slices-templates"]);
-    } else if (buttonId === "slices-instances") {
-      this.subsection = "slices-instances";
-      this.router.navigate(["service-platform/slices/slices-instances"]);
-    } else if (buttonId === "service-licences") {
-      this.subsection = "service-licences";
-      this.router.navigate(["service-management/licences/service-licences"]);
-    } else if (buttonId === "user-licences") {
-      this.subsection = "user-licences";
-      this.router.navigate(["service-management/licences/user-licences"]);
+    switch (buttonId) {
+      case "placement-policy":
+        this.subsection = "placement-policy";
+        this.router.navigate(["service-platform/policies/placement-policy"]);
+        break;
+      case "runtime-policies":
+        this.subsection = "runtime-policies";
+        this.router.navigate(["service-platform/policies/runtime-policies"]);
+        break;
+      case "generated-actions":
+        this.subsection = "generated-actions";
+        this.router.navigate(["service-platform/policies/generated-actions"]);
+        break;
+      case "sla-templates":
+        this.subsection = "sla-templates";
+        this.router.navigate(["service-platform/slas/sla-templates"]);
+        break;
+      case "sla-agreements":
+        this.subsection = "sla-agreements";
+        this.router.navigate(["service-platform/slas/sla-agreements"]);
+        break;
+      case "sla-violations":
+        this.subsection = "sla-violations";
+        this.router.navigate(["service-platform/slas/sla-violations"]);
+        break;
+      case "slices-templates":
+        this.subsection = "slices-templates";
+        this.router.navigate(["service-platform/slices/slices-templates"]);
+        break;
+      case "slices-instances":
+        this.subsection = "slices-instances";
+        this.router.navigate(["service-platform/slices/slices-instances"]);
+        break;
+      case "slices-requests":
+        this.subsection = "slices-requests";
+        this.router.navigate(["service-platform/slices/slices-requests"]);
+        break;
+      case "service-licences":
+        this.subsection = "service-licences";
+        this.router.navigate(["service-management/licences/service-licences"]);
+        break;
+      case "user-licences":
+        this.subsection = "user-licences";
+        this.router.navigate(["service-management/licences/user-licences"]);
+        break;
     }
     this.subsection = buttonId;
   }

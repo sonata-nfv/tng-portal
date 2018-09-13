@@ -1,0 +1,78 @@
+<div class="title" *ngIf="detail['name']">
+    <h1 class="sectionTitle">TEMPLATES</h1>
+    <div class="delete" *ngIf="detail.usageState.trim() !== 'In Use'">
+        <button class="deleteButton" (click)="deleteTemplate()">Delete template</button>
+        <div class="underline"></div>
+    </div>
+</div>
+
+<div class="header" *ngIf="detail['name']">
+    <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
+    <button class="close" (click)="close()">CLOSE</button>
+</div>
+
+<div class="subheader" *ngIf="detail['author']">
+    <h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
+    <h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
+</div>
+
+<div class="bubbleDiv" *ngIf="detail['version']">
+    <span class="text">Version</span>
+    <div class="number">
+        <span>{{ detail['version'] }}</span>
+    </div>
+</div>
+
+<form class="detail">
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['uuid']">
+            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['vendor']">
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['usageState']">
+            <input matInput placeholder="Usage state" value="{{ detail['usageState'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['status']">
+            <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['onboardingState']">
+            <input matInput placeholder="Onboarding state" value="{{ detail['onboardingState'] }}" disabled>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['operationalState']">
+            <input matInput placeholder="Operational state" value="{{ detail['operationalState'] }}" disabled>
+        </mat-form-field>
+    </div>
+    <mat-form-field *ngIf="detail['notificationType']">
+        <input matInput placeholder="Notification Types" value="{{ detail['notificationType'] }}" disabled>
+    </mat-form-field>
+
+    <div class="launch" *ngIf="detail['uuid'] || detail['vendor'] || detail['name']  || detail['version']" (click)="instantiate()">
+        <button class="actions" mat-button matTooltip="Instantiate">
+            <i class="wui wui-caret-right"></i>
+        </button>
+        <span class="play">Ready to use</span>
+    </div>
+
+    <mat-form-field *ngIf="detail['userDefinedData']">
+        <input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled>
+    </mat-form-field>
+
+    <span class="sectionTitle" *ngIf="detail['nstNsdIds']">Network Services</span>
+
+    <dl *ngIf="detail['nstNsdIds']">
+        <dt *ngFor="let item of detail['nstNsdIds']">
+            <app-select placeholder="Network service descriptor" [list]="[item.nsdID]" [value]="item.nsdID" [disabled]="true"></app-select>
+
+            <app-select class="slaList " placeholder="SLA Template" [list]="[item.slaID ? item.slaID : 'None']" [value]="item.slaID ? item.slaID : 'None'"
+                [disabled]="true"></app-select>
+        </dt>
+    </dl>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

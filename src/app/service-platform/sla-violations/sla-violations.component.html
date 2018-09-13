@@ -1,0 +1,39 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<h2 class="subsectionTitle">SLA Violations</h2>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+  <button class="reload" (click)="requestViolations()" matTooltip="Reload data">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<table mat-table [dataSource]="violations">
+  <ng-container matColumnDef="nsInstanceUUID">
+    <th mat-header-cell *matHeaderCellDef> Network Service Instance ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.nsInstanceUUID }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="slaUUID">
+    <th mat-header-cell *matHeaderCellDef> SLA ID </th>
+    <td mat-cell *matCellDef="let element"> {{ element.slaUUID }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="customerUUID">
+    <th mat-header-cell *matHeaderCellDef> Customer </th>
+    <td mat-cell *matCellDef="let element"> {{ element.customerUUID }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>
+
+<app-spinner *ngIf="loading"></app-spinner>

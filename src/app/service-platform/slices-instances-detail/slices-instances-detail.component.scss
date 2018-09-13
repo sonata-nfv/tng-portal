@@ -1,0 +1,46 @@
+@import "../../../constants.scss";
+app-slices-instances-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  overflow-y: auto;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  form {
+    flex: 1 0;
+    width: 65%;
+    margin-bottom: 20px;
+
+    .mat-form-field {
+      width: 40%;
+      margin-left: 10px;
+
+      .mat-input-element:disabled {
+        text-overflow: ellipsis;
+      }
+
+      &.longField {
+        width: 60%;
+      }
+
+      .element {
+        margin-bottom: 5px;
+      }
+    }
+
+    .sameRow {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+}

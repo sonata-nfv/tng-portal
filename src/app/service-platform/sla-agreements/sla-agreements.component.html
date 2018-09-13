@@ -1,0 +1,42 @@
+<h1 class="sectionTitle">SERVICE PLATFORM</h1>
+
+<h2 class="subsectionTitle">SLA Agreements</h2>
+
+<div class="tools">
+  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+  <button class="reload" (click)="requestAgreements()" matTooltip="Reload data">
+    <i class="wui wui-undo"></i>
+  </button>
+</div>
+
+<table mat-table [dataSource]="agreements">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+  </ng-container>
+  <ng-container matColumnDef="ns">
+    <th mat-header-cell *matHeaderCellDef> Network Service </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ns }} </td>
+  </ng-container>
+  <ng-container matColumnDef="customer">
+    <th mat-header-cell *matHeaderCellDef> Customer </th>
+    <td mat-cell *matCellDef="let element"> {{ element.customer }} </td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openAgreement(row)">
+  </tr>
+</table>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

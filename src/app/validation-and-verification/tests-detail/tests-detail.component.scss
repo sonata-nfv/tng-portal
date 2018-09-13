@@ -1,0 +1,77 @@
+@import "../../../constants.scss";
+app-tests-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  .bubbles {
+    display: flex;
+    flex-direction: row;
+
+    .bubbleDiv .number {
+      &.times {
+        border: 2px solid $primary-background-color;
+        background-color: $basic-background-color;
+
+        span {
+          color: $secondary-font-color;
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  .detail {
+    width: 65%;
+    margin-bottom: 20px;
+
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+
+  // TEST EXECUTIONS PART
+  .executions {
+    width: 65%;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    .sectionTitle {
+      font-size: 24px;
+      color: $primary-font-color-light;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    tr.mat-row {
+      background-image: linear-gradient(
+        to right,
+        $basic-background-color 0%,
+        $table-underline-color 0%,
+        $table-underline-color 100%,
+        $basic-background-color 100%,
+        $basic-background-color 100%
+      );
+    }
+
+    // Set width for columns
+    .mat-cell:nth-child(4),
+    .mat-header-cell:nth-child(4) {
+      width: 10%;
+    }
+  }
+}

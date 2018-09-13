@@ -1,0 +1,100 @@
+<h1 class="sectionTitle" *ngIf="detail['name']">RUNTIME POLICIES</h1>
+
+<div class="header" *ngIf="detail['name']">
+  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
+
+  <div class="headerButtons" *ngIf="policyForm.touched">
+    <button class="edit-options save" (click)="editPolicy()">SAVE</button>
+    <button class="edit-options cancel" (click)="close()">CANCEL</button>
+  </div>
+
+  <div class="headerButtons" *ngIf="! policyForm.touched">
+    <button class="edit-options cancel" (click)="close()">CLOSE</button>
+  </div>
+</div>
+
+<div class="bubbleDiv" *ngIf="detail['version']">
+  <span class="text">Version</span>
+  <div class="number">
+    <span>{{ detail.version }}</span>
+  </div>
+</div>
+
+<form [formGroup]="policyForm" *ngIf="detail['uuid']">
+  <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)">Mark as default</mat-checkbox>
+
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail['uuid']">
+      <input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['vendor']">
+      <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail['nsName']">
+      <input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['nsVersion']">
+      <input matInput placeholder="Service Version" value="{{ detail['nsVersion'] }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="sameRow">
+    <mat-form-field *ngIf="detail['nsUUID']">
+      <input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['nsVendor']">
+      <input matInput placeholder="Service Vendor" value="{{ detail['nsVendor'] }}" disabled>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
+  </mat-form-field>
+
+  <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList"
+    (selectEvent)="receiveSLA($event)"></app-select>
+
+</form>
+
+<!--
+<div class="advanceSection" *ngIf="detail['name']">
+  <button class="dropdownButton" (click)="closed=!closed">
+    <div class="open">
+      <span>Monitoring Rules</span>
+      <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
+      <ng-template #opened>
+        <i class="wui wui-caret-up"></i>
+      </ng-template>
+    </div>
+    <div class="underline" [ngClass]="{ opened : !closed }"></div>
+  </button>
+  <form *ngIf="!closed" [formGroup]="policyForm" class="advancedForm">
+    <div class="rules">
+      <div class="monitoringRules left">
+        <span class="title">Existing monitoring rules</span>
+        <span class="content">
+          <p>{{ monitoringRules }}</p>
+        </span>
+      </div>
+
+      <mat-form-field class="monitoringRules" *ngIf="detail['name']">
+        <span class="title">Add new monitoring rules</span>
+        <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+-->
+<!-- TODO rules -->
+<!-- <div class="rulesForm" *ngIf="detail['name']">
+    <span class="sectionTitle">Rules</span>
+  </div> -->
+
+<!-- </div> -->
+
+<app-spinner *ngIf="loading"></app-spinner>
