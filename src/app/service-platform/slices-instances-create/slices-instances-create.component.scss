@@ -10,10 +10,12 @@ app-slices-instances-create {
   min-height: 450px;
   background-color: $basic-background-color;
   color: $secondary-font-color-light;
+
   .closeIcon {
     right: -5px;
     top: -10px;
   }
+
   .mat-dialog-title {
     width: 100%;
     margin: 0 20px;
@@ -21,6 +23,7 @@ app-slices-instances-create {
     color: $primary-font-color-light;
     font-size: 17px;
   }
+
   .mat-dialog-content {
     display: flex;
     flex: 1 1;
@@ -28,24 +31,33 @@ app-slices-instances-create {
     align-items: center;
     width: 100%;
     font-size: 22px;
+
     .form {
       width: 60%;
+
       .nstDetails {
         display: flex;
         flex-direction: row;
         margin-top: 40px;
         margin-bottom: 20px;
+
         .mat-form-field {
           margin-right: 10px;
         }
       }
+
+      .nsiDetails .mat-form-field {
+        width: 100%;
+      }
     }
   }
+
   button {
     border: none;
     cursor: pointer;
     outline: none;
   }
+
   .buttonContainer {
     button {
       margin-top: 20px;
@@ -61,12 +73,14 @@ app-slices-instances-create {
         color: $button-basic-font-color;
         background-color: $button-close-color;
       }
+
       &.primary {
         margin-left: 15px;
         color: $button-basic-font-color;
         background-color: $primary-button-color;
       }
     }
+
     button:disabled {
       background-color: $secondary-button-color;
     }

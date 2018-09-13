@@ -24,16 +24,11 @@ import { DialogDataService } from "../../shared/services/dialog/dialog.service";
         "collapsed",
         style({
           display: "none",
-          opacity: 0,
-          transform: "translateY(-100%)"
+          transform: "rotateX(90deg)"
         })
       ),
-      state("expanded", style({ height: "*" })),
-      transition(
-        "collapsed <=> expanded",
-        // animate("1000ms cubic-bezier(0.68, -0.10s, 0.265, 1.10)")
-        animate("600ms ease-in")
-      )
+      state("expanded", style({})),
+      transition("collapsed => expanded", animate("300ms ease-in"))
     ])
   ]
 })
