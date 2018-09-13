@@ -79,11 +79,13 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
       let action = "Terminate";
 
       this.dialogData.openDialog(title, content, action, () => {
+        this.commonService.openSnackBar("Terminating instance...", "");
+
         this.servicePlatformService
           .postOneSliceInstanceTermination(item.uuid)
           .then(response => {
-            this.commonService.openSnackBar(response, "");
-            this.requestInstances();
+            // this.commonService.openSnackBar(response, "");
+            // this.requestInstances();
           })
           .catch(err => {
             this.commonService.openSnackBar(err, "");

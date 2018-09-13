@@ -34,7 +34,7 @@
     <th mat-header-cell *matHeaderCellDef>
     </th>
     <td mat-cell *matCellDef="let element" (click)="stopInstance(element)" (click)="$event.stopPropagation()">
-      <button *ngIf="element.state.toUpperCase() != 'TERMINATED' && element.state != 'ERROR'" class="actions"
+      <button *ngIf="element.state.toUpperCase() != 'TERMINATED' && element.state.toUpperCase() != 'ERROR'" class="actions"
         mat-button matTooltip="Terminate">
         <i class="wui wui-stop-alt"></i>
       </button>

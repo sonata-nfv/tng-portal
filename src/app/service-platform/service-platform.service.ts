@@ -785,7 +785,7 @@ export class ServicePlatformService {
           resolve();
         })
         .catch(err => {
-          if (err.status == 500) {
+          if (err.status == 500 || err.status == 504) {
             resolve();
           } else {
             reject("There was an error while trying to instantiate this slice");
