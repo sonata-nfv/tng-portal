@@ -59,15 +59,16 @@ export class SlicesInstancesDetailComponent implements OnInit {
     let action = "Terminate";
 
     this.dialogData.openDialog(title, content, action, () => {
+      this.commonService.openSnackBar("Terminating instance...", "");
+
       this.servicePlatformService
         .postOneSliceInstanceTermination(this.detail["uuid"])
         .then(response => {
-          this.commonService.openSnackBar(response, "");
-          this.requestSliceInstance(this.uuid);
+          // this.commonService.openSnackBar(response, "");
+          // this.requestSliceInstance(this.uuid);
         })
         .catch(err => {
           this.commonService.openSnackBar(err, "");
-          this.requestSliceInstance(this.uuid);
         });
     });
   }
