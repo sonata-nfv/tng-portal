@@ -1,7 +1,7 @@
 <div class="title" *ngIf="detail['name']">
     <h1 class="sectionTitle">TEMPLATES</h1>
-    <div class="delete" *ngIf="detail.usageState.trim() !== 'In Use'">
-        <button class="deleteButton" (click)="deleteTemplate()">Delete template</button>
+    <div class="button-underline" *ngIf="detail.usageState.trim() !== 'In Use'">
+        <button class="delete-button" (click)="deleteTemplate()">Delete template</button>
         <div class="underline"></div>
     </div>
 </div>

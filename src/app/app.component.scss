@@ -1,478 +1,485 @@
-@import "../constants.scss";
-@import "../material-styles.scss";
+@import '../constants.scss';
+@import '../material-styles.scss';
 @font-face {
-  font-family: "Calibri";
-  src: url("../assets/fonts/fonts/Calibri.ttf");
+	font-family: 'Calibri';
+	src: url('../assets/fonts/fonts/Calibri.ttf');
 }
 
 * {
-  font-family: "Calibri";
+	font-family: 'Calibri';
 }
 
 body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  margin: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin: 0;
 }
 
 // Generic scrollbar for the app
 ::-webkit-scrollbar {
-  width: 10px;
-  padding-top: 100px;
+	width: 10px;
+	padding-top: 100px;
 }
 
 ::-webkit-scrollbar-track {
-  background: $track-color;
-  border: 6px solid transparent;
-  background-clip: content-box;
+	background: $track-color;
+	border: 6px solid transparent;
+	background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $thumb-background-color;
-  outline: 1px solid $thumb-outline-color;
-  border-radius: 10px;
+	background-color: $thumb-background-color;
+	outline: 1px solid $thumb-outline-color;
+	border-radius: 10px;
 }
 
 // App basic background
 app-root {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background: url("../assets/images/background-strokes-sonata.svg"),
-    linear-gradient(
-      to right,
-      $init-background-color 0%,
-      darken($init-background-color, 10%) 100%
-    );
-  background-position: center center;
-  background-repeat: repeat-y;
-  background-attachment: fixed;
-  background-size: cover;
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background: url('../assets/images/background-strokes-sonata.svg'),
+		linear-gradient(
+			to right,
+			$init-background-color 0%,
+			darken($init-background-color, 10%) 100%
+		);
+	background-position: center center;
+	background-repeat: repeat-y;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 // Set index dimenssions to enable menu opening
 app-index {
-  display: flex;
-  flex: 1 1;
-  width: 100%;
+	display: flex;
+	flex: 1 1;
+	width: 100%;
 }
 
 // Spinner styles to center in component
 app-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 }
 
 // Section title styles
 .title {
-  display: flex;
-  flex-direction: row;
-  width: 95%;
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+}
 
-  .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+.button-underline {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 
-    .deleteButton {
-      min-width: 150px;
-      font-size: 15px;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      background-color: $basic-background-color;
-      color: $primary-button-color;
-    }
+	.delete-button {
+		min-width: 150px;
+		font-size: 15px;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		background-color: $basic-background-color;
+		color: $primary-button-color;
+	}
 
-    .underline {
-      width: 100%;
-      border-bottom: 1px solid $primary-button-color;
-    }
-  }
+	a {
+		text-decoration: none;
+		text-align: center;
+		color: $primary-font-color;
+		font-size: 18px;
+	}
+
+	.underline {
+		width: 100%;
+		border-bottom: 1px solid $primary-button-color;
+	}
 }
 
 .sectionTitle {
-  width: 95%;
-  margin-top: 15px;
-  margin-bottom: 3px;
-  color: $primary-font-color-light;
-  font-size: 17px;
-  font-weight: normal;
+	width: 95%;
+	margin-top: 15px;
+	margin-bottom: 3px;
+	color: $primary-font-color-light;
+	font-size: 17px;
+	font-weight: normal;
 }
 
 .sectionTitle:after {
-  background: none repeat scroll 0 0 $primary-font-color-light;
-  content: "";
-  display: block;
-  height: 1px;
-  width: 260px;
+	background: none repeat scroll 0 0 $primary-font-color-light;
+	content: '';
+	display: block;
+	height: 1px;
+	width: 260px;
 }
 
 // Page title styles
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 95%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 95%;
 
-  button {
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
+	button {
+		border: none;
+		cursor: pointer;
+		outline: none;
+	}
 
-  // Button edit options in page
-  .headerButtons {
-    display: flex;
-    flex-direction: row;
-    width: 60%;
-    justify-content: flex-end;
+	// Button edit options in page
+	.headerButtons {
+		display: flex;
+		flex-direction: row;
+		width: 60%;
+		justify-content: flex-end;
 
-    button {
-      min-width: 160px;
-      height: 35px;
-      font-size: 17px;
-      font-weight: bold;
-      color: $button-basic-font-color;
-      box-shadow: 2px 2px 4px 0 $shadow-buttons;
-    }
+		button {
+			min-width: 160px;
+			height: 35px;
+			font-size: 17px;
+			font-weight: bold;
+			color: $button-basic-font-color;
+			box-shadow: 2px 2px 4px 0 $shadow-buttons;
+		}
 
-    .edit-options {
-      margin-right: 5px;
-      margin-left: 5px;
-    }
+		.edit-options {
+			margin-right: 5px;
+			margin-left: 5px;
+		}
 
-    .save {
-      background-color: $primary-button-color;
-    }
+		.save {
+			background-color: $primary-button-color;
+		}
 
-    .save.disabledButton {
-      background-color: $secondary-button-color;
-    }
+		.save.disabledButton {
+			background-color: $secondary-button-color;
+		}
 
-    .cancel {
-      background-color: $button-close-color;
-    }
-  }
+		.cancel {
+			background-color: $button-close-color;
+		}
+	}
 
-  // Close button in detailed views
-  .close {
-    min-width: 160px;
-    height: 35px;
-    font-size: 17px;
-    font-weight: bold;
-    color: $button-basic-font-color;
-    background-color: $button-close-color;
-    box-shadow: 2px 2px 4px 0 $shadow-buttons;
-  }
+	// Close button in detailed views
+	.close {
+		min-width: 160px;
+		height: 35px;
+		font-size: 17px;
+		font-weight: bold;
+		color: $button-basic-font-color;
+		background-color: $button-close-color;
+		box-shadow: 2px 2px 4px 0 $shadow-buttons;
+	}
 
-  // Create new button in list views
-  .add {
-    display: flex;
-    justify-content: center;
-    width: 20%;
-    background-color: $basic-background-color;
-    box-shadow: 2px 2px 4px 0 $shadow-buttons;
+	// Create new button in list views
+	.add {
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		background-color: $basic-background-color;
+		box-shadow: 2px 2px 4px 0 $shadow-buttons;
 
-    span {
-      margin-left: 5px;
-      font-size: 18px;
-      color: $primary-color-light;
-    }
+		span {
+			margin-left: 5px;
+			font-size: 18px;
+			color: $primary-color-light;
+		}
 
-    .wui-plus::before {
-      margin-right: 5px;
-      font-size: 20px;
-      color: $reload-color;
-    }
-  }
+		.wui-plus::before {
+			margin-right: 5px;
+			font-size: 20px;
+			color: $reload-color;
+		}
+	}
 }
 
 .subsectionTitle {
-  width: 95%;
-  margin-top: 0;
-  margin-bottom: 3px;
-  color: $secondary-font-color-light;
-  font-size: 37px;
-  font-weight: normal;
+	width: 95%;
+	margin-top: 0;
+	margin-bottom: 3px;
+	color: $secondary-font-color-light;
+	font-size: 37px;
+	font-weight: normal;
 }
 
 // Ordered lists
 ol,
 dl {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0;
 }
 
 li,
 dt {
-  display: flex;
-  flex-direction: row;
-  counter-increment: item;
-  margin-bottom: 10px;
+	display: flex;
+	flex-direction: row;
+	counter-increment: item;
+	margin-bottom: 10px;
 
-  button {
-    margin: auto;
-    margin-left: 15px;
-    width: 35px;
-    height: 35px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-    box-shadow: 2px 1px 2px 0 $shadow-buttons;
-  }
+	button {
+		margin: auto;
+		margin-left: 15px;
+		width: 35px;
+		height: 35px;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		background-color: $basic-background-color;
+		box-shadow: 2px 1px 2px 0 $shadow-buttons;
+	}
 
-  .wui-trash-alt:before {
-    font-size: 20px;
-  }
+	.wui-trash-alt:before {
+		font-size: 20px;
+	}
 }
 
 li:before {
-  margin-right: 10px;
-  content: counter(item) ". ";
-  background: $basic-background-color;
-  color: $secondary-font-color-light;
-  width: 1em;
-  font-size: 40px;
-  font-weight: bold;
-  transform: translate(0, 9px);
+	margin-right: 10px;
+	content: counter(item) '. ';
+	background: $basic-background-color;
+	color: $secondary-font-color-light;
+	width: 1em;
+	font-size: 40px;
+	font-weight: bold;
+	transform: translate(0, 9px);
 }
 
 // Page subtitle styles
 .subheader {
-  display: flex;
-  flex-direction: row;
-  width: 95%;
-  min-height: 60px;
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	min-height: 60px;
 
-  .subtitle {
-    margin-top: 0;
-    margin-right: 15px;
-    font-size: 12px;
-    font-weight: normal;
+	.subtitle {
+		margin-top: 0;
+		margin-right: 15px;
+		font-size: 12px;
+		font-weight: normal;
 
-    &.author {
-      color: $primary-font-color-light;
-    }
+		&.author {
+			color: $primary-font-color-light;
+		}
 
-    &.date {
-      color: $secondary-font-color-light;
-    }
-  }
+		&.date {
+			color: $secondary-font-color-light;
+		}
+	}
 }
 
 // Set styles for version circles
 .bubbleDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 150px;
-  margin-bottom: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 150px;
+	margin-bottom: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 40px;
 
-  .text {
-    color: $secondary-font-color-light;
-    font-size: 21px;
-    margin-bottom: 10px;
-  }
+	.text {
+		color: $secondary-font-color-light;
+		font-size: 21px;
+		margin-bottom: 10px;
+	}
 
-  .number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    min-height: 120px;
-    border-radius: 50%;
-    background-color: $primary-background-color;
+	.number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 120px;
+		min-height: 120px;
+		border-radius: 50%;
+		background-color: $primary-background-color;
 
-    span {
-      color: $button-basic-font-color;
-      font-size: 40px;
-    }
-  }
+		span {
+			color: $button-basic-font-color;
+			font-size: 40px;
+		}
+	}
 }
 
 // Set tools bar (search and reload) styles
 .tools {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 5vh;
 }
 
 .reload {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  position: absolute;
-  right: 6.5vw;
-  background-color: $basic-background-color;
-  box-shadow: 2px 1px 2px 0 $shadow-buttons;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	position: absolute;
+	right: 6.5vw;
+	background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
 
-  .wui-undo::before {
-    font-size: 20px;
-    color: $reload-color;
-  }
+	.wui-undo::before {
+		font-size: 20px;
+		color: $reload-color;
+	}
 }
 
 // Close icon
 .closeIcon {
-  position: absolute;
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  color: $primary-color-light;
-  background-color: $basic-background-color;
+	position: absolute;
+	padding: 8px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	color: $primary-color-light;
+	background-color: $basic-background-color;
 
-  i:before {
-    font-size: 10px;
-    color: $primary-color-light;
-  }
+	i:before {
+		font-size: 10px;
+		color: $primary-color-light;
+	}
 }
 
 // Description field in detailed views and instantiations
 .description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 30px;
 }
 
 // Header when the item has an icon on the right
 // Allows dropdown action
 .description .header {
-  width: 100%;
+	width: 100%;
 
-  button {
-    font-size: 16px;
-  }
+	button {
+		font-size: 16px;
+	}
 
-  .dropdownButton {
-    margin-bottom: 10px;
-    font-size: 10px;
-  }
+	.dropdownButton {
+		margin-bottom: 10px;
+		font-size: 10px;
+	}
 }
 
 .description span {
-  width: 100%;
-  min-height: 20px;
+	width: 100%;
+	min-height: 20px;
 
-  &.title {
-    color: $secondary-font-color-light;
-  }
+	&.title {
+		color: $secondary-font-color-light;
+	}
 
-  &.content {
-    overflow-y: auto;
-    overflow-x: hidden;
-    white-space: pre-line;
-    min-height: 200px;
-    max-height: 200px;
-    color: $secondary-font-color;
-    background-color: $panel-background-color;
-    border-top: 1px solid $border-line-color;
-    border-bottom: 1px solid $border-line-color;
+	&.content {
+		overflow-y: auto;
+		overflow-x: hidden;
+		white-space: pre-line;
+		min-height: 200px;
+		max-height: 200px;
+		color: $secondary-font-color;
+		background-color: $panel-background-color;
+		border-top: 1px solid $border-line-color;
+		border-bottom: 1px solid $border-line-color;
 
-    p {
-      margin: 5px;
-    }
+		p {
+			margin: 5px;
+		}
 
-    // Styles for a table inside the description div
-    table th.mat-header-cell,
-    table td.mat-cell {
-      background-color: $panel-background-color;
-    }
+		// Styles for a table inside the description div
+		table th.mat-header-cell,
+		table td.mat-cell {
+			background-color: $panel-background-color;
+		}
 
-    // Underline styles
-    tr.mat-row {
-      background-position: bottom;
-      background-size: 100% 1px;
-      background-repeat: no-repeat;
-    }
-  }
+		// Underline styles
+		tr.mat-row {
+			background-position: bottom;
+			background-size: 100% 1px;
+			background-repeat: no-repeat;
+		}
+	}
 }
 
 .description .mat-form-field-wrapper {
-  width: 100%;
+	width: 100%;
 }
 
 .description .mat-form-field-underline {
-  display: none;
+	display: none;
 }
 
 .description .mat-form-field-infix {
-  padding: 0;
-  border: 0;
+	padding: 0;
+	border: 0;
 
-  .content {
-    min-height: 100px;
-    padding-top: 5px;
-    padding-left: 5px;
-    margin-top: 5px;
-    background-color: $panel-background-color;
-    border-top: 1px solid $border-line-color;
-    border-bottom: 1px solid $border-line-color;
-  }
+	.content {
+		min-height: 100px;
+		padding-top: 5px;
+		padding-left: 5px;
+		margin-top: 5px;
+		background-color: $panel-background-color;
+		border-top: 1px solid $border-line-color;
+		border-bottom: 1px solid $border-line-color;
+	}
 }
 
 // Styles for advanced section in detailed views
 .advanceSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 65%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 65%;
 
-  button {
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-color: $basic-background-color;
-  }
+	button {
+		border: none;
+		cursor: pointer;
+		outline: none;
+		background-color: $basic-background-color;
+	}
 
-  .dropdownButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-    width: auto;
-    color: $secondary-button-color-light;
+	.dropdownButton {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 20px;
+		width: auto;
+		color: $secondary-button-color-light;
 
-    span {
-      margin-right: 25px;
-    }
+		span {
+			margin-right: 25px;
+		}
 
-    i:before {
-      font-size: 10px;
-    }
+		i:before {
+			font-size: 10px;
+		}
 
-    .wui-caret-down:before {
-      color: $secondary-button-color-light;
-    }
+		.wui-caret-down:before {
+			color: $secondary-button-color-light;
+		}
 
-    .wui-caret-up:before {
-      color: $advanced-button-underline-color;
-    }
+		.wui-caret-up:before {
+			color: $advanced-button-underline-color;
+		}
 
-    .underline {
-      margin: 2px auto;
-      width: 150px;
-      border-bottom: 1px solid $advanced-button-underline-color;
+		.underline {
+			margin: 2px auto;
+			width: 150px;
+			border-bottom: 1px solid $advanced-button-underline-color;
 
-      &.opened {
-        margin: 4px auto;
-      }
-    }
-  }
+			&.opened {
+				margin: 4px auto;
+			}
+		}
+	}
 }
