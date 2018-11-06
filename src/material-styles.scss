@@ -117,18 +117,19 @@ form {
 }
 
 // Styles when form field contains error
-.errorFormField {
+.error-form-field {
   .mat-input-element {
     color: $form-alert-color;
-  }
-
-  .mat-form-field-ripple {
-    background-color: $form-alert-color;
   }
 
   .mat-form-field-underline {
     background-color: $form-alert-color;
   }
+}
+
+.error-form-field.mat-focused .mat-form-field-ripple,
+.error-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: $form-alert-color;
 }
 
 // Styles for stop and launch buttons in detailed view
