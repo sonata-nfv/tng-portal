@@ -5,9 +5,8 @@
   "scripts": {
     "ng": "ng",
     "extract-i18n": "ng xi18n --output-path locale --i18n-locale en && xliffmerge --profile xliffmerge.json en",
-    "start": "ng serve -H 0.0.0.0 --disable-host-check true",
-    "start:en": "ng serve --configuration=en",
-    "build": "ng build --prod",
+    "start": "ng serve --configuration=en -H 0.0.0.0 --disable-host-check true",
+    "build": "ng build --prod --configuration=en",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

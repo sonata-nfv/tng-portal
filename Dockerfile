@@ -17,8 +17,8 @@ RUN npm run build
 # # Create image based on the official Nginx 1.13 image from dockerhub
 FROM nginx:1.13-alpine
 
-# Copy distribution app to nginx files
-COPY --from=0 /build/dist/ /usr/share/nginx/html
+# Copy distribution app in English to nginx files
+COPY --from=0 /build/dist/tng-portal-en /usr/share/nginx/html
 
 # Set nginx configuration from app files
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
