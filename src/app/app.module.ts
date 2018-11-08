@@ -30,51 +30,44 @@
 // acknowledge the contributions of their colleagues of the 5GTANGO
 // partner consortium (www.5gtango.eu).
 
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { MAT_DATE_LOCALE } from "@angular/material";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from "./app.component";
-import { AngularMaterialModule } from "./angular-material/angular-material.module";
-import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from './app.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { AppRoutingModule } from './app-routing.module';
 
-import { MenuComponent } from "./menu/menu.component";
-import { IndexComponent } from "./index/index.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { UsersComponent } from "./users/users.component";
+import { MenuComponent } from './menu/menu.component';
+import { IndexComponent } from './index/index.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
 
-import { AuthenticationModule } from "./authentication/authentication.module";
-import { ValidationAndVerificationModule } from "./validation-and-verification/validation-and-verification.module";
-import { ServicePlatformModule } from "./service-platform/service-platform.module";
-import { ServiceManagementModule } from "./service-management/service-management.module";
-import { SharedModule } from "./shared/shared.module";
+import { AuthenticationModule } from './authentication/authentication.module';
+import { ValidationAndVerificationModule } from './validation-and-verification/validation-and-verification.module';
+import { ServicePlatformModule } from './service-platform/service-platform.module';
+import { ServiceManagementModule } from './service-management/service-management.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    IndexComponent,
-    DashboardComponent,
-    UsersComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AngularMaterialModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ValidationAndVerificationModule,
-    ServiceManagementModule,
-    ServicePlatformModule,
-    SharedModule,
-    AuthenticationModule
-  ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: "en-GB" }],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		AngularMaterialModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		ValidationAndVerificationModule,
+		ServiceManagementModule,
+		ServicePlatformModule,
+		SharedModule,
+		AuthenticationModule
+	],
+	providers: [{ provide: LOCALE_ID, useValue: 'en' }],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}
