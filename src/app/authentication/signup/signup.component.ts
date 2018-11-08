@@ -32,7 +32,8 @@ export class SignupComponent implements OnInit {
 			password: new FormControl(),
 			confirmPassword: new FormControl(),
 			email: new FormControl(null, Validators.email),
-			role: new FormControl(null, Validators.required)
+			role: new FormControl(null, Validators.required),
+			termsOfUsage: new FormControl()
 		});
 		this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
 	}

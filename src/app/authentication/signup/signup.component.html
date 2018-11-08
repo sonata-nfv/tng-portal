@@ -17,11 +17,23 @@
         </mat-form-field>
         <p class="error" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
         <app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"></app-select>
+        <mat-checkbox class="terms-usage" formControlName="termsOfUsage" required>
+            I confirm that I’ve read and agreed with the
+            <a class="terms-usage-link" routerLink="/terms-of-usage">
+                Terms of Usage.
+            </a>
+        </mat-checkbox>
         <button name="signup" [disabled]="!signupForm.valid || !validPassword">REGISTER</button>
-        <a class="login" routerLink="/login">I have an account</a>
+        <div class="button-underline login-container">
+            <a class="login" routerLink="/login">I have an account</a>
+            <div class="underline"></div>
+        </div>
     </form>
     <div class="bottom">
-        <a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
+        <div class="button-underline">
+            <a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
+            <div class="underline"></div>
+        </div>
         <div class="redLine"></div>
     </div>
 </div>

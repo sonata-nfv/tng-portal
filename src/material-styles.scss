@@ -1,271 +1,277 @@
 // Set form scss for the Portal
 form {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .mat-form-field {
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  text-align: left;
-  color: $secondary-font-color;
+	display: flex;
+	flex-direction: column;
+	font-size: 18px;
+	text-align: left;
+	color: $secondary-font-color;
 
-  .mat-select.mat-select-invalid .mat-select-arrow {
-    color: $form-focus-label;
-  }
+	.mat-select.mat-select-invalid .mat-select-arrow {
+		color: $form-focus-label;
+	}
 }
 
 // Input text styles
 .mat-focused .mat-input-element {
-  color: $form-focus;
+	color: $form-focus;
 }
 
 .mat-input-element:disabled {
-  font-size: 20px;
-  color: $form-focus;
-  overflow: hidden;
+	font-size: 20px;
+	color: $form-focus;
+	overflow: hidden;
 }
 
 // Change input underline styles
 .mat-form-field-appearance-legacy .mat-form-field-underline {
-  background-color: $form-underline-color;
+	background-color: $form-underline-color;
 }
 
 .mat-form-field-disabled .mat-form-field-underline {
-  background-image: none;
-  background-color: $form-underline-color;
+	background-image: none;
+	background-color: $form-underline-color;
 }
 
 .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-  background-color: $form-underline-color;
+	background-color: $form-underline-color;
 }
 
 .mat-form-field.mat-focused .mat-form-field-ripple,
 .mat-form-field-ripple {
-  background-color: $form-focus;
+	background-color: $form-focus;
 }
 
 .mat-form-field-disabled .mat-form-field-underline {
-  display: none;
+	display: none;
 }
 
 // Label styles
 .mat-form-field-appearance-legacy .mat-form-field-label,
 .mat-form-field-label:not(.mat-form-field-empty) {
-  color: $form-focus-label;
-  text-align: start;
+	color: $form-focus-label;
+	text-align: start;
 }
 
 .mat-form-field.mat-focused .mat-form-field-label {
-  color: $form-focus-label;
-  text-align: left;
+	color: $form-focus-label;
+	text-align: left;
 }
 
 .mat-form-field-invalid .mat-input-element,
 .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: $form-focus-label;
-  caret-color: $form-focus-label;
+	color: $form-focus-label;
+	caret-color: $form-focus-label;
 }
 
 .mat-form-field-can-float.mat-form-field-should-float {
-  .mat-form-field-label {
-    font-size: 20px;
-  }
+	.mat-form-field-label {
+		font-size: 20px;
+	}
 }
 
 // Input styles for updated at field
 .mat-form-field.updatedAt,
 .mat-form-field.lastTimeExecuted {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .mat-form-field.updatedAt .mat-input-element:disabled,
 .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
-  font-size: 14px;
-  color: $form-disabled-color;
+	font-size: 14px;
+	color: $form-disabled-color;
 }
 
 .mat-form-field.updatedAt .mat-form-field-label-wrapper .mat-form-field-label,
 .mat-form-field.lastTimeExecuted
-  .mat-form-field-label-wrapper
-  .mat-form-field-label {
-  display: none;
+	.mat-form-field-label-wrapper
+	.mat-form-field-label {
+	display: none;
 }
 
 .mat-form-field.updatedAt .mat-form-field-infix,
 .mat-form-field.lastTimeExecuted .mat-form-field-infix {
-  border-top: 0;
-  padding: 0;
+	border-top: 0;
+	padding: 0;
 }
 
 // Focused styles
 .mat-focused {
-  color: $form-focus;
+	color: $form-focus;
 }
 
 .mat-focused .mat-form-field-required-marker {
-  color: $form-focus-label;
+	color: $form-focus-label;
 }
 
 // Generic invalid styles
 .mat-form-field.mat-form-field-invalid
-  .mat-form-field-label
-  .mat-form-field-required-marker,
+	.mat-form-field-label
+	.mat-form-field-required-marker,
 .mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
-  color: $form-focus-label;
+	color: $form-focus-label;
 }
 
 // Styles when form field contains error
 .error-form-field {
-  .mat-input-element {
-    color: $form-alert-color;
-  }
+	.mat-input-element {
+		color: $form-alert-color;
+	}
 
-  .mat-form-field-underline {
-    background-color: $form-alert-color;
-  }
+	.mat-form-field-underline {
+		background-color: $form-alert-color;
+	}
 }
 
 .error-form-field.mat-focused .mat-form-field-ripple,
 .error-form-field.mat-form-field-invalid .mat-form-field-ripple {
-  background-color: $form-alert-color;
+	background-color: $form-alert-color;
 }
 
 // Styles for stop and launch buttons in detailed view
 .stop,
 .launch {
-  display: flex;
-  width: 30%;
-  cursor: pointer;
-  margin-bottom: 25px;
+	display: flex;
+	width: 30%;
+	cursor: pointer;
+	margin-bottom: 25px;
 
-  span {
-    margin-left: 10px;
-    color: $secondary-font-color;
-  }
+	span {
+		margin-left: 10px;
+		color: $secondary-font-color;
+	}
+}
+
+// Checkbox styles
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+	background-color: $primary-background-color;
 }
 
 // Mat table styles
 table {
-  //   Include scroll in table
-  tbody {
-    display: block;
-    max-height: 65vh;
-    // max-height: 610px;
-    overflow-y: overlay;
-  }
+	//   Include scroll in table
+	tbody {
+		display: block;
+		max-height: 65vh;
+		// max-height: 610px;
+		overflow-y: overlay;
+	}
 
-  thead,
-  tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    // cursor: pointer;
-  }
+	thead,
+	tbody tr {
+		display: table;
+		width: 100%;
+		table-layout: fixed;
+		// cursor: pointer;
+	}
 
-  //   Center cells
-  th.mat-header-cell,
-  td.mat-cell {
-    text-align: center;
-  }
+	//   Center cells
+	th.mat-header-cell,
+	td.mat-cell {
+		text-align: center;
+	}
 
-  td.mat-cell {
-    cursor: pointer;
-  }
+	td.mat-cell {
+		cursor: pointer;
+	}
 
-  td.mat-cell:first-child,
-  td.mat-footer-cell:first-child,
-  th.mat-header-cell:first-child {
-    padding-left: 0;
-  }
+	td.mat-cell:first-child,
+	td.mat-footer-cell:first-child,
+	th.mat-header-cell:first-child {
+		padding-left: 0;
+	}
 
-  td.mat-cell:last-child,
-  td.mat-footer-cell:last-child,
-  th.mat-header-cell:last-child {
-    padding-right: 20px;
-  }
+	td.mat-cell:last-child,
+	td.mat-footer-cell:last-child,
+	th.mat-header-cell:last-child {
+		padding-right: 20px;
+	}
 
-  //   Underline styles
-  tr.mat-row {
-    background-position: bottom;
-    background-size: 100% 1px;
-    background-repeat: no-repeat;
-    align-items: baseline;
-  }
+	//   Underline styles
+	tr.mat-row {
+		background-position: bottom;
+		background-size: 100% 1px;
+		background-repeat: no-repeat;
+		align-items: baseline;
+	}
 
-  td.mat-cell,
-  th.mat-header-cell {
-    border-bottom: none;
-    vertical-align: bottom;
-  }
+	td.mat-cell,
+	th.mat-header-cell {
+		border-bottom: none;
+		vertical-align: bottom;
+	}
 
-  //   Color and font styles
-  th.mat-header-cell {
-    color: $header-color;
-  }
+	//   Color and font styles
+	th.mat-header-cell {
+		color: $header-color;
+	}
 
-  td.mat-cell {
-    color: $cell-color;
-  }
+	td.mat-cell {
+		color: $cell-color;
+	}
 
-  th.mat-header-cell,
-  td.mat-header-row {
-    font-size: 14px;
-  }
+	th.mat-header-cell,
+	td.mat-header-row {
+		font-size: 14px;
+	}
 
-  //   Status and row options styles
-  i {
-    &.wui-circle-alt {
-      border-radius: 50%;
-      background-color: $inactive-color;
-    }
+	//   Status and row options styles
+	i {
+		&.wui-circle-alt {
+			border-radius: 50%;
+			background-color: $inactive-color;
+		}
 
-    &.active {
-      border-radius: 50%;
-      background-color: $active-color;
-    }
+		&.active {
+			border-radius: 50%;
+			background-color: $active-color;
+		}
 
-    &.wui-lock::before {
-      color: $secondary-font-color-light;
-    }
-  }
+		&.wui-lock::before {
+			color: $secondary-font-color-light;
+		}
+	}
 }
 
 // Actions
 .actions {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  width: 23px;
-  height: 23px;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  background-color: $basic-background-color;
-  box-shadow: 2px 1px 2px 0 $shadow-buttons;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	width: 23px;
+	height: 23px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
 
-  .wui-caret-right:before {
-    color: $ready-color;
-  }
+	.wui-caret-right:before {
+		color: $ready-color;
+	}
 
-  .wui-shopping-cart:before {
-    color: $shopping-cart-color;
-  }
+	.wui-shopping-cart:before {
+		color: $shopping-cart-color;
+	}
 
-  .wui-undo::before {
-    font-size: 12px;
-    color: $relaunch-color;
-  }
+	.wui-undo::before {
+		font-size: 12px;
+		color: $relaunch-color;
+	}
 
-  .wui-stop-alt::before {
-    font-size: 12px;
-    border-radius: 20%;
-    color: $stop-color;
-    background-color: $stop-color;
-  }
+	.wui-stop-alt::before {
+		font-size: 12px;
+		border-radius: 20%;
+		color: $stop-color;
+		background-color: $stop-color;
+	}
 
-  .wui-trash-alt::before {
-    font-size: 21px;
-  }
+	.wui-trash-alt::before {
+		font-size: 21px;
+	}
 }

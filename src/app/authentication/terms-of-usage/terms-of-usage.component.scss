@@ -1,0 +1,19 @@
+@import '../../../constants.scss';
+app-terms-of-usage {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	align-items: center;
+	width: auto;
+	height: 100%;
+	background-color: $basic-background-color;
+
+	.terms {
+		width: 60%;
+		margin-top: 50px;
+		line-height: 38px;
+		font-size: 20px;
+		color: $secondary-font-color;
+	}
+}

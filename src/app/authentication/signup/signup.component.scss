@@ -11,13 +11,14 @@ app-signup {
 		bottom: 0;
 		right: 0;
 		max-width: 635px;
-		max-height: 550px;
+		max-height: 680px;
 		padding: 2em;
 		border-radius: 10px;
 		background-color: $panel-background-color;
 
 		.header {
 			height: 5em;
+			margin-bottom: 5%;
 			background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg')
 				no-repeat center $panel-background-color;
 			background-size: 12em;
@@ -25,6 +26,7 @@ app-signup {
 		}
 
 		form {
+			flex: 1;
 			width: 60%;
 
 			.mat-form-field {
@@ -49,6 +51,18 @@ app-signup {
 				text-align: start;
 			}
 
+			.terms-usage {
+				padding: 8px;
+				margin-bottom: 40px;
+				margin-top: 15px;
+				font-size: 14px;
+				color: $secondary-button-color;
+
+				a {
+					color: $primary-font-color;
+				}
+			}
+
 			button {
 				padding: 10px;
 				outline: none;
@@ -71,32 +85,37 @@ app-signup {
 			}
 		}
 
-		a {
-			color: $primary-font-color;
-			font-size: 18px;
-
-			&.login {
-				align-self: center;
-				padding: 15px;
+		.button-underline {
+			a {
+				font-size: 15px;
 			}
+		}
+
+		.button-underline.login-container {
+			align-self: center;
+			width: 35%;
+			margin-top: 20px;
 		}
 
 		.bottom {
 			display: flex;
 			flex-direction: column;
 			width: 60%;
+			margin-bottom: -2em;
 
-			.help {
-				margin-bottom: auto;
-				margin-left: 10px;
-				color: $secondary-button-color;
-				font-size: 15px;
+			.button-underline {
+				width: 15%;
+				margin-bottom: 15px;
+
+				.help {
+					color: $secondary-button-color;
+					text-decoration: none;
+				}
 			}
 
 			.redLine {
 				width: 100%;
 				border-bottom: 3px solid $border-line-color;
-				margin-bottom: -2.1em;
 			}
 		}
 	}

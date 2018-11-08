@@ -10,9 +10,10 @@ import { AngularMaterialModule } from "../angular-material/angular-material.modu
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
 import { AppRoutingModule } from "../app-routing.module";
+import { TermsOfUsageComponent } from './terms-of-usage/terms-of-usage.component';
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent, RegisteredComponent],
+  declarations: [LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,
@@ -20,7 +21,7 @@ import { AppRoutingModule } from "../app-routing.module";
     AppRoutingModule,
     SharedModule
   ],
-  exports: [LoginComponent, SignupComponent, RegisteredComponent],
+  exports: [LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent],
   providers: [AuthService]
 })
 export class AuthenticationModule {}

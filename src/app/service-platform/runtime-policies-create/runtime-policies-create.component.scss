@@ -1,121 +1,121 @@
-@import "../../../constants.scss";
+@import '../../../constants.scss';
 app-runtime-policies-create {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  overflow-y: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  .subsectionTitle {
-    margin: 0;
-    width: 40%;
-    .mat-input-element,
-    .mat-form-field-appearance-legacy .mat-form-field-label {
-      font-size: 37px;
-    }
-    .mat-form-field-infix {
-      border-top: 0;
-    }
-    .mat-form-field-label-wrapper {
-      font-size: 33px;
-    }
-    &.mat-form-field-should-float {
-      .mat-form-field-label-wrapper {
-        display: none;
-      }
-    }
-  }
+	.subsectionTitle {
+		margin: 0;
+		width: 40%;
+		.mat-input-element,
+		.mat-form-field-appearance-legacy .mat-form-field-label {
+			font-size: 37px;
+		}
+		.mat-form-field-infix {
+			border-top: 0;
+		}
+		.mat-form-field-label-wrapper {
+			font-size: 33px;
+		}
+		&.mat-form-field-should-float {
+			.mat-form-field-label-wrapper {
+				display: none;
+			}
+		}
+	}
 
-  form {
-    width: 65%;
+	form {
+		width: 65%;
 
-    .select {
-      width: 40%;
-    }
+		.select {
+			width: 40%;
+		}
 
-    &.advancedForm {
-      width: 100%;
-    }
-    // Checkbox styles
-    .mat-checkbox {
-      margin-bottom: 15px;
-    }
-    .mat-checkbox-layout .mat-checkbox-label {
-      color: $secondary-font-color-light;
-    }
-    .mat-checkbox-frame {
-      border-color: $secondary-font-color-light;
-    }
-    .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-      background-color: $primary-background-color;
-    }
-  }
-  .rules {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    .monitoringRules {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      font-size: 18px;
-      &.left {
-        margin-right: 20px;
-      }
-      .title {
-        width: 100%;
-        color: $primary-font-color-light;
-      }
-      .content {
-        width: 100%;
-        min-height: 200px;
-        color: $secondary-font-color;
-        background-color: $panel-background-color;
-        border-top: 1px solid $border-line-color;
-        border-bottom: 1px solid $border-line-color;
-        p {
-          margin: 5px;
-        }
-      }
-      .mat-form-field-underline {
-        display: none;
-      }
-      .mat-form-field-infix {
-        padding: 0;
-        border: 0;
-        .content {
-          padding-top: 5px;
-          padding-left: 5px;
-          min-height: 195px;
-        }
-      }
-      .mat-input-element {
-        padding: 0;
-        margin-top: 0;
-      }
-    }
-  }
+		&.advancedForm {
+			width: 100%;
+		}
+		// Checkbox styles
+		.mat-checkbox {
+			margin-bottom: 15px;
+		}
+		.mat-checkbox-layout .mat-checkbox-label {
+			color: $secondary-font-color-light;
+		}
+		.mat-checkbox-frame {
+			border-color: $secondary-font-color-light;
+		}
+		// .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+		// .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+		//   background-color: $primary-background-color;
+		// }
+	}
+	.rules {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
+		.monitoringRules {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			font-size: 18px;
+			&.left {
+				margin-right: 20px;
+			}
+			.title {
+				width: 100%;
+				color: $primary-font-color-light;
+			}
+			.content {
+				width: 100%;
+				min-height: 200px;
+				color: $secondary-font-color;
+				background-color: $panel-background-color;
+				border-top: 1px solid $border-line-color;
+				border-bottom: 1px solid $border-line-color;
+				p {
+					margin: 5px;
+				}
+			}
+			.mat-form-field-underline {
+				display: none;
+			}
+			.mat-form-field-infix {
+				padding: 0;
+				border: 0;
+				.content {
+					padding-top: 5px;
+					padding-left: 5px;
+					min-height: 195px;
+				}
+			}
+			.mat-input-element {
+				padding: 0;
+				margin-top: 0;
+			}
+		}
+	}
 
-  // RULES PART
-  .rulesForm {
-    width: 100%;
-    align-items: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    .sectionTitle {
-      font-size: 24px;
-      color: $primary-font-color-light;
-    }
-  }
+	// RULES PART
+	.rulesForm {
+		width: 100%;
+		align-items: flex-start;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		.sectionTitle {
+			font-size: 24px;
+			color: $primary-font-color-light;
+		}
+	}
 }

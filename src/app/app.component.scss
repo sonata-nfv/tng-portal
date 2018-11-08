@@ -210,7 +210,7 @@ app-spinner {
 }
 
 // Ordered lists
-ol,
+ol.list,
 dl {
 	display: flex;
 	flex-direction: column;
@@ -218,7 +218,7 @@ dl {
 	padding: 0;
 }
 
-li,
+li.line,
 dt {
 	display: flex;
 	flex-direction: row;
@@ -242,7 +242,7 @@ dt {
 	}
 }
 
-li:before {
+li.line:before {
 	margin-right: 10px;
 	content: counter(item) '. ';
 	background: $basic-background-color;
