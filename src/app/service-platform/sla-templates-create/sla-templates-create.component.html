@@ -1,99 +1,85 @@
-<h1 class="sectionTitle">SLA TEMPLATES</h1>
+<h3 class="title3">SLA TEMPLATES</h3>
 
 <form [formGroup]="templateForm" class="header">
+	<mat-form-field class="title1"> <input matInput type="text" placeholder="Template Name" formControlName="name" required /> </mat-form-field>
 
-  <mat-form-field class="subsectionTitle">
-    <input matInput type="text" placeholder="Template Name" formControlName="name" required>
-  </mat-form-field>
-
-  <div class="headerButtons">
-    <button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSlaTemplate()">SAVE</button>
-    <button class="edit-options cancel" (click)="close()">CANCEL</button>
-  </div>
-
+	<div class="headerButtons">
+		<button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSlaTemplate()">SAVE</button>
+		<button class="edit-options cancel" (click)="close()">CANCEL</button>
+	</div>
 </form>
 
-<div class="subheader">
-  <h3 class="subtitle author">Created by you</h3>
-</div>
+<div class="subheader"><h3 class="subtitle author">Created by you</h3></div>
 
 <form [formGroup]="templateForm">
-
-  <app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
-  <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"></app-calendar>
-
+	<app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
+	<app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"></app-calendar>
 </form>
 
 <div class="advanceSection" *ngIf="guarantiesList.length > 0 || storedGuarantees.length > 0">
+	<button class="dropdownButton" (click)="closed = !closed">
+		<div class="open">
+			<span>Service Guarantees</span>
 
-  <button class="dropdownButton" (click)="closed=!closed">
+			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
 
-    <div class="open">
-      <span>Service Guarantees</span>
+			<ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
+		</div>
 
-      <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
+		<div class="underline" [ngClass]="{ opened: !closed }"></div>
+	</button>
 
-      <ng-template #opened>
-        <i class="wui wui-caret-up"></i>
-      </ng-template>
-    </div>
+	<form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
+		<span class="title3">Service Guaranties</span>
 
-    <div class="underline" [ngClass]="{ opened : !closed }"></div>
+		<div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
+			<div class="description" *ngIf="item">
+				<div class="header">
+					<span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
 
-  </button>
+					<button (click)="eraseEntry(item)"><i class="wui wui-trash-alt"></i></button>
 
-  <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
-    <span class="sectionTitle">Service Guaranties</span>
+					<button class="dropdownButton" (click)="closedSLO[i] = !closedSLO[i]">
+						<i class="wui wui-caret-down" *ngIf="closedSLO[i]; else: openedSLO"></i>
 
-    <div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
+						<ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
+					</button>
+				</div>
 
-      <div class="description" *ngIf="item">
+				<span class="content" *ngIf="!closedSLO[i]">
+					<div class="sloInfo">
+						<div class="timePeriod">
+							<mat-form-field class="gPeriodValue">
+								<input
+									matInput
+									placeholder="Service Level"
+									disabled
+									value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+								/>
+							</mat-form-field>
 
-        <div class="header">
-          <span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
+							<mat-form-field class="gPeriod">
+								<input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}" />
+							</mat-form-field>
+						</div>
 
-          <button (click)="eraseEntry(item)">
-            <i class="wui wui-trash-alt"></i>
-          </button>
+						<p>{{ item.definition }}</p>
+					</div>
+				</span>
+			</div>
+		</div>
 
-          <button class="dropdownButton" (click)="closedSLO[i]=!closedSLO[i]">
-            <i class="wui wui-caret-down" *ngIf="closedSLO[i]; else openedSLO"></i>
+		<app-select
+			*ngIf="guarantiesList.length > 0"
+			class="guarantiesList"
+			placeholder="Select NS Guarantee"
+			[reset]="reset"
+			[list]="guarantiesList"
+			(selectEvent)="addGuarantee($event)"
+		></app-select>
 
-            <ng-template #openedSLO>
-              <i class="wui wui-caret-up"></i>
-            </ng-template>
-          </button>
-
-        </div>
-
-        <span class="content" *ngIf="!closedSLO[i]">
-
-          <div class="sloInfo">
-
-            <div class="timePeriod">
-              <mat-form-field class="gPeriodValue">
-                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}">
-              </mat-form-field>
-
-              <mat-form-field class="gPeriod">
-                <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}">
-              </mat-form-field>
-            </div>
-
-            <p>{{ item.definition }}</p>
-
-          </div>
-
-        </span>
-
-      </div>
-    </div>
-
-    <app-select *ngIf="guarantiesList.length > 0" class="guarantiesList" placeholder="Select NS Guarantee" [reset]="reset" [list]="guarantiesList"
-      (selectEvent)="addGuarantee($event)"></app-select>
-
-    <span *ngIf="guarantiesList.length > 0" class="note">Add a new guarantee</span>
-  </form>
+		<span *ngIf="guarantiesList.length > 0" class="note">Add a new guarantee</span>
+	</form>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>

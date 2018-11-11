@@ -1,50 +1,55 @@
-<h1 class="sectionTitle" *ngIf="detail['name']">SLA Agreements</h1>
+<h1 class="title3" *ngIf="detail['name']">SLA Agreements</h1>
 
 <div class="header" *ngIf="detail['name']">
-  <h2 class="subsectionTitle"> {{ detail.name }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+	<h1 class="title1">{{ detail.name }}</h1>
+	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
 <div class="subheader" *ngIf="detail['author']">
-  <h3 class="subtitle author">Created by {{ detail.author }}</h3>
-  <h3 class="subtitle date">{{ detail.date }}</h3>
+	<h3 class="subtitle author">Created by {{ detail.author }}</h3>
+	<h3 class="subtitle date">{{ detail.date }}</h3>
 </div>
 
 <form>
-  <mat-form-field class="ns" *ngIf="detail['ns']">
-    <input matInput placeholder="Network Service" value="{{ detail.ns }}" disabled>
-  </mat-form-field>
+	<mat-form-field class="ns" *ngIf="detail['ns']"> <input matInput placeholder="Network Service" value="{{ detail.ns }}" disabled /> </mat-form-field>
 
-  <mat-form-field class="customer" *ngIf="detail['customer']">
-    <input matInput placeholder="Customer" value="{{ detail.customer }}" disabled>
-  </mat-form-field>
+	<mat-form-field class="customer" *ngIf="detail['customer']">
+		<input matInput placeholder="Customer" value="{{ detail.customer }}" disabled />
+	</mat-form-field>
 
-  <mat-form-field class="status" *ngIf="detail['status']">
-    <input matInput placeholder="Status" value="{{ detail.status }}" disabled>
-  </mat-form-field>
+	<mat-form-field class="status" *ngIf="detail['status']"> <input matInput placeholder="Status" value="{{ detail.status }}" disabled /> </mat-form-field>
 
-  <div class="details" *ngIf="detail['propertyList']">
-    <span class="sectionTitle">Service Guaranties</span>
+	<div class="details" *ngIf="detail['propertyList']">
+		<span class="title3">Service Guaranties</span>
 
-    <div class="guaranteeRow" *ngFor="let item of detail['propertyList']">
-      <mat-form-field class=" gName ">
-        <input matInput placeholder="Name " value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit
-      }} " disabled="true ">
-      </mat-form-field>
+		<div class="guaranteeRow" *ngFor="let item of detail['propertyList']">
+			<mat-form-field class=" gName ">
+				<input
+					matInput
+					placeholder="Name "
+					value="{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit
+      }} "
+					disabled="true "
+				/>
+			</mat-form-field>
 
-      <div class="timePeriod ">
-        <mat-form-field class="gPeriodValue ">
-          <input matInput placeholder="Service Level " value="{{ item.serviceLevelObjetive.parameter }} {{ item.serviceLevelObjetive.operator
-      }} {{ item.serviceLevelObjetive.target_value }} " disabled="true ">
-        </mat-form-field>
+			<div class="timePeriod ">
+				<mat-form-field class="gPeriodValue ">
+					<input
+						matInput
+						placeholder="Service Level "
+						value="{{ item.serviceLevelObjetive.parameter }} {{ item.serviceLevelObjetive.operator
+      }} {{ item.serviceLevelObjetive.target_value }} "
+						disabled="true "
+					/>
+				</mat-form-field>
 
-        <mat-form-field class="gPeriod ">
-          <input matInput placeholder="Time Period " value="{{ item.serviceLevelObjetive.period }} " disabled="true ">
-        </mat-form-field>
-      </div>
-
-    </div>
-  </div>
+				<mat-form-field class="gPeriod ">
+					<input matInput placeholder="Time Period " value="{{ item.serviceLevelObjetive.period }} " disabled="true " />
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
 </form>
 
-<app-spinner *ngIf="loading "></app-spinner>
+<app-spinner *ngIf="loading"></app-spinner>

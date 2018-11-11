@@ -1,51 +1,42 @@
-<h1 class="sectionTitle" *ngIf="detail['requestUUID']">REQUESTS</h1>
+<h1 class="title3" *ngIf="detail['requestUUID']">REQUESTS</h1>
 
 <div class="header" *ngIf="detail['requestUUID']">
-  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+	<h1 class="title1">{{ detail['name'] }}</h1>
+	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
 <form class="detail">
-  <mat-form-field *ngIf="detail['requestUUID']">
-    <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field *ngIf="detail['requestUUID']"> <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled /> </mat-form-field>
 
-  <mat-form-field *ngIf="detail['status']">
-    <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field *ngIf="detail['status']"> <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled /> </mat-form-field>
 
-  <mat-form-field *ngIf="detail['type']">
-    <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field *ngIf="detail['type']"> <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled /> </mat-form-field>
 
-  <mat-form-field *ngIf="detail['slaUUID']">
-    <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field *ngIf="detail['slaUUID']"> <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled /> </mat-form-field>
 
-  <div class="sameRow">
-    <mat-form-field *ngIf="detail['serviceName']">
-      <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled>
-    </mat-form-field>
+	<div class="sameRow">
+		<mat-form-field *ngIf="detail['serviceName']">
+			<input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled />
+		</mat-form-field>
 
-    <mat-form-field *ngIf="detail['serviceVersion']">
-      <input matInput placeholder="Service Version" value="{{ detail['serviceVersion'] }}" disabled>
-    </mat-form-field>
-  </div>
+		<mat-form-field *ngIf="detail['serviceVersion']">
+			<input matInput placeholder="Service Version" value="{{ detail['serviceVersion'] }}" disabled />
+		</mat-form-field>
+	</div>
 
-  <div class="sameRow">
-    <mat-form-field *ngIf="detail['serviceUUID']">
-      <input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled>
-    </mat-form-field>
+	<div class="sameRow">
+		<mat-form-field *ngIf="detail['serviceUUID']">
+			<input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled />
+		</mat-form-field>
 
-    <mat-form-field *ngIf="detail['serviceVendor']">
-      <input matInput placeholder="Service Vendor" value="{{ detail['serviceVendor'] }}" disabled>
-    </mat-form-field>
-  </div>
+		<mat-form-field *ngIf="detail['serviceVendor']">
+			<input matInput placeholder="Service Vendor" value="{{ detail['serviceVendor'] }}" disabled />
+		</mat-form-field>
+	</div>
 
-  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
-  </mat-form-field>
-
+	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled />
+	</mat-form-field>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

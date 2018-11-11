@@ -1,59 +1,51 @@
-<h1 class="sectionTitle">RUNTIME POLICIES</h1>
+<h3 class="title3">RUNTIME POLICIES</h3>
 
 <form [formGroup]="policyForm" class="header">
-  <mat-form-field class="subsectionTitle">
-    <input matInput type="text" placeholder="Policy Name" formControlName="name" required>
-  </mat-form-field>
+	<mat-form-field class="title1"> <input matInput type="text" placeholder="Policy Name" formControlName="name" required /> </mat-form-field>
 
-  <div class="headerButtons">
-    <button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createPolicy()">SAVE</button>
-    <button class="edit-options cancel" (click)="close()">CANCEL</button>
-  </div>
-
+	<div class="headerButtons">
+		<button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createPolicy()">SAVE</button>
+		<button class="edit-options cancel" (click)="close()">CANCEL</button>
+	</div>
 </form>
 
-<div class="subheader">
-  <h3 class="subtitle author">Created by you</h3>
-</div>
+<div class="subheader"><h3 class="subtitle author">Created by you</h3></div>
 
 <form [formGroup]="policyForm">
-  <mat-checkbox formControlName="default">Mark as default</mat-checkbox>
+	<mat-checkbox formControlName="default">Mark as default</mat-checkbox>
 
-  <app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
+	<app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
 </form>
 
 <div class="advanceSection">
-  <button class="dropdownButton" (click)="closed=!closed">
-    <div class="open">
-      <span>Monitoring Rules</span>
-      <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
-      <ng-template #opened>
-        <i class="wui wui-caret-up"></i>
-      </ng-template>
-    </div>
-    <div class="underline" [ngClass]="{ opened : !closed }"></div>
-  </button>
-  <form *ngIf="!closed" [formGroup]="policyForm" class="advancedForm">
-    <div class="rules">
-      <div class="monitoringRules left">
-        <span class="title">Existing monitoring rules</span>
-        <span class="content">
-          <p>{{ monitoringRules }}</p>
-        </span>
-      </div>
+	<button class="dropdownButton" (click)="closed = !closed">
+		<div class="open">
+			<span>Monitoring Rules</span> <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+			<ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
+		</div>
+		<div class="underline" [ngClass]="{ opened: !closed }"></div>
+	</button>
+	<form *ngIf="!closed" [formGroup]="policyForm" class="advancedForm">
+		<div class="rules">
+			<div class="monitoringRules left">
+				<span class="title">Existing monitoring rules</span>
+				<span class="content">
+					<p>{{ monitoringRules }}</p>
+				</span>
+			</div>
 
-      <mat-form-field class="monitoringRules">
-        <span class="title">Add new monitoring rules</span>
-        <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
-      </mat-form-field>
-    </div>
-  </form>
+			<mat-form-field class="monitoringRules">
+				<span class="title">Add new monitoring rules</span> <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
+			</mat-form-field>
+		</div>
+	</form>
 
-  <!-- TODO rules -->
-  <!-- <div class="rulesForm">
-    <span class="sectionTitle">Rules</span>
-  </div> -->
-
+	<!-- TODO rules -->
+	<!--
+		<div class="rulesForm">
+		  <span class="title3">Rules</span>
+		</div>
+	-->
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>

@@ -1,37 +1,33 @@
-<h1 class="sectionTitle" *ngIf="detail['uuid']">RESULTS</h1>
+<h1 class="title3" *ngIf="detail['uuid']">RESULTS</h1>
 
 <div class="header" *ngIf="detail['uuid']">
-  <h2 class="subsectionTitle"> {{ detail['uuid'] }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+	<h1 class="title1">{{ detail['uuid'] }}</h1>
+	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
 <form class="detail">
-  <mat-form-field *ngIf="detail['status']">
-    <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field *ngIf="detail['status']"> <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled /> </mat-form-field>
 
-  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
-  </mat-form-field>
+	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled />
+	</mat-form-field>
 
-  <div class="description testerResultText" *ngIf="detail['testerResultText']">
-    <span class="title">Tester Result Text</span>
-    <span class="content">
-      <p>{{ detail['testerResultText'] }}</p>
-    </span>
-  </div>
+	<div class="description testerResultText" *ngIf="detail['testerResultText']">
+		<span class="title">Tester Result Text</span>
+		<span class="content">
+			<p>{{ detail['testerResultText'] }}</p>
+		</span>
+	</div>
 
-  <div class="description" *ngIf="detail['sterr']">
-    <span class="title">ERROR</span>
-    <span class="content">
-      <p>{{ detail['sterr'] }}</p>
-    </span>
-  </div>
+	<div class="description" *ngIf="detail['sterr']">
+		<span class="title">ERROR</span>
+		<span class="content">
+			<p>{{ detail['sterr'] }}</p>
+		</span>
+	</div>
 </form>
 
 <div class="results" *ngIf="detail['graphs']">
-  <span class="sectionTitle">RESULTS</span>
-  <div id="charts" *ngFor='let lst of charts["ds"]["chart"]'>
-    <canvas id="chart-{{lst}}"></canvas>
-  </div>
+	<span class="title3">RESULTS</span>
+	<div id="charts" *ngFor="let lst of charts['ds']['chart']"><canvas id="chart-{{lst}}"></canvas></div>
 </div>
