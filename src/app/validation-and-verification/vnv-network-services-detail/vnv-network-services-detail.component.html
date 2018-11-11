@@ -49,7 +49,8 @@
 	</div>
 
 	<div class="vnf" *ngIf="detail['vnf']">
-		<span class="title3">VNF</span> <span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
+		<h2 class="title2">VNFs</h2>
+		<span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
 		<table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">
 			<ng-container matColumnDef="id">
 				<th mat-header-cell *matHeaderCellDef>ID</th>

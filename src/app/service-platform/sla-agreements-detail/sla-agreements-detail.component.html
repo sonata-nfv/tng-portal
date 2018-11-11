@@ -20,7 +20,7 @@
 	<mat-form-field class="status" *ngIf="detail['status']"> <input matInput placeholder="Status" value="{{ detail.status }}" disabled /> </mat-form-field>
 
 	<div class="details" *ngIf="detail['propertyList']">
-		<span class="title3">Service Guaranties</span>
+		<h2 class="title2">Service Guaranties</h2>
 
 		<div class="guaranteeRow" *ngFor="let item of detail['propertyList']">
 			<mat-form-field class=" gName ">

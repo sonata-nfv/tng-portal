@@ -29,7 +29,8 @@
 	</mat-form-field>
 
 	<div class="ns" *ngIf="detail['ns']">
-		<span class="title3">NS</span> <span class="message" *ngIf="detail['ns'].length == 0">There are no network services to display</span>
+		<h2 class="title2">NS</h2>
+		<span class="message" *ngIf="detail['ns'].length == 0">There are no network services to display</span>
 		<table mat-table *ngIf="detail['ns'].length > 0" [dataSource]="detail['ns']">
 			<ng-container matColumnDef="vendor">
 				<th mat-header-cell *matHeaderCellDef>Vendor</th>
@@ -52,7 +53,8 @@
 	</div>
 
 	<div class="vnf" *ngIf="detail['vnf']">
-		<span class="title3">VNF</span> <span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
+		<h2 class="title2">VNFs</h2>
+		<span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
 		<table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">
 			<ng-container matColumnDef="vendor">
 				<th mat-header-cell *matHeaderCellDef>Vendor</th>
@@ -75,7 +77,8 @@
 	</div>
 
 	<div class="tests" *ngIf="detail['tests']">
-		<span class="title3">Tests</span> <span class="message" *ngIf="detail['tests'].length == 0">There are no tests to display</span>
+		<h2 class="title2">Tests</h2>
+		<span class="message" *ngIf="detail['tests'].length == 0">There are no tests to display</span>
 		<table mat-table *ngIf="detail['tests'].length > 0" [dataSource]="detail['tests']">
 			<ng-container matColumnDef="vendor">
 				<th mat-header-cell *matHeaderCellDef>Vendor</th>

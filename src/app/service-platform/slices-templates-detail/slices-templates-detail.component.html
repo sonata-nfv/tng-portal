@@ -52,7 +52,7 @@
 		<input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled />
 	</mat-form-field>
 
-	<span class="title3" *ngIf="detail['nstNsdIds']">Network Services</span>
+	<h2 class="title2" *ngIf="detail['nstNsdIds']">Network Services</h2>
 
 	<dl *ngIf="detail['nstNsdIds']">
 		<dt *ngFor="let item of detail['nstNsdIds']">

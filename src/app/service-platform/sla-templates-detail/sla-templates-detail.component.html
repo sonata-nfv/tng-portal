@@ -52,7 +52,7 @@
 	</button>
 
 	<form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
-		<span class="title3">Service Guaranties</span>
+		<h2 class="title2">Service Guaranties</h2>
 
 		<div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']; let i = index">
 			<div class="description" *ngIf="item">

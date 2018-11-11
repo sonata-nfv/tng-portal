@@ -28,6 +28,6 @@
 </form>
 
 <div class="results" *ngIf="detail['graphs']">
-	<span class="title3">RESULTS</span>
+	<h2 class="title2">RESULTS</h2>
 	<div id="charts" *ngFor="let lst of charts['ds']['chart']"><canvas id="chart-{{lst}}"></canvas></div>
 </div>

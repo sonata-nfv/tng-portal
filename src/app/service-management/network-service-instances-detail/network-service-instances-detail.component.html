@@ -33,7 +33,7 @@
 
 	<!-- VNFs table section -->
 	<div class="vnf" *ngIf="detail['uuid']">
-		<span class="title3">VNFs</span>
+		<h2 class="title2">VNFs</h2>
 		<span class="message" *ngIf="!dataSource.data || dataSource.data.length < 1">There are no virtual network functions to display</span>
 
 		<table mat-table class="vnfs" *ngIf="dataSource.data && dataSource.data.length > 0" [dataSource]="dataSource">
