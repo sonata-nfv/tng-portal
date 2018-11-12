@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-terms-of-usage',
@@ -7,7 +7,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 	encapsulation: ViewEncapsulation.None
 })
 export class TermsOfUsageComponent implements OnInit {
+	@Output()
+	showTermsEvent = new EventEmitter<boolean>();
+
 	constructor() {}
 
 	ngOnInit() {}
+
+	close() {
+		this.showTermsEvent.emit(false);
+	}
 }

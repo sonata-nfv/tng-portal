@@ -63,7 +63,7 @@ app-spinner {
 	-ms-transform: translate(-50%, -50%);
 }
 
-// Title styles
+// Title and font styles
 .title1 {
 	color: $secondary-font-color-light;
 	font-size: 37px;
@@ -94,6 +94,11 @@ app-spinner {
 	color: $secondary-font-color-light;
 	font-size: 16px;
 	font-weight: normal;
+}
+
+p {
+	text-align: justify;
+	color: $secondary-font-color;
 }
 
 // Title section styles

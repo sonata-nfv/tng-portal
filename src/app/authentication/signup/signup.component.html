@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!show">
 	<div class="title-section"></div>
 	<form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)" class="form">
 		<mat-form-field [ngClass]="{ 'error-form-field': userErrorString }">
@@ -25,8 +25,7 @@
 		<p class="error" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
 		<app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)" i18n-placeholder="@@rolePlaceholder"></app-select>
 		<mat-checkbox class="terms-usage" formControlName="termsOfUsage" required i18n-label="@@termsOfUsageConfirmMessage">
-			I confirm that I’ve read and agreed with the
-			<a class="terms-usage-link" routerLink="/terms-of-usage" i18n="@@termsOfUsageLink"> Terms of Usage. </a>
+			I confirm that I’ve read and agreed with the <a class="terms-usage-link" (click)="show = !show" i18n="@@termsOfUsageLink"> Terms of Usage. </a>
 		</mat-checkbox>
 		<button name="signup" [disabled]="!signupForm.valid || !validPassword" i18n="@@registerButton">REGISTER</button>
 		<div class="button-underline login-container">
@@ -42,3 +41,5 @@
 		<div class="redLine"></div>
 	</div>
 </div>
+
+<app-terms-of-usage *ngIf="show" [@enterAnimation] (showTermsEvent)="show = $event"></app-terms-of-usage>
