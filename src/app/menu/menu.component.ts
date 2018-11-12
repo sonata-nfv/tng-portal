@@ -122,9 +122,9 @@ export class MenuComponent implements OnInit {
       case "sm-network-service-instances":
         this.router.navigate(["service-management/network-service-instances"]);
         break;
-      case "licences":
+      case "licenses":
         this.subsection = "";
-        this.router.navigate(["service-management/licences"]);
+        this.router.navigate(["service-management/licenses"]);
         break;
     }
     this.section = buttonId;
@@ -168,13 +168,13 @@ export class MenuComponent implements OnInit {
         this.subsection = "slices-requests";
         this.router.navigate(["service-platform/slices/slices-requests"]);
         break;
-      case "service-licences":
-        this.subsection = "service-licences";
-        this.router.navigate(["service-management/licences/service-licences"]);
+      case "service-licenses":
+        this.subsection = "service-licenses";
+        this.router.navigate(["service-management/licenses/service-licenses"]);
         break;
-      case "user-licences":
-        this.subsection = "user-licences";
-        this.router.navigate(["service-management/licences/user-licences"]);
+      case "user-licenses":
+        this.subsection = "user-licenses";
+        this.router.navigate(["service-management/licenses/user-licenses"]);
         break;
     }
     this.subsection = buttonId;

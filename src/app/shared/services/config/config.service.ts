@@ -13,7 +13,7 @@ export class ConfigService extends Config {
   requests: string = "requests";
   serviceRecords: string = "records/services";
   functionRecords: string = "records/functions";
-  licences: string = "licences/";
+  licenses: string = "licenses/";
   packages: string = "packages";
   slaTemplates: string = "slas/templates";
   slaAgreements: string = "slas/agreements";

@@ -206,7 +206,7 @@ export class ServiceManagementService {
     return new Promise((resolve, reject) => {
       let headers = this.authService.getAuthHeaders();
       this.http
-        .get(this.config.baseSP + this.config.licences, {
+        .get(this.config.baseSP + this.config.licenses, {
           headers: headers
         })
         .toPromise()

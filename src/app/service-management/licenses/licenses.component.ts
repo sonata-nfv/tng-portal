@@ -6,14 +6,14 @@ import { ServiceManagementService } from "../service-management.service";
 import { DialogDataService } from "../../shared/services/dialog/dialog.service";
 
 @Component({
-  selector: "app-licences",
-  templateUrl: "./licences.component.html",
-  styleUrls: ["./licences.component.scss"],
+  selector: "app-licenses",
+  templateUrl: "./licenses.component.html",
+  styleUrls: ["./licenses.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class LicencesComponent implements OnInit {
   loading: boolean;
-  licences = new Array();
+  licenses = new Array();
   dataSource = new MatTableDataSource();
   displayedColumns = ["Status", "Licence ID", "Related Service", "Type", "buy"];
   searchText: string;
@@ -35,7 +35,7 @@ export class LicencesComponent implements OnInit {
       .getLicences()
       .then(response => {
         this.loading = false;
-        this.licences = response.map(function(item) {
+        this.licenses = response.map(function(item) {
           return {
             searchField: item.licence_uuid,
             licenceId: item.licence_uuid,
@@ -74,7 +74,7 @@ export class LicencesComponent implements OnInit {
   }
 
   getLicenceById(uuid) {
-    let detail = this.licences.find(x => x.licenceId === uuid);
+    let detail = this.licenses.find(x => x.licenceId === uuid);
   }
 
   buy(row) {}

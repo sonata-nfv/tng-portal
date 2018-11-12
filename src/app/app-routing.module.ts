@@ -53,10 +53,10 @@ import { RequestDetailComponent } from './shared/components/request-detail/reque
 import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
 import { NetworkServiceInstancesDetailComponent } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
 import { FunctionRecordsDetailComponent } from './service-management/function-records-detail/function-records-detail.component';
-import { LicencesComponent } from './service-management/licences/licences.component';
-import { LicencesDetailComponent } from './service-management/licences-detail/licences-detail.component';
-import { ServiceLicencesComponent } from './service-management/service-licences/service-licences.component';
-import { UserLicencesComponent } from './service-management/user-licences/user-licences.component';
+import { LicencesComponent } from './service-management/licenses/licenses.component';
+import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
+import { ServiceLicensesComponent } from './service-management/service-licenses/service-licenses.component';
+import { UserLicensesComponent } from './service-management/user-licenses/user-licenses.component';
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -84,9 +84,7 @@ const routes: Routes = [
 			{
 				path: 'validation-and-verification/packages',
 				component: VnvPackagesComponent,
-				children: [
-					{ path: ':id', component: VnvPackagesDetailComponent }
-				]
+				children: [{ path: ':id', component: VnvPackagesDetailComponent }]
 			},
 			{
 				path: 'validation-and-verification/network-services',
@@ -123,23 +121,17 @@ const routes: Routes = [
 			{
 				path: 'service-platform/packages',
 				component: SpPackagesComponent,
-				children: [
-					{ path: ':id', component: SpPackagesDetailComponent }
-				]
+				children: [{ path: ':id', component: SpPackagesDetailComponent }]
 			},
 			{
 				path: 'service-platform/network-services',
 				component: SpNetworkServicesComponent,
-				children: [
-					{ path: ':id', component: SpNetworkServicesDetailComponent }
-				]
+				children: [{ path: ':id', component: SpNetworkServicesDetailComponent }]
 			},
 			{
 				path: 'service-platform/functions',
 				component: FunctionsComponent,
-				children: [
-					{ path: ':id', component: SpFunctionsDetailComponent }
-				]
+				children: [{ path: ':id', component: SpFunctionsDetailComponent }]
 			},
 			{
 				path: 'service-platform/policies/placement-policy',
@@ -194,18 +186,12 @@ const routes: Routes = [
 			{
 				path: 'service-platform/slices/slices-templates',
 				component: SlicesTemplatesComponent,
-				children: [
-					{ path: 'new', component: SlicesTemplatesCreateComponent },
-					{ path: ':id', component: SlicesTemplatesDetailComponent }
-				]
+				children: [{ path: 'new', component: SlicesTemplatesCreateComponent }, { path: ':id', component: SlicesTemplatesDetailComponent }]
 			},
 			{
 				path: 'service-platform/slices/slices-instances',
 				component: SlicesInstancesComponent,
-				children: [
-					{ path: 'new', component: SlicesInstancesCreateComponent },
-					{ path: ':id', component: SlicesInstancesDetailComponent }
-				]
+				children: [{ path: 'new', component: SlicesInstancesCreateComponent }, { path: ':id', component: SlicesInstancesDetailComponent }]
 			},
 			{
 				path: 'service-platform/slices/slices-requests',
@@ -221,9 +207,7 @@ const routes: Routes = [
 			{
 				path: 'service-management/network-services',
 				component: SmNetworkServicesComponent,
-				children: [
-					{ path: ':id', component: SmNetworkServicesDetailComponent }
-				]
+				children: [{ path: ':id', component: SmNetworkServicesDetailComponent }]
 			},
 			{
 				path: 'service-management/requests',
@@ -245,17 +229,17 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'service-management/licences',
+				path: 'service-management/licenses',
 				component: LicencesComponent,
 				children: [{ path: ':id', component: LicencesDetailComponent }]
 			},
 			{
-				path: 'service-management/licences/service-licences',
-				component: ServiceLicencesComponent
+				path: 'service-management/licenses/service-licenses',
+				component: ServiceLicensesComponent
 			},
 			{
-				path: 'service-management/licences/user-licences',
-				component: UserLicencesComponent
+				path: 'service-management/licenses/user-licenses',
+				component: UserLicensesComponent
 			}
 		]
 	}
