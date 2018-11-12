@@ -1,13 +1,13 @@
-<div class="title" *ngIf="detail['name']">
-	<h3 class="title3">SLA Templates</h3>
+<div class="header-section" *ngIf="detail['name']">
+	<h3 class="title3 header-section-name">SLA Templates</h3>
 	<div class="button-underline">
 		<button class="delete-button" (click)="deleteTemplate()">Delete template</button>
 		<div class="underline"></div>
 	</div>
 </div>
 
-<div class="header" *ngIf="detail['name']">
-	<h1 class="title1">{{ detail['name'] }}</h1>
+<div class="title-section" *ngIf="detail['name']">
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
 	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
@@ -56,8 +56,8 @@
 
 		<div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']; let i = index">
 			<div class="description" *ngIf="item">
-				<div class="header">
-					<span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
+				<div class="descriptionTitle">
+					<h4 class="title4">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</h4>
 
 					<button class="dropdownButton" (click)="closedSLO[i] = !closedSLO[i]">
 						<i class="wui wui-caret-down" *ngIf="closedSLO[i]; else: openedSLO"></i>

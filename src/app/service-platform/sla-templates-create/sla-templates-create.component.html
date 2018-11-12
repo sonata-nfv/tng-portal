@@ -1,10 +1,12 @@
-<h3 class="title3">SLA TEMPLATES</h3>
+<h3 class="title3 header-section-name">SLA TEMPLATES</h3>
 
-<form [formGroup]="templateForm" class="header">
+<form [formGroup]="templateForm" class="title-section">
 	<mat-form-field class="title1"> <input matInput type="text" placeholder="Template Name" formControlName="name" required /> </mat-form-field>
 
-	<div class="headerButtons">
-		<button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSlaTemplate()">SAVE</button>
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSlaTemplate()">
+			SAVE
+		</button>
 		<button class="edit-options cancel" (click)="close()">CANCEL</button>
 	</div>
 </form>
@@ -34,8 +36,8 @@
 
 		<div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
 			<div class="description" *ngIf="item">
-				<div class="header">
-					<span class="title">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</span>
+				<div class="descriptionTitle">
+					<h4 class="title4">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</h4>
 
 					<button (click)="eraseEntry(item)"><i class="wui wui-trash-alt"></i></button>
 

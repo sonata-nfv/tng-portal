@@ -1,7 +1,7 @@
-<h1 class="title3" *ngIf="detail['name']">NETWORK SERVICES</h1>
+<h3 class="title3 header-section-name" *ngIf="detail['name']">NETWORK SERVICES</h3>
 
-<div class="header" *ngIf="detail['name']">
-	<h1 class="title1">{{ detail['name'] }}</h1>
+<div class="title-section" *ngIf="detail['name']">
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
 	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
@@ -42,7 +42,7 @@
 	-->
 
 	<div class="description" *ngIf="detail['description']">
-		<span class="title">DESCRIPTION</span>
+		<h4 class="title4">DESCRIPTION</h4>
 		<span class="content">
 			<p>{{ detail['description'] }}</p>
 		</span>

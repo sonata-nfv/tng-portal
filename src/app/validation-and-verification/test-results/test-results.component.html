@@ -1,7 +1,7 @@
-<h1 class="title3" *ngIf="detail['uuid']">RESULTS</h1>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']">RESULTS</h3>
 
-<div class="header" *ngIf="detail['uuid']">
-	<h1 class="title1">{{ detail['uuid'] }}</h1>
+<div class="title-section" *ngIf="detail['uuid']">
+	<h1 class="title1 title-section-name">{{ detail['uuid'] }}</h1>
 	<button class="close" (click)="close()">CLOSE</button>
 </div>
 
@@ -13,14 +13,14 @@
 	</mat-form-field>
 
 	<div class="description testerResultText" *ngIf="detail['testerResultText']">
-		<span class="title">Tester Result Text</span>
+		<h4 class="title4">Tester Result Text</h4>
 		<span class="content">
 			<p>{{ detail['testerResultText'] }}</p>
 		</span>
 	</div>
 
 	<div class="description" *ngIf="detail['sterr']">
-		<span class="title">ERROR</span>
+		<h4 class="title4">ERROR</h4>
 		<span class="content">
 			<p>{{ detail['sterr'] }}</p>
 		</span>

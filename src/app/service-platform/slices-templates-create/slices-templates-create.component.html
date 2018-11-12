@@ -1,10 +1,10 @@
-<h3 class="title3">SLICE TEMPLATES</h3>
+<h3 class="title3 header-section-name">SLICE TEMPLATES</h3>
 
-<form [formGroup]="templateForm" class="header">
+<form [formGroup]="templateForm" class="title-section">
 	<mat-form-field class="title1"> <input matInput type="text" placeholder="Template Name" formControlName="name" required /> </mat-form-field>
 
-	<div class="headerButtons">
-		<button [ngClass]="{ disabledButton: disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSliceTemplate()">
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSliceTemplate()">
 			SAVE
 		</button>
 		<button class="edit-options cancel" (click)="close()">CANCEL</button>

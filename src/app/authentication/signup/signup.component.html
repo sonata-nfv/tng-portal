@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="header"></div>
+	<div class="title-section"></div>
 	<form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)" class="form">
 		<mat-form-field [ngClass]="{ 'error-form-field': userErrorString }">
 			<input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@usernamePlaceholder" />

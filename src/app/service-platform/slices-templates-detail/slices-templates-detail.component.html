@@ -1,13 +1,13 @@
-<div class="title" *ngIf="detail['name']">
-	<h3 class="title3">TEMPLATES</h3>
+<div class="header-section" *ngIf="detail['name']">
+	<h3 class="title3 header-section-name">TEMPLATES</h3>
 	<div class="button-underline" *ngIf="detail.usageState.trim() !== 'In Use'">
 		<button class="delete-button" (click)="deleteTemplate()">Delete template</button>
 		<div class="underline"></div>
 	</div>
 </div>
 
-<div class="header" *ngIf="detail['name']">
-	<h1 class="title1">{{ detail['name'] }}</h1>
+<div class="title-section" *ngIf="detail['name']">
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
 	<button class="close" (click)="close()">CLOSE</button>
 </div>
 

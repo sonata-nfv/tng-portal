@@ -1,7 +1,7 @@
-<h1 class="title3" *ngIf="detail['uuid']">NETWORK SERVICE INSTANCES</h1>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']">NETWORK SERVICE INSTANCES</h3>
 
-<div class="header" *ngIf="detail['uuid']">
-	<h1 class="title1">{{ detail.name }}</h1>
+<div class="title-section" *ngIf="detail['uuid']">
+	<h1 class="title1 title-section-name">{{ detail.name }}</h1>
 	<button class="close" (click)="close()">CLOSE</button>
 </div>
 

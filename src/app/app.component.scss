@@ -63,11 +63,50 @@ app-spinner {
 	-ms-transform: translate(-50%, -50%);
 }
 
-// Section title styles
-.title {
+// Title styles
+.title1 {
+	color: $secondary-font-color-light;
+	font-size: 37px;
+	font-weight: normal;
+}
+
+.title2 {
+	color: $primary-font-color-light;
+	font-size: 27px;
+	font-weight: normal;
+}
+
+.title3 {
+	color: $primary-font-color-light;
+	font-size: 17px;
+	font-weight: normal;
+}
+
+.title3:after {
+	background: none repeat scroll 0 0 $primary-font-color-light;
+	content: '';
+	display: block;
+	height: 1px;
+	width: 260px;
+}
+
+.title4 {
+	color: $secondary-font-color-light;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+// Title section styles
+.header-section {
 	display: flex;
 	flex-direction: row;
 	width: 95%;
+}
+
+.header-section-name {
+	width: 95%;
+	margin-top: 15px;
+	margin-bottom: 3px;
 }
 
 .button-underline {
@@ -99,31 +138,7 @@ app-spinner {
 	}
 }
 
-.title2 {
-	color: $primary-font-color-light;
-	font-size: 27px;
-	font-weight: normal;
-}
-
-.title3 {
-	width: 95%;
-	margin-top: 15px;
-	margin-bottom: 3px;
-	color: $primary-font-color-light;
-	font-size: 17px;
-	font-weight: normal;
-}
-
-.title3:after {
-	background: none repeat scroll 0 0 $primary-font-color-light;
-	content: '';
-	display: block;
-	height: 1px;
-	width: 260px;
-}
-
-// Page title styles
-.header {
+.title-section {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -136,7 +151,7 @@ app-spinner {
 	}
 
 	// Button edit options in page
-	.headerButtons {
+	.header-buttons {
 		display: flex;
 		flex-direction: row;
 		width: 60%;
@@ -160,7 +175,7 @@ app-spinner {
 			background-color: $primary-button-color;
 		}
 
-		.save.disabledButton {
+		.save.disabled-button {
 			background-color: $secondary-button-color;
 		}
 
@@ -202,13 +217,10 @@ app-spinner {
 	}
 }
 
-.title1 {
+.title-section-name {
 	width: 95%;
 	margin-top: 0;
 	margin-bottom: 3px;
-	color: $secondary-font-color-light;
-	font-size: 37px;
-	font-weight: normal;
 }
 
 // Ordered lists
@@ -355,60 +367,61 @@ li.line:before {
 .description {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	width: 100%;
 	margin-bottom: 30px;
 }
 
 // Header when the item has an icon on the right
 // Allows dropdown action
-.description .header {
+.description .descriptionTitle {
+	display: flex;
+	flex-direction: row;
 	width: 100%;
 
-	button {
-		font-size: 16px;
+	.title4 {
+		width: 95%;
 	}
-
-	.dropdownButton {
-		margin-bottom: 10px;
-		font-size: 10px;
+	button {
+		align-self: center;
 	}
 }
 
-.description span {
-	width: 100%;
-	min-height: 20px;
-
-	&.title {
-		color: $secondary-font-color-light;
+.description {
+	.title4 {
+		margin-bottom: 2px;
 	}
 
-	&.content {
-		overflow-y: auto;
-		overflow-x: hidden;
-		white-space: pre-line;
-		min-height: 200px;
-		max-height: 200px;
-		color: $secondary-font-color;
-		background-color: $panel-background-color;
-		border-top: 1px solid $border-line-color;
-		border-bottom: 1px solid $border-line-color;
+	span {
+		width: 100%;
+		min-height: 20px;
 
-		p {
-			margin: 5px;
-		}
-
-		// Styles for a table inside the description div
-		table th.mat-header-cell,
-		table td.mat-cell {
+		&.content {
+			overflow-y: auto;
+			overflow-x: hidden;
+			white-space: pre-line;
+			min-height: 200px;
+			max-height: 200px;
+			color: $secondary-font-color;
 			background-color: $panel-background-color;
-		}
+			border-top: 1px solid $border-line-color;
+			border-bottom: 1px solid $border-line-color;
 
-		// Underline styles
-		tr.mat-row {
-			background-position: bottom;
-			background-size: 100% 1px;
-			background-repeat: no-repeat;
+			p {
+				margin: 5px;
+			}
+
+			// Styles for a table inside the description div
+			table th.mat-header-cell,
+			table td.mat-cell {
+				background-color: $panel-background-color;
+			}
+
+			// Underline styles
+			tr.mat-row {
+				background-position: bottom;
+				background-size: 100% 1px;
+				background-repeat: no-repeat;
+			}
 		}
 	}
 }
@@ -454,7 +467,7 @@ li.line:before {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 20px;
+		// margin-bottom: 20px;
 		width: auto;
 		color: $secondary-button-color-light;
 
