@@ -1,37 +1,43 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']">AVAILABLE NETWORK SERVICES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@availableNSCapLetters">AVAILABLE NETWORK SERVICES</h3>
 
 <div class="title-section" *ngIf="detail['name']">
 	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
-	<button class="close" (click)="close()">CLOSE</button>
+	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <div class="subheader" *ngIf="detail['author']">
-	<p class="subtitle author">Created by {{ detail['author'] }}</p>
+	<p class="subtitle author" i18n="@@createdBy">Created by</p>
+	<p class="subtitle author">{{ detail['author'] }}</p>
 	<p class="subtitle date">{{ detail['createdAt'] }}</p>
 </div>
 
 <div class="bubbleDiv" *ngIf="detail['version']">
-	<span class="text">Version</span>
+	<span class="text" i18n="@@version">Version</span>
 	<div class="number">
 		<span>{{ detail['version'] }}</span>
 	</div>
 </div>
 
 <form class="detail">
-	<mat-form-field class="vendor" *ngIf="detail['vendor']"> <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled /> </mat-form-field>
-
-	<mat-form-field class="serviceId" *ngIf="detail['serviceID']">
-		<input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled />
+	<mat-form-field class="vendor" *ngIf="detail['vendor']">
+		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field class="type" *ngIf="detail['type']"> <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled /> </mat-form-field>
+	<mat-form-field class="serviceId" *ngIf="detail['serviceID']">
+		<input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field class="type" *ngIf="detail['type']">
+		<input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
+	</mat-form-field>
 
 	<div class="launch" *ngIf="detail['vendor'] || detail['serviceID'] || detail['type']" (click)="instantiate()">
-		<button class="actions" mat-button matTooltip="Instantiate"><i class="wui wui-caret-right"></i></button> <span class="play">Ready to use</span>
+		<button class="actions" mat-button matTooltip="Instantiate" i18n-matTooltip="@@instantiate"><i class="wui wui-caret-right"></i></button>
+		<span class="play" i18n="@@readyToUse">Ready to use</span>
 	</div>
 
 	<div class="description" *ngIf="detail['description']">
-		<h4 class="title4">DESCRIPTION</h4>
+		<h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
 		<span class="content">
 			<p>{{ detail['description'] }}</p>
 		</span>
