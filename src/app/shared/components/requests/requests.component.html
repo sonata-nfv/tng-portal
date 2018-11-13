@@ -1,35 +1,35 @@
 <h3 class="title3 header-section-name">{{ section }}</h3>
 
-<h1 class="title1 title-section-name">Requests</h1>
+<h1 class="title1 title-section-name" i18n="@@requests">Requests</h1>
 
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-	<button class="reload" (click)="requestRequests()" matTooltip="Reload data"><i class="wui wui-undo"></i></button>
+	<button class="reload" (click)="requestRequests()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="requests">
 	<ng-container matColumnDef="name">
-		<th mat-header-cell *matHeaderCellDef>Name</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
 		<td mat-cell *matCellDef="let element">{{ element.name }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="serviceName">
-		<th mat-header-cell *matHeaderCellDef>Service Name</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service Name</th>
 		<td mat-cell *matCellDef="let element">{{ element.serviceName }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="createdAt">
-		<th mat-header-cell *matHeaderCellDef>Created at</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@createdAt">Created at</th>
 		<td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="type">
-		<th mat-header-cell *matHeaderCellDef>Type</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
 		<td mat-cell *matCellDef="let element">{{ element.type }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="status">
-		<th mat-header-cell *matHeaderCellDef>Status</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
 		<td mat-cell *matCellDef="let element">{{ element.status }}</td>
 	</ng-container>
 

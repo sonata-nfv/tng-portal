@@ -2,6 +2,188 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="en">
     <body>
+      <trans-unit id="cancel" datatype="html">
+        <source>CANCEL</source><target state="final">CANCEL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/dialog/dialog.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search" datatype="html">
+        <source>Search</source><target state="final">Search</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/search-bar/search-bar.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="functions" datatype="html">
+        <source>Functions</source><target state="final">Functions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reloadData" datatype="html">
+        <source>Reload data</source><target state="final">Reload data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vendor" datatype="html">
+        <source>Vendor</source><target state="final">Vendor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>Name</source><target state="final">Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="version" datatype="html">
+        <source>Version</source><target state="final">Version</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="status" datatype="html">
+        <source>Status</source><target state="final">Status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="requests" datatype="html">
+        <source>Requests</source><target state="final">Requests</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceName" datatype="html">
+        <source>Service Name</source><target state="final">Service Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createdAt" datatype="html">
+        <source>Created at</source><target state="final">Created at</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="type" datatype="html">
+        <source>Type</source><target state="final">Type</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="requestsCapLetters" datatype="html">
+        <source>REQUESTS</source><target state="final">REQUESTS</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="closeButton" datatype="html">
+        <source>CLOSE</source><target state="final">CLOSE</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="idPlaceholder" datatype="html">
+        <source>ID</source><target state="final">ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statusPlaceholder" datatype="html">
+        <source>Status</source><target state="final">Status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="typePlaceholder" datatype="html">
+        <source>Type</source><target state="final">Type</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaIDPlaceholder" datatype="html">
+        <source>SLA ID</source><target state="final">SLA ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceVersionPlaceholder" datatype="html">
+        <source>Service Version</source><target state="final">Service Version</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceIDPlaceholder" datatype="html">
+        <source>Service ID</source><target state="final">Service ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceVendorPlaceholder" datatype="html">
+        <source>Service Vendor</source><target state="final">Service Vendor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="updatedAtPlaceholder" datatype="html">
+        <source>Updated at</source><target state="final">Updated at</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="usernamePlaceholder" datatype="html">
         <source>Username/email</source><target state="final">Username/email</target>
         <context-group purpose="location">
@@ -214,6 +396,259 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="username" datatype="html">
+        <source>5GTANGO</source><target state="final">5GTANGO</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="useremail" datatype="html">
+        <source>sonata-dev@lists.atos.research.eu</source><target state="final">sonata-dev@lists.atos.research.eu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Log out</source><target state="final">Log out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboard" datatype="html">
+        <source>DASHBOARD</source><target state="final">DASHBOARD</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="users" datatype="html">
+        <source>USERS</source><target state="final">USERS</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="configuration" datatype="html">
+        <source>CONFIGURATION</source><target state="final">CONFIGURATION</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vnv" datatype="html">
+        <source>V&amp;V</source><target state="final">V&amp;V</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sp" datatype="html">
+        <source>SERVICE PLATFORM</source><target state="final">SERVICE PLATFORM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sm" datatype="html">
+        <source>SERVICE MANAGEMENT</source><target state="final">SERVICE MANAGEMENT</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="packages" datatype="html">
+        <source>Packages</source><target state="final">Packages</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ns" datatype="html">
+        <source>
+				Network Services
+			</source><target state="final">
+				Network Services
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tests" datatype="html">
+        <source>Tests</source><target state="final">Tests</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sla" datatype="html">
+        <source>SLA</source><target state="final">SLA</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="templates" datatype="html">
+        <source>
+					Templates
+				</source><target state="final">
+					Templates
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="agreements" datatype="html">
+        <source>
+					Agreements
+				</source><target state="final">
+					Agreements
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="violations" datatype="html">
+        <source>
+					Violations
+				</source><target state="final">
+					Violations
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="policies" datatype="html">
+        <source>Policies</source><target state="final">Policies</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="placementPolicy" datatype="html">
+        <source>
+					Placement Policy
+				</source><target state="final">
+					Placement Policy
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="runtimePolicies" datatype="html">
+        <source>
+					Runtime Policies
+				</source><target state="final">
+					Runtime Policies
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="generatedActions" datatype="html">
+        <source>
+					Generated Actions
+				</source><target state="final">
+					Generated Actions
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slices" datatype="html">
+        <source>Slices</source><target state="final">Slices</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="instances" datatype="html">
+        <source>
+					Instances
+				</source><target state="final">
+					Instances
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="availableNS" datatype="html">
+        <source>
+				Available network services
+			</source><target state="final">
+				Available network services
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsInstances" datatype="html">
+        <source>
+				Network service instances
+			</source><target state="final">
+				Network service instances
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="licenceStore" datatype="html">
+        <source>
+				Licence store
+			</source><target state="final">
+				Licence store
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceLicenses" datatype="html">
+        <source>
+					Service licenses
+				</source><target state="final">
+					Service licenses
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="userLicenses" datatype="html">
+        <source>
+					User licenses
+				</source><target state="final">
+					User licenses
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
     </body>

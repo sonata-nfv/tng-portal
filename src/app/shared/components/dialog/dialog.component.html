@@ -1,8 +1,8 @@
-<h2 mat-dialog-title> {{ data.title }} </h2>
+<h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content> {{ data.content }} </mat-dialog-content>
 <mat-dialog-actions>
-  <div class="buttonContainer">
-    <button mat-button class="cancel" [mat-dialog-close]="'cancel'">CANCEL</button>
-    <button mat-button class="action" [mat-dialog-close]="'action'" cdkFocusInitial> {{ data.action }} </button>
-  </div>
+	<div class="buttonContainer">
+		<button mat-button class="cancel" [mat-dialog-close]="'cancel'" i18n="@@cancel">CANCEL</button>
+		<button mat-button class="action" [mat-dialog-close]="'action'" cdkFocusInitial>{{ data.action }}</button>
+	</div>
 </mat-dialog-actions>
