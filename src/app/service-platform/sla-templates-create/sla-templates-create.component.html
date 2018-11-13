@@ -1,27 +1,35 @@
-<h3 class="title3 header-section-name">SLA TEMPLATES</h3>
+<h3 class="title3 header-section-name" i18n="@@slaTemplatesCapLetters">SLA TEMPLATES</h3>
 
 <form [formGroup]="templateForm" class="title-section">
-	<mat-form-field class="title1"> <input matInput type="text" placeholder="Template Name" formControlName="name" required /> </mat-form-field>
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Template Name" formControlName="name" required i18n-placeholder="@@templateNamePlaceholder" />
+	</mat-form-field>
 
 	<div class="header-buttons">
-		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton" (click)="createSlaTemplate()">
+		<button
+			[ngClass]="{ 'disabled-button': disabledButton }"
+			class="edit-options save"
+			[disabled]="disabledButton"
+			(click)="createSlaTemplate()"
+			i18n="@@saveButton"
+		>
 			SAVE
 		</button>
-		<button class="edit-options cancel" (click)="close()">CANCEL</button>
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
 	</div>
 </form>
 
-<div class="subheader"><p class="subtitle author">Created by you</p></div>
+<div class="subheader"><p class="subtitle author" i18n="@@createdByYou">Created by you</p></div>
 
 <form [formGroup]="templateForm">
-	<app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"></app-select>
-	<app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"></app-calendar>
+	<app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)" i18n-placeholder="@@nsPlaceholder"></app-select>
+	<app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
 </form>
 
-<div class="advanceSection" *ngIf="guarantiesList.length > 0 || storedGuarantees.length > 0">
+<div class="advanceSection" *ngIf="guaranteesList.length > 0 || storedGuarantees.length > 0">
 	<button class="dropdownButton" (click)="closed = !closed">
 		<div class="open">
-			<span>Service Guarantees</span>
+			<span i18n="@@serviceGuarantees">Service Guarantees</span>
 
 			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
 
@@ -32,7 +40,7 @@
 	</button>
 
 	<form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
-		<h2 class="title2">Service Guaranties</h2>
+		<h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
 
 		<div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
 			<div class="description" *ngIf="item">
@@ -57,11 +65,18 @@
 									placeholder="Service Level"
 									disabled
 									value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+									i18n-placeholder="@@serviceLevelPlaceholder"
 								/>
 							</mat-form-field>
 
 							<mat-form-field class="gPeriod">
-								<input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}" />
+								<input
+									matInput
+									placeholder="Time Period"
+									disabled
+									value="{{ item.serviceLevelObjetive.period }}"
+									i18n-placeholder="@@timePeriodPlaceholder"
+								/>
 							</mat-form-field>
 						</div>
 
@@ -72,15 +87,16 @@
 		</div>
 
 		<app-select
-			*ngIf="guarantiesList.length > 0"
-			class="guarantiesList"
+			*ngIf="guaranteesList.length > 0"
+			class="guaranteesList"
 			placeholder="Select NS Guarantee"
 			[reset]="reset"
-			[list]="guarantiesList"
+			[list]="guaranteesList"
 			(selectEvent)="addGuarantee($event)"
+			i18n-placeholder="@@guaranteesListPlaceholder"
 		></app-select>
 
-		<span *ngIf="guarantiesList.length > 0" class="note">Add a new guarantee</span>
+		<span *ngIf="guaranteesList.length > 0" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
 	</form>
 </div>
 

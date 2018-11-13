@@ -285,6 +285,7 @@ li.line:before {
 		font-weight: normal;
 
 		&.author {
+			margin-right: 3px;
 			color: $primary-font-color-light;
 		}
 

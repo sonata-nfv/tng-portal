@@ -54,6 +54,42 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
@@ -101,6 +137,42 @@
           <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
@@ -146,6 +218,42 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
@@ -203,6 +311,66 @@
           <context context-type="linenumber">101</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
@@ -250,6 +418,14 @@
           <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
@@ -289,6 +465,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
           <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
@@ -336,6 +516,38 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
@@ -353,6 +565,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="statusPlaceholder" datatype="html">
@@ -378,6 +594,22 @@
           <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
@@ -394,6 +626,18 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
@@ -418,6 +662,10 @@
           <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
           <context context-type="linenumber">31</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="serviceIDPlaceholder" datatype="html">
         <source>Service ID</source><target state="final">Service ID</target>
@@ -428,6 +676,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context>
           <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
@@ -443,6 +699,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
           <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="updatedAtPlaceholder" datatype="html">
@@ -462,6 +722,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
@@ -759,8 +1035,12 @@
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="ns" datatype="html">
+      <trans-unit id="nss" datatype="html">
         <source>
 				Network Services
 			</source><target state="final">
@@ -773,6 +1053,18 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tests" datatype="html">
@@ -851,6 +1143,10 @@
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">87</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="runtimePolicies" datatype="html">
         <source>
@@ -862,6 +1158,10 @@
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">90</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="generatedActions" datatype="html">
         <source>
@@ -872,6 +1172,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">97</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slices" datatype="html">
@@ -1003,6 +1307,30 @@
           <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
@@ -1036,6 +1364,38 @@
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
@@ -1056,6 +1416,18 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context>
           <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
@@ -1091,6 +1463,14 @@
           <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">46</context>
         </context-group>
@@ -1111,6 +1491,18 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
           <context context-type="linenumber">107</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="resultsCapLetters" datatype="html">
@@ -1167,6 +1559,14 @@
           <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
@@ -1182,6 +1582,10 @@
           <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">41</context>
         </context-group>
@@ -1192,12 +1596,24 @@
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="nsCapLetters" datatype="html">
         <source>NS</source><target state="final">NS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="noNSToDisplayMsg" datatype="html">
@@ -1206,12 +1622,803 @@
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">40</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="noTestToDisplayMsg" datatype="html">
         <source>There are no tests to display</source><target state="final">There are no tests to display</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="spCapLetters" datatype="html">
+        <source>SERVICE PLATFORM</source><target state="final">SERVICE PLATFORM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noVNFToDisplay" datatype="html">
+        <source>There are no virtual network functions to display</source><target state="final">There are no virtual network functions to display</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4af6287e70a4a87329affe109839f14ae598f0ca" datatype="html">
+        <source>DESCRIPTION</source><target state="final">DESCRIPTION</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <note priority="1" from="description">descriptionCapLetters</note>
+      </trans-unit>
+      <trans-unit id="functionsCapLetters" datatype="html">
+        <source>FUNCTIONS</source><target state="final">FUNCTIONS</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="saveButton" datatype="html">
+        <source>SAVE</source><target state="final">SAVE</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancelButton" datatype="html">
+        <source>CANCEL</source><target state="final">CANCEL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectPolicyPlaceholder" datatype="html">
+        <source>Select a policy</source><target state="final">Select a policy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectDatacenterPlaceholder" datatype="html">
+        <source>Select a datacenter</source><target state="final">Select a datacenter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pleaseSelectDatacenterMsg" datatype="html">
+        <source>*Please select a datacenter to add</source><target state="final">*Please select a datacenter to add</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addMoreButton" datatype="html">
+        <source>Add more</source><target state="final">Add more</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsPlaceholder" datatype="html">
+        <source>Network Service</source><target state="final">Network Service</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="policyName" datatype="html">
+        <source>Policy name</source><target state="final">Policy name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ns" datatype="html">
+        <source>Network Service</source><target state="final">Network Service</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaName" datatype="html">
+        <source>SLA name</source><target state="final">SLA name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectDefault" datatype="html">
+        <source>Select Default</source><target state="final">Select Default</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="runtimePoliciesCapLetters" datatype="html">
+        <source>RUNTIME POLICIES</source><target state="final">RUNTIME POLICIES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="markAsDefault" datatype="html">
+        <source>Mark as default</source><target state="final">Mark as default</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceNamePlaceholder" datatype="html">
+        <source>Service Name</source><target state="final">Service Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectSLAPlaceholder" datatype="html">
+        <source>Select SLA</source><target state="final">Select SLA</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="policyNamePlaceholder" datatype="html">
+        <source>Policy Name</source><target state="final">Policy Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createdByYou" datatype="html">
+        <source>Created by you</source><target state="final">Created by you</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="monitoringRules" datatype="html">
+        <source>Monitoring Rules</source><target state="final">Monitoring Rules</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="existingMonitoringRules" datatype="html">
+        <source>Existing monitoring rules</source><target state="final">Existing monitoring rules</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewMonitoringRules" datatype="html">
+        <source>Add new monitoring rules</source><target state="final">Add new monitoring rules</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vnfName" datatype="html">
+        <source>VNF Name</source><target state="final">VNF Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="actionType" datatype="html">
+        <source>Action Type</source><target state="final">Action Type</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceInstanceID" datatype="html">
+        <source>Service instance ID</source><target state="final">Service instance ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="value" datatype="html">
+        <source>Value</source><target state="final">Value</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaTemplates" datatype="html">
+        <source>SLA Templates</source><target state="final">SLA Templates</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createNewTemplateButton" datatype="html">
+        <source>Create New Template</source><target state="final">Create New Template</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="expirationDate" datatype="html">
+        <source>Expiration Date</source><target state="final">Expiration Date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="delete" datatype="html">
+        <source>Delete</source><target state="final">Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteTemplateButton" datatype="html">
+        <source>Delete template</source><target state="final">Delete template</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="templateIDPlaceholder" datatype="html">
+        <source>Template ID</source><target state="final">Template ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="expirationDatePlaceholder" datatype="html">
+        <source>Expiration Date</source><target state="final">Expiration Date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceGuarantees" datatype="html">
+        <source>Service Guarantees</source><target state="final">Service Guarantees</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceLevelPlaceholder" datatype="html">
+        <source>Service Level</source><target state="final">Service Level</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timePeriodPlaceholder" datatype="html">
+        <source>Time Period</source><target state="final">Time Period</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaTemplatesCapLetters" datatype="html">
+        <source>SLA TEMPLATES</source><target state="final">SLA TEMPLATES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="templateNamePlaceholder" datatype="html">
+        <source>Template Name</source><target state="final">Template Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="guaranteesListPlaceholder" datatype="html">
+        <source>Select NS Guarantee</source><target state="final">Select NS Guarantee</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewGuarantee" datatype="html">
+        <source>Add a new guarantee</source><target state="final">Add a new guarantee</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaAgreements" datatype="html">
+        <source>SLA Agreements</source><target state="final">SLA Agreements</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customer" datatype="html">
+        <source>Customer</source><target state="final">Customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerPlaceholder" datatype="html">
+        <source>Customer</source><target state="final">Customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="namePlaceholder" datatype="html">
+        <source>Name </source><target state="final">Name </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaViolations" datatype="html">
+        <source>SLA Violations</source><target state="final">SLA Violations</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsInstanceID" datatype="html">
+        <source>Network Service Instance ID</source><target state="final">Network Service Instance ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaID" datatype="html">
+        <source>SLA ID</source><target state="final">SLA ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="newSliceInstance" datatype="html">
+        <source>New network slice instance</source><target state="final">New network slice instance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="versionPlaceholder" datatype="html">
+        <source>Version</source><target state="final">Version</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsiNamePlaceholder" datatype="html">
+        <source>NSI Name</source><target state="final">NSI Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="instantiateButton" datatype="html">
+        <source>
+			INSTANTIATE
+		</source><target state="final">
+			INSTANTIATE
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sliceTemplates" datatype="html">
+        <source>Slice Templates</source><target state="final">Slice Templates</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="author" datatype="html">
+        <source>Author</source><target state="final">Author</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="usageState" datatype="html">
+        <source>Usage State</source><target state="final">Usage State</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="instantiate" datatype="html">
+        <source>Instantiate</source><target state="final">Instantiate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sliceTemplatesCapLetters" datatype="html">
+        <source>SLICE TEMPLATES</source><target state="final">SLICE TEMPLATES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="authorPlaceholder" datatype="html">
+        <source>Author</source><target state="final">Author</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectNSPlaceholder" datatype="html">
+        <source>Select Network Service</source><target state="final">Select Network Service</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectSLATemplatePlaceholder" datatype="html">
+        <source>Select SLA Template</source><target state="final">Select SLA Template</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="templatesCapLetters" datatype="html">
+        <source>TEMPLATES</source><target state="final">TEMPLATES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="usageStatePlaceholder" datatype="html">
+        <source>Usage state</source><target state="final">Usage state</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="onboardingStatePlaceholder" datatype="html">
+        <source>Onboarding state</source><target state="final">Onboarding state</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="operationalStatePlaceholder" datatype="html">
+        <source>Operational state</source><target state="final">Operational state</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notificationTypesPlaceholder" datatype="html">
+        <source>Notification Types</source><target state="final">Notification Types</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="readyToUse" datatype="html">
+        <source>Ready to use</source><target state="final">Ready to use</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="userDefinedDataPlaceholder" datatype="html">
+        <source>User defined data</source><target state="final">User defined data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsDescriptorPlaceholder" datatype="html">
+        <source>Network service descriptor</source><target state="final">Network service descriptor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaTemplatePlaceholder" datatype="html">
+        <source>SLA Template</source><target state="final">SLA Template</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sliceInstances" datatype="html">
+        <source>Slice Instances</source><target state="final">Slice Instances</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="state" datatype="html">
+        <source>State</source><target state="final">State</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminate" datatype="html">
+        <source>Terminate</source><target state="final">Terminate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="instancesCapLetters" datatype="html">
+        <source>INSTANCES</source><target state="final">INSTANCES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsInstancesIDPlaceholder" datatype="html">
+        <source>Network service instances ID</source><target state="final">Network service instances ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sliceTemplateNamePlaceholder" datatype="html">
+        <source>Network Slice Template Name</source><target state="final">Network Slice Template Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="statePlaceholder" datatype="html">
+        <source>State</source><target state="final">State</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminateInstance" datatype="html">
+        <source>Terminate instance</source><target state="final">Terminate instance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="locationPlaceholder" datatype="html">
@@ -1235,13 +2442,6 @@
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cancelButton" datatype="html">
-        <source>CANCEL</source><target state="final">CANCEL</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="nextButton" datatype="html">
         <source>NEXT</source><target state="final">NEXT</target>
         <context-group purpose="location">
@@ -1256,29 +2456,11 @@
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="selectSLAPlaceholder" datatype="html">
-        <source>Select a SLA from the list</source><target state="final">Select a SLA from the list</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">85</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="rejectButton" datatype="html">
         <source>REJECT</source><target state="final">REJECT</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">97</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="instantiateButton" datatype="html">
-        <source>
-			INSTANTIATE
-		</source><target state="final">
-			INSTANTIATE
-		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="smCapLetters" datatype="html">
@@ -1303,17 +2485,6 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="instantiate" datatype="html">
-        <source>Instantiate</source><target state="final">Instantiate</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="availableNSCapLetters" datatype="html">
         <source>AVAILABLE NETWORK SERVICES</source><target state="final">AVAILABLE NETWORK SERVICES</target>
         <context-group purpose="location">
@@ -1321,29 +2492,11 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="readyToUse" datatype="html">
-        <source>Ready to use</source><target state="final">Ready to use</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="networkServiceInstances" datatype="html">
         <source>Network service instances</source><target state="final">Network service instances</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
           <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="terminate" datatype="html">
-        <source>Terminate</source><target state="final">Terminate</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
-          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsInstancesCapLetter" datatype="html">
@@ -1358,13 +2511,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="terminateInstance" datatype="html">
-        <source>Terminate instance</source><target state="final">Terminate instance</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
-          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="updatedAt" datatype="html">

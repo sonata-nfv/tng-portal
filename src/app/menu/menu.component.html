@@ -51,7 +51,7 @@
 		<div class="options" *ngIf="menu === 'validation-and-verification'">
 			<button [ngClass]="{ active: section === 'vv-packages' }" (click)="setSection($event, 'vv-packages')" i18n="@@packages">Packages</button>
 
-			<button [ngClass]="{ active: section === 'vv-network-services' }" (click)="setSection($event, 'vv-network-services')" i18n="@@ns">
+			<button [ngClass]="{ active: section === 'vv-network-services' }" (click)="setSection($event, 'vv-network-services')" i18n="@@nss">
 				Network Services
 			</button>
 
@@ -63,7 +63,7 @@
 		<div class="options" *ngIf="menu === 'service-platform'">
 			<button [ngClass]="{ active: section === 'sp-packages' }" (click)="setSection($event, 'sp-packages')" i18n="@@packages">Packages</button>
 
-			<button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')" i18n="@@ns">
+			<button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')" i18n="@@nss">
 				Network Services
 			</button>
 
