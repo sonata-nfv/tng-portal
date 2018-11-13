@@ -281,7 +281,6 @@ li.line:before {
 
 	.subtitle {
 		margin-top: 0;
-		margin-right: 15px;
 		font-size: 12px;
 		font-weight: normal;
 
@@ -290,6 +289,7 @@ li.line:before {
 		}
 
 		&.date {
+			margin-left: 15px;
 			color: $secondary-font-color-light;
 		}
 	}

@@ -1,49 +1,56 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']">PACKAGES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@packagesCapLetters">PACKAGES</h3>
 
 <div class="title-section" *ngIf="detail['name']">
 	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
-	<button class="close" (click)="close()">CLOSE</button>
+	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <div class="subheader" *ngIf="detail['author']">
-	<h3 class="subtitle author">Created by {{ detail['author'] }}</h3>
-	<h3 class="subtitle date">{{ detail['createdAt'] }}</h3>
+	<p class="subtitle author" i18n="@@createdBy">Created by</p>
+	<p class="subtitle author">{{ detail['author'] }}</p>
+	<p class="subtitle date">{{ detail['createdAt'] }}</p>
 </div>
 
 <div class="bubbleDiv" *ngIf="detail['version']">
-	<span class="text">Version</span>
+	<span class="text" i18n="@@version">Version</span>
 	<div class="number">
 		<span>{{ detail['version'] }}</span>
 	</div>
 </div>
 
 <form class="detail">
-	<mat-form-field *ngIf="detail['vendor']"> <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled /> </mat-form-field>
+	<mat-form-field *ngIf="detail['vendor']">
+		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />/>
+	</mat-form-field>
 
-	<mat-form-field *ngIf="detail['type']"> <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled /> </mat-form-field>
+	<mat-form-field *ngIf="detail['type']">
+		<input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
+	</mat-form-field>
 
-	<mat-form-field *ngIf="detail['status']"> <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled /> </mat-form-field>
+	<mat-form-field *ngIf="detail['status']">
+		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+	</mat-form-field>
 
 	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled />
+		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 
 	<div class="ns" *ngIf="detail['ns']">
-		<h2 class="title2">NS</h2>
-		<span class="message" *ngIf="detail['ns'].length == 0">There are no network services to display</span>
+		<h2 class="title2" i18n="@@nsCapLetters">NS</h2>
+		<span class="message" *ngIf="detail['ns'].length == 0" i18n="@@noNSToDisplayMsg">There are no network services to display</span>
 		<table mat-table *ngIf="detail['ns'].length > 0" [dataSource]="detail['ns']">
 			<ng-container matColumnDef="vendor">
-				<th mat-header-cell *matHeaderCellDef>Vendor</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
 				<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
 			</ng-container>
 
-			<ng-container matColumnDef="name">
+			<ng-container matColumnDef="name" i18n="@@name">
 				<th mat-header-cell *matHeaderCellDef>Name</th>
 				<td mat-cell *matCellDef="let element">{{ element.name }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="version">
-				<th mat-header-cell *matHeaderCellDef>Version</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
 				<td mat-cell *matCellDef="let element">{{ element.version }}</td>
 			</ng-container>
 
@@ -53,21 +60,21 @@
 	</div>
 
 	<div class="vnf" *ngIf="detail['vnf']">
-		<h2 class="title2">VNFs</h2>
-		<span class="message" *ngIf="detail['vnf'].length == 0">There are no virtual network functions to display</span>
+		<h2 class="title2" i18n="@@vnfsCapLetters">VNFs</h2>
+		<span class="message" *ngIf="detail['vnf'].length == 0" i18n="@@noVNFToDisplayMsg">There are no virtual network functions to display</span>
 		<table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">
 			<ng-container matColumnDef="vendor">
-				<th mat-header-cell *matHeaderCellDef>Vendor</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
 				<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="name">
-				<th mat-header-cell *matHeaderCellDef>Name</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
 				<td mat-cell *matCellDef="let element">{{ element.name }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="version">
-				<th mat-header-cell *matHeaderCellDef>Version</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
 				<td mat-cell *matCellDef="let element">{{ element.version }}</td>
 			</ng-container>
 
@@ -77,21 +84,21 @@
 	</div>
 
 	<div class="tests" *ngIf="detail['tests']">
-		<h2 class="title2">Tests</h2>
-		<span class="message" *ngIf="detail['tests'].length == 0">There are no tests to display</span>
+		<h2 class="title2" i18n="@@tests">Tests</h2>
+		<span class="message" *ngIf="detail['tests'].length == 0" i18n="@@noTestToDisplayMsg">There are no tests to display</span>
 		<table mat-table *ngIf="detail['tests'].length > 0" [dataSource]="detail['tests']">
 			<ng-container matColumnDef="vendor">
 				<th mat-header-cell *matHeaderCellDef>Vendor</th>
-				<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
+				<td mat-cell *matCellDef="let element" i18n="@@vendor">{{ element.vendor }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="name">
-				<th mat-header-cell *matHeaderCellDef>Name</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
 				<td mat-cell *matCellDef="let element">{{ element.name }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="version">
-				<th mat-header-cell *matHeaderCellDef>Version</th>
+				<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
 				<td mat-cell *matCellDef="let element">{{ element.version }}</td>
 			</ng-container>
 
