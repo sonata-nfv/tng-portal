@@ -52,22 +52,22 @@ import { ServiceManagementModule } from './service-management/service-management
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-	declarations: [AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
-		AngularMaterialModule,
-		HttpClientModule,
-		BrowserAnimationsModule,
-		ValidationAndVerificationModule,
-		ServiceManagementModule,
-		ServicePlatformModule,
-		SharedModule,
-		AuthenticationModule
-	],
-	providers: [{ provide: LOCALE_ID, useValue: 'en' }],
-	bootstrap: [AppComponent]
+    declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AngularMaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ValidationAndVerificationModule,
+        ServiceManagementModule,
+        ServicePlatformModule,
+        SharedModule,
+        AuthenticationModule
+    ],
+    providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
+    bootstrap: [ AppComponent ]
 })
-export class AppModule {}
+export class AppModule { }

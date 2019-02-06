@@ -1,70 +1,64 @@
 <h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@runtimePoliciesCapLetters">RUNTIME POLICIES</h3>
 
 <div class="title-section" *ngIf="detail['name']">
-	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+    <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
 
-	<div class="header-buttons" *ngIf="policyForm.touched">
-		<button class="edit-options save" (click)="editPolicy()" i18n="@@saveButton">SAVE</button>
-		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
-	</div>
+    <div class="header-buttons" *ngIf="policyForm.touched">
+        <button class="edit-options save" (click)="editPolicy()" i18n="@@saveButton">SAVE</button>
+        <button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+    </div>
 
-	<div class="header-buttons" *ngIf="!policyForm.touched"><button class="edit-options cancel" (click)="close()" i18n="@@closeButton">CLOSE</button></div>
+    <div class="header-buttons" *ngIf="!policyForm.touched"><button class="edit-options cancel" (click)="close()" i18n="@@closeButton">CLOSE</button></div>
 </div>
 
 <div class="bubbleDiv" *ngIf="detail['version']">
-	<span class="text" i18n="@@version">Version</span>
-	<div class="number">
-		<span>{{ detail.version }}</span>
-	</div>
+    <span class="text" i18n="@@version">Version</span>
+    <div class="number">
+        <span>{{ detail.version }}</span>
+    </div>
 </div>
 
 <form [formGroup]="policyForm" *ngIf="detail['uuid']">
-	<mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">Mark as default</mat-checkbox>
+    <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">Mark as
+        default</mat-checkbox>
 
-	<div class="sameRow">
-		<mat-form-field *ngIf="detail['uuid']">
-			<input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
-		</mat-form-field>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['uuid']">
+            <input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
+        </mat-form-field>
 
-		<mat-form-field *ngIf="detail['vendor']">
-			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
-		</mat-form-field>
-	</div>
+        <mat-form-field *ngIf="detail['vendor']">
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+        </mat-form-field>
+    </div>
 
-	<div class="sameRow">
-		<mat-form-field *ngIf="detail['nsName']">
-			<input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled i18n-placeholder="@@serviceNamePlaceholder" />
-		</mat-form-field>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['nsName']">
+            <input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled i18n-placeholder="@@serviceNamePlaceholder" />
+        </mat-form-field>
 
-		<mat-form-field *ngIf="detail['nsVersion']">
-			<input matInput placeholder="Service Version" value="{{ detail['nsVersion'] }}" disabled i18n-placeholder="@@serviceVersionPlaceholder" />
-		</mat-form-field>
-	</div>
+        <mat-form-field *ngIf="detail['nsVersion']">
+            <input matInput placeholder="Service Version" value="{{ detail['nsVersion'] }}" disabled i18n-placeholder="@@serviceVersionPlaceholder" />
+        </mat-form-field>
+    </div>
 
-	<div class="sameRow">
-		<mat-form-field *ngIf="detail['nsUUID']">
-			<input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
-		</mat-form-field>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['nsUUID']">
+            <input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+        </mat-form-field>
 
-		<mat-form-field *ngIf="detail['nsVendor']">
-			<input matInput placeholder="Service Vendor" value="{{ detail['nsVendor'] }}" disabled i18n-placeholder="@@serviceVendorPlaceholder" />
-		</mat-form-field>
-	</div>
+        <mat-form-field *ngIf="detail['nsVendor']">
+            <input matInput placeholder="Service Vendor" value="{{ detail['nsVendor'] }}" disabled i18n-placeholder="@@serviceVendorPlaceholder" />
+        </mat-form-field>
+    </div>
 
-	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled i18n-placeholder="@@updatedAtPlaceholder" />
-	</mat-form-field>
+    <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+        <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+            i18n-placeholder="@@updatedAtPlaceholder" />
+    </mat-form-field>
 
-	<app-select
-		class="select"
-		placeholder="Select SLA"
-		[value]="slaName"
-		[reset]="reset"
-		required="false"
-		[list]="slaList"
-		(selectEvent)="receiveSLA($event)"
-		i18n-placeholder="@@selectSLAPlaceholder"
-	></app-select>
+    <app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList"
+        (selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder"></app-select>
 </form>
 
 <!--

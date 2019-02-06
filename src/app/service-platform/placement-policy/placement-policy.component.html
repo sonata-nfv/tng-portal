@@ -1,55 +1,42 @@
 <h3 class="title3 header-section-name" i18n="@@spCapLetters">SERVICE PLATFORM</h3>
 
 <div class="title-section">
-	<h1 class="title1 title-section-name" i18n="@@placementPolicy">Placement Policy</h1>
-	<div class="header-buttons">
-		<button *ngIf="show" class="edit-options save" (click)="save()" i18n="@@saveButton">SAVE</button>
-		<button *ngIf="show" class="edit-options cancel" (click)="cancel()" i18n="@@cancelButton">CANCEL</button>
-	</div>
+    <h1 class="title1 title-section-name" i18n="@@placementPolicy">Placement Policy</h1>
+    <div class="header-buttons">
+        <button *ngIf="show" class="edit-options save" (click)="save()" i18n="@@saveButton">SAVE</button>
+        <button *ngIf="show" class="edit-options cancel" (click)="cancel()" i18n="@@cancelButton">CANCEL</button>
+    </div>
 </div>
 
 <form [formGroup]="placementPolicyForm" class="policyForm">
-	<app-select
-		class="placementPolicy"
-		placeholder="Select a policy"
-		[list]="placementPolicies"
-		[reset]="resetPolicy"
-		(selectEvent)="receivePlacementPolicy($event)"
-		i18n-placeholder="@@selectPolicyPlaceholder"
-	></app-select>
+    <app-select class="placementPolicy" placeholder="Select a policy" [list]="placementPolicies" [reset]="resetPolicy"
+        (selectEvent)="receivePlacementPolicy($event)" i18n-placeholder="@@selectPolicyPlaceholder"></app-select>
 </form>
 
 <form [formGroup]="prioritiseForm" class="datacenterForm">
-	<!-- Prioritize option form fields -->
-	<ol class="list" *ngIf="prioritise">
-		<li class="line" *ngFor="let item of datacentersSelected">
-			<mat-form-field>
-				<mat-select [value]="item" disabled>
-					<mat-option [value]="item">{{ item }}</mat-option>
-				</mat-select>
-			</mat-form-field>
+    <!-- Prioritize option form fields -->
+    <ol class="list" *ngIf="prioritise">
+        <li class="line" *ngFor="let item of datacentersSelected">
+            <mat-form-field>
+                <mat-select [value]="item" disabled>
+                    <mat-option [value]="item">{{ item }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-			<button (click)="eraseEntry(item)"><i class="wui wui-trash-alt"></i></button>
-		</li>
+            <button (click)="eraseEntry(item)"><i class="wui wui-trash-alt"></i></button>
+        </li>
 
-		<li class="line" *ngIf="datacenters.length > 0">
-			<app-select
-				class="select"
-				placeholder="Select a datacenter"
-				[list]="datacenters"
-				[reset]="resetDatacenter"
-				[required]="false"
-				(selectEvent)="receiveDatecenter($event)"
-				i18n-placeholder="@@selectDatacenterPlaceholder"
-			></app-select>
-		</li>
-	</ol>
+        <li class="line" *ngIf="datacenters.length > 0">
+            <app-select class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="resetDatacenter"
+                [required]="false" (selectEvent)="receiveDatecenter($event)" i18n-placeholder="@@selectDatacenterPlaceholder"></app-select>
+        </li>
+    </ol>
 
-	<span class="error" *ngIf="error" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
+    <span class="error" *ngIf="error" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
 
-	<div class="addMore" *ngIf="prioritise && datacenters.length > 0">
-		<button (click)="addMore()"><i class="wui wui-plus"></i> <span i18n="@@addMoreButton">Add more</span></button>
-	</div>
+    <div class="addMore" *ngIf="prioritise && datacenters.length > 0">
+        <button (click)="addMore()"><i class="wui wui-plus"></i> <span i18n="@@addMoreButton">Add more</span></button>
+    </div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

@@ -1,8 +1,8 @@
 {
-  "features_available": [
-    "DASHBOARD",
-    "VALIDATION",
-    "SERVICE PLATFORM",
-    "SERVICE MANAGEMENT"
-  ]
+    "features_available": [
+        "DASHBOARD",
+        "VALIDATION",
+        "SERVICE PLATFORM",
+        "SERVICE MANAGEMENT"
+    ]
 }

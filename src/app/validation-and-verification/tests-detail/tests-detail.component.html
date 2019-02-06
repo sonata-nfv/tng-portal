@@ -1,42 +1,42 @@
 <h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@testsCapLetters">TESTS</h3>
 
 <div class="title-section" *ngIf="detail['name']">
-	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
-	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+    <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+    <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <div class="subheader" *ngIf="detail['author']">
-	<p class="subtitle author" i18n="@@createdBy">Created by</p>
-	<p class="subtitle author">{{ detail['author'] }}</p>
-	<p class="subtitle date">{{ detail['createdAt'] }}</p>
+    <p class="subtitle author" i18n="@@createdBy">Created by</p>
+    <p class="subtitle author">{{ detail['author'] }}</p>
+    <p class="subtitle date">{{ detail['createdAt'] }}</p>
 </div>
 
 <div class="bubbles">
-	<div class="bubbleDiv" *ngIf="detail['version']">
-		<span class="text" i18n="@@currentVersion">Current version</span>
-		<div class="number">
-			<span>{{ detail['version'] }}</span>
-		</div>
-	</div>
+    <div class="bubbleDiv" *ngIf="detail['version']">
+        <span class="text" i18n="@@currentVersion">Current version</span>
+        <div class="number">
+            <span>{{ detail['version'] }}</span>
+        </div>
+    </div>
 
-	<div class="bubbleDiv" *ngIf="detail['timesExecuted']">
-		<span class="text" i18n="@@timesExecuted">Times executed</span>
-		<div class="number times">
-			<span>{{ detail['timesExecuted'] }}</span>
-		</div>
-	</div>
+    <div class="bubbleDiv" *ngIf="detail['timesExecuted']">
+        <span class="text" i18n="@@timesExecuted">Times executed</span>
+        <div class="number times">
+            <span>{{ detail['timesExecuted'] }}</span>
+        </div>
+    </div>
 </div>
 
 <form class="detail">
-	<mat-form-field class="vendor" *ngIf="detail['vendor']">
-		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
-	</mat-form-field>
+    <mat-form-field class="vendor" *ngIf="detail['vendor']">
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+    </mat-form-field>
 
-	<mat-form-field class="status" *ngIf="detail['status']">
-		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
-	</mat-form-field>
+    <mat-form-field class="status" *ngIf="detail['status']">
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+    </mat-form-field>
 
-	<!--
+    <!--
 		<div class="launch" *ngIf="detail['uuid']" (click)="launch()">
 		  <button class="actions" mat-button>
 		    <i class="wui wui-caret-right"></i>
@@ -45,77 +45,72 @@
 		</div>
 	-->
 
-	<mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
-		<input
-			matInput
-			placeholder="Last time executed"
-			value="Last time executed: {{ detail['lastTimeExecuted'] }}"
-			disabled
-			i18n-placeholder="@@lastTimeExecutedPlaceholder"
-		/>
-	</mat-form-field>
+    <mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
+        <input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}"
+            disabled i18n-placeholder="@@lastTimeExecutedPlaceholder" />
+    </mat-form-field>
 
-	<div class="description" *ngIf="detail['description']">
-		<h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
-		<span class="content">
-			<p>{{ detail['description'] }}</p>
-		</span>
-	</div>
+    <div class="description" *ngIf="detail['description']">
+        <h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
+        <span class="content">
+            <p>{{ detail['description'] }}</p>
+        </span>
+    </div>
 
-	<div class="description" *ngIf="detail['services']">
-		<h4 class="title4" i18n="@@againstWhichServicesCapLetters">AGAINST WHICH SERVICES</h4>
+    <div class="description" *ngIf="detail['services']">
+        <h4 class="title4" i18n="@@againstWhichServicesCapLetters">AGAINST WHICH SERVICES</h4>
 
-		<span class="content">
-			<table mat-table [dataSource]="detail['services']">
-				<ng-container matColumnDef="vendor">
-					<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
-					<td mat-cell *matCellDef="let element">{{ element.sVendor }}</td>
-				</ng-container>
+        <span class="content">
+            <table mat-table [dataSource]="detail['services']">
+                <ng-container matColumnDef="vendor">
+                    <th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
+                    <td mat-cell *matCellDef="let element">{{ element.sVendor }}</td>
+                </ng-container>
 
-				<ng-container matColumnDef="name">
-					<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
-					<td mat-cell *matCellDef="let element">{{ element.sName }}</td>
-				</ng-container>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+                    <td mat-cell *matCellDef="let element">{{ element.sName }}</td>
+                </ng-container>
 
-				<ng-container matColumnDef="version">
-					<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
-					<td mat-cell *matCellDef="let element">{{ element.sVersion }}</td>
-				</ng-container>
+                <ng-container matColumnDef="version">
+                    <th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
+                    <td mat-cell *matCellDef="let element">{{ element.sVersion }}</td>
+                </ng-container>
 
-				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-				<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-			</table>
-		</span>
-	</div>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+        </span>
+    </div>
 </form>
 
 <div class="executions" *ngIf="executions && executions.length > 0">
-	<h2 class="title2" i18n="@@testExecutions">Test Executions</h2>
+    <h2 class="title2" i18n="@@testExecutions">Test Executions</h2>
 
-	<table mat-table [dataSource]="executions">
-		<ng-container matColumnDef="uuid">
-			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
-		</ng-container>
+    <table mat-table [dataSource]="executions">
+        <ng-container matColumnDef="uuid">
+            <th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+        </ng-container>
 
-		<ng-container matColumnDef="serviceUUID">
-			<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.serviceUUID }}</td>
-		</ng-container>
+        <ng-container matColumnDef="serviceUUID">
+            <th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.serviceUUID }}</td>
+        </ng-container>
 
-		<ng-container matColumnDef="date">
-			<th mat-header-cell *matHeaderCellDef i18n="@@date">Date</th>
-			<td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
-		</ng-container>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef i18n="@@date">Date</th>
+            <td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+        </ng-container>
 
-		<ng-container matColumnDef="status">
-			<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
-			<td mat-cell *matCellDef="let element">{{ element.status }}</td>
-		</ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        </ng-container>
 
-		<tr mat-header-row *matHeaderRowDef="displayedColumnsExecutions"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions" (click)="openTestResults(row)"></tr>
-	</table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsExecutions"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions" (click)="openTestResults(row)"></tr>
+    </table>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>

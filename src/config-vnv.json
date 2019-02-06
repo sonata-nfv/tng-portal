@@ -1,3 +1,6 @@
 {
-  "features_available": ["DASHBOARD", "VALIDATION"]
+    "features_available": [
+        "DASHBOARD",
+        "VALIDATION"
+    ]
 }

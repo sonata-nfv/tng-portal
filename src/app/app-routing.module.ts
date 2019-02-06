@@ -59,197 +59,203 @@ import { ServiceLicensesComponent } from './service-management/service-licenses/
 import { UserLicensesComponent } from './service-management/user-licenses/user-licenses.component';
 
 const routes: Routes = [
-	// Redirect to login while there is no dashboard/menu to display
-	// Use authGuard module to authenticate user in every step
+    // Redirect to login while there is no dashboard/menu to display
+    // Use authGuard module to authenticate user in every step
 
-	{ path: 'login', component: LoginComponent },
-	{ path: 'signup', component: SignupComponent },
-	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent },
-	{ path: 'portal', redirectTo: '' },
-	{
-		path: '',
-		component: IndexComponent,
-		canActivate: [AuthGuard],
-		children: [
-			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-			{ path: 'dashboard', component: DashboardComponent },
-			{ path: 'users', component: UsersComponent },
-			// Validation and verification
-			{
-				path: 'validation-and-verification',
-				redirectTo: 'validation-and-verification/packages',
-				pathMatch: 'full'
-			},
-			{
-				path: 'validation-and-verification/packages',
-				component: VnvPackagesComponent,
-				children: [{ path: ':id', component: VnvPackagesDetailComponent }]
-			},
-			{
-				path: 'validation-and-verification/network-services',
-				component: VnvNetworkServicesComponent,
-				children: [
-					{
-						path: ':id',
-						component: VnvNetworkServicesDetailComponent
-					}
-				]
-			},
-			{
-				path: 'validation-and-verification/functions',
-				component: FunctionsComponent
-			},
-			{
-				path: 'validation-and-verification/tests',
-				component: TestsComponent,
-				children: [
-					{ path: ':id', component: TestsDetailComponent },
-					{
-						path: ':id/results/:results_uuid',
-						component: TestResultsComponent
-					}
-				]
-			},
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: 'terms-of-usage', component: TermsOfUsageComponent },
+    { path: 'registered', component: RegisteredComponent },
+    { path: 'portal', redirectTo: '' },
+    {
+        path: '',
+        component: IndexComponent,
+        canActivate: [ AuthGuard ],
+        children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'users', component: UsersComponent },
+            // Validation and verification
+            {
+                path: 'validation-and-verification',
+                redirectTo: 'validation-and-verification/packages',
+                pathMatch: 'full'
+            },
+            {
+                path: 'validation-and-verification/packages',
+                component: VnvPackagesComponent,
+                children: [ { path: ':id', component: VnvPackagesDetailComponent } ]
+            },
+            {
+                path: 'validation-and-verification/network-services',
+                component: VnvNetworkServicesComponent,
+                children: [
+                    {
+                        path: ':id',
+                        component: VnvNetworkServicesDetailComponent
+                    }
+                ]
+            },
+            {
+                path: 'validation-and-verification/functions',
+                component: FunctionsComponent
+            },
+            {
+                path: 'validation-and-verification/tests',
+                component: TestsComponent,
+                children: [
+                    { path: ':id', component: TestsDetailComponent },
+                    {
+                        path: ':id/results/:results_uuid',
+                        component: TestResultsComponent
+                    }
+                ]
+            },
 
-			// Service Platform section
-			{
-				path: 'service-platform',
-				redirectTo: 'service-platform/packages',
-				pathMatch: 'full'
-			},
-			{
-				path: 'service-platform/packages',
-				component: SpPackagesComponent,
-				children: [{ path: ':id', component: SpPackagesDetailComponent }]
-			},
-			{
-				path: 'service-platform/network-services',
-				component: SpNetworkServicesComponent,
-				children: [{ path: ':id', component: SpNetworkServicesDetailComponent }]
-			},
-			{
-				path: 'service-platform/functions',
-				component: FunctionsComponent,
-				children: [{ path: ':id', component: SpFunctionsDetailComponent }]
-			},
-			{
-				path: 'service-platform/policies/placement-policy',
-				component: PlacementPolicyComponent
-			},
-			{
-				path: 'service-platform/policies/runtime-policies',
-				component: RuntimePoliciesComponent,
-				children: [
-					{
-						path: 'new',
-						component: RuntimePoliciesCreateComponent
-					},
-					{
-						path: ':id',
-						component: RuntimePoliciesDetailComponent
-					}
-				]
-			},
-			{
-				path: 'service-platform/policies/generated-actions',
-				component: RuntimePoliciesGeneratedActionsComponent
-			},
-			{
-				path: 'service-platform/slas/sla-templates',
-				component: SlaTemplatesComponent,
-				children: [
-					{
-						path: 'new',
-						component: SlaTemplatesCreateComponent
-					},
-					{
-						path: ':id',
-						component: SlaTemplatesDetailComponent
-					}
-				]
-			},
-			{
-				path: 'service-platform/slas/sla-agreements',
-				component: SlaAgreementsComponent,
-				children: [
-					{
-						path: ':id_sla/:id_ns',
-						component: SlaAgreementsDetailComponent
-					}
-				]
-			},
-			{
-				path: 'service-platform/slas/sla-violations',
-				component: SlaViolationsComponent
-			},
-			{
-				path: 'service-platform/slices/slices-templates',
-				component: SlicesTemplatesComponent,
-				children: [{ path: 'new', component: SlicesTemplatesCreateComponent }, { path: ':id', component: SlicesTemplatesDetailComponent }]
-			},
-			{
-				path: 'service-platform/slices/slices-instances',
-				component: SlicesInstancesComponent,
-				children: [{ path: 'new', component: SlicesInstancesCreateComponent }, { path: ':id', component: SlicesInstancesDetailComponent }]
-			},
-			{
-				path: 'service-platform/slices/slices-requests',
-				component: RequestsComponent,
-				children: [{ path: ':id', component: RequestDetailComponent }]
-			},
-			// Service Management section
-			{
-				path: 'service-management',
-				redirectTo: 'service-management/network-services',
-				pathMatch: 'full'
-			},
-			{
-				path: 'service-management/network-services',
-				component: SmNetworkServicesComponent,
-				children: [{ path: ':id', component: SmNetworkServicesDetailComponent }]
-			},
-			{
-				path: 'service-management/requests',
-				component: RequestsComponent,
-				children: [{ path: ':id', component: RequestDetailComponent }]
-			},
-			{
-				path: 'service-management/network-service-instances',
-				component: NetworkServiceInstancesComponent,
-				children: [
-					{
-						path: ':id',
-						component: NetworkServiceInstancesDetailComponent
-					},
-					{
-						path: ':id/vnf/:vnfr_id',
-						component: FunctionRecordsDetailComponent
-					}
-				]
-			},
-			{
-				path: 'service-management/licenses',
-				component: LicencesComponent,
-				children: [{ path: ':id', component: LicencesDetailComponent }]
-			},
-			{
-				path: 'service-management/licenses/service-licenses',
-				component: ServiceLicensesComponent
-			},
-			{
-				path: 'service-management/licenses/user-licenses',
-				component: UserLicensesComponent
-			}
-		]
-	}
+            // Service Platform section
+            {
+                path: 'service-platform',
+                redirectTo: 'service-platform/packages',
+                pathMatch: 'full'
+            },
+            {
+                path: 'service-platform/packages',
+                component: SpPackagesComponent,
+                children: [ { path: ':id', component: SpPackagesDetailComponent } ]
+            },
+            {
+                path: 'service-platform/network-services',
+                component: SpNetworkServicesComponent,
+                children: [ { path: ':id', component: SpNetworkServicesDetailComponent } ]
+            },
+            {
+                path: 'service-platform/functions',
+                component: FunctionsComponent,
+                children: [ { path: ':id', component: SpFunctionsDetailComponent } ]
+            },
+            {
+                path: 'service-platform/policies/placement-policy',
+                component: PlacementPolicyComponent
+            },
+            {
+                path: 'service-platform/policies/runtime-policies',
+                component: RuntimePoliciesComponent,
+                children: [
+                    {
+                        path: 'new',
+                        component: RuntimePoliciesCreateComponent
+                    },
+                    {
+                        path: ':id',
+                        component: RuntimePoliciesDetailComponent
+                    }
+                ]
+            },
+            {
+                path: 'service-platform/policies/generated-actions',
+                component: RuntimePoliciesGeneratedActionsComponent
+            },
+            {
+                path: 'service-platform/slas/sla-templates',
+                component: SlaTemplatesComponent,
+                children: [
+                    {
+                        path: 'new',
+                        component: SlaTemplatesCreateComponent
+                    },
+                    {
+                        path: ':id',
+                        component: SlaTemplatesDetailComponent
+                    }
+                ]
+            },
+            {
+                path: 'service-platform/slas/sla-agreements',
+                component: SlaAgreementsComponent,
+                children: [
+                    {
+                        path: ':id_sla/:id_ns',
+                        component: SlaAgreementsDetailComponent
+                    }
+                ]
+            },
+            {
+                path: 'service-platform/slas/sla-violations',
+                component: SlaViolationsComponent
+            },
+            {
+                path: 'service-platform/slices/slices-templates',
+                component: SlicesTemplatesComponent,
+                children: [
+                    { path: 'new', component: SlicesTemplatesCreateComponent },
+                    { path: ':id', component: SlicesTemplatesDetailComponent }
+                ]
+            },
+            {
+                path: 'service-platform/slices/slices-instances',
+                component: SlicesInstancesComponent,
+                children: [
+                    { path: 'new', component: SlicesInstancesCreateComponent },
+                    { path: ':id', component: SlicesInstancesDetailComponent }
+                ]
+            },
+            {
+                path: 'service-platform/slices/slices-requests',
+                component: RequestsComponent,
+                children: [ { path: ':id', component: RequestDetailComponent } ]
+            },
+            // Service Management section
+            {
+                path: 'service-management',
+                redirectTo: 'service-management/network-services',
+                pathMatch: 'full'
+            },
+            {
+                path: 'service-management/network-services',
+                component: SmNetworkServicesComponent,
+                children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
+            },
+            {
+                path: 'service-management/requests',
+                component: RequestsComponent,
+                children: [ { path: ':id', component: RequestDetailComponent } ]
+            },
+            {
+                path: 'service-management/network-service-instances',
+                component: NetworkServiceInstancesComponent,
+                children: [
+                    {
+                        path: ':id',
+                        component: NetworkServiceInstancesDetailComponent
+                    },
+                    {
+                        path: ':id/vnf/:vnfr_id',
+                        component: FunctionRecordsDetailComponent
+                    }
+                ]
+            },
+            {
+                path: 'service-management/licenses',
+                component: LicencesComponent,
+                children: [ { path: ':id', component: LicencesDetailComponent } ]
+            },
+            {
+                path: 'service-management/licenses/service-licenses',
+                component: ServiceLicensesComponent
+            },
+            {
+                path: 'service-management/licenses/user-licenses',
+                component: UserLicensesComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-	// Hashstyle routing (includes # to the URL, not pretty. Instead using pathstyle routing with Nginx)
-	// imports: [RouterModule.forRoot(routes, {useHash: true})],
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule],
-	providers: [AuthGuard]
+    // Hashstyle routing (includes # to the URL, not pretty. Instead using pathstyle routing with Nginx)
+    // imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [ RouterModule.forRoot(routes) ],
+    exports: [ RouterModule ],
+    providers: [ AuthGuard ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
