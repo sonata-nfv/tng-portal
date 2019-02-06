@@ -142,7 +142,6 @@ app-menu {
     flex: 1 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 225px;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -150,6 +149,8 @@ app-menu {
     .options {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      height: 100%;
       margin-left: 10px;
 
       button {

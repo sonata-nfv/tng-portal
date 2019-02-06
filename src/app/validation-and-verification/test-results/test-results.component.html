@@ -1,37 +1,36 @@
-<h1 class="sectionTitle" *ngIf="detail['uuid']">RESULTS</h1>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@resultsCapLetters">RESULTS</h3>
 
-<div class="header" *ngIf="detail['uuid']">
-  <h2 class="subsectionTitle"> {{ detail['uuid'] }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+<div class="title-section" *ngIf="detail['uuid']">
+    <h1 class="title1 title-section-name">{{ detail['uuid'] }}</h1>
+    <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <form class="detail">
-  <mat-form-field *ngIf="detail['status']">
-    <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled>
-  </mat-form-field>
+    <mat-form-field *ngIf="detail['status']">
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+    </mat-form-field>
 
-  <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-    <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled>
-  </mat-form-field>
+    <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+        <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+            i18n-placeholder="@@updatedAtPlaceholder" />
+    </mat-form-field>
 
-  <div class="description testerResultText" *ngIf="detail['testerResultText']">
-    <span class="title">Tester Result Text</span>
-    <span class="content">
-      <p>{{ detail['testerResultText'] }}</p>
-    </span>
-  </div>
+    <div class="description testerResultText" *ngIf="detail['testerResultText']">
+        <h4 class="title4" i18n="@@testerResultText">Tester Result Text</h4>
+        <span class="content">
+            <p>{{ detail['testerResultText'] }}</p>
+        </span>
+    </div>
 
-  <div class="description" *ngIf="detail['sterr']">
-    <span class="title">ERROR</span>
-    <span class="content">
-      <p>{{ detail['sterr'] }}</p>
-    </span>
-  </div>
+    <div class="description" *ngIf="detail['sterr']">
+        <h4 class="title4" i18n="@@errorCapLetters">ERROR</h4>
+        <span class="content">
+            <p>{{ detail['sterr'] }}</p>
+        </span>
+    </div>
 </form>
 
 <div class="results" *ngIf="detail['graphs']">
-  <span class="sectionTitle">RESULTS</span>
-  <div id="charts" *ngFor='let lst of charts["ds"]["chart"]'>
-    <canvas id="chart-{{lst}}"></canvas>
-  </div>
+    <h2 class="title2" i18n="resultsCapLetters" i18n="@@resultsCapLetters">RESULTS</h2>
+    <div id="charts" *ngFor="let lst of charts['ds']['chart']"><canvas id="chart-{{lst}}"></canvas></div>
 </div>

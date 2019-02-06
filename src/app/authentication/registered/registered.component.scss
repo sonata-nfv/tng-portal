@@ -1,53 +1,73 @@
-@import "../../../constants.scss";
+@import '../../../constants.scss';
 app-registered {
-  .container {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    max-width: 635px;
-    width: calc(100% - 2em);
-    max-height: 550px;
-    padding: 2em;
-    border-radius: 10px;
-    background-color: $panel-background-color;
-    text-align: center;
-    #header {
-      height: 8em;
-      background: url("../../../assets/images/sonata_powered_by_5gtango_logo.svg")
-        no-repeat center $panel-background-color;
-      background-size: 18em;
-      margin-bottom: 2em;
-      background-repeat: no-repeat;
-    }
-    #thanks {
-      font-size: 1.4em;
-      color: $secondary-font-color;
-      width: 45%;
-      margin-bottom: -30px;
-    }
-    #success {
-      color: $primary-font-color-light;
-      font-size: 2.4em;
-      margin-bottom: 6em;
-    }
-    a {
-      display: flex;
-      color: $primary-font-color;
-      font-size: 1.2em;
-      &#login {
-        flex-direction: column;
-        bottom: 40px;
-      }
-      &#help {
-        position: absolute;
-        bottom: 20px;
-        left: 23%;
-      }
-    }
-  }
+	.container {
+		display: flex;
+		position: absolute;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		max-width: 635px;
+		max-height: 550px;
+		padding: 2em;
+		border-radius: 10px;
+		background-color: $panel-background-color;
+
+		.title-section {
+			height: 8em;
+			background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
+			background-size: 18em;
+			margin-bottom: 2em;
+			background-repeat: no-repeat;
+		}
+
+		.thanks,
+		.success {
+			width: 85%;
+		}
+
+		.thanks {
+			margin: 50px 0 0 0;
+			font-size: 24px;
+			color: $secondary-font-color;
+		}
+
+		.success {
+			margin: 20px 0 0 0;
+			font-size: 38px;
+			color: $primary-font-color-light;
+		}
+
+		.button-underline.login-container {
+			flex: 1;
+			width: 10%;
+			margin-top: 100px;
+		}
+
+		.bottom {
+			display: flex;
+			flex-direction: column;
+			width: 60%;
+			margin-bottom: -2em;
+
+			.button-underline {
+				width: 15%;
+				margin-bottom: 15px;
+
+				.help {
+					font-size: 15px;
+					color: $secondary-button-color;
+					text-decoration: none;
+				}
+			}
+
+			.redLine {
+				width: 100%;
+				border-bottom: 3px solid $border-line-color;
+			}
+		}
+	}
 }

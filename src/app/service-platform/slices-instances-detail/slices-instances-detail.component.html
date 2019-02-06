@@ -1,59 +1,58 @@
-<h1 class="sectionTitle" *ngIf="detail['name']">INSTANCES</h1>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@instancesCapLetters">INSTANCES</h3>
 
-<div class="header" *ngIf="detail['name']">
-  <h2 class="subsectionTitle"> {{ detail['name'] }}</h2>
-  <button class="close" (click)="close()">CLOSE</button>
+<div class="title-section" *ngIf="detail['name']">
+    <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+    <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <div class="bubbleDiv" *ngIf="detail['version']">
-  <span class="text">Version</span>
-  <div class="number">
-    <span>{{ detail['version'] }}</span>
-  </div>
+    <span class="text" i18n="@@version">Version</span>
+    <div class="number">
+        <span>{{ detail['version'] }}</span>
+    </div>
 </div>
 
 <form>
-  <div class="sameRow">
-    <mat-form-field class="longField" *ngIf="detail['uuid']">
-      <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled>
-    </mat-form-field>
-    <mat-form-field *ngIf="detail['vendor']">
-      <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled>
-    </mat-form-field>
-  </div>
+    <div class="sameRow">
+        <mat-form-field class="longField" *ngIf="detail['uuid']">
+            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['vendor']">
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+        </mat-form-field>
+    </div>
 
-  <div class="sameRow">
-    <mat-form-field class="longField" *ngIf="detail['netServInstanceUUID']">
-      <div *ngFor="let item of detail['netServInstanceUUID']">
-        <input class="element" matInput placeholder="Network service instances ID" value="{{ item }}" disabled>
-      </div>
-    </mat-form-field>
-    <mat-form-field *ngIf="detail['nstName']">
-      <input matInput placeholder="Network Slice Template Name" value="{{ detail['nstName'] }}" disabled>
-    </mat-form-field>
-  </div>
+    <div class="sameRow">
+        <mat-form-field class="longField" *ngIf="detail['netServInstanceUUID']">
+            <div *ngFor="let item of detail['netServInstanceUUID']">
+                <input class="element" matInput placeholder="Network service instances ID" value="{{ item }}" disabled
+                    i18n-placeholder="@@nsInstancesIDPlaceholder" />
+            </div>
+        </mat-form-field>
+        <mat-form-field *ngIf="detail['nstName']">
+            <input matInput placeholder="Network Slice Template Name" value="{{ detail['nstName'] }}" disabled
+                i18n-placeholder="@@sliceTemplateNamePlaceholder" />
+        </mat-form-field>
+    </div>
 
-  <div class="sameRow">
-    <mat-form-field *ngIf="detail['state']">
-      <input matInput placeholder="State" value="{{ detail['state'] }}" disabled>
-    </mat-form-field>
-  </div>
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['state']">
+            <input matInput placeholder="State" value="{{ detail['state'] }}" disabled i18n-placeholder="@@statePlaceholder" />
+        </mat-form-field>
+    </div>
 
-  <div class="stop" *ngIf="detail['uuid'] && detail['state'].toUpperCase() != 'TERMINATED' && detail['state'].toUpperCase() != 'ERROR'"
-    (click)="stopInstance()">
-    <button class="actions" mat-button matTooltip="Terminate">
-      <i class="wui wui-stop-alt"></i>
-    </button>
-    <span>Terminate instance</span>
-  </div>
+    <div class="stop" *ngIf="detail['uuid'] && detail['state'].toUpperCase() != 'TERMINATED' && detail['state'].toUpperCase() != 'ERROR'"
+        (click)="stopInstance()">
+        <button class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i class="wui wui-stop-alt"></i></button>
+        <span i18n="@@terminateInstance">Terminate instance</span>
+    </div>
 
-  <div class="description" *ngIf="detail['description']">
-    <span class="title">DESCRIPTION</span>
-    <span class="content">
-      <p>{{ detail['description'] }}</p>
-    </span>
-  </div>
-
+    <div class="description" *ngIf="detail['description']">
+        <h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
+        <span class="content">
+            <p>{{ detail['description'] }}</p>
+        </span>
+    </div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

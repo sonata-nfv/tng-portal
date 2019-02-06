@@ -1,4 +1,5 @@
 [![Build Status](https://jenkins.sonata-nfv.eu/buildStatus/icon?job=tng-portal/master)](https://jenkins.sonata-nfv.eu/job/tng-portal/master)
+[![Join the chat at https://gitter.im/sonata-nfv/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sonata-nfv/Lobby)
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/wiki/images/sonata-5gtango-logo-500px.png" /></p>
 

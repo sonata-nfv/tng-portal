@@ -1,100 +1,121 @@
-@import "../../../constants.scss";
+@import '../../../constants.scss';
 app-signup {
-  .container {
-    display: flex;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    max-width: 635px;
-    width: calc(100% - 2em);
-    max-height: 550px;
-    padding: 2em;
-    border-radius: 10px;
-    background-color: $panel-background-color;
-    flex-direction: column;
-    .header {
-      height: 5em;
-      background: url("../../../assets/images/sonata_powered_by_5gtango_logo.svg")
-        no-repeat center $panel-background-color;
-      background-size: 11em;
-      background-repeat: no-repeat;
-    }
-    form {
-      flex: 1 0;
-      align-items: center;
-      justify-content: center;
-      .mat-form-field {
-        text-align: center;
-        margin: 0 auto;
-        width: 60%;
-        color: $form-focus;
-      }
-      .mat-select-value-text {
-        margin-left: 20px; // Margin to compensate select's arrow
-        color: $form-focus;
-      }
-      // Margin to compensate select's arrow
-      .select .mat-form-field-appearance-legacy .mat-form-field-label {
-        margin-left: 8px;
-      }
-      .mat-form-field-appearance-legacy .mat-form-field-label {
-        text-align: center;
-      }
-      .mat-form-field.mat-focused .mat-form-field-label,
-      .mat-form-field-label:not(.mat-form-field-empty) {
-        text-align: start;
-      }
-      .select {
-        width: 100%;
-      }
-      a {
-        color: $primary-font-color;
-        font-size: 18px;
-        &.login {
-          padding: 15px;
-        }
-      }
-      button {
-        margin-top: 15px;
-        width: 60%;
-        padding: 10px;
-        background-color: $primary-button-color;
-        color: $button-basic-font-color;
-        font-size: 18px;
-        border-radius: 10px;
-      }
-      button:disabled {
-        background-color: $secondary-button-color;
-      }
-      .error {
-        font-size: 13px;
-        margin-top: -15px;
-        margin-bottom: -3px;
-        color: $primary-font-color-light;
-        text-align: right;
-        width: 60%;
-      }
-    }
-    .bottom {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .help {
-        margin-bottom: auto;
-        margin-right: 6px;
-        margin-left: 130px;
-        color: $secondary-button-color-light;
-        font-size: 15px;
-      }
-      .redLine {
-        margin: 0 auto;
-        width: 400px;
-        border-bottom: 3px solid $border-line-color;
-        margin-bottom: -2em;
-      }
-    }
-  }
+	.container {
+		display: flex;
+		position: absolute;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		max-width: 635px;
+		max-height: 680px;
+		padding: 2em;
+		border-radius: 10px;
+		background-color: $panel-background-color;
+
+		.title-section {
+			height: 5em;
+			margin-bottom: 5%;
+			background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
+			background-size: 12em;
+			background-repeat: no-repeat;
+		}
+
+		form {
+			flex: 1;
+			width: 60%;
+
+			.mat-form-field {
+				text-align: center;
+				width: 100%;
+				color: $form-focus;
+			}
+
+			.mat-select-value-text {
+				margin-left: 20px; // Margin to compensate select's arrow
+				color: $form-focus;
+			}
+
+			// Place all placeholders in the center
+			.mat-form-field-appearance-legacy .mat-form-field-label {
+				text-align: center;
+			}
+
+			// Place label on the left when focused
+			.mat-form-field.mat-focused .mat-form-field-label,
+			.mat-form-field-label:not(.mat-form-field-empty) {
+				text-align: start;
+			}
+
+			.terms-usage {
+				padding: 8px;
+				margin-bottom: 40px;
+				margin-top: 15px;
+				font-size: 14px;
+				color: $secondary-button-color;
+
+				a {
+					color: $primary-font-color;
+				}
+			}
+
+			button {
+				padding: 10px;
+				outline: none;
+				background-color: $primary-button-color;
+				color: $button-basic-font-color;
+				font-size: 18px;
+				border-radius: 10px;
+			}
+
+			button:disabled {
+				background-color: $secondary-button-color;
+			}
+
+			.error {
+				font-size: 13px;
+				margin-top: -16px;
+				margin-bottom: 0px;
+				color: $primary-font-color-light;
+				text-align: right;
+			}
+		}
+
+		.button-underline {
+			a {
+				font-size: 15px;
+			}
+		}
+
+		.button-underline.login-container {
+			align-self: center;
+			width: 35%;
+			margin-top: 20px;
+		}
+
+		.bottom {
+			display: flex;
+			flex-direction: column;
+			width: 60%;
+			margin-bottom: -2em;
+
+			.button-underline {
+				width: 15%;
+				margin-bottom: 15px;
+
+				.help {
+					color: $secondary-button-color;
+					text-decoration: none;
+				}
+			}
+
+			.redLine {
+				width: 100%;
+				border-bottom: 3px solid $border-line-color;
+			}
+		}
+	}
 }

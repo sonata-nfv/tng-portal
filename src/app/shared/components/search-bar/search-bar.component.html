@@ -1,7 +1,4 @@
 <mat-form-field>
-  <mat-placeholder>
-    <i class="wui wui-search-alt"></i>
-    <span>Search</span>
-  </mat-placeholder>
-  <input matInput [(ngModel)]="searchText" (keyup.enter)="sendMessage()">
+    <mat-placeholder> <i class="wui wui-search-alt"></i> <span i18n="@@search">Search</span> </mat-placeholder>
+    <input matInput [(ngModel)]="searchText" (keyup.enter)="sendMessage()" />
 </mat-form-field>

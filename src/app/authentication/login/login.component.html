@@ -1,20 +1,20 @@
 <div class="container">
-	<div class="header"></div>
+	<div class="title-section"></div>
 	<form (ngSubmit)="login(loginForm)" [formGroup]="loginForm" class="form">
-		<mat-form-field [ngClass]="{'errorFormField':errorFormField}">
-			<input matInput type="text" placeholder="Username/email" formControlName="username" required>
+		<mat-form-field [ngClass]="{ 'error-form-field': errorFormField }">
+			<input matInput type="text" placeholder="Username/email" formControlName="username" required i18n-placeholder="@@usernamePlaceholder" />
 		</mat-form-field>
-		<mat-form-field [ngClass]="{'errorFormField':errorFormField}">
-			<input matInput type="password" placeholder="Password" formControlName="password" required>
+		<mat-form-field [ngClass]="{ 'error-form-field': errorFormField }">
+			<input matInput type="password" placeholder="Password" formControlName="password" required i18n-placeholder="@@passwordPlaceholder" />
 		</mat-form-field>
 		<p class="error" *ngIf="errorFormField" [innerText]="errorFormField"></p>
-		<button name="login" [disabled]="!loginForm.valid">LOG IN</button>
-		<a class="newAccount" routerLink="/signup">Create a new account</a>
+		<button name="login" [disabled]="!loginForm.valid" i18n="@@loginButton">LOG IN</button>
+		<a class="newAccount" routerLink="/signup" i18n="@@newAccountButton">Create a new account</a>
 	</form>
 	<div class="bottom">
 		<div class="options">
-			<a class="help" href="https://github.com/sonata-nfv/tng-portal">Help?</a>
-			<a class="forgotPassword" href="https://github.com/sonata-nfv/tng-portal">Forgot your password?</a>
+			<a class="help" href="https://github.com/sonata-nfv/tng-portal" i18n="@@helpButton">Help?</a>
+			<a class="forgotPassword" href="https://github.com/sonata-nfv/tng-portal" i18n="@@forgotPasswordButton">Forgot your password?</a>
 		</div>
 		<div class="redLine"></div>
 	</div>

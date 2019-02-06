@@ -1,27 +1,27 @@
 import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  ViewEncapsulation
-} from "@angular/core";
+    Component,
+    OnInit,
+    Output,
+    EventEmitter,
+    ViewEncapsulation
+} from '@angular/core';
 
 @Component({
-  selector: "app-search-bar",
-  templateUrl: "./search-bar.component.html",
-  styleUrls: ["./search-bar.component.scss"],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-search-bar',
+    templateUrl: './search-bar.component.html',
+    styleUrls: [ './search-bar.component.scss' ],
+    encapsulation: ViewEncapsulation.None
 })
 export class SearchBarComponent implements OnInit {
-  searchText: string;
+    searchText: string;
 
-  @Output()
-  searchTextEvent = new EventEmitter<string>();
-  constructor() {}
+    @Output()
+    searchTextEvent = new EventEmitter<string>();
+    constructor() { }
 
-  ngOnInit() {}
+    ngOnInit() { }
 
-  sendMessage() {
-    this.searchTextEvent.emit("?" + this.searchText);
-  }
+    sendMessage() {
+        this.searchTextEvent.emit('?' + this.searchText);
+    }
 }

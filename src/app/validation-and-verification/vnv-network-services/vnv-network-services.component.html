@@ -1,54 +1,51 @@
-<h1 class="sectionTitle">VALIDATION AND VERIFICATION</h1>
+<h3 class="title3 header-section-name" i18n="@@validationAndVerificationCapLetters">VALIDATION AND VERIFICATION</h3>
 
-<h2 class="subsectionTitle">Network services</h2>
+<h1 class="title1 title-section-name" i18n="@@networkServices">Network services</h1>
 
 <div class="tools">
-  <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-  <button class="reload" (click)="requestServices()" matTooltip="Reload data">
-    <i class="wui wui-undo"></i>
-  </button>
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+    <button class="reload" (click)="requestServices()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="networkServices">
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <i [ngClass]="{  'wui-lock' : element.type === 'private' }" class="wui"></i>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }" class="wui"></i></td>
+    </ng-container>
 
-  <ng-container matColumnDef="vendor">
-    <th mat-header-cell *matHeaderCellDef> Vendor </th>
-    <td mat-cell *matCellDef="let element"> {{ element.vendor }} </td>
-  </ng-container>
+    <ng-container matColumnDef="vendor">
+        <th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
+        <td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-  </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="version">
-    <th mat-header-cell *matHeaderCellDef> Version </th>
-    <td mat-cell *matCellDef="let element"> {{ element.version }} </td>
-  </ng-container>
+    <ng-container matColumnDef="version">
+        <th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
+        <td mat-cell *matCellDef="let element">{{ element.version }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
-  </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
 
-  <!-- <ng-container matColumnDef="execute">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" (click)="execute(element)" (click)="$event.stopPropagation()">
-      <button class="actions" mat-button matTooltip="Execute related tests">
-        <i class="wui wui-caret-right"></i>
-      </button>
-    </td>
-  </ng-container> -->
+    <!--
+		<ng-container matColumnDef="execute">
+		  <th mat-header-cell *matHeaderCellDef></th>
+		  <td mat-cell *matCellDef="let element" (click)="execute(element)" (click)="$event.stopPropagation()">
+		    <button class="actions" mat-button matTooltip="Execute related tests">
+		      <i class="wui wui-caret-right"></i>
+		    </button>
+		  </td>
+		</ng-container>
+	-->
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openNetworkService(row)"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openNetworkService(row)"></tr>
 </table>
 
 <app-spinner *ngIf="loading"></app-spinner>
