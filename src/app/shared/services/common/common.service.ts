@@ -509,6 +509,6 @@ export class CommonService {
      * Retrieves the existing vims represented by the city name
      */
     requestVims(): any {
-        return [ 'Athens', 'Aveiro', 'Barcelona', 'Paderborn' ];
+        return [ 'bcn-1', 'bcn-2', 'bcn-3', 'bcn-4' ];
     }
 }
