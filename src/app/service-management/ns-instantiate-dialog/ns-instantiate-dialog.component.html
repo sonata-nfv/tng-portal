@@ -24,16 +24,18 @@
 
     <form [formGroup]="instantiationForm" class="form">
         <app-select class="select" placeholder="Location" [list]="locations" [disabled]="loading" [reset]="reset"
-            required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder"></app-select>
+            required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
+        </app-select>
 
-        <mat-form-field> <input matInput type="text" placeholder="Network attachment point (NAP)" formControlName="nap" />
+        <mat-form-field>
+            <input matInput type="text" placeholder="Network address" formControlName="nap" />
         </mat-form-field>
 
         <div class="addNew">
             <button [disabled]="!instantiationForm.valid || !instantiationForm.controls.nap.value" (click)="addNew()">
-                <i class="wui wui-plus"></i> <span *ngIf="isIngress; else: isEgress" i18n="@@addNewIngress"> Add new
-                    ingress </span>
-                <ng-template #isEgress i18n="@@addNewEgress">Add new egress</ng-template>
+                <i class="wui wui-plus"></i>
+                <span *ngIf="isIngress; else: isEgress" i18n="@@addNewIngress"> Add new ingress NAP</span>
+                <ng-template #isEgress i18n="@@addNewEgress"> Add new egress NAP</ng-template>
             </button>
         </div>
     </form>
