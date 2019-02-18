@@ -1,8 +1,9 @@
-<h3 class="title3 header-section-name" i18n="@@sliceTemplatesCapLetters">SLICE TEMPLATES</h3>
+<h3 class="title3 header-section-name" i18n="@@sliceTemplates">SLICE templates</h3>
 
 <form [formGroup]="templateForm" class="title-section">
     <mat-form-field class="title1">
-        <input matInput type="text" placeholder="Template Name" formControlName="name" required i18n-placeholder="@@templateNamePlaceholder" />
+        <input matInput type="text" placeholder="Template Name" formControlName="name" required
+            i18n-placeholder="@@templateNamePlaceholder" />
     </mat-form-field>
 
     <div class="header-buttons">
@@ -28,19 +29,20 @@
     </mat-form-field>
 
     <mat-form-field class="inputBelow">
-        <input matInput placeholder="Version" formControlName="version" required i18n-placeholder="@@versionPlaceholder" />
+        <input matInput placeholder="Version" formControlName="version" required
+            i18n-placeholder="@@versionPlaceholder" />
     </mat-form-field>
 </form>
 
-<h2 class="title2" i18n="@@nss">Network Services</h2>
+<h2 class="title2" i18n="@@networkServices">Network services</h2>
 
 <dl *ngIf="storedNS">
     <dt *ngFor="let item of storedNS; let i = index">
         <app-select *ngIf="storedNS.length > 0" placeholder="Network Service" [list]="[item.name]" [value]="item.name"
             [disabled]="true" i18n="@@nsPlaceholder"></app-select>
 
-        <app-select *ngIf="storedNS.length > 0 && item.sla != null" class="slaList " placeholder="SLA Template" [list]="[item.sla]"
-            [value]="item.sla" [disabled]="true" i18n="@@slaTemplatePlaceholder"></app-select>
+        <app-select *ngIf="storedNS.length > 0 && item.sla != null" class="slaList " placeholder="SLA Template"
+            [list]="[item.sla]" [value]="item.sla" [disabled]="true" i18n="@@slaTemplatePlaceholder"></app-select>
 
         <button class="actions " mat-button (click)="eraseEntry(i)"><i class="wui wui-trash-alt "></i></button>
     </dt>
@@ -51,7 +53,8 @@
         </app-select>
 
         <app-select *ngIf="nsObj && nsObj != null" class="slaList" placeholder="Select SLA Template" [reset]="reset"
-            [list]="slaList" (selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLATemplatePlaceholder"></app-select>
+            [list]="slaList" (selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLATemplatePlaceholder">
+        </app-select>
     </dt>
 </dl>
 

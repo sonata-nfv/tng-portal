@@ -1,8 +1,9 @@
-<h3 class="title3 header-section-name" i18n="@@slaTemplatesCapLetters">SLA TEMPLATES</h3>
+<h3 class="title3 header-section-name" i18n="@@slaTemplates">SLA templates</h3>
 
 <form [formGroup]="templateForm" class="title-section">
     <mat-form-field class="title1">
-        <input matInput type="text" placeholder="Template Name" formControlName="name" required i18n-placeholder="@@templateNamePlaceholder" />
+        <input matInput type="text" placeholder="Template Name" formControlName="name" required
+            i18n-placeholder="@@templateNamePlaceholder" />
     </mat-form-field>
 
     <div class="header-buttons">
@@ -21,7 +22,8 @@
 <form [formGroup]="templateForm">
     <app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
         i18n-placeholder="@@nsPlaceholder"></app-select>
-    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
+    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)"
+        i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
 </form>
 
 <div class="advanceSection" *ngIf="guaranteesList.length > 0 || storedGuarantees.length > 0">
@@ -58,12 +60,14 @@
                     <div class="sloInfo">
                         <div class="timePeriod">
                             <mat-form-field class="gPeriodValue">
-                                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+                                <input matInput placeholder="Service Level" disabled
+                                    value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
                                     i18n-placeholder="@@serviceLevelPlaceholder" />
                             </mat-form-field>
 
                             <mat-form-field class="gPeriod">
-                                <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}"
+                                <input matInput placeholder="Time Period" disabled
+                                    value="{{ item.serviceLevelObjetive.period }}"
                                     i18n-placeholder="@@timePeriodPlaceholder" />
                             </mat-form-field>
                         </div>
@@ -74,8 +78,9 @@
             </div>
         </div>
 
-        <app-select *ngIf="guaranteesList.length > 0" class="guaranteesList" placeholder="Select NS Guarantee" [reset]="reset"
-            [list]="guaranteesList" (selectEvent)="addGuarantee($event)" i18n-placeholder="@@guaranteesListPlaceholder"></app-select>
+        <app-select *ngIf="guaranteesList.length > 0" class="guaranteesList" placeholder="Select NS Guarantee"
+            [reset]="reset" [list]="guaranteesList" (selectEvent)="addGuarantee($event)"
+            i18n-placeholder="@@guaranteesListPlaceholder"></app-select>
 
         <span *ngIf="guaranteesList.length > 0" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
     </form>

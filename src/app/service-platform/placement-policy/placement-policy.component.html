@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" i18n="@@spCapLetters">SERVICE PLATFORM</h3>
+<h3 class="title3 header-section-name" i18n="@@sp">Service platform</h3>
 
 <div class="title-section">
     <h1 class="title1 title-section-name" i18n="@@placementPolicy">Placement Policy</h1>
@@ -28,7 +28,8 @@
 
         <li class="line" *ngIf="datacenters.length > 0">
             <app-select class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="resetDatacenter"
-                [required]="false" (selectEvent)="receiveDatecenter($event)" i18n-placeholder="@@selectDatacenterPlaceholder"></app-select>
+                [required]="false" (selectEvent)="receiveDatecenter($event)"
+                i18n-placeholder="@@selectDatacenterPlaceholder"></app-select>
         </li>
     </ol>
 

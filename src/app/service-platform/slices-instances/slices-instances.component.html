@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" i18n="@@spCapLetters">SERVICE PLATFORM</h3>
+<h3 class="title3 header-section-name" i18n="@@sp">Service platform</h3>
 
 <h1 class="title1 title-section-name" i18n="@@sliceInstances">Slice Instances</h1>
 
@@ -32,8 +32,8 @@
     <ng-container matColumnDef="stop">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" (click)="stopInstance(element)" (click)="$event.stopPropagation()">
-            <button *ngIf="element.state.toUpperCase() != 'TERMINATED' && element.state.toUpperCase() != 'ERROR'" class="actions"
-                mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate">
+            <button *ngIf="element.state.toUpperCase() != 'TERMINATED' && element.state.toUpperCase() != 'ERROR'"
+                class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate">
                 <i class="wui wui-stop-alt"></i>
             </button>
         </td>

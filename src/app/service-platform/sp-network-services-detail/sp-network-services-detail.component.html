@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@nsCapLetters">NETWORK SERVICES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@ns">Network services</h3>
 
 <div class="title-section" *ngIf="detail['name']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -20,13 +20,16 @@
 
 <form class="detail">
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placehoder="@@vendorPlaceholder" />
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+            i18n-placehoder="@@vendorPlaceholder" />
     </mat-form-field>
     <mat-form-field class="serviceId" *ngIf="detail['serviceID']">
-        <input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+        <input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled
+            i18n-placeholder="@@serviceIDPlaceholder" />
     </mat-form-field>
     <mat-form-field class="status" *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+            i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
     <mat-form-field class="type" *ngIf="detail['type']">
         <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
@@ -36,14 +39,14 @@
             i18n-placeholder="@@updatedAtPlaceholder" />
     </mat-form-field>
     <div class="description" *ngIf="detail['description']">
-        <h4 class="title4" i18n="descriptionCapLetters">DESCRIPTION</h4>
+        <h4 class="title4" i18n="description">Description</h4>
         <span class="content">
             <p>{{ detail['description'] }}</p>
         </span>
     </div>
 
     <div class="vnf" *ngIf="detail['vnf']">
-        <h2 class="title2" i18n="@@vnfsCapLetters">VNFs</h2>
+        <h2 class="title2" i18n="@@vnfs">VNFs</h2>
         <span class="message" *ngIf="detail['vnf'].length == 0" i18n="@@noVNFToDisplayMsg">There are no virtual network
             functions to display</span>
         <table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">

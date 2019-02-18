@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@packagesCapLetters">PACKAGES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@packages">Packages</h3>
 
 <div class="title-section" *ngIf="detail['name']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -20,7 +20,8 @@
 
 <form class="detail">
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+            i18n-placeholder="@@vendorPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="type" *ngIf="detail['type']">
@@ -33,7 +34,7 @@
     </mat-form-field>
 
     <div class="ns" *ngIf="detail['ns']">
-        <h2 class="title2" i18n="@@nsCapLetters">NS</h2>
+        <h2 class="title2" i18n="@@networkServices">Network services</h2>
         <span class="message" *ngIf="detail['ns'].length == 0" i18n="@@noNSToDisplayMsg">There are no network services
             to display</span>
         <table mat-table *ngIf="detail['ns'].length > 0" [dataSource]="detail['ns']">
@@ -58,7 +59,7 @@
     </div>
 
     <div class="vnf" *ngIf="detail['vnf']">
-        <h2 class="title2" i18n="@@vnfsCapLetters">VNFs</h2>
+        <h2 class="title2" i18n="@@vnfs">VNFs</h2>
         <span class="message" *ngIf="detail['vnf'].length == 0" i18n="@@noVNFToDisplay">There are no virtual network
             functions to display</span>
         <table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">

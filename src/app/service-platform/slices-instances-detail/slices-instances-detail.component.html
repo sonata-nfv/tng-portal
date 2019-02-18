@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@instancesCapLetters">INSTANCES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@instances">Instances</h3>
 
 <div class="title-section" *ngIf="detail['name']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -15,10 +15,12 @@
 <form>
     <div class="sameRow">
         <mat-form-field class="longField" *ngIf="detail['uuid']">
-            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
+            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled
+                i18n-placeholder="@@templateIDPlaceholder" />
         </mat-form-field>
         <mat-form-field *ngIf="detail['vendor']">
-            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+                i18n-placeholder="@@vendorPlaceholder" />
         </mat-form-field>
     </div>
 
@@ -37,18 +39,21 @@
 
     <div class="sameRow">
         <mat-form-field *ngIf="detail['state']">
-            <input matInput placeholder="State" value="{{ detail['state'] }}" disabled i18n-placeholder="@@statePlaceholder" />
+            <input matInput placeholder="State" value="{{ detail['state'] }}" disabled
+                i18n-placeholder="@@statePlaceholder" />
         </mat-form-field>
     </div>
 
-    <div class="stop" *ngIf="detail['uuid'] && detail['state'].toUpperCase() != 'TERMINATED' && detail['state'].toUpperCase() != 'ERROR'"
+    <div class="stop"
+        *ngIf="detail['uuid'] && detail['state'].toUpperCase() != 'TERMINATED' && detail['state'].toUpperCase() != 'ERROR'"
         (click)="stopInstance()">
-        <button class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i class="wui wui-stop-alt"></i></button>
+        <button class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i
+                class="wui wui-stop-alt"></i></button>
         <span i18n="@@terminateInstance">Terminate instance</span>
     </div>
 
     <div class="description" *ngIf="detail['description']">
-        <h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
+        <h4 class="title4" i18n="@@description">Description</h4>
         <span class="content">
             <p>{{ detail['description'] }}</p>
         </span>

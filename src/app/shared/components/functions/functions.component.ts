@@ -54,7 +54,7 @@ export class FunctionsComponent implements OnInit {
     }
 
     openFunction(row) {
-        if (this.section == 'SERVICE PLATFORM') {
+        if (this.section === 'SERVICE PLATFORM') {
             this.router.navigate([ row.uuid ], { relativeTo: this.route });
         }
     }

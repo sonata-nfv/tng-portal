@@ -15,17 +15,17 @@
         <div class="sections">
             <button [ngClass]="{ active: menu === 'dashboard' }" (click)="setMenu($event, 'dashboard')"
                 ifFeatureAvailable="dashboard">
-                <i class="wui wui-dashboard-alt"></i> <span i18n="@@dashboard">DASHBOARD</span>
+                <i class="wui wui-dashboard-alt"></i> <span i18n="@@dashboard">Dashboard</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'users' }" (click)="setMenu($event, 'users')"
                 ifFeatureAvailable="users">
-                <i class="wui wui-user-group-alt"></i> <span i18n="@@users">USERS</span>
+                <i class="wui wui-user-group-alt"></i> <span i18n="@@users">Users</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'settings' }" (click)="setMenu($event, 'settings')"
                 ifFeatureAvailable="settings">
-                <i class="wui wui-gear-alt"></i> <span i18n="@@settings">SETTINGS</span>
+                <i class="wui wui-gear-alt"></i> <span i18n="@@settings">Settings</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'validation-and-verification' }"
@@ -35,12 +35,12 @@
 
             <button [ngClass]="{ active: menu === 'service-platform' }" (click)="setMenu($event, 'service-platform')"
                 ifFeatureAvailable="service platform">
-                <i class="wui wui-network-alt"></i> <span i18n="@@sp">SERVICE PLATFORM</span>
+                <i class="wui wui-network-alt"></i> <span i18n="@@sp">Service platform</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'service-management' }"
                 (click)="setMenu($event, 'service-management')" ifFeatureAvailable="service management">
-                <i class="wui wui-table-alt"></i> <span i18n="@@sm">SERVICE MANAGEMENT</span>
+                <i class="wui wui-table-alt"></i> <span i18n="@@sm">Service management</span>
             </button>
         </div>
 
@@ -60,8 +60,8 @@
                 i18n="@@packages">Packages</button>
 
             <button [ngClass]="{ active: section === 'vv-network-services' }"
-                (click)="setSection($event, 'vv-network-services')" i18n="@@nss">
-                Network Services
+                (click)="setSection($event, 'vv-network-services')" i18n="@@networkServices">
+                Network services
             </button>
 
             <button [ngClass]="{ active: section === 'vv-functions' }" (click)="setSection($event, 'vv-functions')"
@@ -76,8 +76,8 @@
                 i18n="@@packages">Packages</button>
 
             <button [ngClass]="{ active: section === 'sp-network-services' }"
-                (click)="setSection($event, 'sp-network-services')" i18n="@@nss">
-                Network Services
+                (click)="setSection($event, 'sp-network-services')" i18n="@@networkServices">
+                Network services
             </button>
 
             <button [ngClass]="{ active: section === 'sp-functions' }" (click)="setSection($event, 'sp-functions')"
