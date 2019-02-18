@@ -38,7 +38,8 @@ export class SettingsService {
                             name: item.name,
                             country: item.country,
                             city: item.city,
-                            endpoint: item.endpoint
+                            endpoint: item.endpoint,
+                            type: item.type
                         };
                     }) : [];
             }).catch(error => {
