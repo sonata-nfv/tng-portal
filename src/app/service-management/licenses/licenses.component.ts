@@ -52,10 +52,10 @@ export class LicencesComponent implements OnInit {
 
                 // Dialog informing the user to log in again when token expired
                 if (err === 'Unauthorized') {
-                    let title = 'Your session has expired';
-                    let content =
+                    const title = 'Your session has expired';
+                    const content =
                         'Please, LOG IN again because your access token has expired.';
-                    let action = 'Log in';
+                    const action = 'Log in';
 
                     this.dialogData.openDialog(title, content, action, () => {
                         this.router.navigate([ '/login' ]);
@@ -68,13 +68,13 @@ export class LicencesComponent implements OnInit {
         this.searchText = $event;
     }
     openLicences(row) {
-        let uuid = row.licenceId;
+        const uuid = row.licenceId;
         this.getLicenceById(uuid);
         this.router.navigate([ uuid ], { relativeTo: this.route });
     }
 
     getLicenceById(uuid) {
-        let detail = this.licenses.find(x => x.licenceId === uuid);
+        const detail = this.licenses.find(x => x.licenceId === uuid);
     }
 
     buy(row) { }

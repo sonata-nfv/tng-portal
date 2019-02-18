@@ -40,11 +40,7 @@ export class MenuComponent implements OnInit {
     }
 
     setMenu(e, buttonId) {
-        if (
-            buttonId === 'dashboard' ||
-            buttonId === 'users' ||
-            buttonId === 'configuration'
-        ) {
+        if (buttonId === 'dashboard' || buttonId === 'users') {
             this.sideNav.close();
         } else {
             this.sideNav.open();
@@ -57,8 +53,9 @@ export class MenuComponent implements OnInit {
             case 'users':
                 this.router.navigate([ '/users' ]);
                 break;
-            case 'configuration':
-                // this.router.navigate(['/configuration']);
+            case 'settings':
+                this.section = 'vim-settings';
+                this.router.navigate([ '/settings' ]);
                 break;
             case 'validation-and-verification':
                 this.section = 'vv-packages';
@@ -66,11 +63,11 @@ export class MenuComponent implements OnInit {
                 break;
             case 'service-platform':
                 this.section = 'sp-packages';
-                this.router.navigate([ 'service-platform/packages' ]);
+                this.router.navigate([ 'service-platform' ]);
                 break;
             case 'service-management':
                 this.section = 'sm-network-services';
-                this.router.navigate([ 'service-management/network-services' ]);
+                this.router.navigate([ 'service-management' ]);
                 break;
             default:
                 this.router.navigate([ '/dashboard' ]);
@@ -80,6 +77,12 @@ export class MenuComponent implements OnInit {
 
     setSection(e, buttonId) {
         switch (buttonId) {
+            case 'vim-settings':
+                this.router.navigate([ 'settings/vim-settings' ]);
+                break;
+            case 'wim-settings':
+                this.router.navigate([ 'settings/wim-settings' ]);
+                break;
             case 'vv-packages':
                 this.router.navigate([ 'validation-and-verification/packages' ]);
                 break;
@@ -181,7 +184,7 @@ export class MenuComponent implements OnInit {
     }
 
     maintainStatus() {
-        let url = this.router.url.split('/');
+        const url = this.router.url.split('/');
 
         if (url.length > 1) {
             this.menu = url[ 1 ];
@@ -189,7 +192,8 @@ export class MenuComponent implements OnInit {
             if (
                 url[ 1 ] === 'validation-and-verification' ||
                 url[ 1 ] === 'service-platform' ||
-                url[ 1 ] === 'service-management'
+                url[ 1 ] === 'service-management' ||
+                url[ 1 ] === 'settings'
             ) {
                 this.sideNav.open();
             }

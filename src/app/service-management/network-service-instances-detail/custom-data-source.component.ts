@@ -1,5 +1,5 @@
-import { DataSource } from "@angular/cdk/table";
-import { Observable, of } from "rxjs";
+import { DataSource } from '@angular/cdk/table';
+import { Observable, of } from 'rxjs';
 
 export class CustomDataSource extends DataSource<any> {
     data: Array<any>;

@@ -50,7 +50,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
                 this.loading = false;
 
                 if (responses[ 0 ].length < 1 || responses[ 1 ].length < 1) {
-                    throw 'No network services';
+                    throw new Error('No network services');
                 }
 
                 // Save guarantees and NS data to display

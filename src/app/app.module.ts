@@ -44,6 +44,7 @@ import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
+import { VimSettingsComponent } from './vim-settings/vim-settings.component';
 
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ValidationAndVerificationModule } from './validation-and-verification/validation-and-verification.module';
@@ -52,7 +53,7 @@ import { ServiceManagementModule } from './service-management/service-management
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-    declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
+    declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent, VimSettingsComponent ],
     imports: [
         BrowserModule,
         AppRoutingModule,

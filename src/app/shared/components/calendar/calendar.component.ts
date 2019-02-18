@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
 })
 export class CalendarComponent implements OnInit {
     date = new FormControl();
-    hidePlaceholder: boolean = true;
+    hidePlaceholder = true;
     placeholderMsg: string;
 
     /**
@@ -57,7 +57,7 @@ export class CalendarComponent implements OnInit {
     }
 
     private _onFormChanges(values) {
-        let date = values
+        const date = values
             .toISOString()
             .replace(/T.*/, '')
             .split('-')

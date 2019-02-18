@@ -27,9 +27,9 @@ export class ServiceManagementService {
      */
     getNSInstances(search?): any {
         return new Promise((resolve, reject) => {
-            let headers = this.authService.getAuthHeaders();
-            let url =
-                search != undefined
+            const headers = this.authService.getAuthHeaders();
+            const url =
+                search !== undefined
                     ? this.config.baseSP + this.config.serviceRecords + search
                     : this.config.baseSP + this.config.serviceRecords;
 
@@ -72,7 +72,7 @@ export class ServiceManagementService {
      */
     getOneNSInstance(uuid: string): any {
         return new Promise((resolve, reject) => {
-            let headers = this.authService.getAuthHeaders();
+            const headers = this.authService.getAuthHeaders();
 
             this.http
                 .get(this.config.baseSP + this.config.serviceRecords + '/' + uuid, {
@@ -109,7 +109,7 @@ export class ServiceManagementService {
      */
     getOneFunctionRecord(uuid: string): any {
         return new Promise((resolve, reject) => {
-            let headers = this.authService.getAuthHeaders();
+            const headers = this.authService.getAuthHeaders();
 
             this.http
                 .get(this.config.baseSP + this.config.functionRecords + '/' + uuid, {
@@ -149,8 +149,8 @@ export class ServiceManagementService {
         slaUUID: string
     ) {
         return new Promise((resolve, reject) => {
-            let headers = new HttpHeaders();
-            let data = {
+            const headers = new HttpHeaders();
+            const data = {
                 name,
                 sla_id: slaUUID,
                 service_uuid: serviceUUID,
@@ -181,9 +181,9 @@ export class ServiceManagementService {
     */
     postOneNSInstanceTermination(uuid): any {
         return new Promise((resolve, reject) => {
-            let headers = this.authService.getAuthHeaders();
+            const headers = this.authService.getAuthHeaders();
 
-            let data = {
+            const data = {
                 instance_uuid: uuid,
                 request_type: 'TERMINATE_SERVICE'
             };
@@ -204,7 +204,7 @@ export class ServiceManagementService {
 
     getLicences(): any {
         return new Promise((resolve, reject) => {
-            let headers = this.authService.getAuthHeaders();
+            const headers = this.authService.getAuthHeaders();
             this.http
                 .get(this.config.baseSP + this.config.licenses, {
                     headers: headers
