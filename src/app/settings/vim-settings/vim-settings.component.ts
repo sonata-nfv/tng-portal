@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+import { CommonService } from '../../shared/services/common/common.service';
+import { SettingsService } from '../settings.service';
+
 @Component({
     selector: 'app-vim-settings',
     templateUrl: './vim-settings.component.html',
@@ -18,7 +21,7 @@ export class VimSettingsComponent implements OnInit {
         'delete'
     ];
 
-    constructor() { }
+    constructor(private settingsService: SettingsService, private commonService: CommonService) { }
 
     ngOnInit() {
         this.requestVims();
@@ -36,7 +39,17 @@ export class VimSettingsComponent implements OnInit {
      *                          list of VIMs.
      */
     requestVims(search?) {
-
+        this.loading = true;
+        this.settingsService.getVims(search)
+            .then(response => {
+                this.loading = false;
+                this.vims = response;
+            })
+            .catch(error => {
+                this.loading = false;
+                console.error(error);
+                this.commonService.openSnackBar('There was an error fetching the slice instances', '');
+            });
     }
 
     deleteVim(uuid) {

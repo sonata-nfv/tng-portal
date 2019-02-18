@@ -29,6 +29,8 @@ export class ConfigService extends Config {
     runtimePoliciesBind = 'policies/bind/';
     runtimePoliciesDefault = 'policies/default/';
     runtimePoliciesActions = 'policies/actions';
+    vimSettings = 'settings/vims';
+    wimSettings = 'settings/wims';
 
     private configFile = './config.json';
 

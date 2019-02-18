@@ -12,7 +12,8 @@ import { RegisteredComponent } from './authentication/registered/registered.comp
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { VimSettingsComponent } from './vim-settings/vim-settings.component';
+
+import { VimSettingsComponent } from './settings/vim-settings/vim-settings.component';
 
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
