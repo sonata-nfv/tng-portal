@@ -61,7 +61,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
                 this.defaultPolicy = this.detail[ 'default' ];
 
                 this.requestSLAs(this.detail[ 'nsUUID' ])
-                    .then(response => {
+                    .then(res => {
                         this.loading = false;
                     })
                     .catch(err => {

@@ -64,7 +64,7 @@ export class CalendarComponent implements OnInit {
             .reverse()
             .join('/')
             .split('/');
-        date[ 0 ] = (parseInt(date[ 0 ]) + 1).toString();
+        date[ 0 ] = (parseInt(date[ 0 ], 10) + 1).toString();
         const strDate = date.join('/');
 
         this.dateEvent.emit(strDate);

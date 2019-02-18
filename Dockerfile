@@ -14,6 +14,9 @@ RUN npm install -g npm
 RUN npm install
 RUN npm run build
 
+# Test
+RUN npm run lint
+
 # # Create image based on the official Nginx 1.13 image from dockerhub
 FROM nginx:1.13-alpine
 
@@ -28,7 +31,6 @@ COPY src/config-sp.json /usr/share/nginx/html/
 COPY src/config-vnv.json /usr/share/nginx/html/
 COPY src/config.json /usr/share/nginx/html/
 COPY src/entrypoint.sh /
-
 
 ENV PLATFORM sp
 CMD ["/entrypoint.sh"]

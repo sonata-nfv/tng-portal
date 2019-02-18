@@ -14,32 +14,32 @@
 
         <div class="sections">
             <button [ngClass]="{ active: menu === 'dashboard' }" (click)="setMenu($event, 'dashboard')"
-                ifFeatureAvailable="dashboard">
+                appIfFeatureAvailable="dashboard">
                 <i class="wui wui-dashboard-alt"></i> <span i18n="@@dashboard">Dashboard</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'users' }" (click)="setMenu($event, 'users')"
-                ifFeatureAvailable="users">
+                appIfFeatureAvailable="users">
                 <i class="wui wui-user-group-alt"></i> <span i18n="@@users">Users</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'settings' }" (click)="setMenu($event, 'settings')"
-                ifFeatureAvailable="settings">
+                appIfFeatureAvailable="settings">
                 <i class="wui wui-gear-alt"></i> <span i18n="@@settings">Settings</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'validation-and-verification' }"
-                (click)="setMenu($event, 'validation-and-verification')" ifFeatureAvailable="validation">
+                (click)="setMenu($event, 'validation-and-verification')" appIfFeatureAvailable="validation">
                 <i class="wui wui-check-circle-alt"></i> <span i18n="@@vnv">V&V</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'service-platform' }" (click)="setMenu($event, 'service-platform')"
-                ifFeatureAvailable="service platform">
+                appIfFeatureAvailable="service platform">
                 <i class="wui wui-network-alt"></i> <span i18n="@@sp">Service platform</span>
             </button>
 
             <button [ngClass]="{ active: menu === 'service-management' }"
-                (click)="setMenu($event, 'service-management')" ifFeatureAvailable="service management">
+                (click)="setMenu($event, 'service-management')" appIfFeatureAvailable="service management">
                 <i class="wui wui-table-alt"></i> <span i18n="@@sm">Service management</span>
             </button>
         </div>
@@ -150,10 +150,10 @@
             </button>
 
             <button [ngClass]="{ active: section === 'licenses' }" (click)="setSection($event, 'licenses')"
-                ifFeatureAvailable="licenses" i18n="@@licenceStore">
+                appIfFeatureAvailable="licenses" i18n="@@licenceStore">
                 Licence store
             </button>
-            <div class="section" *ngIf="section === 'licenses'" ifFeatureAvailable="licenses">
+            <div class="section" *ngIf="section === 'licenses'" appIfFeatureAvailable="licenses">
                 <button [ngClass]="{ active: subsection === 'service-licenses' }"
                     (click)="setSubsection($event, 'service-licenses')" i18n="@@serviceLicenses">
                     Service licenses

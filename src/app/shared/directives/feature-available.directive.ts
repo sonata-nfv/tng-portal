@@ -2,10 +2,10 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config/config.service';
 
 @Directive({
-    selector: '[ifFeatureAvailable]'
+    selector: '[appIfFeatureAvailable]'
 })
 export class FeatureAvailableDirective implements OnInit {
-    @Input('ifFeatureAvailable')
+    @Input('appIfFeatureAvailable')
     service: string;
     _element: ElementRef;
     constructor(el: ElementRef, private configService: ConfigService) {
