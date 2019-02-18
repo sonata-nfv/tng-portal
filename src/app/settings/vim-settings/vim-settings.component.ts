@@ -48,7 +48,7 @@ export class VimSettingsComponent implements OnInit {
             .catch(error => {
                 this.loading = false;
                 console.error(error);
-                this.commonService.openSnackBar('There was an error fetching the slice instances', '');
+                this.commonService.openSnackBar('There was an error fetching the VIMs', '');
             });
     }
 

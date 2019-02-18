@@ -6,12 +6,14 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { SharedModule } from '../shared/shared.module';
 
 import { VimSettingsComponent } from './vim-settings/vim-settings.component';
+import { WimSettingsComponent } from './wim-settings/wim-settings.component';
 
 import { SettingsService } from './settings.service';
 
 @NgModule({
     declarations: [
-        VimSettingsComponent
+        VimSettingsComponent,
+        WimSettingsComponent
     ],
     imports: [
         CommonModule,

@@ -46,4 +46,35 @@ export class SettingsService {
                 reject(error);
             });
     }
+
+    /**
+    * Retrieves a list of WIMs.
+    * Either following a search pattern or not.
+    *
+    * @param search [Optional] WIMs attributes that must be
+    *                          matched by the returned list.
+    */
+    getWims(search?): any {
+        const headers = this.authService.getAuthHeaders();
+        const url =
+            search !== undefined
+                ? this.config.baseSP + this.config.wimSettings + search
+                : this.config.baseSP + this.config.wimSettings;
+
+        return this.http.get(url, { headers: headers }).toPromise()
+            .then(response => {
+                return response instanceof Array ?
+                    response.map(item => {
+                        return {
+                            uuid: item.uuid,
+                            name: item.name,
+                            vims: item.vim_list,
+                            endpoint: item.endpoint,
+                            type: item.type
+                        };
+                    }) : [];
+            }).catch(error => {
+                reject(error);
+            });
+    }
 }

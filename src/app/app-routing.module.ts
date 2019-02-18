@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
 import { VimSettingsComponent } from './settings/vim-settings/vim-settings.component';
+import { WimSettingsComponent } from './settings/wim-settings/wim-settings.component';
 
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
@@ -86,6 +87,7 @@ const routes: Routes = [
             // Settings
             { path: 'settings', redirectTo: 'settings/vim-settings', pathMatch: 'full' },
             { path: 'settings/vim-settings', component: VimSettingsComponent },
+            { path: 'settings/wim-settings', component: WimSettingsComponent },
             // Validation and verification
             { path: 'validation-and-verification', redirectTo: 'validation-and-verification/packages', pathMatch: 'full' },
             {
