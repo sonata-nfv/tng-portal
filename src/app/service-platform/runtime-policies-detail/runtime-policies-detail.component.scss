@@ -23,16 +23,6 @@ app-runtime-policies-detail {
 			margin-bottom: 4vh;
 		}
 
-		.sameRow {
-			display: flex;
-			flex-direction: row;
-			width: 100%;
-
-			.mat-form-field {
-				width: 50%;
-			}
-		}
-
 		&.advancedForm {
 			width: 100%;
 		}

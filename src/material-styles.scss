@@ -4,6 +4,16 @@ form {
 	flex-direction: column;
 }
 
+form .sameRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .mat-form-field {
+        width: 50%;
+    }
+}
+
 .mat-form-field {
 	display: flex;
 	flex-direction: column;
