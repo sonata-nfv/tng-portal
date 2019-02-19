@@ -104,7 +104,8 @@ p {
 // Title section styles
 .header-section {
 	display: flex;
-	flex-direction: row;
+    flex-direction: row;
+    align-items: center;
 	width: 95%;
 }
 
@@ -118,8 +119,9 @@ p {
 .button-underline {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-content: center;
+    justify-content: center;
+    min-width: 160px;
+    max-height: 18px;
 
 	.delete-button {
 		min-width: 150px;
@@ -127,8 +129,8 @@ p {
 		border: none;
 		cursor: pointer;
 		outline: none;
-		background-color: $basic-background-color;
 		color: $primary-button-color;
+		background-color: $basic-background-color;
 	}
 
 	a {
@@ -503,5 +505,24 @@ li.line:before {
 				margin: 4px auto;
 			}
 		}
-	}
+    }
 }
+
+// No results found
+.no-results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 55%;
+    margin-top: 15vh;
+  
+    .no-results-line {
+      height: 45%;
+      width: 15vw;
+      border-bottom: 1px solid $secondary-font-color-light;
+    }
+  
+    .no-results-text {
+      color: $secondary-font-color-light;
+    }
+  }
