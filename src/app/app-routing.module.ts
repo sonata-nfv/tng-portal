@@ -13,8 +13,9 @@ import { RegisteredComponent } from './authentication/registered/registered.comp
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
-import { VimSettingsComponent } from './settings/vim-settings/vim-settings.component';
-import { WimSettingsComponent } from './settings/wim-settings/wim-settings.component';
+import { VimComponent } from './settings/vim/vim.component';
+import { VimDetailComponent } from './settings/vim-detail/vim-detail.component';
+import { WimComponent } from './settings/wim/wim.component';
 
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
@@ -85,9 +86,12 @@ const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'users', component: UsersComponent },
             // Settings
-            { path: 'settings', redirectTo: 'settings/vim-settings', pathMatch: 'full' },
-            { path: 'settings/vim-settings', component: VimSettingsComponent },
-            { path: 'settings/wim-settings', component: WimSettingsComponent },
+            { path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
+            {
+                path: 'settings/vim', component: VimComponent,
+                children: [ { path: ':id', component: VimDetailComponent } ]
+            },
+            { path: 'settings/wim', component: WimComponent },
             // Validation and verification
             { path: 'validation-and-verification', redirectTo: 'validation-and-verification/packages', pathMatch: 'full' },
             {

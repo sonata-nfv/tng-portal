@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { SettingsService } from '../settings.service';
 
 @Component({
-    selector: 'app-vim-settings',
-    templateUrl: './vim-settings.component.html',
-    styleUrls: [ './vim-settings.component.scss' ],
+    selector: 'app-vim',
+    templateUrl: './vim.component.html',
+    styleUrls: [ './vim.component.scss' ],
     encapsulation: ViewEncapsulation.None
 })
-export class VimSettingsComponent implements OnInit {
+export class VimComponent implements OnInit {
     loading: boolean;
     vims: Array<Object>;
     displayedColumns = [
@@ -21,7 +22,12 @@ export class VimSettingsComponent implements OnInit {
         'delete'
     ];
 
-    constructor(private settingsService: SettingsService, private commonService: CommonService) { }
+    constructor(
+        private settingsService: SettingsService,
+        private commonService: CommonService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) { }
 
     ngOnInit() {
         this.requestVims();
@@ -42,17 +48,21 @@ export class VimSettingsComponent implements OnInit {
         this.loading = true;
         this.settingsService.getVims(search)
             .then(response => {
-                this.loading = false;
-                this.vims = response;
-            })
-            .catch(error => {
-                this.loading = false;
-                console.error(error);
-                this.commonService.openSnackBar('There was an error fetching the VIMs', '');
+                if (response) {
+                    this.loading = false;
+                    this.vims = response;
+                } else {
+                    this.loading = false;
+                    this.commonService.openSnackBar('There was an error fetching the VIMs', '');
+                }
             });
     }
 
     deleteVim(uuid) {
 
+    }
+
+    openVim(uuid) {
+        this.router.navigate([ uuid ], { relativeTo: this.route });
     }
 }

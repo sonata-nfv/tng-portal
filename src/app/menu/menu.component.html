@@ -2,7 +2,7 @@
     <mat-sidenav-content class="menu-items" mode="side">
         <div class="avatar"></div>
 
-        <p class="name" i18n="@@username">5GTANGO</p>
+        <p class="name" i18n="@@usernameHardcoded">5GTANGO</p>
         <!-- {{ username }} -->
 
         <p class="email" (click)="copyToClipboard('sonata-dev@lists.atos.research.eu')" i18n="@@useremail">
@@ -49,10 +49,10 @@
 
     <mat-sidenav class="menu-options" position="end" #sidenav mode="side">
         <div class="options" *ngIf="menu === 'settings'">
-            <button [ngClass]="{ active: section === 'vim-settings' }" (click)="setSection($event, 'vim-settings')"
-                i18n="@@vims">VIMs</button>
-            <button [ngClass]="{ active: section === 'wim-settings' }" (click)="setSection($event, 'wim-settings')"
-                i18n="@@wims">WIMs</button>
+            <button [ngClass]="{ active: section === 'vim' }" (click)="setSection($event, 'vim')"
+                i18n="@@vim">VIM</button>
+            <button [ngClass]="{ active: section === 'wim' }" (click)="setSection($event, 'wim')"
+                i18n="@@wim">WIM</button>
         </div>
 
         <div class="options" *ngIf="menu === 'validation-and-verification'">

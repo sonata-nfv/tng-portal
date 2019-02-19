@@ -46,7 +46,11 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
@@ -196,7 +200,11 @@
           <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
         <context-group purpose="location">
@@ -498,7 +506,15 @@
           <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
@@ -511,6 +527,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
           <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
@@ -964,7 +984,7 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="username" datatype="html">
+      <trans-unit id="usernameHardcoded" datatype="html">
         <source>5GTANGO</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
@@ -1012,7 +1032,11 @@
           <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -1085,22 +1109,30 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="vims" datatype="html">
-        <source>VIMs</source>
+      <trans-unit id="vim" datatype="html">
+        <source>VIM</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="wims" datatype="html">
-        <source>WIMs</source>
+      <trans-unit id="wim" datatype="html">
+        <source>WIM</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="packages" datatype="html">
@@ -1374,29 +1406,49 @@
       <trans-unit id="city" datatype="html">
         <source>City</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="country" datatype="html">
         <source>Country</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="endpoint" datatype="html">
         <source>Endpoint</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
         <source>Delete</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
@@ -1405,6 +1457,48 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
           <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteVim" datatype="html">
+        <source>Delete VIM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vimID" datatype="html">
+        <source>VIM ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="domain" datatype="html">
+        <source>Domain</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="username" datatype="html">
+        <source>Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="password" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="configuration" datatype="html">
+        <source>Configuration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="validationAndVerification" datatype="html">

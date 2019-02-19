@@ -4,12 +4,12 @@ import { SettingsService } from '../settings.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-    selector: 'app-wim-settings',
-    templateUrl: './wim-settings.component.html',
-    styleUrls: [ './wim-settings.component.scss' ],
+    selector: 'app-wim',
+    templateUrl: './wim.component.html',
+    styleUrls: [ './wim.component.scss' ],
     encapsulation: ViewEncapsulation.None
 })
-export class WimSettingsComponent implements OnInit {
+export class WimComponent implements OnInit {
     loading: boolean;
     wims: Array<Object>;
     displayedColumns = [
@@ -40,13 +40,13 @@ export class WimSettingsComponent implements OnInit {
         this.loading = true;
         this.settingsService.getWims(search)
             .then(response => {
-                this.loading = false;
-                this.wims = response;
-            })
-            .catch(error => {
-                this.loading = false;
-                console.error(error);
-                this.commonService.openSnackBar('There was an error fetching the WIMs', '');
+                if (response) {
+                    this.loading = false;
+                    this.wims = response;
+                } else {
+                    this.loading = false;
+                    this.commonService.openSnackBar('There was an error fetching the WIMs', '');
+                }
             });
     }
 

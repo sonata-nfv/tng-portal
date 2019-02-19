@@ -24,75 +24,24 @@
       <context-group purpose="location"><context context-type="sourcefile">app/shared/components/functions/functions.component.html</context><context context-type="linenumber">3</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">68</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">84</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context><context context-type="linenumber">1</context></context-group></trans-unit>
       <trans-unit id="reloadData" datatype="html">
         <source>Reload data</source><target state="final">Reload data</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/components/functions/functions.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/functions/functions.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/shared/components/requests/requests.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context><context context-type="linenumber">8</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-violations/sla-violations.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context><context context-type="linenumber">7</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="vendor" datatype="html">
         <source>Vendor</source><target state="final">Vendor</target>
         
@@ -139,7 +88,7 @@
         
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/functions/functions.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/shared/components/requests/requests.component.html</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context><context context-type="linenumber">14</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context><context context-type="linenumber">73</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context><context context-type="linenumber">24</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context><context context-type="linenumber">78</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">51</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">77</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">102</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">47</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">72</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context><context context-type="linenumber">64</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context><context context-type="linenumber">13</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context><context context-type="linenumber">21</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/functions/functions.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/shared/components/requests/requests.component.html</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">14</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">14</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context><context context-type="linenumber">73</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context><context context-type="linenumber">24</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context><context context-type="linenumber">78</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">51</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">77</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">102</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">47</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">72</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services/sp-network-services.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context><context context-type="linenumber">64</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context><context context-type="linenumber">13</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context><context context-type="linenumber">21</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-instances/slices-instances.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="version" datatype="html">
         <source>Version</source><target state="final">Version</target>
         
@@ -209,19 +158,10 @@
       <context-group purpose="location"><context context-type="sourcefile">app/shared/components/requests/requests.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context><context context-type="linenumber">26</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
       <trans-unit id="type" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/function-records-detail/function-records-detail.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
+        
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/requests/requests.component.html</context><context context-type="linenumber">27</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">20</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">18</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/function-records-detail/function-records-detail.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit>
       
       <trans-unit id="closeButton" datatype="html">
         <source>CLOSE</source><target state="final">CLOSE</target>
@@ -241,7 +181,7 @@
         
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/test-results/test-results.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/test-results/test-results.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates-detail/sla-templates-detail.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context><context context-type="linenumber">11</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context><context context-type="linenumber">5</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="idPlaceholder" datatype="html">
         <source>ID</source><target state="final">ID</target>
         
@@ -535,14 +475,23 @@
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">34</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="username" datatype="html">
+      </trans-unit><trans-unit id="usernameHardcoded" datatype="html">
         <source>5GTANGO</source><target state="final">5GTANGO</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="username" datatype="html">
+        <source>Username</source><target state="final">Username</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="password" datatype="html">
+        <source>Password</source><target state="final">Password</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="configuration" datatype="html">
+        <source>Configuration</source><target state="final">Configuration</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="useremail" datatype="html">
         <source>
             sonata-dev@lists.atos.research.eu</source><target state="final">
@@ -574,15 +523,9 @@
       <context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">23</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/users/users.component.html</context><context context-type="linenumber">1</context></context-group></trans-unit>
       <trans-unit id="settings" datatype="html">
         <source>Settings</source><target state="final">Settings</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">28</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">1</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">1</context></context-group></trans-unit>
       <trans-unit id="vnv" datatype="html">
         <source>V&amp;V</source><target state="final">V&amp;V</target>
         <context-group purpose="location">
@@ -598,25 +541,33 @@
         <source>Service management</source><target state="final">Service management</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">43</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context><context context-type="linenumber">1</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">1</context></context-group></trans-unit>
-      <trans-unit id="vims" datatype="html">
-        <source>VIMs</source><target state="final">VIMs</target>
+      <context-group purpose="location"><context context-type="sourcefile">app/menu/menu.component.html</context><context context-type="linenumber">43</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context><context context-type="linenumber">1</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context><context context-type="linenumber">1</context></context-group></trans-unit><trans-unit id="vim" datatype="html">
+        <source>VIM</source><target state="final">VIM</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="wims" datatype="html">
-        <source>WIMs</source><target state="final">WIMs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit><trans-unit id="wim" datatype="html">
+        <source>WIM</source><target state="final">WIM</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">55</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
+      
+      
       <trans-unit id="packages" datatype="html">
         <source>Packages</source><target state="final">Packages</target>
         
@@ -791,31 +742,40 @@
       
       <trans-unit id="city" datatype="html">
         <source>City</source><target state="final">City</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">33</context></context-group></trans-unit>
       <trans-unit id="country" datatype="html">
         <source>Country</source><target state="final">Country</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">26</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="endpoint" datatype="html">
         <source>Endpoint</source><target state="final">Endpoint</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context><context context-type="linenumber">28</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">22</context></context-group></trans-unit>
       <trans-unit id="delete" datatype="html">
         <source>Delete</source><target state="final">Delete</target>
         
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/vim-settings/vim-settings.component.html</context><context context-type="linenumber">36</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="validationAndVerification" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/settings/vim/vim.component.html</context><context context-type="linenumber">36</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/settings/wim/wim.component.html</context><context context-type="linenumber">28</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="deleteVim" datatype="html">
+        <source>Delete VIM</source><target state="final">Delete VIM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit><trans-unit id="vimID" datatype="html">
+        <source>VIM ID</source><target state="final">VIM ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit><trans-unit id="domain" datatype="html">
+        <source>Domain</source><target state="final">Domain</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit><trans-unit id="validationAndVerification" datatype="html">
         <source>Validation and verification</source><target state="final">Validation and verification</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { reject } from 'q';
 
 @Injectable()
 export class SettingsService {
@@ -43,7 +42,24 @@ export class SettingsService {
                         };
                     }) : [];
             }).catch(error => {
-                reject(error);
+                console.error(error);
+            });
+    }
+
+    /**
+    * Retrieves a VIM by UUID
+    *
+    * @param uuid VIM UUID of the desired VIM.
+    */
+    getOneVim(uuid): any {
+        const headers = this.authService.getAuthHeaders();
+        const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
+
+        return this.http.get(url, { headers: headers }).toPromise()
+            .then(response => {
+                return response;
+            }).catch(error => {
+                console.error(error);
             });
     }
 
@@ -74,7 +90,7 @@ export class SettingsService {
                         };
                     }) : [];
             }).catch(error => {
-                reject(error);
+                console.error(error);
             });
     }
 }

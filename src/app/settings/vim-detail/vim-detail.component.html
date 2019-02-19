@@ -1,0 +1,59 @@
+<div class="header-section" *ngIf="detail['name']">
+    <h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@vim">VIM</h3>
+    <div class="button-underline">
+        <button class="delete-button" (click)="deleteVim()" i18n="@@deleteVim">Delete VIM</button>
+        <div class="underline"></div>
+    </div>
+</div>
+
+<div class="title-section" *ngIf="detail['name']">
+    <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+    <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+</div>
+
+<form class="detail">
+    <mat-form-field *ngIf="detail['uuid']">
+        <input matInput placeholder="VIM ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@vimID" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['type']">
+        <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@type" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="detail['domain'] && detail['type']!='k8s'">
+        <input matInput placeholder="Domain" value="{{ detail['domain'] }}" disabled i18n-placeholder="@@domain" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!loading">
+        <input matInput placeholder="Endpoint" value="{{ detail['endpoint'] || 'Not provided' }}" disabled i18n-placeholder="@@endpoint" />
+    </mat-form-field>
+
+    <div class="sameRow">
+        <mat-form-field *ngIf="detail['city']">
+            <input matInput placeholder="City" value="{{ detail['city'] }}" disabled i18n-placeholder="@@city" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="detail['country']">
+            <input matInput placeholder="Country" value="{{ detail['country'] }}" disabled i18n-placeholder="@@country" />
+        </mat-form-field>
+    </div>
+
+    <div class="sameRow" *ngIf="detail['type']!='k8s'">
+        <mat-form-field *ngIf="detail['username']">
+            <input matInput placeholder="Username" value="{{ detail['username'] }}" disabled i18n-placeholder="@@username" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="detail['password']">
+            <input matInput placeholder="Password" value="{{ detail['password'] }}" disabled i18n-placeholder="@@password" />
+        </mat-form-field>
+    </div>
+
+    <div class="description" *ngIf="detail['config']">
+        <h4 class="title4" i18n="@@configuration">Configuration</h4>
+        <span class="content">
+            <ngx-json-viewer [json]="detail['config']"></ngx-json-viewer>
+        </span>
+    </div>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>
