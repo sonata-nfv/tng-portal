@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { VimComponent } from './vim/vim.component';
 import { VimDetailComponent } from './vim-detail/vim-detail.component';
 import { WimComponent } from './wim/wim.component';
+import { WimDetailComponent } from './wim-detail/wim-detail.component';
 
 import { SettingsService } from './settings.service';
 
@@ -16,7 +17,8 @@ import { SettingsService } from './settings.service';
     declarations: [
         VimComponent,
         VimDetailComponent,
-        WimComponent
+        WimComponent,
+        WimDetailComponent
     ],
     imports: [
         CommonModule,

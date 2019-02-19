@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
 import { CommonService } from '../../shared/services/common/common.service';
@@ -19,7 +20,11 @@ export class WimComponent implements OnInit {
         'delete'
     ];
 
-    constructor(private settingsService: SettingsService, private commonService: CommonService) { }
+    constructor(
+        private settingsService: SettingsService,
+        private commonService: CommonService,
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.requestWims();
@@ -52,5 +57,9 @@ export class WimComponent implements OnInit {
 
     deleteWim(uuid) {
 
+    }
+
+    openWim(uuid) {
+        this.router.navigate([ uuid ], { relativeTo: this.route });
     }
 }

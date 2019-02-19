@@ -93,4 +93,22 @@ export class SettingsService {
                 console.error(error);
             });
     }
+
+    /**
+   * Retrieves a WIM by UUID
+   *
+   * @param uuid WIM UUID of the desired WIM.
+   */
+    getOneWim(uuid): any {
+        const headers = this.authService.getAuthHeaders();
+        const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
+
+        return this.http.get(url, { headers: headers }).toPromise()
+            .then(response => {
+                return response;
+            }).catch(error => {
+                console.error(error);
+            });
+    }
+
 }

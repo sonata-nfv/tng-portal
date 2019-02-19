@@ -1,0 +1,28 @@
+@import "../../../constants.scss";
+app-wim-detail {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  .detail {
+    width: 65%;
+    margin-top: 80px;
+    margin-bottom: 20px;
+
+    .mat-form-field {
+      width: 100%;
+    }
+
+  }
+}
