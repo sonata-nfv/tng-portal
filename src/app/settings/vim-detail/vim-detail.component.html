@@ -49,7 +49,10 @@
     </div>
 
     <div class="description" *ngIf="detail['config']">
-        <h4 class="title4" i18n="@@configuration">Configuration</h4>
+        <div class="description-title">
+            <h4 class="title4" i18n="@@configuration">Configuration</h4>
+            <button type="button" (click)="copyToClipboard()" i18n="@@copyConfiguration">Copy configuration</button>
+        </div>
         <span class="content">
             <ngx-json-viewer [json]="detail['config']"></ngx-json-viewer>
         </span>

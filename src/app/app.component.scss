@@ -382,7 +382,7 @@ li.line:before {
 
 // Header when the item has an icon on the right
 // Allows dropdown action
-.description .descriptionTitle {
+.description .description-title {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -391,7 +391,14 @@ li.line:before {
         width: 95%;
 	}
 	button {
-		align-self: center;
+        align-self: center;
+        text-align: right;
+        min-width: 150px;
+        border: none;
+		cursor: pointer;
+        outline: none;
+        color: $primary-font-color;
+		background-color: $basic-background-color;
 	}
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
     selector: 'app-vim-detail',
@@ -15,6 +16,7 @@ export class VimDetailComponent implements OnInit {
 
     constructor(
         private settingsService: SettingsService,
+        private commonService: CommonService,
         private router: Router,
         private route: ActivatedRoute,
     ) { }
@@ -44,6 +46,10 @@ export class VimDetailComponent implements OnInit {
                 this.loading = false;
                 this.close();
             });
+    }
+
+    copyToClipboard() {
+        this.commonService.copyToClipboard(JSON.stringify(this.detail[ 'config' ]));
     }
 
     close() {
