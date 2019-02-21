@@ -40,7 +40,11 @@ export class VimDetailComponent implements OnInit {
             .getOneVim(uuid)
             .then(response => {
                 this.loading = false;
-                this.detail = Object.assign({}, response);
+                if (response) {
+                    this.detail = Object.assign({}, response);
+                } else {
+                    this.close();
+                }
             })
             .catch(() => {
                 this.loading = false;
@@ -50,6 +54,15 @@ export class VimDetailComponent implements OnInit {
 
     copyToClipboard() {
         this.commonService.copyToClipboard(JSON.stringify(this.detail[ 'config' ]));
+    }
+
+    deleteVim() {
+        this.settingsService.deleteVim(this.detail[ 'uuid' ]).then(message => {
+            this.commonService.openSnackBar(message, '');
+            this.close();
+        }).catch(() => {
+            this.commonService.openSnackBar('There was an error deleting the VIM', '');
+        });
     }
 
     close() {

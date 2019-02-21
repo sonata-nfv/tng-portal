@@ -82,6 +82,23 @@ export class SettingsService {
     }
 
     /**
+     * Deletes a VIM
+     *
+     * @param uuid UUID of the desired VIM.
+     */
+    deleteVim(uuid): Promise<any> {
+        const headers = this.authService.getAuthHeaders();
+        const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
+
+        return this.http.delete(url, { headers: headers }).toPromise()
+            .then(() => {
+                return ('VIM deleted');
+            }).catch(error => {
+                console.error(error);
+            });
+    }
+
+    /**
     * Retrieves a list of WIMs.
     * Either following a search pattern or not.
     *

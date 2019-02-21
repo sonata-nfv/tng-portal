@@ -81,7 +81,12 @@ export class VimComponent implements OnInit, OnDestroy {
     }
 
     deleteVim(uuid) {
-
+        this.settingsService.deleteVim(uuid).then(message => {
+            this.commonService.openSnackBar(message, '');
+            this.requestVims();
+        }).catch(() => {
+            this.commonService.openSnackBar('There was an error deleting the VIM', '');
+        });
     }
 
     openVim(uuid) {

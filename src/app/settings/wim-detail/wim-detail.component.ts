@@ -38,8 +38,12 @@ export class WimDetailComponent implements OnInit {
             .getOneWim(uuid)
             .then(response => {
                 this.loading = false;
-                this.detail = Object.assign({}, response);
-                this.detail[ 'vim_list' ] = this.detail[ 'vim_list' ].toString().replace(/,/g, '\n');
+                if (response) {
+                    this.detail = Object.assign({}, response);
+                    this.detail[ 'vim_list' ] = this.detail[ 'vim_list' ].toString().replace(/,/g, '\n');
+                } else {
+                    this.close();
+                }
             })
             .catch(() => {
                 this.loading = false;

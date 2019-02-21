@@ -24,7 +24,7 @@
         <input matInput placeholder="Domain" value="{{ detail['domain'] }}" disabled i18n-placeholder="@@domain" />
     </mat-form-field>
 
-    <mat-form-field *ngIf="!loading">
+    <mat-form-field *ngIf="!loading && detail['name']">
         <input matInput placeholder="Endpoint" value="{{ detail['endpoint'] || 'Not provided' }}" disabled i18n-placeholder="@@endpoint" />
     </mat-form-field>
 
