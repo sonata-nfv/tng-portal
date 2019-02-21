@@ -15,6 +15,7 @@ import { UsersComponent } from './users/users.component';
 
 import { VimComponent } from './settings/vim/vim.component';
 import { VimDetailComponent } from './settings/vim-detail/vim-detail.component';
+import { VimCreateComponent } from './settings/vim-create/vim-create.component';
 import { WimComponent } from './settings/wim/wim.component';
 import { WimDetailComponent } from './settings/wim-detail/wim-detail.component';
 
@@ -90,7 +91,10 @@ const routes: Routes = [
             { path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
             {
                 path: 'settings/vim', component: VimComponent,
-                children: [ { path: ':id', component: VimDetailComponent } ]
+                children: [
+                    { path: 'new', component: VimCreateComponent },
+                    { path: ':id', component: VimDetailComponent }
+                ]
             },
             {
                 path: 'settings/wim', component: WimComponent,

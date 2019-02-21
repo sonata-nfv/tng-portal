@@ -47,7 +47,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -201,7 +201,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -507,7 +507,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
@@ -1150,11 +1150,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="wim" datatype="html">
@@ -1466,37 +1470,56 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="createNewVimButton" datatype="html">
+        <source>Create New VIM</source><target state="final">Create New VIM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="city" datatype="html">
         <source>City</source><target state="final">City</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="country" datatype="html">
         <source>Country</source><target state="final">Country</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="endpoint" datatype="html">
         <source>Endpoint</source><target state="final">Endpoint</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -1511,7 +1534,7 @@
         <source>Delete</source><target state="final">Delete</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -1546,12 +1569,20 @@
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="username" datatype="html">
         <source>Username</source><target state="final">Username</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -1563,6 +1594,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -1581,6 +1616,135 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vimName" datatype="html">
+        <source>VIM Name</source><target state="final">VIM Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="saveButton" datatype="html">
+        <source>
+            SAVE
+        </source><target state="final">
+            SAVE
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancelButton" datatype="html">
+        <source>CANCEL</source><target state="final">CANCEL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectVimTypePlaceholder" datatype="html">
+        <source>Select a VIM type</source><target state="final">Select a VIM type</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tenant" datatype="html">
+        <source>Tenant</source><target state="final">Tenant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="networkEndpoint" datatype="html">
+        <source>Network endpoint</source><target state="final">Network endpoint</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privateNetwork" datatype="html">
+        <source>Private network</source><target state="final">Private network</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privateNetworkMask" datatype="html">
+        <source>Private network mask</source><target state="final">Private network mask</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectExternalNetwork" datatype="html">
+        <source>Select an external network</source><target state="final">Select an external network</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectExternalRouter" datatype="html">
+        <source>Select an external router</source><target state="final">Select an external router</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="configurationRequired" datatype="html">
+        <source>Configuration *</source><target state="final">Configuration *</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deleteWim" datatype="html">
@@ -1962,60 +2126,6 @@
           <context context-type="linenumber">42</context>
         </context-group>
         <note priority="1" from="description">description</note>
-      </trans-unit>
-      <trans-unit id="saveButton" datatype="html">
-        <source>SAVE</source><target state="final">SAVE</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="cancelButton" datatype="html">
-        <source>CANCEL</source><target state="final">CANCEL</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-detail/runtime-policies-detail.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-templates-create/sla-templates-create.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-instances-create/slices-instances-create.component.html</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-templates-create/slices-templates-create.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="selectPolicyPlaceholder" datatype="html">
         <source>Select a policy</source><target state="final">Select a policy</target>

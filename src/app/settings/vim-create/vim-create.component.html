@@ -1,0 +1,92 @@
+<h3 class="title3 header-section-name" i18n="@@vim">VIM</h3>
+
+<form [formGroup]="vimForm" class="title-section">
+    <mat-form-field class="title1">
+        <input matInput type="text" placeholder="VIM Name" formControlName="name" required i18n-placeholder="@@vimName" />
+    </mat-form-field>
+
+    <div class="header-buttons">
+        <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+            (click)="createVim()" i18n="@@saveButton">
+            SAVE
+        </button>
+        <button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+    </div>
+</form>
+
+<form class="vimForm">
+    <app-select placeholder="Select a VIM type" [list]="vimTypes" (selectEvent)="receiveType($event)"
+        i18n-placeholder="@@selectVimTypePlaceholder"></app-select>
+</form>
+
+<form [formGroup]="vimForm" class="vimForm" *ngIf="vimType">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required i18n-placeholder="@@endpoint" />
+    </mat-form-field>
+
+    <div class="sameRow">
+        <mat-form-field>
+            <input matInput type="text" placeholder="City" formControlName="city" i18n-placeholder="@@city" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Country" formControlName="country" i18n-placeholder="@@country" />
+        </mat-form-field>
+    </div>
+</form>
+
+<form [formGroup]="openstackForm" class="vimForm" *ngIf="vimType=='Openstack'">
+    <div class="sameRow">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@username" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Password" formControlName="password" required i18n-placeholder="@@password" />
+        </mat-form-field>
+    </div>
+
+    <div class="sameRow">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Tenant" formControlName="tenant" required i18n-placeholder="@@tenant" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Domain" formControlName="domain" i18n-placeholder="@@domain" />
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Network endpoint" formControlName="networkEndpoint" required
+            i18n-placeholder="@@networkEndpoint" />
+    </mat-form-field>
+
+    <div class="sameRow">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Private network" formControlName="privateNetwork" required
+                i18n-placeholder="@@privateNetwork" />
+        </mat-form-field>
+        <p> / </p>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask" required
+                i18n-placeholder="@@privateNetworkMask" />
+        </mat-form-field>
+    </div>
+
+    <div class="sameRow">
+        <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
+            i18n-placeholder="@@selectExternalNetwork"></app-select>
+
+        <app-select placeholder="Select an external router" [list]="externalRouters" (selectEvent)="receiveExternalRouter($event)"
+            i18n-placeholder="@@selectExternalRouter"></app-select>
+    </div>
+</form>
+
+<form [formGroup]="kubernetesForm" class="vimForm" *ngIf="vimType==='Kubernetes'">
+    <mat-form-field class="description">
+        <h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
+        <textarea class="content" matInput type="text" formControlName="config"></textarea>
+    </mat-form-field>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

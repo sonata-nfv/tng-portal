@@ -21,7 +21,7 @@ export class SettingsService {
      * @param search [Optional] VIMs attributes that must be
      *                          matched by the returned list.
      */
-    getVims(search?): any {
+    getVims(search?): Promise<any> {
         const headers = this.authService.getAuthHeaders();
         const url =
             search !== undefined
@@ -51,7 +51,7 @@ export class SettingsService {
     *
     * @param uuid VIM UUID of the desired VIM.
     */
-    getOneVim(uuid): any {
+    getOneVim(uuid): Promise<any> {
         const headers = this.authService.getAuthHeaders();
         const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
@@ -64,13 +64,31 @@ export class SettingsService {
     }
 
     /**
+     * Generates a VIM
+     *
+     * @param vim Data of the desired VIM.
+     */
+    postVim(type, vim): Promise<any> {
+        const headers = this.authService.getAuthHeaders();
+        const url = type === 'Openstack' ?
+            this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
+
+        return this.http.post(url, vim, { headers: headers }).toPromise()
+            .then(response => {
+                return ('VIM ' + response[ 'name' ] + ' created');
+            }).catch(error => {
+                console.error(error);
+            });
+    }
+
+    /**
     * Retrieves a list of WIMs.
     * Either following a search pattern or not.
     *
     * @param search [Optional] WIMs attributes that must be
     *                          matched by the returned list.
     */
-    getWims(search?): any {
+    getWims(search?): Promise<any> {
         const headers = this.authService.getAuthHeaders();
         const url =
             search !== undefined
@@ -99,7 +117,7 @@ export class SettingsService {
    *
    * @param uuid WIM UUID of the desired WIM.
    */
-    getOneWim(uuid): any {
+    getOneWim(uuid): Promise<any> {
         const headers = this.authService.getAuthHeaders();
         const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
 

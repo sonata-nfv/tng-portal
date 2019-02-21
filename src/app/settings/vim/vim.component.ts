@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { SettingsService } from '../settings.service';
@@ -10,8 +11,9 @@ import { SettingsService } from '../settings.service';
     styleUrls: [ './vim.component.scss' ],
     encapsulation: ViewEncapsulation.None
 })
-export class VimComponent implements OnInit {
+export class VimComponent implements OnInit, OnDestroy {
     loading: boolean;
+    subscription: Subscription;
     vims: Array<Object>;
     displayedColumns = [
         'name',
@@ -31,6 +33,22 @@ export class VimComponent implements OnInit {
 
     ngOnInit() {
         this.requestVims();
+
+        // Reloads the template list every when children are closed
+        this.subscription = this.router.events.subscribe(event => {
+            if (
+                event instanceof NavigationEnd &&
+                event.url === '/settings/vim' &&
+                this.route.url[ 'value' ].length === 2 &&
+                this.route.url[ 'value' ][ 1 ].path === 'vim'
+            ) {
+                this.requestVims();
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     searchFieldData(search) {
@@ -56,6 +74,10 @@ export class VimComponent implements OnInit {
                     this.commonService.openSnackBar('There was an error fetching the VIMs', '');
                 }
             });
+    }
+
+    createNew() {
+        this.router.navigate([ 'new' ], { relativeTo: this.route });
     }
 
     deleteVim(uuid) {

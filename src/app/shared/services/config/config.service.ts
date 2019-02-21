@@ -30,6 +30,8 @@ export class ConfigService extends Config {
     runtimePoliciesDefault = 'policies/default/';
     runtimePoliciesActions = 'policies/actions';
     vimSettings = 'settings/vims';
+    vimOpenstackSettings = 'settings/vims/heat';
+    vimK8sSettings = 'settings/vims/k8s';
     wimSettings = 'settings/wims';
 
     private configFile = './config.json';

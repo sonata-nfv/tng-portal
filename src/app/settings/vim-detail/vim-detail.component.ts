@@ -18,7 +18,7 @@ export class VimDetailComponent implements OnInit {
         private settingsService: SettingsService,
         private commonService: CommonService,
         private router: Router,
-        private route: ActivatedRoute,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
