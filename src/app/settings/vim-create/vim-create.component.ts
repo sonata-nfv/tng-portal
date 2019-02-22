@@ -96,7 +96,7 @@ export class VimCreateComponent implements OnInit {
             vim[ 'external_network_id' ] = this.openstackForm.get('externalNetworkID').value;
             vim[ 'external_router_id' ] = this.openstackForm.get('externalRouterID').value;
         } else {
-            vim[ 'config' ] = this.kubernetesForm.get('config').value;
+            vim[ 'config' ] = JSON.parse(this.kubernetesForm.get('config').value);
         }
 
         return vim;
@@ -105,6 +105,7 @@ export class VimCreateComponent implements OnInit {
     createVim() {
         this.loading = true;
         const vim = this._getVimData();
+
         this.settingsService
             .postVim(this.vimType, vim)
             .then(message => {
