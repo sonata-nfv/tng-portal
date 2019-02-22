@@ -41,7 +41,7 @@ export class VimCreateComponent implements OnInit {
             password: new FormControl('', Validators.required),
             tenant: new FormControl('', Validators.required),
             domain: new FormControl(),
-            networkEndpoint: new FormControl('', Validators.required), // Use "Mock" if empty
+            networkEndpoint: new FormControl(),
             privateNetwork: new FormControl('', Validators.required),
             privateNetworkMask: new FormControl('', Validators.required),
             externalNetworkID: new FormControl(), // '', Validators.required
@@ -90,12 +90,11 @@ export class VimCreateComponent implements OnInit {
             vim[ 'password' ] = this.openstackForm.get('password').value;
             vim[ 'tenant' ] = this.openstackForm.get('tenant').value;
             vim[ 'domain' ] = this.openstackForm.get('domain').value;
-            // TODO Use "Mock" if empty: which mock?
-            vim[ 'networkEndpoint' ] = this.openstackForm.get('networkEndpoint').value;
-            vim[ 'privateNetwork' ] = this.openstackForm.get('privateNetwork').value;
-            vim[ 'privateNetworkMask' ] = this.openstackForm.get('privateNetworkMask').value;
-            vim[ 'externalNetworkID' ] = this.openstackForm.get('externalNetworkID').value;
-            vim[ 'externalRouterID' ] = this.openstackForm.get('externalRouterID').value;
+            vim[ 'network_endpoint' ] = this.openstackForm.get('networkEndpoint').value;
+            vim[ 'private_network_prefix' ] = this.openstackForm.get('privateNetwork').value;
+            vim[ 'private_network_length' ] = this.openstackForm.get('privateNetworkMask').value;
+            vim[ 'external_network_id' ] = this.openstackForm.get('externalNetworkID').value;
+            vim[ 'external_router_id' ] = this.openstackForm.get('externalRouterID').value;
         } else {
             vim[ 'config' ] = this.kubernetesForm.get('config').value;
         }
