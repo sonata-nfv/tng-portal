@@ -44,8 +44,8 @@ export class VimCreateComponent implements OnInit {
             networkEndpoint: new FormControl(),
             privateNetwork: new FormControl('', Validators.required),
             privateNetworkMask: new FormControl('', Validators.required),
-            externalNetworkID: new FormControl(), // '', Validators.required
-            externalRouterID: new FormControl() // '', Validators.required
+            externalNetworkID: new FormControl('', Validators.required),
+            externalRouterID: new FormControl('', Validators.required)
         });
         this.kubernetesForm = new FormGroup({
             config: new FormControl('', Validators.required)

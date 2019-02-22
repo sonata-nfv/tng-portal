@@ -71,11 +71,20 @@
     </div>
 
     <div class="sameRow">
-        <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
+        <mat-form-field>
+            <input matInput type="text" placeholder="External network" formControlName="externalNetworkID" required
+                i18n-placeholder="@@externalNetwork" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="External router" formControlName="externalRouterID" required
+                i18n-placeholder="@@externalRouter" />
+        </mat-form-field>
+
+        <!-- <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
             i18n-placeholder="@@selectExternalNetwork"></app-select>
 
         <app-select placeholder="Select an external router" [list]="externalRouters" (selectEvent)="receiveExternalRouter($event)"
-            i18n-placeholder="@@selectExternalRouter"></app-select>
+            i18n-placeholder="@@selectExternalRouter"></app-select> -->
     </div>
 </form>
 
