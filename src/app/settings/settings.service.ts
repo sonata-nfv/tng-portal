@@ -164,4 +164,21 @@ export class SettingsService {
             });
     }
 
+    /**
+     * Deletes a WIM
+     *
+     * @param uuid UUID of the desired WIM.
+     */
+    deleteWim(uuid): Promise<any> {
+        const headers = this.authService.getAuthHeaders();
+        const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
+
+        return this.http.delete(url, { headers: headers }).toPromise()
+            .then(() => {
+                return ('WIM deleted');
+            }).catch(error => {
+                console.error(error);
+            });
+    }
+
 }

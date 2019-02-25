@@ -79,7 +79,15 @@ export class WimComponent implements OnInit, OnDestroy {
     }
 
     deleteWim(uuid) {
-
+        this.settingsService.deleteWim(uuid).then(message => {
+            if (!message) {
+                throw new Error();
+            }
+            this.commonService.openSnackBar(message, '');
+            this.requestWims();
+        }).catch(() => {
+            this.commonService.openSnackBar('There was an error deleting the WIM', '');
+        });
     }
 
     openWim(uuid) {

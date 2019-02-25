@@ -57,10 +57,16 @@ export class VimDetailComponent implements OnInit {
     }
 
     deleteVim() {
+        this.loading = true;
         this.settingsService.deleteVim(this.detail[ 'uuid' ]).then(message => {
+            this.loading = false;
+            if (!message) {
+                throw new Error();
+            }
             this.commonService.openSnackBar(message, '');
             this.close();
         }).catch(() => {
+            this.loading = false;
             this.commonService.openSnackBar('There was an error deleting the VIM', '');
         });
     }
