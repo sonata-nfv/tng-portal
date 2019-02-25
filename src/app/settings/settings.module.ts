@@ -12,6 +12,7 @@ import { VimDetailComponent } from './vim-detail/vim-detail.component';
 import { VimCreateComponent } from './vim-create/vim-create.component';
 import { WimComponent } from './wim/wim.component';
 import { WimDetailComponent } from './wim-detail/wim-detail.component';
+import { WimCreateComponent } from './wim-create/wim-create.component';
 
 import { SettingsService } from './settings.service';
 
@@ -21,7 +22,8 @@ import { SettingsService } from './settings.service';
         VimDetailComponent,
         VimCreateComponent,
         WimComponent,
-        WimDetailComponent
+        WimDetailComponent,
+        WimCreateComponent
     ],
     imports: [
         CommonModule,

@@ -51,7 +51,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
@@ -205,7 +205,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
@@ -515,7 +515,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -1169,11 +1169,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="packages" datatype="html">
@@ -1523,11 +1527,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
           <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
@@ -1538,7 +1546,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
@@ -1588,6 +1596,10 @@
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="password" datatype="html">
         <source>Password</source><target state="final">Password</target>
@@ -1602,6 +1614,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
           <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="configuration" datatype="html">
@@ -1636,6 +1652,10 @@
           <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
@@ -1660,6 +1680,10 @@
         <source>CANCEL</source><target state="final">CANCEL</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
@@ -1716,35 +1740,42 @@
         <source>Private network</source><target state="final">Private network</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="privateNetworkMask" datatype="html">
         <source>Private network mask</source><target state="final">Private network mask</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="selectExternalNetwork" datatype="html">
-        <source>Select an external network</source><target state="final">Select an external network</target>
+      <trans-unit id="externalNetwork" datatype="html">
+        <source>External network</source><target state="final">External network</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
           <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="selectExternalRouter" datatype="html">
-        <source>Select an external router</source><target state="final">Select an external router</target>
+      <trans-unit id="externalRouter" datatype="html">
+        <source>External router</source><target state="final">External router</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="configurationRequired" datatype="html">
         <source>Configuration *</source><target state="final">Configuration *</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createNewWimButton" datatype="html">
+        <source>Create New WIM</source><target state="final">Create New WIM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deleteWim" datatype="html">
@@ -1766,6 +1797,31 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
           <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="wimName" datatype="html">
+        <source>WIM Name</source><target state="final">WIM Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="authKey" datatype="html">
+        <source>Authentication key</source><target state="final">Authentication key</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectVimPlaceholder" datatype="html">
+        <source>Select the VIMs</source><target state="final">Select the VIMs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="validationAndVerification" datatype="html">

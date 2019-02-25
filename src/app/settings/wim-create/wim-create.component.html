@@ -1,0 +1,51 @@
+<h3 class="title3 header-section-name" i18n="@@wim">WIM</h3>
+
+<form [formGroup]="wimForm" class="title-section">
+    <mat-form-field class="title1">
+        <input matInput type="text" placeholder="WIM Name" formControlName="name" required i18n-placeholder="@@wimName" />
+    </mat-form-field>
+
+    <div class="header-buttons">
+        <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+            (click)="createWim()" i18n="@@saveButton">
+            SAVE
+        </button>
+        <button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+    </div>
+</form>
+
+<form [formGroup]="wimForm" class="wimForm">
+    <mat-form-field>
+        <input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required i18n-placeholder="@@endpoint" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@username" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Password" formControlName="password" required i18n-placeholder="@@password" />
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Authentication key" formControlName="authKey" i18n-placeholder="@@authKey" />
+    </mat-form-field>
+
+    <h4 class="title3" *ngIf="vims.length || vimsIncluded.length" i18n="@@vimList">VIM list</h4>
+
+    <app-select *ngIf="vims.length" placeholder="Select the VIMs" [list]="vims" [reset]="vims.length && !vimsIncluded.length"
+        (selectEvent)="receiveWim($event)" i18n-placeholder="@@selectVimPlaceholder">
+    </app-select>
+
+    <ul class="unordered-list">
+        <li class="line" *ngFor="let item of vimsIncluded; let i = index ">
+            <mat-form-field>
+                <input matInput type="text" [value]="item" disabled />
+            </mat-form-field>
+
+            <button (click)="eraseEntry(i)"><i class="wui wui-trash-alt"></i></button>
+        </li>
+    </ul>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

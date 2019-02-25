@@ -33,6 +33,7 @@ export class ConfigService extends Config {
     vimOpenstackSettings = 'settings/vims/heat';
     vimK8sSettings = 'settings/vims/k8s';
     wimSettings = 'settings/wims';
+    tapiSettings = 'settings/wims/tapi';
 
     private configFile = './config.json';
 

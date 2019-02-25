@@ -109,6 +109,9 @@ export class VimCreateComponent implements OnInit {
         this.settingsService
             .postVim(this.vimType, vim)
             .then(message => {
+                if (!message) {
+                    throw new Error();
+                }
                 this.loading = false;
                 this.commonService.openSnackBar(message, '');
                 this.close();

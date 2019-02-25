@@ -233,6 +233,7 @@ p {
 
 // Ordered lists
 ol.list,
+ul.unordered-list,
 dl {
 	display: flex;
 	flex-direction: column;
@@ -240,40 +241,49 @@ dl {
 	padding: 0;
 }
 
-li.line,
-dt {
-	display: flex;
-	flex-direction: row;
-	counter-increment: item;
-	margin-bottom: 10px;
 
-	button {
-		margin: auto;
-		margin-left: 15px;
-		width: 35px;
-		height: 35px;
-		border: none;
-		cursor: pointer;
-		outline: none;
-		background-color: $basic-background-color;
-		box-shadow: 2px 1px 2px 0 $shadow-buttons;
-	}
-
-	.wui-trash-alt:before {
-		font-size: 20px;
-	}
+ol .list li.line,
+dl dt {
+    display: flex;
+    flex-direction: row;
+    counter-increment: item;
+    margin-bottom: 10px;
 }
 
-li.line:before {
-	margin-right: 10px;
-	content: counter(item) '. ';
-	background: $basic-background-color;
-	color: $secondary-font-color-light;
-	width: 1em;
-	font-size: 40px;
-	font-weight: bold;
-	transform: translate(0, 9px);
+ol .list li.line button,
+ul.unordered-list button,
+dl dt button {
+        margin: auto;
+        margin-left: 15px;
+        width: 35px;
+        height: 35px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-color: $basic-background-color;
+        box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+        .wui-trash-alt:before {
+            font-size: 20px;
+        }
+    }
+
+ol .list li.line:before {
+    margin-right: 10px;
+    content: counter(item) '. ';
+    background: $basic-background-color;
+    color: $secondary-font-color-light;
+    width: 1em;
+    font-size: 40px;
+    font-weight: bold;
+    transform: translate(0, 9px);
 }
+
+//Unordered lists
+ul.unordered-list .mat-input-element:disabled {
+    color: $secondary-font-color;
+}
+
 
 // Page subtitle styles
 .subheader {

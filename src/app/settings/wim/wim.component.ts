@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { SettingsService } from '../settings.service';
 import { CommonService } from '../../shared/services/common/common.service';
@@ -10,8 +11,9 @@ import { CommonService } from '../../shared/services/common/common.service';
     styleUrls: [ './wim.component.scss' ],
     encapsulation: ViewEncapsulation.None
 })
-export class WimComponent implements OnInit {
+export class WimComponent implements OnInit, OnDestroy {
     loading: boolean;
+    subscription: Subscription;
     wims: Array<Object>;
     displayedColumns = [
         'name',
@@ -28,6 +30,23 @@ export class WimComponent implements OnInit {
 
     ngOnInit() {
         this.requestWims();
+
+        // Reloads the template list every when children are closed
+        this.subscription = this.router.events.subscribe(event => {
+            if (
+                event instanceof NavigationEnd &&
+                event.url === '/settings/wim' &&
+                this.route.url[ 'value' ].length === 2 &&
+                this.route.url[ 'value' ][ 1 ].path === 'wim'
+            ) {
+                this.requestWims();
+            }
+        });
+    }
+
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     searchFieldData(search) {
@@ -53,6 +72,10 @@ export class WimComponent implements OnInit {
                     this.commonService.openSnackBar('There was an error fetching the WIMs', '');
                 }
             });
+    }
+
+    createNew() {
+        this.router.navigate([ 'new' ], { relativeTo: this.route });
     }
 
     deleteWim(uuid) {

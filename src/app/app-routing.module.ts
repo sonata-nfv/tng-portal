@@ -18,6 +18,7 @@ import { VimDetailComponent } from './settings/vim-detail/vim-detail.component';
 import { VimCreateComponent } from './settings/vim-create/vim-create.component';
 import { WimComponent } from './settings/wim/wim.component';
 import { WimDetailComponent } from './settings/wim-detail/wim-detail.component';
+import { WimCreateComponent } from './settings/wim-create/wim-create.component';
 
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
@@ -98,7 +99,10 @@ const routes: Routes = [
             },
             {
                 path: 'settings/wim', component: WimComponent,
-                children: [ { path: ':id', component: WimDetailComponent } ]
+                children: [
+                    { path: 'new', component: WimCreateComponent },
+                    { path: ':id', component: WimDetailComponent }
+                ]
             },
             // Validation and verification
             { path: 'validation-and-verification', redirectTo: 'validation-and-verification/packages', pathMatch: 'full' },

@@ -146,4 +146,22 @@ export class SettingsService {
             });
     }
 
+    /**
+     * Generates a WIM
+     *
+     * @param wim Data of the desired WIM.
+     */
+    postWim(wim): Promise<any> {
+        const headers = this.authService.getAuthHeaders();
+        const url = this.config.baseSP + this.config.tapiSettings;
+
+        return this.http.post(url, wim, { headers: headers }).toPromise()
+            .then(response => {
+                return ('WIM ' + response[ 'name' ] + ' created');
+            }).catch(error => {
+                console.error(error);
+                return error.error.message;
+            });
+    }
+
 }
