@@ -20,12 +20,16 @@
         <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@type" />
     </mat-form-field>
 
+    <mat-form-field *ngIf="detail['tenant'] && detail['type']!='k8s'">
+        <input matInput placeholder="Tenant" value="{{ detail['tenant'] }}" disabled i18n-placeholder="@@tenant" />
+    </mat-form-field>
+
     <mat-form-field *ngIf="detail['domain'] && detail['type']!='k8s'">
         <input matInput placeholder="Domain" value="{{ detail['domain'] }}" disabled i18n-placeholder="@@domain" />
     </mat-form-field>
 
-    <mat-form-field *ngIf="!loading && detail['name']">
-        <input matInput placeholder="Endpoint" value="{{ detail['endpoint'] || 'Not provided' }}" disabled i18n-placeholder="@@endpoint" />
+    <mat-form-field *ngIf="detail['endpoint']">
+        <input matInput placeholder="Endpoint" value="{{ detail['endpoint'] }}" disabled i18n-placeholder="@@endpoint" />
     </mat-form-field>
 
     <div class="sameRow">
@@ -48,7 +52,36 @@
         </mat-form-field>
     </div>
 
-    <div class="description" *ngIf="detail['config']">
+    <mat-form-field *ngIf="detail['network_endpoint'] && detail['type']!='k8s'">
+        <input matInput placeholder="Network Endpoint" value="{{ detail['network_endpoint'] }}" disabled
+            i18n-placeholder="@@networkEndpoint" />
+    </mat-form-field>
+
+    <div class="sameRow" *ngIf="detail['type']!='k8s'">
+        <mat-form-field *ngIf="detail['private_network_prefix']">
+            <input matInput placeholder="Private network" value="{{ detail['private_network_prefix'] }}" disabled
+                i18n-placeholder="@@privateNetwork" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="detail['private_network_length']">
+            <input matInput placeholder="Private network mask" value="{{ detail['private_network_length'] }}" disabled
+                i18n-placeholder="@@privateNetworkMask" />
+        </mat-form-field>
+    </div>
+
+    <div class="sameRow" *ngIf="detail['type']!='k8s'">
+        <mat-form-field *ngIf="detail['external_network_id']">
+            <input matInput placeholder="External network" value="{{ detail['external_network_id'] }}" disabled
+                i18n-placeholder="@@externalNetwork" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="detail['external_router_id']">
+            <input matInput placeholder="External router" value="{{ detail['external_router_id'] }}" disabled
+                i18n-placeholder="@@externalRouter" />
+        </mat-form-field>
+    </div>
+
+    <div class="description" *ngIf="detail['type'] === 'k8s' && detail['config']">
         <div class="description-title">
             <h4 class="title4" i18n="@@configuration">Configuration</h4>
             <button type="button" (click)="copyToClipboard()" i18n="@@copyConfiguration">Copy configuration</button>
