@@ -1,6 +1,6 @@
 <div class="header-section" *ngIf="detail['name']">
     <h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@wim">WIM</h3>
-    <div class="button-underline">
+    <div *ngIf="detail['type'].trim().toLowerCase() !== 'mock'" class="button-underline">
         <button class="delete-button" (click)="deleteWim()" i18n="@@deleteWim">Delete WIM</button>
         <div class="underline"></div>
     </div>
