@@ -34,7 +34,7 @@ export class WimDetailComponent implements OnInit {
      * @param uuid ID of the selected WIM to be displayed.
      *             Comming from the route.
      */
-    requestWim(uuid) {
+    private requestWim(uuid) {
         this.loading = true;
         this.settingsService
             .getOneWim(uuid)

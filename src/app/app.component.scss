@@ -101,6 +101,12 @@ p {
 	color: $secondary-font-color;
 }
 
+.error {
+    font-size: 13px;
+    color: $primary-font-color-light;
+    text-align: right;
+}
+
 // Title section styles
 .header-section {
 	display: flex;

@@ -60,7 +60,7 @@ export class WimComponent implements OnInit, OnDestroy {
          *                          must be matched by the returned
          *                          list.
          */
-    requestWims(search?) {
+    private requestWims(search?) {
         this.loading = true;
         this.settingsService.getWims(search)
             .then(response => {

@@ -39,7 +39,7 @@ export class WimCreateComponent implements OnInit {
         });
 
         this.wimForm.valueChanges.subscribe(value =>
-            this._onFormChanges(value)
+            this.onFormChanges(value)
         );
     }
 
@@ -51,7 +51,7 @@ export class WimCreateComponent implements OnInit {
      * Generates the HTTP request to get the list of VIMs.
      *
      */
-    requestVims() {
+    private requestVims() {
         this.loading = true;
         this.settingsService.getVims()
             .then(response => {
@@ -68,16 +68,16 @@ export class WimCreateComponent implements OnInit {
     receiveWim(vim) {
         this.vimsIncluded.push(vim);
         this.vims = this.vims.filter(x => x !== vim);
-        this._onFormChanges();
+        this.onFormChanges();
     }
 
     eraseEntry(index) {
         this.vims.push(this.vimsIncluded[ index ]);
         this.vimsIncluded.splice(index, 1);
-        this._onFormChanges();
+        this.onFormChanges();
     }
 
-    private _onFormChanges(values?) {
+    private onFormChanges(values?) {
         this.disabledButton =
             this.wimForm.valid && this.vimsIncluded.length ? false : true;
     }

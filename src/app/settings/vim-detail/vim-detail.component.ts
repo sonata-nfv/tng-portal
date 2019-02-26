@@ -34,7 +34,7 @@ export class VimDetailComponent implements OnInit {
      * @param uuid ID of the selected VIM to be displayed.
      *             Comming from the route.
      */
-    requestVim(uuid) {
+    private requestVim(uuid) {
         this.loading = true;
         this.settingsService
             .getOneVim(uuid)

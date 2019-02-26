@@ -62,7 +62,7 @@ export class VimComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of VIMs.
      */
-    requestVims(search?) {
+    private requestVims(search?) {
         this.loading = true;
         this.settingsService.getVims(search)
             .then(response => {
