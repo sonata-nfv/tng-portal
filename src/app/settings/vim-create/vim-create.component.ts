@@ -52,32 +52,32 @@ export class VimCreateComponent implements OnInit {
         });
 
         this.vimForm.valueChanges.subscribe(value =>
-            this._onFormChanges(value)
+            this.onFormChanges(value)
         );
         this.kubernetesForm.valueChanges.subscribe(value =>
-            this._onFormChanges(value)
+            this.onFormChanges(value)
         );
         this.openstackForm.valueChanges.subscribe(value =>
-            this._onFormChanges(value)
+            this.onFormChanges(value)
         );
     }
 
-    private _onFormChanges(values?) {
-        if (this.vimType === 'Openstack') {
-            this.disabledButton =
-                this.vimForm.valid && this.openstackForm.valid ? false : true;
-        } else {
-            this.disabledButton =
-                this.vimForm.valid && this.kubernetesForm.valid ? false : true;
+    private onFormChanges(values?) {
+        switch (this.vimType) {
+            case 'Openstack':
+                this.disabledButton =
+                    this.vimForm.valid && this.openstackForm.valid ? false : true;
+                break;
+            case 'Kubernetes':
+                this.disabledButton = (this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() ? false : true;
+                break;
+            default:
+                this.disabledButton = false;
+                break;
         }
     }
 
-    receiveType(type) {
-        this.vimType = type;
-        this._onFormChanges();
-    }
-
-    private _getVimData() {
+    private getVimData() {
         const vim = {
             name: this.vimForm.get('name').value,
             city: this.vimForm.get('city').value,
@@ -102,9 +102,23 @@ export class VimCreateComponent implements OnInit {
         return vim;
     }
 
+    receiveType(type) {
+        this.vimType = type;
+        this.onFormChanges();
+    }
+
+    checkJSONValidity() {
+        try {
+            JSON.parse(this.kubernetesForm.get('config').value);
+        } catch (error) {
+            return false;
+        }
+        return true;
+    }
+
     createVim() {
         this.loading = true;
-        const vim = this._getVimData();
+        const vim = this.getVimData();
 
         this.settingsService
             .postVim(this.vimType, vim)

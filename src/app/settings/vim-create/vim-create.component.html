@@ -92,6 +92,7 @@
     <mat-form-field class="description">
         <h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
         <textarea class="content" matInput type="text" formControlName="config"></textarea>
+        <p *ngIf="kubernetesForm.touched && kubernetesForm.valid && !checkJSONValidity()" class="error">*This is not a valid JSON</p>
     </mat-form-field>
 </form>
 
