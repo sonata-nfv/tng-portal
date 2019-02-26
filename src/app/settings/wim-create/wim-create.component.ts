@@ -17,6 +17,8 @@ export class WimCreateComponent implements OnInit {
     disabledButton = true;
     vims = [];
     vimsIncluded = [];
+    wimTypes = [ 'Tapi' ];
+    wimType: string;
 
     constructor(
         private settingsService: SettingsService,
@@ -39,6 +41,10 @@ export class WimCreateComponent implements OnInit {
         this.wimForm.valueChanges.subscribe(value =>
             this._onFormChanges(value)
         );
+    }
+
+    receiveType(type) {
+        this.wimType = type;
     }
 
     /**
