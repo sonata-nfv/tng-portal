@@ -32,7 +32,7 @@
         </li>
     </ol>
 
-    <span class="error-message" *ngIf="error-message" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
+    <span class="error-message" *ngIf="error" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
 
     <div class="addMore" *ngIf="prioritise && datacenters.length > 0">
         <button (click)="addMore()"><i class="wui wui-plus"></i> <span i18n="@@addMoreButton">Add more</span></button>

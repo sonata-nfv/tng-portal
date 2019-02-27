@@ -511,7 +511,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -534,7 +534,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -800,36 +800,36 @@
         <source>Password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="loginButton" datatype="html">
         <source>LOG IN</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="newAccountButton" datatype="html">
         <source>Create a new account</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="helpButton" datatype="html">
         <source>Help?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
@@ -837,31 +837,32 @@
         </context-group>
       </trans-unit>
       <trans-unit id="forgotPasswordButton" datatype="html">
-        <source>Forgot your password?</source>
+        <source>Forgot your
+                password?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="confirmPasswordPlaceholder" datatype="html">
         <source>Confirm Password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="emailPlaceholder" datatype="html">
         <source>Email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="rolePlaceholder" datatype="html">
         <source>Role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageLink" datatype="html">
@@ -869,21 +870,21 @@
                 Terms of Usage. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="registerButton" datatype="html">
         <source>REGISTER</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="haveAnAccountLink" datatype="html">
         <source>I have an account</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tyMessage" datatype="html">
@@ -1438,11 +1439,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="country" datatype="html">
@@ -1453,11 +1454,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="endpoint" datatype="html">
@@ -1468,7 +1469,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
@@ -1484,7 +1485,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
@@ -1507,7 +1508,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="deleteVim" datatype="html">
-        <source>Delete VIM</source>
+        <source>Delete
+            VIM</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
           <context context-type="linenumber">4</context>
@@ -1517,29 +1519,40 @@
         <source>VIM ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tenant" datatype="html">
+        <source>Tenant</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="domain" datatype="html">
         <source>Domain</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="username" datatype="html">
         <source>Username</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -1547,18 +1560,18 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="password" datatype="html">
         <source>Password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
@@ -1566,21 +1579,76 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="networkEndpoint" datatype="html">
+        <source>Network Endpoint</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privateNetwork" datatype="html">
+        <source>Private network</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privateNetworkMask" datatype="html">
+        <source>Private network mask</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="externalNetwork" datatype="html">
+        <source>External network</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="externalRouter" datatype="html">
+        <source>External router</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="configuration" datatype="html">
         <source>Configuration</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="copyConfiguration" datatype="html">
         <source>Copy configuration</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-detail/vim-detail.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vimName" datatype="html">
@@ -1669,53 +1737,11 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="tenant" datatype="html">
-        <source>Tenant</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="networkEndpoint" datatype="html">
-        <source>Network endpoint</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="privateNetwork" datatype="html">
-        <source>Private network</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="privateNetworkMask" datatype="html">
-        <source>Private network mask</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">68</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="externalNetwork" datatype="html">
-        <source>External network</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">75</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="externalRouter" datatype="html">
-        <source>External router</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">79</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="configurationRequired" datatype="html">
         <source>Configuration *</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-create/vim-create.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createNewWimButton" datatype="html">
@@ -1747,7 +1773,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="wimName" datatype="html">
@@ -1757,18 +1783,25 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="selectWimTypePlaceholder" datatype="html">
+        <source>Select a WIM type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="authKey" datatype="html">
         <source>Authentication key</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectVimPlaceholder" datatype="html">
         <source>Select the VIMs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="validationAndVerification" datatype="html">
@@ -2144,14 +2177,14 @@
         <source>*Please select a datacenter to add</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addMoreButton" datatype="html">
         <source>Add more</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsPlaceholder" datatype="html">
