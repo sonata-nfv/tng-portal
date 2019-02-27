@@ -72,6 +72,8 @@
         </mat-form-field>
     </div>
     <p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+    <p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column">
+        *This is not a valid IP mask (i.e. /24)</p>
 
     <div class="sameRow">
         <mat-form-field>

@@ -31,19 +31,25 @@ app-vim-create {
   }
 
   .vimForm {
-    width: 65%;
+    width: 50vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
 
     app-select,
     .mat-form-field {
         width: 20vw;
-        margin-right: 20px;
+        margin-right: 1vw;
     }
 
     .error-message.input-error {
         width: 20vw;
-        margin-top: -18px;
+        margin-top: -17px;
+    }
+
+    .error-message.input-error.second-column {
+        width: 42vw;
+        margin-left: 20px;
+        margin-top: -29px;
     }
 
     .sameRow p {

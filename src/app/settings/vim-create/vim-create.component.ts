@@ -50,7 +50,7 @@ export class VimCreateComponent implements OnInit {
                 Validators.required,
                 Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
             ]),
-            privateNetworkMask: new FormControl('', Validators.required),
+            privateNetworkMask: new FormControl('', [ Validators.required, Validators.pattern('([1-9]|1[0-9]|2[0-9]|3[0])') ]),
             externalNetworkID: new FormControl('', Validators.required),
             externalRouterID: new FormControl('', Validators.required)
         });
