@@ -26,7 +26,7 @@
     </ng-container>
     <ng-container matColumnDef="endpoint">
         <th mat-header-cell *matHeaderCellDef i18n="@@endpoint">Endpoint</th>
-        <td mat-cell *matCellDef="let element">{{ element.endpoint }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.endpoint || "Not provided" }}</td>
     </ng-container>
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef></th>

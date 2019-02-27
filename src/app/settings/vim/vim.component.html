@@ -26,11 +26,11 @@
     </ng-container>
     <ng-container matColumnDef="city">
         <th mat-header-cell *matHeaderCellDef i18n="@@city">City</th>
-        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.city || "Not provided" }}</td>
     </ng-container>
     <ng-container matColumnDef="country">
         <th mat-header-cell *matHeaderCellDef i18n="@@country">Country</th>
-        <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.country || "Not provided" }}</td>
     </ng-container>
     <ng-container matColumnDef="endpoint">
         <th mat-header-cell *matHeaderCellDef i18n="@@endpoint">Endpoint</th>
