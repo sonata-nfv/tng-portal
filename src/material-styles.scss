@@ -72,7 +72,10 @@ form .sameRow {
 	text-align: left;
 }
 
-.mat-form-field-invalid .mat-input-element,
+.mat-form-field-invalid .mat-input-element {
+    color: $primary-font-color;
+}
+
 .mat-form-field.mat-form-field-invalid .mat-form-field-label {
 	color: $form-focus-label;
 	caret-color: $form-focus-label;

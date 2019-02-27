@@ -2,21 +2,23 @@
     <div class="title-section"></div>
     <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)" class="form">
         <mat-form-field [ngClass]="{ 'error-form-field': userErrorString }">
-            <input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@usernamePlaceholder" />
+            <input matInput type="text" placeholder="Username" formControlName="username" required
+                i18n-placeholder="@@usernamePlaceholder" />
         </mat-form-field>
-        <p class="error" *ngIf="userErrorString" [innerText]="userErrorString"></p>
+        <p class="error-message" *ngIf="userErrorString" [innerText]="userErrorString"></p>
         <mat-form-field [ngClass]="{ 'error-form-field': passwordErrorString }">
-            <input matInput type="password" placeholder="Password" formControlName="password" required i18n-placeholder="@@passwordPlaceholder" />
+            <input matInput type="password" placeholder="Password" formControlName="password" required
+                i18n-placeholder="@@passwordPlaceholder" />
         </mat-form-field>
         <mat-form-field [ngClass]="{ 'error-form-field': passwordErrorString }">
             <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required
                 i18n-placeholder="@@confirmPasswordPlaceholder" />
         </mat-form-field>
-        <p class="error" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
+        <p class="error-message" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
         <mat-form-field [ngClass]="{ 'error-form-field': emailErrorString }">
             <input matInput type="email" placeholder="Email" formControlName="email" required i18n-placeholder="@@emailPlaceholder" />
         </mat-form-field>
-        <p class="error" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
+        <p class="error-message" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
         <app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"
             i18n-placeholder="@@rolePlaceholder"></app-select>
         <mat-checkbox class="terms-usage" formControlName="termsOfUsage" required i18n-label="@@termsOfUsageConfirmMessage">

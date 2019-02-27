@@ -23,6 +23,7 @@
     <mat-form-field>
         <input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required i18n-placeholder="@@endpoint" />
     </mat-form-field>
+    <p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
     <div class="sameRow">
         <mat-form-field>
@@ -57,6 +58,7 @@
     <mat-form-field>
         <input matInput type="text" placeholder="Network endpoint" formControlName="networkEndpoint" i18n-placeholder="@@networkEndpoint" />
     </mat-form-field>
+    <p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
     <div class="sameRow">
         <mat-form-field>
@@ -69,6 +71,7 @@
                 i18n-placeholder="@@privateNetworkMask" />
         </mat-form-field>
     </div>
+    <p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
     <div class="sameRow">
         <mat-form-field>
@@ -92,7 +95,8 @@
     <mat-form-field class="description">
         <h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
         <textarea class="content" matInput type="text" formControlName="config"></textarea>
-        <p *ngIf="kubernetesForm.touched && kubernetesForm.valid && !checkJSONValidity()" class="error">*This is not a valid JSON</p>
+        <p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON
+        </p>
     </mat-form-field>
 </form>
 

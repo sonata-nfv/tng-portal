@@ -34,15 +34,22 @@ export class VimCreateComponent implements OnInit {
             name: new FormControl('', Validators.required),
             city: new FormControl(),
             country: new FormControl(),
-            endpoint: new FormControl('', Validators.required)
+            endpoint: new FormControl('', [
+                Validators.required,
+                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+            ])
         });
         this.openstackForm = new FormGroup({
             username: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required),
             tenant: new FormControl('', Validators.required),
             domain: new FormControl(),
-            networkEndpoint: new FormControl(),
-            privateNetwork: new FormControl('', Validators.required),
+            networkEndpoint: new FormControl('',
+                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')),
+            privateNetwork: new FormControl('', [
+                Validators.required,
+                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+            ]),
             privateNetworkMask: new FormControl('', Validators.required),
             externalNetworkID: new FormControl('', Validators.required),
             externalRouterID: new FormControl('', Validators.required)

@@ -27,13 +27,12 @@
         </li>
 
         <li class="line" *ngIf="datacenters.length > 0">
-            <app-select class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="resetDatacenter"
-                [required]="false" (selectEvent)="receiveDatecenter($event)"
-                i18n-placeholder="@@selectDatacenterPlaceholder"></app-select>
+            <app-select class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="resetDatacenter" [required]="false"
+                (selectEvent)="receiveDatecenter($event)" i18n-placeholder="@@selectDatacenterPlaceholder"></app-select>
         </li>
     </ol>
 
-    <span class="error" *ngIf="error" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
+    <span class="error-message" *ngIf="error-message" i18n="@@pleaseSelectDatacenterMsg">*Please select a datacenter to add</span>
 
     <div class="addMore" *ngIf="prioritise && datacenters.length > 0">
         <button (click)="addMore()"><i class="wui wui-plus"></i> <span i18n="@@addMoreButton">Add more</span></button>
