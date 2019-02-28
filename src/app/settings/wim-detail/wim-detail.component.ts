@@ -53,6 +53,10 @@ export class WimDetailComponent implements OnInit {
             });
     }
 
+    copyToClipboard(value) {
+        this.utilsService.copyToClipboard(value);
+    }
+
     deleteWim() {
         this.loading = true;
         this.settingsService.deleteWim(this.detail[ 'uuid' ]).then(message => {

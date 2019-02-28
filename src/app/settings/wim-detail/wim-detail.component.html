@@ -14,6 +14,10 @@
 <form class="detail">
     <mat-form-field *ngIf="detail['uuid']">
         <input matInput placeholder="WIM ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@wimID" />
+        <button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+            i18n-matTooltip="@@copy">
+            <i class="wui wui-copy-alt"></i>
+        </button>
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['type']">
@@ -22,6 +26,10 @@
 
     <mat-form-field *ngIf="!loading">
         <input matInput placeholder="Endpoint" value="{{ detail['endpoint'] || 'Not provided' }}" disabled i18n-placeholder="@@endpoint" />
+        <button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['endpoint'])"
+            i18n-matTooltip="@@copy">
+            <i class="wui wui-copy-alt"></i>
+        </button>
     </mat-form-field>
 
     <div class="sameRow" *ngIf="detail['username'] || detail['password']">

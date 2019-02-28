@@ -570,7 +570,7 @@ ul.unordered-list .mat-input-element:disabled {
 //////////////////////////////////////
 // Button for icons
 //////////////////////////////////////
-.icon-button {
+.icon-button-shadow {
     border: none;
 	cursor: pointer;
     outline: none;
@@ -609,4 +609,9 @@ ul.unordered-list .mat-input-element:disabled {
 		font-size: 10px;
 		color: $primary-color-light;
 	}
+}
+
+.icon-button-shadow .wui-copy-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
 }
