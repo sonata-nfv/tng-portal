@@ -15,7 +15,9 @@ body {
 	margin: 0;
 }
 
+//////////////////////////////////////
 // Generic scrollbar for the app
+//////////////////////////////////////
 ::-webkit-scrollbar {
 	width: 10px;
 	padding-top: 100px;
@@ -33,7 +35,9 @@ body {
 	border-radius: 10px;
 }
 
+//////////////////////////////////////
 // App basic background
+//////////////////////////////////////
 app-root {
 	position: absolute;
 	display: flex;
@@ -47,6 +51,10 @@ app-root {
 	background-size: cover;
 }
 
+//////////////////////////////////////
+// Menu
+//////////////////////////////////////
+
 // Set index dimenssions to enable menu opening
 app-index {
 	display: flex;
@@ -54,7 +62,9 @@ app-index {
 	width: 100%;
 }
 
-// Spinner styles to center in component
+//////////////////////////////////////
+// Spinner centering in components
+//////////////////////////////////////
 app-spinner {
 	position: absolute;
 	top: 50%;
@@ -63,7 +73,9 @@ app-spinner {
 	-ms-transform: translate(-50%, -50%);
 }
 
-// Title and font styles
+//////////////////////////////////////
+// Titles and fonts
+//////////////////////////////////////
 .title1 {
 	color: $secondary-font-color-light;
 	font-size: 37px;
@@ -107,7 +119,9 @@ p {
     text-align: right;
 }
 
-// Title section styles
+//////////////////////////////////////
+// Page header-subheader sections
+//////////////////////////////////////
 .header-section {
 	display: flex;
     flex-direction: row;
@@ -237,61 +251,7 @@ p {
 	margin-bottom: 3px;
 }
 
-// Ordered lists
-ol.list,
-ul.unordered-list,
-dl {
-	display: flex;
-	flex-direction: column;
-	list-style: none;
-	padding: 0;
-}
-
-
-ol .list li.line,
-dl dt {
-    display: flex;
-    flex-direction: row;
-    counter-increment: item;
-    margin-bottom: 10px;
-}
-
-ol .list li.line button,
-ul.unordered-list button,
-dl dt button {
-        margin: auto;
-        margin-left: 15px;
-        width: 35px;
-        height: 35px;
-        border: none;
-        cursor: pointer;
-        outline: none;
-        background-color: $basic-background-color;
-        box-shadow: 2px 1px 2px 0 $shadow-buttons;
-
-        .wui-trash-alt:before {
-            font-size: 20px;
-        }
-    }
-
-ol .list li.line:before {
-    margin-right: 10px;
-    content: counter(item) '. ';
-    background: $basic-background-color;
-    color: $secondary-font-color-light;
-    width: 1em;
-    font-size: 40px;
-    font-weight: bold;
-    transform: translate(0, 9px);
-}
-
-//Unordered lists
-ul.unordered-list .mat-input-element:disabled {
-    color: $secondary-font-color;
-}
-
-
-// Page subtitle styles
+// Page subtitle section
 .subheader {
 	display: flex;
 	flex-direction: row;
@@ -315,7 +275,9 @@ ul.unordered-list .mat-input-element:disabled {
 	}
 }
 
-// Set styles for version circles
+//////////////////////////////////////
+// Version and iteration circles
+//////////////////////////////////////
 .bubbleDiv {
 	display: flex;
 	flex-direction: column;
@@ -348,7 +310,9 @@ ul.unordered-list .mat-input-element:disabled {
 	}
 }
 
-// Set tools bar (search and reload) styles
+//////////////////////////////////////
+// Tools bar (search and reload)
+//////////////////////////////////////
 .tools {
 	display: flex;
 	justify-content: center;
@@ -357,38 +321,9 @@ ul.unordered-list .mat-input-element:disabled {
 	margin-top: 5vh;
 }
 
-.reload {
-	border: none;
-	cursor: pointer;
-	outline: none;
-	position: absolute;
-	right: 6.5vw;
-	background-color: $basic-background-color;
-	box-shadow: 2px 1px 2px 0 $shadow-buttons;
-
-	.wui-undo::before {
-		font-size: 20px;
-		color: $reload-color;
-	}
-}
-
-// Close icon
-.closeIcon {
-	position: absolute;
-	padding: 8px;
-	border: none;
-	cursor: pointer;
-	outline: none;
-	color: $primary-color-light;
-	background-color: $basic-background-color;
-
-	i:before {
-		font-size: 10px;
-		color: $primary-color-light;
-	}
-}
-
-// Description field in detailed views and instantiations
+//////////////////////////////////////
+// Description fields
+//////////////////////////////////////
 .description {
 	display: flex;
 	flex-direction: column;
@@ -482,7 +417,9 @@ ul.unordered-list .mat-input-element:disabled {
 	}
 }
 
-// Styles for advanced section in detailed views
+//////////////////////////////////////
+// Advanced section: detailed views
+//////////////////////////////////////
 .advanceSection {
 	display: flex;
 	flex-direction: column;
@@ -532,7 +469,9 @@ ul.unordered-list .mat-input-element:disabled {
     }
 }
 
+//////////////////////////////////////
 // No results found
+//////////////////////////////////////
 .no-results-container {
     display: flex;
     flex-direction: row;
@@ -551,7 +490,9 @@ ul.unordered-list .mat-input-element:disabled {
     }
 }
 
+//////////////////////////////////////
 // JSON viewer styles  
+//////////////////////////////////////
 ngx-json-viewer {
     .ngx-json-viewer[_ngcontent-c11] {
         height: auto; 
@@ -567,4 +508,105 @@ ngx-json-viewer {
             color: $primary-font-color;
         }
     }
+}
+
+//////////////////////////////////////
+// Lists 
+//////////////////////////////////////
+
+// Ordered lists
+ol.list,
+ul.unordered-list,
+dl {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0;
+}
+
+
+ol .list li.line,
+dl dt {
+    display: flex;
+    flex-direction: row;
+    counter-increment: item;
+    margin-bottom: 10px;
+}
+
+ol .list li.line button,
+ul.unordered-list button,
+dl dt button {
+        margin: auto;
+        margin-left: 15px;
+        width: 35px;
+        height: 35px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-color: $basic-background-color;
+        box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+        .wui-trash-alt:before {
+            font-size: 20px;
+        }
+    }
+
+ol .list li.line:before {
+    margin-right: 10px;
+    content: counter(item) '. ';
+    background: $basic-background-color;
+    color: $secondary-font-color-light;
+    width: 1em;
+    font-size: 40px;
+    font-weight: bold;
+    transform: translate(0, 9px);
+}
+
+//Unordered lists
+ul.unordered-list .mat-input-element:disabled {
+    color: $secondary-font-color;
+}
+
+//////////////////////////////////////
+// Button for icons
+//////////////////////////////////////
+.icon-button {
+    border: none;
+	cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
+}
+
+//////////////////////////////////////
+// Icons
+//////////////////////////////////////
+.reload {
+	border: none;
+	cursor: pointer;
+	outline: none;
+	position: absolute;
+	right: 6.5vw;
+	background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+	.wui-undo::before {
+		font-size: 20px;
+		color: $reload-color;
+	}
+}
+
+.closeIcon {
+	position: absolute;
+	padding: 8px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	color: $primary-color-light;
+	background-color: $basic-background-color;
+
+	i:before {
+		font-size: 10px;
+		color: $primary-color-light;
+	}
 }
