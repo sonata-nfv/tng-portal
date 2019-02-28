@@ -52,8 +52,12 @@ export class VimDetailComponent implements OnInit {
             });
     }
 
-    copyToClipboard() {
-        this.utilsService.copyToClipboard(JSON.stringify(this.detail[ 'config' ]));
+    copyToClipboard(value) {
+        this.utilsService.copyToClipboard(value);
+    }
+
+    copyJSONToClipboard(value) {
+        this.utilsService.copyToClipboard(JSON.stringify(value));
     }
 
     deleteVim() {
