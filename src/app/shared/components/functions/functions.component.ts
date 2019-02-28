@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { UtilsService } from '../../services/common/utils.service';
 import { CommonService } from '../../services/common/common.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class FunctionsComponent implements OnInit {
     displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ];
 
     constructor(
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private router: Router,
         private route: ActivatedRoute
@@ -49,7 +51,7 @@ export class FunctionsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

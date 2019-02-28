@@ -2,8 +2,9 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
     selector: 'app-runtime-policies',
@@ -33,6 +34,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private servicePlatformService: ServicePlatformService
     ) { }
@@ -99,7 +101,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -122,11 +124,11 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
                     x => x.uuid === policy.uuid
                 ).default = !policy.default;
 
-                this.commonService.openSnackBar(response[ 'message' ], '');
+                this.utilsService.openSnackBar(response[ 'message' ], '');
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -159,7 +161,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         };
 
         this.policiesDisplayed = this.policies.filter(x =>
-            this.commonService.compareObjects(x.ns, ns)
+            this.utilsService.compareObjects(x.ns, ns)
         );
     }
 
@@ -169,12 +171,12 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
         this.servicePlatformService
             .deleteOneRuntimePolicy(policy.uuid)
             .then(response => {
-                this.commonService.openSnackBar(response[ 'message' ], '');
+                this.utilsService.openSnackBar(response[ 'message' ], '');
                 this.requestRuntimePolicies();
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ServiceManagementService } from '../service-management.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class NsInstantiateDialogComponent implements OnInit {
     slasWithUUID = new Array();
 
     constructor(
+        private utilsService: UtilsService,
         private commonService: CommonService,
         public dialogRef: MatDialogRef<NsInstantiateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -59,7 +61,7 @@ export class NsInstantiateDialogComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -121,13 +123,13 @@ export class NsInstantiateDialogComponent implements OnInit {
                     .map(x => x.uuid)[ 0 ]
             )
             .then(response => {
-                this.commonService.openSnackBar(
+                this.utilsService.openSnackBar(
                     'Instantiating ' + response + '...',
                     ''
                 );
             })
             .catch(err => {
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

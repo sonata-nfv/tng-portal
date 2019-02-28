@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { CommonService } from '../shared/services/common/common.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class ValidationAndVerificationPlatformService {
@@ -15,7 +15,7 @@ export class ValidationAndVerificationPlatformService {
         private authService: AuthService,
         private config: ConfigService,
         private http: HttpClient,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     /**
@@ -48,7 +48,7 @@ export class ValidationAndVerificationPlatformService {
                                     name: item.testd.name,
                                     vendor: item.testd.vendor,
                                     version: item.testd.version,
-                                    status: this.commonService.parseString(item.status)
+                                    status: this.utilsService.parseString(item.status)
                                 };
                             })
                         );
@@ -84,8 +84,8 @@ export class ValidationAndVerificationPlatformService {
                         author: response[ 'testd' ][ 'author' ],
                         description: response[ 'testd' ][ 'description' ],
                         createdAt: response[ 'created_at' ],
-                        status: this.commonService.parseString(response[ 'status' ]),
-                        lastTimeExecuted: this.commonService.formatUTCDate(
+                        status: this.utilsService.parseString(response[ 'status' ]),
+                        lastTimeExecuted: this.utilsService.formatUTCDate(
                             response[ 'last_time_executed' ]
                         )
                         // services: response['testd']
@@ -155,9 +155,9 @@ export class ValidationAndVerificationPlatformService {
                                 return {
                                     uuid: item.uuid,
                                     serviceUUID: item.service_uuid,
-                                    createdAt: this.commonService.formatUTCDate(item.created_at),
+                                    createdAt: this.utilsService.formatUTCDate(item.created_at),
                                     testUUID: item.test_uuid,
-                                    status: this.commonService.parseString(item.status)
+                                    status: this.utilsService.parseString(item.status)
                                 };
                             })
                         );
@@ -188,8 +188,8 @@ export class ValidationAndVerificationPlatformService {
                 .then(response => {
                     resolve({
                         uuid: response[ 'uuid' ],
-                        status: this.commonService.parseString(response[ 'status' ]),
-                        updatedAt: this.commonService.formatUTCDate(response[ 'updated_at' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
+                        updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         testerResultText: response[ 'tester_result_text' ],
                         sterr: response[ 'sterr' ],
                         details: response[ 'details' ]

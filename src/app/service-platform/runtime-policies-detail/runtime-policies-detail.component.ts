@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
+        private utilsService: UtilsService,
         private commonService: CommonService
     ) { }
 
@@ -66,12 +68,12 @@ export class RuntimePoliciesDetailComponent implements OnInit {
                     })
                     .catch(err => {
                         this.loading = false;
-                        this.commonService.openSnackBar(err, '');
+                        this.utilsService.openSnackBar(err, '');
                     });
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }
@@ -134,11 +136,11 @@ export class RuntimePoliciesDetailComponent implements OnInit {
             .then(response => {
                 this.loading = false;
                 this.defaultPolicy = value;
-                this.commonService.openSnackBar(response[ 'message' ], '');
+                this.utilsService.openSnackBar(response[ 'message' ], '');
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -148,11 +150,11 @@ export class RuntimePoliciesDetailComponent implements OnInit {
             .bindRuntimePolicy(this.detail[ 'uuid' ], slaUUID, this.detail[ 'nsUUID' ])
             .then(response => {
                 this.loading = false;
-                this.commonService.openSnackBar(response[ 'message' ], '');
+                this.utilsService.openSnackBar(response[ 'message' ], '');
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

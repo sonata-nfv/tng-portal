@@ -9,9 +9,9 @@ import {
 } from '@angular/animations';
 
 import { ServiceManagementService } from '../service-management.service';
-import { CommonService } from '../../shared/services/common/common.service';
 import { CustomDataSource } from './custom-data-source.component';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-network-service-instances-detail',
@@ -47,7 +47,7 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private dialogData: DialogDataService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private serviceManagementService: ServiceManagementService
     ) { }
 
@@ -84,13 +84,13 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
                         })
                         .catch(err => {
                             this.loading = false;
-                            this.commonService.openSnackBar(err, '');
+                            this.utilsService.openSnackBar(err, '');
                         });
                 }
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }
@@ -104,10 +104,10 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
             this.serviceManagementService
                 .postOneNSInstanceTermination(this.detail[ 'uuid' ])
                 .then(response => {
-                    this.commonService.openSnackBar(response, '');
+                    this.utilsService.openSnackBar(response, '');
                 })
                 .catch(err => {
-                    this.commonService.openSnackBar(err, '');
+                    this.utilsService.openSnackBar(err, '');
                 });
         });
     }

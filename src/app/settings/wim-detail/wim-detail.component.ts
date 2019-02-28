@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { SettingsService } from '../settings.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-wim-detail',
@@ -16,7 +16,7 @@ export class WimDetailComponent implements OnInit {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -60,11 +60,11 @@ export class WimDetailComponent implements OnInit {
             if (!message) {
                 throw new Error();
             }
-            this.commonService.openSnackBar(message, '');
+            this.utilsService.openSnackBar(message, '');
             this.close();
         }).catch(() => {
             this.loading = false;
-            this.commonService.openSnackBar('There was an error deleting the WIM', '');
+            this.utilsService.openSnackBar('There was an error deleting the WIM', '');
         });
     }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
 
 import { ConfigService } from '../config/config.service';
 import { AuthService } from '../../../authentication/auth.service';
+import { UtilsService } from './utils.service';
 
 @Injectable()
 export class CommonService {
@@ -13,94 +13,10 @@ export class CommonService {
 
     constructor(
         private authService: AuthService,
+        private utilsService: UtilsService,
         private config: ConfigService,
         private http: HttpClient,
-        public snackBar: MatSnackBar
     ) { }
-
-    /**
-     * Formats a string so that only the first letter is a capital one
-     *
-     * @param str string to parse
-     */
-    parseString(str): string {
-        let res = '';
-
-        if (str.includes('_')) {
-            str = str.replace('_', ' ');
-        }
-        if (str.includes(' ')) {
-            const parts = str.split(' ');
-
-            parts.forEach(part => {
-                res = res.concat(
-                    part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + ' '
-                );
-            });
-        } else {
-            res = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-        }
-        return res;
-    }
-
-    /**
-     * Copies the selected value to the clipboard
-     *
-     * @param value Value to copy to clipboard
-     */
-    copyToClipboard(value) {
-        const el = document.createElement('textarea');
-        el.value = value;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        this.openSnackBar('Copied', '');
-    }
-
-    /**
-     * Opens a snack bar for notifications on the bottom of the screen
-     *
-     * @param message Message to be displayed
-     * @param action Action displayed in the button
-     */
-    openSnackBar(message: string, action: string) {
-        this.snackBar.open(message, action, {
-            duration: 5000
-        });
-    }
-
-    /**
-     * Compares two objects property to property
-     *
-     * @param obj1 First object to compare
-     * @param obj2 Second object to compare
-     */
-    compareObjects(obj1, obj2) {
-        const obj1Props = Object.getOwnPropertyNames(obj1);
-        const obj2Props = Object.getOwnPropertyNames(obj2);
-
-        if (obj1Props.length !== obj2Props.length) {
-            return false;
-        }
-
-        obj1Props.forEach(prop => {
-            if (obj1[ prop ] !== obj2[ prop ]) {
-                return false;
-            }
-        });
-
-        return true;
-    }
-
-    /**
-     * Prepares the received date to be displayed in the screen
-     *
-     * @param dateIn Date to be displayed
-     */
-    formatUTCDate(dateIn) {
-        return new Date(Date.parse(dateIn)).toUTCString();
-    }
 
     /**
      * Retrieves a list of Packages.
@@ -141,8 +57,8 @@ export class CommonService {
                                     name: item.pd.name,
                                     vendor: item.pd.vendor,
                                     version: item.pd.version,
-                                    createdAt: this.formatUTCDate(item.created_at),
-                                    status: this.parseString(item.status),
+                                    createdAt: this.utilsService.formatUTCDate(item.created_at),
+                                    status: this.utilsService.parseString(item.status),
                                     type: 'Public'
                                 };
                             })
@@ -175,11 +91,11 @@ export class CommonService {
                         uuid: response[ 'uuid' ],
                         name: response[ 'pd' ][ 'name' ],
                         author: response[ 'pd' ][ 'maintainer' ],
-                        createdAt: this.formatUTCDate(response[ 'created_at' ]),
-                        updatedAt: this.formatUTCDate(response[ 'updated_at' ]),
+                        createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+                        updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         vendor: response[ 'pd' ][ 'vendor' ],
                         version: response[ 'pd' ][ 'version' ],
-                        status: this.parseString(response[ 'status' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
                         type: 'Public',
                         ns: this.getPackageContent(response[ 'pd' ][ 'package_content' ], 'ns'),
                         vnf: this.getPackageContent(
@@ -261,7 +177,7 @@ export class CommonService {
                                     uuid: item.uuid,
                                     name: item.vnfd.name,
                                     vendor: item.vnfd.vendor,
-                                    status: this.parseString(item.status),
+                                    status: this.utilsService.parseString(item.status),
                                     version: item.vnfd.version,
                                     type: 'public'
                                 };
@@ -306,7 +222,7 @@ export class CommonService {
                                     version: item.slad.version,
                                     nsUUID: item.slad.sla_template.ns.ns_uuid,
                                     ns: item.slad.sla_template.ns.ns_name,
-                                    expirationDate: this.formatUTCDate(
+                                    expirationDate: this.utilsService.formatUTCDate(
                                         item.slad.sla_template.valid_until
                                     )
                                 };
@@ -359,7 +275,7 @@ export class CommonService {
                                 serviceId: item.uuid,
                                 vendor: item.nsd.vendor,
                                 version: item.nsd.version,
-                                status: this.parseString(item.status),
+                                status: this.utilsService.parseString(item.status),
                                 licenses: 'None',
                                 slas: '/service-platform/slas/sla-templates'
                             }))
@@ -396,13 +312,13 @@ export class CommonService {
                             name: response[ 'nsd' ][ 'name' ],
                             author: response[ 'nsd' ][ 'author' ],
                             version: response[ 'nsd' ][ 'version' ],
-                            status: this.parseString(response[ 'status' ]),
+                            status: this.utilsService.parseString(response[ 'status' ]),
                             vendor: response[ 'nsd' ][ 'vendor' ],
                             serviceID: response[ 'uuid' ],
                             type: response[ 'user_licence' ],
                             description: response[ 'nsd' ][ 'description' ],
-                            createdAt: this.formatUTCDate(response[ 'created_at' ]),
-                            updatedAt: this.formatUTCDate(response[ 'updated_at' ]),
+                            createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+                            updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                             vnf: response[ 'nsd' ][ 'network_functions' ]
                         });
                     } else {
@@ -443,9 +359,9 @@ export class CommonService {
                                 requestId: item.id,
                                 name: item.name,
                                 serviceName: item[ 'service' ] ? item.service.name : this.NA,
-                                type: this.parseString(item.request_type),
-                                createdAt: this.formatUTCDate(item.created_at),
-                                status: this.parseString(item.status)
+                                type: this.utilsService.parseString(item.request_type),
+                                createdAt: this.utilsService.formatUTCDate(item.created_at),
+                                status: this.utilsService.parseString(item.status)
                             }))
                         );
                     } else {
@@ -477,9 +393,9 @@ export class CommonService {
                         resolve({
                             requestUUID: response[ 'id' ],
                             name: response[ 'name' ],
-                            type: this.parseString(response[ 'request_type' ]),
-                            updatedAt: this.formatUTCDate(response[ 'updated_at' ]),
-                            status: this.parseString(response[ 'status' ]),
+                            type: this.utilsService.parseString(response[ 'request_type' ]),
+                            updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
+                            status: this.utilsService.parseString(response[ 'status' ]),
                             slaUUID: response[ 'sla_id' ],
                             serviceVendor: response[ 'service' ]
                                 ? response[ 'service' ][ 'vendor' ]

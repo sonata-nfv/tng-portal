@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { SettingsService } from '../settings.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-vim',
@@ -26,7 +26,7 @@ export class VimComponent implements OnInit, OnDestroy {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -71,7 +71,7 @@ export class VimComponent implements OnInit, OnDestroy {
                     this.vims = response;
                 } else {
                     this.loading = false;
-                    this.commonService.openSnackBar('There was an error fetching the VIMs', '');
+                    this.utilsService.openSnackBar('There was an error fetching the VIMs', '');
                 }
             });
     }
@@ -85,10 +85,10 @@ export class VimComponent implements OnInit, OnDestroy {
             if (!message) {
                 throw new Error();
             }
-            this.commonService.openSnackBar(message, '');
+            this.utilsService.openSnackBar(message, '');
             this.requestVims();
         }).catch(() => {
-            this.commonService.openSnackBar('There was an error deleting the VIM', '');
+            this.utilsService.openSnackBar('There was an error deleting the VIM', '');
         });
     }
 

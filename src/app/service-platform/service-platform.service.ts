@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { CommonService } from '../shared/services/common/common.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class ServicePlatformService {
@@ -12,7 +12,7 @@ export class ServicePlatformService {
     // pagination: string = '?page_size=20&page_number=1';
 
     constructor(
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private authService: AuthService,
         private config: ConfigService,
         private http: HttpClient
@@ -36,12 +36,12 @@ export class ServicePlatformService {
                         uuid: response[ 'uuid' ],
                         name: response[ 'vnfd' ][ 'name' ],
                         author: response[ 'vnfd' ][ 'author' ],
-                        createdAt: this.commonService.formatUTCDate(response[ 'created_at' ]),
-                        updatedAt: this.commonService.formatUTCDate(response[ 'updated_at' ]),
+                        createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+                        updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         vendor: response[ 'vnfd' ][ 'vendor' ],
                         version: response[ 'vnfd' ][ 'version' ],
                         type: 'Public',
-                        status: this.commonService.parseString(response[ 'status' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
                         description: response[ 'vnfd' ][ 'description' ]
                     });
                 })
@@ -68,7 +68,7 @@ export class ServicePlatformService {
                         name: response[ 'slad' ][ 'name' ],
                         vendor: response[ 'slad' ][ 'vendor' ],
                         author: response[ 'slad' ][ 'author' ],
-                        createdAt: this.commonService.formatUTCDate(response[ 'created_at' ]),
+                        createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
                         expirationDate: new Date(
                             Date.parse(response[ 'slad' ][ 'sla_template' ][ 'valid_until' ])
                         ),
@@ -204,8 +204,8 @@ export class ServicePlatformService {
                                 ns: item.ns_name,
                                 ns_uuid: item.ns_uuid,
                                 customer: item.cust_uuid,
-                                date: this.commonService.formatUTCDate(item.sla_date),
-                                status: this.commonService.parseString(item.sla_status)
+                                date: this.utilsService.formatUTCDate(item.sla_date),
+                                status: this.utilsService.parseString(item.sla_status)
                             };
                         })
                     );
@@ -240,11 +240,11 @@ export class ServicePlatformService {
                         uuid: response[ 'uuid' ],
                         name: response[ 'slad' ][ 'name' ],
                         author: response[ 'slad' ][ 'author' ],
-                        date: this.commonService.formatUTCDate(response[ 'updated_at' ]),
+                        date: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
                         customer:
                             response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_uuid' ],
-                        status: this.commonService.parseString(response[ 'status' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
                         propertyList:
                             response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
                         // availability: response['availability'],
@@ -283,7 +283,7 @@ export class ServicePlatformService {
                                 return {
                                     nsInstanceUUID: item.nsi_uuid,
                                     slaUUID: item.sla_uuid,
-                                    date: this.commonService.formatUTCDate(item.violation_time),
+                                    date: this.utilsService.formatUTCDate(item.violation_time),
                                     customerUUID: item.cust_uuid
                                 };
                             })
@@ -363,7 +363,7 @@ export class ServicePlatformService {
                         uuid: response[ 'uuid' ],
                         name: response[ 'pld' ][ 'name' ],
                         vendor: response[ 'pld' ][ 'vendor' ],
-                        updatedAt: this.commonService.formatUTCDate(response[ 'updated_at' ]),
+                        updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         nsUUID: response[ 'ns_uuid' ],
                         nsName: response[ 'pld' ][ 'network_service' ][ 'name' ],
                         nsVendor: response[ 'pld' ][ 'network_service' ][ 'vendor' ],
@@ -625,7 +625,7 @@ export class ServicePlatformService {
                 .then(response => {
                     resolve({
                         uuid: response[ 'uuid' ],
-                        status: this.commonService.parseString(response[ 'status' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
                         name: response[ 'nstd' ][ 'name' ],
                         author: response[ 'nstd' ][ 'author' ],
                         createdAt: response[ 'created_at' ],
@@ -634,10 +634,10 @@ export class ServicePlatformService {
                         notificationType: response[ 'nstd' ][ 'notificationTypes' ],
                         userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
                         usageState: this.prepareUsageState(response[ 'nstd' ][ 'usageState' ]),
-                        onboardingState: this.commonService.parseString(
+                        onboardingState: this.utilsService.parseString(
                             response[ 'nstd' ][ 'onboardingState' ]
                         ),
-                        operationalState: this.commonService.parseString(
+                        operationalState: this.utilsService.parseString(
                             response[ 'nstd' ][ 'operationalState' ]
                         ),
                         nstNsdIds: response[ 'nstd' ][ 'nstNsdIds' ]
@@ -723,7 +723,7 @@ export class ServicePlatformService {
                                     name: item.name,
                                     vendor: item.vendor,
                                     version: item.nstVersion,
-                                    state: this.commonService.parseString(item.nsiState)
+                                    state: this.utilsService.parseString(item.nsiState)
                                 };
                             })
                         );
@@ -756,7 +756,7 @@ export class ServicePlatformService {
                         uuid: response[ 'uuid' ],
                         name: response[ 'name' ],
                         vendor: response[ 'vendor' ],
-                        state: this.commonService.parseString(response[ 'nsiState' ]),
+                        state: this.utilsService.parseString(response[ 'nsiState' ]),
                         description: response[ 'description' ],
                         netServInstanceUUID: response[ 'netServInstance_Uuid' ],
                         nstName: response[ 'nstName' ],

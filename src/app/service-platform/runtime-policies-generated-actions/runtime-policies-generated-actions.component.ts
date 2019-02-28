@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-runtime-policies-generated-actions',
@@ -21,7 +21,7 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
     ];
 
     constructor(
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private servicePlatformService: ServicePlatformService
     ) { }
 
@@ -51,7 +51,7 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 }

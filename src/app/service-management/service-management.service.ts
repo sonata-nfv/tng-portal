@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { CommonService } from '../shared/services/common/common.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class ServiceManagementService {
@@ -11,7 +11,7 @@ export class ServiceManagementService {
     request_uuid: string;
 
     constructor(
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private authService: AuthService,
         private config: ConfigService,
         private http: HttpClient
@@ -44,9 +44,9 @@ export class ServiceManagementService {
                             response.map(item => ({
                                 uuid: item.uuid,
                                 name: item.instance_name,
-                                status: this.commonService.parseString(item.status),
+                                status: this.utilsService.parseString(item.status),
                                 serviceID: item.descriptor_reference,
-                                createdAt: this.commonService.formatUTCDate(item.created_at),
+                                createdAt: this.utilsService.formatUTCDate(item.created_at),
                                 version: item.version
                             }))
                         );
@@ -84,10 +84,10 @@ export class ServiceManagementService {
                         resolve({
                             uuid: response[ 'uuid' ],
                             name: response[ 'instance_name' ],
-                            status: this.commonService.parseString(response[ 'status' ]),
+                            status: this.utilsService.parseString(response[ 'status' ]),
                             serviceID: response[ 'descriptor_reference' ],
                             version: response[ 'version' ],
-                            updatedAt: this.commonService.formatUTCDate(
+                            updatedAt: this.utilsService.formatUTCDate(
                                 response[ 'updated_at' ]
                             ),
                             vnf: response[ 'network_functions' ]
@@ -119,12 +119,12 @@ export class ServiceManagementService {
                 .then(response => {
                     resolve({
                         uuid: response[ 'uuid' ],
-                        status: this.commonService.parseString(response[ 'status' ]),
+                        status: this.utilsService.parseString(response[ 'status' ]),
                         descriptorRef: response[ 'descriptor_reference' ],
                         descriptorVersion: response[ 'descriptor_reference' ],
                         name: response[ 'descriptor_version' ],
                         version: response[ 'version' ],
-                        updatedAt: this.commonService.formatUTCDate(response[ 'updated_at' ]),
+                        updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
                         vdus: response[ 'virtual_deployment_units' ]
                     });
                 })

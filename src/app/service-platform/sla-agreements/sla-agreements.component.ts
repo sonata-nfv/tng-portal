@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-sla-agreements',
@@ -19,7 +19,7 @@ export class SlaAgreementsComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -47,7 +47,7 @@ export class SlaAgreementsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

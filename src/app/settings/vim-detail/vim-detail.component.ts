@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-vim-detail',
@@ -16,7 +16,7 @@ export class VimDetailComponent implements OnInit {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -53,7 +53,7 @@ export class VimDetailComponent implements OnInit {
     }
 
     copyToClipboard() {
-        this.commonService.copyToClipboard(JSON.stringify(this.detail[ 'config' ]));
+        this.utilsService.copyToClipboard(JSON.stringify(this.detail[ 'config' ]));
     }
 
     deleteVim() {
@@ -63,11 +63,11 @@ export class VimDetailComponent implements OnInit {
             if (!message) {
                 throw new Error();
             }
-            this.commonService.openSnackBar(message, '');
+            this.utilsService.openSnackBar(message, '');
             this.close();
         }).catch(() => {
             this.loading = false;
-            this.commonService.openSnackBar('There was an error deleting the VIM', '');
+            this.utilsService.openSnackBar('There was an error deleting the VIM', '');
         });
     }
 

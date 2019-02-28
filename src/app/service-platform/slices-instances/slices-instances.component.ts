@@ -3,8 +3,8 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-slices-instances',
@@ -22,7 +22,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private dialogData: DialogDataService
     ) { }
 
@@ -68,7 +68,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -79,16 +79,16 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
             const action = 'Terminate';
 
             this.dialogData.openDialog(title, content, action, () => {
-                this.commonService.openSnackBar('Terminating instance...', '');
+                this.utilsService.openSnackBar('Terminating instance...', '');
 
                 this.servicePlatformService
                     .postOneSliceInstanceTermination(item.uuid)
                     .then(response => {
-                        // this.commonService.openSnackBar(response, '');
+                        // this.utilsService.openSnackBar(response, '');
                         // this.requestInstances();
                     })
                     .catch(err => {
-                        this.commonService.openSnackBar(err, '');
+                        this.utilsService.openSnackBar(err, '');
                     });
             });
         } else {

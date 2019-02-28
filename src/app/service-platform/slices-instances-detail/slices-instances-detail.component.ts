@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-slices-instances-detail',
@@ -21,7 +21,7 @@ export class SlicesInstancesDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
         private dialogData: DialogDataService,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -48,7 +48,7 @@ export class SlicesInstancesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }
@@ -59,16 +59,16 @@ export class SlicesInstancesDetailComponent implements OnInit {
         const action = 'Terminate';
 
         this.dialogData.openDialog(title, content, action, () => {
-            this.commonService.openSnackBar('Terminating instance...', '');
+            this.utilsService.openSnackBar('Terminating instance...', '');
 
             this.servicePlatformService
                 .postOneSliceInstanceTermination(this.detail[ 'uuid' ])
                 .then(response => {
-                    // this.commonService.openSnackBar(response, '');
+                    // this.utilsService.openSnackBar(response, '');
                     // this.requestSliceInstance(this.uuid);
                 })
                 .catch(err => {
-                    this.commonService.openSnackBar(err, '');
+                    this.utilsService.openSnackBar(err, '');
                 });
         });
     }

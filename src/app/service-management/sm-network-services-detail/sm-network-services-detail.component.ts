@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 
 import { NsInstantiateDialogComponent } from '../ns-instantiate-dialog/ns-instantiate-dialog.component';
 
+import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
     detail = {};
 
     constructor(
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private router: Router,
         private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class SmNetworkServicesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

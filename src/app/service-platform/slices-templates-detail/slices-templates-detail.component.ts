@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 import { SlicesInstancesCreateComponent } from '../slices-instances-create/slices-instances-create.component';
 
@@ -21,7 +21,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private instantiateDialog: MatDialog
     ) { }
 
@@ -48,7 +48,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -68,12 +68,12 @@ export class SlicesTemplatesDetailComponent implements OnInit {
         this.servicePlatformService
             .deleteOneSlicesTemplate(this.detail[ 'uuid' ])
             .then(response => {
-                this.commonService.openSnackBar('Template deleted', '');
+                this.utilsService.openSnackBar('Template deleted', '');
                 this.close();
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

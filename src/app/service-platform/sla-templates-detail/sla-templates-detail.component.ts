@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-sla-templates-detail',
@@ -23,7 +23,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -57,7 +57,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }
@@ -75,12 +75,12 @@ export class SlaTemplatesDetailComponent implements OnInit {
             .deleteOneSLATemplate(this.detail[ 'uuid' ])
             .then(response => {
                 this.loading = false;
-                this.commonService.openSnackBar('Template deleted', '');
+                this.utilsService.openSnackBar('Template deleted', '');
                 this.close();
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

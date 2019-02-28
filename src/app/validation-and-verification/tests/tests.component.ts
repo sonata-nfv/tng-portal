@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-tests',
@@ -22,7 +22,7 @@ export class TestsComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
     ) { }
 
@@ -51,7 +51,7 @@ export class TestsComponent implements OnInit {
                 this.tests = response;
                 this.dataSource = new MatTableDataSource(this.tests);
             })
-            .catch(err => this.commonService.openSnackBar(err, ''));
+            .catch(err => this.utilsService.openSnackBar(err, ''));
     }
 
     openTest(row) {
@@ -63,10 +63,10 @@ export class TestsComponent implements OnInit {
         this.verificationAndValidationPlatformService
             .postOneTest('test', row[ 'uuid' ])
             .then(response => {
-                this.commonService.openSnackBar('Success!', '');
+                this.utilsService.openSnackBar('Success!', '');
             })
             .catch(err => {
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 }

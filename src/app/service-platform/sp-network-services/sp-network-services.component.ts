@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class SpNetworkServicesComponent implements OnInit {
     displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ]; // 'SLAs'
 
     constructor(
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private router: Router,
         private route: ActivatedRoute
@@ -47,7 +49,7 @@ export class SpNetworkServicesComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

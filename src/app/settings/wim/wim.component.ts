@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { SettingsService } from '../settings.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-wim',
@@ -24,7 +24,7 @@ export class WimComponent implements OnInit, OnDestroy {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute) { }
 
@@ -69,7 +69,7 @@ export class WimComponent implements OnInit, OnDestroy {
                     this.wims = response;
                 } else {
                     this.loading = false;
-                    this.commonService.openSnackBar('There was an error fetching the WIMs', '');
+                    this.utilsService.openSnackBar('There was an error fetching the WIMs', '');
                 }
             });
     }
@@ -83,10 +83,10 @@ export class WimComponent implements OnInit, OnDestroy {
             if (!message) {
                 throw new Error();
             }
-            this.commonService.openSnackBar(message, '');
+            this.utilsService.openSnackBar(message, '');
             this.requestWims();
         }).catch(() => {
-            this.commonService.openSnackBar('There was an error deleting the WIM', '');
+            this.utilsService.openSnackBar('There was an error deleting the WIM', '');
         });
     }
 

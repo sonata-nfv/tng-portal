@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { ChartService } from '../../shared/services/common/chart.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-test-results',
@@ -44,7 +44,7 @@ export class TestResultsComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private chartService: ChartService,
         private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
     ) { }
@@ -71,7 +71,7 @@ export class TestResultsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

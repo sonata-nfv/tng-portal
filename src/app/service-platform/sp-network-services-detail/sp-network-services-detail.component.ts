@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-sp-network-services-detail',
@@ -16,6 +17,7 @@ export class SpNetworkServicesDetailComponent implements OnInit {
 
     constructor(
         private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -42,7 +44,7 @@ export class SpNetworkServicesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

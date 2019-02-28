@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-sla-violations',
@@ -16,7 +16,7 @@ export class SlaViolationsComponent implements OnInit {
 
     constructor(
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -45,7 +45,7 @@ export class SlaViolationsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 }

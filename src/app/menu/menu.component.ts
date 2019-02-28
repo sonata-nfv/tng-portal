@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
 import { AuthService } from '../authentication/auth.service';
-import { CommonService } from '../shared/services/common/common.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-menu',
@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private router: Router,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
     }
 
     copyToClipboard(value) {
-        this.commonService.copyToClipboard(value);
+        this.utilsService.copyToClipboard(value);
     }
 
     setMenu(e, buttonId) {

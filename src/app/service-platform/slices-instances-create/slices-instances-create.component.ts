@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-slices-instances-create',
@@ -19,7 +19,7 @@ export class SlicesInstancesCreateComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<SlicesInstancesCreateComponent>,
         private servicePlatformService: ServicePlatformService,
-        private commonService: CommonService
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -40,10 +40,10 @@ export class SlicesInstancesCreateComponent implements OnInit {
             .postOneSliceInstance(instance)
             .then(response => { })
             .catch(err => {
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
 
-        this.commonService.openSnackBar('Instantiating...', '');
+        this.utilsService.openSnackBar('Instantiating...', '');
         this.close();
     }
 

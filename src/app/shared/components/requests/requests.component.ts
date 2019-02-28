@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../services/common/common.service';
+import { UtilsService } from '../../services/common/utils.service';
 
 @Component({
     selector: 'app-requests',
@@ -19,6 +20,7 @@ export class RequestsComponent implements OnInit {
     constructor(
         private router: Router,
         private commonService: CommonService,
+        private utilsService: UtilsService,
         private route: ActivatedRoute
     ) { }
 
@@ -51,7 +53,7 @@ export class RequestsComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

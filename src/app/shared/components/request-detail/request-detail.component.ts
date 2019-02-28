@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { UtilsService } from '../../services/common/utils.service';
 import { CommonService } from '../../services/common/common.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class RequestDetailComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commonService: CommonService
+        private commonService: CommonService,
+        private utilsService: UtilsService
     ) { }
 
     ngOnInit() {
@@ -43,7 +45,7 @@ export class RequestDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

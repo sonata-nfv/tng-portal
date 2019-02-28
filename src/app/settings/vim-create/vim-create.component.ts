@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-vim-create',
@@ -24,7 +24,7 @@ export class VimCreateComponent implements OnInit {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -36,7 +36,7 @@ export class VimCreateComponent implements OnInit {
             country: new FormControl(),
             endpoint: new FormControl('', [
                 Validators.required,
-                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+                Validators.pattern(this.utilsService.getIpPattern())
             ])
         });
         this.openstackForm = new FormGroup({
@@ -44,13 +44,12 @@ export class VimCreateComponent implements OnInit {
             password: new FormControl('', Validators.required),
             tenant: new FormControl('', Validators.required),
             domain: new FormControl(),
-            networkEndpoint: new FormControl('',
-                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')),
+            networkEndpoint: new FormControl('', Validators.pattern(this.utilsService.getIpPattern())),
             privateNetwork: new FormControl('', [
                 Validators.required,
-                Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')
+                Validators.pattern(this.utilsService.getIpPattern())
             ]),
-            privateNetworkMask: new FormControl('', [ Validators.required, Validators.pattern('([1-9]|1[0-9]|2[0-9]|3[0])') ]),
+            privateNetworkMask: new FormControl('', [ Validators.required, Validators.pattern(this.utilsService.getMaskPattern()) ]),
             externalNetworkID: new FormControl('', Validators.required),
             externalRouterID: new FormControl('', Validators.required)
         });
@@ -134,12 +133,12 @@ export class VimCreateComponent implements OnInit {
                     throw new Error();
                 }
                 this.loading = false;
-                this.commonService.openSnackBar(message, '');
+                this.utilsService.openSnackBar(message, '');
                 this.close();
             })
             .catch(() => {
                 this.loading = false;
-                this.commonService.openSnackBar('There was an error in the VIM creation', '');
+                this.utilsService.openSnackBar('There was an error in the VIM creation', '');
             });
     }
 

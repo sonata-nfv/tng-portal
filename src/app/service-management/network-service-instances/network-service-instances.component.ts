@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ServiceManagementService } from '../service-management.service';
-import { CommonService } from '../../shared/services/common/common.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-network-service-instances',
@@ -31,7 +31,7 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
     constructor(
         private serviceManagementService: ServiceManagementService,
         private router: Router,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private route: ActivatedRoute,
         private dialogData: DialogDataService
     ) { }
@@ -79,7 +79,7 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 
@@ -95,11 +95,11 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
                 this.serviceManagementService
                     .postOneNSInstanceTermination(row.uuid)
                     .then(response => {
-                        this.commonService.openSnackBar(response, '');
+                        this.utilsService.openSnackBar(response, '');
                         this.requestNSInstances();
                     })
                     .catch(err => {
-                        this.commonService.openSnackBar(err, '');
+                        this.utilsService.openSnackBar(err, '');
                     });
             });
         } else {

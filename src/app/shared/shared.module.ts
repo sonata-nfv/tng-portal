@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DialogDataService } from './services/dialog/dialog.service';
 import { CommonService } from './services/common/common.service';
+import { UtilsService } from './services/common/utils.service';
 import { ConfigService } from './services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
 import { ChartService } from './services/common/chart.service';
@@ -61,6 +62,7 @@ export function initConfiguration(configService: ConfigService): Function {
         AuthService,
         ConfigService,
         CommonService,
+        UtilsService,
         DialogDataService,
         ChartService,
         {

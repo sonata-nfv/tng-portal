@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
     selector: 'app-slices-templates-create',
@@ -27,8 +28,8 @@ export class SlicesTemplatesCreateComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute,
         private dialogData: DialogDataService,
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private servicePlatformService: ServicePlatformService
     ) { }
@@ -67,7 +68,7 @@ export class SlicesTemplatesCreateComponent implements OnInit {
                         this.slaListComplete = response;
                     })
                     .catch(err => {
-                        this.commonService.openSnackBar(err, '');
+                        this.utilsService.openSnackBar(err, '');
                     });
             })
             .catch(err => {
@@ -149,12 +150,12 @@ export class SlicesTemplatesCreateComponent implements OnInit {
             .postOneSliceTemplate(template)
             .then(response => {
                 this.loading = false;
-                this.commonService.openSnackBar('Template successfully created!', '');
+                this.utilsService.openSnackBar('Template successfully created!', '');
                 this.close();
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(
+                this.utilsService.openSnackBar(
                     'There was an error in the template creation',
                     ''
                 );

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-tests-detail',
@@ -20,7 +20,7 @@ export class TestsDetailComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
     ) { }
 
@@ -51,7 +51,7 @@ export class TestsDetailComponent implements OnInit {
                         this.loading = false;
 
                         if (response.length < 1) {
-                            this.commonService.openSnackBar(
+                            this.utilsService.openSnackBar(
                                 'There are no test executions available',
                                 ''
                             );
@@ -62,7 +62,7 @@ export class TestsDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }
@@ -71,10 +71,10 @@ export class TestsDetailComponent implements OnInit {
         this.verificationAndValidationPlatformService
             .postOneTest('test', this.detail[ 'uuid' ])
             .then(response => {
-                this.commonService.openSnackBar('Success!', '');
+                this.utilsService.openSnackBar('Success!', '');
             })
             .catch(err => {
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
             });
     }
 

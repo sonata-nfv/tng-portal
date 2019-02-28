@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ServicePlatformService } from '../service-platform.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-sp-packages-detail',
@@ -16,7 +16,7 @@ export class SpPackagesDetailComponent implements OnInit {
     detail = {};
 
     constructor(
-        private servicePlatformService: ServicePlatformService,
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private router: Router,
         private route: ActivatedRoute
@@ -53,7 +53,7 @@ export class SpPackagesDetailComponent implements OnInit {
             })
             .catch(err => {
                 this.loading = false;
-                this.commonService.openSnackBar(err, '');
+                this.utilsService.openSnackBar(err, '');
                 this.close();
             });
     }

@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
     selector: 'app-sla-templates-create',
@@ -28,7 +29,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute,
+        private utilsService: UtilsService,
         private commonService: CommonService,
         private servicePlatformService: ServicePlatformService,
         private dialogData: DialogDataService
@@ -113,7 +114,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
             .postOneSLATemplate(template)
             .then(response => {
                 this.loading = false;
-                this.commonService.openSnackBar('Template successfully created!', '');
+                this.utilsService.openSnackBar('Template successfully created!', '');
                 this.close();
             })
             .catch(err => {
@@ -128,7 +129,7 @@ export class SlaTemplatesCreateComponent implements OnInit {
                     const content = 'The expire date is not a future date. Please choose another.';
                     this.dialogData.openDialog(title, content, action, () => { });
                 } else {
-                    this.commonService.openSnackBar('There was an error in the template creation', '');
+                    this.utilsService.openSnackBar('There was an error in the template creation', '');
                 }
             });
     }

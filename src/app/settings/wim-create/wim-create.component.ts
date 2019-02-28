@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
-import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
     selector: 'app-wim-create',
@@ -22,7 +22,7 @@ export class WimCreateComponent implements OnInit {
 
     constructor(
         private settingsService: SettingsService,
-        private commonService: CommonService,
+        private utilsService: UtilsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -60,7 +60,7 @@ export class WimCreateComponent implements OnInit {
                     this.vims = response.map(vim => vim.name + ': ' + vim.uuid);
                 } else {
                     this.loading = false;
-                    this.commonService.openSnackBar('There was an error fetching the VIMs. It will not be possible to create a WIM.', '');
+                    this.utilsService.openSnackBar('There was an error fetching the VIMs. It will not be possible to create a WIM.', '');
                 }
             });
     }
@@ -103,14 +103,14 @@ export class WimCreateComponent implements OnInit {
                     throw new Error(message);
                 }
                 this.loading = false;
-                this.commonService.openSnackBar(message, '');
+                this.utilsService.openSnackBar(message, '');
                 this.close();
             })
             .catch((msg) => {
                 this.loading = false;
                 msg ?
-                    this.commonService.openSnackBar(msg, '') :
-                    this.commonService.openSnackBar('There was an error in the WIM creation', '');
+                    this.utilsService.openSnackBar(msg, '') :
+                    this.utilsService.openSnackBar('There was an error in the WIM creation', '');
             });
     }
 
