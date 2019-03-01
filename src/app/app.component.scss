@@ -344,7 +344,6 @@ p {
 	button {
         align-self: center;
         text-align: right;
-        min-width: 150px;
         border: none;
 		cursor: pointer;
         outline: none;
@@ -418,6 +417,26 @@ p {
 }
 
 //////////////////////////////////////
+// JSON viewer styles  
+//////////////////////////////////////
+ngx-json-viewer {
+    .ngx-json-viewer[_ngcontent-c12] {
+        height: auto; 
+        width: auto; 
+        margin: 5px;
+    
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-key[_ngcontent-c12],
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-separator[_ngcontent-c12] {
+            color: $secondary-font-color;
+        }
+
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-value[_ngcontent-c12] {
+            color: $primary-font-color;
+        }
+    }
+}
+
+//////////////////////////////////////
 // Advanced section: detailed views
 //////////////////////////////////////
 .advanceSection {
@@ -487,26 +506,6 @@ p {
   
     .no-results-text {
       color: $secondary-font-color-light;
-    }
-}
-
-//////////////////////////////////////
-// JSON viewer styles  
-//////////////////////////////////////
-ngx-json-viewer {
-    .ngx-json-viewer[_ngcontent-c11] {
-        height: auto; 
-        width: auto; 
-        margin: 5px;
-    
-        .segment[_ngcontent-c11] .segment-main[_ngcontent-c11] .segment-key[_ngcontent-c11],
-        .segment[_ngcontent-c11] .segment-main[_ngcontent-c11] .segment-separator[_ngcontent-c11] {
-            color: $secondary-font-color;
-        }
-
-        .segment[_ngcontent-c11] .segment-main[_ngcontent-c11] .segment-value[_ngcontent-c11] {
-            color: $primary-font-color;
-        }
     }
 }
 
@@ -612,6 +611,16 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 .icon-button-shadow .wui-copy-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-pen-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-eye:before {
     font-size: 20px;
     color: $secondary-font-color;
 }

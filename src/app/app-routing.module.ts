@@ -13,9 +13,8 @@ import { RegisteredComponent } from './authentication/registered/registered.comp
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
+import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
-import { VimDetailComponent } from './settings/vim-detail/vim-detail.component';
-import { VimCreateComponent } from './settings/vim-create/vim-create.component';
 import { WimComponent } from './settings/wim/wim.component';
 import { WimDetailComponent } from './settings/wim-detail/wim-detail.component';
 import { WimCreateComponent } from './settings/wim-create/wim-create.component';
@@ -91,10 +90,10 @@ const routes: Routes = [
             // Settings
             { path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
             {
-                path: 'settings/vim', component: VimComponent,
+                path: 'settings/vim', component: VimListComponent,
                 children: [
-                    { path: 'new', component: VimCreateComponent },
-                    { path: ':id', component: VimDetailComponent }
+                    { path: 'new', component: VimComponent },
+                    { path: ':id', component: VimComponent }
                 ]
             },
             {
