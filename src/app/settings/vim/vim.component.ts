@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { InputErrorStateMatcher } from '../../shared/classes/input-error-state-matcher';
+
 import { SettingsService } from '../settings.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
@@ -19,6 +21,7 @@ export class VimComponent implements OnInit {
     vimForm: FormGroup;
     openstackForm: FormGroup;
     kubernetesForm: FormGroup;
+    matcher: InputErrorStateMatcher;
     vimTypes = [ 'Openstack', 'Kubernetes' ];
     vimType: string;
     disabledButton = true;
@@ -72,6 +75,8 @@ export class VimComponent implements OnInit {
     }
 
     private initForms() {
+        this.matcher = new InputErrorStateMatcher();
+
         this.vimForm = new FormGroup({
             name: new FormControl('', Validators.required),
             city: new FormControl(),

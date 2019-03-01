@@ -9,11 +9,11 @@
 <form [formGroup]="vimForm" class="title-section" *ngIf="canShowForm()">
     <mat-form-field class="title1">
         <input matInput type="text" placeholder="VIM Name" formControlName="name" value="{{ detail ? detail['name'] : '' }}" required
-            i18n-placeholder="@@vimName" />
+            [errorStateMatcher]="matcher" i18n-placeholder="@@vimName" />
     </mat-form-field>
 
     <div class="header-buttons">
-        <!-- TODO change function depending on the edition variable -->
+        <!-- TODO a change function depending on the edition variable (create var when comparing objects) -->
         <!-- TODO show / hide button depending on the changes in the form when editing -->
         <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
             (click)="createVim()" i18n="@@saveButton">
@@ -33,7 +33,7 @@
 <form [formGroup]="vimForm" class="vimForm" *ngIf="vimType && canShowForm()">
     <mat-form-field>
         <input matInput type="text" placeholder="Endpoint" formControlName="endpoint" value="{{ detail ? detail['endpoint'] : '' }}"
-            required i18n-placeholder="@@endpoint" />
+            required [errorStateMatcher]="matcher" i18n-placeholder="@@endpoint" />
         <button *ngIf="edition && detail['endpoint']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
             (click)="copyToClipboard(detail['endpoint'])" i18n-matTooltip="@@copy">
             <i class="wui wui-copy-alt"></i>
@@ -44,12 +44,12 @@
     <div class="sameRow">
         <mat-form-field>
             <input matInput type="text" placeholder="City" formControlName="city" value="{{ detail ? detail['city'] : '' }}"
-                i18n-placeholder="@@city" />
+                [errorStateMatcher]="matcher" i18n-placeholder="@@city" />
         </mat-form-field>
 
         <mat-form-field>
             <input matInput type="text" placeholder="Country" formControlName="country" value="{{ detail ? detail['country'] : '' }}"
-                i18n-placeholder="@@country" />
+                [errorStateMatcher]="matcher" i18n-placeholder="@@country" />
         </mat-form-field>
     </div>
 </form>
@@ -58,28 +58,28 @@
     <div class="sameRow">
         <mat-form-field>
             <input matInput type="text" placeholder="Username" formControlName="username" value="{{ detail ? detail['username'] : '' }}"
-                required i18n-placeholder="@@username" />
+                required [errorStateMatcher]="matcher" i18n-placeholder="@@username" />
         </mat-form-field>
         <mat-form-field>
             <input matInput type="text" placeholder="Password" formControlName="password" value="{{ detail ? detail['password'] : '' }}"
-                required i18n-placeholder="@@password" />
+                required [errorStateMatcher]="matcher" i18n-placeholder="@@password" />
         </mat-form-field>
     </div>
 
     <div class="sameRow">
         <mat-form-field>
             <input matInput type="text" placeholder="Tenant" formControlName="tenant" value="{{ detail ? detail['tenant'] : '' }}" required
-                i18n-placeholder="@@tenant" />
+                [errorStateMatcher]="matcher" i18n-placeholder="@@tenant" />
         </mat-form-field>
         <mat-form-field>
             <input matInput type="text" placeholder="Domain" formControlName="domain" value="{{ detail ? detail['domain'] : '' }}"
-                i18n-placeholder="@@domain" />
+                [errorStateMatcher]="matcher" i18n-placeholder="@@domain" />
         </mat-form-field>
     </div>
 
     <mat-form-field>
         <input matInput type="text" placeholder="Network endpoint" formControlName="networkEndpoint"
-            value="{{ detail ? detail['network_endpoint'] : '' }}" i18n-placeholder="@@networkEndpoint" />
+            value="{{ detail ? detail['network_endpoint'] : '' }}" [errorStateMatcher]="matcher" i18n-placeholder="@@networkEndpoint" />
         <button *ngIf="edition && detail['network_endpoint']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
             (click)="copyToClipboard(detail['network_endpoint'])" i18n-matTooltip="@@copy">
             <i class="wui wui-copy-alt"></i>
@@ -90,7 +90,8 @@
     <div class="sameRow">
         <mat-form-field>
             <input matInput type="text" placeholder="Private network" formControlName="privateNetwork"
-                value="{{ detail ? detail['private_network_prefix'] : '' }}" required i18n-placeholder="@@privateNetwork" />
+                value="{{ detail ? detail['private_network_prefix'] : '' }}" required [errorStateMatcher]="matcher"
+                i18n-placeholder="@@privateNetwork" />
             <button *ngIf="edition && detail['private_network_prefix']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
                 (click)="copyToClipboard(detail['private_network_prefix'])" i18n-matTooltip="@@copy">
                 <i class="wui wui-copy-alt"></i>
@@ -99,7 +100,8 @@
         <p> / </p>
         <mat-form-field>
             <input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask"
-                value="{{ detail ? detail['private_network_length'] : '' }}" required i18n-placeholder="@@privateNetworkMask" />
+                value="{{ detail ? detail['private_network_length'] : '' }}" required [errorStateMatcher]="matcher"
+                i18n-placeholder="@@privateNetworkMask" />
         </mat-form-field>
     </div>
     <p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
@@ -109,7 +111,8 @@
     <div class="sameRow">
         <mat-form-field>
             <input matInput type="text" placeholder="External network" formControlName="externalNetworkID"
-                value="{{ detail ? detail['external_network_id'] : '' }}" required i18n-placeholder="@@externalNetwork" />
+                value="{{ detail ? detail['external_network_id'] : '' }}" required [errorStateMatcher]="matcher"
+                i18n-placeholder="@@externalNetwork" />
             <button *ngIf="edition && detail['external_network_id']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
                 (click)="copyToClipboard(detail['external_network_id'])" i18n-matTooltip="@@copy">
                 <i class="wui wui-copy-alt"></i>
@@ -117,7 +120,8 @@
         </mat-form-field>
         <mat-form-field>
             <input matInput type="text" placeholder="External router" formControlName="externalRouterID"
-                value="{{ detail ? detail['external_router_id'] : '' }}" required i18n-placeholder="@@externalRouter" />
+                value="{{ detail ? detail['external_router_id'] : '' }}" required [errorStateMatcher]="matcher"
+                i18n-placeholder="@@externalRouter" />
             <button *ngIf="edition && detail['external_router_id']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
                 (click)="copyToClipboard(detail['external_router_id'])" i18n-matTooltip="@@copy">
                 <i class="wui wui-copy-alt"></i>
@@ -150,9 +154,10 @@
             </button>
         </div>
 
-        <mat-form-field *ngIf="editingConfig || !edition" class="description">
+        <mat-form-field *ngIf="editingConfig || !edition" class="description"
+            [ngClass]="{ 'mat-form-field-invalid': kubernetesForm.valid && !checkJSONValidity() }">
             <textarea class="content" matInput type="text" formControlName="config"
-                value="{{ detail ? getJSONStringify(detail['config']) : '' }}" ngDefaultControl></textarea>
+                value="{{ detail ? getJSONStringify(detail['config']) : '' }}" [errorStateMatcher]="matcher" ngDefaultControl></textarea>
             <p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON</p>
         </mat-form-field>
 
