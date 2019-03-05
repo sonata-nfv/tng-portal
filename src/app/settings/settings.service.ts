@@ -82,6 +82,25 @@ export class SettingsService {
     }
 
     /**
+     * Updates a VIM
+     *
+     * @param vim Data of the desired VIM.
+     */
+    patchVim(type, uuid, vim): Promise<any> {
+        const headers = this.authService.getAuthHeaders();
+        let url = type === 'Openstack' ?
+            this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
+        url = url + '/' + uuid;
+
+        return this.http.patch(url, vim, { headers: headers }).toPromise()
+            .then(response => {
+                return ('VIM ' + response[ 'name' ] + ' updated');
+            }).catch(error => {
+                console.error(error);
+            });
+    }
+
+    /**
      * Deletes a VIM
      *
      * @param uuid UUID of the desired VIM.

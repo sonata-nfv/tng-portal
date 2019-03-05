@@ -84,13 +84,32 @@ export class UtilsService {
             return false;
         }
 
-        obj1Props.forEach(prop => {
+        for (const prop of obj1Props) {
             if (obj1[ prop ] !== obj2[ prop ]) {
                 return false;
             }
-        });
+        }
 
         return true;
+    }
+
+    /**
+     * Compares two objects property to property and returns the differences
+     *
+     * @param obj1 Old object
+     * @param obj2 New object
+     */
+    getObjectDifferences(obj1, obj2) {
+        const obj1Props = Object.getOwnPropertyNames(obj1);
+        const result = {};
+
+        for (const prop of obj1Props) {
+            if (obj1[ prop ] !== obj2[ prop ] && obj2[ prop ]) {
+                result[ prop ] = obj2[ prop ];
+            }
+        }
+
+        return result;
     }
 
     /**
