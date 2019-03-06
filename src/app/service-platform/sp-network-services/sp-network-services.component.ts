@@ -5,56 +5,56 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-    selector: 'app-sp-network-services',
-    templateUrl: './sp-network-services.component.html',
-    styleUrls: [ './sp-network-services.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-sp-network-services',
+	templateUrl: './sp-network-services.component.html',
+	styleUrls: [ './sp-network-services.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class SpNetworkServicesComponent implements OnInit {
-    loading: boolean;
-    section: string;
-    networkServices: Array<Object>;
-    displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ]; // 'SLAs'
+	loading: boolean;
+	section: string;
+	networkServices: Array<Object>;
+	displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ]; // 'SLAs'
 
-    constructor(
-        private utilsService: UtilsService,
-        private commonService: CommonService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) { }
+	constructor(
+		private utilsService: UtilsService,
+		private commonService: CommonService,
+		private router: Router,
+		private route: ActivatedRoute
+	) { }
 
-    ngOnInit() {
-        this.requestServices();
-    }
+	ngOnInit() {
+		this.requestServices();
+	}
 
-    searchFieldData(search) {
-        this.section = 'SP';
-        this.requestServices(search);
-    }
+	searchFieldData(search) {
+		this.section = 'SP';
+		this.requestServices(search);
+	}
 
-    /**
+	/**
      * Generates the HTTP request to get the list of NS.
      *
      * @param search [Optional] Network Service attributes that
      *                          must be matched by the returned
      *                          list of NS.
      */
-    requestServices(search?) {
-        this.loading = true;
-        this.commonService
-            .getNetworkServices(this.section, search)
-            .then(response => {
-                this.loading = false;
-                this.networkServices = response;
-            })
-            .catch(err => {
-                this.loading = false;
-                this.utilsService.openSnackBar(err, '');
-            });
-    }
+	requestServices(search?) {
+		this.loading = true;
+		this.commonService
+			.getNetworkServices(this.section, search)
+			.then(response => {
+				this.loading = false;
+				this.networkServices = response;
+			})
+			.catch(err => {
+				this.loading = false;
+				this.utilsService.openSnackBar(err, '');
+			});
+	}
 
-    openNetworkService(row) {
-        const uuid = row.serviceId;
-        this.router.navigate([ uuid ], { relativeTo: this.route });
-    }
+	openNetworkService(row) {
+		const uuid = row.serviceId;
+		this.router.navigate([ uuid ], { relativeTo: this.route });
+	}
 }

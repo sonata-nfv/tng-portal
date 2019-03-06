@@ -16,22 +16,22 @@ import { WimCreateComponent } from './wim-create/wim-create.component';
 import { SettingsService } from './settings.service';
 
 @NgModule({
-    declarations: [
-        VimListComponent,
-        VimComponent,
-        WimComponent,
-        WimDetailComponent,
-        WimCreateComponent
-    ],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        AppRoutingModule,
-        SharedModule,
-        NgxJsonViewerModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
-    providers: [ SettingsService ]
+	declarations: [
+		VimListComponent,
+		VimComponent,
+		WimComponent,
+		WimDetailComponent,
+		WimCreateComponent
+	],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		AppRoutingModule,
+		SharedModule,
+		NgxJsonViewerModule,
+		ReactiveFormsModule,
+		FormsModule
+	],
+	providers: [ SettingsService ]
 })
 export class SettingsModule { }

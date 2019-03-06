@@ -1,72 +1,72 @@
 import {
-    Component,
-    OnInit,
-    ViewEncapsulation,
-    Output,
-    EventEmitter,
-    Input
+	Component,
+	OnInit,
+	ViewEncapsulation,
+	Output,
+	EventEmitter,
+	Input
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'app-calendar',
-    templateUrl: './calendar.component.html',
-    styleUrls: [ './calendar.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-calendar',
+	templateUrl: './calendar.component.html',
+	styleUrls: [ './calendar.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements OnInit {
-    date = new FormControl();
-    hidePlaceholder = true;
-    placeholderMsg: string;
+	date = new FormControl();
+	hidePlaceholder = true;
+	placeholderMsg: string;
 
-    /**
+	/**
      * [Optional] Fixes the initial value whenever set
      */
-    @Input()
-    set value(item: string) {
-        this.date.setValue(item);
-    }
-    /**
+	@Input()
+	set value(item: string) {
+		this.date.setValue(item);
+	}
+	/**
      * [Optional] Defines the placeholder for the datepicker.
      *            In case none is defined it will be hidden.
      */
-    @Input()
-    set placeholder(placeholder: string) {
-        this.placeholderMsg = placeholder;
-        this.hidePlaceholder = false;
-    }
-    /**
+	@Input()
+	set placeholder(placeholder: string) {
+		this.placeholderMsg = placeholder;
+		this.hidePlaceholder = false;
+	}
+	/**
      * [Optional] Disables the calendar whenever active
      */
-    @Input()
-    set disabled(disabled: boolean) {
-        if (disabled) {
-            this.date.disable();
-        } else {
-            this.date.enable();
-        }
-    }
-    /**
+	@Input()
+	set disabled(disabled: boolean) {
+		if (disabled) {
+			this.date.disable();
+		} else {
+			this.date.enable();
+		}
+	}
+	/**
      * Provides the selected element.
      */
-    @Output() dateEvent = new EventEmitter<string>();
-    constructor() { }
+	@Output() dateEvent = new EventEmitter<string>();
+	constructor() { }
 
-    ngOnInit() {
-        this.date.valueChanges.subscribe(value => this._onFormChanges(value));
-    }
+	ngOnInit() {
+		this.date.valueChanges.subscribe(value => this._onFormChanges(value));
+	}
 
-    private _onFormChanges(values) {
-        const date = values
-            .toISOString()
-            .replace(/T.*/, '')
-            .split('-')
-            .reverse()
-            .join('/')
-            .split('/');
-        date[ 0 ] = (parseInt(date[ 0 ], 10) + 1).toString();
-        const strDate = date.join('/');
+	private _onFormChanges(values) {
+		const date = values
+			.toISOString()
+			.replace(/T.*/, '')
+			.split('-')
+			.reverse()
+			.join('/')
+			.split('/');
+		date[ 0 ] = (parseInt(date[ 0 ], 10) + 1).toString();
+		const strDate = date.join('/');
 
-        this.dateEvent.emit(strDate);
-    }
+		this.dateEvent.emit(strDate);
+	}
 }

@@ -18,7 +18,7 @@ import { RuntimePoliciesComponent } from './runtime-policies/runtime-policies.co
 import { RuntimePoliciesDetailComponent } from './runtime-policies-detail/runtime-policies-detail.component';
 import { RuntimePoliciesCreateComponent } from './runtime-policies-create/runtime-policies-create.component';
 import {
-    RuntimePoliciesGeneratedActionsComponent
+	RuntimePoliciesGeneratedActionsComponent
 } from './runtime-policies-generated-actions/runtime-policies-generated-actions.component';
 import { SlaTemplatesComponent } from './sla-templates/sla-templates.component';
 import { SlaTemplatesDetailComponent } from './sla-templates-detail/sla-templates-detail.component';
@@ -34,39 +34,39 @@ import { SlicesInstancesDetailComponent } from './slices-instances-detail/slices
 import { SlicesInstancesCreateComponent } from './slices-instances-create/slices-instances-create.component';
 
 @NgModule({
-    declarations: [
-        SpPackagesComponent,
-        SpPackagesDetailComponent,
-        SpNetworkServicesComponent,
-        SpNetworkServicesDetailComponent,
-        SpFunctionsDetailComponent,
-        PlacementPolicyComponent,
-        RuntimePoliciesComponent,
-        RuntimePoliciesDetailComponent,
-        RuntimePoliciesCreateComponent,
-        RuntimePoliciesGeneratedActionsComponent,
-        SlaTemplatesComponent,
-        SlaTemplatesDetailComponent,
-        SlaTemplatesCreateComponent,
-        SlaAgreementsComponent,
-        SlaAgreementsDetailComponent,
-        SlaViolationsComponent,
-        SlicesTemplatesComponent,
-        SlicesTemplatesCreateComponent,
-        SlicesTemplatesDetailComponent,
-        SlicesInstancesComponent,
-        SlicesInstancesDetailComponent,
-        SlicesInstancesCreateComponent
-    ],
-    entryComponents: [],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        SharedModule
-    ],
-    providers: [ ServicePlatformService ]
+	declarations: [
+		SpPackagesComponent,
+		SpPackagesDetailComponent,
+		SpNetworkServicesComponent,
+		SpNetworkServicesDetailComponent,
+		SpFunctionsDetailComponent,
+		PlacementPolicyComponent,
+		RuntimePoliciesComponent,
+		RuntimePoliciesDetailComponent,
+		RuntimePoliciesCreateComponent,
+		RuntimePoliciesGeneratedActionsComponent,
+		SlaTemplatesComponent,
+		SlaTemplatesDetailComponent,
+		SlaTemplatesCreateComponent,
+		SlaAgreementsComponent,
+		SlaAgreementsDetailComponent,
+		SlaViolationsComponent,
+		SlicesTemplatesComponent,
+		SlicesTemplatesCreateComponent,
+		SlicesTemplatesDetailComponent,
+		SlicesInstancesComponent,
+		SlicesInstancesDetailComponent,
+		SlicesInstancesCreateComponent
+	],
+	entryComponents: [],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
+		FormsModule,
+		SharedModule
+	],
+	providers: [ ServicePlatformService ]
 })
 export class ServicePlatformModule { }

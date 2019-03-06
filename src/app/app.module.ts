@@ -53,23 +53,23 @@ import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-    declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AngularMaterialModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ValidationAndVerificationModule,
-        ServiceManagementModule,
-        ServicePlatformModule,
-        SettingsModule,
-        SharedModule,
-        AuthenticationModule
-    ],
-    providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
-    bootstrap: [ AppComponent ]
+	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		AngularMaterialModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		ValidationAndVerificationModule,
+		ServiceManagementModule,
+		ServicePlatformModule,
+		SettingsModule,
+		SharedModule,
+		AuthenticationModule
+	],
+	providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

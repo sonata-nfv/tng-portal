@@ -3,8 +3,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 /** Error when invalid control is dirty or submitted. */
 export class InputErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(control && control.invalid && (control.dirty || isSubmitted));
-    }
+	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+		const isSubmitted = form && form.submitted;
+		return !!(control && control.invalid && (control.dirty || isSubmitted));
+	}
 }

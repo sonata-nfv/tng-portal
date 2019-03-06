@@ -6,104 +6,104 @@ import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
 
 @Component({
-    selector: 'app-runtime-policies-create',
-    templateUrl: './runtime-policies-create.component.html',
-    styleUrls: [ './runtime-policies-create.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-runtime-policies-create',
+	templateUrl: './runtime-policies-create.component.html',
+	styleUrls: [ './runtime-policies-create.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class RuntimePoliciesCreateComponent implements OnInit {
-    loading = false;
-    section: string;
-    reset = false;
-    policyForm: FormGroup;
-    disabledButton = true;
-    closed = true;
-    nsList = new Array();
-    nsListComplete = new Array();
-    monitoringRules = 'This is a monitoring rule for this example!';
+	loading = false;
+	section: string;
+	reset = false;
+	policyForm: FormGroup;
+	disabledButton = true;
+	closed = true;
+	nsList = new Array();
+	nsListComplete = new Array();
+	monitoringRules = 'This is a monitoring rule for this example!';
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private commonService: CommonService,
-        private servicePlatformService: ServicePlatformService
-    ) { }
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private commonService: CommonService,
+		private servicePlatformService: ServicePlatformService
+	) { }
 
-    ngOnInit() {
-        this.section = 'SP';
-        this.policyForm = new FormGroup({
-            name: new FormControl(),
-            default: new FormControl(),
-            ns: new FormControl(null, Validators.required),
-            monitoringRule: new FormControl()
-        });
+	ngOnInit() {
+		this.section = 'SP';
+		this.policyForm = new FormGroup({
+			name: new FormControl(),
+			default: new FormControl(),
+			ns: new FormControl(null, Validators.required),
+			monitoringRule: new FormControl()
+		});
 
-        this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
+		this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
 
-        this.loading = true;
-        this.commonService
-            .getNetworkServices(this.section)
-            .then(response => {
-                this.loading = false;
+		this.loading = true;
+		this.commonService
+			.getNetworkServices(this.section)
+			.then(response => {
+				this.loading = false;
 
-                // Save NS data to display
-                this.nsList = response.map(x => x.name);
+				// Save NS data to display
+				this.nsList = response.map(x => x.name);
 
-                // Save complete data from NS
-                this.nsListComplete = response;
-            })
-            .catch(err => {
-                this.loading = false;
-                this.nsList.push('None');
-            });
-    }
+				// Save complete data from NS
+				this.nsListComplete = response;
+			})
+			.catch(err => {
+				this.loading = false;
+				this.nsList.push('None');
+			});
+	}
 
-    private _onFormChanges(value?) {
-        if (
-            this.policyForm.get('ns').value != null &&
-            this.policyForm.get('name').value != null
-        ) {
-            this.disabledButton = false;
-        }
-    }
+	private _onFormChanges(value?) {
+		if (
+			this.policyForm.get('ns').value != null &&
+			this.policyForm.get('name').value != null
+		) {
+			this.disabledButton = false;
+		}
+	}
 
-    receiveNS(ns) {
-        let ns_uuid: string;
+	receiveNS(ns) {
+		let ns_uuid: string;
 
-        if (ns === 'None') {
-            this.policyForm.controls.ns.setValue(null);
-            ns_uuid = null;
-        } else {
-            ns_uuid = this.nsListComplete.filter(x => x.name === ns)[ 0 ].serviceId;
-            this.policyForm.controls.ns.setValue(ns_uuid);
-        }
-    }
+		if (ns === 'None') {
+			this.policyForm.controls.ns.setValue(null);
+			ns_uuid = null;
+		} else {
+			ns_uuid = this.nsListComplete.filter(x => x.name === ns)[ 0 ].serviceId;
+			this.policyForm.controls.ns.setValue(ns_uuid);
+		}
+	}
 
-    createPolicy() {
-        const policy = {
-            vendor: '5GTANGO',
-            name: this.policyForm.get('name').value,
-            version: '0.1',
-            network_service: this.policyForm.get('ns').value,
-            default_policy: this.policyForm.get('default').value,
-            policyRules: [],
-            monitoringRules: this.policyForm.get('monitoringRule').value
-        };
+	createPolicy() {
+		const policy = {
+			vendor: '5GTANGO',
+			name: this.policyForm.get('name').value,
+			version: '0.1',
+			network_service: this.policyForm.get('ns').value,
+			default_policy: this.policyForm.get('default').value,
+			policyRules: [],
+			monitoringRules: this.policyForm.get('monitoringRule').value
+		};
 
-        this.loading = true;
-        this.servicePlatformService
-            .postOneRuntimePolicy(policy)
-            .then(response => {
-                this.loading = false;
-                this.close();
-            })
-            .catch(err => {
-                this.loading = false;
-                // TODO display request status in toast
-            });
-    }
+		this.loading = true;
+		this.servicePlatformService
+			.postOneRuntimePolicy(policy)
+			.then(response => {
+				this.loading = false;
+				this.close();
+			})
+			.catch(err => {
+				this.loading = false;
+				// TODO display request status in toast
+			});
+	}
 
-    close() {
-        this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
-    }
+	close() {
+		this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
+	}
 }

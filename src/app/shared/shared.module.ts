@@ -23,54 +23,54 @@ import { RequestsComponent } from './components/requests/requests.component';
 import { RequestDetailComponent } from './components/request-detail/request-detail.component';
 
 export function initConfiguration(configService: ConfigService): Function {
-    return () => configService.init();
+	return () => configService.init();
 }
 
 @NgModule({
-    declarations: [
-        CalendarComponent,
-        DialogComponent,
-        SearchBarComponent,
-        SelectComponent,
-        SpinnerComponent,
-        FeatureAvailableDirective,
-        FunctionsComponent,
-        RequestsComponent,
-        RequestDetailComponent
-    ],
-    entryComponents: [ DialogComponent ],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        AppRoutingModule
-    ],
-    exports: [
-        CalendarComponent,
-        DialogComponent,
-        SearchBarComponent,
-        SelectComponent,
-        SpinnerComponent,
-        FeatureAvailableDirective,
-        FunctionsComponent,
-        RequestsComponent,
-        RequestDetailComponent
-    ],
-    providers: [
-        ConfigService,
-        AuthService,
-        ConfigService,
-        CommonService,
-        UtilsService,
-        DialogDataService,
-        ChartService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initConfiguration,
-            deps: [ ConfigService ],
-            multi: true
-        }
-    ]
+	declarations: [
+		CalendarComponent,
+		DialogComponent,
+		SearchBarComponent,
+		SelectComponent,
+		SpinnerComponent,
+		FeatureAvailableDirective,
+		FunctionsComponent,
+		RequestsComponent,
+		RequestDetailComponent
+	],
+	entryComponents: [ DialogComponent ],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		ReactiveFormsModule,
+		FormsModule,
+		AppRoutingModule
+	],
+	exports: [
+		CalendarComponent,
+		DialogComponent,
+		SearchBarComponent,
+		SelectComponent,
+		SpinnerComponent,
+		FeatureAvailableDirective,
+		FunctionsComponent,
+		RequestsComponent,
+		RequestDetailComponent
+	],
+	providers: [
+		ConfigService,
+		AuthService,
+		ConfigService,
+		CommonService,
+		UtilsService,
+		DialogDataService,
+		ChartService,
+		{
+			provide: APP_INITIALIZER,
+			useFactory: initConfiguration,
+			deps: [ ConfigService ],
+			multi: true
+		}
+	]
 })
 export class SharedModule { }

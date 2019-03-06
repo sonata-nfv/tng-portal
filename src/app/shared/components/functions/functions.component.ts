@@ -5,59 +5,59 @@ import { UtilsService } from '../../services/common/utils.service';
 import { CommonService } from '../../services/common/common.service';
 
 @Component({
-    selector: 'app-functions',
-    templateUrl: './functions.component.html',
-    styleUrls: [ './functions.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-functions',
+	templateUrl: './functions.component.html',
+	styleUrls: [ './functions.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class FunctionsComponent implements OnInit {
-    loading: boolean;
-    section: string;
-    functions: Array<Object>;
-    displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ];
+	loading: boolean;
+	section: string;
+	functions: Array<Object>;
+	displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ];
 
-    constructor(
-        private utilsService: UtilsService,
-        private commonService: CommonService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) { }
+	constructor(
+		private utilsService: UtilsService,
+		private commonService: CommonService,
+		private router: Router,
+		private route: ActivatedRoute
+	) { }
 
-    ngOnInit() {
-        this.section = this.route.url[ 'value' ][ 0 ].path
-            .replace(/-/g, ' ')
-            .toUpperCase();
-        this.requestFunctions();
-    }
+	ngOnInit() {
+		this.section = this.route.url[ 'value' ][ 0 ].path
+			.replace(/-/g, ' ')
+			.toUpperCase();
+		this.requestFunctions();
+	}
 
-    searchFieldData(search) {
-        this.requestFunctions(search);
-    }
+	searchFieldData(search) {
+		this.requestFunctions(search);
+	}
 
-    /**
+	/**
      * Generates the HTTP request to get the list of functions.
      *
      * @param search [Optional] Function attributes that must be
      *                          matched by the returned list of
      *                          functions.
      */
-    requestFunctions(search?) {
-        this.loading = true;
-        this.commonService
-            .getFunctions(this.section, search)
-            .then(response => {
-                this.loading = false;
-                this.functions = response;
-            })
-            .catch(err => {
-                this.loading = false;
-                this.utilsService.openSnackBar(err, '');
-            });
-    }
+	requestFunctions(search?) {
+		this.loading = true;
+		this.commonService
+			.getFunctions(this.section, search)
+			.then(response => {
+				this.loading = false;
+				this.functions = response;
+			})
+			.catch(err => {
+				this.loading = false;
+				this.utilsService.openSnackBar(err, '');
+			});
+	}
 
-    openFunction(row) {
-        if (this.section === 'SERVICE PLATFORM') {
-            this.router.navigate([ row.uuid ], { relativeTo: this.route });
-        }
-    }
+	openFunction(row) {
+		if (this.section === 'SERVICE PLATFORM') {
+			this.router.navigate([ row.uuid ], { relativeTo: this.route });
+		}
+	}
 }

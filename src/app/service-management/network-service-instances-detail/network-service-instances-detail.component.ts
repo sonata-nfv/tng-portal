@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger
+	animate,
+	state,
+	style,
+	transition,
+	trigger
 } from '@angular/animations';
 
 import { ServiceManagementService } from '../service-management.service';
@@ -14,105 +14,105 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-    selector: 'app-network-service-instances-detail',
-    templateUrl: './network-service-instances-detail.component.html',
-    styleUrls: [ './network-service-instances-detail.component.scss' ],
-    encapsulation: ViewEncapsulation.None,
-    animations: [
-        trigger('detailExpand', [
-            state(
-                'collapsed',
-                style({
-                    display: 'none',
-                    transform: 'rotateX(90deg)'
-                })
-            ),
-            state('expanded', style({})),
-            transition('collapsed => expanded', animate('300ms ease-in'))
-        ])
-    ]
+	selector: 'app-network-service-instances-detail',
+	templateUrl: './network-service-instances-detail.component.html',
+	styleUrls: [ './network-service-instances-detail.component.scss' ],
+	encapsulation: ViewEncapsulation.None,
+	animations: [
+		trigger('detailExpand', [
+			state(
+				'collapsed',
+				style({
+					display: 'none',
+					transform: 'rotateX(90deg)'
+				})
+			),
+			state('expanded', style({})),
+			transition('collapsed => expanded', animate('300ms ease-in'))
+		])
+	]
 })
 export class NetworkServiceInstancesDetailComponent implements OnInit {
-    loading = false;
-    detail = {};
-    displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
+	loading = false;
+	detail = {};
+	displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
 
-    // Detail in row and animations
-    dataSource = new CustomDataSource();
-    vnfDetail = {};
-    isExpansionDetailRow = (i: number, row: Object) =>
-        row.hasOwnProperty('detailRow')
+	// Detail in row and animations
+	dataSource = new CustomDataSource();
+	vnfDetail = {};
+	isExpansionDetailRow = (i: number, row: Object) =>
+		row.hasOwnProperty('detailRow')
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private dialogData: DialogDataService,
-        private utilsService: UtilsService,
-        private serviceManagementService: ServiceManagementService
-    ) { }
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private dialogData: DialogDataService,
+		private utilsService: UtilsService,
+		private serviceManagementService: ServiceManagementService
+	) { }
 
-    ngOnInit() {
-        this.route.params.subscribe(params => {
-            const uuid = params[ 'id' ];
-            this.requestNsInstance(uuid);
-        });
-    }
+	ngOnInit() {
+		this.route.params.subscribe(params => {
+			const uuid = params[ 'id' ];
+			this.requestNsInstance(uuid);
+		});
+	}
 
-    /**
+	/**
      * Generates the HTTP request of a NS Instance by UUID.
      *
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-    requestNsInstance(uuid) {
-        this.loading = true;
+	requestNsInstance(uuid) {
+		this.loading = true;
 
-        this.serviceManagementService
-            .getOneNSInstance(uuid)
-            .then(response => {
-                this.detail = response;
+		this.serviceManagementService
+			.getOneNSInstance(uuid)
+			.then(response => {
+				this.detail = response;
 
-                if (this.detail[ 'vnf' ]) {
-                    Promise.all(
-                        this.detail[ 'vnf' ].map(item =>
-                            this.serviceManagementService.getOneFunctionRecord(item.vnfr_id)
-                        )
-                    )
-                        .then(responses => {
-                            this.loading = false;
-                            this.dataSource.data = responses;
-                        })
-                        .catch(err => {
-                            this.loading = false;
-                            this.utilsService.openSnackBar(err, '');
-                        });
-                }
-            })
-            .catch(err => {
-                this.loading = false;
-                this.utilsService.openSnackBar(err, '');
-                this.close();
-            });
-    }
+				if (this.detail[ 'vnf' ]) {
+					Promise.all(
+						this.detail[ 'vnf' ].map(item =>
+							this.serviceManagementService.getOneFunctionRecord(item.vnfr_id)
+						)
+					)
+						.then(responses => {
+							this.loading = false;
+							this.dataSource.data = responses;
+						})
+						.catch(err => {
+							this.loading = false;
+							this.utilsService.openSnackBar(err, '');
+						});
+				}
+			})
+			.catch(err => {
+				this.loading = false;
+				this.utilsService.openSnackBar(err, '');
+				this.close();
+			});
+	}
 
-    terminate() {
-        const title = 'Are you sure...?';
-        const content = 'Are you sure you want to terminate this instance?';
-        const action = 'Terminate';
+	terminate() {
+		const title = 'Are you sure...?';
+		const content = 'Are you sure you want to terminate this instance?';
+		const action = 'Terminate';
 
-        this.dialogData.openDialog(title, content, action, () => {
-            this.serviceManagementService
-                .postOneNSInstanceTermination(this.detail[ 'uuid' ])
-                .then(response => {
-                    this.utilsService.openSnackBar(response, '');
-                })
-                .catch(err => {
-                    this.utilsService.openSnackBar(err, '');
-                });
-        });
-    }
+		this.dialogData.openDialog(title, content, action, () => {
+			this.serviceManagementService
+				.postOneNSInstanceTermination(this.detail[ 'uuid' ])
+				.then(response => {
+					this.utilsService.openSnackBar(response, '');
+				})
+				.catch(err => {
+					this.utilsService.openSnackBar(err, '');
+				});
+		});
+	}
 
-    close() {
-        this.router.navigate([ 'service-management/network-service-instances' ]);
-    }
+	close() {
+		this.router.navigate([ 'service-management/network-service-instances' ]);
+	}
 }

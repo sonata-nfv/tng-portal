@@ -8,71 +8,71 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-    selector: 'app-sm-network-services',
-    templateUrl: './sm-network-services.component.html',
-    styleUrls: [ './sm-network-services.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-sm-network-services',
+	templateUrl: './sm-network-services.component.html',
+	styleUrls: [ './sm-network-services.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class SmNetworkServicesComponent implements OnInit {
-    loading: boolean;
-    section: string;
-    networkServices: Array<Object>;
-    displayedColumns = [
-        'Vendor',
-        'Name',
-        'Version',
-        'Status',
-        'Licenses',
-        // 'SLAs',
-        'instantiate'
-    ];
+	loading: boolean;
+	section: string;
+	networkServices: Array<Object>;
+	displayedColumns = [
+		'Vendor',
+		'Name',
+		'Version',
+		'Status',
+		'Licenses',
+		// 'SLAs',
+		'instantiate'
+	];
 
-    constructor(
-        private utilsService: UtilsService,
-        private commonService: CommonService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private instantiateDialog: MatDialog
-    ) { }
+	constructor(
+		private utilsService: UtilsService,
+		private commonService: CommonService,
+		private router: Router,
+		private route: ActivatedRoute,
+		private instantiateDialog: MatDialog
+	) { }
 
-    ngOnInit() {
-        this.section = 'SM';
-        this.requestServices();
-    }
+	ngOnInit() {
+		this.section = 'SM';
+		this.requestServices();
+	}
 
-    searchFieldData(search) {
-        this.requestServices(search);
-    }
+	searchFieldData(search) {
+		this.requestServices(search);
+	}
 
-    /**
+	/**
      * Generates the HTTP request to get the list of NS.
      *
      * @param search [Optional] Network Service attributes that
      *                          must be matched by the returned
      *                          list of NS.
      */
-    requestServices(search?) {
-        this.loading = true;
-        this.commonService
-            .getNetworkServices(this.section, search)
-            .then(response => {
-                this.loading = false;
-                this.networkServices = response;
-            })
-            .catch(err => {
-                this.loading = false;
-                this.utilsService.openSnackBar(err, '');
-            });
-    }
+	requestServices(search?) {
+		this.loading = true;
+		this.commonService
+			.getNetworkServices(this.section, search)
+			.then(response => {
+				this.loading = false;
+				this.networkServices = response;
+			})
+			.catch(err => {
+				this.loading = false;
+				this.utilsService.openSnackBar(err, '');
+			});
+	}
 
-    openNetworkService(row) {
-        const uuid = row.serviceId;
-        this.router.navigate([ uuid ], { relativeTo: this.route });
-    }
+	openNetworkService(row) {
+		const uuid = row.serviceId;
+		this.router.navigate([ uuid ], { relativeTo: this.route });
+	}
 
-    instantiate(row) {
-        this.instantiateDialog.open(NsInstantiateDialogComponent, {
-            data: { serviceUUID: row.serviceId, name: row.name }
-        });
-    }
+	instantiate(row) {
+		this.instantiateDialog.open(NsInstantiateDialogComponent, {
+			data: { serviceUUID: row.serviceId, name: row.name }
+		});
+	}
 }

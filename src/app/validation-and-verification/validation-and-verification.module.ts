@@ -17,23 +17,23 @@ import { VnvNetworkServicesComponent } from './vnv-network-services/vnv-network-
 import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail/vnv-network-services-detail.component';
 
 @NgModule({
-    declarations: [
-        TestsComponent,
-        TestsDetailComponent,
-        TestResultsComponent,
-        VnvPackagesComponent,
-        VnvPackagesDetailComponent,
-        VnvNetworkServicesComponent,
-        VnvNetworkServicesDetailComponent
-    ],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [ ValidationAndVerificationPlatformService ]
+	declarations: [
+		TestsComponent,
+		TestsDetailComponent,
+		TestResultsComponent,
+		VnvPackagesComponent,
+		VnvPackagesDetailComponent,
+		VnvNetworkServicesComponent,
+		VnvNetworkServicesDetailComponent
+	],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		ReactiveFormsModule,
+		FormsModule,
+		AppRoutingModule,
+		SharedModule
+	],
+	providers: [ ValidationAndVerificationPlatformService ]
 })
 export class ValidationAndVerificationModule { }

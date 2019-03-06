@@ -4,54 +4,54 @@ import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-    selector: 'app-runtime-policies-generated-actions',
-    templateUrl: './runtime-policies-generated-actions.component.html',
-    styleUrls: [ './runtime-policies-generated-actions.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-runtime-policies-generated-actions',
+	templateUrl: './runtime-policies-generated-actions.component.html',
+	styleUrls: [ './runtime-policies-generated-actions.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
-    loading: boolean;
-    generatedActions = new Array();
-    displayedColumns = [
-        'vnfName',
-        'scalingType',
-        'serviceInstanceUUID',
-        'value',
-        'date'
-    ];
+	loading: boolean;
+	generatedActions = new Array();
+	displayedColumns = [
+		'vnfName',
+		'scalingType',
+		'serviceInstanceUUID',
+		'value',
+		'date'
+	];
 
-    constructor(
-        private utilsService: UtilsService,
-        private servicePlatformService: ServicePlatformService
-    ) { }
+	constructor(
+		private utilsService: UtilsService,
+		private servicePlatformService: ServicePlatformService
+	) { }
 
-    ngOnInit() {
-        this.requestGeneratedActions();
-    }
+	ngOnInit() {
+		this.requestGeneratedActions();
+	}
 
-    searchFieldData(search) {
-        this.requestGeneratedActions(search);
-    }
+	searchFieldData(search) {
+		this.requestGeneratedActions(search);
+	}
 
-    /**
+	/**
      * Generates the HTTP request to get the list of Generated Actions.
      *
      * @param search [Optional] Generated actions attributes that
      *                          must be matched by the returned
      *                          list of actions.
      */
-    requestGeneratedActions(search?) {
-        this.loading = true;
+	requestGeneratedActions(search?) {
+		this.loading = true;
 
-        this.servicePlatformService
-            .getGeneratedActions(search)
-            .then(response => {
-                this.loading = false;
-                this.generatedActions = response;
-            })
-            .catch(err => {
-                this.loading = false;
-                this.utilsService.openSnackBar(err, '');
-            });
-    }
+		this.servicePlatformService
+			.getGeneratedActions(search)
+			.then(response => {
+				this.loading = false;
+				this.generatedActions = response;
+			})
+			.catch(err => {
+				this.loading = false;
+				this.utilsService.openSnackBar(err, '');
+			});
+	}
 }
