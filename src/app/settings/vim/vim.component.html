@@ -26,7 +26,7 @@
 
 <div class="vimForm" *ngIf="canShowForm()">
     <app-select *ngIf="!isMockType()" placeholder="Select a VIM type" [list]="vimTypes" (selectEvent)="receiveType($event)"
-        [disabled]="edition && vimType" [value]="vimType" i18n-placeholder="@@selectVimTypePlaceholder">
+		[disabled]="edition" [value]="vimType" i18n-placeholder="@@selectVimTypePlaceholder">
     </app-select>
     <app-select *ngIf="isMockType()" placeholder="Select a VIM type" [list]="['Mock']" disabled="true" value="Mock"
         i18n-placeholder="@@selectVimTypePlaceholder"></app-select>

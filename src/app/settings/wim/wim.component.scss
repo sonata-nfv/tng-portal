@@ -1,32 +1,50 @@
 @import "../../../constants.scss";
 app-wim {
-    position: relative;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     flex: 1 1;
+    position: absolute;
     align-items: center;
-    width: auto;
-    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     background-color: $basic-background-color;
-    
-    table {
-        width: 95%;
+    > * {
+        flex: 0 0 auto;
     }
-    
-    tr.mat-row {
-        background-image: linear-gradient(
-          to right,
-          $basic-background-color 0%,
-          $table-underline-color 0%,
-          $table-underline-color 95%,
-          $basic-background-color 95%,
-          $basic-background-color 100%
-        );
+
+    .title1 {
+        margin: 0;
+        width: 40%;
+
+        .mat-form-field-infix {
+        border-top: 0;
+        }
+
+        &.mat-form-field-should-float {
+        .mat-form-field-label-wrapper {
+            display: none;
+        }
+        }
     }
-    
-    // Set width for columns
-    .mat-cell:nth-child(4),
-    .mat-header-cell:nth-child(4) {
-        width: 30px;
+
+    .wimForm {
+        width: 65%;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+
+        .mat-form-field {
+            width: 20vw;
+        }
+
+        .wims-list .mat-form-field {
+            width: 35vw;
+        }
+
+        .unordered-list .mat-form-field {
+            width: 30vw;
+        }
     }
 }

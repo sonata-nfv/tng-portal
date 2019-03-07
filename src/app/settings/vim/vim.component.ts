@@ -47,7 +47,6 @@ export class VimComponent implements OnInit {
 				this.subscribeFormChanges();
 			}
 		});
-
 	}
 
 	/**

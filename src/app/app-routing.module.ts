@@ -15,9 +15,8 @@ import { UsersComponent } from './users/users.component';
 
 import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
+import { WimListComponent } from './settings/wim-list/wim-list.component';
 import { WimComponent } from './settings/wim/wim.component';
-import { WimDetailComponent } from './settings/wim-detail/wim-detail.component';
-import { WimCreateComponent } from './settings/wim-create/wim-create.component';
 
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
@@ -97,10 +96,10 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'settings/wim', component: WimComponent,
+				path: 'settings/wim', component: WimListComponent,
 				children: [
-					{ path: 'new', component: WimCreateComponent },
-					{ path: ':id', component: WimDetailComponent }
+					{ path: 'new', component: WimComponent },
+					{ path: ':id', component: WimComponent }
 				]
 			},
 			// Validation and verification

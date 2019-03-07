@@ -85,7 +85,17 @@ export class UtilsService {
 		}
 
 		for (const prop of obj1Props) {
-			if (obj1[ prop ] !== obj2[ prop ]) {
+			if (obj1[ prop ] instanceof Array && obj2[ prop ] instanceof Array) {
+				if (obj1[ prop ].length !== obj2[ prop ].length) {
+					return false;
+				} else {
+					for (const value of obj1[ prop ]) {
+						if (!obj2[ prop ].includes(value)) {
+							return false;
+						}
+					}
+				}
+			} else if (obj1[ prop ] !== obj2[ prop ]) {
 				return false;
 			}
 		}
@@ -94,7 +104,7 @@ export class UtilsService {
 	}
 
 	/**
-     * Compares two objects property to property and returns the differences
+     * Compares two objects property to property and returns the differences in the second one
      *
      * @param obj1 Old object
      * @param obj2 New object

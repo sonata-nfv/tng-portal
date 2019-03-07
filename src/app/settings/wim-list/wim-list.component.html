@@ -1,0 +1,52 @@
+<h3 class="title3 header-section-name" i18n="@@settings">Settings</h3>
+
+<div class="title-section">
+    <h1 class="title1 title-section-name" i18n="@@wim">WIM</h1>
+    <button class="add" (click)="createNew()">
+        <i class="wui wui-plus"></i>
+        <span i18n="@@createNewWimButton">Create New WIM</span>
+    </button>
+</div>
+
+<div class="tools">
+    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+    <button class="reload" (click)="requestWims()" matTooltip="Reload data" i18n-matTooltip="@@reloadData">
+        <i class="wui wui-undo"></i>
+    </button>
+</div>
+
+<table mat-table [dataSource]="wims">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
+    <ng-container matColumnDef="endpoint">
+        <th mat-header-cell *matHeaderCellDef i18n="@@endpoint">Endpoint</th>
+        <td mat-cell *matCellDef="let element">{{ element.endpoint || "Not provided" }}</td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" (click)="deleteWim(element.uuid)" (click)="$event.stopPropagation()">
+            <button *ngIf="element.type.trim().toLowerCase() !== 'mock'" class="actions" mat-button matTooltip="Delete"
+                i18n-matTooltip="@@delete">
+                <i class="wui wui-trash-alt"></i>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openWim(row.uuid)"></tr>
+</table>
+
+<div *ngIf="!wims && !loading" class="no-results-container">
+    <div class="no-results-line"></div>
+    <span class="no-results-text">No results to display</span>
+    <div class="no-results-line"></div>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>
