@@ -53,6 +53,7 @@ export class VimComponent implements OnInit {
 		this.matcher = new InputErrorStateMatcher();
 
 		this.vimForm = new FormGroup({
+			uuid: new FormControl({ value: '', disabled: true }),
 			name: new FormControl('', Validators.required),
 			city: new FormControl(''),
 			country: new FormControl(''),
@@ -118,6 +119,7 @@ export class VimComponent implements OnInit {
 	}
 
 	private populateForm() {
+		this.vimForm.get('uuid').setValue(this.originalVim[ 'uuid' ]);
 		this.vimForm.get('name').setValue(this.originalVim[ 'name' ]);
 		this.vimForm.get('city').setValue(this.originalVim[ 'city' ]);
 		this.vimForm.get('country').setValue(this.originalVim[ 'country' ]);

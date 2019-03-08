@@ -1,170 +1,178 @@
 <div class="header-section" *ngIf="canShowForm()">
-    <h3 class="title3 header-section-name" i18n="@@vim">VIM</h3>
-    <div *ngIf="edition && !isMockType()" class="button-underline">
-        <button class="delete-button" (click)="deleteVim()" i18n="@@deleteVim">Delete VIM</button>
-        <div class="underline"></div>
-    </div>
+	<h3 class="title3 header-section-name" i18n="@@vim">VIM</h3>
+	<div *ngIf="edition && !isMockType()" class="button-underline">
+		<button class="delete-button" (click)="deleteVim()" i18n="@@deleteVim">Delete VIM</button>
+		<div class="underline"></div>
+	</div>
 </div>
 
 <form [formGroup]="vimForm" class="title-section" *ngIf="canShowForm()">
-    <mat-form-field class="title1">
-        <input matInput type="text" placeholder="VIM Name" formControlName="name" required [errorStateMatcher]="matcher"
-            i18n-placeholder="@@vimName" />
-    </mat-form-field>
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="VIM Name" formControlName="name" required [errorStateMatcher]="matcher"
+			i18n-placeholder="@@vimName" />
+	</mat-form-field>
 
-    <div class="header-buttons">
-        <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
-            (click)="edition ? updateVim() : createVim()" i18n="@@saveButton">
-            SAVE
-        </button>
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+			(click)="edition ? updateVim() : createVim()" i18n="@@saveButton">
+			SAVE
+		</button>
 
-        <button *ngIf="!edition" class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+		<button *ngIf="!edition" class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
 
-        <button *ngIf="edition" class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
-    </div>
+		<button *ngIf="edition" class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+	</div>
 </form>
 
 <div class="vimForm" *ngIf="canShowForm()">
-    <app-select *ngIf="!isMockType()" placeholder="Select a VIM type" [list]="vimTypes" (selectEvent)="receiveType($event)"
+	<app-select *ngIf="!isMockType()" placeholder="Select a VIM type" [list]="vimTypes" (selectEvent)="receiveType($event)"
 		[disabled]="edition" [value]="vimType" i18n-placeholder="@@selectVimTypePlaceholder">
-    </app-select>
-    <app-select *ngIf="isMockType()" placeholder="Select a VIM type" [list]="['Mock']" disabled="true" value="Mock"
-        i18n-placeholder="@@selectVimTypePlaceholder"></app-select>
+	</app-select>
+	<app-select *ngIf="isMockType()" placeholder="Select a VIM type" [list]="['Mock']" disabled="true" value="Mock"
+		i18n-placeholder="@@selectVimTypePlaceholder"></app-select>
 </div>
 
 
 <form [formGroup]="vimForm" class="vimForm" *ngIf="canShowMockEndpoint()">
-    <mat-form-field>
-        <input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required [errorStateMatcher]="matcher"
-            i18n-placeholder="@@endpoint" />
-        <button *ngIf="edition && originalVim['endpoint']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
-            (click)="copyToClipboard(originalVim['endpoint'])" i18n-matTooltip="@@copy">
-            <i class="wui wui-copy-alt"></i>
-        </button>
-    </mat-form-field>
-    <p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+	<mat-form-field *ngIf="edition">
+		<input matInput placeholder="VIM ID" formControlName="uuid" disabled i18n-placeholder="@@vimID" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(vimForm.get('uuid').value)"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
 
-    <div class="sameRow">
-        <mat-form-field *ngIf="canShowMockCity()">
-            <input matInput type="text" placeholder="City" formControlName="city" [errorStateMatcher]="matcher" i18n-placeholder="@@city" />
-        </mat-form-field>
+	<mat-form-field>
+		<input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required [errorStateMatcher]="matcher"
+			i18n-placeholder="@@endpoint" />
+		<button *ngIf="edition && vimForm.get('endpoint').value" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
+			(click)="copyToClipboard(vimForm.get('endpoint').value)" i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+	<p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
-        <mat-form-field *ngIf="canShowMockCountry()">
-            <input matInput type="text" placeholder="Country" formControlName="country" [errorStateMatcher]="matcher"
-                i18n-placeholder="@@country" />
-        </mat-form-field>
-    </div>
+	<div class="sameRow">
+		<mat-form-field *ngIf="canShowMockCity()">
+			<input matInput type="text" placeholder="City" formControlName="city" [errorStateMatcher]="matcher" i18n-placeholder="@@city" />
+		</mat-form-field>
+
+		<mat-form-field *ngIf="canShowMockCountry()">
+			<input matInput type="text" placeholder="Country" formControlName="country" [errorStateMatcher]="matcher"
+				i18n-placeholder="@@country" />
+		</mat-form-field>
+	</div>
 </form>
 
 <form [formGroup]="openstackForm" class="vimForm" *ngIf="canShowOpenstackForm()">
-    <div class="sameRow">
-        <mat-form-field>
-            <input matInput type="text" placeholder="Username" formControlName="username" required [errorStateMatcher]="matcher"
-                i18n-placeholder="@@username" />
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Password" formControlName="password" required [errorStateMatcher]="matcher"
-                i18n-placeholder="@@password" />
-        </mat-form-field>
-    </div>
+	<div class="sameRow">
+		<mat-form-field>
+			<input matInput type="text" placeholder="Username" formControlName="username" required [errorStateMatcher]="matcher"
+				i18n-placeholder="@@username" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Password" formControlName="password" required [errorStateMatcher]="matcher"
+				i18n-placeholder="@@password" />
+		</mat-form-field>
+	</div>
 
-    <div class="sameRow">
-        <mat-form-field>
-            <input matInput type="text" placeholder="Tenant" formControlName="tenant" required [errorStateMatcher]="matcher"
-                i18n-placeholder="@@tenant" />
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Domain" formControlName="domain" [errorStateMatcher]="matcher"
-                i18n-placeholder="@@domain" />
-        </mat-form-field>
-    </div>
+	<div class="sameRow">
+		<mat-form-field>
+			<input matInput type="text" placeholder="Tenant" formControlName="tenant" required [errorStateMatcher]="matcher"
+				i18n-placeholder="@@tenant" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Domain" formControlName="domain" [errorStateMatcher]="matcher"
+				i18n-placeholder="@@domain" />
+		</mat-form-field>
+	</div>
 
-    <mat-form-field>
-        <input matInput type="text" placeholder="Network endpoint" formControlName="networkEndpoint" [errorStateMatcher]="matcher"
-            i18n-placeholder="@@networkEndpoint" />
-        <button *ngIf="edition && originalVim['network_endpoint']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
-            (click)="copyToClipboard(originalVim['network_endpoint'])" i18n-matTooltip="@@copy">
-            <i class="wui wui-copy-alt"></i>
-        </button>
-    </mat-form-field>
-    <p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+	<mat-form-field>
+		<input matInput type="text" placeholder="Network endpoint" formControlName="networkEndpoint" [errorStateMatcher]="matcher"
+			i18n-placeholder="@@networkEndpoint" />
+		<button *ngIf="edition && openstackForm.get('networkEndpoint').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+			matSuffix (click)="copyToClipboard(openstackForm.get('networkEndpoint').value)" i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+	<p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
-    <div class="sameRow">
-        <mat-form-field>
-            <input matInput type="text" placeholder="Private network" formControlName="privateNetwork" required
-                [errorStateMatcher]="matcher" i18n-placeholder="@@privateNetwork" />
-            <button *ngIf="edition && originalVim['private_network_prefix']" mat-button matTooltip="Copy" class="icon-button-shadow"
-                matSuffix (click)="copyToClipboard(originalVim['private_network_prefix'])" i18n-matTooltip="@@copy">
-                <i class="wui wui-copy-alt"></i>
-            </button>
-        </mat-form-field>
-        <p> / </p>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask" required
-                [errorStateMatcher]="matcher" i18n-placeholder="@@privateNetworkMask" />
-        </mat-form-field>
-    </div>
-    <p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
-    <p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column">
-        *This is not a valid IP mask (i.e. /24)</p>
+	<div class="sameRow">
+		<mat-form-field>
+			<input matInput type="text" placeholder="Private network" formControlName="privateNetwork" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetwork" />
+			<button *ngIf="edition && openstackForm.get('privateNetwork').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+				matSuffix (click)="copyToClipboard(openstackForm.get('privateNetwork').value)" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+		<p> / </p>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetworkMask" />
+		</mat-form-field>
+	</div>
+	<p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+	<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column">
+		*This is not a valid IP mask (i.e. /24)</p>
 
-    <div class="sameRow">
-        <mat-form-field>
-            <input matInput type="text" placeholder="External network" formControlName="externalNetworkID" required
-                [errorStateMatcher]="matcher" i18n-placeholder="@@externalNetwork" />
-            <button *ngIf="edition && originalVim['external_network_id']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
-                (click)="copyToClipboard(originalVim['external_network_id'])" i18n-matTooltip="@@copy">
-                <i class="wui wui-copy-alt"></i>
-            </button>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="External router" formControlName="externalRouterID" required
-                [errorStateMatcher]="matcher" i18n-placeholder="@@externalRouter" />
-            <button *ngIf="edition && originalVim['external_router_id']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
-                (click)="copyToClipboard(originalVim['external_router_id'])" i18n-matTooltip="@@copy">
-                <i class="wui wui-copy-alt"></i>
-            </button>
-        </mat-form-field>
+	<div class="sameRow">
+		<mat-form-field>
+			<input matInput type="text" placeholder="External network" formControlName="externalNetworkID" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@externalNetwork" />
+			<button *ngIf="edition && openstackForm.get('externalNetworkID').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+				matSuffix (click)="copyToClipboard(openstackForm.get('externalNetworkID').value)" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="text" placeholder="External router" formControlName="externalRouterID" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@externalRouter" />
+			<button *ngIf="edition && openstackForm.get('externalRouterID').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+				matSuffix (click)="copyToClipboard(openstackForm.get('externalRouterID').value)" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
 
-        <!-- <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
+		<!-- <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
             i18n-placeholder="@@selectExternalNetwork"></app-select>
 
         <app-select placeholder="Select an external router" [list]="externalRouters" (selectEvent)="receiveExternalRouter($event)"
             i18n-placeholder="@@selectExternalRouter"></app-select> -->
-    </div>
+	</div>
 </form>
 
 <form [formGroup]="kubernetesForm" class="vimForm" *ngIf="canShowKubernetesForm()">
-    <div class="description">
-        <div class="description-title">
-            <h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
-            <button *ngIf="edition && !editingConfig" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
-                (click)="editingConfig = true" i18n-matTooltip="@@edit">
-                <i class="wui wui-pen-alt"></i>
-            </button>
-            <button *ngIf="edition && editingConfig" type="button" mat-button matTooltip="View" class="icon-button-shadow"
-                (click)="editingConfig = false" i18n-matTooltip="@@view">
-                <i class="wui wui-eye"></i>
-            </button>
-            <button *ngIf="edition && originalVim['config']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
-                (click)="copyJSONToClipboard(originalVim['config'])" i18n-matTooltip="@@copy">
-                <i class="wui wui-copy-alt"></i>
-            </button>
-        </div>
+	<div class="description">
+		<div class="description-title">
+			<h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
+			<button *ngIf="edition && !editingConfig" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
+				(click)="editingConfig = true" i18n-matTooltip="@@edit">
+				<i class="wui wui-pen-alt"></i>
+			</button>
+			<button *ngIf="edition && editingConfig" type="button" mat-button matTooltip="View" class="icon-button-shadow"
+				(click)="editingConfig = false" i18n-matTooltip="@@view">
+				<i class="wui wui-eye"></i>
+			</button>
+			<button *ngIf="edition && originalVim['config']" mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix
+				(click)="copyJSONToClipboard(originalVim['config'])" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</div>
 
-        <!-- TODO check if this can be the same as in edition (creation) -->
-        <mat-form-field *ngIf="editingConfig || !edition" class="description"
-            [ngClass]="{ 'mat-form-field-invalid': kubernetesForm.valid && !checkJSONValidity() }">
-            <textarea class="content" matInput type="text" formControlName="config" [errorStateMatcher]="matcher"
-                ngDefaultControl></textarea>
-            <p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON</p>
-        </mat-form-field>
+		<!-- TODO check if this can be the same as in edition (creation) -->
+		<mat-form-field *ngIf="editingConfig || !edition" class="description"
+			[ngClass]="{ 'mat-form-field-invalid': kubernetesForm.valid && !checkJSONValidity() }">
+			<textarea class="content" matInput type="text" formControlName="config" [errorStateMatcher]="matcher"
+				ngDefaultControl></textarea>
+			<p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON</p>
+		</mat-form-field>
 
-        <!-- TODO view updated config if changes -->
-        <span *ngIf="edition && !editingConfig" class="content">
-            <ngx-json-viewer [json]="getParsedJSON(kubernetesForm.get('config').value)"></ngx-json-viewer>
-        </span>
-    </div>
+		<!-- TODO view updated config if changes -->
+		<span *ngIf="edition && !editingConfig" class="content">
+			<ngx-json-viewer [json]="getParsedJSON(kubernetesForm.get('config').value)"></ngx-json-viewer>
+		</span>
+	</div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

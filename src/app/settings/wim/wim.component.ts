@@ -47,6 +47,7 @@ export class WimComponent implements OnInit {
 
 	private initForms() {
 		this.wimForm = new FormGroup({
+			uuid: new FormControl({ value: '', disabled: true }),
 			name: new FormControl('', Validators.required),
 			endpoint: new FormControl('', [ Validators.required, Validators.pattern(this.utilsService.getIpPattern()) ]),
 			username: new FormControl(),
@@ -116,6 +117,7 @@ export class WimComponent implements OnInit {
 	}
 
 	private populateForm() {
+		this.wimForm.get('uuid').setValue(this.originalWim[ 'uuid' ]);
 		this.wimForm.get('name').setValue(this.originalWim[ 'name' ]);
 		this.wimForm.get('endpoint').setValue(this.originalWim[ 'endpoint' ]);
 		this.wimForm.get('username').setValue(this.originalWim[ 'username' ]);
