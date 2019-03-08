@@ -48,7 +48,7 @@ export class WimComponent implements OnInit {
 	private initForms() {
 		this.wimForm = new FormGroup({
 			name: new FormControl('', Validators.required),
-			endpoint: new FormControl('', Validators.required),
+			endpoint: new FormControl('', [ Validators.required, Validators.pattern(this.utilsService.getIpPattern()) ]),
 			username: new FormControl(),
 			password: new FormControl(),
 			authKey: new FormControl(),
