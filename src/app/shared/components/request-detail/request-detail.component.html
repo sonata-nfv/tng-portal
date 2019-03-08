@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['requestUUID']" i18n="@@requestsCapLetters">REQUESTS</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['requestUUID']" i18n="@@requests">Requests</h3>
 
 <div class="title-section" *ngIf="detail['requestUUID']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -7,11 +7,13 @@
 
 <form class="detail">
     <mat-form-field *ngIf="detail['requestUUID']">
-        <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled i18n-placeholder="@@idPlaceholder" />
+        <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled
+            i18n-placeholder="@@idPlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+            i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['type']">
@@ -19,12 +21,14 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['slaUUID']">
-        <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled i18n-placeholder="@@slaIDPlaceholder" />
+        <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled
+            i18n-placeholder="@@slaIDPlaceholder" />
     </mat-form-field>
 
     <div class="sameRow">
         <mat-form-field *ngIf="detail['serviceName']">
-            <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled i18n="@@serviceNamePlaceholder" />
+            <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled
+                i18n="@@serviceNamePlaceholder" />
         </mat-form-field>
 
         <mat-form-field *ngIf="detail['serviceVersion']">
@@ -35,7 +39,8 @@
 
     <div class="sameRow">
         <mat-form-field *ngIf="detail['serviceUUID']">
-            <input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+            <input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled
+                i18n-placeholder="@@serviceIDPlaceholder" />
         </mat-form-field>
 
         <mat-form-field *ngIf="detail['serviceVendor']">

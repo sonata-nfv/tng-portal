@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@testsCapLetters">TESTS</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@tests">Tests</h3>
 
 <div class="title-section" *ngIf="detail['name']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -29,11 +29,13 @@
 
 <form class="detail">
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+            i18n-placeholder="@@vendorPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="status" *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+            i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
 
     <!--
@@ -51,14 +53,14 @@
     </mat-form-field>
 
     <div class="description" *ngIf="detail['description']">
-        <h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
+        <h4 class="title4" i18n="@@description">Description</h4>
         <span class="content">
             <p>{{ detail['description'] }}</p>
         </span>
     </div>
 
     <div class="description" *ngIf="detail['services']">
-        <h4 class="title4" i18n="@@againstWhichServicesCapLetters">AGAINST WHICH SERVICES</h4>
+        <h4 class="title4" i18n="@@affectedNetworkServices">Affected network services</h4>
 
         <span class="content">
             <table mat-table [dataSource]="detail['services']">

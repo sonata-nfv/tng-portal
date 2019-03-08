@@ -1,10 +1,11 @@
-<h3 class="title3 header-section-name" i18n="@@spCapLetters">SERVICE PLATFORM</h3>
+<h3 class="title3 header-section-name" i18n="@@sp">Service platform</h3>
 
-<h1 class="title1 title-section-name" i18n="@@nss">Network services</h1>
+<h1 class="title1 title-section-name" i18n="@@networkServices">Network services</h1>
 
 <div class="tools">
     <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-    <button class="reload" (click)="requestServices()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i class="wui wui-undo"></i></button>
+    <button class="reload" (click)="requestServices()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
+            class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="networkServices">

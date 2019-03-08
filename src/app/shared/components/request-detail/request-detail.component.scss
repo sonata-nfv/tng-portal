@@ -18,15 +18,5 @@ app-request-detail {
   .detail {
     width: 65%;
     margin-top: 100px;
-
-    .sameRow {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-
-      .mat-form-field {
-        width: 50%;
-      }
-    }
   }
 }

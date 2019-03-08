@@ -15,7 +15,9 @@ body {
 	margin: 0;
 }
 
+//////////////////////////////////////
 // Generic scrollbar for the app
+//////////////////////////////////////
 ::-webkit-scrollbar {
 	width: 10px;
 	padding-top: 100px;
@@ -33,7 +35,9 @@ body {
 	border-radius: 10px;
 }
 
+//////////////////////////////////////
 // App basic background
+//////////////////////////////////////
 app-root {
 	position: absolute;
 	display: flex;
@@ -47,6 +51,10 @@ app-root {
 	background-size: cover;
 }
 
+//////////////////////////////////////
+// Menu
+//////////////////////////////////////
+
 // Set index dimenssions to enable menu opening
 app-index {
 	display: flex;
@@ -54,7 +62,9 @@ app-index {
 	width: 100%;
 }
 
-// Spinner styles to center in component
+//////////////////////////////////////
+// Spinner centering in components
+//////////////////////////////////////
 app-spinner {
 	position: absolute;
 	top: 50%;
@@ -63,7 +73,9 @@ app-spinner {
 	-ms-transform: translate(-50%, -50%);
 }
 
-// Title and font styles
+//////////////////////////////////////
+// Titles and fonts
+//////////////////////////////////////
 .title1 {
 	color: $secondary-font-color-light;
 	font-size: 37px;
@@ -101,24 +113,35 @@ p {
 	color: $secondary-font-color;
 }
 
-// Title section styles
+.error-message {
+    font-size: 13px;
+    color: $primary-font-color-light;
+    text-align: right;
+}
+
+//////////////////////////////////////
+// Page header-subheader sections
+//////////////////////////////////////
 .header-section {
 	display: flex;
-	flex-direction: row;
+    flex-direction: row;
+    align-items: center;
 	width: 95%;
 }
 
 .header-section-name {
 	width: 95%;
 	margin-top: 15px;
-	margin-bottom: 3px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
 }
 
 .button-underline {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-content: center;
+    justify-content: center;
+    min-width: 160px;
+    max-height: 18px;
 
 	.delete-button {
 		min-width: 150px;
@@ -126,8 +149,8 @@ p {
 		border: none;
 		cursor: pointer;
 		outline: none;
-		background-color: $basic-background-color;
 		color: $primary-button-color;
+		background-color: $basic-background-color;
 	}
 
 	a {
@@ -228,51 +251,7 @@ p {
 	margin-bottom: 3px;
 }
 
-// Ordered lists
-ol.list,
-dl {
-	display: flex;
-	flex-direction: column;
-	list-style: none;
-	padding: 0;
-}
-
-li.line,
-dt {
-	display: flex;
-	flex-direction: row;
-	counter-increment: item;
-	margin-bottom: 10px;
-
-	button {
-		margin: auto;
-		margin-left: 15px;
-		width: 35px;
-		height: 35px;
-		border: none;
-		cursor: pointer;
-		outline: none;
-		background-color: $basic-background-color;
-		box-shadow: 2px 1px 2px 0 $shadow-buttons;
-	}
-
-	.wui-trash-alt:before {
-		font-size: 20px;
-	}
-}
-
-li.line:before {
-	margin-right: 10px;
-	content: counter(item) '. ';
-	background: $basic-background-color;
-	color: $secondary-font-color-light;
-	width: 1em;
-	font-size: 40px;
-	font-weight: bold;
-	transform: translate(0, 9px);
-}
-
-// Page subtitle styles
+// Page subtitle section
 .subheader {
 	display: flex;
 	flex-direction: row;
@@ -296,7 +275,9 @@ li.line:before {
 	}
 }
 
-// Set styles for version circles
+//////////////////////////////////////
+// Version and iteration circles
+//////////////////////////////////////
 .bubbleDiv {
 	display: flex;
 	flex-direction: column;
@@ -329,7 +310,9 @@ li.line:before {
 	}
 }
 
-// Set tools bar (search and reload) styles
+//////////////////////////////////////
+// Tools bar (search and reload)
+//////////////////////////////////////
 .tools {
 	display: flex;
 	justify-content: center;
@@ -338,63 +321,41 @@ li.line:before {
 	margin-top: 5vh;
 }
 
-.reload {
-	border: none;
-	cursor: pointer;
-	outline: none;
-	position: absolute;
-	right: 6.5vw;
-	background-color: $basic-background-color;
-	box-shadow: 2px 1px 2px 0 $shadow-buttons;
-
-	.wui-undo::before {
-		font-size: 20px;
-		color: $reload-color;
-	}
-}
-
-// Close icon
-.closeIcon {
-	position: absolute;
-	padding: 8px;
-	border: none;
-	cursor: pointer;
-	outline: none;
-	color: $primary-color-light;
-	background-color: $basic-background-color;
-
-	i:before {
-		font-size: 10px;
-		color: $primary-color-light;
-	}
-}
-
-// Description field in detailed views and instantiations
+//////////////////////////////////////
+// Description fields
+//////////////////////////////////////
 .description {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 // Header when the item has an icon on the right
 // Allows dropdown action
-.description .descriptionTitle {
+.description .description-title {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
 
 	.title4 {
-		width: 95%;
+        width: 95%;
 	}
 	button {
-		align-self: center;
+        align-self: center;
+        text-align: right;
+        border: none;
+		cursor: pointer;
+        outline: none;
+        color: $primary-font-color;
+		background-color: $basic-background-color;
 	}
 }
 
 .description {
 	.title4 {
-		margin-bottom: 2px;
+        margin-bottom: 2px;
+        margin-top: 3px;
 	}
 
 	span {
@@ -455,7 +416,29 @@ li.line:before {
 	}
 }
 
-// Styles for advanced section in detailed views
+//////////////////////////////////////
+// JSON viewer styles  
+//////////////////////////////////////
+ngx-json-viewer {
+    .ngx-json-viewer[_ngcontent-c12] {
+        height: auto; 
+        width: auto; 
+        margin: 5px;
+    
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-key[_ngcontent-c12],
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-separator[_ngcontent-c12] {
+            color: $secondary-font-color;
+        }
+
+        .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-value[_ngcontent-c12] {
+            color: $primary-font-color;
+        }
+    }
+}
+
+//////////////////////////////////////
+// Advanced section: detailed views
+//////////////////////////////////////
 .advanceSection {
 	display: flex;
 	flex-direction: column;
@@ -502,5 +485,142 @@ li.line:before {
 				margin: 4px auto;
 			}
 		}
+    }
+}
+
+//////////////////////////////////////
+// No results found
+//////////////////////////////////////
+.no-results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 55%;
+    margin-top: 15vh;
+  
+    .no-results-line {
+      height: 45%;
+      width: 15vw;
+      border-bottom: 1px solid $secondary-font-color-light;
+    }
+  
+    .no-results-text {
+      color: $secondary-font-color-light;
+    }
+}
+
+//////////////////////////////////////
+// Lists 
+//////////////////////////////////////
+
+// Ordered lists
+ol.list,
+ul.unordered-list,
+dl {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0;
+}
+
+
+ol .list li.line,
+dl dt {
+    display: flex;
+    flex-direction: row;
+    counter-increment: item;
+    margin-bottom: 10px;
+}
+
+ol .list li.line button,
+ul.unordered-list button,
+dl dt button {
+        margin: auto;
+        margin-left: 15px;
+        width: 35px;
+        height: 35px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-color: $basic-background-color;
+        box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+        .wui-trash-alt:before {
+            font-size: 20px;
+        }
+    }
+
+ol .list li.line:before {
+    margin-right: 10px;
+    content: counter(item) '. ';
+    background: $basic-background-color;
+    color: $secondary-font-color-light;
+    width: 1em;
+    font-size: 40px;
+    font-weight: bold;
+    transform: translate(0, 9px);
+}
+
+//Unordered lists
+ul.unordered-list .mat-input-element:disabled {
+    color: $secondary-font-color;
+}
+
+//////////////////////////////////////
+// Button for icons
+//////////////////////////////////////
+.icon-button-shadow {
+    border: none;
+	cursor: pointer;
+    outline: none;
+    background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
+}
+
+//////////////////////////////////////
+// Icons
+//////////////////////////////////////
+.reload {
+	border: none;
+	cursor: pointer;
+	outline: none;
+	position: absolute;
+	right: 6.5vw;
+	background-color: $basic-background-color;
+	box-shadow: 2px 1px 2px 0 $shadow-buttons;
+
+	.wui-undo::before {
+		font-size: 20px;
+		color: $reload-color;
 	}
+}
+
+.closeIcon {
+	position: absolute;
+	padding: 8px;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	color: $primary-color-light;
+	background-color: $basic-background-color;
+
+	i:before {
+		font-size: 10px;
+		color: $primary-color-light;
+	}
+}
+
+.icon-button-shadow .wui-copy-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-pen-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-eye:before {
+    font-size: 20px;
+    color: $secondary-font-color;
 }

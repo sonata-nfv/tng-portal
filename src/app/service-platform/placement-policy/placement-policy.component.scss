@@ -48,12 +48,10 @@ app-placement-policy {
     }
   }
 
-  .error {
+  .error-message {
     font-size: 0.8em;
     margin-top: -25px;
     margin-bottom: 10px;
-    color: $primary-font-color-light;
-    text-align: right;
     width: 24%;
   }
 

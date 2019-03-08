@@ -1,16 +1,18 @@
-<h3 class="title3 header-section-name" i18n="@@validationAndVerificationCapLetters">VALIDATION AND VERIFICATION</h3>
+<h3 class="title3 header-section-name" i18n="@@validationAndVerification">Validation and verification</h3>
 
 <h1 class="title1 title-section-name" i18n="@@networkServices">Network services</h1>
 
 <div class="tools">
     <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-    <button class="reload" (click)="requestServices()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i class="wui wui-undo"></i></button>
+    <button class="reload" (click)="requestServices()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
+            class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="networkServices">
     <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }" class="wui"></i></td>
+        <td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }"
+                class="wui"></i></td>
     </ng-container>
 
     <ng-container matColumnDef="vendor">

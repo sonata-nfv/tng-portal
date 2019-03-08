@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector: 'app-user-licenses',
-    templateUrl: './user-licenses.component.html',
-    styleUrls: [ './user-licenses.component.scss' ],
-    encapsulation: ViewEncapsulation.None
+	selector: 'app-user-licenses',
+	templateUrl: './user-licenses.component.html',
+	styleUrls: [ './user-licenses.component.scss' ],
+	encapsulation: ViewEncapsulation.None
 })
 export class UserLicensesComponent implements OnInit {
-    searchText: string;
+	searchText: string;
 
-    constructor() { }
+	constructor() { }
 
-    ngOnInit() { }
+	ngOnInit() { }
 
-    receiveMessage($event) {
-        this.searchText = $event;
-    }
+	receiveMessage($event) {
+		this.searchText = $event;
+	}
 }

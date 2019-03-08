@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@functionsCapLetters">FUNCTIONS</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@functions">Functions</h3>
 
 <div class="title-section" *ngIf="detail['name']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -20,7 +20,8 @@
 
 <form class="detail">
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+            i18n-placeholder="@@vendorPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="type" *ngIf="detail['type']">
@@ -28,7 +29,8 @@
     </mat-form-field>
 
     <mat-form-field class="status" *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+            i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
@@ -37,7 +39,7 @@
     </mat-form-field>
 
     <div class="description" *ngIf="detail['description']">
-        <h4 class="title4" i18n="@@descriptionCapLetters">DESCRIPTION</h4>
+        <h4 class="title4" i18n="@@description">Description</h4>
         <span class="content">
             <p>{{ detail['description'] }}</p>
         </span>

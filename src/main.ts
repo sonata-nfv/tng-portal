@@ -15,6 +15,6 @@ const translations = require(`raw-loader!./locale/messages.en.xlf`);
 
 platformBrowserDynamic()
 	.bootstrapModule(AppModule, {
-		providers: [{ provide: TRANSLATIONS, useValue: translations }, { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' }]
+		providers: [ { provide: TRANSLATIONS, useValue: translations }, { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' } ]
 	})
 	.catch(err => console.log(err));

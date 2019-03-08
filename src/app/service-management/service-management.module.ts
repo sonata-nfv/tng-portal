@@ -20,20 +20,20 @@ import { ServiceLicensesComponent } from './service-licenses/service-licenses.co
 import { UserLicensesComponent } from './user-licenses/user-licenses.component';
 
 @NgModule({
-    declarations: [
-        SmNetworkServicesComponent,
-        SmNetworkServicesDetailComponent,
-        NsInstantiateDialogComponent,
-        NetworkServiceInstancesComponent,
-        NetworkServiceInstancesDetailComponent,
-        FunctionRecordsDetailComponent,
-        LicencesComponent,
-        LicencesDetailComponent,
-        ServiceLicensesComponent,
-        UserLicensesComponent
-    ],
-    entryComponents: [ NsInstantiateDialogComponent ],
-    imports: [ CommonModule, AngularMaterialModule, AppRoutingModule, ReactiveFormsModule, FormsModule, SharedModule ],
-    providers: [ ServiceManagementService ]
+	declarations: [
+		SmNetworkServicesComponent,
+		SmNetworkServicesDetailComponent,
+		NsInstantiateDialogComponent,
+		NetworkServiceInstancesComponent,
+		NetworkServiceInstancesDetailComponent,
+		FunctionRecordsDetailComponent,
+		LicencesComponent,
+		LicencesDetailComponent,
+		ServiceLicensesComponent,
+		UserLicensesComponent
+	],
+	entryComponents: [ NsInstantiateDialogComponent ],
+	imports: [ CommonModule, AngularMaterialModule, AppRoutingModule, ReactiveFormsModule, FormsModule, SharedModule ],
+	providers: [ ServiceManagementService ]
 })
 export class ServiceManagementModule { }

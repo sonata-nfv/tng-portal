@@ -1,0 +1,50 @@
+@import "../../../constants.scss";
+app-wim {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    position: absolute;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $basic-background-color;
+    > * {
+        flex: 0 0 auto;
+    }
+
+    .title1 {
+        margin: 0;
+        width: 40%;
+
+        .mat-form-field-infix {
+        border-top: 0;
+        }
+
+        &.mat-form-field-should-float {
+        .mat-form-field-label-wrapper {
+            display: none;
+        }
+        }
+    }
+
+    .wimForm {
+        width: 65%;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+
+        .mat-form-field {
+            width: 25vw;
+        }
+
+        .wims-list .mat-form-field {
+            width: 35vw;
+        }
+
+        .unordered-list .mat-form-field {
+            width: 30vw;
+        }
+    }
+}

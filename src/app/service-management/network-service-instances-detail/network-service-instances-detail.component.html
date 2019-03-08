@@ -1,4 +1,5 @@
-<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@nsInstancesCapLetter">NETWORK SERVICE INSTANCES</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@nsInstances">Network service instances
+</h3>
 
 <div class="title-section" *ngIf="detail['uuid']">
     <h1 class="title1 title-section-name">{{ detail.name }}</h1>
@@ -14,19 +15,23 @@
 
 <form class="detail">
     <mat-form-field class="instanceID" *ngIf="detail['uuid']">
-        <input matInput placeholder="Instance ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@instanceIDPlaceholder" />
+        <input matInput placeholder="Instance ID" value="{{ detail['uuid'] }}" disabled
+            i18n-placeholder="@@instanceIDPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="serviceID" *ngIf="detail['serviceID']">
-        <input matInput placeholder="Service ID" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+        <input matInput placeholder="Service ID" value="{{ detail['serviceID'] }}" disabled
+            i18n-placeholder="@@serviceIDPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="status" *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+            i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
 
     <div class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'" (click)="terminate()">
-        <button class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i class="wui wui-stop-alt"></i></button>
+        <button class="actions" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i
+                class="wui wui-stop-alt"></i></button>
         <span i18n="@@terminateInstance">Terminate instance</span>
     </div>
 
@@ -37,7 +42,7 @@
 
     <!-- VNFs table section -->
     <div class="vnf" *ngIf="detail['uuid']">
-        <h2 class="title2" i18n="@@vnfsCapLetters">VNFs</h2>
+        <h2 class="title2" i18n="@@vnfs">VNFs</h2>
         <span class="message" *ngIf="!dataSource.data || dataSource.data.length < 1" i18n="@@noVNFToDisplayMsg">There
             are no virtual network functions to display</span>
 
@@ -71,11 +76,13 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
-            <tr mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row" [class.expanded]="vnfDetail == row"
-                [class.collapsed]="vnfDetail != row" (click)="vnfDetail = vnfDetail == row ? {} : row"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row"
+                [class.expanded]="vnfDetail == row" [class.collapsed]="vnfDetail != row"
+                (click)="vnfDetail = vnfDetail == row ? {} : row"></tr>
 
-            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" [@detailExpand]="row.element == vnfDetail ? 'expanded' : 'collapsed'"
-                class="detail-row" style="overflow: hidden"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+                [@detailExpand]="row.element == vnfDetail ? 'expanded' : 'collapsed'" class="detail-row"
+                style="overflow: hidden"></tr>
         </table>
     </div>
 </form>

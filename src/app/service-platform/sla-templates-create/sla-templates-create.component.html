@@ -1,8 +1,9 @@
-<h3 class="title3 header-section-name" i18n="@@slaTemplatesCapLetters">SLA TEMPLATES</h3>
+<h3 class="title3 header-section-name" i18n="@@slaTemplates">SLA templates</h3>
 
 <form [formGroup]="templateForm" class="title-section">
     <mat-form-field class="title1">
-        <input matInput type="text" placeholder="Template Name" formControlName="name" required i18n-placeholder="@@templateNamePlaceholder" />
+        <input matInput type="text" placeholder="Template Name" formControlName="name" required
+            i18n-placeholder="@@templateNamePlaceholder" />
     </mat-form-field>
 
     <div class="header-buttons">
@@ -21,7 +22,8 @@
 <form [formGroup]="templateForm">
     <app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
         i18n-placeholder="@@nsPlaceholder"></app-select>
-    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
+    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder">
+    </app-calendar>
 </form>
 
 <div class="advanceSection" *ngIf="guaranteesList.length > 0 || storedGuarantees.length > 0">
@@ -42,7 +44,7 @@
 
         <div class="guaranteeRow" *ngFor="let item of storedGuarantees; let i = index">
             <div class="description" *ngIf="item">
-                <div class="descriptionTitle">
+                <div class="description-title">
                     <h4 class="title4">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</h4>
 
                     <button (click)="eraseEntry(item)"><i class="wui wui-trash-alt"></i></button>
@@ -58,7 +60,8 @@
                     <div class="sloInfo">
                         <div class="timePeriod">
                             <mat-form-field class="gPeriodValue">
-                                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+                                <input matInput placeholder="Service Level" disabled
+                                    value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
                                     i18n-placeholder="@@serviceLevelPlaceholder" />
                             </mat-form-field>
 

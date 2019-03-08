@@ -49,25 +49,27 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { ValidationAndVerificationModule } from './validation-and-verification/validation-and-verification.module';
 import { ServicePlatformModule } from './service-platform/service-platform.module';
 import { ServiceManagementModule } from './service-management/service-management.module';
+import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-    declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AngularMaterialModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ValidationAndVerificationModule,
-        ServiceManagementModule,
-        ServicePlatformModule,
-        SharedModule,
-        AuthenticationModule
-    ],
-    providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
-    bootstrap: [ AppComponent ]
+	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		AngularMaterialModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		ValidationAndVerificationModule,
+		ServiceManagementModule,
+		ServicePlatformModule,
+		SettingsModule,
+		SharedModule,
+		AuthenticationModule
+	],
+	providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

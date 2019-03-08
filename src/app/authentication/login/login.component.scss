@@ -69,11 +69,8 @@ app-login {
 				background-color: $secondary-button-color;
 			}
 
-			.error {
-				font-size: 13px;
+			.error-message {
 				margin-top: -15px;
-				color: $primary-font-color-light;
-				text-align: right;
 				width: 60%;
 			}
 		}

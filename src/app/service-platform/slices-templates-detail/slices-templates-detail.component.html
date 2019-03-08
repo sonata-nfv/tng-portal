@@ -1,5 +1,5 @@
 <div class="header-section" *ngIf="detail['name']">
-    <h3 class="title3 header-section-name" i18n="@@templatesCapLetters">TEMPLATES</h3>
+    <h3 class="title3 header-section-name" i18n="@@templates">Templates</h3>
     <div class="button-underline" *ngIf="detail.usageState.trim() !== 'In Use'">
         <button class="delete-button" (click)="deleteTemplate()" i18n="@@deleteTemplateButton">Delete template</button>
         <div class="underline"></div>
@@ -27,18 +27,22 @@
 <form class="detail">
     <div class="sameRow">
         <mat-form-field *ngIf="detail['uuid']">
-            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
+            <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled
+                i18n-placeholder="@@templateIDPlaceholder" />
         </mat-form-field>
         <mat-form-field *ngIf="detail['vendor']">
-            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
+                i18n-placeholder="@@vendorPlaceholder" />
         </mat-form-field>
     </div>
     <div class="sameRow">
         <mat-form-field *ngIf="detail['usageState']">
-            <input matInput placeholder="Usage state" value="{{ detail['usageState'] }}" disabled i18n-placeholder="@@usageStatePlaceholder" />
+            <input matInput placeholder="Usage state" value="{{ detail['usageState'] }}" disabled
+                i18n-placeholder="@@usageStatePlaceholder" />
         </mat-form-field>
         <mat-form-field *ngIf="detail['status']">
-            <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+            <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+                i18n-placeholder="@@statusPlaceholder" />
         </mat-form-field>
     </div>
     <div class="sameRow">
@@ -56,8 +60,10 @@
             i18n-placeholder="@@notificationTypesPlaceholder" />
     </mat-form-field>
 
-    <div class="launch" *ngIf="detail['uuid'] || detail['vendor'] || detail['name'] || detail['version']" (click)="instantiate()">
-        <button class="actions" mat-button matTooltip="Instantiate" i18n-matTooltip="@@instantiate"><i class="wui wui-caret-right"></i></button>
+    <div class="launch" *ngIf="detail['uuid'] || detail['vendor'] || detail['name'] || detail['version']"
+        (click)="instantiate()">
+        <button class="actions" mat-button matTooltip="Instantiate" i18n-matTooltip="@@instantiate"><i
+                class="wui wui-caret-right"></i></button>
         <span class="play" i18n="@@readyToUse">Ready to use</span>
     </div>
 
@@ -66,15 +72,16 @@
             i18n-placeholder="@@userDefinedDataPlaceholder" />
     </mat-form-field>
 
-    <h2 class="title2" *ngIf="detail['nstNsdIds']" i18n="@@nss">Network Services</h2>
+    <h2 class="title2" *ngIf="detail['nstNsdIds']" i18n="@@networkServices">Network services</h2>
 
     <dl *ngIf="detail['nstNsdIds']">
         <dt *ngFor="let item of detail['nstNsdIds']">
-            <app-select placeholder="Network service descriptor" [list]="[item.nsdID]" [value]="item.nsdID" [disabled]="true"
-                i18n-placeholder="@@nsDescriptorPlaceholder"></app-select>
+            <app-select placeholder="Network service descriptor" [list]="[item.nsdID]" [value]="item.nsdID"
+                [disabled]="true" i18n-placeholder="@@nsDescriptorPlaceholder"></app-select>
 
-            <app-select class="slaList " placeholder="SLA Template" [list]="[item.slaID ? item.slaID : 'None']" [value]="item.slaID ? item.slaID : 'None'"
-                [disabled]="true" i18n-placeholder="@@slaTemplatePlaceholder"></app-select>
+            <app-select class="slaList " placeholder="SLA Template" [list]="[item.slaID ? item.slaID : 'None']"
+                [value]="item.slaID ? item.slaID : 'None'" [disabled]="true"
+                i18n-placeholder="@@slaTemplatePlaceholder"></app-select>
         </dt>
     </dl>
 </form>

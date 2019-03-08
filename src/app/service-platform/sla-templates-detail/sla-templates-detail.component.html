@@ -19,15 +19,16 @@
 
 <form [formGroup]="templateForm">
     <mat-form-field class="uuid" *ngIf="detail['uuid']">
-        <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true" i18n-placeholder="@@templateIDPlaceholder" />
+        <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true"
+            i18n-placeholder="@@templateIDPlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['vendor']">
         <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" [disabled]="true" i18n-placeholder="@@vendorPlaceholder" />
     </mat-form-field>
 
-    <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS" [value]="templateForm.value.ns"
-        (selectEvent)="receiveNS($event)" [disabled]="true" i18n-placeholder="@@nsPlaceholder"></app-select>
+    <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS"
+        [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)" [disabled]="true" i18n-placeholder="@@nsPlaceholder"></app-select>
 
     <app-calendar *ngIf="detail['expirationDate']" placeholder="Expiration Date" [value]="detail['expirationDate']"
         (dateEvent)="receiveDate($event)" [disabled]="true" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
@@ -47,7 +48,7 @@
 
         <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']; let i = index">
             <div class="description" *ngIf="item">
-                <div class="descriptionTitle">
+                <div class="description-title">
                     <h4 class="title4">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</h4>
 
                     <button class="dropdownButton" (click)="closedSLO[i] = !closedSLO[i]">
@@ -61,7 +62,8 @@
                     <div class="sloInfo">
                         <div class="timePeriod">
                             <mat-form-field class="gPeriodValue">
-                                <input matInput placeholder="Service Level" disabled value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
+                                <input matInput placeholder="Service Level" disabled
+                                    value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
                                     i18n-placeholder="@@serviceLevelPlaceholder" />
                             </mat-form-field>
 

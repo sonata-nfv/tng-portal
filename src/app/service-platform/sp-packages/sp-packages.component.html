@@ -1,16 +1,18 @@
-<h3 class="title3 header-section-name" i18n="@@spCapLetters">SERVICE PLATFORM</h3>
+<h3 class="title3 header-section-name" i18n="@@sp">Service platform</h3>
 
 <h1 class="title1 title-section-name" i18n="@@packages">Packages</h1>
 
 <div class="tools">
     <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-    <button class="reload" (click)="requestPackages()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i class="wui wui-undo"></i></button>
+    <button class="reload" (click)="requestPackages()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
+            class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="packages">
     <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }" class="wui"></i></td>
+        <td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }"
+                class="wui"></i></td>
     </ng-container>
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>

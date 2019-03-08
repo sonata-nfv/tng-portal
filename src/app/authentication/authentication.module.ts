@@ -13,15 +13,15 @@ import { AppRoutingModule } from '../app-routing.module';
 import { TermsOfUsageComponent } from './terms-of-usage/terms-of-usage.component';
 
 @NgModule({
-    declarations: [ LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent ],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        SharedModule
-    ],
-    exports: [ LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent ],
-    providers: [ AuthService ]
+	declarations: [ LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent ],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		ReactiveFormsModule,
+		AppRoutingModule,
+		SharedModule
+	],
+	exports: [ LoginComponent, SignupComponent, RegisteredComponent, TermsOfUsageComponent ],
+	providers: [ AuthService ]
 })
 export class AuthenticationModule { }

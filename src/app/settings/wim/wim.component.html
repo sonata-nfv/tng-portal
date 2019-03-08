@@ -1,0 +1,79 @@
+<div class="header-section" *ngIf="canShowForm()">
+	<h3 class="title3 header-section-name" i18n="@@wim">WIM</h3>
+	<div *ngIf="edition && !isMockType()" class="button-underline">
+		<button class="delete-button" (click)="deleteWim()" i18n="@@deleteWim">Delete WIM</button>
+		<div class="underline"></div>
+	</div>
+</div>
+
+<form [formGroup]="wimForm" class="title-section" *ngIf="canShowForm()">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="WIM Name" formControlName="name" required i18n-placeholder="@@wimName" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+			(click)="edition ? updateWim() : createWim()" i18n="@@saveButton">
+			SAVE
+		</button>
+
+		<button *ngIf="!edition" class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+		<button *ngIf="edition" class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+	</div>
+</form>
+
+<form class="wimForm" *ngIf="canShowForm()">
+	<app-select *ngIf="!isMockType()" placeholder="Select a WIM type" [list]="wimTypes" (selectEvent)="receiveType($event)"
+		[disabled]="edition" [value]="wimType" i18n-placeholder="@@selectWimTypePlaceholder"></app-select>
+
+	<app-select *ngIf="isMockType()" placeholder="Select a WIM type" [list]="['Mock']" disabled="true" value="Mock"
+		i18n-placeholder="@@selectWimTypePlaceholder"></app-select>
+</form>
+
+<form [formGroup]="wimForm" class="wimForm" *ngIf="canShowTapiForm()">
+	<mat-form-field *ngIf="edition">
+		<input matInput placeholder="WIM ID" formControlName="uuid" disabled i18n-placeholder="@@wimID" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(wimForm.get('uuid').value)"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Endpoint" formControlName="endpoint" required i18n-placeholder="@@endpoint" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(wimForm.get('endpoint').value)"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@username" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Password" formControlName="password" required i18n-placeholder="@@password" />
+	</mat-form-field>
+
+	<mat-form-field *ngIf="canShowAuthKey()">
+		<input matInput type="text" placeholder="Authentication key" formControlName="authKey" i18n-placeholder="@@authKey" />
+	</mat-form-field>
+
+	<h4 class="title3" *ngIf="(vims && vims.length) || (vimsIncluded && vimsIncluded.length)" i18n="@@vimList">VIM list</h4>
+
+	<app-select *ngIf="vims && vims.length" class="wims-list" placeholder="Select the VIMs" [list]="vims" [reset]="vims.length"
+		(selectEvent)="receiveVim($event)" i18n-placeholder="@@selectVimPlaceholder">
+	</app-select>
+
+	<ul class="unordered-list">
+		<li class="line" *ngFor="let item of vimsIncluded; let i = index ">
+			<mat-form-field>
+				<input matInput type="text" [value]="item" disabled />
+			</mat-form-field>
+
+			<button (click)="eraseEntry(i)"><i class="wui wui-trash-alt"></i></button>
+		</li>
+	</ul>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>
