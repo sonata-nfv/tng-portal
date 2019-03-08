@@ -152,14 +152,9 @@ export class WimComponent implements OnInit {
 	}
 
 	private onFormChanges(values?) {
-		if (this.edition) {
-			this.disabledButton =
-				this.wimForm.valid && this.vimsIncluded.length && this.canUpdateWim() ? false : true;
-
-		} else {
-			this.disabledButton =
-				this.wimForm.valid && this.vimsIncluded.length ? false : true;
-		}
+		this.disabledButton = this.edition ?
+			this.wimForm.valid && this.vimsIncluded.length && this.canUpdateWim() ? false : true :
+			this.wimForm.valid && this.vimsIncluded.length ? false : true;
 	}
 
 	private canUpdateWim() {
@@ -256,7 +251,6 @@ export class WimComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('There was an error deleting the WIM', '');
 		}
-
 	}
 
 	close() {

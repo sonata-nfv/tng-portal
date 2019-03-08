@@ -60,18 +60,16 @@ export class WimListComponent implements OnInit, OnDestroy {
          *                          must be matched by the returned
          *                          list.
          */
-	requestWims(search?) {
+	async requestWims(search?) {
 		this.loading = true;
-		this.settingsService.getWims(search)
-			.then(response => {
-				if (response) {
-					this.loading = false;
-					this.wims = response;
-				} else {
-					this.loading = false;
-					this.utilsService.openSnackBar('There was an error fetching the WIMs', '');
-				}
-			});
+		const response = await this.settingsService.getWims(search);
+
+		this.loading = false;
+		if (response) {
+			this.wims = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the WIMs', '');
+		}
 	}
 
 	createNew() {

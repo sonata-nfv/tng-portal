@@ -51,14 +51,15 @@ export class SettingsService {
     *
     * @param uuid VIM UUID of the desired VIM.
     */
-	getOneVim(uuid): Promise<any> {
+	async getOneVim(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
-		return this.http.get(url, { headers: headers }).toPromise()
-			.catch(error => {
-				console.error(error);
-			});
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -66,17 +67,16 @@ export class SettingsService {
      *
      * @param vim Data of the desired VIM.
      */
-	postVim(type, vim): Promise<any> {
+	async postVim(type, vim) {
 		const headers = this.authService.getAuthHeaders();
 		const url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 
-		return this.http.post(url, vim, { headers: headers }).toPromise()
-			.then(response => {
-				return ('VIM ' + response[ 'name' ] + ' created');
-			}).catch(error => {
-				console.error(error);
-			});
+		try {
+			return await this.http.post(url, vim, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -84,18 +84,17 @@ export class SettingsService {
      *
      * @param vim Data of the desired VIM.
      */
-	patchVim(type, uuid, vim): Promise<any> {
+	async patchVim(type, uuid, vim) {
 		const headers = this.authService.getAuthHeaders();
 		let url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 		url = url + '/' + uuid;
 
-		return this.http.patch(url, vim, { headers: headers }).toPromise()
-			.then(response => {
-				return ('VIM ' + response[ 'name' ] + ' updated');
-			}).catch(error => {
-				console.error(error);
-			});
+		try {
+			return await this.http.patch(url, vim, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -103,16 +102,16 @@ export class SettingsService {
      *
      * @param uuid UUID of the desired VIM.
      */
-	deleteVim(uuid): Promise<any> {
+	async deleteVim(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
-		return this.http.delete(url, { headers: headers }).toPromise()
-			.then(() => {
-				return ('VIM deleted');
-			}).catch(error => {
-				console.error(error);
-			});
+		try {
+			return await this.http.delete(url, { headers: headers }).toPromise();
+
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -122,28 +121,29 @@ export class SettingsService {
     * @param search [Optional] WIMs attributes that must be
     *                          matched by the returned list.
     */
-	getWims(search?): Promise<any> {
+	async getWims(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url =
 			search !== undefined
 				? this.config.baseSP + this.config.wimSettings + search
 				: this.config.baseSP + this.config.wimSettings;
 
-		return this.http.get(url, { headers: headers }).toPromise()
-			.then(response => {
-				return response instanceof Array ?
-					response.map(item => {
-						return {
-							uuid: item.uuid,
-							name: item.name,
-							vims: item.vim_list,
-							endpoint: item.endpoint,
-							type: item.type
-						};
-					}) : [];
-			}).catch(error => {
-				console.error(error);
-			});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.name,
+						vims: item.vim_list,
+						endpoint: item.endpoint,
+						type: item.type
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+
 	}
 
 	/**
@@ -163,10 +163,10 @@ export class SettingsService {
 	}
 
 	/**
-     * Generates a WIM
-     *
-     * @param wim Data of the desired WIM.
-     */
+	 * Generates a WIM
+	 *
+	 * @param wim Data of the desired WIM.
+	 */
 	async postWim(wim) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.tapiSettings;
@@ -179,10 +179,10 @@ export class SettingsService {
 	}
 
 	/**
-     * Updates a WIM
-     *
-     * @param wim Data of the desired WIM.
-     */
+	 * Updates a WIM
+	 *
+	 * @param wim Data of the desired WIM.
+	 */
 	async patchWim(type, uuid, vim) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.tapiSettings + '/' + uuid;
@@ -195,10 +195,10 @@ export class SettingsService {
 	}
 
 	/**
-     * Deletes a WIM
-     *
-     * @param uuid UUID of the desired WIM.
-     */
+	 * Deletes a WIM
+	 *
+	 * @param uuid UUID of the desired WIM.
+	 */
 	async deleteWim(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;

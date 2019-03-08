@@ -62,34 +62,34 @@ export class VimListComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of VIMs.
      */
-	requestVims(search?) {
+	async requestVims(search?) {
 		this.loading = true;
-		this.settingsService.getVims(search)
-			.then(response => {
-				if (response) {
-					this.loading = false;
-					this.vims = response;
-				} else {
-					this.loading = false;
-					this.utilsService.openSnackBar('There was an error fetching the VIMs', '');
-				}
-			});
+		const response = await this.settingsService.getVims();
+
+		this.loading = false;
+		if (response) {
+			this.vims = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the VIMs', '');
+		}
 	}
 
 	createNew() {
 		this.router.navigate([ 'new' ], { relativeTo: this.route });
 	}
 
-	deleteVim(uuid) {
-		this.settingsService.deleteVim(uuid).then(message => {
-			if (!message) {
-				throw new Error();
-			}
-			this.utilsService.openSnackBar(message, '');
+	async deleteVim(uuid) {
+		this.loading = true;
+		const response = await this.settingsService.deleteVim(uuid);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('VIM deleted', '');
 			this.requestVims();
-		}).catch(() => {
+		} else {
 			this.utilsService.openSnackBar('There was an error deleting the VIM', '');
-		});
+		}
+
 	}
 
 	openVim(uuid) {

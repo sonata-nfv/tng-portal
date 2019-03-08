@@ -37,79 +37,26 @@ export class VimComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.initForms();
+		this.subscribeFormChanges();
+
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.edition = uuid ? true : false;
 			if (this.edition) {
 				this.requestVim(uuid);
-			} else {
-				this.initForms();
-				this.subscribeFormChanges();
 			}
 		});
 	}
 
-	/**
-    * Generates the HTTP request of a VIM by UUID.
-    *
-    * @param uuid ID of the selected VIM to be displayed.
-    *             Comming from the route.
-    */
-	private requestVim(uuid) {
-		this.loading = true;
-		this.settingsService
-			.getOneVim(uuid)
-			.then(response => {
-				this.loading = false;
-				if (response) {
-					this.originalVim = Object.assign({}, response);
-					this.originalVim[ 'type' ] = this.parseVimType(this.originalVim[ 'type' ]);
-					// Convert to string to operate with it and enable objects comparation
-					this.originalVim[ 'config' ] = JSON.stringify(this.originalVim[ 'config' ]);
-					this.vimType = this.originalVim[ 'type' ];
-					// Initialise form when VIM type is known: If 'Mock' disable fields
-					this.initForms();
-					this.populateForm();
-					this.subscribeFormChanges();
-				} else {
-					this.close();
-				}
-			})
-			.catch((err) => {
-				this.loading = false;
-				this.close();
-			});
-	}
-
-	/**
-     * Parses the VIM types received to user friendly ones.
-     *
-     * @param type Received type of the VIM
-     */
-	private parseVimType(type) {
-		switch (type) {
-			case 'k8s':
-				return 'Kubernetes';
-			case 'heat':
-				return 'Openstack';
-			case 'mock':
-				return 'Mock';
-			default:
-				this.utilsService.openSnackBar('Unrecognized VIM type. Please select another.', '');
-				this.close();
-		}
-	}
-
 	private initForms() {
 		this.matcher = new InputErrorStateMatcher();
-		// Disable edition if the type is mock
-		const disableField = this.vimType === 'Mock' ? true : false;
 
 		this.vimForm = new FormGroup({
-			name: new FormControl({ value: '', disabled: disableField }, Validators.required),
-			city: new FormControl({ value: '', disabled: disableField }),
-			country: new FormControl({ value: '', disabled: disableField }),
-			endpoint: new FormControl({ value: '', disabled: disableField }, [
+			name: new FormControl('', Validators.required),
+			city: new FormControl(''),
+			country: new FormControl(''),
+			endpoint: new FormControl('', [
 				Validators.required,
 				Validators.pattern(this.utilsService.getIpPattern())
 			])
@@ -145,6 +92,31 @@ export class VimComponent implements OnInit {
 		);
 	}
 
+	/**
+    * Generates the HTTP request of a VIM by UUID.
+    *
+    * @param uuid ID of the selected VIM to be displayed.
+    *             Comming from the route.
+    */
+	private async requestVim(uuid) {
+		this.loading = true;
+		const response = await this.settingsService.getOneVim(uuid);
+
+		this.loading = false;
+		if (response) {
+			this.originalVim = Object.assign({}, response);
+			this.originalVim[ 'type' ] = this.parseVimType(this.originalVim[ 'type' ]);
+			this.vimType = this.originalVim[ 'type' ];
+			// Convert to string to operate with it and enable objects comparation
+			if (this.originalVim[ 'config' ]) {
+				this.originalVim[ 'config' ] = JSON.stringify(this.originalVim[ 'config' ]);
+			}
+			this.populateForm();
+		} else {
+			this.close();
+		}
+	}
+
 	private populateForm() {
 		this.vimForm.get('name').setValue(this.originalVim[ 'name' ]);
 		this.vimForm.get('city').setValue(this.originalVim[ 'city' ]);
@@ -165,30 +137,50 @@ export class VimComponent implements OnInit {
 		}
 	}
 
-	private onFormChanges(values?) {
-		const canUpdate = this.edition && this.vimType.toLowerCase() !== 'mock';
+	private parseVimType(type) {
+		switch (type) {
+			case 'k8s':
+				return 'Kubernetes';
+			case 'heat':
+				return 'Openstack';
+			case 'mock':
+				return 'Mock';
+			default:
+				this.utilsService.openSnackBar('Unrecognized VIM type. Please select another.', '');
+				this.close();
+		}
+	}
 
+	receiveType(type) {
+		this.vimType = type;
+		this.onFormChanges();
+	}
+
+	private onFormChanges(values?) {
 		switch (this.vimType) {
 			case 'Openstack':
-				if (canUpdate) {
-					this.disabledButton =
-						this.vimForm.valid && this.openstackForm.valid && this.canUpdateVim() ? false : true;
-				} else {
-					this.disabledButton =
-						this.vimForm.valid && this.openstackForm.valid ? false : true;
-				}
+				this.disabledButton = this.edition ?
+					this.vimForm.valid && this.openstackForm.valid && this.canUpdateVim() ? false : true :
+					this.vimForm.valid && this.openstackForm.valid ? false : true;
 				break;
 			case 'Kubernetes':
-				if (canUpdate) {
-					this.disabledButton =
-						(this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() && this.canUpdateVim() ? false : true;
-				} else {
-					this.disabledButton = (this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() ? false : true;
-				}
+				this.disabledButton = this.edition ?
+					(this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() && this.canUpdateVim() ? false : true :
+					(this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() ? false : true;
 				break;
 			default:
 				this.disabledButton = false;
 				break;
+		}
+	}
+
+	canUpdateVim() {
+		if (this.isMockType()) {
+			return false;
+		} else {
+			this.updatedVim = this.createVimObject();
+			return this.originalVim && this.updatedVim ?
+				!(this.utilsService.compareObjects(this.originalVim, this.updatedVim)) : false;
 		}
 	}
 
@@ -222,57 +214,6 @@ export class VimComponent implements OnInit {
 		return vim;
 	}
 
-	receiveType(type) {
-		this.vimType = type;
-		this.onFormChanges();
-	}
-
-	createVim() {
-		this.loading = true;
-		const vim = this.createVimObject();
-		// Configuration sent must be a JSON
-		vim[ 'config' ] = this.getParsedJSON(vim[ 'config' ]);
-
-		this.settingsService
-			.postVim(this.vimType, vim)
-			.then(message => {
-				if (!message) {
-					throw new Error();
-				}
-				this.loading = false;
-				this.utilsService.openSnackBar(message, '');
-				this.close();
-			})
-			.catch(() => {
-				this.loading = false;
-				this.utilsService.openSnackBar('There was an error in the VIM creation', '');
-			});
-	}
-
-	updateVim() {
-		this.loading = true;
-		const vim = this.utilsService.getObjectDifferences(this.originalVim, this.updatedVim);
-		// Configuration sent must be a JSON
-		if (vim[ 'config' ]) {
-			vim[ 'config' ] = this.getParsedJSON(vim[ 'config' ]);
-		}
-
-		this.settingsService
-			.patchVim(this.vimType, this.originalVim[ 'uuid' ], vim)
-			.then(message => {
-				if (!message) {
-					throw new Error();
-				}
-				this.loading = false;
-				this.utilsService.openSnackBar(message, '');
-				this.close();
-			})
-			.catch(() => {
-				this.loading = false;
-				this.utilsService.openSnackBar('There was an error in the VIM update', '');
-			});
-	}
-
 	checkJSONValidity() {
 		try {
 			JSON.parse(this.kubernetesForm.get('config').value);
@@ -280,24 +221,6 @@ export class VimComponent implements OnInit {
 			return false;
 		}
 		return true;
-	}
-
-	getParsedJSON(value) {
-		return JSON.parse(value);
-	}
-
-	copyToClipboard(value) {
-		this.utilsService.copyToClipboard(value);
-	}
-
-	copyJSONToClipboard(value) {
-		this.utilsService.copyToClipboard(value);
-	}
-
-	canUpdateVim() {
-		this.updatedVim = this.createVimObject();
-		return this.originalVim && this.updatedVim ?
-			!(this.utilsService.compareObjects(this.originalVim, this.updatedVim)) : false;
 	}
 
 	canShowForm() {
@@ -335,19 +258,65 @@ export class VimComponent implements OnInit {
 		return this.vimType && this.vimType.trim().toLowerCase() === 'mock';
 	}
 
-	deleteVim() {
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
+	copyJSONToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
+	getParsedJSON(value) {
+		return JSON.parse(value);
+	}
+
+	async createVim() {
 		this.loading = true;
-		this.settingsService.deleteVim(this.originalVim[ 'uuid' ]).then(message => {
-			this.loading = false;
-			if (!message) {
-				throw new Error();
-			}
-			this.utilsService.openSnackBar(message, '');
+		const vim = this.createVimObject();
+		// Configuration sent must be a JSON
+		if (vim[ 'config' ]) {
+			vim[ 'config' ] = this.getParsedJSON(vim[ 'config' ]);
+		}
+		const response = await this.settingsService.postVim(this.vimType, vim);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('VIM ' + response[ 'name' ] + ' created', '');
 			this.close();
-		}).catch(() => {
-			this.loading = false;
+		} else {
+			this.utilsService.openSnackBar('There was an error in the VIM creation', '');
+		}
+	}
+
+	async updateVim() {
+		this.loading = true;
+		const vim = this.utilsService.getObjectDifferences(this.originalVim, this.updatedVim);
+		// Configuration sent must be a JSON
+		if (vim[ 'config' ]) {
+			vim[ 'config' ] = this.getParsedJSON(vim[ 'config' ]);
+		}
+		const response = await this.settingsService.patchVim(this.vimType, this.originalVim[ 'uuid' ], vim);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('VIM ' + response[ 'name' ] + ' updated', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('There was an error in the VIM update', '');
+		}
+	}
+
+	async deleteVim() {
+		this.loading = true;
+		const response = await this.settingsService.deleteVim(this.originalVim[ 'uuid' ]);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('VIM deleted', '');
+			this.close();
+		} else {
 			this.utilsService.openSnackBar('There was an error deleting the VIM', '');
-		});
+		}
 	}
 
 	close() {
