@@ -82,7 +82,7 @@ export class UtilsService {
 
 		console.log(obj1);
 		console.log(obj2);
-		console.log(obj1Props.length !== obj2Props.length)
+		console.log(obj1Props.length !== obj2Props.length);
 
 		if (obj1Props.length !== obj2Props.length) {
 			return false;

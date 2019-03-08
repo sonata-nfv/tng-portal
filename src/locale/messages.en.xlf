@@ -50,7 +50,7 @@
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
@@ -204,7 +204,7 @@
           <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
@@ -510,11 +510,7 @@
           <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
@@ -533,8 +529,8 @@
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
@@ -834,8 +830,8 @@
       </trans-unit>
       <trans-unit id="forgotPasswordButton" datatype="html">
         <source>Forgot your
-                password?</source><target state="final">Forgot your
-                password?</target>
+				password?</source><target state="final">Forgot your
+				password?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
           <context context-type="linenumber">19</context>
@@ -864,8 +860,8 @@
       </trans-unit>
       <trans-unit id="termsOfUsageLink" datatype="html">
         <source>
-                Terms of Usage. </source><target state="final">
-                Terms of Usage. </target>
+				Terms of Usage. </source><target state="final">
+				Terms of Usage. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
           <context context-type="linenumber">25</context>
@@ -922,22 +918,22 @@
       </trans-unit>
       <trans-unit id="termsOfUsageCondition1Text" datatype="html">
         <source>
-            5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
-            better user experience. Your personal
-            information is requested when you register with our Portal/API to access restricted content. Your Portal
-            navigation/API usage may also be monitored
-            for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
-            Personal data is not shared with third
-            parties.
-        </source><target state="final">
-            5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
-            better user experience. Your personal
-            information is requested when you register with our Portal/API to access restricted content. Your Portal
-            navigation/API usage may also be monitored
-            for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
-            Personal data is not shared with third
-            parties.
-        </target>
+			5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
+			better user experience. Your personal
+			information is requested when you register with our Portal/API to access restricted content. Your Portal
+			navigation/API usage may also be monitored
+			for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
+			Personal data is not shared with third
+			parties.
+		</source><target state="final">
+			5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
+			better user experience. Your personal
+			information is requested when you register with our Portal/API to access restricted content. Your Portal
+			navigation/API usage may also be monitored
+			for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
+			Personal data is not shared with third
+			parties.
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">7</context>
@@ -952,14 +948,14 @@
       </trans-unit>
       <trans-unit id="termsOfUsageCondition2Text" datatype="html">
         <source>
-            When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
-            information with third parties without your
-            permission. It is only used for the purposes stated above.
-        </source><target state="final">
-            When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
-            information with third parties without your
-            permission. It is only used for the purposes stated above.
-        </target>
+			When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
+			information with third parties without your
+			permission. It is only used for the purposes stated above.
+		</source><target state="final">
+			When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
+			information with third parties without your
+			permission. It is only used for the purposes stated above.
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">18</context>
@@ -974,18 +970,18 @@
       </trans-unit>
       <trans-unit id="termsOfUsageCondition3Text" datatype="html">
         <source>
-            5GTANGO uses a variety of security technologies and procedures to help protect your personal information
-            from unauthorized access, use, or
-            disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
-            controlled, secure environment protected
-            from unauthorized access, use, or disclosure.
-        </source><target state="final">
-            5GTANGO uses a variety of security technologies and procedures to help protect your personal information
-            from unauthorized access, use, or
-            disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
-            controlled, secure environment protected
-            from unauthorized access, use, or disclosure.
-        </target>
+			5GTANGO uses a variety of security technologies and procedures to help protect your personal information
+			from unauthorized access, use, or
+			disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
+			controlled, secure environment protected
+			from unauthorized access, use, or disclosure.
+		</source><target state="final">
+			5GTANGO uses a variety of security technologies and procedures to help protect your personal information
+			from unauthorized access, use, or
+			disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
+			controlled, secure environment protected
+			from unauthorized access, use, or disclosure.
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">25</context>
@@ -1000,14 +996,14 @@
       </trans-unit>
       <trans-unit id="termsOfUsageCondition4Text" datatype="html">
         <source>
-            5GTANGO will retain your information for as long as your account is active or as needed to provide you
-            services. If you wish to change your personal
-            information or request that we no longer use it, please contact us.
-        </source><target state="final">
-            5GTANGO will retain your information for as long as your account is active or as needed to provide you
-            services. If you wish to change your personal
-            information or request that we no longer use it, please contact us.
-        </target>
+			5GTANGO will retain your information for as long as your account is active or as needed to provide you
+			services. If you wish to change your personal
+			information or request that we no longer use it, please contact us.
+		</source><target state="final">
+			5GTANGO will retain your information for as long as your account is active or as needed to provide you
+			services. If you wish to change your personal
+			information or request that we no longer use it, please contact us.
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1067,7 +1063,7 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -1162,16 +1158,12 @@
           <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">2</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="packages" datatype="html">
@@ -1483,7 +1475,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="country" datatype="html">
@@ -1494,7 +1486,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="endpoint" datatype="html">
@@ -1505,19 +1497,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
@@ -1527,7 +1515,7 @@
           <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
@@ -1555,17 +1543,17 @@
       </trans-unit>
       <trans-unit id="saveButton" datatype="html">
         <source>
-            SAVE
-        </source><target state="final">
-            SAVE
-        </target>
+			SAVE
+		</source><target state="final">
+			SAVE
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
@@ -1595,8 +1583,8 @@
           <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
@@ -1638,23 +1626,30 @@
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="vimID" datatype="html">
+        <source>VIM ID</source><target state="final">VIM ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="copy" datatype="html">
         <source>Copy</source><target state="final">Copy</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">93</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
@@ -1662,175 +1657,171 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">157</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="username" datatype="html">
         <source>Username</source><target state="final">Username</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="password" datatype="html">
         <source>Password</source><target state="final">Password</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tenant" datatype="html">
         <source>Tenant</source><target state="final">Tenant</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="domain" datatype="html">
         <source>Domain</source><target state="final">Domain</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="networkEndpoint" datatype="html">
         <source>Network endpoint</source><target state="final">Network endpoint</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="privateNetwork" datatype="html">
         <source>Private network</source><target state="final">Private network</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="privateNetworkMask" datatype="html">
         <source>Private network mask</source><target state="final">Private network mask</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="externalNetwork" datatype="html">
         <source>External network</source><target state="final">External network</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="externalRouter" datatype="html">
         <source>External router</source><target state="final">External router</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="configurationRequired" datatype="html">
         <source>Configuration *</source><target state="final">Configuration *</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="edit" datatype="html">
         <source>Edit</source><target state="final">Edit</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="view" datatype="html">
         <source>View</source><target state="final">View</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createNewWimButton" datatype="html">
         <source>Create New WIM</source><target state="final">Create New WIM</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deleteWim" datatype="html">
         <source>Delete WIM</source><target state="final">Delete WIM</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="wimID" datatype="html">
-        <source>WIM ID</source><target state="final">WIM ID</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="vimList" datatype="html">
-        <source>VIM list</source><target state="final">VIM list</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-detail/wim-detail.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="wimName" datatype="html">
         <source>WIM Name</source><target state="final">WIM Name</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectWimTypePlaceholder" datatype="html">
         <source>Select a WIM type</source><target state="final">Select a WIM type</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="wimID" datatype="html">
+        <source>WIM ID</source><target state="final">WIM ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="authKey" datatype="html">
         <source>Authentication key</source><target state="final">Authentication key</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vimList" datatype="html">
+        <source>VIM list</source><target state="final">VIM list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectVimPlaceholder" datatype="html">
         <source>Select the VIMs</source><target state="final">Select the VIMs</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-create/wim-create.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="validationAndVerification" datatype="html">
