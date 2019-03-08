@@ -189,7 +189,9 @@ export class VimComponent implements OnInit {
 			name: this.vimForm.get('name').value,
 			city: this.vimForm.get('city').value,
 			country: this.vimForm.get('country').value,
-			endpoint: this.vimForm.get('endpoint').value
+			endpoint: this.vimForm.get('endpoint').value,
+			// Network endpoint is received in the case it's k8s too because k8s is connect to mock network
+			network_endpoint: this.openstackForm.get('networkEndpoint').value
 		};
 
 		if (this.vimType === 'Openstack') {
@@ -197,7 +199,6 @@ export class VimComponent implements OnInit {
 			vim[ 'password' ] = this.openstackForm.get('password').value;
 			vim[ 'tenant' ] = this.openstackForm.get('tenant').value;
 			vim[ 'domain' ] = this.openstackForm.get('domain').value;
-			vim[ 'network_endpoint' ] = this.openstackForm.get('networkEndpoint').value;
 			vim[ 'private_network_prefix' ] = this.openstackForm.get('privateNetwork').value;
 			vim[ 'private_network_length' ] = this.openstackForm.get('privateNetworkMask').value;
 			vim[ 'external_network_id' ] = this.openstackForm.get('externalNetworkID').value;
