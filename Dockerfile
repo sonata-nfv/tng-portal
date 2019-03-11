@@ -1,4 +1,6 @@
-# # Create an image based on the official Node 8.11.3 image from dockerhub
+##########################################################################
+# Create an image based on the official Node 8.11.3 image from dockerhub #
+##########################################################################
 FROM node:8.11.3-jessie
 
 # Copy the code into the container at /build
@@ -7,17 +9,18 @@ ADD . /build
 # Set the working directory to /build
 WORKDIR /build
 
-# Build
+# Install modules
 RUN rm -rf node_modules package-lock.json
 RUN npm cache clean --force
 RUN npm install -g npm
 RUN npm install
+
+# Build
 RUN npm run build
 
-# Test
-RUN npm run lint
-
-# # Create image based on the official Nginx 1.13 image from dockerhub
+##########################################################################
+# Create image based on the official Nginx 1.13 image from dockerhub     #
+##########################################################################
 FROM nginx:1.13-alpine
 
 # Copy distribution app in English to nginx files

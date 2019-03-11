@@ -1,7 +1,34 @@
 pipeline {
     agent any
-
+    
     stages {
+		stage('Setup npm') {
+			steps {
+				sh 'npm i'
+			}
+		}
+        stage('Test') {
+			steps {
+				sh 'npx tslint --project .';
+			}
+		}
+        stage('Documentation') {
+			when {
+				branch 'master'
+			}
+			steps {
+				sh 'npm run doc';
+				publishHTML([
+					allowMissing: false,
+					alwaysLinkToLastBuild: false,
+					keepAll: false,
+					reportDir: 'documentation/',
+					reportFiles: 'index.html',
+					reportName: 'Documentation',
+					reportTitles: 'Compodoc'
+					])
+			}
+		}
         stage('Build Docker image') {
             steps {
                 echo 'Test styles and building docker image...'
