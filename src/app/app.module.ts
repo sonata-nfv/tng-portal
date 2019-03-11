@@ -49,6 +49,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { ValidationAndVerificationModule } from './validation-and-verification/validation-and-verification.module';
 import { ServicePlatformModule } from './service-platform/service-platform.module';
 import { ServiceManagementModule } from './service-management/service-management.module';
+import { PlatformsModule } from './platforms/platforms.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -65,6 +66,7 @@ import { SharedModule } from './shared/shared.module';
 		ValidationAndVerificationModule,
 		ServiceManagementModule,
 		ServicePlatformModule,
+		PlatformsModule,
 		SettingsModule,
 		SharedModule,
 		AuthenticationModule

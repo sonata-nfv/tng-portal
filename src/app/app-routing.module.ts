@@ -13,6 +13,8 @@ import { RegisteredComponent } from './authentication/registered/registered.comp
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
+import { PlatformListComponent } from './platforms/platform-list/platform-list.component';
+
 import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
 import { WimListComponent } from './settings/wim-list/wim-list.component';
@@ -86,6 +88,8 @@ const routes: Routes = [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{ path: 'dashboard', component: DashboardComponent },
 			{ path: 'users', component: UsersComponent },
+			// Platforms
+			{ path: 'platforms', component: PlatformListComponent },
 			// Settings
 			{ path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
 			{

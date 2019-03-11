@@ -40,11 +40,8 @@ export class MenuComponent implements OnInit {
 	}
 
 	setMenu(e, buttonId) {
-		if (buttonId === 'dashboard' || buttonId === 'users') {
-			this.sideNav.close();
-		} else {
-			this.sideNav.open();
-		}
+		buttonId === 'dashboard' || buttonId === 'users' || buttonId === 'platforms' ?
+			this.sideNav.close() : this.sideNav.open();
 
 		switch (buttonId) {
 			case 'dashboard':
@@ -52,6 +49,9 @@ export class MenuComponent implements OnInit {
 				break;
 			case 'users':
 				this.router.navigate([ '/users' ]);
+				break;
+			case 'platforms':
+				this.router.navigate([ '/platforms' ]);
 				break;
 			case 'settings':
 				this.section = 'vim';
@@ -184,35 +184,28 @@ export class MenuComponent implements OnInit {
 	}
 
 	maintainStatus() {
-		const url = this.router.url.split('/');
+		const url = this.router.url.substr(1).split('/');
+		this.menu = url[ 0 ] ? url[ 0 ] : 'dashboard';
+		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms') ?
+			this.sideNav.close() : this.sideNav.open();
 
 		if (url.length > 1) {
-			this.menu = url[ 1 ];
-
-			if (
-				url[ 1 ] === 'validation-and-verification' ||
-				url[ 1 ] === 'service-platform' ||
-				url[ 1 ] === 'service-management' ||
-				url[ 1 ] === 'settings'
-			) {
-				this.sideNav.open();
+			switch (this.menu) {
+				case 'validation-and-verification':
+					this.section = 'vv-' + url[ 1 ];
+					break;
+				case 'service-platform':
+					this.section = 'sp-' + url[ 1 ];
+					break;
+				case 'service-management':
+					this.section = 'sm-' + url[ 1 ];
+					break;
+				default:
+					break;
 			}
-		} else {
-			this.menu = 'dashboard';
 		}
 		if (url.length > 2) {
-			if (this.menu === 'validation-and-verification') {
-				this.section = 'vv-' + url[ 2 ];
-			} else if (this.menu === 'service-platform') {
-				this.section = 'sp-' + url[ 2 ];
-			} else if (this.menu === 'service-management') {
-				this.section = 'sm-' + url[ 2 ];
-			} else {
-				this.section = url[ 2 ];
-			}
-		}
-		if (url.length > 3) {
-			this.subsection = url[ 3 ];
+			this.subsection = url[ 2 ];
 		}
 	}
 
