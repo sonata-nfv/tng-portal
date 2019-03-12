@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
 import { PlatformListComponent } from './platforms/platform-list/platform-list.component';
+import { PlatformComponent } from './platforms/platform/platform.component';
 
 import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
@@ -89,7 +90,13 @@ const routes: Routes = [
 			{ path: 'dashboard', component: DashboardComponent },
 			{ path: 'users', component: UsersComponent },
 			// Platforms
-			{ path: 'platforms', component: PlatformListComponent },
+			{
+				path: 'platforms', component: PlatformListComponent,
+				children: [
+					{ path: 'new', component: PlatformComponent },
+					{ path: ':id', component: PlatformComponent }
+				]
+			},
 			// Settings
 			{ path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
 			{

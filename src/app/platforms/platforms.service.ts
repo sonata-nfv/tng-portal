@@ -36,6 +36,22 @@ export class PlatformsService {
 	}
 
 	/**
+	 * Retrieves a platform by UUID
+	 *
+	 * @param uuid Platform UUID
+	 */
+	async getOnePlatform(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.platformSettings + '/' + uuid;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
  	* Deletes a platform
  	*
  	* @param uuid UUID of the desired WIM.

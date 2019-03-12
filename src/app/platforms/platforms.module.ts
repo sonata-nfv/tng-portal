@@ -7,12 +7,14 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { SharedModule } from '../shared/shared.module';
 
 import { PlatformListComponent } from './platform-list/platform-list.component';
+import { PlatformComponent } from './platform/platform.component';
 
 import { PlatformsService } from './platforms.service';
 
 @NgModule({
 	declarations: [
-		PlatformListComponent
+		PlatformListComponent,
+		PlatformComponent
 	],
 	imports: [
 		CommonModule,
