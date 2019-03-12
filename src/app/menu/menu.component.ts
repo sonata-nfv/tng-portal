@@ -201,6 +201,7 @@ export class MenuComponent implements OnInit {
 					this.section = 'sm-' + url[ 1 ];
 					break;
 				default:
+					this.section = url[ 1 ];
 					break;
 			}
 		}
