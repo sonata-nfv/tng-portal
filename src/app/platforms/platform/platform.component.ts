@@ -30,12 +30,11 @@ export class PlatformComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.initForms();
-		this.subscribeFormChanges();
-
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.edition = uuid ? true : false;
+			this.initForms();
+			this.subscribeFormChanges();
 			if (this.edition) {
 				this.requestPlatform(uuid);
 			}
@@ -109,11 +108,6 @@ export class PlatformComponent implements OnInit {
 		}
 	}
 
-	canUpdatePlatform() {
-		// TODO compare original and new platforms
-		return false;
-	}
-
 	private createPlatformObject() {
 		const platform = {
 			name: this.platformForm.get('name').value,
@@ -126,8 +120,17 @@ export class PlatformComponent implements OnInit {
 		if (this.osmForm.get('project_name').value) {
 			platform[ 'project_name' ] = this.osmForm.get('project_name').value;
 		}
+		if (this.edition && this.originalPlatform[ 'service_token' ]) {
+			platform[ 'service_token' ] = this.originalPlatform[ 'service_token' ];
+		}
 
 		return platform;
+	}
+
+	canUpdatePlatform() {
+		this.updatedPlatform = this.createPlatformObject();
+		return this.originalPlatform && this.updatedPlatform ?
+			!(this.utilsService.compareObjects(this.originalPlatform, this.updatedPlatform)) : false;
 	}
 
 	canShowForm() {
@@ -166,8 +169,18 @@ export class PlatformComponent implements OnInit {
 		}
 	}
 
-	updatePlatform() {
+	async updatePlatform() {
+		this.loading = true;
+		const platform = this.utilsService.getObjectDifferences(this.originalPlatform, this.updatedPlatform);
+		const response = await this.platformsService.patchPlatform(this.originalPlatform[ 'name' ], platform);
 
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Platform ' + this.originalPlatform[ 'name' ] + ' updated', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('There was an error in the platform edition', '');
+		}
 	}
 
 	async deletePlatform() {

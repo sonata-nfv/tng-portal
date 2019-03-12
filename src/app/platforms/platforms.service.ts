@@ -68,6 +68,22 @@ export class PlatformsService {
 	}
 
 	/**
+     * Updates a platform
+     *
+     * @param platform Data of the desired platform.
+     */
+	async patchPlatform(uuid, platform) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.platformSettings + '/' + uuid;
+
+		try {
+			return await this.http.patch(url, platform, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
  	* Deletes a platform
  	*
  	* @param uuid UUID of the desired WIM.
