@@ -52,6 +52,22 @@ export class PlatformsService {
 	}
 
 	/**
+     * Generates a platform
+     *
+     * @param platform Data of the desired platform.
+     */
+	async postPlatform(platform) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.platformSettings;
+
+		try {
+			return await this.http.post(url, platform, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
  	* Deletes a platform
  	*
  	* @param uuid UUID of the desired WIM.

@@ -115,7 +115,19 @@ export class PlatformComponent implements OnInit {
 	}
 
 	private createPlatformObject() {
-		// TODO prepare platform object to be sent
+		const platform = {
+			name: this.platformForm.get('name').value,
+			type: this.platformType.toLowerCase(),
+			host: this.platformForm.get('host').value,
+			username: this.platformForm.get('username').value,
+			password: this.platformForm.get('password').value,
+			monitoring_urls: this.platformForm.get('monitoring_urls').value,
+		};
+		if (this.osmForm.get('project_name').value) {
+			platform[ 'project_name' ] = this.osmForm.get('project_name').value;
+		}
+
+		return platform;
 	}
 
 	canShowForm() {
@@ -140,7 +152,19 @@ export class PlatformComponent implements OnInit {
 		this.platformType = type;
 	}
 
-	createPlatform() { }
+	async createPlatform() {
+		this.loading = true;
+		const platform = this.createPlatformObject();
+		const response = await this.platformsService.postPlatform(platform);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Platform ' + platform[ 'name' ] + ' created', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('There was an error in the platform creation', '');
+		}
+	}
 
 	updatePlatform() {
 
