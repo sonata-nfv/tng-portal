@@ -1,0 +1,54 @@
+<div class="header-section" *ngIf="canShowForm()">
+	<h3 class="title3 header-section-name" i18n="@@platform">Platform</h3>
+	<div *ngIf="edition" class="button-underline">
+		<button class="delete-button" (click)="deletePlatform()" i18n="@@deletePlatform">Delete platform</button>
+		<div class="underline"></div>
+	</div>
+</div>
+
+<form [formGroup]="platformForm" class="title-section" *ngIf="canShowForm()">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Platform Name" formControlName="name" required i18n-placeholder="@@platformName" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+			(click)="edition ? updatePlatform() : createPlatform()" i18n="@@saveButton">
+			SAVE
+		</button>
+
+		<button *ngIf="!edition" class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+		<button *ngIf="edition" class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+	</div>
+</form>
+
+<form [formGroup]="platformForm" class="platformForm" *ngIf="canShowForm()">
+	<app-select placeholder="Select a platform type" [list]="platformTypes" (selectEvent)="receiveType($event)" [disabled]="edition"
+		[value]="platformType" i18n-placeholder="@@selectPlatformTypePlaceholder"></app-select>
+</form>
+
+<form [formGroup]="platformForm" class="platformForm" *ngIf="canShowPlatformForm()">
+	<mat-form-field>
+		<input matInput type="text" placeholder="Host" formControlName="host" required i18n-placeholder="@@host" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@username" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Password" formControlName="password" required i18n-placeholder="@@password" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Monitoring URLs" formControlName="monitoring_urls" i18n-placeholder="@@monitoringUrls" />
+	</mat-form-field>
+</form>
+
+<form [formGroup]="osmForm" class="platformForm" *ngIf="canShowOsmForm()">
+	<mat-form-field>
+		<input matInput type="text" placeholder="Project name" formControlName="project_name" required i18n-placeholder="@@projectName" />
+	</mat-form-field>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>

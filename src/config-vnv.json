@@ -1,6 +1,7 @@
 {
 	"features_available": [
 		"DASHBOARD",
+		"PLATFORMS",
 		"VALIDATION"
 	]
 }

@@ -23,10 +23,8 @@ export class SettingsService {
      */
 	async getVims(search?) {
 		const headers = this.authService.getAuthHeaders();
-		const url =
-			search !== undefined
-				? this.config.baseSP + this.config.vimSettings + search
-				: this.config.baseSP + this.config.vimSettings;
+		const url = search ? this.config.baseSP + this.config.vimSettings + search
+			: this.config.baseSP + this.config.vimSettings;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -123,10 +121,8 @@ export class SettingsService {
     */
 	async getWims(search?) {
 		const headers = this.authService.getAuthHeaders();
-		const url =
-			search !== undefined
-				? this.config.baseSP + this.config.wimSettings + search
-				: this.config.baseSP + this.config.wimSettings;
+		const url = search ? this.config.baseSP + this.config.wimSettings + search
+			: this.config.baseSP + this.config.wimSettings;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();

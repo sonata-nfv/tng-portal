@@ -34,6 +34,7 @@ export class ConfigService extends Config {
 	vimK8sSettings = 'settings/vims/k8s';
 	wimSettings = 'settings/wims';
 	tapiSettings = 'settings/wims/tapi';
+	platformSettings = 'settings/platforms';
 
 	private configFile = './config.json';
 

@@ -24,11 +24,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
@@ -44,6 +44,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
           <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
@@ -198,6 +202,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
           <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
@@ -470,11 +478,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceName" datatype="html">
@@ -504,6 +512,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/requests/requests.component.html</context>
           <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
@@ -1018,8 +1030,8 @@
       </trans-unit>
       <trans-unit id="useremail" datatype="html">
         <source>
-            sonata-dev@lists.atos.research.eu</source><target state="final">
-            sonata-dev@lists.atos.research.eu</target>
+			sonata-dev@lists.atos.research.eu</source><target state="final">
+			sonata-dev@lists.atos.research.eu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1027,8 +1039,8 @@
       </trans-unit>
       <trans-unit id="logout" datatype="html">
         <source>Log
-                out</source><target state="final">Log
-                out</target>
+				out</source><target state="final">Log
+				out</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1038,17 +1050,28 @@
         <source>Dashboard</source><target state="final">Dashboard</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="users" datatype="html">
         <source>Users</source><target state="final">Users</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/users/users.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="platformSettings" datatype="html">
+        <source>Platform settings</source><target state="final">Platform settings</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -1056,7 +1079,7 @@
         <source>Settings</source><target state="final">Settings</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
@@ -1071,14 +1094,14 @@
         <source>V&amp;V</source><target state="final">V&amp;V</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="sp" datatype="html">
         <source>Service platform</source><target state="final">Service platform</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
@@ -1125,7 +1148,7 @@
         <source>Service management</source><target state="final">Service management</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
@@ -1155,7 +1178,7 @@
         <source>WIM</source><target state="final">WIM</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
@@ -1170,11 +1193,11 @@
         <source>Packages</source><target state="final">Packages</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context>
@@ -1195,17 +1218,17 @@
       </trans-unit>
       <trans-unit id="networkServices" datatype="html">
         <source>
-                Network services
-            </source><target state="final">
-                Network services
-            </target>
+				Network services
+			</source><target state="final">
+				Network services
+			</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context>
@@ -1240,7 +1263,7 @@
         <source>Tests</source><target state="final">Tests</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
@@ -1259,22 +1282,22 @@
         <source>SLA</source><target state="final">SLA</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="templates" datatype="html">
         <source>
-                    Templates
-                </source><target state="final">
-                    Templates
-                </target>
+					Templates
+				</source><target state="final">
+					Templates
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">87</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">121</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slices-templates-detail/slices-templates-detail.component.html</context>
@@ -1283,42 +1306,42 @@
       </trans-unit>
       <trans-unit id="agreements" datatype="html">
         <source>
-                    Agreements
-                </source><target state="final">
-                    Agreements
-                </target>
+					Agreements
+				</source><target state="final">
+					Agreements
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="violations" datatype="html">
         <source>
-                    Violations
-                </source><target state="final">
-                    Violations
-                </target>
+					Violations
+				</source><target state="final">
+					Violations
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="policies" datatype="html">
         <source>Policies</source><target state="final">Policies</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="placementPolicy" datatype="html">
         <source>
-                    Placement Policy
-                </source><target state="final">
-                    Placement Policy
-                </target>
+					Placement Policy
+				</source><target state="final">
+					Placement Policy
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
@@ -1327,13 +1350,13 @@
       </trans-unit>
       <trans-unit id="runtimePolicies" datatype="html">
         <source>
-                    Runtime Policies
-                </source><target state="final">
-                    Runtime Policies
-                </target>
+					Runtime Policies
+				</source><target state="final">
+					Runtime Policies
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">108</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
@@ -1350,13 +1373,13 @@
       </trans-unit>
       <trans-unit id="generatedActions" datatype="html">
         <source>
-                    Generated Actions
-                </source><target state="final">
-                    Generated Actions
-                </target>
+					Generated Actions
+				</source><target state="final">
+					Generated Actions
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">112</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
@@ -1367,18 +1390,18 @@
         <source>Slices</source><target state="final">Slices</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instances" datatype="html">
         <source>
-                    Instances
-                </source><target state="final">
-                    Instances
-                </target>
+					Instances
+				</source><target state="final">
+					Instances
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">125</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
@@ -1387,13 +1410,13 @@
       </trans-unit>
       <trans-unit id="availableNS" datatype="html">
         <source>
-                Available network services
-            </source><target state="final">
-                Available network services
-            </target>
+				Available network services
+			</source><target state="final">
+				Available network services
+			</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
@@ -1406,13 +1429,13 @@
       </trans-unit>
       <trans-unit id="nsInstances" datatype="html">
         <source>
-                Network service instances
-            </source><target state="final">
-                Network service instances
-            </target>
+				Network service instances
+			</source><target state="final">
+				Network service instances
+			</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">145</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
@@ -1421,24 +1444,24 @@
       </trans-unit>
       <trans-unit id="licenceStore" datatype="html">
         <source>
-                Licence store
-            </source><target state="final">
-                Licence store
-            </target>
+				Licence store
+			</source><target state="final">
+				Licence store
+			</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceLicenses" datatype="html">
         <source>
-                    Service licenses
-                </source><target state="final">
-                    Service licenses
-                </target>
+					Service licenses
+				</source><target state="final">
+					Service licenses
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">155</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/service-licenses/service-licenses.component.html</context>
@@ -1447,17 +1470,61 @@
       </trans-unit>
       <trans-unit id="userLicenses" datatype="html">
         <source>
-                    User licenses
-                </source><target state="final">
-                    User licenses
-                </target>
+					User licenses
+				</source><target state="final">
+					User licenses
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">162</context>
+          <context context-type="linenumber">159</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/user-licenses/user-licenses.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="platforms" datatype="html">
+        <source>Platforms</source><target state="final">Platforms</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createNewPlatformButton" datatype="html">
+        <source>Create New Platform</source><target state="final">Create New Platform</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="host" datatype="html">
+        <source>Host</source><target state="final">Host</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="delete" datatype="html">
+        <source>Delete</source><target state="final">Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform-list/platform-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createNewVimButton" datatype="html">
@@ -1506,25 +1573,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">43</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="delete" datatype="html">
-        <source>Delete</source><target state="final">Delete</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-templates/sla-templates.component.html</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slices-templates/slices-templates.component.html</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deleteVim" datatype="html">

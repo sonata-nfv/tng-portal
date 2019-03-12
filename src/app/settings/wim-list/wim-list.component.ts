@@ -77,8 +77,10 @@ export class WimListComponent implements OnInit, OnDestroy {
 	}
 
 	async deleteWim(uuid) {
+		this.loading = true;
 		const response = await this.settingsService.deleteVim(uuid);
 
+		this.loading = false;
 		if (response) {
 			this.utilsService.openSnackBar('WIM deleted', '');
 			this.requestWims();
