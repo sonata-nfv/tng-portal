@@ -50,7 +50,7 @@ import { SlaTemplatesCreateComponent } from './service-platform/sla-templates-cr
 import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
-import { SlicesTemplatesComponent } from './service-platform/slices-templates/slices-templates.component';
+import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
 import { SlicesTemplatesCreateComponent } from './service-platform/slices-templates-create/slices-templates-create.component';
 
 import { SlicesTemplatesDetailComponent } from './service-platform/slices-templates-detail/slices-templates-detail.component';
@@ -168,7 +168,7 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
 			{
-				path: 'service-platform/slices/slices-templates', component: SlicesTemplatesComponent,
+				path: 'service-platform/slices/slices-templates', component: SliceTemplateListComponent,
 				children: [
 					{ path: 'new', component: SlicesTemplatesCreateComponent },
 					{ path: ':id', component: SlicesTemplatesDetailComponent }

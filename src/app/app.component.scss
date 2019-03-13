@@ -577,24 +577,14 @@ ul.unordered-list .mat-input-element:disabled {
 	box-shadow: 2px 1px 2px 0 $shadow-buttons;
 }
 
+.reload {
+	position: absolute;
+	right: 6.5vw;
+}
+
 //////////////////////////////////////
 // Icons
 //////////////////////////////////////
-.reload {
-	border: none;
-	cursor: pointer;
-	outline: none;
-	position: absolute;
-	right: 6.5vw;
-	background-color: $basic-background-color;
-	box-shadow: 2px 1px 2px 0 $shadow-buttons;
-
-	.wui-undo::before {
-		font-size: 20px;
-		color: $reload-color;
-	}
-}
-
 .closeIcon {
 	position: absolute;
 	padding: 8px;
@@ -623,4 +613,19 @@ ul.unordered-list .mat-input-element:disabled {
 .icon-button-shadow .wui-eye:before {
     font-size: 20px;
     color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-trash-alt:before {
+    font-size: 20px;
+    color: $secondary-font-color;
+}
+
+.icon-button-shadow .wui-caret-right:before {
+    font-size: 20px;
+    color: $ready-color;
+}
+
+.icon-button-shadow .wui-undo::before {
+	font-size: 20px;
+	color: $reload-color;
 }

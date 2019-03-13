@@ -48,7 +48,7 @@ export class ValidationAndVerificationPlatformService {
 									name: item.testd.name,
 									vendor: item.testd.vendor,
 									version: item.testd.version,
-									status: this.utilsService.parseString(item.status)
+									status: this.utilsService.capitalizeFirstLetter(item.status)
 								};
 							})
 						);
@@ -84,7 +84,7 @@ export class ValidationAndVerificationPlatformService {
 						author: response[ 'testd' ][ 'author' ],
 						description: response[ 'testd' ][ 'description' ],
 						createdAt: response[ 'created_at' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						lastTimeExecuted: this.utilsService.formatUTCDate(
 							response[ 'last_time_executed' ]
 						)
@@ -157,7 +157,7 @@ export class ValidationAndVerificationPlatformService {
 									serviceUUID: item.service_uuid,
 									createdAt: this.utilsService.formatUTCDate(item.created_at),
 									testUUID: item.test_uuid,
-									status: this.utilsService.parseString(item.status)
+									status: this.utilsService.capitalizeFirstLetter(item.status)
 								};
 							})
 						);
@@ -188,7 +188,7 @@ export class ValidationAndVerificationPlatformService {
 				.then(response => {
 					resolve({
 						uuid: response[ 'uuid' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
 						testerResultText: response[ 'tester_result_text' ],
 						sterr: response[ 'sterr' ],

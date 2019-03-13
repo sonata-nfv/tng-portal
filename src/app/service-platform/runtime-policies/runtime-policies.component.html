@@ -11,60 +11,58 @@
 <!-- </div> -->
 
 <div class="tools">
-    <app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-    <app-select class="select" placeholder="Network Service" [list]="nsList" [disabled]="loading" required="false"
-        [reset]="reset" (selectEvent)="receiveNS($event)" i18n-placeholder="@@nsPlaceholder"></app-select>
-    <button class="reload" (click)="requestRuntimePolicies()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
-            class="wui wui-undo"></i></button>
+	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+	<app-select class="select" placeholder="Network Service" [list]="nsList" [disabled]="loading" required="false" [reset]="reset"
+		(selectEvent)="receiveNS($event)" i18n-placeholder="@@nsPlaceholder"></app-select>
+	<button class="icon-button-shadow reload" (click)="requestRuntimePolicies()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
+			class="wui wui-undo"></i></button>
 </div>
 
 <table mat-table [dataSource]="policiesDisplayed">
-    <ng-container matColumnDef="vendor">
-        <th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
-        <td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
-    </ng-container>
+	<ng-container matColumnDef="vendor">
+		<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
+		<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
+	</ng-container>
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef i18n="@@policyName">Policy name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
+	<ng-container matColumnDef="name">
+		<th mat-header-cell *matHeaderCellDef i18n="@@policyName">Policy name</th>
+		<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+	</ng-container>
 
-    <ng-container matColumnDef="version">
-        <th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
-        <td mat-cell *matCellDef="let element">{{ element.version }}</td>
-    </ng-container>
+	<ng-container matColumnDef="version">
+		<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
+		<td mat-cell *matCellDef="let element">{{ element.version }}</td>
+	</ng-container>
 
-    <ng-container matColumnDef="ns">
-        <th mat-header-cell *matHeaderCellDef i18n="@@ns">Network Service</th>
-        <td mat-cell *matCellDef="let element">
-            <span> {{ element.ns.vendor }} </span> <br />
-            <span> {{ element.ns.name }} </span> <br />
-            <span> v{{ element.ns.version }} </span>
-        </td>
-    </ng-container>
+	<ng-container matColumnDef="ns">
+		<th mat-header-cell *matHeaderCellDef i18n="@@ns">Network Service</th>
+		<td mat-cell *matCellDef="let element">
+			<span> {{ element.ns.vendor }} </span> <br />
+			<span> {{ element.ns.name }} </span> <br />
+			<span> v{{ element.ns.version }} </span>
+		</td>
+	</ng-container>
 
-    <ng-container matColumnDef="sla">
-        <th mat-header-cell *matHeaderCellDef i18n="@@slaName">SLA name</th>
-        <td mat-cell *matCellDef="let element">{{ element.sla }}</td>
-    </ng-container>
+	<ng-container matColumnDef="sla">
+		<th mat-header-cell *matHeaderCellDef i18n="@@slaName">SLA name</th>
+		<td mat-cell *matCellDef="let element">{{ element.sla }}</td>
+	</ng-container>
 
-    <ng-container matColumnDef="default">
-        <th mat-header-cell *matHeaderCellDef i18n="@@selectDefault">Select Default</th>
-        <td mat-cell *matCellDef="let element" (click)="setDefaultPolicy(element.uuid)"
-            (click)="$event.stopPropagation()">
-            <button [ngClass]="{ active: element.default }" class="circle-button" mat-button></button>
-        </td>
-    </ng-container>
+	<ng-container matColumnDef="default">
+		<th mat-header-cell *matHeaderCellDef i18n="@@selectDefault">Select Default</th>
+		<td mat-cell *matCellDef="let element" (click)="setDefaultPolicy(element.uuid)" (click)="$event.stopPropagation()">
+			<button [ngClass]="{ active: element.default }" class="circle-button" mat-button></button>
+		</td>
+	</ng-container>
 
-    <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" (click)="deletePolicy(element)" (click)="$event.stopPropagation()">
-            <button class="actions" mat-button><i class="wui wui-trash-alt"></i></button>
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ activeRow: row.default }"
-        (click)="openPolicy(row)"></tr>
+	<ng-container matColumnDef="delete">
+		<th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef="let element" (click)="deletePolicy(element)" (click)="$event.stopPropagation()">
+			<button class="icon-button-shadow actions " mat-button><i class="wui wui-trash-alt"></i></button>
+		</td>
+	</ng-container>
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ activeRow: row.default }" (click)="openPolicy(row)"></tr>
 </table>
 
 <app-spinner *ngIf="loading"></app-spinner>

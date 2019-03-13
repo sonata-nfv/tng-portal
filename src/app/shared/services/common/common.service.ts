@@ -58,7 +58,7 @@ export class CommonService {
 									vendor: item.pd.vendor,
 									version: item.pd.version,
 									createdAt: this.utilsService.formatUTCDate(item.created_at),
-									status: this.utilsService.parseString(item.status),
+									status: this.utilsService.capitalizeFirstLetter(item.status),
 									type: 'Public'
 								};
 							})
@@ -95,7 +95,7 @@ export class CommonService {
 						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
 						vendor: response[ 'pd' ][ 'vendor' ],
 						version: response[ 'pd' ][ 'version' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						type: 'Public',
 						ns: this.getPackageContent(response[ 'pd' ][ 'package_content' ], 'ns'),
 						vnf: this.getPackageContent(
@@ -177,7 +177,7 @@ export class CommonService {
 									uuid: item.uuid,
 									name: item.vnfd.name,
 									vendor: item.vnfd.vendor,
-									status: this.utilsService.parseString(item.status),
+									status: this.utilsService.capitalizeFirstLetter(item.status),
 									version: item.vnfd.version,
 									type: 'public'
 								};
@@ -275,7 +275,7 @@ export class CommonService {
 								serviceId: item.uuid,
 								vendor: item.nsd.vendor,
 								version: item.nsd.version,
-								status: this.utilsService.parseString(item.status),
+								status: this.utilsService.capitalizeFirstLetter(item.status),
 								licenses: 'None',
 								slas: '/service-platform/slas/sla-templates'
 							}))
@@ -312,7 +312,7 @@ export class CommonService {
 							name: response[ 'nsd' ][ 'name' ],
 							author: response[ 'nsd' ][ 'author' ],
 							version: response[ 'nsd' ][ 'version' ],
-							status: this.utilsService.parseString(response[ 'status' ]),
+							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 							vendor: response[ 'nsd' ][ 'vendor' ],
 							serviceID: response[ 'uuid' ],
 							type: response[ 'user_licence' ],
@@ -359,9 +359,9 @@ export class CommonService {
 								requestId: item.id,
 								name: item.name,
 								serviceName: item[ 'service' ] ? item.service.name : this.NA,
-								type: this.utilsService.parseString(item.request_type),
+								type: this.utilsService.capitalizeFirstLetter(item.request_type),
 								createdAt: this.utilsService.formatUTCDate(item.created_at),
-								status: this.utilsService.parseString(item.status)
+								status: this.utilsService.capitalizeFirstLetter(item.status)
 							}))
 						);
 					} else {
@@ -393,9 +393,9 @@ export class CommonService {
 						resolve({
 							requestUUID: response[ 'id' ],
 							name: response[ 'name' ],
-							type: this.utilsService.parseString(response[ 'request_type' ]),
+							type: this.utilsService.capitalizeFirstLetter(response[ 'request_type' ]),
 							updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-							status: this.utilsService.parseString(response[ 'status' ]),
+							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 							slaUUID: response[ 'sla_id' ],
 							serviceVendor: response[ 'service' ]
 								? response[ 'service' ][ 'vendor' ]

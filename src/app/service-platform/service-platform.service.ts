@@ -41,7 +41,7 @@ export class ServicePlatformService {
 						vendor: response[ 'vnfd' ][ 'vendor' ],
 						version: response[ 'vnfd' ][ 'version' ],
 						type: 'Public',
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						description: response[ 'vnfd' ][ 'description' ]
 					});
 				})
@@ -205,7 +205,7 @@ export class ServicePlatformService {
 								ns_uuid: item.ns_uuid,
 								customer: item.cust_uuid,
 								date: this.utilsService.formatUTCDate(item.sla_date),
-								status: this.utilsService.parseString(item.sla_status)
+								status: this.utilsService.capitalizeFirstLetter(item.sla_status)
 							};
 						})
 					);
@@ -244,7 +244,7 @@ export class ServicePlatformService {
 						ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
 						customer:
 							response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_uuid' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						propertyList:
 							response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
 						// availability: response['availability'],
@@ -552,60 +552,28 @@ export class ServicePlatformService {
      *                          matched by the returned list of
      *                          Slices Templates.
      */
-	getSlicesTemplates(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slicesTemplates + search
-					: this.config.baseSP + this.config.slicesTemplates;
+	async getSlicesTemplates(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ? this.config.baseSP + this.config.slicesTemplates + search :
+			this.config.baseSP + this.config.slicesTemplates;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.nstd.name,
-									version: item.nstd.version,
-									vendor: item.nstd.vendor,
-									usageState: this.prepareUsageState(item.nstd.usageState),
-									author: item.nstd.author,
-									status: item.status
-								};
-							})
-						);
-					} else {
-						reject('There was an error while fetching the slice templates');
-					}
-				})
-				.catch(err =>
-					reject('There was an error while fetching the slice templates')
-				);
-		});
-	}
-
-	/**
-     * Formats the usageState property of the slices to be displayed in the browser
-     *
-     * @param item usageState string
-     */
-	prepareUsageState(item) {
-		const parts = item.split('_');
-		let str = '';
-
-		parts.forEach(part => {
-			str = str.concat(
-				part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + ' '
-			);
-		});
-
-		return str;
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.nstd.name,
+						version: item.nstd.version,
+						vendor: item.nstd.vendor,
+						usageState: item.nstd.usageState,
+						author: item.nstd.author,
+						status: item.status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -625,7 +593,7 @@ export class ServicePlatformService {
 				.then(response => {
 					resolve({
 						uuid: response[ 'uuid' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						name: response[ 'nstd' ][ 'name' ],
 						author: response[ 'nstd' ][ 'author' ],
 						createdAt: response[ 'created_at' ],
@@ -633,11 +601,11 @@ export class ServicePlatformService {
 						vendor: response[ 'nstd' ][ 'vendor' ],
 						notificationType: response[ 'nstd' ][ 'notificationTypes' ],
 						userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
-						usageState: this.prepareUsageState(response[ 'nstd' ][ 'usageState' ]),
-						onboardingState: this.utilsService.parseString(
+						usageState: this.utilsService.capitalizeFirstLetter(response[ 'nstd' ][ 'usageState' ]),
+						onboardingState: this.utilsService.capitalizeFirstLetter(
 							response[ 'nstd' ][ 'onboardingState' ]
 						),
-						operationalState: this.utilsService.parseString(
+						operationalState: this.utilsService.capitalizeFirstLetter(
 							response[ 'nstd' ][ 'operationalState' ]
 						),
 						nstNsdIds: response[ 'nstd' ][ 'nstNsdIds' ]
@@ -674,23 +642,15 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Slices Template.
      */
-	deleteOneSlicesTemplate(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async deleteOneSlicesTemplate(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesTemplates + '/' + uuid;
 
-			this.http
-				.delete(this.config.baseSP + this.config.slicesTemplates + '/' + uuid, {
-					headers: headers,
-					responseType: 'text'
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					reject('There was an error deleting the slice template');
-				});
-		});
+		try {
+			return await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -723,7 +683,7 @@ export class ServicePlatformService {
 									name: item.name,
 									vendor: item.vendor,
 									version: item.nstVersion,
-									state: this.utilsService.parseString(item.nsiState)
+									state: this.utilsService.capitalizeFirstLetter(item.nsiState)
 								};
 							})
 						);
@@ -756,7 +716,7 @@ export class ServicePlatformService {
 						uuid: response[ 'uuid' ],
 						name: response[ 'name' ],
 						vendor: response[ 'vendor' ],
-						state: this.utilsService.parseString(response[ 'nsiState' ]),
+						state: this.utilsService.capitalizeFirstLetter(response[ 'nsiState' ]),
 						description: response[ 'description' ],
 						netServInstanceUUID: response[ 'netServInstance_Uuid' ],
 						nstName: response[ 'nstName' ],

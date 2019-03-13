@@ -23,24 +23,15 @@ export class UtilsService {
     *
     * @param str string to parse
     */
-	parseString(str): string {
-		let res = '';
-
+	capitalizeFirstLetter(str): string {
 		if (str.includes('_')) {
-			str = str.replace('_', ' ');
+			str = str.replace(/_/g, ' ');
 		}
-		if (str.includes(' ')) {
-			const parts = str.split(' ');
+		if (str.includes('-')) {
+			str = str.replace(/-/g, ' ');
+		}
 
-			parts.forEach(part => {
-				res = res.concat(
-					part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() + ' '
-				);
-			});
-		} else {
-			res = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-		}
-		return res;
+		return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 	}
 
 	/**

@@ -9,14 +9,14 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { SlicesInstancesCreateComponent } from '../slices-instances-create/slices-instances-create.component';
 
 @Component({
-	selector: 'app-slices-templates',
-	templateUrl: './slices-templates.component.html',
-	styleUrls: [ './slices-templates.component.scss' ],
+	selector: 'app-slice-template-list',
+	templateUrl: './slice-template-list.component.html',
+	styleUrls: [ './slice-template-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesTemplatesComponent implements OnInit, OnDestroy {
+export class SliceTemplateListComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	templates = new Array();
+	templates: Array<Object>;
 	displayedColumns = [
 		'vendor',
 		'name',
@@ -67,19 +67,16 @@ export class SlicesTemplatesComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of templates.
      */
-	requestTemplates(search?) {
+	async requestTemplates(search?) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getSlicesTemplates(search);
 
-		this.servicePlatformService
-			.getSlicesTemplates(search)
-			.then(response => {
-				this.loading = false;
-				this.templates = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.templates = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the templates', '');
+		}
 	}
 
 	instantiate(nst) {
@@ -93,27 +90,24 @@ export class SlicesTemplatesComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	deleteTemplate(uuid) {
+	async deleteTemplate(uuid) {
 		this.loading = true;
-		this.servicePlatformService
-			.deleteOneSlicesTemplate(uuid)
-			.then(response => {
-				this.requestTemplates();
-				this.utilsService.openSnackBar('Template deleted', '');
-			})
-			.catch(err => {
-				this.loading = false;
-				this.requestTemplates();
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.servicePlatformService.deleteOneSlicesTemplate(uuid);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Template deleted', '');
+			this.requestTemplates();
+		} else {
+			this.utilsService.openSnackBar('There was an error deleting the template', '');
+		}
 	}
 
 	createNew() {
 		this.router.navigate([ 'new' ], { relativeTo: this.route });
 	}
 
-	openTemplate(row) {
-		const uuid = row.uuid;
+	openTemplate(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }
