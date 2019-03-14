@@ -220,8 +220,8 @@ export class CommonService {
 									vendor: item.slad.vendor,
 									name: item.slad.name,
 									version: item.slad.version,
-									nsUUID: item.slad.sla_template.ns.ns_uuid,
-									ns: item.slad.sla_template.ns.ns_name,
+									nsUUID: item.slad.sla_template.service.ns_uuid,
+									ns: item.slad.sla_template.service.ns_name,
 									expirationDate: this.utilsService.formatUTCDate(
 										item.slad.sla_template.valid_until
 									)
