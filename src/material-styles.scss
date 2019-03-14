@@ -144,20 +144,6 @@ form .sameRow {
 	background-color: $form-alert-color;
 }
 
-// Styles for stop and launch buttons in detailed view
-.stop,
-.launch {
-	display: flex;
-	width: 30%;
-	cursor: pointer;
-	margin-bottom: 25px;
-
-	span {
-		margin-left: 10px;
-		color: $secondary-font-color;
-	}
-}
-
 // Checkbox styles
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {

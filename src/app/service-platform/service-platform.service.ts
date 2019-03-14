@@ -581,38 +581,32 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Slices Template.
      */
-	getOneSliceTemplate(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getOneSliceTemplate(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesTemplates + '/' + uuid;
 
-			this.http
-				.get(this.config.baseSP + this.config.slicesTemplates + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						name: response[ 'nstd' ][ 'name' ],
-						author: response[ 'nstd' ][ 'author' ],
-						createdAt: response[ 'created_at' ],
-						version: response[ 'nstd' ][ 'version' ],
-						vendor: response[ 'nstd' ][ 'vendor' ],
-						notificationType: response[ 'nstd' ][ 'notificationTypes' ],
-						userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
-						usageState: this.utilsService.capitalizeFirstLetter(response[ 'nstd' ][ 'usageState' ]),
-						onboardingState: this.utilsService.capitalizeFirstLetter(
-							response[ 'nstd' ][ 'onboardingState' ]
-						),
-						operationalState: this.utilsService.capitalizeFirstLetter(
-							response[ 'nstd' ][ 'operationalState' ]
-						),
-						nstNsdIds: response[ 'nstd' ][ 'nstNsdIds' ]
-					});
-				})
-				.catch(err => reject(err.statusText));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				status: response[ 'status' ],
+				name: response[ 'nstd' ][ 'name' ],
+				author: response[ 'nstd' ][ 'author' ],
+				createdAt: response[ 'created_at' ],
+				updatedAt: response[ 'updated_at' ],
+				version: response[ 'nstd' ][ 'version' ],
+				vendor: response[ 'nstd' ][ 'vendor' ],
+				description: response[ 'nstd' ][ 'description' ],
+				notificationType: response[ 'nstd' ][ 'notificationTypes' ],
+				userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
+				usageState: response[ 'nstd' ][ 'usageState' ],
+				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
+				operationalState: response[ 'nstd' ][ 'operationalState' ],
+				sliceServices: response[ 'nstd' ][ 'sliceServices' ]
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
