@@ -29,6 +29,7 @@
 		"@compodoc/compodoc": "^1.1.8",
 		"chart.js": "~2.7.3",
 		"core-js": "~2.5.7",
+		"hammerjs": "^2.0.8",
 		"ngx-json-viewer": "~2.4.0",
 		"rxjs": "~6.4.0",
 		"zone.js": "~0.8.29"

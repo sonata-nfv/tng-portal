@@ -31,17 +31,16 @@ export class WimComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.initForms();
-		this.subscribeFormChanges();
-		// Request the VIMs displayed in the form select for WIM creation/edition
-		this.requestVims();
-
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.edition = uuid ? true : false;
+			this.initForms();
+			this.subscribeFormChanges();
 			if (this.edition) {
 				this.requestWim(uuid);
 			}
+			// Request the VIMs displayed in the form select for WIM creation/edition
+			this.requestVims();
 		});
 	}
 
@@ -72,7 +71,9 @@ export class WimComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
+			// GET all the VIMs in database for select
 			this.vims = response.map(vim => vim.name + ': ' + vim.uuid);
+			// Display also names of the received vim list
 			if (this.edition) {
 				this.parseVimsIncluded(this.originalWim[ 'vim_list' ]);
 			}
@@ -109,11 +110,17 @@ export class WimComponent implements OnInit {
 	}
 
 	private parseVimsIncluded(vims_list) {
+		// For each vim included in the wim find its name and uuid
 		vims_list.forEach(vim => {
-			this.vimsIncluded.push(this.vims.find(element => element.split(': ')[ 1 ] === vim));
-			this.vims = this.vims.filter(element => element.split(': ')[ 1 ] !== vim);
-			this.onFormChanges();
+			const matchedElement = this.vims.find(element => element.split(': ')[ 1 ] === vim);
+			if (matchedElement) {
+				this.vimsIncluded.push(matchedElement);
+				this.vims = this.vims.filter(element => element.split(': ')[ 1 ] !== vim);
+			} else {
+				this.vimsIncluded.push(vim);
+			}
 		});
+		this.onFormChanges();
 	}
 
 	private populateForm() {
@@ -142,9 +149,11 @@ export class WimComponent implements OnInit {
 	}
 
 	receiveVim(vim) {
-		this.vimsIncluded.push(vim);
-		this.vims = this.vims.filter(x => x !== vim);
-		this.onFormChanges();
+		if (vim) {
+			this.vimsIncluded.push(vim);
+			this.vims = this.vims.filter(x => x !== vim);
+			this.onFormChanges();
+		}
 	}
 
 	eraseEntry(index) {
@@ -175,7 +184,7 @@ export class WimComponent implements OnInit {
 			endpoint: this.wimForm.get('endpoint').value,
 			username: this.wimForm.get('username').value,
 			password: this.wimForm.get('password').value,
-			vim_list: this.vimsIncluded.map(vim => vim.split(': ')[ 1 ])
+			vim_list: this.vimsIncluded ? this.vimsIncluded.map(vim => vim.split(': ')[ 1 ]) : []
 		};
 		if (this.wimForm.get('authKey').value) {
 			wim[ 'authKey' ] = this.wimForm.get('authKey').value;

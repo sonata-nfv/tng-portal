@@ -3,9 +3,9 @@
 <h1 class="title1 title-section-name" i18n="@@licenses">Licences</h1>
 
 <div class="tools">
-    <app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
-    <!--
-		<button class="reload" (click)="requestLicences()">
+	<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
+	<!--
+		<button class="icon-button-shadow reload" (click)="requestLicences()">
 		  <i class="wui wui-undo"></i>
 		</button>
 	-->
@@ -35,7 +35,7 @@
 	    <th mat-header-cell *matHeaderCellDef>
 	    </th>
 	    <td mat-cell *matCellDef="let element" (click)="buy(element)" (click)="$event.stopPropagation()">
-	      <button mat-button class="actions">
+	      <button mat-button class="icon-button-shadow actions ">
 	        <i class="wui wui-shopping-cart"></i>
 	      </button>
 	    </td>

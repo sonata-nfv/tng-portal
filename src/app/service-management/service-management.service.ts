@@ -44,7 +44,7 @@ export class ServiceManagementService {
 							response.map(item => ({
 								uuid: item.uuid,
 								name: item.instance_name,
-								status: this.utilsService.parseString(item.status),
+								status: this.utilsService.capitalizeFirstLetter(item.status),
 								serviceID: item.descriptor_reference,
 								createdAt: this.utilsService.formatUTCDate(item.created_at),
 								version: item.version
@@ -84,7 +84,7 @@ export class ServiceManagementService {
 						resolve({
 							uuid: response[ 'uuid' ],
 							name: response[ 'instance_name' ],
-							status: this.utilsService.parseString(response[ 'status' ]),
+							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 							serviceID: response[ 'descriptor_reference' ],
 							version: response[ 'version' ],
 							updatedAt: this.utilsService.formatUTCDate(
@@ -119,7 +119,7 @@ export class ServiceManagementService {
 				.then(response => {
 					resolve({
 						uuid: response[ 'uuid' ],
-						status: this.utilsService.parseString(response[ 'status' ]),
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						descriptorRef: response[ 'descriptor_reference' ],
 						descriptorVersion: response[ 'descriptor_reference' ],
 						name: response[ 'descriptor_version' ],

@@ -8,14 +8,15 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { SlicesInstancesCreateComponent } from '../slices-instances-create/slices-instances-create.component';
 
 @Component({
-	selector: 'app-slices-templates-detail',
-	templateUrl: './slices-templates-detail.component.html',
-	styleUrls: [ './slices-templates-detail.component.scss' ],
+	selector: 'app-slice-template-detail',
+	templateUrl: './slice-template-detail.component.html',
+	styleUrls: [ './slice-template-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesTemplatesDetailComponent implements OnInit {
+export class SliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = {};
+	displayedColumns = [ 'serviceName', 'isShared', 'slaName' ];
 
 	constructor(
 		private router: Router,
@@ -27,7 +28,7 @@ export class SlicesTemplatesDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.requestSlicesTemplate(params[ 'id' ]);
+			this.requestSliceTemplate(params[ 'id' ]);
 		});
 	}
 
@@ -37,19 +38,21 @@ export class SlicesTemplatesDetailComponent implements OnInit {
      * @param uuid ID of the selected template to be displayed.
      *             Comming from the route.
      */
-	requestSlicesTemplate(uuid) {
+	async requestSliceTemplate(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneSliceTemplate(uuid);
 
-		this.servicePlatformService
-			.getOneSliceTemplate(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the template.', '');
+			this.close();
+		}
+	}
+
+	isInUse() {
+		return this.detail[ 'usageState' ].trim() === 'In use';
 	}
 
 	instantiate() {
@@ -63,19 +66,18 @@ export class SlicesTemplatesDetailComponent implements OnInit {
 		});
 	}
 
-	deleteTemplate() {
+	async deleteTemplate() {
 		this.loading = true;
-		this.servicePlatformService
-			.deleteOneSlicesTemplate(this.detail[ 'uuid' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Template deleted', '');
-				this.close();
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		const response = await this.servicePlatformService.deleteOneSlicesTemplate(this.detail[ 'uuid' ]);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Template deleted', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('There was an error deleting the template.', '');
+
+		}
 	}
 
 	close() {

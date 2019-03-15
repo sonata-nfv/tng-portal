@@ -1,0 +1,53 @@
+@import "../../../constants.scss";
+app-slice-template-create {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  .title1 {
+    margin: 0;
+    width: 40%;
+
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    &.mat-form-field-should-float {
+      .mat-form-field-label-wrapper {
+        display: none;
+      }
+    }
+  }
+
+  .template-form {
+	width: 60vw;
+	
+    .regular-input {
+      width: 20vw;
+	}
+
+	.description {
+		width: 100%;
+
+		.description-title {
+			margin-top: 2vh;
+		}
+    }
+	
+	app-select {
+		width: 28vw;
+		margin-right: 30px;
+	}
+  }
+}

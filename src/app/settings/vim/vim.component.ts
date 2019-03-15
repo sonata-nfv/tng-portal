@@ -37,15 +37,14 @@ export class VimComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.initForms();
-		this.subscribeFormChanges();
-
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.edition = uuid ? true : false;
 			if (this.edition) {
 				this.requestVim(uuid);
 			}
+			this.initForms();
+			this.subscribeFormChanges();
 		});
 	}
 
@@ -114,6 +113,7 @@ export class VimComponent implements OnInit {
 			}
 			this.populateForm();
 		} else {
+			this.utilsService.openSnackBar('Unable to fetch the VIM.', '');
 			this.close();
 		}
 	}

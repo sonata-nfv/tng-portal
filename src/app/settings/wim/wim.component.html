@@ -32,7 +32,7 @@
 
 <form [formGroup]="wimForm" class="wimForm" *ngIf="canShowTapiForm()">
 	<mat-form-field *ngIf="edition">
-		<input matInput placeholder="WIM ID" formControlName="uuid" disabled i18n-placeholder="@@wimID" />
+		<input matInput placeholder="WIM ID" formControlName="uuid" i18n-placeholder="@@wimID" />
 		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(wimForm.get('uuid').value)"
 			i18n-matTooltip="@@copy">
 			<i class="wui wui-copy-alt"></i>
