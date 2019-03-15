@@ -160,7 +160,6 @@
 			</button>
 		</div>
 
-		<!-- TODO check if this can be the same as in edition (creation) -->
 		<mat-form-field *ngIf="editingConfig || !edition" class="description"
 			[ngClass]="{ 'mat-form-field-invalid': kubernetesForm.valid && !checkJSONValidity() }">
 			<textarea class="content" matInput type="text" formControlName="config" [errorStateMatcher]="matcher"
@@ -168,7 +167,6 @@
 			<p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON</p>
 		</mat-form-field>
 
-		<!-- TODO view updated config if changes -->
 		<span *ngIf="edition && !editingConfig" class="content">
 			<ngx-json-viewer [json]="getParsedJSON(kubernetesForm.get('config').value)"></ngx-json-viewer>
 		</span>

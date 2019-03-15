@@ -614,21 +614,15 @@ export class ServicePlatformService {
      *
      * @param template Data of the new slice template
      */
-	postOneSliceTemplate(template): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.post(this.config.baseSP + this.config.slicesTemplates, template, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					reject('There was an error creating the slice template');
-				});
-		});
+	async postOneSliceTemplate(template) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesTemplates;
+
+		try {
+			return await this.http.post(url, template, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

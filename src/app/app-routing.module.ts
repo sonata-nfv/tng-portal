@@ -50,9 +50,9 @@ import { SlaTemplatesCreateComponent } from './service-platform/sla-templates-cr
 import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
-import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
-import { SlicesTemplatesCreateComponent } from './service-platform/slices-templates-create/slices-templates-create.component';
 
+import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
+import { SliceTemplateCreateComponent } from './service-platform/slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './service-platform/slice-template-detail/slice-template-detail.component';
 import { SlicesInstancesComponent } from './service-platform/slices-instances/slices-instances.component';
 import { SlicesInstancesDetailComponent } from './service-platform/slices-instances-detail/slices-instances-detail.component';
@@ -170,7 +170,7 @@ const routes: Routes = [
 			{
 				path: 'service-platform/slices/slices-templates', component: SliceTemplateListComponent,
 				children: [
-					{ path: 'new', component: SlicesTemplatesCreateComponent },
+					{ path: 'new', component: SliceTemplateCreateComponent },
 					{ path: ':id', component: SliceTemplateDetailComponent }
 				]
 			},
