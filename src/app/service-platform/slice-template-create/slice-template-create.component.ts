@@ -38,13 +38,19 @@ export class SliceTemplateCreateComponent implements OnInit {
 
 	private initForms() {
 		this.templateForm = new FormGroup({
-			name: new FormControl('', Validators.required),
-			vendor: new FormControl('', Validators.required),
-			version: new FormControl('', Validators.required),
-			author: new FormControl('', Validators.required),
-			description: new FormControl('', Validators.required)
+			name: new FormControl('', [ Validators.required, this.noWhitespaceValidator ]),
+			vendor: new FormControl('', [ Validators.required, this.noWhitespaceValidator ]),
+			version: new FormControl('', [ Validators.required, this.noWhitespaceValidator ]),
+			author: new FormControl('', [ Validators.required, this.noWhitespaceValidator ]),
+			description: new FormControl('', [ Validators.required, this.noWhitespaceValidator ])
 		});
 		this.templateForm.valueChanges.subscribe(value => this.onFormChanges(value));
+	}
+
+	noWhitespaceValidator(control: FormControl) {
+		const isWhitespace = (control.value || '').trim().length === 0;
+		const isValid = !isWhitespace;
+		return isValid ? null : { 'whitespace': true };
 	}
 
 	private async getData() {
