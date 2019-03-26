@@ -566,6 +566,16 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 //////////////////////////////////////
+// Button
+//////////////////////////////////////
+.basic-button {
+    border: none;
+	cursor: pointer;
+	outline: none;
+    background-color: $basic-background-color;
+}
+
+//////////////////////////////////////
 // Button for icons
 //////////////////////////////////////
 .icon-button-shadow {
@@ -627,6 +637,11 @@ ul.unordered-list .mat-input-element:disabled {
 .icon-button-shadow .wui-undo::before {
 	font-size: 20px;
 	color: $reload-color;
+}
+
+.wui-folder-plus:before {
+    font-size: 20px;
+    color: $secondary-font-color-light;
 }
 
 //////////////////////////////////////

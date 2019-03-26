@@ -24,11 +24,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
@@ -478,11 +478,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">133</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceName" datatype="html">
@@ -1076,18 +1076,25 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="sdk" datatype="html">
+        <source>SDK</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="vnv" datatype="html">
         <source>V&amp;V</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="sp" datatype="html">
         <source>Service platform</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
@@ -1134,7 +1141,7 @@
         <source>Service management</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
@@ -1149,7 +1156,7 @@
         <source>VIM</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-list/vim-list.component.html</context>
@@ -1164,7 +1171,7 @@
         <source>WIM</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
@@ -1179,11 +1186,11 @@
         <source>Packages</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">78</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages/vnv-packages.component.html</context>
@@ -1208,11 +1215,11 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-network-services/vnv-network-services.component.html</context>
@@ -1247,7 +1254,7 @@
         <source>Tests</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
@@ -1266,7 +1273,7 @@
         <source>SLA</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="templates" datatype="html">
@@ -1275,11 +1282,11 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">125</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-detail/slice-template-detail.component.html</context>
@@ -1292,7 +1299,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="violations" datatype="html">
@@ -1301,14 +1308,14 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="policies" datatype="html">
         <source>Policies</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="placementPolicy" datatype="html">
@@ -1317,7 +1324,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">108</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/placement-policy/placement-policy.component.html</context>
@@ -1330,7 +1337,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">112</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies/runtime-policies.component.html</context>
@@ -1351,7 +1358,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">116</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
@@ -1362,7 +1369,7 @@
         <source>Slices</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instances" datatype="html">
@@ -1371,7 +1378,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slices-instances-detail/slices-instances-detail.component.html</context>
@@ -1384,7 +1391,7 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">141</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
@@ -1401,7 +1408,7 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">149</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
@@ -1414,7 +1421,7 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceLicenses" datatype="html">
@@ -1423,7 +1430,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">155</context>
+          <context context-type="linenumber">159</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/service-licenses/service-licenses.component.html</context>
@@ -1436,7 +1443,7 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">163</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/user-licenses/user-licenses.component.html</context>
@@ -2990,6 +2997,24 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createSdkPackage" datatype="html">
+        <source>Create SDK package</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/sdk/main-page/main-page.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/sdk/main-page/main-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createSdkPackageText" datatype="html">
+        <source>Create, validate, package and upload your service</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/sdk/main-page/main-page.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
     </body>

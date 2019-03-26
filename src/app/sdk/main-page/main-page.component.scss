@@ -1,0 +1,35 @@
+@import "../../../constants.scss";
+app-main-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    background-color: $basic-background-color;
+	
+	.central-element {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20vh;
+	}
+
+	.wui-folder-plus:before {
+		font-size: 24vh;
+	}
+
+	.basic-button {
+		font-size: 27px;
+		color: $primary-font-color;
+	}
+
+	.button-underline, .package-creation-text {
+		margin-top: 2vh;
+	}
+
+	.package-creation-text {
+		color: $secondary-font-color-light;
+	}
+}

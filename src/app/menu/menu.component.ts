@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
 	}
 
 	setMenu(e, buttonId) {
-		buttonId === 'dashboard' || buttonId === 'users' || buttonId === 'platforms' ?
+		buttonId === 'dashboard' || buttonId === 'users' || buttonId === 'platforms' || buttonId === 'sdk' ?
 			this.sideNav.close() : this.sideNav.open();
 
 		switch (buttonId) {
@@ -56,6 +56,9 @@ export class MenuComponent implements OnInit {
 			case 'settings':
 				this.section = 'vim';
 				this.router.navigate([ '/settings' ]);
+				break;
+			case 'sdk':
+				this.router.navigate([ '/sdk' ]);
 				break;
 			case 'validation-and-verification':
 				this.section = 'vv-packages';
@@ -186,7 +189,7 @@ export class MenuComponent implements OnInit {
 	maintainStatus() {
 		const url = this.router.url.substr(1).split('/');
 		this.menu = url[ 0 ] ? url[ 0 ] : 'dashboard';
-		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms') ?
+		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms' || this.menu === 'sdk') ?
 			this.sideNav.close() : this.sideNav.open();
 
 		if (url.length > 1) {
