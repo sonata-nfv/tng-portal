@@ -30,7 +30,6 @@
 // acknowledge the contributions of their colleagues of the 5GTANGO
 // partner consortium (www.5gtango.eu).
 
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,13 +55,12 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
 	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
 	imports: [
-		BrowserModule,
+		BrowserAnimationsModule,
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
 		AngularMaterialModule,
 		HttpClientModule,
-		BrowserAnimationsModule,
 		ValidationAndVerificationModule,
 		ServiceManagementModule,
 		ServicePlatformModule,
