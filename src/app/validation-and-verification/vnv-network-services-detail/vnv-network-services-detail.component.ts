@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class VnvNetworkServicesDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	displayedColumns = [ 'id', 'name', 'vendor', 'version' ];
 
 	constructor(

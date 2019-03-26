@@ -15,7 +15,7 @@ import { SlicesInstancesCreateComponent } from '../slices-instances-create/slice
 })
 export class SliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	displayedColumns = [ 'serviceName', 'isShared', 'slaName' ];
 
 	constructor(

@@ -100,7 +100,7 @@ export class WimComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.originalWim = Object.assign({}, response);
+			this.originalWim = Object.assign({ }, response);
 			this.originalWim[ 'type' ] = this.parseWimType(this.originalWim[ 'type' ]);
 			this.wimType = this.originalWim[ 'type' ];
 			this.populateForm();

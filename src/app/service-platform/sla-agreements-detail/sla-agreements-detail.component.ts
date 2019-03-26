@@ -14,7 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SlaAgreementsDetailComponent implements OnInit {
 	loading: boolean;
 	agreementForm: FormGroup;
-	detail = {};
+	detail = { };
 
 	constructor(
 		private router: Router,

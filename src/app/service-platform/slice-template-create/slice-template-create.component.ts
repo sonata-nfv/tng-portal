@@ -120,7 +120,7 @@ export class SliceTemplateCreateComponent implements OnInit {
 				this.nsObj[ 'slaID' ] = 'None';
 			}
 
-			this.sliceServices.push(Object.assign({}, this.nsObj));
+			this.sliceServices.push(Object.assign({ }, this.nsObj));
 			this.onFormChanges();
 			this.nsObj = null;
 		}

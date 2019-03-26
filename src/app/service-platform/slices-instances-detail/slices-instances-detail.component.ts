@@ -14,7 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SlicesInstancesDetailComponent implements OnInit {
 	loading: boolean;
 	uuid: string;
-	detail = {};
+	detail = { };
 
 	constructor(
 		private router: Router,

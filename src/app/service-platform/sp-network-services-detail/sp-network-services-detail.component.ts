@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SpNetworkServicesDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	displayedColumns = [ 'id', 'name', 'vendor', 'version' ];
 
 	constructor(

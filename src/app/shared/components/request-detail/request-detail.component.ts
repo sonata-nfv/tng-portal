@@ -12,7 +12,7 @@ import { CommonService } from '../../services/common/common.service';
 })
 export class RequestDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 
 	constructor(
 		private router: Router,
