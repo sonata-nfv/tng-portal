@@ -40,7 +40,7 @@ npm install
 If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (html/css/js) change.
 
 ```
-ng serve --open
+ng serve --aot --open
 ```
 
 ### Running dependencies
@@ -87,16 +87,21 @@ These are the sections that can be activated:
 
 ```
   features_available:  [
-    "DASHBOARD",
-    "USERS",
-    "CONFIGURATION",
-    "VALIDATION",
-    "SERVICE PLATFORM",
-    "SERVICE MANAGEMENT"
+	"DASHBOARD",
+	"PLATFORMS",
+	"SETTINGS",
+	"SDK",
+	"USERS",
+	"CONFIGURATION",
+	"VALIDATION",
+	"SERVICE PLATFORM",
+	"SERVICE MANAGEMENT"
   ]
 ```
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
+
+** Note: For V&V and for SP environments there is already a config predefined that will only display the sections of interest.
 
 ## Documentation
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER } from '@angular/core';
-import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DialogDataService } from './services/dialog/dialog.service';
@@ -21,6 +20,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { FunctionsComponent } from './components/functions/functions.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { RequestDetailComponent } from './components/request-detail/request-detail.component';
+import { RouterModule } from '@angular/router';
 
 export function initConfiguration(configService: ConfigService): Function {
 	return () => configService.init();
@@ -44,7 +44,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		AngularMaterialModule,
 		ReactiveFormsModule,
 		FormsModule,
-		AppRoutingModule
+		RouterModule.forChild([])
 	],
 	exports: [
 		CalendarComponent,
@@ -60,7 +60,6 @@ export function initConfiguration(configService: ConfigService): Function {
 	providers: [
 		ConfigService,
 		AuthService,
-		ConfigService,
 		CommonService,
 		UtilsService,
 		DialogDataService,

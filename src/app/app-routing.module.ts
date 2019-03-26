@@ -207,7 +207,9 @@ const routes: Routes = [
 				children: [ { path: ':id', component: LicencesDetailComponent } ]
 			},
 			{ path: 'service-management/licenses/service-licenses', component: ServiceLicensesComponent },
-			{ path: 'service-management/licenses/user-licenses', component: UserLicensesComponent }
+			{ path: 'service-management/licenses/user-licenses', component: UserLicensesComponent },
+			// SDK section
+			{ path: 'sdk', loadChildren: './sdk/sdk.module#SdkModule' }
 		]
 	}
 ];

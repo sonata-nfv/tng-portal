@@ -15,6 +15,7 @@ pipeline {
         stage('Documentation') {
 			when {
 				branch 'master'
+				branch 'sdk'
 			}
 			steps {
 				sh 'npm run doc';

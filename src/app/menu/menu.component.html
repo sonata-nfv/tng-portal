@@ -29,6 +29,10 @@
 				<i class="wui wui-gear-alt"></i> <span i18n="@@settings">Settings</span>
 			</button>
 
+			<button [ngClass]="{ active: menu === 'sdk' }" (click)="setMenu($event, 'sdk')" appIfFeatureAvailable="sdk">
+				<i class="wui wui-folder-plus"></i> <span i18n="@@sdk">SDK</span>
+			</button>
+
 			<button [ngClass]="{ active: menu === 'validation-and-verification' }" (click)="setMenu($event, 'validation-and-verification')"
 				appIfFeatureAvailable="validation">
 				<i class="wui wui-check-circle-alt"></i> <span i18n="@@vnv">V&V</span>
