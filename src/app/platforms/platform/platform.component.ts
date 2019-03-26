@@ -74,7 +74,7 @@ export class PlatformComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.originalPlatform = Object.assign({}, response);
+			this.originalPlatform = Object.assign({ }, response);
 			this.platformType = this.parsePlatformType(this.originalPlatform[ 'type' ]);
 			this.populateForm();
 		} else {

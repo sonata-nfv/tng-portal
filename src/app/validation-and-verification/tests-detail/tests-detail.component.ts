@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class TestsDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	executions = new Array();
 	displayedColumns = [ 'vendor', 'name', 'version' ];
 	displayedColumnsExecutions = [ 'uuid', 'serviceUUID', 'date', 'status' ];

@@ -20,7 +20,7 @@ export class RuntimePoliciesDetailComponent implements OnInit {
 	policyForm: FormGroup;
 	slaList = new Array();
 	slaListComplete = new Array();
-	detail = {};
+	detail = { };
 	defaultPolicy: boolean;
 	monitoringRules = 'This is a monitoring rule for this example!';
 

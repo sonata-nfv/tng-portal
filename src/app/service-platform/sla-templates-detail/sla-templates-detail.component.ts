@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SlaTemplatesDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	templateForm: FormGroup;
 	closed = false;
 	listNS = new Array();

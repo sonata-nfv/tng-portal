@@ -15,7 +15,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class SmNetworkServicesDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 
 	constructor(
 		private utilsService: UtilsService,

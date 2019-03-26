@@ -27,19 +27,19 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 					transform: 'rotateX(90deg)'
 				})
 			),
-			state('expanded', style({})),
+			state('expanded', style({ })),
 			transition('collapsed => expanded', animate('300ms ease-in'))
 		])
 	]
 })
 export class NetworkServiceInstancesDetailComponent implements OnInit {
 	loading = false;
-	detail = {};
+	detail = { };
 	displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
 
 	// Detail in row and animations
 	dataSource = new CustomDataSource();
-	vnfDetail = {};
+	vnfDetail = { };
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
 

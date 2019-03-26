@@ -104,7 +104,7 @@ export class VimComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.originalVim = Object.assign({}, response);
+			this.originalVim = Object.assign({ }, response);
 			this.originalVim[ 'type' ] = this.parseVimType(this.originalVim[ 'type' ]);
 			this.vimType = this.originalVim[ 'type' ];
 			// Convert to string to operate with it and enable objects comparation

@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SpFunctionsDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 
 	constructor(
 		private servicePlatformService: ServicePlatformService,
