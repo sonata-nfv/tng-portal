@@ -6,12 +6,13 @@
 		"ng": "ng",
 		"extract-i18n": "ng xi18n --output-path locale --i18n-locale en && xliffmerge --profile xliffmerge.json en",
 		"start": "ng serve --configuration=en -H 0.0.0.0 --disable-host-check true",
-		"build": "ng build --prod --configuration=en",
+		"build": "ng build --configuration=en",
 		"test": "ng test",
 		"lint": "tslint --project .",
 		"lint-fix": "tslint --project . --fix",
 		"e2e": "ng e2e",
-		"doc": "npx compodoc -p src/tsconfig.app.json"
+		"doc": "npx compodoc -p src/tsconfig.app.json",
+		"stats": "ng build --prod --statsJson; npx webpack-bundle-analyzer@latest ./dist/stats.json"
 	},
 	"private": true,
 	"dependencies": {
