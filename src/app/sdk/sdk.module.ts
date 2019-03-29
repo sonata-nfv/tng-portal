@@ -9,10 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import { SdkService } from './sdk.service';
 
 import { MainPageComponent } from './main-page/main-page.component';
+import { DescriptorGeneratorComponent } from './descriptor-generator/descriptor-generator.component';
 
 @NgModule({
 	declarations: [
-		MainPageComponent
+		MainPageComponent,
+		DescriptorGeneratorComponent
 	],
 	imports: [
 		CommonModule,
