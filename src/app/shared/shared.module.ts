@@ -22,6 +22,9 @@ import { RequestsComponent } from './components/requests/requests.component';
 import { RequestDetailComponent } from './components/request-detail/request-detail.component';
 import { RouterModule } from '@angular/router';
 
+import { Validator } from './utils/validator';
+import { ControlsValidator } from './utils/controls-validator';
+
 export function initConfiguration(configService: ConfigService): Function {
 	return () => configService.init();
 }
@@ -38,7 +41,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		RequestsComponent,
 		RequestDetailComponent
 	],
-	entryComponents: [ DialogComponent ],
+	entryComponents: [DialogComponent],
 	imports: [
 		CommonModule,
 		AngularMaterialModule,
@@ -67,9 +70,11 @@ export function initConfiguration(configService: ConfigService): Function {
 		{
 			provide: APP_INITIALIZER,
 			useFactory: initConfiguration,
-			deps: [ ConfigService ],
+			deps: [ConfigService],
 			multi: true
-		}
+		},
+		Validator,
+		ControlsValidator
 	]
 })
 export class SharedModule { }

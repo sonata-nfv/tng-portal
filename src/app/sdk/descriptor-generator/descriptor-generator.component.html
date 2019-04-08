@@ -1,3 +1,45 @@
-<p>
-  descriptor-generator works!
-</p>
+<h3 class="title3 header-section-name" i18n="@@createSDKPackage">Create SDK Package</h3>
+
+<form [formGroup]="serviceForm" class="title-section">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Service Name" formControlName="name" required
+			i18n-placeholder="@@serviceNamePlaceholder" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<!-- <button *ngIf="!disabledButton" class="edit-options save" (click)="createService()"
+      i18n="@@saveButton">SAVE</button> -->
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</form>
+
+<!-- <p *ngIf="disabledButton">Fill all the fields correctly</p> -->
+
+<form [formGroup]="serviceForm" class="template-form">
+	<h2 class="title2 title-with-status">Description <span class="status"
+			[ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span></h2>
+	<mat-form-field>
+		<input matInput placeholder="Author" formControlName="author" required i18n-placeholder="@@authorPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput placeholder="Vendor" formControlName="vendor" required i18n-placeholder="@@vendorPlaceholder" />
+	</mat-form-field>
+
+	<div class="description">
+		<div class="description-title">
+			<h4 class="title4" i18n="@@descriptionRequired">Description *</h4>
+		</div>
+		<mat-form-field class="description">
+			<textarea class="content" matInput type="text" formControlName="description"></textarea>
+		</mat-form-field>
+	</div>
+
+	<p>
+		Num. VNFs:
+		<mat-form-field class="num-vnfs">
+			<input matInput formControlName="numberOfVNFs" required maxlength="2" />
+		</mat-form-field>
+	</p>
+
+</form>
