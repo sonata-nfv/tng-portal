@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-slices-instances {
+app-slice-instance-list {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,8 +23,8 @@ app-slices-instances {
     );
   }
 
-  .mat-cell:nth-child(6),
-  .mat-header-cell:nth-child(6) {
+  .mat-cell:nth-child(5),
+  .mat-header-cell:nth-child(5) {
     width: 25px;
     font-size: 20px;
   }
