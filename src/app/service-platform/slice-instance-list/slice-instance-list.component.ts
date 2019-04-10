@@ -7,15 +7,15 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-slices-instances',
-	templateUrl: './slices-instances.component.html',
-	styleUrls: [ './slices-instances.component.scss' ],
+	selector: 'app-slice-instance-list',
+	templateUrl: './slice-instance-list.component.html',
+	styleUrls: [ './slice-instance-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesInstancesComponent implements OnInit, OnDestroy {
+export class SliceInstanceListComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	instances = new Array();
-	displayedColumns = [ 'vendor', 'name', 'version', 'ID', 'state', 'stop' ];
+	instances: Array<Object>;
+	displayedColumns = [ 'vendor', 'name', 'template', 'state', 'stop' ];
 	subscription: Subscription;
 
 	constructor(
@@ -57,19 +57,16 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of instances.
      */
-	requestInstances(search?) {
+	async requestInstances(search?) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getSlicesInstances(search);
 
-		this.servicePlatformService
-			.getSlicesInstances(search)
-			.then(response => {
-				this.loading = false;
-				this.instances = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.instances = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the instances', '');
+		}
 	}
 
 	stopInstance(item) {
@@ -96,8 +93,7 @@ export class SlicesInstancesComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	openInstance(row) {
-		const uuid = row.uuid;
+	openInstance(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }

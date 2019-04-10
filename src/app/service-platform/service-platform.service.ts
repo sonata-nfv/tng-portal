@@ -649,40 +649,27 @@ export class ServicePlatformService {
      *                          matched by the returned list of
      *                          Slices instances.
      */
-	getSlicesInstances(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slicesInstances + search
-					: this.config.baseSP + this.config.slicesInstances;
+	async getSlicesInstances(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search !== undefined ?
+			this.config.baseSP + this.config.slicesInstances + search :
+			this.config.baseSP + this.config.slicesInstances;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.name,
-									vendor: item.vendor,
-									version: item.nstVersion,
-									state: this.utilsService.capitalizeFirstLetter(item.nsiState)
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the slice instances');
-					}
-				})
-				.catch(err => {
-					reject('There was an error fetching the slice instances');
-				});
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.name,
+						vendor: item.vendor,
+						template: item[ 'nst-name' ],
+						state: item[ 'nsi-status' ]
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

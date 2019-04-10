@@ -29,7 +29,7 @@ import { SlaViolationsComponent } from './sla-violations/sla-violations.componen
 import { SliceTemplateListComponent } from './slice-template-list/slice-template-list.component';
 import { SliceTemplateCreateComponent } from './slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './slice-template-detail/slice-template-detail.component';
-import { SlicesInstancesComponent } from './slices-instances/slices-instances.component';
+import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
 import { SlicesInstancesDetailComponent } from './slices-instances-detail/slices-instances-detail.component';
 import { SlicesInstancesCreateComponent } from './slices-instances-create/slices-instances-create.component';
 
@@ -54,7 +54,7 @@ import { SlicesInstancesCreateComponent } from './slices-instances-create/slices
 		SliceTemplateListComponent,
 		SliceTemplateCreateComponent,
 		SliceTemplateDetailComponent,
-		SlicesInstancesComponent,
+		SliceInstanceListComponent,
 		SlicesInstancesDetailComponent,
 		SlicesInstancesCreateComponent
 	],
