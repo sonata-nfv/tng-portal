@@ -69,27 +69,26 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	stopInstance(item) {
-		if (item.state.toUpperCase() !== 'TERMINATED') {
+	stopInstance(instance) {
+		if (instance.state.toUpperCase() !== 'TERMINATED') {
 			const title = 'Are you sure...?';
 			const content = 'Are you sure you want to terminate this instance?';
 			const action = 'Terminate';
 
-			this.dialogData.openDialog(title, content, action, () => {
-				this.utilsService.openSnackBar('Terminating instance...', '');
-
-				this.servicePlatformService
-					.postOneSliceInstanceTermination(item.uuid)
-					.then(response => {
-						// this.utilsService.openSnackBar(response, '');
-						// this.requestInstances();
-					})
-					.catch(err => {
-						this.utilsService.openSnackBar(err, '');
-					});
+			this.dialogData.openDialog(title, content, action, async () => {
+				this.loading = true;
+				const response = await this.servicePlatformService.postOneSliceInstanceTermination(instance.uuid);
+		
+				this.loading = false;
+				if (response) {
+					this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+					this.requestInstances();
+				} else {
+					this.utilsService.openSnackBar('There was an error terminating the instance', '');
+				}
 			});
 		} else {
-			this.openInstance(item);
+			this.openInstance(instance);
 		}
 	}
 

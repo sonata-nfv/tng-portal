@@ -707,26 +707,15 @@ export class ServicePlatformService {
      *
      * @param instance Data of the desired Slice Instance.
      */
-	postOneSliceInstance(instance): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-
-			this.http
-				.post(this.config.baseSP + this.config.slicesInstances, instance, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					if (err.status === 500 || err.status === 504) {
-						resolve();
-					} else {
-						reject('There was an error while trying to instantiate this slice');
-					}
-				});
-		});
+	async postOneSliceInstance(instance) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+		
+		try {
+			return await this.http.post(url, instance, { headers: headers	}).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -734,36 +723,19 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Slices Instance.
      */
-	postOneSliceInstanceTermination(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const terminateTime = {
-				terminateTime: '0'
-			};
+	async postOneSliceInstanceTermination(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid + '/terminate';
+		const terminateTime = {
+			terminateTime: '0'
+		};
 
-			this.http
-				.post(
-					this.config.baseSP +
-					this.config.slicesInstances +
-					'/' +
-					uuid +
-					'/terminate',
-					terminateTime,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve('Instance ' + response[ 'name' ] + ' terminated');
-				})
-				.catch(err => {
-					if (err.status === 500 || err.status === 504) {
-						resolve('Instance terminated');
-					} else {
-						reject('There was an error terminating the slice instance');
-					}
-				});
-		});
+		try {
+			return await this.http.post(url, terminateTime, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+
+
 	}
 }

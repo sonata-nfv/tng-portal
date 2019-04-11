@@ -47,7 +47,7 @@
 	<ng-container matColumnDef="delete">
 		<th mat-header-cell *matHeaderCellDef></th>
 		<td mat-cell *matCellDef="let element" (click)="deleteTemplate(element.uuid)" (click)="$event.stopPropagation()">
-			<button *ngIf="element.usageState.trim() !== 'In use'" class="actions icon-button-shadow" mat-button matTooltip="Delete"
+			<button *ngIf="utilsService.capitalizeFirstLetter(element.usageState) !== 'In use'" class="actions icon-button-shadow" mat-button matTooltip="Delete"
 				i18n-matTooltip="@@delete">
 				<i class="wui wui-trash-alt"></i>
 			</button>

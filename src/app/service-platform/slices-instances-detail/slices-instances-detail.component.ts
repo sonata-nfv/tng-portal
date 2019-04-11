@@ -58,18 +58,17 @@ export class SlicesInstancesDetailComponent implements OnInit {
 		const content = 'Are you sure you want to terminate this instance?';
 		const action = 'Terminate';
 
-		this.dialogData.openDialog(title, content, action, () => {
-			this.utilsService.openSnackBar('Terminating instance...', '');
-
-			this.servicePlatformService
-				.postOneSliceInstanceTermination(this.detail[ 'uuid' ])
-				.then(response => {
-					// this.utilsService.openSnackBar(response, '');
-					// this.requestSliceInstance(this.uuid);
-				})
-				.catch(err => {
-					this.utilsService.openSnackBar(err, '');
-				});
+		this.dialogData.openDialog(title, content, action, async () => {
+			this.loading = true;
+			const response = await this.servicePlatformService.postOneSliceInstanceTermination(this.detail["uuid"]);
+	
+			this.loading = false;
+			if (response) {
+				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+				this.close();
+			} else {
+				this.utilsService.openSnackBar('There was an error terminating the instance', '');
+			}
 		});
 	}
 

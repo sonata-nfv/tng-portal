@@ -52,7 +52,7 @@ export class SliceTemplateDetailComponent implements OnInit {
 	}
 
 	isInUse() {
-		return this.detail[ 'usageState' ].trim() === 'In use';
+		return this.utilsService.capitalizeFirstLetter(this.detail['usageState']) === 'In use';
 	}
 
 	instantiate() {
