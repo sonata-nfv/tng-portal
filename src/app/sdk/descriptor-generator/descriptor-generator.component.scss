@@ -1,4 +1,5 @@
 @import "../../../constants.scss";
+
 app-descriptor-generator {
     position: relative;
     display: flex;
@@ -12,87 +13,87 @@ app-descriptor-generator {
     .title1 {
         margin: 0;
         width: 40%;
-    
+
         .mat-form-field-infix {
-          border-top: 0;
+            border-top: 0;
         }
-    
+
         &.mat-form-field-should-float {
-          .mat-form-field-label-wrapper {
-            display: none;
-          }
+            .mat-form-field-label-wrapper {
+                display: none;
+            }
         }
-      }
-    
-      .template-form {
+    }
+
+    .template-form {
         width: 60vw;
-        
+
         .regular-input {
-          width: 20vw;
+            width: 20vw;
         }
-    
+
         .description {
             width: 100%;
-    
+
             .description-title {
                 margin-top: 2vh;
             }
         }
-        
+
         app-select {
             width: 28vw;
             margin-right: 30px;
         }
-      }
+    }
 }
 
 .num-vnfs {
-  width: 20px !important;
-  max-width: 20px !important;
+    width: 20px !important;
+    max-width: 20px !important;
 }
 
 .form-header {
-	position: relative;
+    position: relative;
 
-	.title2 {
-		display: inline;
-	}
+    .title2 {
+        display: inline;
+    }
 }
 
 .status {
-  height: 15px;
-  width: 15px;
-  border-width: 1px;
-  border-radius: 50%;
-  border-color: grey;
-  border-style: solid;
-  display: inline-block;
-  position: absolute;
-  right: 0;
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    position: absolute;
+    right: 0;
 }
 
 .status-error {
-  height: 15px;
-  width: 15px;
-  border-width: 1px;
-  border-radius: 50%;
-  border-color: grey;
-  border-style: solid;
-  display: inline-block;
-  background-color: $form-alert-color;
-  position: absolute;
-  right: 0;
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    background-color: $form-alert-color;
+    position: absolute;
+    right: 0;
 }
 
 .status-no-error {
-  height: 15px;
-  width: 15px;
-  border-width: 1px;
-  border-radius: 50%;
-  border-color: grey;
-  border-style: solid;
-  display: inline-block;
-  background-color: $secondary-color-light;
-  position: absolute;
-  right: 0;
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    background-color: $secondary-color-light;
+    position: absolute;
+    right: 0;
 }
