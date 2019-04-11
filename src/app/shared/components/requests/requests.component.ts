@@ -12,7 +12,7 @@ import { UtilsService } from '../../services/common/utils.service';
 })
 export class RequestsComponent implements OnInit {
 	loading: boolean;
-	requests = new Array();
+	requests: Array<object>;
 	section: string;
 	displayedColumns = [ 'name', 'serviceName', 'createdAt', 'type', 'status' ];
 	searchText: string;
@@ -43,22 +43,19 @@ export class RequestsComponent implements OnInit {
      *                          be matched by the returned list
      *                          of NS requests.
      */
-	requestRequests(search?) {
+	async requestRequests(search?) {
 		this.loading = true;
-		this.commonService
-			.getNSRequests(search)
-			.then(response => {
-				this.loading = false;
-				this.requests = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.commonService.getRequests(search);
+
+		this.loading = false;
+		if (response) {
+			this.requests = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error while fetching the requests', '');
+		}
 	}
 
-	openRequest(row) {
-		const uuid = row.requestId;
+	openRequest(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }

@@ -78,7 +78,7 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 			this.dialogData.openDialog(title, content, action, async () => {
 				this.loading = true;
 				const response = await this.servicePlatformService.postOneSliceInstanceTermination(instance.uuid);
-		
+
 				this.loading = false;
 				if (response) {
 					this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');

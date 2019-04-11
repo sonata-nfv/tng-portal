@@ -710,7 +710,7 @@ export class ServicePlatformService {
 	async postOneSliceInstance(instance) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.requests;
-		
+
 		try {
 			return await this.http.post(url, instance, { headers: headers	}).toPromise();
 		} catch (error) {
