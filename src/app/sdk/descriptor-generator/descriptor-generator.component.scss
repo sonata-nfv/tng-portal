@@ -51,8 +51,12 @@ app-descriptor-generator {
   max-width: 20px !important;
 }
 
-.title-with-status {
+.form-header {
 	position: relative;
+
+	.title2 {
+		display: inline;
+	}
 }
 
 .status {

@@ -16,8 +16,10 @@
 <!-- <p *ngIf="disabledButton">Fill all the fields correctly</p> -->
 
 <form [formGroup]="serviceForm" class="template-form">
-	<h2 class="title2 title-with-status">Description <span class="status"
-			[ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span></h2>
+	<div class="form-header">
+		<h2 class="title2">Description</h2>
+		<span class="status" [ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span>
+	</div>
 	<mat-form-field>
 		<input matInput placeholder="Author" formControlName="author" required i18n-placeholder="@@authorPlaceholder" />
 	</mat-form-field>
