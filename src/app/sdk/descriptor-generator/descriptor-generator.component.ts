@@ -14,6 +14,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	serviceForm: FormGroup;
 	disabledButton = true;
 	isEmpty = true;
+	section = 'sdk';
 
 	constructor(private router: Router, private route: ActivatedRoute, private controlsValidator: ControlsValidator) { }
 

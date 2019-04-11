@@ -10,11 +10,15 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit {
 
+	section: string;
+
 	constructor(
 		private router: Router,
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.section = 'sdk';
+	}
 
 	createPackage() {
 		this.router.navigate(['sdk/descriptor-generator']);
