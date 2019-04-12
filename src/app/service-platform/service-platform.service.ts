@@ -683,7 +683,6 @@ export class ServicePlatformService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			console.log(response)
 			return {
 				uuid: response[ 'uuid' ],
 				name: response[ 'name' ],

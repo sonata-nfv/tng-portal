@@ -55,8 +55,8 @@ import { SliceTemplateListComponent } from './service-platform/slice-template-li
 import { SliceTemplateCreateComponent } from './service-platform/slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './service-platform/slice-template-detail/slice-template-detail.component';
 import { SliceInstanceListComponent } from './service-platform/slice-instance-list/slice-instance-list.component';
-import { SlicesInstancesDetailComponent } from './service-platform/slices-instances-detail/slices-instances-detail.component';
-import { SlicesInstancesCreateComponent } from './service-platform/slices-instances-create/slices-instances-create.component';
+import { SliceInstanceDetailComponent } from './service-platform/slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './service-platform/slice-instance-create/slice-instance-create.component';
 
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
@@ -177,8 +177,8 @@ const routes: Routes = [
 			{
 				path: 'service-platform/slices/slices-instances', component: SliceInstanceListComponent,
 				children: [
-					{ path: 'new', component: SlicesInstancesCreateComponent },
-					{ path: ':id', component: SlicesInstancesDetailComponent }
+					{ path: 'new', component: SliceInstanceCreateComponent },
+					{ path: ':id', component: SliceInstanceDetailComponent }
 				]
 			},
 			{

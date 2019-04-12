@@ -30,8 +30,8 @@ import { SliceTemplateListComponent } from './slice-template-list/slice-template
 import { SliceTemplateCreateComponent } from './slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './slice-template-detail/slice-template-detail.component';
 import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
-import { SlicesInstancesDetailComponent } from './slices-instances-detail/slices-instances-detail.component';
-import { SlicesInstancesCreateComponent } from './slices-instances-create/slices-instances-create.component';
+import { SliceInstanceDetailComponent } from './slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './slice-instance-create/slice-instance-create.component';
 
 @NgModule({
 	declarations: [
@@ -55,8 +55,8 @@ import { SlicesInstancesCreateComponent } from './slices-instances-create/slices
 		SliceTemplateCreateComponent,
 		SliceTemplateDetailComponent,
 		SliceInstanceListComponent,
-		SlicesInstancesDetailComponent,
-		SlicesInstancesCreateComponent
+		SliceInstanceDetailComponent,
+		SliceInstanceCreateComponent
 	],
 	entryComponents: [],
 	imports: [

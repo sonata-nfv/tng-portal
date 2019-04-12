@@ -6,18 +6,18 @@ import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-slices-instances-create',
-	templateUrl: './slices-instances-create.component.html',
-	styleUrls: [ './slices-instances-create.component.scss' ],
+	selector: 'app-slice-instance-create',
+	templateUrl: './slice-instance-create.component.html',
+	styleUrls: [ './slice-instance-create.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesInstancesCreateComponent implements OnInit {
+export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
 	instantiationForm: FormGroup;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		public dialogRef: MatDialogRef<SlicesInstancesCreateComponent>,
+		public dialogRef: MatDialogRef<SliceInstanceCreateComponent>,
 		private servicePlatformService: ServicePlatformService,
 		private utilsService: UtilsService
 	) { }

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
-import { SlicesInstancesCreateComponent } from '../slices-instances-create/slices-instances-create.component';
+import { SliceInstanceCreateComponent } from '../slice-instance-create/slice-instance-create.component';
 
 @Component({
 	selector: 'app-slice-template-list',
@@ -80,7 +80,7 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 	}
 
 	instantiate(nst) {
-		this.instantiateDialog.open(SlicesInstancesCreateComponent, {
+		this.instantiateDialog.open(SliceInstanceCreateComponent, {
 			data: {
 				nstId: nst.uuid,
 				vendor: nst.vendor,

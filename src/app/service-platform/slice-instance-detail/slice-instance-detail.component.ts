@@ -6,12 +6,12 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-slices-instances-detail',
-	templateUrl: './slices-instances-detail.component.html',
-	styleUrls: [ './slices-instances-detail.component.scss' ],
+	selector: 'app-slice-instance-detail',
+	templateUrl: './slice-instance-detail.component.html',
+	styleUrls: [ './slice-instance-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesInstancesDetailComponent implements OnInit {
+export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
 	uuid: string;
 	detail = {};
