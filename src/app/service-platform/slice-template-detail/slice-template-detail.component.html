@@ -69,7 +69,7 @@
 		<span class="play" i18n="@@readyToUse">Ready to use</span>
 	</div>
 
-	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
 		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>

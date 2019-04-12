@@ -20,15 +20,14 @@
 
 <form class="detail">
     <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled
-            i18n-placeholder="@@vendorPlaceholder" />
+        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
     </mat-form-field>
 
     <mat-form-field class="type" *ngIf="detail['type']">
         <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
     </mat-form-field>
 
-    <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+    <mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
         <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
             i18n-placeholder="@@updatedAtPlaceholder" />
     </mat-form-field>

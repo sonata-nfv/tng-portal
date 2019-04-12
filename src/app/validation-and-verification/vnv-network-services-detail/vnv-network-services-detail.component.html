@@ -35,7 +35,7 @@
 		<input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
 		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
