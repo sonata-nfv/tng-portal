@@ -16,25 +16,13 @@ app-slices-instances-detail {
   }
 
   form {
-    flex: 1 0;
-    width: 65%;
+    width: 50vw;
+    margin-top: 2vh;
     margin-bottom: 20px;
 
-    .mat-form-field {
-      width: 40%;
-      margin-left: 10px;
-
-      .mat-input-element:disabled {
-        text-overflow: ellipsis;
-      }
-
-      &.longField {
-        width: 60%;
-      }
-
-      .element {
-        margin-bottom: 5px;
-      }
+    .left-column {
+      width: 25vw;
+      margin-right: 10px;
     }
   }
 }

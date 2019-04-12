@@ -8,13 +8,13 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 @Component({
 	selector: 'app-slices-instances-detail',
 	templateUrl: './slices-instances-detail.component.html',
-	styleUrls: ['./slices-instances-detail.component.scss'],
+	styleUrls: [ './slices-instances-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
 export class SlicesInstancesDetailComponent implements OnInit {
 	loading: boolean;
 	uuid: string;
-	detail = { };
+	detail = {};
 
 	constructor(
 		private router: Router,
@@ -26,8 +26,8 @@ export class SlicesInstancesDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.uuid = params['id'];
-			this.requestSliceInstance(params['id']);
+			this.uuid = params[ 'id' ];
+			this.requestSliceInstance(params[ 'id' ]);
 		});
 	}
 
@@ -37,20 +37,17 @@ export class SlicesInstancesDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	requestSliceInstance(uuid) {
+	async requestSliceInstance(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneSliceInstance(uuid);
 
-		this.servicePlatformService
-			.getOneSliceInstance(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the slice instance', '');
+			this.close();
+		}
 	}
 
 	stopInstance() {
@@ -60,11 +57,11 @@ export class SlicesInstancesDetailComponent implements OnInit {
 
 		this.dialogData.openDialog(title, content, action, async () => {
 			this.loading = true;
-			const response = await this.servicePlatformService.postOneSliceInstanceTermination(this.detail['uuid']);
+			const response = await this.servicePlatformService.postOneSliceInstanceTermination(this.detail[ 'uuid' ]);
 
 			this.loading = false;
 			if (response) {
-				this.utilsService.openSnackBar('Terminating ' + response['name'] + ' instance...', '');
+				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
 				this.close();
 			} else {
 				this.utilsService.openSnackBar('There was an error terminating the instance', '');
@@ -72,7 +69,11 @@ export class SlicesInstancesDetailComponent implements OnInit {
 		});
 	}
 
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
 	close() {
-		this.router.navigate(['service-platform/slices/slices-instances']);
+		this.router.navigate([ 'service-platform/slices/slices-instances' ]);
 	}
 }

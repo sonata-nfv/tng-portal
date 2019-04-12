@@ -664,7 +664,7 @@ export class ServicePlatformService {
 						name: item.name,
 						vendor: item.vendor,
 						template: item[ 'nst-name' ],
-						state: item[ 'nsi-status' ]
+						status: item[ 'nsi-status' ]
 					};
 				}) : [];
 		} catch (error) {
@@ -677,52 +677,52 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Slices Instance.
      */
-	getOneSliceInstance(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-
-			this.http
-				.get(this.config.baseSP + this.config.slicesInstances + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'name' ],
-						vendor: response[ 'vendor' ],
-						state: this.utilsService.capitalizeFirstLetter(response[ 'nsiState' ]),
-						description: response[ 'description' ],
-						netServInstanceUUID: response[ 'netServInstance_Uuid' ],
-						nstName: response[ 'nstName' ],
-						version: response[ 'nstVersion' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the slice instance'));
-		});
-	}
-
-	/**
-     * Generates a Slice Instance
-     *
-     * @param instance Data of the desired Slice Instance.
-     */
-	async postOneSliceInstance(instance) {
+	async getOneSliceInstance(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.requests;
+		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid;
 
 		try {
-			return await this.http.post(url, instance, { headers: headers	}).toPromise();
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			console.log(response)
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'name' ],
+				nstRef: response[ 'nst-ref' ],
+				nstName: response[ 'nst-name' ],
+				nstVersion: response[ 'nst-version' ],
+				vendor: response[ 'vendor' ],
+				status: response[ 'nsi-status' ],
+				qiValue: response[ '5qiValue' ],
+				instantiationTime: response[ 'instantiateTime' ],
+				description: response[ 'description' ],
+				nsrList: response[ 'nsr-list' ]
+			};
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
 	/**
-     * Terminates a Slice Instance by UUID
-     *
-     * @param uuid UUID of the desired Slices Instance.
-     */
+	 * Generates a Slice Instance
+	 *
+	 * @param instance Data of the desired Slice Instance.
+	 */
+	async postOneSliceInstance(instance) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+
+		try {
+			return await this.http.post(url, instance, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Terminates a Slice Instance by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Instance.
+	 */
 	async postOneSliceInstanceTermination(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid + '/terminate';

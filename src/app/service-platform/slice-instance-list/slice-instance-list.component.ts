@@ -15,7 +15,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SliceInstanceListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	instances: Array<Object>;
-	displayedColumns = [ 'vendor', 'name', 'template', 'state', 'stop' ];
+	displayedColumns = [ 'vendor', 'name', 'template', 'status', 'stop' ];
 	subscription: Subscription;
 
 	constructor(
