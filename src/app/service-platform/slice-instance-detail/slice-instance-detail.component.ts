@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
-	detail = {};
+	detail = { };
 	displayedColumns = [
 		'nsrName',
 		'slaName',
