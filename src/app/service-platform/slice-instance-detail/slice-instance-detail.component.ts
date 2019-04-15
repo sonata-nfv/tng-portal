@@ -13,8 +13,13 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
-	uuid: string;
-	detail = { };
+	detail = {};
+	displayedColumns = [
+		'nsrName',
+		'slaName',
+		'status',
+		'isShared'
+	];
 
 	constructor(
 		private router: Router,
@@ -26,7 +31,6 @@ export class SliceInstanceDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.uuid = params[ 'id' ];
 			this.requestSliceInstance(params[ 'id' ]);
 		});
 	}

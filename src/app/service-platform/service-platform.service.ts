@@ -694,7 +694,14 @@ export class ServicePlatformService {
 				qiValue: response[ '5qiValue' ],
 				instantiationTime: response[ 'instantiateTime' ],
 				description: response[ 'description' ],
-				nsrList: response[ 'nsr-list' ]
+				nsrList: response[ 'nsr-list' ].map(item => {
+					return {
+						nsrName: item[ 'nsrName' ],
+						slaName: item[ 'sla-name' ],
+						isShared: item[ 'isshared' ] ? 'Yes' : 'No',
+						status: item[ 'working-status' ]
+					};
+				})
 			};
 		} catch (error) {
 			console.error(error);
