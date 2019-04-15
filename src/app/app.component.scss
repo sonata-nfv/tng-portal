@@ -327,7 +327,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
 }
 
 // Header when the item has an icon on the right
@@ -338,11 +338,13 @@ p {
 	width: 100%;
 
 	.title4 {
-        width: 95%;
+        flex: 1 1;
 	}
+
 	button {
         align-self: center;
-        text-align: right;
+		margin-left: 1vw;
+		text-align: right;
         border: none;
 		cursor: pointer;
         outline: none;
@@ -438,11 +440,10 @@ ngx-json-viewer {
 //////////////////////////////////////
 // Advanced section: detailed views
 //////////////////////////////////////
-.advanceSection {
+.advanced-section {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	width: 65%;
 
 	button {
 		border: none;

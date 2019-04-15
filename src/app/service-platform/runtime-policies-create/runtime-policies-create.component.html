@@ -2,8 +2,7 @@
 
 <form [formGroup]="policyForm" class="title-section">
     <mat-form-field class="title1">
-        <input matInput type="text" placeholder="Policy Name" formControlName="name" required
-            i18n-placeholder="@@policyNamePlaceholder" />
+        <input matInput type="text" placeholder="Policy Name" formControlName="name" required i18n-placeholder="@@policyNamePlaceholder" />
     </mat-form-field>
 
     <div class="header-buttons">
@@ -26,11 +25,10 @@
         i18n-placeholder="@@nsPlaceholder"></app-select>
 </form>
 
-<div class="advanceSection">
+<div class="advanced-section">
     <button class="dropdownButton" (click)="closed = !closed">
         <div class="open">
-            <span i18n="@@monitoringRules">Monitoring Rules</span> <i class="wui wui-caret-down"
-                *ngIf="closed; else: opened"></i>
+            <span i18n="@@monitoringRules">Monitoring Rules</span> <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
             <ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
         </div>
         <div class="underline" [ngClass]="{ opened: !closed }"></div>

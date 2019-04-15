@@ -17,7 +17,7 @@ form .sameRow {
 .mat-form-field {
 	display: flex;
 	flex-direction: column;
-	font-size: 18px;
+	font-size: 16px;
 	text-align: left;
 	color: $secondary-font-color;
 
@@ -83,7 +83,7 @@ form .sameRow {
 
 .mat-form-field-can-float.mat-form-field-should-float {
 	.mat-form-field-label {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
 
