@@ -47,8 +47,8 @@
 	<ng-container matColumnDef="delete">
 		<th mat-header-cell *matHeaderCellDef></th>
 		<td mat-cell *matCellDef="let element" (click)="deleteTemplate(element.uuid)" (click)="$event.stopPropagation()">
-			<button *ngIf="utilsService.capitalizeFirstLetter(element.usageState) !== 'In use'" class="actions icon-button-shadow" mat-button matTooltip="Delete"
-				i18n-matTooltip="@@delete">
+			<button *ngIf="utilsService.capitalizeFirstLetter(element.usageState) !== 'In use'" class="actions icon-button-shadow"
+				mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
 				<i class="wui wui-trash-alt"></i>
 			</button>
 		</td>
@@ -59,7 +59,7 @@
 
 <div *ngIf="!templates && !loading" class="no-results-container">
 	<div class="no-results-line"></div>
-	<span class="no-results-text">No results to display</span>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
 	<div class="no-results-line"></div>
 </div>
 
