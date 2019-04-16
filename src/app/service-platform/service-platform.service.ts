@@ -84,22 +84,49 @@ export class ServicePlatformService {
 	/**
      * Retrieves a list with all the service guarantees
      */
-	getServiceGuarantees(): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getServiceGuarantees() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.guarantees;
 
-			this.http
-				.get(this.config.baseSP + this.config.guarantees, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve(response[ 'guaranteeTerms' ]);
-				})
-				.catch(err => {
-					reject('There was an error fetching the service guarantees');
-				});
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'guaranteeTerms' ].map(item => {
+				return {
+					uuid: item[ 'guaranteeID' ],
+					name: item[ 'guarantee_name' ],
+					definition: item[ 'guarantee_definition' ],
+					threshold: item[ 'guarantee_threshold' ],
+					unit: item[ 'guarantee_unit' ],
+					slos: item[ 'target_slo' ].map(slo => {
+						return {
+							kpi: slo.target_kpi,
+							operator: slo.target_operator,
+							value: slo.target_value,
+							period: slo.target_period
+						};
+					})
+				};
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Retrive a list with all the flavours for a service
+	 * @param uuid identifier of the network service
+	 */
+	async getFlavours(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.flavours + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -108,24 +135,16 @@ export class ServicePlatformService {
      * @param template Object containing the nsd_uuid, guaranteeId, expireDate
      *                 and templateName for the creation of a new template.
      */
-	postOneSLATemplate(template): any {
-		return new Promise((resolve, reject) => {
-			this.http
-				.post(
-					this.config.baseSP + this.config.slaTemplates,
-					this.urlEncode(template),
-					{
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						}
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => reject(err));
-		});
+	async postOneSLATemplate(template) {
+		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const url = this.config.baseSP + this.config.slaTemplates;
+
+		try {
+			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+			return error.error[ 'ERROR: ' ] || error.error[ 'ERROR:' ] || error.error[ 'ERROR' ];
+		}
 	}
 
 	urlEncode(obj: Object): string {
@@ -151,10 +170,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Removes the specified template from the database
-     *
-     * @param uuid UUID of the desired SLA Template.
-     */
+	 * Removes the specified template from the database
+	 *
+	 * @param uuid UUID of the desired SLA Template.
+	 */
 	deleteOneSLATemplate(uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -175,13 +194,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of SLA Agreements.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Agreement attributes that must be
-     *                          matched by the returned list of
-     *                          SLA Agreements.
-     */
+	 * Retrieves a list of SLA Agreements.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Agreement attributes that must be
+	 *                          matched by the returned list of
+	 *                          SLA Agreements.
+	 */
 	getSLAAgreements(search?): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -215,10 +234,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a SLA Agreement by UUID
-     *
-     * @param uuid UUID of the desired SLA Agreement.
-     */
+	 * Retrieves a SLA Agreement by UUID
+	 *
+	 * @param uuid UUID of the desired SLA Agreement.
+	 */
 	getOneSLAAgreement(sla_uuid: string, ns_uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -256,13 +275,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of SLA Violations.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Violation attributes that must be
-     *                          matched by the returned list of
-     *                          SLA Violations.
-     */
+	 * Retrieves a list of SLA Violations.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Violation attributes that must be
+	 *                          matched by the returned list of
+	 *                          SLA Violations.
+	 */
 	getSLAViolations(search?): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -299,13 +318,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of Runtime Policies.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Policy attributes that must be
-     *                          matched by the returned list of
-     *                          Runtime Policies.
-     */
+	 * Retrieves a list of Runtime Policies.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Policy attributes that must be
+	 *                          matched by the returned list of
+	 *                          Runtime Policies.
+	 */
 	getRuntimePolicies(search?): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -345,10 +364,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a Runtime Policy by UUID
-     *
-     * @param uuid UUID of the desired Runtime Policy.
-     */
+	 * Retrieves a Runtime Policy by UUID
+	 *
+	 * @param uuid UUID of the desired Runtime Policy.
+	 */
 	getOneRuntimePolicy(uuid: string) {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -383,10 +402,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Generates a Runtime Policy
-     *
-     * @param policy Data of the desired Runtime Policy
-     */
+	 * Generates a Runtime Policy
+	 *
+	 * @param policy Data of the desired Runtime Policy
+	 */
 	postOneRuntimePolicy(policy): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -404,12 +423,12 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Sets a Runtime Policy as default
-     *
-     * @param uuid UUID of the desired Runtime Policy
-     * @param defaultPolicy Boolean setting the binding with its ns
-     * @param nsid UUID of the desired NS
-     */
+	 * Sets a Runtime Policy as default
+	 *
+	 * @param uuid UUID of the desired Runtime Policy
+	 * @param defaultPolicy Boolean setting the binding with its ns
+	 * @param nsid UUID of the desired NS
+	 */
 	setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -441,12 +460,12 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Binds a Runtime Policy to an SLA
-     *
-     * @param uuid UUID of the desired Runtime Policy
-     * @param slaid UUID of the desired SLA
-     * @param nsid UUID of the desired NS
-     */
+	 * Binds a Runtime Policy to an SLA
+	 *
+	 * @param uuid UUID of the desired Runtime Policy
+	 * @param slaid UUID of the desired SLA
+	 * @param nsid UUID of the desired NS
+	 */
 	bindRuntimePolicy(uuid, slaid, nsid) {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -476,10 +495,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Removes the specified runtime policy from the database
-     *
-     * @param uuid UUID of the desired Runtime Policy.
-     */
+	 * Removes the specified runtime policy from the database
+	 *
+	 * @param uuid UUID of the desired Runtime Policy.
+	 */
 	deleteOneRuntimePolicy(uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -500,13 +519,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of Generated Actions.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Actions attributes that must be
-     *                          matched by the returned list of
-     *                          Generated Actions.
-     */
+	 * Retrieves a list of Generated Actions.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Actions attributes that must be
+	 *                          matched by the returned list of
+	 *                          Generated Actions.
+	 */
 	getGeneratedActions(search?): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -545,13 +564,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of Slices Templates.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Template attributes that must be
-     *                          matched by the returned list of
-     *                          Slices Templates.
-     */
+	 * Retrieves a list of Slices Templates.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Template attributes that must be
+	 *                          matched by the returned list of
+	 *                          Slices Templates.
+	 */
 	async getSlicesTemplates(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ? this.config.baseSP + this.config.slicesTemplates + search :
@@ -577,10 +596,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a Slices Template by UUID
-     *
-     * @param uuid UUID of the desired Slices Template.
-     */
+	 * Retrieves a Slices Template by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Template.
+	 */
 	async getOneSliceTemplate(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesTemplates + '/' + uuid;
@@ -624,10 +643,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Creates a Slice Template
-     *
-     * @param template Data of the new slice template
-     */
+	 * Creates a Slice Template
+	 *
+	 * @param template Data of the new slice template
+	 */
 	async postOneSliceTemplate(template) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesTemplates;
@@ -640,10 +659,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Removes the specified template from the database
-     *
-     * @param uuid UUID of the desired Slices Template.
-     */
+	 * Removes the specified template from the database
+	 *
+	 * @param uuid UUID of the desired Slices Template.
+	 */
 	async deleteOneSlicesTemplate(uuid: string) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesTemplates + '/' + uuid;
@@ -656,13 +675,13 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a list of Slices Instances.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Instances attributes that must be
-     *                          matched by the returned list of
-     *                          Slices instances.
-     */
+	 * Retrieves a list of Slices Instances.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Instances attributes that must be
+	 *                          matched by the returned list of
+	 *                          Slices instances.
+	 */
 	async getSlicesInstances(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search !== undefined ?
@@ -687,10 +706,10 @@ export class ServicePlatformService {
 	}
 
 	/**
-     * Retrieves a Slices Instances by UUID
-     *
-     * @param uuid UUID of the desired Slices Instance.
-     */
+	 * Retrieves a Slices Instances by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Instance.
+	 */
 	async getOneSliceInstance(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid;

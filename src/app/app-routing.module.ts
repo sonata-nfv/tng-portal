@@ -44,9 +44,9 @@ import { RuntimePoliciesCreateComponent } from './service-platform/runtime-polic
 import {
 	RuntimePoliciesGeneratedActionsComponent
 } from './service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component';
-import { SlaTemplatesComponent } from './service-platform/sla-templates/sla-templates.component';
+import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
 import { SlaTemplatesDetailComponent } from './service-platform/sla-templates-detail/sla-templates-detail.component';
-import { SlaTemplatesCreateComponent } from './service-platform/sla-templates-create/sla-templates-create.component';
+import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
 import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
@@ -156,9 +156,9 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/policies/generated-actions', component: RuntimePoliciesGeneratedActionsComponent },
 			{
-				path: 'service-platform/slas/sla-templates', component: SlaTemplatesComponent,
+				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
 				children: [
-					{ path: 'new', component: SlaTemplatesCreateComponent },
+					{ path: 'new', component: SlaTemplateCreateComponent },
 					{ path: ':id', component: SlaTemplatesDetailComponent }
 				]
 			},

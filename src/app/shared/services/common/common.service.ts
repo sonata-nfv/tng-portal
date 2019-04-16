@@ -88,22 +88,22 @@ export class CommonService {
 				.toPromise()
 				.then(response => {
 					resolve({
-						uuid: response['uuid'],
-						name: response['pd']['name'],
-						author: response['pd']['maintainer'],
-						createdAt: this.utilsService.formatUTCDate(response['created_at']),
-						updatedAt: this.utilsService.formatUTCDate(response['updated_at']),
-						vendor: response['pd']['vendor'],
-						version: response['pd']['version'],
-						status: this.utilsService.capitalizeFirstLetter(response['status']),
+						uuid: response[ 'uuid' ],
+						name: response[ 'pd' ][ 'name' ],
+						author: response[ 'pd' ][ 'maintainer' ],
+						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
+						vendor: response[ 'pd' ][ 'vendor' ],
+						version: response[ 'pd' ][ 'version' ],
+						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						type: 'Public',
-						ns: this.getPackageContent(response['pd']['package_content'], 'ns'),
+						ns: this.getPackageContent(response[ 'pd' ][ 'package_content' ], 'ns'),
 						vnf: this.getPackageContent(
-							response['pd']['package_content'],
+							response[ 'pd' ][ 'package_content' ],
 							'vnf'
 						),
 						tests: this.getPackageContent(
-							response['pd']['package_content'],
+							response[ 'pd' ][ 'package_content' ],
 							'tests'
 						)
 					});
@@ -117,11 +117,11 @@ export class CommonService {
 		const result = new Array();
 
 		content.forEach(item => {
-			if (item['content-type'] === 'application/vnd.5gtango.nsd') {
+			if (item[ 'content-type' ] === 'application/vnd.5gtango.nsd') {
 				obj = 'ns';
-			} else if (item['content-type'] === 'application/vnd.5gtango.vnfd') {
+			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.vnfd') {
 				obj = 'vnf';
-			} else if (item['content-type'] === 'application/vnd.5gtango.tstd') {
+			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.tstd') {
 				obj = 'tests';
 			} else {
 				obj = null;
@@ -244,57 +244,41 @@ export class CommonService {
      *                          must be matched by the returned
      *                          list of NS.
      */
-	getNetworkServices(section, search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getNetworkServices(section, search?) {
+		const headers = this.authService.getAuthHeaders();
 
-			let url: string;
-			if (section === 'V&V') {
-				url =
-					search !== undefined
-						? this.config.baseVNV + this.config.services + search
-						: this.config.baseVNV + this.config.services;
-			} else {
-				url =
-					search !== undefined
-						? this.config.baseSP + this.config.services + search
-						: this.config.baseSP + this.config.services;
-			}
+		let url: string;
+		section === 'V&V' ?
+			url = search ?
+				this.config.baseVNV + this.config.services + search
+				: this.config.baseVNV + this.config.services
+			: url = search ?
+				this.config.baseSP + this.config.services + search
+				: this.config.baseSP + this.config.services;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => ({
-								uuid: item.uuid,
-								name: item.nsd.name,
-								serviceId: item.uuid,
-								vendor: item.nsd.vendor,
-								version: item.nsd.version,
-								status: this.utilsService.capitalizeFirstLetter(item.status),
-								licenses: 'None',
-								slas: '/service-platform/slas/sla-templates'
-							}))
-						);
-					} else {
-						reject('There was an error while fetching the network services');
-					}
-				})
-				.catch(err =>
-					reject('There was an error while fetching the network services')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => ({
+					uuid: item.uuid,
+					name: item.nsd.name,
+					serviceId: item.uuid,
+					vendor: item.nsd.vendor,
+					version: item.nsd.version,
+					status: this.utilsService.capitalizeFirstLetter(item.status),
+					licenses: 'None',
+					slas: '/service-platform/slas/sla-templates'
+				})) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
-     * Retrieves a Network Service by UUID
-     *
-     * @param uuid UUID of the desired Network Service.
-     */
+	 * Retrieves a Network Service by UUID
+	 *
+	 * @param uuid UUID of the desired Network Service.
+	 */
 	getOneNetworkService(section, uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
@@ -308,18 +292,18 @@ export class CommonService {
 				.then(response => {
 					if (response.hasOwnProperty('nsd')) {
 						resolve({
-							uuid: response['uuid'],
-							name: response['nsd']['name'],
-							author: response['nsd']['author'],
-							version: response['nsd']['version'],
-							status: this.utilsService.capitalizeFirstLetter(response['status']),
-							vendor: response['nsd']['vendor'],
-							serviceID: response['uuid'],
-							type: response['user_licence'],
-							description: response['nsd']['description'],
-							createdAt: this.utilsService.formatUTCDate(response['created_at']),
-							updatedAt: this.utilsService.formatUTCDate(response['updated_at']),
-							vnf: response['nsd']['network_functions']
+							uuid: response[ 'uuid' ],
+							name: response[ 'nsd' ][ 'name' ],
+							author: response[ 'nsd' ][ 'author' ],
+							version: response[ 'nsd' ][ 'version' ],
+							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
+							vendor: response[ 'nsd' ][ 'vendor' ],
+							serviceID: response[ 'uuid' ],
+							type: response[ 'user_licence' ],
+							description: response[ 'nsd' ][ 'description' ],
+							createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+							updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
+							vnf: response[ 'nsd' ][ 'network_functions' ]
 						});
 					} else {
 						reject('There was an error while fetching the network service!');
@@ -332,13 +316,13 @@ export class CommonService {
 	}
 
 	/**
-     * Retrieves a list of Network Service requests.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Request attributes that must be
-     *                          matched by the returned list of
-     *                          NS requests.
-     */
+	 * Retrieves a list of Network Service requests.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Request attributes that must be
+	 *                          matched by the returned list of
+	 *                          NS requests.
+	 */
 	async getRequests(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search !== undefined ?
@@ -351,7 +335,7 @@ export class CommonService {
 				response.map(item => ({
 					requestId: item.id,
 					name: item.name,
-					serviceName: item['service'] ? item.service.name : this.NA,
+					serviceName: item[ 'service' ] ? item.service.name : this.NA,
 					type: item.request_type,
 					createdAt: item.created_at,
 					status: item.status
@@ -362,10 +346,10 @@ export class CommonService {
 	}
 
 	/**
-     * Retrieves a Network Service request by UUID
-     *
-     * @param uuid UUID of the desired NS request.
-     */
+	 * Retrieves a Network Service request by UUID
+	 *
+	 * @param uuid UUID of the desired NS request.
+	 */
 	async getOneRequest(uuid: string) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.requests + '/' + uuid;
@@ -374,23 +358,23 @@ export class CommonService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response.hasOwnProperty('id') ?
 				{
-					uuid: response['id'],
-					name: response['name'],
-					status: response['status'],
-					type: response['request_type'],
-					updatedAt: response['updated_at'],
-					slaUUID: response['sla_id'],
-					serviceVendor: response['service'] ?
-						response['service']['vendor'] : null,
-					serviceName: response['service'] ?
-						response['service']['name'] : null,
-					serviceVersion: response['service'] ?
-						response['service']['version'] : null,
-					serviceUUID: response['service'] ?
-						response['service']['uuid'] : null,
-					blacklist: response['blacklist'],
-					ingresses: response['ingresses'],
-					egresses: response['egresses']
+					uuid: response[ 'id' ],
+					name: response[ 'name' ],
+					status: response[ 'status' ],
+					type: response[ 'request_type' ],
+					updatedAt: response[ 'updated_at' ],
+					slaUUID: response[ 'sla_id' ],
+					serviceVendor: response[ 'service' ] ?
+						response[ 'service' ][ 'vendor' ] : null,
+					serviceName: response[ 'service' ] ?
+						response[ 'service' ][ 'name' ] : null,
+					serviceVersion: response[ 'service' ] ?
+						response[ 'service' ][ 'version' ] : null,
+					serviceUUID: response[ 'service' ] ?
+						response[ 'service' ][ 'uuid' ] : null,
+					blacklist: response[ 'blacklist' ],
+					ingresses: response[ 'ingresses' ],
+					egresses: response[ 'egresses' ]
 				} : [];
 		} catch (error) {
 			console.error(error);
@@ -398,9 +382,9 @@ export class CommonService {
 	}
 
 	/**
-     * Retrieves the existing vims represented by the city name
-     */
+	 * Retrieves the existing vims represented by the city name
+	 */
 	requestVims(): any {
-		return ['bcn-1', 'bcn-2', 'bcn-3', 'bcn-4'];
+		return [ 'bcn-1', 'bcn-2', 'bcn-3', 'bcn-4' ];
 	}
 }

@@ -8,12 +8,12 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-	selector: 'app-sla-templates',
-	templateUrl: './sla-templates.component.html',
-	styleUrls: [ './sla-templates.component.scss' ],
+	selector: 'app-sla-template-list',
+	templateUrl: './sla-template-list.component.html',
+	styleUrls: [ './sla-template-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlaTemplatesComponent implements OnInit, OnDestroy {
+export class SlaTemplateListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	templates = new Array();
 	dataSource = new MatTableDataSource();

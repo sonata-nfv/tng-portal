@@ -145,6 +145,11 @@ form .sameRow {
 	background-color: $form-alert-color;
 }
 
+.mat-error {
+	text-align: right;
+	color: $primary-font-color-light;
+}
+
 // Checkbox styles
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
