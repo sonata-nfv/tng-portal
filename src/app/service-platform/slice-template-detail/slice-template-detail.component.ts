@@ -16,7 +16,8 @@ import { SliceInstanceCreateComponent } from '../slice-instance-create/slice-ins
 export class SliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	displayedColumns = [ 'serviceName', 'isShared', 'slaName' ];
+	displayedColumns = [ 'uuid', 'serviceName', 'isShared', 'slaName' ];
+	displayedColumnsLinks = [ 'networkName', 'mngmtNetwork', 'type' ];
 
 	constructor(
 		private router: Router,
