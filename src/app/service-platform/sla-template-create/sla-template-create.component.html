@@ -1,0 +1,95 @@
+<h3 class="title3 header-section-name" i18n="@@slaTemplates">SLA templates</h3>
+
+<form [formGroup]="templateForm" class="title-section">
+    <mat-form-field class="title1">
+        <input matInput type="text" placeholder="Template Name" formControlName="name" required
+            i18n-placeholder="@@templateNamePlaceholder" />
+    </mat-form-field>
+
+    <div class="header-buttons">
+        <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+            (click)="createSlaTemplate()" i18n="@@saveButton">
+            SAVE
+        </button>
+        <button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+    </div>
+</form>
+
+<form [formGroup]="templateForm">
+    <app-select class="ns" placeholder="Network Service" [list]="nsListSelect" (selectEvent)="receiveNS($event)"
+        i18n-placeholder="@@nsPlaceholder"></app-select>
+
+    <mat-form-field class="provider-name">
+        <input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
+    </mat-form-field>
+
+    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder">
+    </app-calendar>
+</form>
+
+<div class="advanced-section" *ngIf="guaranteesListSelect.length || storedGuarantees.length">
+    <!-- Show or hide the service guarantees section -->
+    <button class="dropdownButton" (click)="closed = !closed">
+        <div class="open">
+            <span i18n="@@serviceGuarantees">Service Guarantees</span>
+
+            <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+
+            <ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
+        </div>
+
+        <div class="underline" [ngClass]="{ opened: !closed }"></div>
+    </button>
+
+    <form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">
+        <h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
+
+        <!-- List stored service guarantees -->
+        <div class="guarantee-row" *ngFor="let item of storedGuarantees">
+            <div class="description" *ngIf="item">
+                <!-- Title with delete and open details button -->
+                <div class="description-title">
+                    <h4 class="title4">
+                        {{ item.uuid }} - {{ item.name }}: {{ item.threshold }} {{ item.unit }}
+                    </h4>
+
+                    <button (click)="eraseEntry(item)" class="icon-button-shadow">
+                        <i class="wui wui-trash-alt"></i>
+                    </button>
+
+                    <button class="dropdownButton" (click)="item.closed = !item.closed">
+                        <i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
+                        <ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
+                    </button>
+                </div>
+
+                <!-- Detailed information about the guarantee -->
+                <span class="content" *ngIf="!item.closed">
+                    <p *ngIf="item.definition" class="definition">{{ item.definition }}</p>
+
+                    <div class="slo-info" *ngFor="let slo of item.slos">
+                        <mat-form-field class="slo">
+                            <input matInput placeholder="Service Level Objective" disabled
+                                value="{{ slo.kpi }} {{ slo.operator }} {{ slo.value }}"
+                                i18n-placeholder="@@serviceLevelObjectivePlaceholder" />
+                        </mat-form-field>
+
+                        <mat-form-field class="period">
+                            <input matInput placeholder="Time period" disabled value="{{ slo.period || 'None' }}"
+                                i18n-placeholder="@@timePeriodPlaceholder" />
+                        </mat-form-field>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <!-- Selector to list the different service guarantees -->
+        <app-select *ngIf="guaranteesListSelect.length" class="guarantees-list" placeholder="Select NS Guarantee"
+            [reset]="guaranteesListSelect.length" [list]="guaranteesListSelect" (selectEvent)="addGuarantee($event)"
+            i18n-placeholder="@@guaranteesListPlaceholder"></app-select>
+
+        <span *ngIf="guaranteesListSelect.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
+    </form>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>
