@@ -113,6 +113,23 @@ export class ServicePlatformService {
 	}
 
 	/**
+	 * Retrive a list with all the flavours for a service
+	 * @param uuid identifier of the network service
+	 */
+	async getFlavours(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.flavours + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
      * Creates a new SLA Template.
      *
      * @param template Object containing the nsd_uuid, guaranteeId, expireDate

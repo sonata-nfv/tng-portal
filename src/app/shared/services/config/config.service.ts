@@ -19,6 +19,7 @@ export class ConfigService extends Config {
 	slaAgreements = 'slas/agreements';
 	slaViolations = 'slas/violations';
 	guarantees = 'slas/configurations/guaranteesList';
+	flavours = 'slas/configurations/deploymentflavours';
 	functions = 'functions';
 	slicesTemplates = 'slices';
 	slicesInstances = 'slice-instances';

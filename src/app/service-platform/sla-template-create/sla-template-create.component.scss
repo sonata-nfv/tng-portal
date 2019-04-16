@@ -45,7 +45,9 @@ app-sla-template-create {
 
 	// Select guarantees
 	form.advanced-form {
-		.guarantees-select, .licenses-select {
+		.guarantees-select,
+		.licenses-select,
+		.flavour-select {
 			width: 50%;
 		}
 

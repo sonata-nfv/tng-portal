@@ -19,6 +19,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 	templateForm: FormGroup;
 	nsListSelect: Array<any>;
 	guaranteesListSelect: Array<any>;
+	flavours: Array<any>;
 	storedGuarantees = new Array();
 	guaranties = new Array();
 	nss = new Array();
@@ -46,6 +47,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			license: new FormControl(),
 			instances: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			licenseExpirationDate: new FormControl(),
+			flavour: new FormControl()
 		});
 
 		this.templateForm.valueChanges.subscribe(value => this._onFormChanges(value));
@@ -89,7 +91,23 @@ export class SlaTemplateCreateComponent implements OnInit {
 	}
 
 	receiveNS(ns) {
-		this.templateForm.get('ns').setValue(ns);
+		if (ns) {
+			this.templateForm.get('ns').setValue(ns);
+			this.requestFlavours(ns);
+		}
+	}
+
+	async requestFlavours(ns) {
+		this.loading = true;
+		const nsd_uuid = this.nss.find(x => x.name === ns).serviceId;
+		const response = await this.servicePlatformService.getFlavours(nsd_uuid);
+
+		this.loading = false;
+		if (response && response.length) {
+			this.flavours = response;
+		} else {
+			this.utilsService.openSnackBar('No flavours were found for this network service', '');
+		}
 	}
 
 	receiveExpirationDate(expirationDate) {
@@ -102,7 +120,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			const prop = guarantee.split(' - ')[ 1 ].split(': ')[ 0 ];
 
 			// Include the selected guarantee in the displayed list
-			this.storedGuarantees.push(Object.assign({ }, this.guaranties.find(x => x.uuid === id), { closed: true }));
+			this.storedGuarantees.push(Object.assign({}, this.guaranties.find(x => x.uuid === id), { closed: true }));
 
 			// Remove the selected guarantee from the guarantees list offered
 			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 0 ] !== id);
@@ -137,18 +155,17 @@ export class SlaTemplateCreateComponent implements OnInit {
 	generateTemplate() {
 		const guarantees = this.storedGuarantees.map(x => x.uuid);
 		const nsd_uuid = this.nss.find(x => x.name === this.templateForm.get('ns').value).serviceId;
-		const expireDate = this.templateForm.get('expirationDate').value;
 
 		return {
 			nsd_uuid,
 			templateName: this.templateForm.get('name').value,
 			provider_name: this.templateForm.get('providerName').value || '',
-			expireDate,
+			expireDate: this.templateForm.get('expirationDate').value,
+			guaranteeId: guarantees,
 			service_licence_type: this.templateForm.get('license').value || 'public',
 			allowed_service_instances: this.templateForm.get('instances').value || '1',
 			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
-			// dflavour_name
-			guaranteeId: guarantees
+			dflavour_name: this.templateForm.get('flavour').value || ''
 		};
 	}
 
@@ -157,6 +174,8 @@ export class SlaTemplateCreateComponent implements OnInit {
 		const template = this.generateTemplate();
 		console.log(template);
 
+
+		// TODO format request for the new model
 
 		// this.servicePlatformService
 		// 	.postOneSLATemplate(template)
@@ -182,8 +201,15 @@ export class SlaTemplateCreateComponent implements OnInit {
 		// 	});
 	}
 
+	canShowAdvancedSection() {
+		return this.guaranteesListSelect || this.storedGuarantees.length;
+	}
 	instancesErrorExists() {
 		return this.templateForm.get('instances').hasError('pattern');
+	}
+
+	canShowFlavours() {
+		return !this.closed && this.flavours && this.flavours.length;
 	}
 
 	close() {
