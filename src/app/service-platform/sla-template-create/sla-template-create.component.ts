@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-sla-template-create',
@@ -28,6 +29,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
+		private dialogData: DialogDataService,
 		private utilsService: UtilsService,
 		private commonService: CommonService,
 		private servicePlatformService: ServicePlatformService,
@@ -120,7 +122,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			const prop = guarantee.split(' - ')[ 1 ].split(': ')[ 0 ];
 
 			// Include the selected guarantee in the displayed list
-			this.storedGuarantees.push(Object.assign({}, this.guaranties.find(x => x.uuid === id), { closed: true }));
+			this.storedGuarantees.push(Object.assign({ }, this.guaranties.find(x => x.uuid === id), { closed: true }));
 
 			// Remove the selected guarantee from the guarantees list offered
 			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 0 ] !== id);
@@ -169,36 +171,23 @@ export class SlaTemplateCreateComponent implements OnInit {
 		};
 	}
 
-	createSlaTemplate() {
+	async createSlaTemplate() {
 		this.loading = true;
 		const template = this.generateTemplate();
-		console.log(template);
+		const response = await this.servicePlatformService.postOneSLATemplate(template);
 
-
-		// TODO format request for the new model
-
-		// this.servicePlatformService
-		// 	.postOneSLATemplate(template)
-		// 	.then(response => {
-		// 		this.loading = false;
-		// 		this.utilsService.openSnackBar('Template successfully created!', '');
-		// 		this.close();
-		// 	})
-		// 	.catch(err => {
-		// 		this.loading = false;
-		// 		const title = 'oh oh...';
-		// 		const action = 'Accept';
-
-		// 		if (err.error[ 'ERROR: ' ] === 'Conflict') {
-		// 			const content = 'This template name is already taken!';
-		// 			this.dialogData.openDialog(title, content, action, () => { });
-		// 		} else if (err.error[ 'ERROR: ' ] === 'The expire date is not a future date.') {
-		// 			const content = 'The expire date is not a future date. Please choose another.';
-		// 			this.dialogData.openDialog(title, content, action, () => { });
-		// 		} else {
-		// 			this.utilsService.openSnackBar('There was an error in the template creation', '');
-		// 		}
-		// 	});
+		this.loading = false;
+		if (response && response instanceof Object) {
+			this.utilsService.openSnackBar('Template ' + response[ 'name' ] + ' created', '');
+			this.close();
+		} else if (response && response instanceof String) {
+			const title = 'oh oh...';
+			const action = 'Accept';
+			const content = 'Some of the data introduced is not valid. Please, use the following hint to fix it: \n \n' + response;
+			this.dialogData.openDialog(title, content, action, () => { });
+		} else {
+			this.utilsService.openSnackBar('There was an error creating the template', '');
+		}
 	}
 
 	canShowAdvancedSection() {

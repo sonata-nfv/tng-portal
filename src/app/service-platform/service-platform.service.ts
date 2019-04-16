@@ -135,24 +135,16 @@ export class ServicePlatformService {
      * @param template Object containing the nsd_uuid, guaranteeId, expireDate
      *                 and templateName for the creation of a new template.
      */
-	postOneSLATemplate(template): any {
-		return new Promise((resolve, reject) => {
-			this.http
-				.post(
-					this.config.baseSP + this.config.slaTemplates,
-					this.urlEncode(template),
-					{
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						}
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => reject(err));
-		});
+	async postOneSLATemplate(template) {
+		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const url = this.config.baseSP + this.config.slaTemplates;
+
+		try {
+			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+			return error.error[ 'ERROR: ' ] || error.error[ 'ERROR:' ] || error.error[ 'ERROR' ];
+		}
 	}
 
 	urlEncode(obj: Object): string {
