@@ -23,15 +23,15 @@
         <input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
     </mat-form-field>
 
-    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveDate($event)" i18n-placeholder="@@expirationDatePlaceholder">
+    <app-calendar placeholder="Expiration Date" (dateEvent)="receiveExpirationDate($event)" i18n-placeholder="@@expirationDatePlaceholder">
     </app-calendar>
 </form>
 
-<div class="advanced-section" *ngIf="guaranteesListSelect.length || storedGuarantees.length">
+<div class="advanced-section" *ngIf="guaranteesListSelect || storedGuarantees.length">
     <!-- Show or hide the service guarantees section -->
     <button class="dropdownButton" (click)="closed = !closed">
         <div class="open">
-            <span i18n="@@serviceGuarantees">Service Guarantees</span>
+            <span i18n="@@advancedSection">Advanced section</span>
 
             <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
 
@@ -84,11 +84,33 @@
         </div>
 
         <!-- Selector to list the different service guarantees -->
-        <app-select *ngIf="guaranteesListSelect.length" class="guarantees-list" placeholder="Select NS Guarantee"
+        <app-select *ngIf="guaranteesListSelect.length" class="guarantees-select" placeholder="Select a guarantee"
             [reset]="guaranteesListSelect.length" [list]="guaranteesListSelect" (selectEvent)="addGuarantee($event)"
-            i18n-placeholder="@@guaranteesListPlaceholder"></app-select>
+            i18n-placeholder="@@selectGuaranteePlaceholder"></app-select>
 
         <span *ngIf="guaranteesListSelect.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
+    </form>
+
+    <form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">
+        <h2 class="title2" i18n="@@license">License</h2>
+
+        <app-select class="licenses-select" placeholder="Select a license" [list]="licenses" (selectEvent)="receiveLicense($event)"
+            i18n-placeholder="@@selectLicensePlaceholder"></app-select>
+
+        <app-calendar placeholder="License expiration date" (dateEvent)="receiveLicenseExpirationDate($event)"
+            i18n-placeholder="@@licenseExpirationDatePlaceholder">
+        </app-calendar>
+
+        <div class="instances-number">
+            <p class="label" i18n="@@numberInstancesAllowed">Number of instances allowed: </p>
+            <mat-form-field class="instances">
+                <input matInput formControlName="instances" />
+                <mat-error *ngIf="instancesErrorExists()" i18n="@@InvalidInput">*Invalid input</mat-error>
+            </mat-form-field>
+
+        </div>
+
+
     </form>
 </div>
 

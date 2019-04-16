@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 export class UtilsService {
 	ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
 	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[0])';
+	numberPattern = '^[0-9]*$';
 
 	constructor(
 		public snackBar: MatSnackBar
@@ -16,6 +17,10 @@ export class UtilsService {
 
 	getMaskPattern() {
 		return this.maskPattern;
+	}
+
+	getNumberPattern() {
+		return this.numberPattern;
 	}
 
 	/**

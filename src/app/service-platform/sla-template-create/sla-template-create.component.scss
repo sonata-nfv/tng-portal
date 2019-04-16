@@ -45,8 +45,11 @@ app-sla-template-create {
 
 	// Select guarantees
 	form.advanced-form {
-		.guarantees-list {
+		.guarantees-select, .licenses-select {
 			width: 50%;
+		}
+
+		.guarantees-select {
 			margin-top: 2vh;
 		}
 
@@ -54,10 +57,25 @@ app-sla-template-create {
 			display: flex;
 			justify-content: flex-end;
 			width: 50%;
-			margin-bottom: 5vh;
 			margin-top: -16px;
 			font-size: 13px;
 			color: $primary-font-color-light;
+		}
+
+		.instances-number {
+			display: flex;
+			flex-direction: row;
+
+			.label {
+				align-self: center;
+				margin-right: 10px;
+			}
+
+			.instances {
+				width: 4vw; 
+			}
+
+
 		}
 	}
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ServicePlatformService } from '../service-platform.service';
@@ -17,11 +17,12 @@ export class SlaTemplateCreateComponent implements OnInit {
 	closed = false;
 	disabledButton = true;
 	templateForm: FormGroup;
-	nsListSelect = new Array();
+	nsListSelect: Array<any>;
+	guaranteesListSelect: Array<any>;
 	storedGuarantees = new Array();
-	guaranteesListSelect = new Array();
 	guaranties = new Array();
 	nss = new Array();
+	licenses = [ 'public', 'trial', 'private' ];
 
 	constructor(
 		private router: Router,
@@ -38,9 +39,13 @@ export class SlaTemplateCreateComponent implements OnInit {
 
 	initForms() {
 		this.templateForm = new FormGroup({
-			name: new FormControl(),
-			ns: new FormControl(),
-			expirationDate: new FormControl()
+			name: new FormControl('', Validators.required),
+			ns: new FormControl('', Validators.required),
+			providerName: new FormControl(),
+			expirationDate: new FormControl('', Validators.required),
+			license: new FormControl(),
+			instances: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
+			licenseExpirationDate: new FormControl(),
 		});
 
 		this.templateForm.valueChanges.subscribe(value => this._onFormChanges(value));
@@ -79,8 +84,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 
 	private _onFormChanges(value?) {
 		this.disabledButton =
-			(this.templateForm.get('ns').value && this.templateForm.get('name').value &&
-				this.templateForm.get('expirationDate').value && this.storedGuarantees.length) ?
+			(this.templateForm.valid && this.storedGuarantees.length) ?
 				false : true;
 	}
 
@@ -88,7 +92,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 		this.templateForm.get('ns').setValue(ns);
 	}
 
-	receiveDate(expirationDate) {
+	receiveExpirationDate(expirationDate) {
 		this.templateForm.get('expirationDate').setValue(expirationDate);
 	}
 
@@ -98,7 +102,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			const prop = guarantee.split(' - ')[ 1 ].split(': ')[ 0 ];
 
 			// Include the selected guarantee in the displayed list
-			this.storedGuarantees.push(Object.assign({}, this.guaranties.find(x => x.uuid === id), { closed: true }));
+			this.storedGuarantees.push(Object.assign({ }, this.guaranties.find(x => x.uuid === id), { closed: true }));
 
 			// Remove the selected guarantee from the guarantees list offered
 			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 0 ] !== id);
@@ -122,6 +126,14 @@ export class SlaTemplateCreateComponent implements OnInit {
 		this._onFormChanges();
 	}
 
+	receiveLicense(license) {
+		this.templateForm.get('license').setValue(license);
+	}
+
+	receiveLicenseExpirationDate(expirationDate) {
+		this.templateForm.get('licenseExpirationDate').setValue(expirationDate);
+	}
+
 	generateTemplate() {
 		const guarantees = this.storedGuarantees.map(x => x.uuid);
 		const nsd_uuid = this.nss.find(x => x.name === this.templateForm.get('ns').value).serviceId;
@@ -130,11 +142,11 @@ export class SlaTemplateCreateComponent implements OnInit {
 		return {
 			nsd_uuid,
 			templateName: this.templateForm.get('name').value,
+			provider_name: this.templateForm.get('providerName').value || '',
 			expireDate,
-			// provider_name: ,
-			// service_licence_type
-			// allowed_service_instances
-			// service_licence_expiration_date
+			service_licence_type: this.templateForm.get('license').value || 'public',
+			allowed_service_instances: this.templateForm.get('instances').value || '1',
+			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
 			// dflavour_name
 			guaranteeId: guarantees
 		};
@@ -143,7 +155,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 	createSlaTemplate() {
 		this.loading = true;
 		const template = this.generateTemplate();
-		console.log(template)
+		console.log(template);
 
 
 		// this.servicePlatformService
@@ -168,6 +180,10 @@ export class SlaTemplateCreateComponent implements OnInit {
 		// 			this.utilsService.openSnackBar('There was an error in the template creation', '');
 		// 		}
 		// 	});
+	}
+
+	instancesErrorExists() {
+		return this.templateForm.get('instances').hasError('pattern');
 	}
 
 	close() {
