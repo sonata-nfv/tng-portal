@@ -6,15 +6,20 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-slices-instances-detail',
-	templateUrl: './slices-instances-detail.component.html',
-	styleUrls: [ './slices-instances-detail.component.scss' ],
+	selector: 'app-slice-instance-detail',
+	templateUrl: './slice-instance-detail.component.html',
+	styleUrls: [ './slice-instance-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesInstancesDetailComponent implements OnInit {
+export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
-	uuid: string;
 	detail = { };
+	displayedColumns = [
+		'nsrName',
+		'slaName',
+		'status',
+		'isShared'
+	];
 
 	constructor(
 		private router: Router,
@@ -26,7 +31,6 @@ export class SlicesInstancesDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.uuid = params[ 'id' ];
 			this.requestSliceInstance(params[ 'id' ]);
 		});
 	}
@@ -37,20 +41,17 @@ export class SlicesInstancesDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	requestSliceInstance(uuid) {
+	async requestSliceInstance(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneSliceInstance(uuid);
 
-		this.servicePlatformService
-			.getOneSliceInstance(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the slice instance', '');
+			this.close();
+		}
 	}
 
 	stopInstance() {
@@ -58,19 +59,22 @@ export class SlicesInstancesDetailComponent implements OnInit {
 		const content = 'Are you sure you want to terminate this instance?';
 		const action = 'Terminate';
 
-		this.dialogData.openDialog(title, content, action, () => {
-			this.utilsService.openSnackBar('Terminating instance...', '');
+		this.dialogData.openDialog(title, content, action, async () => {
+			this.loading = true;
+			const response = await this.servicePlatformService.postOneSliceInstanceTermination(this.detail[ 'uuid' ]);
 
-			this.servicePlatformService
-				.postOneSliceInstanceTermination(this.detail[ 'uuid' ])
-				.then(response => {
-					// this.utilsService.openSnackBar(response, '');
-					// this.requestSliceInstance(this.uuid);
-				})
-				.catch(err => {
-					this.utilsService.openSnackBar(err, '');
-				});
+			this.loading = false;
+			if (response) {
+				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+				this.close();
+			} else {
+				this.utilsService.openSnackBar('There was an error terminating the instance', '');
+			}
 		});
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {

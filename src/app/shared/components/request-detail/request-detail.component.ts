@@ -34,20 +34,17 @@ export class RequestDetailComponent implements OnInit {
      * @param uuid ID of the selected NS request to be displayed.
      *             Comming from the route.
      */
-	requestRequest(uuid) {
+	async requestRequest(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOneRequest(uuid);
 
-		this.commonService
-			.getOneNSRequest(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the request record', '');
+			this.close();
+		}
 	}
 
 	close() {

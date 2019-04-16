@@ -1,34 +1,32 @@
-<h3 class="title3 header-section-name" *ngIf="detail['requestUUID']" i18n="@@requests">Requests</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@requests">Requests</h3>
 
-<div class="title-section" *ngIf="detail['requestUUID']">
+<div class="title-section" *ngIf="detail['uuid']">
     <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
     <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <form class="detail">
-    <mat-form-field *ngIf="detail['requestUUID']">
-        <input matInput placeholder="ID" value="{{ detail['requestUUID'] }}" disabled
-            i18n-placeholder="@@idPlaceholder" />
+    <mat-form-field *ngIf="detail['uuid']">
+        <input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled
+        <input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
             i18n-placeholder="@@statusPlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['type']">
-        <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
+        <input matInput placeholder="Type" value="{{ utilsService.capitalizeFirstLetter(detail['type']) }}" disabled
+            i18n-placeholder="@@typePlaceholder" />
     </mat-form-field>
 
     <mat-form-field *ngIf="detail['slaUUID']">
-        <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled
-            i18n-placeholder="@@slaIDPlaceholder" />
+        <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled i18n-placeholder="@@slaIDPlaceholder" />
     </mat-form-field>
 
     <div class="sameRow">
         <mat-form-field *ngIf="detail['serviceName']">
-            <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled
-                i18n="@@serviceNamePlaceholder" />
+            <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled i18n="@@serviceNamePlaceholder" />
         </mat-form-field>
 
         <mat-form-field *ngIf="detail['serviceVersion']">
@@ -49,8 +47,8 @@
         </mat-form-field>
     </div>
 
-    <mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
-        <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+    <mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+        <input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
             i18n-placeholder="@@updatedAtPlaceholder" />
     </mat-form-field>
 </form>

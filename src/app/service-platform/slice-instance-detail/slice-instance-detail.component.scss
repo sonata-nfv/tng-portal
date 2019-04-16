@@ -1,0 +1,28 @@
+@import "../../../constants.scss";
+app-slice-instance-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  overflow-y: auto;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $basic-background-color;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  form {
+    width: 50vw;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+
+    .left-column {
+      width: 25vw;
+      margin-right: 10px;
+    }
+  }
+}

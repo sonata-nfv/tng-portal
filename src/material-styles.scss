@@ -17,7 +17,7 @@ form .sameRow {
 .mat-form-field {
 	display: flex;
 	flex-direction: column;
-	font-size: 18px;
+	font-size: 16px;
 	text-align: left;
 	color: $secondary-font-color;
 
@@ -34,6 +34,7 @@ form .sameRow {
 .mat-input-element:disabled {
 	color: $form-focus;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 // Change input underline styles
@@ -82,30 +83,30 @@ form .sameRow {
 
 .mat-form-field-can-float.mat-form-field-should-float {
 	.mat-form-field-label {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
 
 // Input styles for updated at field
-.mat-form-field.updatedAt,
+.mat-form-field.time-form-field,
 .mat-form-field.lastTimeExecuted {
 	margin-bottom: 20px;
 }
 
-.mat-form-field.updatedAt .mat-input-element:disabled,
+.mat-form-field.time-form-field .mat-input-element:disabled,
 .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
 	font-size: 14px;
 	color: $form-disabled-color;
 }
 
-.mat-form-field.updatedAt .mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field.time-form-field .mat-form-field-label-wrapper .mat-form-field-label,
 .mat-form-field.lastTimeExecuted
 	.mat-form-field-label-wrapper
 	.mat-form-field-label {
 	display: none;
 }
 
-.mat-form-field.updatedAt .mat-form-field-infix,
+.mat-form-field.time-form-field .mat-form-field-infix,
 .mat-form-field.lastTimeExecuted .mat-form-field-infix {
 	border-top: 0;
 	padding: 0;

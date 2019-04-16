@@ -121,9 +121,6 @@
 			"check-preblock",
 			"check-postbrace"
 		],
-		"array-bracket-spacing": [
-			"always"
-		],
 		"directive-selector": [
 			true,
 			"attribute",

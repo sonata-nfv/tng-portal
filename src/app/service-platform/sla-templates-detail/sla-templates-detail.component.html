@@ -34,7 +34,7 @@
         (dateEvent)="receiveDate($event)" [disabled]="true" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
 </form>
 
-<div class="advanceSection" *ngIf="detail['storedGuarantees']">
+<div class="advanced-section" *ngIf="detail['storedGuarantees']">
     <button class="dropdownButton" (click)="closed = !closed">
         <div class="open">
             <span i18n="@@serviceGuarantees">Service Guarantees</span> <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>

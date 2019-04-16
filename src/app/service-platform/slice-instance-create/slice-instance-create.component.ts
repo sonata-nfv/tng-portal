@@ -6,18 +6,18 @@ import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-slices-instances-create',
-	templateUrl: './slices-instances-create.component.html',
-	styleUrls: [ './slices-instances-create.component.scss' ],
+	selector: 'app-slice-instance-create',
+	templateUrl: './slice-instance-create.component.html',
+	styleUrls: [ './slice-instance-create.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlicesInstancesCreateComponent implements OnInit {
+export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
 	instantiationForm: FormGroup;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		public dialogRef: MatDialogRef<SlicesInstancesCreateComponent>,
+		public dialogRef: MatDialogRef<SliceInstanceCreateComponent>,
 		private servicePlatformService: ServicePlatformService,
 		private utilsService: UtilsService
 	) { }
@@ -29,21 +29,23 @@ export class SlicesInstancesCreateComponent implements OnInit {
 		});
 	}
 
-	instantiate() {
+	async instantiate() {
 		const instance = {
-			nstId: this.data.nstId,
+			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
-			description: this.instantiationForm.get('nsiDescription').value
+			description: this.instantiationForm.get('nsiDescription').value,
+			'request_type': 'CREATE_SLICE'
 		};
 
-		this.servicePlatformService
-			.postOneSliceInstance(instance)
-			.then(response => { })
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = true;
+		const response = await this.servicePlatformService.postOneSliceInstance(instance);
 
-		this.utilsService.openSnackBar('Instantiating...', '');
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '');
+		} else {
+			this.utilsService.openSnackBar('There was an error instantiating the sclice template', '');
+		}
 		this.close();
 	}
 

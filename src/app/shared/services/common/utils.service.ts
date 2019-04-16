@@ -24,6 +24,9 @@ export class UtilsService {
     * @param str string to parse
     */
 	capitalizeFirstLetter(str): string {
+		if (!str) {
+			return;
+		}
 		if (str.includes('_')) {
 			str = str.replace(/_/g, ' ');
 		}

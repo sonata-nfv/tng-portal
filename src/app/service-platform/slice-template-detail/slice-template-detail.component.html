@@ -69,7 +69,7 @@
 		<span class="play" i18n="@@readyToUse">Ready to use</span>
 	</div>
 
-	<mat-form-field class="updatedAt" *ngIf="detail['updatedAt']">
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
 		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
@@ -81,17 +81,22 @@
 		</span>
 	</div>
 
-	<h2 class="title2" *ngIf="detail['sliceServices']" i18n="@@networkServices">Network services</h2>
+	<h2 class="title2" *ngIf="detail['services']" i18n="@@networkServices">Network services</h2>
 
-	<table *ngIf="detail['sliceServices']" mat-table [dataSource]="detail['sliceServices']">
+	<table *ngIf="detail['services']" mat-table [dataSource]="detail['services']">
+		<ng-container matColumnDef="uuid">
+			<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
+			<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+		</ng-container>
+
 		<ng-container matColumnDef="serviceName">
 			<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service Name</th>
-			<td mat-cell *matCellDef="let element">{{ element.servname }}</td>
+			<td mat-cell *matCellDef="let element">{{ element.nsdName }}</td>
 		</ng-container>
 
 		<ng-container matColumnDef="isShared">
 			<th mat-header-cell *matHeaderCellDef i18n="@@serviceIsShared">Service is shared</th>
-			<td mat-cell *matCellDef="let element">{{ element.isShared || 'Unknown' }}</td>
+			<td mat-cell *matCellDef="let element">{{ element.isShared }}</td>
 		</ng-container>
 
 		<ng-container matColumnDef="slaName">
@@ -101,6 +106,28 @@
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+	</table>
+
+	<h2 class="title2" *ngIf="detail['sliceVirtualLinks']" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
+
+	<table *ngIf="detail['sliceVirtualLinks']" mat-table [dataSource]="detail['sliceVirtualLinks']">
+		<ng-container matColumnDef="networkName">
+			<th mat-header-cell *matHeaderCellDef i18n="@@networkName">Network Name</th>
+			<td mat-cell *matCellDef="let element">{{ element.networkName }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="mngmtNetwork">
+			<th mat-header-cell *matHeaderCellDef i18n="@@mngmtNetwork">Management network</th>
+			<td mat-cell *matCellDef="let element">{{ element.mngmtNetwork }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="type">
+			<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
+			<td mat-cell *matCellDef="let element">{{ element.type }}</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumnsLinks"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumnsLinks"></tr>
 	</table>
 </form>
 

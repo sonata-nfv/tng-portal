@@ -602,7 +602,21 @@ export class ServicePlatformService {
 				usageState: response[ 'nstd' ][ 'usageState' ],
 				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
 				operationalState: response[ 'nstd' ][ 'operationalState' ],
-				sliceServices: response[ 'nstd' ][ 'sliceServices' ]
+				services: response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
+					return {
+						uuid: item[ 'id' ],
+						nsdName: item[ 'nsd-name' ],
+						isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
+						slaName: item[ 'sla-name' ]
+					};
+				}),
+				sliceVirtualLinks: response[ 'nstd' ][ 'slice_vld' ].map(item => {
+					return {
+						networkName: item[ 'name' ],
+						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						type: item[ 'type' ]
+					};
+				})
 			};
 		} catch (error) {
 			console.error(error);
@@ -664,7 +678,7 @@ export class ServicePlatformService {
 						name: item.name,
 						vendor: item.vendor,
 						template: item[ 'nst-name' ],
-						state: item[ 'nsi-status' ]
+						status: item[ 'nsi-status' ]
 					};
 				}) : [];
 		} catch (error) {
@@ -677,93 +691,71 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Slices Instance.
      */
-	getOneSliceInstance(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getOneSliceInstance(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid;
 
-			this.http
-				.get(this.config.baseSP + this.config.slicesInstances + '/' + uuid, {
-					headers: headers
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'name' ],
+				nstRef: response[ 'nst-ref' ],
+				nstName: response[ 'nst-name' ],
+				nstVersion: response[ 'nst-version' ],
+				vendor: response[ 'vendor' ],
+				status: response[ 'nsi-status' ],
+				qiValue: response[ '5qiValue' ],
+				instantiationTime: response[ 'instantiateTime' ],
+				description: response[ 'description' ],
+				nsrList: response[ 'nsr-list' ].map(item => {
+					return {
+						nsrName: item[ 'nsrName' ],
+						slaName: item[ 'sla-name' ],
+						isShared: item[ 'isshared' ] ? 'Yes' : 'No',
+						status: item[ 'working-status' ]
+					};
 				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'name' ],
-						vendor: response[ 'vendor' ],
-						state: this.utilsService.capitalizeFirstLetter(response[ 'nsiState' ]),
-						description: response[ 'description' ],
-						netServInstanceUUID: response[ 'netServInstance_Uuid' ],
-						nstName: response[ 'nstName' ],
-						version: response[ 'nstVersion' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the slice instance'));
-		});
-	}
-
-	/**
-     * Generates a Slice Instance
-     *
-     * @param instance Data of the desired Slice Instance.
-     */
-	postOneSliceInstance(instance): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-
-			this.http
-				.post(this.config.baseSP + this.config.slicesInstances, instance, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					if (err.status === 500 || err.status === 504) {
-						resolve();
-					} else {
-						reject('There was an error while trying to instantiate this slice');
-					}
-				});
-		});
-	}
-
-	/**
-     * Terminates a Slice Instance by UUID
-     *
-     * @param uuid UUID of the desired Slices Instance.
-     */
-	postOneSliceInstanceTermination(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const terminateTime = {
-				terminateTime: '0'
 			};
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-			this.http
-				.post(
-					this.config.baseSP +
-					this.config.slicesInstances +
-					'/' +
-					uuid +
-					'/terminate',
-					terminateTime,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve('Instance ' + response[ 'name' ] + ' terminated');
-				})
-				.catch(err => {
-					if (err.status === 500 || err.status === 504) {
-						resolve('Instance terminated');
-					} else {
-						reject('There was an error terminating the slice instance');
-					}
-				});
-		});
+	/**
+	 * Generates a Slice Instance
+	 *
+	 * @param instance Data of the desired Slice Instance.
+	 */
+	async postOneSliceInstance(instance) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+
+		try {
+			return await this.http.post(url, instance, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Terminates a Slice Instance by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Instance.
+	 */
+	async postOneSliceInstanceTermination(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid + '/terminate';
+		const terminateTime = {
+			terminateTime: '0'
+		};
+
+		try {
+			return await this.http.post(url, terminateTime, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+
+
 	}
 }

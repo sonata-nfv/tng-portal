@@ -121,13 +121,13 @@
 					i18n="@@templates">
 					Templates
 				</button>
-				<button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')"
-					i18n="@@instances">
-					Instances
-				</button>
 				<button [ngClass]="{ active: subsection === 'slices-requests' }" (click)="setSubsection($event, 'slices-requests')"
 					i18n="@@requests">
 					Requests
+				</button>
+				<button [ngClass]="{ active: subsection === 'slices-instances' }" (click)="setSubsection($event, 'slices-instances')"
+					i18n="@@instances">
+					Instances
 				</button>
 			</div>
 		</div>
