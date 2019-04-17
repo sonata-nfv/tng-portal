@@ -52,7 +52,7 @@
 	</mat-form-field>
 	<p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="canShowMockCity()">
 			<input matInput type="text" placeholder="City" formControlName="city" [errorStateMatcher]="matcher" i18n-placeholder="@@city" />
 		</mat-form-field>
@@ -65,7 +65,7 @@
 </form>
 
 <form [formGroup]="openstackForm" class="vimForm" *ngIf="canShowOpenstackForm()">
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field>
 			<input matInput type="text" placeholder="Username" formControlName="username" required [errorStateMatcher]="matcher"
 				i18n-placeholder="@@username" />
@@ -76,7 +76,7 @@
 		</mat-form-field>
 	</div>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field>
 			<input matInput type="text" placeholder="Tenant" formControlName="tenant" required [errorStateMatcher]="matcher"
 				i18n-placeholder="@@tenant" />
@@ -97,7 +97,7 @@
 	</mat-form-field>
 	<p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field>
 			<input matInput type="text" placeholder="Private network" formControlName="privateNetwork" required
 				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetwork" />
@@ -116,7 +116,7 @@
 	<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column">
 		*This is not a valid IP mask (i.e. /24)</p>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field>
 			<input matInput type="text" placeholder="External network" formControlName="externalNetworkID" required
 				[errorStateMatcher]="matcher" i18n-placeholder="@@externalNetwork" />

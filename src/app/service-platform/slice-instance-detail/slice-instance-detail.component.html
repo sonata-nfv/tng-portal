@@ -29,7 +29,7 @@
 		</button>
 	</mat-form-field>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="detail['nstName']" class="left-column">
 			<input matInput placeholder="Template name" value="{{ detail['nstName'] }}" disabled
 				i18n-placeholder="@@templateNamePlaceholder" />
@@ -39,7 +39,7 @@
 		</mat-form-field>
 	</div>
 
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="detail['status']" class="left-column">
 			<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
 				i18n-placeholder="@@statusPlaceholder" />
@@ -58,7 +58,7 @@
 	</div>
 
 	<mat-form-field class="time-form-field" *ngIf="detail['instantiationTime']">
-		<input matInput placeholder="Instantiated at" value="Last update: {{ utilsService.formatDateString(detail['instantiationTime']) }}"
+		<input matInput placeholder="Instantiated at" value="Last update: {{ utilsService.formatUTCDate(detail['instantiationTime']) }}"
 			disabled i18n-placeholder="@@instantiatedAtPlaceholder" />
 	</mat-form-field>
 
