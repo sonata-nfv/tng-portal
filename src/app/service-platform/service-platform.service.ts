@@ -143,7 +143,7 @@ export class ServicePlatformService {
 			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
-			return error.error[ 'ERROR: ' ] || error.error[ 'ERROR:' ] || error.error[ 'ERROR' ];
+			return error.error.ERROR;
 		}
 	}
 

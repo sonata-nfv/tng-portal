@@ -180,7 +180,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 		if (response && response instanceof Object) {
 			this.utilsService.openSnackBar('Template ' + response[ 'name' ] + ' created', '');
 			this.close();
-		} else if (response && response instanceof String) {
+		} else if (response) {
 			const title = 'oh oh...';
 			const action = 'Accept';
 			const content = 'Some of the data introduced is not valid. Please, use the following hint to fix it: \n \n' + response;
