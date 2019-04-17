@@ -20,9 +20,9 @@ import { RuntimePoliciesCreateComponent } from './runtime-policies-create/runtim
 import {
 	RuntimePoliciesGeneratedActionsComponent
 } from './runtime-policies-generated-actions/runtime-policies-generated-actions.component';
-import { SlaTemplatesComponent } from './sla-templates/sla-templates.component';
+import { SlaTemplateListComponent } from './sla-template-list/sla-template-list.component';
 import { SlaTemplatesDetailComponent } from './sla-templates-detail/sla-templates-detail.component';
-import { SlaTemplatesCreateComponent } from './sla-templates-create/sla-templates-create.component';
+import { SlaTemplateCreateComponent } from './sla-template-create/sla-template-create.component';
 import { SlaAgreementsComponent } from './sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './sla-agreements-detail/sla-agreements-detail.component';
 import { SlaViolationsComponent } from './sla-violations/sla-violations.component';
@@ -45,9 +45,9 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 		RuntimePoliciesDetailComponent,
 		RuntimePoliciesCreateComponent,
 		RuntimePoliciesGeneratedActionsComponent,
-		SlaTemplatesComponent,
+		SlaTemplateListComponent,
 		SlaTemplatesDetailComponent,
-		SlaTemplatesCreateComponent,
+		SlaTemplateCreateComponent,
 		SlaAgreementsComponent,
 		SlaAgreementsDetailComponent,
 		SlaViolationsComponent,
