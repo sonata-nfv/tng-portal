@@ -51,18 +51,16 @@ export class SmNetworkServicesComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of NS.
      */
-	requestServices(search?) {
+	async requestServices(search?) {
 		this.loading = true;
-		this.commonService
-			.getNetworkServices(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.networkServices = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.commonService.getNetworkServices(this.section, search);
+
+		this.loading = false;
+		if (response) {
+			this.networkServices = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch network services', '');
+		}
 	}
 
 	openNetworkService(row) {

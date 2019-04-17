@@ -246,7 +246,6 @@ export class CommonService {
      */
 	async getNetworkServices(section, search?) {
 		const headers = this.authService.getAuthHeaders();
-
 		let url: string;
 		section === 'V&V' ?
 			url = search ?

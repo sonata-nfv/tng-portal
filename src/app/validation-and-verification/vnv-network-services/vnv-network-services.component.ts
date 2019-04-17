@@ -13,7 +13,6 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class VnvNetworkServicesComponent implements OnInit {
 	loading: boolean;
-	section: string;
 	networkServices: Array<Object>;
 	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ]; // 'execute'
 
@@ -26,7 +25,6 @@ export class VnvNetworkServicesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.section = 'V&V';
 		this.requestServices();
 	}
 
@@ -41,18 +39,16 @@ export class VnvNetworkServicesComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of NS.
      */
-	requestServices(search?) {
+	async requestServices(search?) {
 		this.loading = true;
-		this.commonService
-			.getNetworkServices(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.networkServices = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.commonService.getNetworkServices('V&V', search);
+
+		this.loading = false;
+		if (response) {
+			this.networkServices = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch network services', '');
+		}
 	}
 
 	execute(row) {
