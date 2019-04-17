@@ -58,7 +58,7 @@
 	</div>
 
 	<mat-form-field class="time-form-field" *ngIf="detail['instantiationTime']">
-		<input matInput placeholder="Instantiated at" value="Last update: {{ utilsService.formatUTCDate(detail['instantiationTime']) }}"
+		<input matInput placeholder="Instantiated at" value="Last update: {{ utilsService.formatDateString(detail['instantiationTime']) }}"
 			disabled i18n-placeholder="@@instantiatedAtPlaceholder" />
 	</mat-form-field>
 
