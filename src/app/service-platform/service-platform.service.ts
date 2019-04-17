@@ -764,9 +764,10 @@ export class ServicePlatformService {
 	 */
 	async postOneSliceInstanceTermination(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid + '/terminate';
+		const url = this.config.baseSP + this.config.requests;
 		const terminateTime = {
-			terminateTime: '0'
+			'instance_uuid': uuid,
+			'request_type': 'TERMINATE_SLICE'
 		};
 
 		try {
