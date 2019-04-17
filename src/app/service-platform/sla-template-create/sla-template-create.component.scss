@@ -47,7 +47,7 @@ app-sla-template-create {
 	form.advanced-form {
 		.guarantees-select,
 		.licenses-select,
-		.flavour-select {
+		.flavor-select {
 			width: 50%;
 		}
 
@@ -67,17 +67,15 @@ app-sla-template-create {
 		.instances-number {
 			display: flex;
 			flex-direction: row;
+			align-items: baseline;
 
 			.label {
-				align-self: center;
 				margin-right: 10px;
 			}
 
 			.instances {
 				width: 4vw; 
 			}
-
-
 		}
 	}
 

@@ -110,11 +110,11 @@
         </div>
     </form>
 
-    <form *ngIf="canShowFlavours()" [formGroup]="templateForm" class="advanced-form">
-        <h2 class="title2" i18n="@@flavour">Flavour</h2>
+    <form *ngIf="canShowFlavors()" [formGroup]="templateForm" class="advanced-form">
+        <h2 class="title2" i18n="@@flavor">Flavor</h2>
 
-        <app-select class="flavour-select" placeholder="Select a flavour" [list]="flavours" (selectEvent)="receiveFlavour($event)"
-            i18n-placeholder="@@selectFlavourPlaceholder"></app-select>
+        <app-select class="flavor-select" placeholder="Select a flavor" [list]="flavors" (selectEvent)="receiveFlavor($event)"
+            i18n-placeholder="@@selectFlavorPlaceholder"></app-select>
     </form>
 </div>
 
