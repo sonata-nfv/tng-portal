@@ -45,7 +45,7 @@ export class ConfigService extends Config {
 
 	init(): Promise<Config> {
 		if (window.location.origin.includes('localhost')) {
-			this.baseSP = 'http://int-sp-ath.5gtango.eu:32002/api/v3/';
+			this.baseSP = 'http://pre-int-sp-ath.5gtango.eu:32002/api/v3/';
 			this.baseVNV = 'http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/';
 		}
 

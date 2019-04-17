@@ -110,7 +110,7 @@ export class UtilsService {
      */
 	getObjectDifferences(obj1, obj2) {
 		const obj1Props = Object.getOwnPropertyNames(obj1);
-		const result = { };
+		const result = {};
 
 		for (const prop of obj1Props) {
 			if (obj1[ prop ] !== obj2[ prop ] && obj2[ prop ]) {
@@ -127,6 +127,10 @@ export class UtilsService {
      * @param dateIn Date to be displayed
      */
 	formatUTCDate(dateIn) {
-		return new Date(Date.parse(dateIn)).toUTCString();
+		return new Date(dateIn).toUTCString();
+	}
+
+	formatDateString(dateIn) {
+		return new Date(dateIn).toDateString();
 	}
 }

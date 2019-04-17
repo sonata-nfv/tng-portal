@@ -199,41 +199,31 @@ export class CommonService {
      *                          matched by the returned list of
      *                          SLA Templates.
      */
-	getSLATemplates(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slaTemplates + search
-					: this.config.baseSP + this.config.slaTemplates;
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									vendor: item.slad.vendor,
-									name: item.slad.name,
-									version: item.slad.version,
-									nsUUID: item.slad.sla_template.service.ns_uuid,
-									ns: item.slad.sla_template.service.ns_name,
-									expirationDate: this.utilsService.formatUTCDate(
-										item.slad.sla_template.valid_until
-									)
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the sla templates');
-					}
-				})
-				.catch(err => reject('There was an error fetching the sla templates'));
-		});
+	async getSLATemplates(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search !== undefined ?
+			this.config.baseSP + this.config.slaTemplates + search
+			: this.config.baseSP + this.config.slaTemplates;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			console.log(response)
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						vendor: item.slad.vendor,
+						name: item.slad.name,
+						version: item.slad.version,
+						nsUUID: item.slad.sla_template.service.ns_uuid,
+						ns: item.slad.sla_template.service.ns_name,
+						expirationDate: item.slad.sla_template.expiration_date,
+						license: item.slad.licences.service_based.service_licence_type
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

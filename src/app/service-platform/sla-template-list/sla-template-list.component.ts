@@ -15,7 +15,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class SlaTemplateListComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	templates = new Array();
+	templates: Array<any>;
 	dataSource = new MatTableDataSource();
 	displayedColumns = [
 		'vendor',
@@ -23,6 +23,7 @@ export class SlaTemplateListComponent implements OnInit, OnDestroy {
 		'version',
 		'ns',
 		'expirationDate',
+		'license',
 		'delete'
 	];
 	subscription: Subscription;
@@ -66,19 +67,16 @@ export class SlaTemplateListComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of templates.
      */
-	requestTemplates(search?) {
+	async requestTemplates(search?) {
 		this.loading = true;
+		const response = await this.commonService.getSLATemplates(search);
 
-		this.commonService
-			.getSLATemplates(search)
-			.then(response => {
-				this.loading = false;
-				this.templates = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.templates = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the SLA templates', '');
+		}
 	}
 
 	deleteTemplate(uuid) {
