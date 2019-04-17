@@ -207,7 +207,6 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			console.log(response)
 			return response instanceof Array ?
 				response.map(item => {
 					return {

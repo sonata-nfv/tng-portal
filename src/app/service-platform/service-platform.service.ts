@@ -174,23 +174,16 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired SLA Template.
 	 */
-	deleteOneSLATemplate(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async deleteOneSLATemplate(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaTemplates + '/' + uuid;
 
-			this.http
-				.delete(this.config.baseSP + this.config.slaTemplates + '/' + uuid, {
-					headers: headers,
-					responseType: 'text'
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					reject('There was an error deleting the sla template');
-				});
-		});
+		try {
+			const response = await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
+			return response;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

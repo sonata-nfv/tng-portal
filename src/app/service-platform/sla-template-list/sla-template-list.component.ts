@@ -79,19 +79,17 @@ export class SlaTemplateListComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	deleteTemplate(uuid) {
+	async deleteTemplate(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.deleteOneSLATemplate(uuid);
 
-		this.servicePlatformService
-			.deleteOneSLATemplate(uuid)
-			.then(response => {
-				this.utilsService.openSnackBar('Template deleted', '');
-				this.requestTemplates();
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.requestTemplates();
+			this.utilsService.openSnackBar('Template deleted', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to delete the SLA template', '');
+		}
 	}
 
 	createNew() {
