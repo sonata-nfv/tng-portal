@@ -25,44 +25,26 @@ export class ServiceManagementService {
      *                          matched by the returned list of
      *                          NS instances.
      */
-	getNSInstances(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.serviceRecords + search
-					: this.config.baseSP + this.config.serviceRecords;
+	async getNSInstances(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.serviceRecords + search
+			: this.config.baseSP + this.config.serviceRecords;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => ({
-								uuid: item.uuid,
-								name: item.instance_name,
-								status: this.utilsService.capitalizeFirstLetter(item.status),
-								serviceID: item.descriptor_reference,
-								createdAt: this.utilsService.formatUTCDate(item.created_at),
-								version: item.version
-							}))
-						);
-					} else {
-						reject();
-					}
-				})
-				.catch(
-					err =>
-						err.status === 404
-							? resolve([])
-							: reject(
-								'There was an error fetching the network service instances'
-							)
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => ({
+					uuid: item.uuid,
+					name: item.instance_name || 'Unknown',
+					status: item.status,
+					serviceID: item.descriptor_reference,
+					createdAt: item.created_at,
+					version: item.version
+				})) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -179,27 +161,19 @@ export class ServiceManagementService {
     *
     * @param uuid UUID of the desired Network Service Instance.
     */
-	postOneNSInstanceTermination(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async postOneNSInstanceTermination(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+		const data = {
+			instance_uuid: uuid,
+			request_type: 'TERMINATE_SERVICE'
+		};
 
-			const data = {
-				instance_uuid: uuid,
-				request_type: 'TERMINATE_SERVICE'
-			};
-
-			this.http
-				.post(this.config.baseSP + this.config.requests, data, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve('Instance ' + response[ 'name' ] + ' terminated');
-				})
-				.catch(err =>
-					reject('There was an error terminating the network service instance')
-				);
-		});
+		try {
+			return await this.http.post(url, data, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	getLicences(): any {

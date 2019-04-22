@@ -16,7 +16,7 @@
 
 	<ng-container matColumnDef="status">
 		<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
-		<td mat-cell *matCellDef="let element">{{ element.status }}</td>
+		<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.status) }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="version">
@@ -26,20 +26,8 @@
 
 	<ng-container matColumnDef="createdAt">
 		<th mat-header-cell *matHeaderCellDef i18n="@@createdAt">Created at</th>
-		<td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+		<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.createdAt) }}</td>
 	</ng-container>
-
-	<!--
-		<ng-container matColumnDef="reload">
-		    <th mat-header-cell *matHeaderCellDef>
-		    </th>
-		    <td mat-cell *matCellDef="let element" (click)="reloadInstance(element)" (click)="$event.stopPropagation()">
-		        <button class="icon-button-shadow actions " mat-button>
-		            <i class="wui wui-undo"></i>
-		        </button>
-		    </td>
-		</ng-container>
-	-->
 
 	<ng-container matColumnDef="stop">
 		<th mat-header-cell *matHeaderCellDef></th>
@@ -52,8 +40,14 @@
 	</ng-container>
 
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openInstance(row)"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openInstance(row.uuid)"></tr>
 </table>
+
+<div *ngIf="!instances && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

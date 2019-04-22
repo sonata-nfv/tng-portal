@@ -27,19 +27,19 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 					transform: 'rotateX(90deg)'
 				})
 			),
-			state('expanded', style({ })),
+			state('expanded', style({})),
 			transition('collapsed => expanded', animate('300ms ease-in'))
 		])
 	]
 })
 export class NetworkServiceInstancesDetailComponent implements OnInit {
 	loading = false;
-	detail = { };
+	detail = {};
 	displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
 
 	// Detail in row and animations
 	dataSource = new CustomDataSource();
-	vnfDetail = { };
+	vnfDetail = {};
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
 
@@ -100,15 +100,14 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
 		const content = 'Are you sure you want to terminate this instance?';
 		const action = 'Terminate';
 
-		this.dialogData.openDialog(title, content, action, () => {
-			this.serviceManagementService
-				.postOneNSInstanceTermination(this.detail[ 'uuid' ])
-				.then(response => {
-					this.utilsService.openSnackBar(response, '');
-				})
-				.catch(err => {
-					this.utilsService.openSnackBar(err, '');
-				});
+		this.dialogData.openDialog(title, content, action, async () => {
+			const response = await this.serviceManagementService.postOneNSInstanceTermination(this.detail[ 'uuid' ]);
+
+			if (response) {
+				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+			} else {
+				this.utilsService.openSnackBar('There was an error terminating the instance', '');
+			}
 		});
 	}
 
