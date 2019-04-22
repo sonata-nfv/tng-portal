@@ -15,9 +15,7 @@ export class SlaTemplatesDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
 	templateForm: FormGroup;
-	closed = false;
-	listNS = new Array();
-	closedSLO: Array<Boolean> = new Array();
+	closed = true;
 
 	constructor(
 		private router: Router,
@@ -27,11 +25,6 @@ export class SlaTemplatesDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.templateForm = new FormGroup({
-			ns: new FormControl(),
-			guarantee: new FormControl()
-		});
-
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.requestSLATemplate(uuid);
@@ -44,48 +37,37 @@ export class SlaTemplatesDetailComponent implements OnInit {
      * @param uuid ID of the selected template to be displayed.
      *             Comming from the route.
      */
-	requestSLATemplate(uuid) {
+	async requestSLATemplate(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneSLATemplate(uuid);
 
-		this.servicePlatformService
-			.getOneSLATemplate(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-				this.listNS = [ response.ns ];
-				this.templateForm.controls.ns.setValue(response.ns);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch SLA template', '');
+			this.close();
+		}
 	}
 
-	receiveNS($event) { }
-
-	receiveGuarantee($event) { }
-
-	receiveDate($event) { }
-
-	deleteTemplate() {
+	async deleteTemplate() {
 		this.loading = true;
+		const response = await this.servicePlatformService.deleteOneSLATemplate(this.detail[ 'uuid' ]);
 
-		this.servicePlatformService
-			.deleteOneSLATemplate(this.detail[ 'uuid' ])
-			.then(response => {
-				this.loading = false;
-				this.utilsService.openSnackBar('Template deleted', '');
-				this.close();
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Template deleted', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('Unable to delete the SLA template', '');
+		}
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/slas/sla-templates' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

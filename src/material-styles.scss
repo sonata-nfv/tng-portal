@@ -87,12 +87,7 @@ form .same-row {
 	}
 }
 
-// Input styles for updated at field
-.mat-form-field.time-form-field,
-.mat-form-field.lastTimeExecuted {
-	margin-bottom: 20px;
-}
-
+// Input styles for time form fields at field
 .mat-form-field.time-form-field .mat-input-element:disabled,
 .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
 	font-size: 14px;

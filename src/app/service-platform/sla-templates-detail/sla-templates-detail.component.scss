@@ -16,63 +16,70 @@ app-sla-templates-detail {
   }
 
   form {
-    width: 65%;
+    width: 55vw;
+    margin-bottom: 5vh;
 
-    .ns {
-      width: 40%;
+    .left-column, 
+    .same-row .left-column.mat-form-field {
+      width: 25vw;
+      margin-right: 10px;
     }
 
-    .mat-input-element:disabled {
-      font-size: 18px;
+    .right-column {
+      width: 20vw;
     }
+  }
 
-    &.advancedForm {
-      width: 100%;
+  .advanced-section {
+		width: 55vw;
+  }
+  
+  	// Listed gurantees
+	form.advanced-form .guarantee-row {
+		.definition {
+			margin-top: 1vh;
+			margin-left: 1vw;
+			margin-bottom: 5vh;
+		}
 
-      .title3 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: $primary-font-color-light;
+		.slo-info {
+			display: flex;
+			flex-direction: row;
+			width: 95%;
+			margin-top: 2vh;
+			margin-left: 1vw;
+			margin-right: 1vw;
+			
+			.slo {
+				width: 60%;
+			}
+			.period {
+				width: 40%;
+			}
+		}
+  }
+
+  // Select guarantees
+	form.advanced-form {
+		.licenses-select,
+		.flavor-select {
+			width: 50%;
+		}
+  }
+
+  // Licensing
+	form.advanced-form {
+    .instances-number {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      .label {
+        margin-right: 10px;
       }
 
-      .title3:after {
-        background: none;
-      }
-
-      .guaranteeRow {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-
-        .sloInfo {
-          display: flex;
-          flex-direction: column;
-          width: 95%;
-          margin-top: 3vh;
-          margin-left: 1vw;
-          margin-right: 1vw;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        &.mat-input-element,
-        .mat-input-element:disabled,
-        .mat-form-field-can-float.mat-form-field-should-float
-          .mat-form-field-label {
-          font-size: 16px;
-        }
-
-        .timePeriod {
-          display: flex;
-          flex-direction: row;
-
-          .mat-form-field {
-            width: 50%;
-          }
-        }
+      .instances {
+        width: 4vw; 
       }
     }
   }

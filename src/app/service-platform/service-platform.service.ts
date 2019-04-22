@@ -54,31 +54,31 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired SLA Template.
      */
-	getOneSLATemplate(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(this.config.baseSP + this.config.slaTemplates + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'slad' ][ 'name' ],
-						vendor: response[ 'slad' ][ 'vendor' ],
-						author: response[ 'slad' ][ 'author' ],
-						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
-						expirationDate: new Date(
-							Date.parse(response[ 'slad' ][ 'sla_template' ][ 'valid_until' ])
-						),
-						ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
-						storedGuarantees:
-							response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the SLA template'));
-		});
+	async getOneSLATemplate(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaTemplates + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'slad' ][ 'name' ],
+				vendor: response[ 'slad' ][ 'vendor' ],
+				version: response[ 'slad' ][ 'version' ],
+				providerName: response[ 'slad' ][ 'sla_template' ][ 'provider_name' ],
+				updatedAt: response[ 'updated_at' ],
+				expirationDate: response[ 'slad' ][ 'sla_template' ][ 'expiration_date' ],
+				ns: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
+				license: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_type' ],
+				licenseInstances: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'allowed_service_instances' ],
+				licenseExpirationDate: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_expiration_date' ],
+				storedGuarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ]),
+				// GET flavor from request
+				flavor: 'None'
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -90,35 +90,39 @@ export class ServicePlatformService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'guaranteeTerms' ].map(item => {
-				return {
-					uuid: item[ 'guaranteeID' ],
-					name: item[ 'guarantee_name' ],
-					definition: item[ 'guarantee_definition' ],
-					threshold: item[ 'guarantee_threshold' ],
-					unit: item[ 'guarantee_unit' ],
-					slos: item[ 'target_slo' ].map(slo => {
-						return {
-							kpi: slo.target_kpi,
-							operator: slo.target_operator,
-							value: slo.target_value,
-							period: slo.target_period
-						};
-					})
-				};
-			});
+			return this.parseGuaranteesData(response[ 'guaranteeTerms' ]);
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
+	private parseGuaranteesData(guarantees) {
+		return guarantees.map(guarantee => {
+			return {
+				uuid: guarantee[ 'guaranteeID' ],
+				name: guarantee[ 'guarantee_name' ],
+				definition: guarantee[ 'guarantee_definition' ],
+				threshold: guarantee[ 'guarantee_threshold' ],
+				unit: guarantee[ 'guarantee_unit' ],
+				slos: guarantee[ 'target_slo' ].map(slo => {
+					return {
+						kpi: slo.target_kpi,
+						operator: slo.target_operator,
+						value: slo.target_value,
+						period: slo.target_period
+					};
+				})
+			};
+		});
+	}
+
 	/**
-	 * Retrive a list with all the flavours for a service
+	 * Retrive a list with all the flavors for a service
 	 * @param uuid identifier of the network service
 	 */
-	async getFlavours(uuid) {
+	async getFlavors(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.flavours + '/' + uuid;
+		const url = this.config.baseSP + this.config.flavors + '/' + uuid;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();

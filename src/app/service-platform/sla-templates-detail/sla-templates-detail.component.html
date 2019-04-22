@@ -11,73 +11,128 @@
     <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
-<div class="subheader" *ngIf="detail['author']">
-    <p class="subtitle author" i18n="@@createdBy">Created by</p>
-    <p class="subtitle author">{{ detail['author'] }}</p>
-    <p class="subtitle date">{{ detail['createdAt'] }}</p>
+<div class="bubbleDiv" *ngIf="detail['version']">
+    <span class="text" i18n="@@version">Version</span>
+    <div class="number">
+        <span>{{ detail.version }}</span>
+    </div>
 </div>
 
-<form [formGroup]="templateForm">
-    <mat-form-field class="uuid" *ngIf="detail['uuid']">
+<form>
+    <mat-form-field *ngIf="detail['uuid']" class="left-column">
         <input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true"
             i18n-placeholder="@@templateIDPlaceholder" />
+        <button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+            i18n-matTooltip="@@copy">
+            <i class="wui wui-copy-alt"></i>
+        </button>
     </mat-form-field>
 
-    <mat-form-field *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" [disabled]="true" i18n-placeholder="@@vendorPlaceholder" />
+    <div class="same-row">
+        <mat-form-field *ngIf="detail['vendor']" class="left-column">
+            <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" [disabled]="true" i18n-placeholder="@@vendorPlaceholder" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="detail['providerName']">
+            <input matInput placeholder="Provider name" value="{{ detail['providerName'] }}" [disabled]="true"
+                i18n-placeholder="@@providerNamePlaceholder" />
+        </mat-form-field>
+    </div>
+
+    <div class="same-row">
+        <app-select class="left-column" *ngIf="detail['ns']" placeholder="Network Service" [list]="[ detail.ns ]" [value]="detail.ns"
+            [disabled]="true" i18n-placeholder="@@nsPlaceholder">
+        </app-select>
+
+        <app-calendar *ngIf="detail['expirationDate']" class="right-column" placeholder="Expiration Date" [value]="detail['expirationDate']"
+            [disabled]="true" i18n-placeholder="@@expirationDatePlaceholder">
+        </app-calendar>
+    </div>
+
+    <mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+        <input matInput placeholder="Instantiated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
+            i18n-placeholder="@@instantiatedAtPlaceholder" />
     </mat-form-field>
-
-    <app-select class="ns" *ngIf="templateForm.controls.ns.value" placeholder="Network Service" [list]="listNS"
-        [value]="templateForm.value.ns" (selectEvent)="receiveNS($event)" [disabled]="true" i18n-placeholder="@@nsPlaceholder"></app-select>
-
-    <app-calendar *ngIf="detail['expirationDate']" placeholder="Expiration Date" [value]="detail['expirationDate']"
-        (dateEvent)="receiveDate($event)" [disabled]="true" i18n-placeholder="@@expirationDatePlaceholder"></app-calendar>
 </form>
 
-<div class="advanced-section" *ngIf="detail['storedGuarantees']">
+<div *ngIf="detail['uuid']" class="advanced-section">
+    <!-- Show or hide the service guarantees section -->
     <button class="dropdownButton" (click)="closed = !closed">
         <div class="open">
-            <span i18n="@@serviceGuarantees">Service Guarantees</span> <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+            <span i18n="@@advancedSection">Advanced section</span>
+
+            <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+
             <ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
         </div>
+
         <div class="underline" [ngClass]="{ opened: !closed }"></div>
     </button>
 
-    <form *ngIf="!closed" [formGroup]="templateForm" class="advancedForm">
+    <form *ngIf="!closed && detail['storedGuarantees']" class="advanced-form">
         <h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
 
-        <div class="guaranteeRow" *ngFor="let item of detail['storedGuarantees']; let i = index">
+        <!-- List stored service guarantees -->
+        <div class="guarantee-row" *ngFor="let item of detail['storedGuarantees']">
             <div class="description" *ngIf="item">
+                <!-- Title with delete and open details button -->
                 <div class="description-title">
-                    <h4 class="title4">{{ item.guaranteeID }} - {{ item.name }}: {{ item.value }} {{ item.unit }}</h4>
+                    <h4 class="title4">
+                        {{ item.uuid }} - {{ item.name }}: {{ item.threshold }} {{ item.unit }}
+                    </h4>
 
-                    <button class="dropdownButton" (click)="closedSLO[i] = !closedSLO[i]">
-                        <i class="wui wui-caret-down" *ngIf="closedSLO[i]; else: openedSLO"></i>
-
+                    <button class="dropdownButton" (click)="item.closed = !item.closed">
+                        <i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
                         <ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
                     </button>
                 </div>
 
-                <span class="content" *ngIf="!closedSLO[i]">
-                    <div class="sloInfo">
-                        <div class="timePeriod">
-                            <mat-form-field class="gPeriodValue">
-                                <input matInput placeholder="Service Level" disabled
-                                    value="{{ item.serviceLevelObjetive.parameter }} {{  item.serviceLevelObjetive.operator }} {{  item.serviceLevelObjetive.target_value }}"
-                                    i18n-placeholder="@@serviceLevelPlaceholder" />
-                            </mat-form-field>
+                <!-- Detailed information about the guarantee -->
+                <span class="content" *ngIf="!item.closed">
+                    <p *ngIf="item.definition" class="definition">{{ item.definition }}</p>
 
-                            <mat-form-field class="gPeriod">
-                                <input matInput placeholder="Time Period" disabled value="{{ item.serviceLevelObjetive.period }}"
-                                    i18n-placeholder="@@timePeriodPlaceholder" />
-                            </mat-form-field>
-                        </div>
+                    <div class="slo-info" *ngFor="let slo of item.slos">
+                        <mat-form-field class="slo">
+                            <input matInput placeholder="Service Level Objective" disabled
+                                value="{{ slo.kpi }} {{ slo.operator }} {{ slo.value }}"
+                                i18n-placeholder="@@serviceLevelObjectivePlaceholder" />
+                        </mat-form-field>
 
-                        <p>{{ item.definition }}</p>
+                        <mat-form-field class="period">
+                            <input matInput placeholder="Time period" disabled value="{{ slo.period || 'None' }}"
+                                i18n-placeholder="@@timePeriodPlaceholder" />
+                        </mat-form-field>
                     </div>
                 </span>
             </div>
         </div>
+    </form>
+
+    <form *ngIf="!closed" class="advanced-form">
+        <h2 class="title2" i18n="@@license">License</h2>
+
+        <app-select class="licenses-select" placeholder="Select a license" [list]="[ detail.license ]" [value]="detail.license"
+            [disabled]="true" i18n-placeholder="@@selectLicensePlaceholder">
+        </app-select>
+
+        <app-calendar *ngIf="detail['licenseExpirationDate']" placeholder="License expiration date"
+            [value]="detail['licenseExpirationDate']" [disabled]="true" i18n-placeholder="@@licenseExpirationDatePlaceholder">
+        </app-calendar>
+
+        <div *ngIf="detail['licenseInstances']" class="instances-number">
+            <p class="label" i18n="@@numberInstancesAllowed">Number of instances allowed: </p>
+            <mat-form-field class="instances">
+                <input matInput [value]="detail['licenseInstances']" disabled />
+            </mat-form-field>
+        </div>
+    </form>
+
+    <form *ngIf="!closed" class="advanced-form">
+        <h2 class="title2" i18n="@@flavor">Flavor</h2>
+
+        <app-select class="flavor-select" placeholder="Select a flavor" [list]="[ detail.flavor ]" [value]="detail.flavor" [disabled]="true"
+            i18n-placeholder="@@selectflavorPlaceholder">
+        </app-select>
     </form>
 </div>
 

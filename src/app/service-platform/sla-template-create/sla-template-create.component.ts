@@ -126,7 +126,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			const prop = guarantee.split(' - ')[ 1 ].split(': ')[ 0 ];
 
 			// Include the selected guarantee in the displayed list
-			this.storedGuarantees.push(Object.assign({}, this.guaranties.find(x => x.uuid === id), { closed: true }));
+			this.storedGuarantees.push(Object.assign({ }, this.guaranties.find(x => x.uuid === id), { closed: true }));
 
 			// Remove the selected guarantee from the guarantees list offered
 			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 0 ] !== id);
@@ -202,7 +202,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 		return this.templateForm.get('instances').hasError('pattern');
 	}
 
-	canShowflavors() {
+	canShowFlavors() {
 		return !this.closed && this.flavors && this.flavors.length;
 	}
 
