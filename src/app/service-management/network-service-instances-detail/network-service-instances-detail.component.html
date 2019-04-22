@@ -1,5 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@nsInstances">Network service instances
-</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@nsInstances">Network service instances</h3>
 
 <div class="title-section" *ngIf="detail['uuid']">
 	<h1 class="title1 title-section-name">{{ detail.name }}</h1>
@@ -13,37 +12,51 @@
 	</div>
 </div>
 
-<form class="detail">
-	<mat-form-field class="instanceID" *ngIf="detail['uuid']">
+<form>
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
 		<input matInput placeholder="Instance ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@instanceIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
 	</mat-form-field>
 
-	<mat-form-field class="serviceID" *ngIf="detail['serviceID']">
-		<input matInput placeholder="Service ID" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['serviceID']" class="left-column">
+			<input matInput placeholder="Service ID" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['serviceID'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+		<mat-form-field *ngIf="detail['serviceVersion']" class="right-column">
+			<input matInput placeholder="Service version" value="{{ detail['serviceVersion'] }}" [disabled]="true"
+				i18n-placeholder="@@serviceVersionPlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<mat-form-field *ngIf="detail['status']" class="left-column">
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
+			i18n-placeholder="@@statusPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field class="status" *ngIf="detail['status']">
-		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
-	</mat-form-field>
-
-	<div class="stop" *ngIf="detail['uuid'] && detail['status'].toUpperCase() != 'TERMINATED'" (click)="terminate()">
+	<div class="stop" *ngIf="canShowTerminate()" (click)="terminate()">
 		<button class="icon-button-shadow actions " mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate"><i
 				class="wui wui-stop-alt"></i></button>
 		<span i18n="@@terminateInstance">Terminate instance</span>
 	</div>
 
 	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
-		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
+</form>
 
+<form>
 	<!-- VNFs table section -->
-	<div class="vnf" *ngIf="detail['uuid']">
-		<h2 class="title2" i18n="@@vnfs">VNFs</h2>
-		<span class="message" *ngIf="!dataSource.data || dataSource.data.length < 1" i18n="@@noVNFToDisplayMsg">There
-			are no virtual network functions to display</span>
-
-		<table mat-table class="vnfs" *ngIf="dataSource.data && dataSource.data.length > 0" [dataSource]="dataSource">
+	<div class="vnf" *ngIf="!loading">
+		<h2 class="title2" i18n="@@vnfInstances">VNF instances</h2>
+		<table mat-table [dataSource]="dataSourceVNF">
 			<ng-container matColumnDef="uuid">
 				<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
 				<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
@@ -56,12 +69,12 @@
 
 			<ng-container matColumnDef="status">
 				<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
-				<td mat-cell *matCellDef="let element">{{ element.status }}</td>
+				<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.status) }}</td>
 			</ng-container>
 
 			<ng-container matColumnDef="updatedAt">
 				<th mat-header-cell *matHeaderCellDef i18n="@@updatedAt">Updated At</th>
-				<td mat-cell *matCellDef="let element">{{ element.updatedAt }}</td>
+				<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
 			</ng-container>
 
 			<!-- Expanded Content Column - The detail row is made up of this one column -->
@@ -79,6 +92,62 @@
 			<tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
 				[@detailExpand]="row.element == vnfDetail ? 'expanded' : 'collapsed'" class="detail-row" style="overflow: hidden"></tr>
 		</table>
+
+		<div *ngIf="!dataSourceVNF.data || !dataSourceVNF.data.length && !loading" class="no-results-container">
+			<div class="no-results-line"></div>
+			<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+			<div class="no-results-line"></div>
+		</div>
+	</div>
+</form>
+
+<form>
+	<!-- CNFs table section -->
+	<!-- TODO update table fields and the opened row attributes -->
+	<div class="cnf" *ngIf="!loading">
+		<h2 class="title2" i18n="@@cnfInstances">CNF instances</h2>
+		<table mat-table [dataSource]="dataSourceCNF">
+			<ng-container matColumnDef="uuid">
+				<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
+				<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="version">
+				<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
+				<td mat-cell *matCellDef="let element">{{ element.version }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="status">
+				<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
+				<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.status) }}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="updatedAt">
+				<th mat-header-cell *matHeaderCellDef i18n="@@updatedAt">Updated At</th>
+				<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
+			</ng-container>
+
+			<!-- Expanded Content Column - The detail row is made up of this one column -->
+			<ng-container matColumnDef="expandedDetail">
+				<td mat-cell *matCellDef="let detail">
+					<app-function-records-detail [vdus]="vnfDetail['cdus']"></app-function-records-detail>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+			<tr mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row" [class.expanded]="vnfDetail == row"
+				[class.collapsed]="vnfDetail != row" (click)="vnfDetail = vnfDetail == row ? {} : row"></tr>
+
+			<tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+				[@detailExpand]="row.element == vnfDetail ? 'expanded' : 'collapsed'" class="detail-row" style="overflow: hidden"></tr>
+		</table>
+
+		<div *ngIf="!dataSourceCNF.data || !dataSourceCNF.data.length && !loading" class="no-results-container">
+			<div class="no-results-line"></div>
+			<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+			<div class="no-results-line"></div>
+		</div>
 	</div>
 </form>
 

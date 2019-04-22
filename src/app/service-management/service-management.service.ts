@@ -52,77 +52,63 @@ export class ServiceManagementService {
      *
      * @param uuid UUID of the desired NS instance.
      */
-	getOneNSInstance(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getOneNSInstance(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.serviceRecords + '/' + uuid;
 
-			this.http
-				.get(this.config.baseSP + this.config.serviceRecords + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response.hasOwnProperty('uuid')) {
-						resolve({
-							uuid: response[ 'uuid' ],
-							name: response[ 'instance_name' ],
-							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-							serviceID: response[ 'descriptor_reference' ],
-							version: response[ 'version' ],
-							updatedAt: this.utilsService.formatUTCDate(
-								response[ 'updated_at' ]
-							),
-							vnf: response[ 'network_functions' ]
-						});
-					} else {
-						reject();
-					}
-				})
-				.catch(err =>
-					reject('There was an error fetching the network service instance')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'instance_name' ] || 'Unknown',
+				status: response[ 'status' ],
+				serviceID: response[ 'descriptor_reference' ],
+				serviceVersion: response[ 'descriptor_version' ],
+				version: response[ 'version' ],
+				updatedAt: response[ 'updated_at' ],
+				vnf: response[ 'network_functions' ]
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
-     * Retrieves a VNF by UUID
-     *
-     * @param uuid UUID of the desired VNF.
-     */
-	getOneFunctionRecord(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	 * Retrieves a VNF by UUID
+	 *
+	 * @param uuid UUID of the desired VNF.
+	 */
+	async getOneFunctionRecord(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functionRecords + '/' + uuid;
 
-			this.http
-				.get(this.config.baseSP + this.config.functionRecords + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						descriptorRef: response[ 'descriptor_reference' ],
-						descriptorVersion: response[ 'descriptor_reference' ],
-						name: response[ 'descriptor_version' ],
-						version: response[ 'version' ],
-						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						vdus: response[ 'virtual_deployment_units' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the VNF ' + uuid));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				status: response[ 'status' ],
+				descriptorRef: response[ 'descriptor_reference' ],
+				descriptorVersion: response[ 'descriptor_reference' ],
+				name: response[ 'descriptor_version' ],
+				version: response[ 'version' ],
+				updatedAt: response[ 'updated_at' ],
+				vdus: response[ 'virtual_deployment_units' ],
+				cdus: response[ 'cloudnative_deployment_units' ]
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
-     * Network service instantiation
-     *
-     * @param name Name given to the instance
-     * @param service Information about the service about to be instantiated
-     * @param ingress Ingress points of the instantiation
-     * @param egress Egress points of the instantiation
-     * @param sla Selected service level agreement in the instantiation
-     */
+	 * Network service instantiation
+	 *
+	 * @param name Name given to the instance
+	 * @param service Information about the service about to be instantiated
+	 * @param ingress Ingress points of the instantiation
+	 * @param egress Egress points of the instantiation
+	 * @param sla Selected service level agreement in the instantiation
+	 */
 	postNSRequest(
 		name: string,
 		serviceUUID: Object,
@@ -157,10 +143,10 @@ export class ServiceManagementService {
 	}
 
 	/*
-    * Terminates a Network Service Instance by UUID
-    *
-    * @param uuid UUID of the desired Network Service Instance.
-    */
+	* Terminates a Network Service Instance by UUID
+	*
+	* @param uuid UUID of the desired Network Service Instance.
+	*/
 	async postOneNSInstanceTermination(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.requests;
