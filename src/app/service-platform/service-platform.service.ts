@@ -68,13 +68,12 @@ export class ServicePlatformService {
 				providerName: response[ 'slad' ][ 'sla_template' ][ 'provider_name' ],
 				updatedAt: response[ 'updated_at' ],
 				expirationDate: response[ 'slad' ][ 'sla_template' ][ 'expiration_date' ],
-				ns: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
+				ns: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_uuid' ],
+				nsName: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
 				license: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_type' ],
 				licenseInstances: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'allowed_service_instances' ],
 				licenseExpirationDate: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_expiration_date' ],
-				storedGuarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ]),
-				// GET flavor from request
-				flavor: 'None'
+				storedGuarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ])
 			};
 		} catch (error) {
 			console.error(error);
@@ -128,6 +127,23 @@ export class ServicePlatformService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response instanceof Array ?
 				response : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 *
+	 * @param ns UUID of the NS for this SLA template
+	 * @param sla UUID of the SLA template
+	 */
+	async getOneFlavor(ns, sla) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.flavors + '/' + ns + '/' + sla;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'd_flavour_name' ] || 'None';
 		} catch (error) {
 			console.error(error);
 		}

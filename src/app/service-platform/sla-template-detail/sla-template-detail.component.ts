@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-sla-templates-detail',
-	templateUrl: './sla-templates-detail.component.html',
-	styleUrls: [ './sla-templates-detail.component.scss' ],
+	selector: 'app-sla-template-detail',
+	templateUrl: './sla-template-detail.component.html',
+	styleUrls: [ './sla-template-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlaTemplatesDetailComponent implements OnInit {
+export class SlaTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
 	templateForm: FormGroup;
@@ -44,6 +44,11 @@ export class SlaTemplatesDetailComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.detail = response;
+			const response2 = await this.servicePlatformService.getOneFlavor(this.detail[ 'ns' ], this.detail[ 'uuid' ]);
+
+			if (response2) {
+				this.detail[ 'flavor' ] = this.utilsService.capitalizeFirstLetter(response2);
+			}
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch SLA template', '');
 			this.close();

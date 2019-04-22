@@ -40,8 +40,8 @@
     </div>
 
     <div class="same-row">
-        <app-select class="left-column" *ngIf="detail['ns']" placeholder="Network Service" [list]="[ detail.ns ]" [value]="detail.ns"
-            [disabled]="true" i18n-placeholder="@@nsPlaceholder">
+        <app-select class="left-column" *ngIf="detail['nsName']" placeholder="Network Service" [list]="[ detail.nsName ]"
+            [value]="detail.nsName" [disabled]="true" i18n-placeholder="@@nsPlaceholder">
         </app-select>
 
         <app-calendar *ngIf="detail['expirationDate']" class="right-column" placeholder="Expiration Date" [value]="detail['expirationDate']"

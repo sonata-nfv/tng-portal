@@ -45,7 +45,7 @@ import {
 	RuntimePoliciesGeneratedActionsComponent
 } from './service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component';
 import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
-import { SlaTemplatesDetailComponent } from './service-platform/sla-templates-detail/sla-templates-detail.component';
+import { SlaTemplateDetailComponent } from './service-platform/sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
 import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
@@ -159,7 +159,7 @@ const routes: Routes = [
 				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
 				children: [
 					{ path: 'new', component: SlaTemplateCreateComponent },
-					{ path: ':id', component: SlaTemplatesDetailComponent }
+					{ path: ':id', component: SlaTemplateDetailComponent }
 				]
 			},
 			{
