@@ -253,7 +253,7 @@ export class CommonService {
 					serviceId: item.uuid,
 					vendor: item.nsd.vendor,
 					version: item.nsd.version,
-					status: this.utilsService.capitalizeFirstLetter(item.status),
+					status: item.status,
 					licenses: 'None',
 					slas: '/service-platform/slas/sla-templates'
 				})) : [];
