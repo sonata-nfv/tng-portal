@@ -171,7 +171,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			service_licence_type: this.templateForm.get('license').value || 'public',
 			allowed_service_instances: this.templateForm.get('instances').value || '1',
 			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
-			dflavor_name: this.templateForm.get('flavor').value || ''
+			dflavour_name: this.templateForm.get('flavor').value || ''
 		};
 	}
 
