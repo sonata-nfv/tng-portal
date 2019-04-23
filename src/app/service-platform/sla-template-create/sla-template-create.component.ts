@@ -63,7 +63,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 		]);
 
 		this.loading = false;
-		if (responses) {
+		if (responses && responses[ 0 ] && responses[ 1 ]) {
 			// Check there are NS and SLOs to create a template
 			if (!responses[ 0 ].length || !responses[ 1 ].length) {
 				this.utilsService.openSnackBar('There was an error fetching the information required', '');
@@ -81,8 +81,13 @@ export class SlaTemplateCreateComponent implements OnInit {
 				x.uuid + ' - ' + x.name + ': ' + x.threshold + ' ' + x.unit
 			);
 		} else {
-			this.utilsService.openSnackBar('There was an error fetching the information required', '');
-			this.close();
+			const title = 'oh oh...';
+			const content = 'There was an error fetching the information required to create a template. Please, try again later.';
+			const action = 'Accept';
+
+			this.dialogData.openDialog(title, content, action, () => {
+				this.close();
+			});
 		}
 	}
 

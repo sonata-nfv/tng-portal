@@ -81,6 +81,7 @@ export class PlatformComponent implements OnInit {
 			this.platformType = this.parsePlatformType(this.originalPlatform[ 'type' ]);
 			this.populateForm();
 		} else {
+			this.utilsService.openSnackBar('Unable to fetch the platform', '');
 			this.close();
 		}
 	}
@@ -95,7 +96,6 @@ export class PlatformComponent implements OnInit {
 				return 'ONAP';
 			default:
 				this.utilsService.openSnackBar('Unrecognized platform type. Please select another.', '');
-				this.close();
 		}
 	}
 
