@@ -608,14 +608,6 @@
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">147</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="closeButton" datatype="html">
         <source>CLOSE</source>
@@ -3215,34 +3207,6 @@
           <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ip" datatype="html">
-        <source>IP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="mac" datatype="html">
-        <source>MAC</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="floatingIp" datatype="html">
-        <source>Floating IP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="internalIp" datatype="html">
-        <source>Internal IP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="eaad1b162a73b5a17502480d5abbeff040864cec" datatype="html">
         <source>Service management</source>
         <context-group purpose="location">
@@ -3263,6 +3227,45 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ip" datatype="html">
+        <source>IP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mac" datatype="html">
+        <source>MAC</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noInstancesToDisplay" datatype="html">
+        <source>No instances to display</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="floatingIp" datatype="html">
+        <source>Floating IP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="internalIp" datatype="html">
+        <source>Internal IP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
     </body>
