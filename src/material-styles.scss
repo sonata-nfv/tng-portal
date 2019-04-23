@@ -4,7 +4,7 @@ form {
 	flex-direction: column;
 }
 
-form .sameRow {
+form .same-row {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -17,7 +17,7 @@ form .sameRow {
 .mat-form-field {
 	display: flex;
 	flex-direction: column;
-	font-size: 16px;
+	font-size: 18px;
 	text-align: left;
 	color: $secondary-font-color;
 
@@ -87,12 +87,7 @@ form .sameRow {
 	}
 }
 
-// Input styles for updated at field
-.mat-form-field.time-form-field,
-.mat-form-field.lastTimeExecuted {
-	margin-bottom: 20px;
-}
-
+// Input styles for time form fields at field
 .mat-form-field.time-form-field .mat-input-element:disabled,
 .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
 	font-size: 14px;

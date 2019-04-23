@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
 	selector: 'app-runtime-policies-create',
@@ -13,7 +14,6 @@ import { ServicePlatformService } from '../service-platform.service';
 })
 export class RuntimePoliciesCreateComponent implements OnInit {
 	loading = false;
-	section: string;
 	reset = false;
 	policyForm: FormGroup;
 	disabledButton = true;
@@ -24,38 +24,25 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private route: ActivatedRoute,
+		private utilsService: UtilsService,
 		private commonService: CommonService,
 		private servicePlatformService: ServicePlatformService
 	) { }
 
 	ngOnInit() {
-		this.section = 'SP';
+		this.initForms();
+		this.getData();
+	}
+
+	private initForms() {
 		this.policyForm = new FormGroup({
 			name: new FormControl(),
 			default: new FormControl(),
-			ns: new FormControl(null, Validators.required),
+			ns: new FormControl('', Validators.required),
 			monitoringRule: new FormControl()
 		});
 
 		this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
-
-		this.loading = true;
-		this.commonService
-			.getNetworkServices(this.section)
-			.then(response => {
-				this.loading = false;
-
-				// Save NS data to display
-				this.nsList = response.map(x => x.name);
-
-				// Save complete data from NS
-				this.nsListComplete = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.nsList.push('None');
-			});
 	}
 
 	private _onFormChanges(value?) {
@@ -64,6 +51,23 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			this.policyForm.get('name').value != null
 		) {
 			this.disabledButton = false;
+		}
+	}
+
+	private async getData() {
+		this.loading = true;
+		const response = await this.commonService.getNetworkServices('SP');
+
+		this.loading = false;
+		if (response) {
+			// Save NS data to display
+			this.nsList = response.map(x => x.name);
+
+			// Save complete data from NS
+			this.nsListComplete = response;
+		} else {
+			this.nsList.push('None');
+			this.utilsService.openSnackBar('Unable to fetch network services', '');
 		}
 	}
 

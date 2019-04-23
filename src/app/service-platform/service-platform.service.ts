@@ -54,31 +54,30 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired SLA Template.
      */
-	getOneSLATemplate(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(this.config.baseSP + this.config.slaTemplates + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'slad' ][ 'name' ],
-						vendor: response[ 'slad' ][ 'vendor' ],
-						author: response[ 'slad' ][ 'author' ],
-						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
-						expirationDate: new Date(
-							Date.parse(response[ 'slad' ][ 'sla_template' ][ 'valid_until' ])
-						),
-						ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
-						storedGuarantees:
-							response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the SLA template'));
-		});
+	async getOneSLATemplate(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaTemplates + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'slad' ][ 'name' ],
+				vendor: response[ 'slad' ][ 'vendor' ],
+				version: response[ 'slad' ][ 'version' ],
+				providerName: response[ 'slad' ][ 'sla_template' ][ 'provider_name' ],
+				updatedAt: response[ 'updated_at' ],
+				expirationDate: response[ 'slad' ][ 'sla_template' ][ 'expiration_date' ],
+				ns: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_uuid' ],
+				nsName: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
+				license: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_type' ],
+				licenseInstances: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'allowed_service_instances' ],
+				licenseExpirationDate: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_expiration_date' ],
+				storedGuarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ])
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -90,40 +89,61 @@ export class ServicePlatformService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'guaranteeTerms' ].map(item => {
-				return {
-					uuid: item[ 'guaranteeID' ],
-					name: item[ 'guarantee_name' ],
-					definition: item[ 'guarantee_definition' ],
-					threshold: item[ 'guarantee_threshold' ],
-					unit: item[ 'guarantee_unit' ],
-					slos: item[ 'target_slo' ].map(slo => {
-						return {
-							kpi: slo.target_kpi,
-							operator: slo.target_operator,
-							value: slo.target_value,
-							period: slo.target_period
-						};
-					})
-				};
-			});
+			return this.parseGuaranteesData(response[ 'guaranteeTerms' ]);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	private parseGuaranteesData(guarantees) {
+		return guarantees.map(guarantee => {
+			return {
+				uuid: guarantee[ 'guaranteeID' ],
+				name: guarantee[ 'guarantee_name' ],
+				definition: guarantee[ 'guarantee_definition' ],
+				threshold: guarantee[ 'guarantee_threshold' ],
+				unit: guarantee[ 'guarantee_unit' ],
+				slos: guarantee[ 'target_slo' ].map(slo => {
+					return {
+						kpi: slo.target_kpi,
+						operator: slo.target_operator,
+						value: slo.target_value,
+						period: slo.target_period
+					};
+				})
+			};
+		});
+	}
+
+	/**
+	 * Retrive a list with all the flavors for a service
+	 * @param uuid identifier of the network service
+	 */
+	async getFlavors(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.flavors + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response : [];
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
 	/**
-	 * Retrive a list with all the flavours for a service
-	 * @param uuid identifier of the network service
+	 *
+	 * @param ns UUID of the NS for this SLA template
+	 * @param sla UUID of the SLA template
 	 */
-	async getFlavours(uuid) {
+	async getOneFlavor(ns, sla) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.flavours + '/' + uuid;
+		const url = this.config.baseSP + this.config.flavors + '/' + ns + '/' + sla;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response : [];
+			return response[ 'd_flavour_name' ] || 'None';
 		} catch (error) {
 			console.error(error);
 		}
@@ -143,7 +163,7 @@ export class ServicePlatformService {
 			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
-			return error.error[ 'ERROR: ' ] || error.error[ 'ERROR:' ] || error.error[ 'ERROR' ];
+			return error.error.ERROR;
 		}
 	}
 
@@ -174,23 +194,16 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired SLA Template.
 	 */
-	deleteOneSLATemplate(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async deleteOneSLATemplate(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaTemplates + '/' + uuid;
 
-			this.http
-				.delete(this.config.baseSP + this.config.slaTemplates + '/' + uuid, {
-					headers: headers,
-					responseType: 'text'
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => {
-					reject('There was an error deleting the sla template');
-				});
-		});
+		try {
+			const response = await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
+			return response;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -764,9 +777,10 @@ export class ServicePlatformService {
 	 */
 	async postOneSliceInstanceTermination(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid + '/terminate';
+		const url = this.config.baseSP + this.config.requests;
 		const terminateTime = {
-			terminateTime: '0'
+			'instance_uuid': uuid,
+			'request_type': 'TERMINATE_SLICE'
 		};
 
 		try {

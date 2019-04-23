@@ -20,7 +20,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 	templateForm: FormGroup;
 	nsListSelect: Array<any>;
 	guaranteesListSelect: Array<any>;
-	flavours: Array<any>;
+	flavors: Array<any>;
 	storedGuarantees = new Array();
 	guaranties = new Array();
 	nss = new Array();
@@ -49,7 +49,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			license: new FormControl(),
 			instances: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			licenseExpirationDate: new FormControl(),
-			flavour: new FormControl()
+			flavor: new FormControl()
 		});
 
 		this.templateForm.valueChanges.subscribe(value => this._onFormChanges(value));
@@ -63,7 +63,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 		]);
 
 		this.loading = false;
-		if (responses) {
+		if (responses && responses[ 0 ] && responses[ 1 ]) {
 			// Check there are NS and SLOs to create a template
 			if (!responses[ 0 ].length || !responses[ 1 ].length) {
 				this.utilsService.openSnackBar('There was an error fetching the information required', '');
@@ -81,8 +81,13 @@ export class SlaTemplateCreateComponent implements OnInit {
 				x.uuid + ' - ' + x.name + ': ' + x.threshold + ' ' + x.unit
 			);
 		} else {
-			this.utilsService.openSnackBar('There was an error fetching the information required', '');
-			this.close();
+			const title = 'oh oh...';
+			const content = 'There was an error fetching the information required to create a template. Please, try again later.';
+			const action = 'Accept';
+
+			this.dialogData.openDialog(title, content, action, () => {
+				this.close();
+			});
 		}
 	}
 
@@ -95,20 +100,24 @@ export class SlaTemplateCreateComponent implements OnInit {
 	receiveNS(ns) {
 		if (ns) {
 			this.templateForm.get('ns').setValue(ns);
-			this.requestFlavours(ns);
+			this.requestFlavors(ns);
 		}
 	}
 
-	async requestFlavours(ns) {
+	receiveFlavor(flavor) {
+		this.templateForm.get('flavor').setValue(flavor);
+	}
+
+	async requestFlavors(ns) {
 		this.loading = true;
 		const nsd_uuid = this.nss.find(x => x.name === ns).serviceId;
-		const response = await this.servicePlatformService.getFlavours(nsd_uuid);
+		const response = await this.servicePlatformService.getFlavors(nsd_uuid);
 
 		this.loading = false;
 		if (response && response.length) {
-			this.flavours = response;
+			this.flavors = response;
 		} else {
-			this.utilsService.openSnackBar('No flavours were found for this network service', '');
+			this.utilsService.openSnackBar('No flavors were found for this network service', '');
 		}
 	}
 
@@ -167,7 +176,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			service_licence_type: this.templateForm.get('license').value || 'public',
 			allowed_service_instances: this.templateForm.get('instances').value || '1',
 			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
-			dflavour_name: this.templateForm.get('flavour').value || ''
+			dflavour_name: this.templateForm.get('flavor').value || ''
 		};
 	}
 
@@ -178,9 +187,9 @@ export class SlaTemplateCreateComponent implements OnInit {
 
 		this.loading = false;
 		if (response && response instanceof Object) {
-			this.utilsService.openSnackBar('Template ' + response[ 'name' ] + ' created', '');
+			this.utilsService.openSnackBar('Template created', '');
 			this.close();
-		} else if (response && response instanceof String) {
+		} else if (response) {
 			const title = 'oh oh...';
 			const action = 'Accept';
 			const content = 'Some of the data introduced is not valid. Please, use the following hint to fix it: \n \n' + response;
@@ -193,12 +202,13 @@ export class SlaTemplateCreateComponent implements OnInit {
 	canShowAdvancedSection() {
 		return this.guaranteesListSelect || this.storedGuarantees.length;
 	}
+
 	instancesErrorExists() {
 		return this.templateForm.get('instances').hasError('pattern');
 	}
 
-	canShowFlavours() {
-		return !this.closed && this.flavours && this.flavours.length;
+	canShowFlavors() {
+		return !this.closed && this.flavors && this.flavors.length;
 	}
 
 	close() {

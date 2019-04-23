@@ -1,29 +1,28 @@
 @import "../../../constants.scss";
-app-function-records-detail {
+app-vnf-record-detail {
   display: flex;
   flex-direction: column;
   background-color: $panel-background-color;
   border-bottom: 1px solid $primary-color-light;
 
-  .VNFDetail {
+  .openedDetail {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 10px;
 
+    // Styles for no instances message
+    .no-results-container {
+		margin-top: 2vh;
+	}
+
     .tableDetailTitle {
-      margin-top: 20px;
+      margin-top: 1vh;
       font-size: 18px;
       color: $primary-font-color-light;
     }
 
-    .message {
-      margin-top: 15px;
-      margin-bottom: 40px;
-      color: $secondary-font-color-light;
-    }
-
-    .mat-table.innerTable {
+    table {
       width: 100%;
       margin-bottom: 40px;
       background-color: $panel-background-color;
@@ -35,7 +34,7 @@ app-function-records-detail {
       &.connectionPoints {
         .mat-cell:nth-child(1),
         .mat-header-cell:nth-child(1) {
-		  width: 10%;
+		      width: 10%;
         }
         .mat-cell:nth-child(2),
         .mat-header-cell:nth-child(2) {
@@ -44,7 +43,7 @@ app-function-records-detail {
       }
     }
 
-    .ineerTableRow.mat-row {
+    tr.mat-row {
       width: 100%;
       // min-width: 150px;
       border-bottom: none;

@@ -24,7 +24,7 @@
         <input matInput placeholder="SLA ID" value="{{ detail['slaUUID'] }}" disabled i18n-placeholder="@@slaIDPlaceholder" />
     </mat-form-field>
 
-    <div class="sameRow">
+    <div class="same-row">
         <mat-form-field *ngIf="detail['serviceName']">
             <input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled i18n="@@serviceNamePlaceholder" />
         </mat-form-field>
@@ -35,7 +35,7 @@
         </mat-form-field>
     </div>
 
-    <div class="sameRow">
+    <div class="same-row">
         <mat-form-field *ngIf="detail['serviceUUID']">
             <input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled
                 i18n-placeholder="@@serviceIDPlaceholder" />

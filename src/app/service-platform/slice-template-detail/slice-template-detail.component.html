@@ -25,7 +25,7 @@
 </div>
 
 <form class="detail">
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="detail['uuid']">
 			<input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
 		</mat-form-field>
@@ -33,7 +33,7 @@
 			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 		</mat-form-field>
 	</div>
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="detail['usageState']">
 			<input matInput placeholder="Usage state" value="{{ utilsService.capitalizeFirstLetter(detail['usageState']) }}" disabled
 				i18n-placeholder="@@usageStatePlaceholder" />
@@ -43,7 +43,7 @@
 				i18n-placeholder="@@statusPlaceholder" />
 		</mat-form-field>
 	</div>
-	<div class="sameRow">
+	<div class="same-row">
 		<mat-form-field *ngIf="detail['onboardingState']">
 			<input matInput placeholder="Onboarding state" value="{{ utilsService.capitalizeFirstLetter(detail['onboardingState']) }}"
 				disabled i18n-placeholder="@@onboardingStatePlaceholder" />

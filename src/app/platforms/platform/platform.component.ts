@@ -49,8 +49,10 @@ export class PlatformComponent implements OnInit {
 			password: new FormControl('', Validators.required),
 			monitoring_urls: new FormControl()
 		});
+
 		this.osmForm = new FormGroup({
-			project_name: new FormControl('', Validators.required)
+			project_name: new FormControl('', Validators.required),
+			vim_account: new FormControl('', Validators.required)
 		});
 	}
 
@@ -66,6 +68,7 @@ export class PlatformComponent implements OnInit {
 		this.platformForm.get('password').setValue(this.originalPlatform[ 'password' ]);
 		this.platformForm.get('monitoring_urls').setValue(this.originalPlatform[ 'monitoring_urls' ]);
 		this.osmForm.get('project_name').setValue(this.originalPlatform[ 'project_name' ]);
+		this.osmForm.get('vim_account').setValue(this.originalPlatform[ 'vim_account' ]);
 	}
 
 	private async requestPlatform(uuid) {
@@ -78,6 +81,7 @@ export class PlatformComponent implements OnInit {
 			this.platformType = this.parsePlatformType(this.originalPlatform[ 'type' ]);
 			this.populateForm();
 		} else {
+			this.utilsService.openSnackBar('Unable to fetch the platform', '');
 			this.close();
 		}
 	}
@@ -92,7 +96,6 @@ export class PlatformComponent implements OnInit {
 				return 'ONAP';
 			default:
 				this.utilsService.openSnackBar('Unrecognized platform type. Please select another.', '');
-				this.close();
 		}
 	}
 
@@ -115,10 +118,11 @@ export class PlatformComponent implements OnInit {
 			host: this.platformForm.get('host').value,
 			username: this.platformForm.get('username').value,
 			password: this.platformForm.get('password').value,
-			monitoring_urls: this.platformForm.get('monitoring_urls').value,
+			monitoring_urls: this.platformForm.get('monitoring_urls').value || '',
 		};
 		if (this.osmForm.get('project_name').value) {
 			platform[ 'project_name' ] = this.osmForm.get('project_name').value;
+			platform[ 'vim_account' ] = this.osmForm.get('vim_account').value;
 		}
 		if (this.edition && this.originalPlatform[ 'service_token' ]) {
 			platform[ 'service_token' ] = this.originalPlatform[ 'service_token' ];

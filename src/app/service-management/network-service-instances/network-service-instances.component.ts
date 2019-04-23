@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ServiceManagementService } from '../service-management.service';
@@ -15,16 +14,13 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	searchText: string;
 	instances: Array<Object>;
-	dataSource = new MatTableDataSource();
 	subscription: Subscription;
 	displayedColumns = [
 		'name',
 		'status',
 		'version',
 		'createdAt',
-		// 'reload',
 		'stop'
 	];
 
@@ -67,23 +63,17 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
      *                          be matched by the returned list
      *                          of NS instances.
      */
-	requestNSInstances(search?) {
+	async requestNSInstances(search?) {
 		this.loading = true;
-		this.serviceManagementService
-			.getNSInstances(search)
-			.then(response => {
-				this.loading = false;
+		const response = await this.serviceManagementService.getNSInstances(search);
 
-				this.instances = response;
-				this.dataSource = new MatTableDataSource(this.instances);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.instances = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any network service instance', '');
+		}
 	}
-
-	// reloadInstance(row) {}
 
 	terminate(row) {
 		if (row.status.toUpperCase() !== 'TERMINATED') {
@@ -91,24 +81,24 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 			const content = 'Are you sure you want to terminate this instance?';
 			const action = 'Terminate';
 
-			this.dialogData.openDialog(title, content, action, () => {
-				this.serviceManagementService
-					.postOneNSInstanceTermination(row.uuid)
-					.then(response => {
-						this.utilsService.openSnackBar(response, '');
-						this.requestNSInstances();
-					})
-					.catch(err => {
-						this.utilsService.openSnackBar(err, '');
-					});
+			this.dialogData.openDialog(title, content, action, async () => {
+				this.loading = true;
+				const response = await this.serviceManagementService.postOneNSInstanceTermination(row.uuid);
+
+				this.loading = false;
+				if (response) {
+					this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+					this.requestNSInstances();
+				} else {
+					this.utilsService.openSnackBar('There was an error terminating the instance', '');
+				}
 			});
 		} else {
-			this.openInstance(row);
+			this.openInstance(row.uuid);
 		}
 	}
 
-	openInstance(row) {
-		const uuid = row.uuid;
+	openInstance(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }

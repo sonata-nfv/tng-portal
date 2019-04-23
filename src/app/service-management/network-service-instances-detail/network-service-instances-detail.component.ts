@@ -35,11 +35,12 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class NetworkServiceInstancesDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
-	displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
+	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
 
 	// Detail in row and animations
-	dataSource = new CustomDataSource();
-	vnfDetail = { };
+	dataSourceVNF = new CustomDataSource();
+	dataSourceCNF = new CustomDataSource();
+	recordDetail = { };
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
 
@@ -64,35 +65,33 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	requestNsInstance(uuid) {
+	async requestNsInstance(uuid) {
 		this.loading = true;
+		const response = await this.serviceManagementService.getOneNSInstance(uuid);
 
-		this.serviceManagementService
-			.getOneNSInstance(uuid)
-			.then(response => {
-				this.detail = response;
+		if (response) {
+			this.detail = response;
 
-				if (this.detail[ 'vnf' ]) {
-					Promise.all(
-						this.detail[ 'vnf' ].map(item =>
-							this.serviceManagementService.getOneFunctionRecord(item.vnfr_id)
-						)
+			if (this.detail[ 'vnf' ]) {
+				const responses = await Promise.all(
+					this.detail[ 'vnf' ].map(item =>
+						this.serviceManagementService.getOneFunctionRecord(item.vnfr_id)
 					)
-						.then(responses => {
-							this.loading = false;
-							this.dataSource.data = responses;
-						})
-						.catch(err => {
-							this.loading = false;
-							this.utilsService.openSnackBar(err, '');
-						});
-				}
-			})
-			.catch(err => {
+				);
+
 				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+				if (responses) {
+					this.dataSourceVNF.data = responses.filter(instance => instance[ 'vdus' ]);
+					this.dataSourceCNF.data = responses.filter(instance => instance[ 'cdus' ]);
+
+				} else {
+					this.utilsService.openSnackBar('Unable to fetch the VNF instance', '');
+				}
+			}
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the network service instance', '');
+			this.close();
+		}
 	}
 
 	terminate() {
@@ -100,19 +99,34 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
 		const content = 'Are you sure you want to terminate this instance?';
 		const action = 'Terminate';
 
-		this.dialogData.openDialog(title, content, action, () => {
-			this.serviceManagementService
-				.postOneNSInstanceTermination(this.detail[ 'uuid' ])
-				.then(response => {
-					this.utilsService.openSnackBar(response, '');
-				})
-				.catch(err => {
-					this.utilsService.openSnackBar(err, '');
-				});
+		this.dialogData.openDialog(title, content, action, async () => {
+			const response = await this.serviceManagementService.postOneNSInstanceTermination(this.detail[ 'uuid' ]);
+
+			if (response) {
+				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+			} else {
+				this.utilsService.openSnackBar('There was an error terminating the instance', '');
+			}
 		});
 	}
 
+	canShowTerminate() {
+		return this.detail[ 'uuid' ] && this.detail[ 'status' ].toUpperCase() !== 'TERMINATED';
+	}
+
+	canShowNoResultsCNF() {
+		return (!this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
+	}
+
+	canShowNoResultsVNF() {
+		return (!this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
 	close() {
-		this.router.navigate([ 'service-management/network-service-instances' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

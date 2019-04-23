@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-slice-template-create',
@@ -27,6 +28,7 @@ export class SliceTemplateCreateComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private utilsService: UtilsService,
+		private dialogData: DialogDataService,
 		private commonService: CommonService,
 		private servicePlatformService: ServicePlatformService
 	) { }
@@ -69,8 +71,13 @@ export class SliceTemplateCreateComponent implements OnInit {
 				this.utilsService.openSnackBar('Unable to fetch any SLA.', '');
 			}
 		} else {
-			this.utilsService.openSnackBar('Unable to create any slice without network services.', '');
-			this.close();
+			const title = 'oh oh...';
+			const content = 'There was an error fetching the network services required to create a template. Please, try again later.';
+			const action = 'Accept';
+
+			this.dialogData.openDialog(title, content, action, () => {
+				this.close();
+			});
 		}
 	}
 

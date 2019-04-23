@@ -1,0 +1,48 @@
+@import "../../../constants.scss";
+app-cnf-record-detail {
+  display: flex;
+  flex-direction: column;
+  background-color: $panel-background-color;
+  border-bottom: 1px solid $primary-color-light;
+
+  .openedDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+
+    // Styles for no instances message
+    .no-results-container {
+		margin-top: 2vh;
+	}
+
+	.tableDetailTitle {
+		margin-top: 1vh;
+		font-size: 18px;
+		color: $primary-font-color-light;
+	}
+
+    table {
+      width: 100%;
+      margin-bottom: 40px;
+      background-color: $panel-background-color;
+
+      td.mat-cell {
+        cursor: auto;
+      }
+    }
+
+    tr.mat-row {
+      width: 100%;
+      border-bottom: none;
+      background-image: linear-gradient(
+        to right,
+        $panel-background-color 0%,
+        $table-underline-color 0%,
+        $table-underline-color 100%,
+        $panel-background-color 100%,
+        $panel-background-color 100%
+      );
+    }
+  }
+}

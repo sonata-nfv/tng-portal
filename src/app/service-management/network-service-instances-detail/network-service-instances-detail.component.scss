@@ -15,63 +15,37 @@ app-network-service-instances-detail {
     flex: 0 0 auto;
   }
 
-  .detail {
-    width: 70%;
-    align-items: flex-start;
+  form {
+    width: 55vw;
+    margin-bottom: 5vh;
 
-    .mat-form-field {
-      width: 65%;
+    .left-column, 
+    .same-row .left-column.mat-form-field {
+      width: 25vw;
+      margin-right: 40px;
     }
 
-    .vnf {
+    .right-column,
+    .same-row .right-column.mat-form-field {
+      width: 20vw;
+    }
+    
+    // Styles for no instances message
+    .vnf, .cnf {
       display: flex;
       flex-direction: column;
-      width: 100%;
-
-      span {
-        min-height: 25px;
-      }
     }
 
-    .title3 {
-      font-size: 24px;
-      color: $primary-font-color-light;
-    }
-
-    .message {
-      margin-top: 15px;
-      margin-bottom: 30px;
-      color: $secondary-font-color-light;
+    // Styles for no instances message
+    .no-results-container {
+      align-self: center;
+      width: 80%;
+      margin-top: 7vh;
     }
 
     .mat-table {
       width: 100%;
-      margin-bottom: 80px;
-      text-align: center;
-      overflow-x: hidden;
-      // overflow-y: hidden;
-
-      .mat-header-row {
-        // min-width: 150px;
-        border-bottom: none;
-      }
-
-      &.vnfs {
-        .mat-cell:nth-child(2),
-        .mat-header-cell:nth-child(2) {
-          width: 10%;
-        }
-
-        .mat-cell:nth-child(3),
-        .mat-header-cell:nth-child(3) {
-          width: 20%;
-        }
-
-        .mat-cell:nth-child(4),
-        .mat-header-cell:nth-child(4) {
-          width: 30%;
-        }
-      }
+      overflow-x: hidden;    
     }
 
     // Table expansion

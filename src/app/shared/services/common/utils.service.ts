@@ -127,6 +127,10 @@ export class UtilsService {
      * @param dateIn Date to be displayed
      */
 	formatUTCDate(dateIn) {
-		return new Date(Date.parse(dateIn)).toUTCString();
+		return new Date(dateIn).toUTCString();
+	}
+
+	formatDateString(dateIn) {
+		return new Date(dateIn).toDateString();
 	}
 }

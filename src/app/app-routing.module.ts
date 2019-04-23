@@ -45,7 +45,7 @@ import {
 	RuntimePoliciesGeneratedActionsComponent
 } from './service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component';
 import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
-import { SlaTemplatesDetailComponent } from './service-platform/sla-templates-detail/sla-templates-detail.component';
+import { SlaTemplateDetailComponent } from './service-platform/sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
 import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
 import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
@@ -66,7 +66,6 @@ import { NetworkServiceInstancesComponent } from './service-management/network-s
 import {
 	NetworkServiceInstancesDetailComponent
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
-import { FunctionRecordsDetailComponent } from './service-management/function-records-detail/function-records-detail.component';
 import { LicencesComponent } from './service-management/licenses/licenses.component';
 import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
 import { ServiceLicensesComponent } from './service-management/service-licenses/service-licenses.component';
@@ -159,7 +158,7 @@ const routes: Routes = [
 				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
 				children: [
 					{ path: 'new', component: SlaTemplateCreateComponent },
-					{ path: ':id', component: SlaTemplatesDetailComponent }
+					{ path: ':id', component: SlaTemplateDetailComponent }
 				]
 			},
 			{
@@ -198,8 +197,7 @@ const routes: Routes = [
 			{
 				path: 'service-management/network-service-instances', component: NetworkServiceInstancesComponent,
 				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent },
-					{ path: ':id/vnf/:vnfr_id', component: FunctionRecordsDetailComponent }
+					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
 				]
 			},
 			{

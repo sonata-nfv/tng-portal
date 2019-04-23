@@ -14,7 +14,6 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	section: string;
 	reset: boolean;
 	policiesDisplayed = new Array();
 	policies = new Array();
@@ -40,7 +39,6 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
-		this.section = 'SP';
 		this.requestRuntimePolicies();
 
 		// Reloads the template list every when children are closed
@@ -71,7 +69,7 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
      *                          must be matched by the returned
      *                          list of policies.
      */
-	requestRuntimePolicies(search?) {
+	async requestRuntimePolicies(search?) {
 		this.loading = true;
 
 		this.reset = true;
@@ -79,30 +77,27 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 			this.reset = false;
 		}, 5);
 
-		Promise.all([
-			this.commonService.getNetworkServices(this.section),
+		const responses = await Promise.all([
+			this.commonService.getNetworkServices('SP'),
 			this.servicePlatformService.getRuntimePolicies(search)
-		])
-			.then(responses => {
-				this.loading = false;
+		]);
 
-				// Save NS data to display
-				this.nsList = responses[ 0 ].map(
-					x => x.vendor + ': ' + x.name + ' - v' + x.version
-				);
-				this.nsList.unshift('None');
+		this.loading = false;
+		if (responses) {
+			// Save NS data to display
+			this.nsList = responses[ 0 ].map(
+				x => x.vendor + ': ' + x.name + ' - v' + x.version
+			);
+			this.nsList.unshift('None');
 
-				// Save complete data from NS
-				this.nsListComplete = responses[ 0 ];
+			// Save complete data from NS and policies
+			this.nsListComplete = responses[ 0 ];
+			this.policies = responses[ 1 ];
 
-				this.policies = responses[ 1 ];
-
-				this.sortPolicies(this.policies);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+			this.sortPolicies(this.policies);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the services nor the policies', '');
+		}
 	}
 
 	setDefaultPolicy(uuid) {

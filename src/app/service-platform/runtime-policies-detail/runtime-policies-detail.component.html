@@ -23,7 +23,7 @@
   <mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">Mark as
     default</mat-checkbox>
 
-  <div class="sameRow">
+  <div class="same-row">
     <mat-form-field *ngIf="detail['uuid']">
       <input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
     </mat-form-field>
@@ -33,7 +33,7 @@
     </mat-form-field>
   </div>
 
-  <div class="sameRow">
+  <div class="same-row">
     <mat-form-field *ngIf="detail['nsName']">
       <input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled i18n-placeholder="@@serviceNamePlaceholder" />
     </mat-form-field>
@@ -44,7 +44,7 @@
     </mat-form-field>
   </div>
 
-  <div class="sameRow">
+  <div class="same-row">
     <mat-form-field *ngIf="detail['nsUUID']">
       <input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
     </mat-form-field>

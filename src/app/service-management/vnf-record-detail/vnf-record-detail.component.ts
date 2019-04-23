@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
-	selector: 'app-function-records-detail',
-	templateUrl: './function-records-detail.component.html',
-	styleUrls: [ './function-records-detail.component.scss' ],
+	selector: 'app-vnf-record-detail',
+	templateUrl: './vnf-record-detail.component.html',
+	styleUrls: [ './vnf-record-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class FunctionRecordsDetailComponent implements OnInit {
+export class VnfRecordDetailComponent implements OnInit {
 	_vdus: Array<any>;
 	displayedColumns = [ 'id', 'type', 'mac', 'ip' ];
 
