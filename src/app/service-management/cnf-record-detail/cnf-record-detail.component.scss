@@ -1,29 +1,29 @@
 @import "../../../constants.scss";
-app-function-records-detail {
+app-cnf-record-detail {
   display: flex;
   flex-direction: column;
+  min-height: 20vh;
   background-color: $panel-background-color;
   border-bottom: 1px solid $primary-color-light;
 
-  .VNFDetail {
+  .openedDetail {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 10px;
 
-    .tableDetailTitle {
-      margin-top: 20px;
-      font-size: 18px;
-      color: $primary-font-color-light;
-    }
+    // Styles for no instances message
+    .no-results-container {
+		margin-top: 2vh;
+	}
 
-    .message {
-      margin-top: 15px;
-      margin-bottom: 40px;
-      color: $secondary-font-color-light;
-    }
+	.tableDetailTitle {
+		margin-top: 1vh;
+		font-size: 18px;
+		color: $primary-font-color-light;
+	}
 
-    .mat-table.innerTable {
+    table {
       width: 100%;
       margin-bottom: 40px;
       background-color: $panel-background-color;
@@ -31,22 +31,10 @@ app-function-records-detail {
       td.mat-cell {
         cursor: auto;
       }
-
-      &.connectionPoints {
-        .mat-cell:nth-child(1),
-        .mat-header-cell:nth-child(1) {
-		      width: 10%;
-        }
-        .mat-cell:nth-child(2),
-        .mat-header-cell:nth-child(2) {
-          width: 30%;
-        }
-      }
     }
 
-    .ineerTableRow.mat-row {
+    tr.mat-row {
       width: 100%;
-      // min-width: 150px;
       border-bottom: none;
       background-image: linear-gradient(
         to right,

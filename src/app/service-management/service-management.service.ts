@@ -86,12 +86,12 @@ export class ServiceManagementService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return {
 				uuid: response[ 'uuid' ],
-				status: response[ 'status' ],
-				descriptorRef: response[ 'descriptor_reference' ],
-				descriptorVersion: response[ 'descriptor_reference' ],
-				name: response[ 'descriptor_version' ],
+				name: response[ 'name' ],
 				version: response[ 'version' ],
+				status: response[ 'status' ],
 				updatedAt: response[ 'updated_at' ],
+				descriptorRef: response[ 'descriptor_reference' ],
+				descriptorVersion: response[ 'descriptor_version' ],
 				vdus: response[ 'virtual_deployment_units' ],
 				cdus: response[ 'cloudnative_deployment_units' ]
 			};

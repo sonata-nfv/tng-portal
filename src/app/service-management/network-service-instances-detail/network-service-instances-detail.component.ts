@@ -35,12 +35,12 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class NetworkServiceInstancesDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
-	displayedColumns = [ 'uuid', 'version', 'status', 'updatedAt' ];
+	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
 
 	// Detail in row and animations
 	dataSourceVNF = new CustomDataSource();
 	dataSourceCNF = new CustomDataSource();
-	vnfDetail = { };
+	recordDetail = { };
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
 
@@ -112,6 +112,14 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
 
 	canShowTerminate() {
 		return this.detail[ 'uuid' ] && this.detail[ 'status' ].toUpperCase() !== 'TERMINATED';
+	}
+
+	canShowNoResultsCNF() {
+		return (!this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
+	}
+
+	canShowNoResultsVNF() {
+		return (!this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
 	}
 
 	copyToClipboard(value) {

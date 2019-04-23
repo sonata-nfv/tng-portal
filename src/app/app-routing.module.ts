@@ -66,7 +66,6 @@ import { NetworkServiceInstancesComponent } from './service-management/network-s
 import {
 	NetworkServiceInstancesDetailComponent
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
-import { FunctionRecordsDetailComponent } from './service-management/function-records-detail/function-records-detail.component';
 import { LicencesComponent } from './service-management/licenses/licenses.component';
 import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
 import { ServiceLicensesComponent } from './service-management/service-licenses/service-licenses.component';
@@ -198,8 +197,7 @@ const routes: Routes = [
 			{
 				path: 'service-management/network-service-instances', component: NetworkServiceInstancesComponent,
 				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent },
-					{ path: ':id/vnf/:vnfr_id', component: FunctionRecordsDetailComponent }
+					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
 				]
 			},
 			{
