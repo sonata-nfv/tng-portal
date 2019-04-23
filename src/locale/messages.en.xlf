@@ -2740,15 +2740,11 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="selectLicensePlaceholder" datatype="html">
-        <source>Select a license</source><target state="final">Select a license</target>
+      <trans-unit id="LicensePlaceholder" datatype="html">
+        <source>License</source><target state="final">License</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
           <context context-type="linenumber">114</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="licenseExpirationDatePlaceholder" datatype="html">
@@ -2784,8 +2780,8 @@
           <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="selectflavorPlaceholder" datatype="html">
-        <source>Select a flavor</source><target state="final">Select a flavor</target>
+      <trans-unit id="flavorPlaceholder" datatype="html">
+        <source>Flavor</source><target state="final">Flavor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
           <context context-type="linenumber">133</context>
@@ -2825,6 +2821,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectLicensePlaceholder" datatype="html">
+        <source>Select a license</source><target state="final">Select a license</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="InvalidInput" datatype="html">
