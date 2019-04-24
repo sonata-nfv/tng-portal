@@ -45,9 +45,8 @@
 		</div>
 	-->
 
-	<mat-form-field class="lastTimeExecuted" *ngIf="detail['lastTimeExecuted']">
-		<input matInput placeholder="Last time executed" value="Last time executed: {{ detail['lastTimeExecuted'] }}" disabled
-			i18n-placeholder="@@lastTimeExecutedPlaceholder" />
+	<mat-form-field class="lastTimeExecuted" *ngIf="detail['updatedAt']">
+		<input matInput value="Last time updated: {{ detail['updatedAt'] }}" disabled />
 	</mat-form-field>
 
 	<div class="description" *ngIf="detail['description']">

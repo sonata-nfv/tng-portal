@@ -83,7 +83,8 @@ export class ValidationAndVerificationPlatformService {
 						timesExecuted: response[ 'executions' ],
 						author: response[ 'testd' ][ 'author' ],
 						description: response[ 'testd' ][ 'description' ],
-						createdAt: response[ 'created_at' ],
+						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
 						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
 						lastTimeExecuted: this.utilsService.formatUTCDate(
 							response[ 'last_time_executed' ]
@@ -155,7 +156,7 @@ export class ValidationAndVerificationPlatformService {
 								return {
 									uuid: item.uuid,
 									serviceUUID: item.service_uuid,
-									createdAt: this.utilsService.formatUTCDate(item.created_at),
+									createdAt: this.utilsService.formatDateString(item.created_at),
 									testUUID: item.test_uuid,
 									status: this.utilsService.capitalizeFirstLetter(item.status)
 								};
@@ -189,8 +190,8 @@ export class ValidationAndVerificationPlatformService {
 					resolve({
 						uuid: response[ 'uuid' ],
 						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						testerResultText: response[ 'tester_result_text' ],
+						startedAt: this.utilsService.formatUTCDate(response[ 'started_at' ]),
+						results: response[ 'results' ],
 						sterr: response[ 'sterr' ],
 						details: response[ 'details' ]
 							? response[ 'details' ][ 'details' ]
