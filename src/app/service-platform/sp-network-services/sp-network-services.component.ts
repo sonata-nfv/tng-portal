@@ -13,7 +13,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class SpNetworkServicesComponent implements OnInit {
 	loading: boolean;
 	networkServices: Array<Object>;
-	displayedColumns = [ 'Vendor', 'Name', 'Version', 'Status' ]; // 'SLAs'
+	displayedColumns = [ 'vendor', 'name', 'version', 'status' ];
 
 	constructor(
 		private utilsService: UtilsService,
@@ -49,8 +49,7 @@ export class SpNetworkServicesComponent implements OnInit {
 		}
 	}
 
-	openNetworkService(row) {
-		const uuid = row.serviceId;
+	openNetworkService(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }

@@ -253,9 +253,7 @@ export class CommonService {
 					serviceId: item.uuid,
 					vendor: item.nsd.vendor,
 					version: item.nsd.version,
-					status: item.status,
-					licenses: 'None',
-					slas: '/service-platform/slas/sla-templates'
+					status: item.status
 				})) : [];
 		} catch (error) {
 			console.error(error);

@@ -15,15 +15,12 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class SmNetworkServicesComponent implements OnInit {
 	loading: boolean;
-	section: string;
 	networkServices: Array<Object>;
 	displayedColumns = [
-		'Vendor',
-		'Name',
-		'Version',
-		'Status',
-		'Licenses',
-		// 'SLAs',
+		'vendor',
+		'name',
+		'version',
+		'status',
 		'instantiate'
 	];
 
@@ -36,7 +33,6 @@ export class SmNetworkServicesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.section = 'SM';
 		this.requestServices();
 	}
 
@@ -53,7 +49,7 @@ export class SmNetworkServicesComponent implements OnInit {
      */
 	async requestServices(search?) {
 		this.loading = true;
-		const response = await this.commonService.getNetworkServices(this.section, search);
+		const response = await this.commonService.getNetworkServices('SM', search);
 
 		this.loading = false;
 		if (response) {
@@ -63,8 +59,7 @@ export class SmNetworkServicesComponent implements OnInit {
 		}
 	}
 
-	openNetworkService(row) {
-		const uuid = row.serviceId;
+	openNetworkService(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 

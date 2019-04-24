@@ -15,12 +15,8 @@ app-sm-network-services-detail {
     flex: 0 0 auto;
   }
 
-  .detail {
-    width: 65%;
-    margin-bottom: 20px;
-
-    .mat-form-field {
-      width: 100%;
-    }
+  form {
+    width: 55vw;
+    margin-bottom: 5vh;
   }
 }

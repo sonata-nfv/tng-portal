@@ -14,7 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class VnvNetworkServicesComponent implements OnInit {
 	loading: boolean;
 	networkServices: Array<Object>;
-	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ]; // 'execute'
+	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ];
 
 	constructor(
 		private commonService: CommonService,
