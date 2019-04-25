@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-sla-agreements {
+app-sla-agreement-list {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@ app-sla-agreements {
   table {
     width: 95%;
   }
+  
   tr.mat-row {
     background-image: linear-gradient(
       to right,

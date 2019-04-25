@@ -5,14 +5,14 @@ import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-sla-agreements',
-	templateUrl: './sla-agreements.component.html',
-	styleUrls: [ './sla-agreements.component.scss' ],
+	selector: 'app-sla-agreement-list',
+	templateUrl: './sla-agreement-list.component.html',
+	styleUrls: [ './sla-agreement-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlaAgreementsComponent implements OnInit {
+export class SlaAgreementListComponent implements OnInit {
 	loading: boolean;
-	agreements = new Array();
+	agreements: Array<any>;
 	displayedColumns = [ 'name', 'status', 'ns', 'customer', 'date' ];
 
 	constructor(
@@ -37,24 +37,22 @@ export class SlaAgreementsComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of agreements.
      */
-	requestAgreements(search?) {
+	async requestAgreements(search?) {
 		this.loading = true;
-		this.servicePlatformService
-			.getSLAAgreements(search)
-			.then(response => {
-				this.loading = false;
-				this.agreements = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.servicePlatformService.getSLAAgreements(search);
+
+		this.loading = false;
+		if (response) {
+			this.agreements = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any SLA agreement', '');
+		}
 	}
 
 	openAgreement(row) {
-		const sla_uuid = row.uuid;
-		const ns_uuid = row.ns_uuid;
-		this.router.navigate([ sla_uuid, ns_uuid ], {
+		const slaUUID = row.uuid;
+		const nsUUID = row.nsUUID;
+		this.router.navigate([ slaUUID, nsUUID ], {
 			relativeTo: this.route
 		});
 	}

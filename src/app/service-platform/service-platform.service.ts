@@ -214,36 +214,29 @@ export class ServicePlatformService {
 	 *                          matched by the returned list of
 	 *                          SLA Agreements.
 	 */
-	getSLAAgreements(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slaAgreements + search
-					: this.config.baseSP + this.config.slaAgreements;
+	async getSLAAgreements(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.slaAgreements + search
+			: this.config.baseSP + this.config.slaAgreements;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve(
-						response[ 'agreements' ].map(item => {
-							return {
-								uuid: item.sla_uuid,
-								name: item.sla_name,
-								ns: item.ns_name,
-								ns_uuid: item.ns_uuid,
-								customer: item.cust_uuid,
-								date: this.utilsService.formatUTCDate(item.sla_date),
-								status: this.utilsService.capitalizeFirstLetter(item.sla_status)
-							};
-						})
-					);
-				})
-				.catch(err => reject('There was an error fetching the SLA agreements'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'agreements' ] ?
+				response[ 'agreements' ].map(item => {
+					return {
+						uuid: item.sla_uuid,
+						name: item.sla_name,
+						nsUUID: item.ns_uuid,
+						nsName: item.ns_name,
+						customer: item.cust_username,
+						date: item.sla_date,
+						status: item.sla_status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
