@@ -1,16 +1,23 @@
 @import "../../constants.scss";
 app-dashboard {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    background-color: $basic-background-color;
 
-  background: url("../../assets/images/sonata_powered_by_5gtango_logo.svg")
-    no-repeat center $panel-background-color;
-  background-size: 50vw;
-  background-repeat: no-repeat;
+	.platform, .vm {
+		display: flex;
+		flex-direction: row;
+
+		.cpu-usage, .memory-usage {
+			width: 42vw;
+			height: 30vh;
+			margin-right: 1vw;
+			margin-bottom: 5vh;
+		}
+	}
 }

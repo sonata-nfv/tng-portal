@@ -1,3 +1,13 @@
-<!-- <h3 class="title3 header-section-name">DASHBOARD</h3> -->
+<h3 class="title3 header-section-name">DASHBOARD</h3>
 
-<div class="logo"></div>
+<div class="platform">
+	<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(10)"></iframe>
+
+	<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(13)"></iframe>
+</div>
+
+<div class="vm">
+	<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(2)"></iframe>
+
+	<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(3)"></iframe>
+</div>
