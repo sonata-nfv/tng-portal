@@ -56,6 +56,10 @@ export class TestResultsComponent implements OnInit {
 		});
 	}
 
+	convertResults() {
+		return JSON.stringify(this.detail[ 'results' ]);
+	}
+
 	requestResults(uuid) {
 		this.loading = true;
 		this.verificationAndValidationPlatformService

@@ -298,8 +298,10 @@ p {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-width: 120px;
-		min-height: 120px;
+		width: 6vw;
+		height: 6vw;
+		min-width: 80px;
+		min-height: 80px;
 		border-radius: 50%;
 		background-color: $primary-background-color;
 

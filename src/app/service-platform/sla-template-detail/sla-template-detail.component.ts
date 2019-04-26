@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
@@ -14,8 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SlaTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	templateForm: FormGroup;
-	closed = true;
+	closed = false;
 
 	constructor(
 		private router: Router,
@@ -70,6 +68,14 @@ export class SlaTemplateDetailComponent implements OnInit {
 
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
+	}
+
+	canShowGuarantees() {
+		return !this.closed && this.detail[ 'storedGuarantees' ];
+	}
+
+	canShowLicense() {
+		return !this.closed && (this.detail[ 'license' ] || this.detail[ 'licenseExpirationDate' ] || this.detail[ 'licenseInstances' ]);
 	}
 
 	close() {

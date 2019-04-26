@@ -214,36 +214,29 @@ export class ServicePlatformService {
 	 *                          matched by the returned list of
 	 *                          SLA Agreements.
 	 */
-	getSLAAgreements(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slaAgreements + search
-					: this.config.baseSP + this.config.slaAgreements;
+	async getSLAAgreements(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.slaAgreements + search
+			: this.config.baseSP + this.config.slaAgreements;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve(
-						response[ 'agreements' ].map(item => {
-							return {
-								uuid: item.sla_uuid,
-								name: item.sla_name,
-								ns: item.ns_name,
-								ns_uuid: item.ns_uuid,
-								customer: item.cust_uuid,
-								date: this.utilsService.formatUTCDate(item.sla_date),
-								status: this.utilsService.capitalizeFirstLetter(item.sla_status)
-							};
-						})
-					);
-				})
-				.catch(err => reject('There was an error fetching the SLA agreements'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'agreements' ] ?
+				response[ 'agreements' ].map(item => {
+					return {
+						uuid: item.sla_uuid,
+						name: item.sla_name,
+						nsiUUID: item.nsi_uuid,
+						nsName: item.ns_name,
+						customer: item.cust_username,
+						date: item.sla_date,
+						status: item.sla_status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -251,40 +244,39 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired SLA Agreement.
 	 */
-	getOneSLAAgreement(sla_uuid: string, ns_uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(
-					this.config.baseSP +
-					this.config.slaAgreements +
-					'/' +
-					sla_uuid +
-					'/' +
-					ns_uuid,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'slad' ][ 'name' ],
-						author: response[ 'slad' ][ 'author' ],
-						date: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
-						customer:
-							response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_uuid' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						propertyList:
-							response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
-						// availability: response['availability'],
-						// cost: response['cost']
-					});
-				})
-				.catch(err => reject('There was an error fetching the SLA agreement'));
-		});
+	async getOneSLAAgreement(slaUUID: string, nsUUID: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaAgreements + '/' + slaUUID + '/' + nsUUID;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				updatedAt: response[ 'updated_at' ],
+				status: response[ 'status' ],
+				name: response[ 'slad' ][ 'name' ],
+				vendor: response[ 'slad' ][ 'vendor' ],
+				templateVersion: response[ 'slad' ][ 'version' ],
+				license: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_type' ],
+				licenseInstances: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'allowed_service_instances' ],
+				licenseExpirationDate: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_expiration_date' ],
+				slaTemplateName: response[ 'slad' ][ 'sla_template' ][ 'template_name' ],
+				slaTemplateInitiator: response[ 'slad' ][ 'sla_template' ][ 'template_initiator' ],
+				providerName: response[ 'slad' ][ 'sla_template' ][ 'provider_name' ],
+				offerDate: response[ 'slad' ][ 'sla_template' ][ 'offer_date' ],
+				offeredDate: response[ 'slad' ][ 'sla_template' ][ 'offered_date' ],
+				expirationDate: response[ 'slad' ][ 'sla_template' ][ 'expiration_date' ],
+				customerEmail: response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_email' ],
+				customerUsername: response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_username' ],
+				nsUUID: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_uuid' ],
+				nsName: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
+				nsVendor: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_vendor' ],
+				nsVersion: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_version' ],
+				guarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ]),
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

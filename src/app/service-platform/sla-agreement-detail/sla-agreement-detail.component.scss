@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-sla-template-detail {
+app-sla-agreement-detail {
 	display: flex;
 	flex-direction: column;
 	flex: 1 1;
@@ -34,9 +34,9 @@ app-sla-template-detail {
 	.advanced-section {
 		width: 55vw;
 	}
-  
+
   	// Selects
 	form.advanced-form .flavor-select {
 		width: 50%;
-	}
+  	}
 }

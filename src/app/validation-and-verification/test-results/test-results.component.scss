@@ -15,22 +15,22 @@ app-test-results {
     flex: 0 0 auto;
   }
 
-  .detail {
-    width: 65%;
-    margin-bottom: 20px;
-    margin-top: 50px;
-
-    .mat-form-field {
-      width: 100%;
-    }
+  form {
+    width: 55vw;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
   }
 
   .results {
-    width: 65%;
     align-items: flex-start;
-    margin-top: 20px;
-    margin-bottom: 40px;
+	margin-top: 2vh;
+    margin-bottom: 2vh;
+	min-height: 5vh;
 
+	.content {
+		max-height: 28vh;
+	}
+	
     canvas {
       margin: 2.5%;
     }

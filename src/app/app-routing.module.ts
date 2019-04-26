@@ -47,8 +47,8 @@ import {
 import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
 import { SlaTemplateDetailComponent } from './service-platform/sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
-import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
-import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
+import { SlaAgreementListComponent } from './service-platform/sla-agreement-list/sla-agreement-list.component';
+import { SlaAgreementDetailComponent } from './service-platform/sla-agreement-detail/sla-agreement-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
 
 import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
@@ -162,8 +162,8 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'service-platform/slas/sla-agreements', component: SlaAgreementsComponent,
-				children: [ { path: ':id_sla/:id_ns', component: SlaAgreementsDetailComponent } ]
+				path: 'service-platform/slas/sla-agreements', component: SlaAgreementListComponent,
+				children: [ { path: ':id_sla/:id_nsi', component: SlaAgreementDetailComponent } ]
 			},
 			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
 			{
