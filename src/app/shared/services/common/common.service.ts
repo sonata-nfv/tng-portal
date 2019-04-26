@@ -368,9 +368,23 @@ export class CommonService {
 	}
 
 	/**
-	 * Retrieves the existing vims represented by the city name
+	 * Retrieves the existing vims of type endpoint
 	 */
-	requestVims(): any {
-		return [ 'bcn-1', 'bcn-2', 'bcn-3', 'bcn-4' ];
+	async getEndpoints() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.vimSettings;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.filter(item => item.type === 'endpoint').map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.name
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }

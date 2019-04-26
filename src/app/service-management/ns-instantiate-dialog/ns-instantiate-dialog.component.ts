@@ -20,7 +20,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	instantiationForm: FormGroup;
 	ingress = new Array();
 	egress = new Array();
-	locations = new Array();
+	locations: Array<any>;
 	slas = new Array();
 	slasWithUUID = new Array();
 
@@ -33,41 +33,47 @@ export class NsInstantiateDialogComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.loading = true;
+		this.initForms();
+		this.getData();
+	}
 
+	private initForms() {
 		this.instantiationForm = new FormGroup({
 			location: new FormControl(null, Validators.required),
 			nap: new FormControl(),
 			sla: new FormControl(),
 			instanceName: new FormControl()
 		});
+	}
 
-		// TODO request to 5GTANGO endpoint the actual vim_cities
-		this.locations = this.commonService.requestVims();
+	private async getData() {
+		this.loading = true;
+		const templates = await this.commonService.getSLATemplates();
+		const endpoints = await this.commonService.getEndpoints();
 
-		this.commonService
-			.getSLATemplates()
-			.then(response => {
-				this.loading = false;
+		this.loading = false;
+		if (templates) {
+			// GET SLA templates names for this NS
+			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => x.name);
+			this.slas.unshift('None');
+			// GET SLA templates for this NS
+			this.slasWithUUID = templates.filter(x => x.nsUUID === this.data.serviceUUID);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
+		}
 
-				this.slas = response
-					.filter(x => x.nsUUID === this.data.serviceUUID)
-					.map(x => x.name);
-				this.slas.unshift('None');
-
-				this.slasWithUUID = response.filter(
-					x => x.nsUUID === this.data.serviceUUID
-				);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		if (endpoints) {
+			// TODO GET location names and map them to uuid to be sent
+			this.locations = endpoints.map(item => item.uuid);
+			this.locations.unshift('None');
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch locations', '');
+		}
 	}
 
 	/**
-     * Saves the introduced ingress/egress points
-     */
+	 * Saves the introduced ingress/egress points
+	 */
 	addNew() {
 		if (this.isIngress) {
 			this.ingress.push({
@@ -88,10 +94,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	/**
-     * Removes the selected ingress/egress point from the list
-     *
-     * @param entry Ingress or egress point selected
-     */
+	 * Removes the selected ingress/egress point from the list
+	 *
+	 * @param entry Ingress or egress point selected
+	 */
 	eraseEntry(entry: string) {
 		if (this.isIngress) {
 			this.ingress = this.ingress.filter(x => x !== entry);
@@ -101,7 +107,9 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	receiveLocation(location) {
-		this.instantiationForm.controls.location.setValue(location);
+		if (location && location !== 'None') {
+			this.instantiationForm.get('location').setValue(location);
+		}
 	}
 
 	receiveSLA(sla) {
