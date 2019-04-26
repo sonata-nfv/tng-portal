@@ -227,7 +227,7 @@ export class ServicePlatformService {
 					return {
 						uuid: item.sla_uuid,
 						name: item.sla_name,
-						nsUUID: item.ns_uuid,
+						nsiUUID: item.nsi_uuid,
 						nsName: item.ns_name,
 						customer: item.cust_username,
 						date: item.sla_date,

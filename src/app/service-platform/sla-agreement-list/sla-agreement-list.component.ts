@@ -51,9 +51,7 @@ export class SlaAgreementListComponent implements OnInit {
 
 	openAgreement(row) {
 		const slaUUID = row.uuid;
-		const nsUUID = row.nsUUID;
-		this.router.navigate([ slaUUID, nsUUID ], {
-			relativeTo: this.route
-		});
+		const nsiUUID = row.nsiUUID;
+		this.router.navigate([ slaUUID, nsiUUID ], { relativeTo: this.route });
 	}
 }

@@ -1,39 +1,39 @@
 @import "../../../constants.scss";
 app-sla-template-detail {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  overflow-y: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  form {
-    width: 55vw;
-    margin-bottom: 5vh;
-
-    .left-column, 
-    .same-row .left-column.mat-form-field {
-      width: 25vw;
-      margin-right: 40px;
-    }
-
-    .right-column,
-    .same-row .right-column.mat-form-field {
-      width: 20vw;
-    }
-  }
-
-  .advanced-section {
+	form {
 		width: 55vw;
-  }
+		margin-bottom: 5vh;
+
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+		width: 25vw;
+		margin-right: 40px;
+		}
+
+		.right-column,
+		.same-row .right-column.mat-form-field {
+		width: 20vw;
+		}
+	}
+
+	.advanced-section {
+			width: 55vw;
+	}
   
   	// Listed gurantees
 	form.advanced-form .guarantee-row {
@@ -60,28 +60,28 @@ app-sla-template-detail {
 		}
   }
 
-  // Select guarantees
+  	// Selects
 	form.advanced-form {
 		.licenses-select,
 		.flavor-select {
 			width: 50%;
 		}
-  }
+  	}
 
-  // Licensing
+  	// Licensing
 	form.advanced-form {
-    .instances-number {
-      display: flex;
-      flex-direction: row;
-      align-items: baseline;
+		.instances-number {
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
 
-      .label {
-        margin-right: 10px;
-      }
+			.label {
+				margin-right: 10px;
+			}
 
-      .instances {
-        width: 4vw; 
-      }
-    }
-  }
+			.instances {
+				width: 4vw; 
+			}
+		}
+ 	}
 }
