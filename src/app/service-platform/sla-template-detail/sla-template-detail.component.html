@@ -68,43 +68,8 @@
 		<div class="underline" [ngClass]="{ opened: !closed }"></div>
 	</button>
 
-	<form *ngIf="!closed && detail['storedGuarantees']" class="advanced-form">
-		<h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
-
-		<!-- List stored service guarantees -->
-		<div class="guarantee-row" *ngFor="let item of detail['storedGuarantees']">
-			<div class="description" *ngIf="item">
-				<!-- Title with delete and open details button -->
-				<div class="description-title">
-					<h4 class="title4">
-						{{ item.uuid }} - {{ item.name }}: {{ item.threshold }} {{ item.unit }}
-					</h4>
-
-					<button class="dropdownButton" (click)="item.closed = !item.closed">
-						<i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
-						<ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
-					</button>
-				</div>
-
-				<!-- Detailed information about the guarantee -->
-				<span class="content" *ngIf="!item.closed">
-					<p *ngIf="item.definition" class="definition">{{ item.definition }}</p>
-
-					<div class="slo-info" *ngFor="let slo of item.slos">
-						<mat-form-field class="slo">
-							<input matInput placeholder="Service Level Objective" disabled
-								value="{{ slo.kpi }} {{ slo.operator }} {{ slo.value }}"
-								i18n-placeholder="@@serviceLevelObjectivePlaceholder" />
-						</mat-form-field>
-
-						<mat-form-field class="period">
-							<input matInput placeholder="Time period" disabled value="{{ slo.period || 'None' }}"
-								i18n-placeholder="@@timePeriodPlaceholder" />
-						</mat-form-field>
-					</div>
-				</span>
-			</div>
-		</div>
+	<form *ngIf="canShowGuarantees()" class="advanced-form">
+		<app-sla-guarantees-detail [guarantees]="detail['storedGuarantees']"></app-sla-guarantees-detail>
 	</form>
 
 	<form *ngIf="canShowLicense()" class="advanced-form">

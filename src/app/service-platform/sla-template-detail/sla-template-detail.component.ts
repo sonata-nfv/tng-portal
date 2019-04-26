@@ -70,6 +70,10 @@ export class SlaTemplateDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	canShowGuarantees() {
+		return !this.closed && this.detail[ 'storedGuarantees' ];
+	}
+
 	canShowLicense() {
 		return !this.closed && (this.detail[ 'license' ] || this.detail[ 'licenseExpirationDate' ] || this.detail[ 'licenseInstances' ]);
 	}

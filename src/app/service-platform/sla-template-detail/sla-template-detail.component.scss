@@ -21,49 +21,22 @@ app-sla-template-detail {
 
 		.left-column, 
 		.same-row .left-column.mat-form-field {
-		width: 25vw;
-		margin-right: 40px;
+			width: 25vw;
+			margin-right: 40px;
 		}
 
 		.right-column,
 		.same-row .right-column.mat-form-field {
-		width: 20vw;
+			width: 20vw;
 		}
 	}
 
 	.advanced-section {
-			width: 55vw;
+		width: 55vw;
 	}
   
-  	// Listed gurantees
-	form.advanced-form .guarantee-row {
-		.definition {
-			margin-top: 1vh;
-			margin-left: 1vw;
-			margin-bottom: 5vh;
-		}
-
-		.slo-info {
-			display: flex;
-			flex-direction: row;
-			width: 95%;
-			margin-top: 2vh;
-			margin-left: 1vw;
-			margin-right: 1vw;
-			
-			.slo {
-				width: 60%;
-			}
-			.period {
-				width: 40%;
-			}
-		}
-  }
-
   	// Selects
-	form.advanced-form {
-		.flavor-select {
-			width: 50%;
-		}
-  	}
+	form.advanced-form .flavor-select {
+		width: 50%;
+	}
 }

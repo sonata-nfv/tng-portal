@@ -53,6 +53,10 @@ export class SlaAgreementDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	canShowGuarantees() {
+		return !this.closed && this.detail[ 'guarantees' ];
+	}
+
 	canShowLicense() {
 		return !this.closed && (this.detail[ 'license' ] || this.detail[ 'licenseExpirationDate' ] || this.detail[ 'licenseInstances' ]);
 	}
