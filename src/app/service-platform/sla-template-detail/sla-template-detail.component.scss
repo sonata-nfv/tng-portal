@@ -62,26 +62,8 @@ app-sla-template-detail {
 
   	// Selects
 	form.advanced-form {
-		.licenses-select,
 		.flavor-select {
 			width: 50%;
 		}
   	}
-
-  	// Licensing
-	form.advanced-form {
-		.instances-number {
-			display: flex;
-			flex-direction: row;
-			align-items: baseline;
-
-			.label {
-				margin-right: 10px;
-			}
-
-			.instances {
-				width: 4vw; 
-			}
-		}
- 	}
 }

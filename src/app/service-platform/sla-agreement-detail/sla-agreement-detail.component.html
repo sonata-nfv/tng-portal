@@ -163,23 +163,10 @@
 		</div>
 	</form>
 
-	<form *ngIf="!closed" class="advanced-form">
-		<h2 class="title2" i18n="@@license">License</h2>
-
-		<app-select class="licenses-select" placeholder="License" [list]="[ detail.license ]" [value]="detail.license" [disabled]="true"
-			i18n-placeholder="@@LicensePlaceholder">
-		</app-select>
-
-		<app-calendar *ngIf="detail['licenseExpirationDate']" placeholder="License expiration date"
-			[value]="detail['licenseExpirationDate']" [disabled]="true" i18n-placeholder="@@licenseExpirationDatePlaceholder">
-		</app-calendar>
-
-		<div *ngIf="detail['licenseInstances']" class="instances-number">
-			<p class="label" i18n="@@numberInstancesAllowed">Number of instances allowed: </p>
-			<mat-form-field class="instances">
-				<input matInput [value]="detail['licenseInstances']" disabled />
-			</mat-form-field>
-		</div>
+	<form *ngIf="canShowLicense()" class="advanced-form">
+		<app-sla-license-detail [license]="detail['license']" [licenseExpirationDate]="detail['licenseExpirationDate']"
+			[licenseInstances]="detail['licenseInstances']">
+		</app-sla-license-detail>
 	</form>
 </div>
 

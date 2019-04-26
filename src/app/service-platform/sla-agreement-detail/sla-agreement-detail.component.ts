@@ -12,6 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SlaAgreementDetailComponent implements OnInit {
 	loading: boolean;
+	closed = false;
 	detail = { };
 
 	constructor(
@@ -50,6 +51,10 @@ export class SlaAgreementDetailComponent implements OnInit {
 
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
+	}
+
+	canShowLicense() {
+		return !this.closed && (this.detail[ 'license' ] || this.detail[ 'licenseExpirationDate' ] || this.detail[ 'licenseInstances' ]);
 	}
 
 	close() {
