@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-sla-agreements-detail',
-	templateUrl: './sla-agreements-detail.component.html',
-	styleUrls: [ './sla-agreements-detail.component.scss' ],
+	selector: 'app-sla-agreement-detail',
+	templateUrl: './sla-agreement-detail.component.html',
+	styleUrls: [ './sla-agreement-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SlaAgreementsDetailComponent implements OnInit {
+export class SlaAgreementDetailComponent implements OnInit {
 	loading: boolean;
-	agreementForm: FormGroup;
 	detail = { };
 
 	constructor(
@@ -25,9 +23,9 @@ export class SlaAgreementsDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			const sla_uuid = params[ 'id_sla' ];
-			const ns_uuid = params[ 'id_ns' ];
-			this.requestSLAAgreement(sla_uuid, ns_uuid);
+			const slaUUID = params[ 'id_sla' ];
+			const nsiUUID = params[ 'id_nsi' ];
+			this.requestSLAAgreement(slaUUID, nsiUUID);
 		});
 	}
 
@@ -37,20 +35,21 @@ export class SlaAgreementsDetailComponent implements OnInit {
      * @param uuid ID of the selected agreement to be displayed.
      *             Comming from the route.
      */
-	requestSLAAgreement(sla_uuid, ns_uuid) {
+	async requestSLAAgreement(slaUUID, nsiUUID) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneSLAAgreement(slaUUID, nsiUUID);
 
-		this.servicePlatformService
-			.getOneSLAAgreement(sla_uuid, ns_uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the SLA agreement', '');
+			this.close();
+		}
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {

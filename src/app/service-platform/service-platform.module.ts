@@ -24,7 +24,7 @@ import { SlaTemplateListComponent } from './sla-template-list/sla-template-list.
 import { SlaTemplateDetailComponent } from './sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './sla-template-create/sla-template-create.component';
 import { SlaAgreementListComponent } from './sla-agreement-list/sla-agreement-list.component';
-import { SlaAgreementsDetailComponent } from './sla-agreements-detail/sla-agreements-detail.component';
+import { SlaAgreementDetailComponent } from './sla-agreement-detail/sla-agreement-detail.component';
 import { SlaViolationsComponent } from './sla-violations/sla-violations.component';
 import { SliceTemplateListComponent } from './slice-template-list/slice-template-list.component';
 import { SliceTemplateCreateComponent } from './slice-template-create/slice-template-create.component';
@@ -49,7 +49,7 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 		SlaTemplateDetailComponent,
 		SlaTemplateCreateComponent,
 		SlaAgreementListComponent,
-		SlaAgreementsDetailComponent,
+		SlaAgreementDetailComponent,
 		SlaViolationsComponent,
 		SliceTemplateListComponent,
 		SliceTemplateCreateComponent,

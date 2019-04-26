@@ -90,7 +90,7 @@
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
@@ -272,7 +272,7 @@
           <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
@@ -462,7 +462,7 @@
           <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
@@ -585,6 +585,10 @@
           <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-list/slice-template-list.component.html</context>
           <context context-type="linenumber">62</context>
         </context-group>
@@ -668,7 +672,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
@@ -734,8 +738,8 @@
           <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-detail/slice-template-detail.component.html</context>
@@ -1223,7 +1227,7 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
@@ -1922,6 +1926,14 @@
           <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
@@ -2110,10 +2122,6 @@
           <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-detail/slice-template-detail.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
@@ -2165,6 +2173,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
           <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
@@ -2281,7 +2293,7 @@
           <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
@@ -2400,7 +2412,7 @@
           <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
@@ -2459,8 +2471,8 @@
           <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="policyName" datatype="html">
@@ -2619,11 +2631,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">111</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deleteTemplateButton" datatype="html">
@@ -2658,6 +2674,10 @@
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="expirationDatePlaceholder" datatype="html">
         <source>Expiration Date</source><target state="final">Expiration Date</target>
@@ -2669,104 +2689,117 @@
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">26</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="instantiatedAtPlaceholder" datatype="html">
-        <source>Instantiated at</source><target state="final">Instantiated at</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="advancedSection" datatype="html">
         <source>Advanced section</source><target state="final">Advanced section</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceGuarantees" datatype="html">
         <source>Service Guarantees</source><target state="final">Service Guarantees</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceLevelObjectivePlaceholder" datatype="html">
         <source>Service Level Objective</source><target state="final">Service Level Objective</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="timePeriodPlaceholder" datatype="html">
         <source>Time period</source><target state="final">Time period</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">101</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">78</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
       <trans-unit id="LicensePlaceholder" datatype="html">
         <source>License</source><target state="final">License</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="licenseExpirationDatePlaceholder" datatype="html">
         <source>License expiration date</source><target state="final">License expiration date</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">117</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">100</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">173</context>
         </context-group>
       </trans-unit>
       <trans-unit id="numberInstancesAllowed" datatype="html">
         <source>Number of instances allowed: </source><target state="final">Number of instances allowed: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">122</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
           <context context-type="linenumber">105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">178</context>
         </context-group>
       </trans-unit>
       <trans-unit id="flavor" datatype="html">
         <source>Flavor</source><target state="final">Flavor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
@@ -2777,7 +2810,7 @@
         <source>Flavor</source><target state="final">Flavor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-detail/sla-template-detail.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="templateNamePlaceholder" datatype="html">
@@ -2840,18 +2873,18 @@
       <trans-unit id="slaAgreements" datatype="html">
         <source>SLA Agreements</source><target state="final">SLA Agreements</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="customer" datatype="html">
         <source>Customer</source><target state="final">Customer</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements/sla-agreements.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
@@ -2859,29 +2892,85 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="customerPlaceholder" datatype="html">
-        <source>Customer</source><target state="final">Customer</target>
+      <trans-unit id="templateVersion" datatype="html">
+        <source>Template version</source><target state="final">Template version</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="namePlaceholder" datatype="html">
-        <source>Name </source><target state="final">Name </target>
+      <trans-unit id="agreementIDPlaceholder" datatype="html">
+        <source>Agreement ID</source><target state="final">Agreement ID</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="serviceLevelPlaceholder" datatype="html">
-        <source>Service Level </source><target state="final">Service Level </target>
+      <trans-unit id="slaTemplateNamePlaceholder" datatype="html">
+        <source>SLA template name</source><target state="final">SLA template name</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreements-detail/sla-agreements-detail.component.html</context>
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
           <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="initiatorPlaceholder" datatype="html">
+        <source>Initiator</source><target state="final">Initiator</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="offerDatePlaceholder" datatype="html">
+        <source>Offer Date</source><target state="final">Offer Date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="offeredDatePlaceholder" datatype="html">
+        <source>Offered Date</source><target state="final">Offered Date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerEmailPlaceholder" datatype="html">
+        <source>Customer email</source><target state="final">Customer email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerUsernamePlaceholder" datatype="html">
+        <source>Customer username</source><target state="final">Customer username</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="networkServiceIdPlaceholder" datatype="html">
+        <source>Network service ID</source><target state="final">Network service ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsVendorPlaceholder" datatype="html">
+        <source>Network Service vendor</source><target state="final">Network Service vendor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsVersionPlaceholder" datatype="html">
+        <source>Network Service version</source><target state="final">Network Service version</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slaViolations" datatype="html">
@@ -2910,6 +2999,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="namePlaceholder" datatype="html">
+        <source>Name</source><target state="final">Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="versionPlaceholder" datatype="html">
@@ -3124,13 +3220,6 @@
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="templateVersion" datatype="html">
-        <source>Template version</source><target state="final">Template version</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="instanceIDPlaceholder" datatype="html">
         <source>Instance ID</source><target state="final">Instance ID</target>
         <context-group purpose="location">
@@ -3158,6 +3247,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="instantiatedAtPlaceholder" datatype="html">
+        <source>Instantiated at</source><target state="final">Instantiated at</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsShared" datatype="html">

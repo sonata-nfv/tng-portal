@@ -244,40 +244,39 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired SLA Agreement.
 	 */
-	getOneSLAAgreement(sla_uuid: string, ns_uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(
-					this.config.baseSP +
-					this.config.slaAgreements +
-					'/' +
-					sla_uuid +
-					'/' +
-					ns_uuid,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'slad' ][ 'name' ],
-						author: response[ 'slad' ][ 'author' ],
-						date: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						ns: response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'ns_name' ],
-						customer:
-							response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_uuid' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						propertyList:
-							response[ 'slad' ][ 'sla_template' ][ 'ns' ][ 'guaranteeTerms' ]
-						// availability: response['availability'],
-						// cost: response['cost']
-					});
-				})
-				.catch(err => reject('There was an error fetching the SLA agreement'));
-		});
+	async getOneSLAAgreement(slaUUID: string, nsUUID: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaAgreements + '/' + slaUUID + '/' + nsUUID;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				updatedAt: response[ 'updated_at' ],
+				status: response[ 'status' ],
+				name: response[ 'slad' ][ 'name' ],
+				vendor: response[ 'slad' ][ 'vendor' ],
+				templateVersion: response[ 'slad' ][ 'version' ],
+				license: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_type' ],
+				licenseInstances: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'allowed_service_instances' ],
+				licenseExpirationDate: response[ 'slad' ][ 'licences' ][ 'service_based' ][ 'service_licence_expiration_date' ],
+				slaTemplateName: response[ 'slad' ][ 'sla_template' ][ 'template_name' ],
+				slaTemplateInitiator: response[ 'slad' ][ 'sla_template' ][ 'template_initiator' ],
+				providerName: response[ 'slad' ][ 'sla_template' ][ 'provider_name' ],
+				offerDate: response[ 'slad' ][ 'sla_template' ][ 'offer_date' ],
+				offeredDate: response[ 'slad' ][ 'sla_template' ][ 'offered_date' ],
+				expirationDate: response[ 'slad' ][ 'sla_template' ][ 'expiration_date' ],
+				customerEmail: response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_email' ],
+				customerUsername: response[ 'slad' ][ 'sla_template' ][ 'customer_info' ][ 'cust_username' ],
+				nsUUID: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_uuid' ],
+				nsName: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_name' ],
+				nsVendor: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_vendor' ],
+				nsVersion: response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'ns_version' ],
+				guarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ]),
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
