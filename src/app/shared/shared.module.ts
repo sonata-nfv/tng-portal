@@ -15,6 +15,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SelectComponent } from './components/select/select.component';
+import { SelectUuidComponent } from './components/select/select-uuid.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FeatureAvailableDirective } from './directives/feature-available.directive';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
@@ -32,6 +33,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		DialogComponent,
 		SearchBarComponent,
 		SelectComponent,
+		SelectUuidComponent,
 		SpinnerComponent,
 		FeatureAvailableDirective,
 		FunctionsComponent,
@@ -51,6 +53,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		DialogComponent,
 		SearchBarComponent,
 		SelectComponent,
+		SelectUuidComponent,
 		SpinnerComponent,
 		FeatureAvailableDirective,
 		FunctionsComponent,

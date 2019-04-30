@@ -13,7 +13,7 @@
 	<!-- DISPLAY INGRESS OR EGRESS DEPENDING ON THE CHOSEN SECTION -->
 	<dl *ngIf="isIngress" class="list">
 		<dt *ngFor="let entry of ingress" class="list-entry">
-			<span>{{ entry.location }} ({{ entry.nap }})</span>
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
 			<button (click)="eraseEntry(entry)" class="icon-button-shadow actions">
 				<i class="wui wui-trash-alt"></i>
 			</button>
@@ -22,7 +22,7 @@
 
 	<dl *ngIf="!isIngress" class="list">
 		<dt *ngFor="let entry of egress" class="list-entry">
-			<span>{{ entry.location }} ({{ entry.nap }})</span>
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
 			<button (click)="eraseEntry(entry)" class="icon-button-shadow actions">
 				<i class="wui wui-trash-alt"></i>
 			</button>
@@ -31,9 +31,9 @@
 
 	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
 	<form [formGroup]="instantiationForm" class="first-dialog-form">
-		<app-select *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()" required="false"
-			(selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
-		</app-select>
+		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
+			required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
+		</app-select-uuid>
 
 		<mat-form-field *ngIf="canShowNetworkAddress()">
 			<input matInput type="text" placeholder="Network address" formControlName="nap" />
@@ -68,7 +68,7 @@
 			<h2>Ingress</h2>
 			<dl class="list">
 				<dt *ngFor="let entry of ingress" class="list-entry">
-					<span>{{ entry.location }} ({{ entry.nap }})</span>
+					<span>{{ entry.locationName }} ({{ entry.nap }})</span>
 					<button (click)="isIngress = true; eraseEntry(entry)" class="icon-button-shadow actions">
 						<i class="wui wui-trash-alt"></i>
 					</button>
@@ -80,7 +80,7 @@
 			<h2>Egress</h2>
 			<dl class="list">
 				<dt *ngFor="let entry of egress" class="list-entry">
-					<span>{{ entry.location }} ({{ entry.nap }})</span>
+					<span>{{ entry.locationName }} ({{ entry.nap }})</span>
 					<button (click)="isIngress = false; eraseEntry(entry)" class="icon-button-shadow actions">
 						<i class="wui wui-trash-alt"></i>
 					</button>
@@ -95,8 +95,9 @@
 				i18n-placeholder="@@instanceNamePlaceholder" />
 		</mat-form-field>
 
-		<app-select class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" required="false"
-			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder"></app-select>
+		<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" required="false"
+			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder">
+		</app-select-uuid>
 	</form>
 </mat-dialog-content>
 

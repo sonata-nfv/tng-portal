@@ -2,12 +2,12 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } fro
 import { FormControl } from '@angular/forms';
 
 @Component({
-	selector: 'app-select',
-	templateUrl: './select.component.html',
+	selector: 'app-select-uuid',
+	templateUrl: './select-uuid.component.html',
 	styleUrls: [ './select.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SelectComponent implements OnInit {
+export class SelectUuidComponent implements OnInit {
 	// Mandatory
 	@Input() placeholder: string;
 

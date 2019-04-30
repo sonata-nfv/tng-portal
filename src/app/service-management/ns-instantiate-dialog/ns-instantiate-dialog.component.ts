@@ -21,7 +21,6 @@ export class NsInstantiateDialogComponent implements OnInit {
 	egress = new Array();
 	locations: Array<any>;
 	slas: Array<any>;
-	slasWithUUID = new Array();
 
 	constructor(
 		private utilsService: UtilsService,
@@ -52,20 +51,17 @@ export class NsInstantiateDialogComponent implements OnInit {
 
 		this.loading = false;
 		if (templates) {
-			// GET SLA templates names for this NS
-			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => x.name);
-			this.slas.unshift('None');
-
-			// GET SLA templates for this NS
-			this.slasWithUUID = templates.filter(x => x.nsUUID === this.data.serviceUUID);
+			// GET SLA templates for this service
+			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => ({ uuid: x.uuid, name: x.name }));
+			this.slas.unshift({ uuid: 'None', name: 'None' });
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
 		}
 
 		if (endpoints) {
-			// TODO GET location names and map them to uuid to be sent
-			this.locations = endpoints.map(item => item.uuid);
-			this.locations.unshift('None');
+			this.locations = endpoints;
+			this.locations.unshift({ uuid: 'None', name: 'None' });
+
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch locations', '');
 		}
@@ -74,6 +70,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	addNew() {
 		const point = {
 			location: this.instantiationForm.get('location').value,
+			locationName: this.locations.find(location => location.uuid === this.instantiationForm.get('location').value).name,
 			nap: this.instantiationForm.get('nap').value
 		};
 
@@ -94,21 +91,21 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	receiveSLA(sla) {
-		if (sla) {
-			this.instantiationForm.controls.sla.setValue(sla);
+		if (sla && sla !== 'None') {
+			this.instantiationForm.get('sla').setValue(sla);
+		} else {
+			this.instantiationForm.get('sla').setValue('');
 		}
 	}
 
 	async instantiate(serviceUUID) {
 		this.loading = true;
 		const body = {
-			name: this.instantiationForm.get('instanceName').value !== 'None',
-			ingresses: this.ingress,
-			egresses: this.egress,
+			name: this.instantiationForm.get('instanceName').value,
+			ingresses: this.ingress.map(ingress => ({ location: ingress.location, nap: ingress.nap })),
+			egresses: this.egress.map(egress => ({ location: egress.location, nap: egress.nap })),
 			service_uuid: serviceUUID,
-			sla_id: this.slasWithUUID
-				.filter(x => x.name === this.instantiationForm.get('sla').value)
-				.map(x => x.uuid)[ 0 ],
+			sla_id: this.instantiationForm.get('sla').value
 		};
 		const response = await this.serviceManagementService.postNSRequest(body);
 
