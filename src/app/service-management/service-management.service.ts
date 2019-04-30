@@ -103,43 +103,17 @@ export class ServiceManagementService {
 	/**
 	 * Network service instantiation
 	 *
-	 * @param name Name given to the instance
-	 * @param service Information about the service about to be instantiated
-	 * @param ingress Ingress points of the instantiation
-	 * @param egress Egress points of the instantiation
-	 * @param sla Selected service level agreement in the instantiation
+	 * @param body Body of the instantiation request
 	 */
-	postNSRequest(
-		name: string,
-		serviceUUID: Object,
-		ingress: Array<Object>,
-		egress: Array<Object>,
-		slaUUID: string
-	) {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			const data = {
-				name,
-				sla_id: slaUUID,
-				service_uuid: serviceUUID,
-				ingresses: ingress,
-				egresses: egress
-			};
+	async postNSRequest(body) {
+		const headers = new HttpHeaders();
+		const url = this.config.baseSP + this.config.requests;
 
-			this.http
-				.post(this.config.baseSP + this.config.requests, data, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve(response[ 'name' ]);
-				})
-				.catch(err =>
-					reject(
-						'There was an error while trying to instantiate this network service'
-					)
-				);
-		});
+		try {
+			return await this.http.post(url, body, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/*
