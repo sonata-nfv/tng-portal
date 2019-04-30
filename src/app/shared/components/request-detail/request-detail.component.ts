@@ -47,6 +47,10 @@ export class RequestDetailComponent implements OnInit {
 		}
 	}
 
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
