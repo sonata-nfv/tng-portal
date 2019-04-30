@@ -1,22 +1,56 @@
 @import "../../../constants.scss";
 app-sm-network-services-detail {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  form {
-    width: 55vw;
-    margin-bottom: 5vh;
-  }
+	form {
+		width: 55vw;
+		margin-top: 2vh;
+		margin-bottom: 5vh;
+
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+
+		.right-column,
+		.same-row .right-column.mat-form-field {
+			width: 20vw;
+		}
+
+		.mat-table {
+			width: 100%;
+			overflow-x: hidden;  
+			
+			td.mat-cell {
+				cursor: auto;
+			} 
+		}
+
+		// Styles for no vnfs message
+		.vnf {
+			display: flex;
+			flex-direction: column;
+		}
+
+		// Styles for no vnfs message
+		.no-results-container {
+			align-self: center;
+			width: 80%;
+			margin-top: 7vh;
+		}
+	}
 }
