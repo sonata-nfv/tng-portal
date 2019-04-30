@@ -50,7 +50,7 @@
 			<i class="wui wui-copy-alt"></i>
 		</button>
 	</mat-form-field>
-	<p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+	<p *ngIf="vimForm.get('endpoint').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a valid IP</p>
 
 	<div class="same-row">
 		<mat-form-field *ngIf="canShowMockCity()">
@@ -95,7 +95,8 @@
 			<i class="wui wui-copy-alt"></i>
 		</button>
 	</mat-form-field>
-	<p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
+	<p *ngIf="openstackForm.get('networkEndpoint').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a
+		valid IP</p>
 
 	<div class="same-row">
 		<mat-form-field>
@@ -112,8 +113,9 @@
 				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetworkMask" />
 		</mat-form-field>
 	</div>
-	<p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error">*This is not a valid IP</p>
-	<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column">
+	<p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a
+		valid IP</p>
+	<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column" i18n="@@notValidIp">
 		*This is not a valid IP mask (i.e. /24)</p>
 
 	<div class="same-row">
