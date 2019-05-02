@@ -313,7 +313,7 @@ export class CommonService {
 			return response instanceof Array ?
 				response.map(item => ({
 					requestId: item.id,
-					name: item.name,
+					name: item.name || 'Unknown',
 					serviceName: item[ 'service' ] ? item.service.name : this.NA,
 					type: item.request_type,
 					createdAt: item.created_at,
@@ -338,7 +338,7 @@ export class CommonService {
 			return response.hasOwnProperty('id') ?
 				{
 					uuid: response[ 'id' ],
-					name: response[ 'name' ],
+					name: response[ 'name' ] || 'Unknown',
 					status: response[ 'status' ],
 					type: response[ 'request_type' ],
 					updatedAt: response[ 'updated_at' ],
