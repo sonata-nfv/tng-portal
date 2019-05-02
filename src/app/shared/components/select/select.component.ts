@@ -13,8 +13,13 @@ export class SelectComponent implements OnInit {
 
 	// Optional
 	@Input() required: boolean;
-	@Input() value: string;
 	@Input() list: Array<string>;
+	@Input()
+	set value(value: string) {
+		if (value) {
+			this.select.setValue(value);
+		}
+	}
 	@Input()
 	set disabled(disabled: boolean) {
 		disabled ? this.select.disable() : this.select.enable();
@@ -28,7 +33,7 @@ export class SelectComponent implements OnInit {
 
 	@Output() selectEvent = new EventEmitter<string>();
 
-	select = new FormControl({ value: this.value, disabled: this.disabled || false, required: this.required || false });
+	select = new FormControl({ disabled: this.disabled || false, required: this.required || false });
 
 	constructor() { }
 
