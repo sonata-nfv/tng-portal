@@ -52,6 +52,11 @@ export class SlaAgreementListComponent implements OnInit {
 	openAgreement(row) {
 		const slaUUID = row.uuid;
 		const nsiUUID = row.nsiUUID;
-		this.router.navigate([ slaUUID, nsiUUID ], { relativeTo: this.route });
+		try {
+			this.router.navigate([ slaUUID, nsiUUID ], { relativeTo: this.route });
+		} catch (error) {
+			console.error(error);
+			this.utilsService.openSnackBar('Unable to fetch the SLA agreement', '');
+		}
 	}
 }
