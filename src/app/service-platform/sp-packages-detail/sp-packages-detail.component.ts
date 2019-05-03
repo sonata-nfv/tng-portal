@@ -59,6 +59,6 @@ export class SpPackagesDetailComponent implements OnInit {
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/packages' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

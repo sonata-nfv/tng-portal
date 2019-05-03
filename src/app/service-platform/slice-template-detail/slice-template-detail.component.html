@@ -26,15 +26,19 @@
 
 <form class="detail">
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['uuid']">
+		<mat-form-field *ngIf="detail['uuid']" class="left-column">
 			<input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
 		</mat-form-field>
 		<mat-form-field *ngIf="detail['vendor']">
 			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 		</mat-form-field>
 	</div>
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['usageState']">
+		<mat-form-field *ngIf="detail['usageState']" class="left-column">
 			<input matInput placeholder="Usage state" value="{{ utilsService.capitalizeFirstLetter(detail['usageState']) }}" disabled
 				i18n-placeholder="@@usageStatePlaceholder" />
 		</mat-form-field>
@@ -44,7 +48,7 @@
 		</mat-form-field>
 	</div>
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['onboardingState']">
+		<mat-form-field *ngIf="detail['onboardingState']" class="left-column">
 			<input matInput placeholder="Onboarding state" value="{{ utilsService.capitalizeFirstLetter(detail['onboardingState']) }}"
 				disabled i18n-placeholder="@@onboardingStatePlaceholder" />
 		</mat-form-field>
@@ -53,19 +57,21 @@
 				disabled i18n-placeholder="@@operationalStatePlaceholder" />
 		</mat-form-field>
 	</div>
-	<mat-form-field *ngIf="detail['notificationType']">
+
+	<mat-form-field *ngIf="detail['notificationType']" class="left-column">
 		<input matInput placeholder="Notification Types" value="{{ detail['notificationType'] }}" disabled
 			i18n-placeholder="@@notificationTypesPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field *ngIf="detail['userDefinedData']">
+	<mat-form-field *ngIf="detail['userDefinedData']" class="left-column">
 		<input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled
 			i18n-placeholder="@@userDefinedDataPlaceholder" />
 	</mat-form-field>
 
-	<div class="launch" *ngIf="detail['uuid'] || detail['vendor'] || detail['name'] || detail['version']" (click)="instantiate()">
-		<button class="icon-button-shadow actions " mat-button matTooltip="Instantiate" i18n-matTooltip="@@instantiate"><i
-				class="wui wui-caret-right"></i></button>
+	<div class="launch" *ngIf="detail['uuid']" (click)="instantiate()">
+		<button class="icon-button-shadow actions " mat-button matTooltip="Instantiate" i18n-matTooltip="@@instantiate">
+			<i class="wui wui-caret-right"></i>
+		</button>
 		<span class="play" i18n="@@readyToUse">Ready to use</span>
 	</div>
 

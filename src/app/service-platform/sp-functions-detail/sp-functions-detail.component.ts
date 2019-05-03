@@ -51,6 +51,6 @@ export class SpFunctionsDetailComponent implements OnInit {
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/functions' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

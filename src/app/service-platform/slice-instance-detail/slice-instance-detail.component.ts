@@ -78,6 +78,6 @@ export class SliceInstanceDetailComponent implements OnInit {
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/slices/slices-instances' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }
