@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class ServiceManagementService {
@@ -11,7 +10,6 @@ export class ServiceManagementService {
 	request_uuid: string;
 
 	constructor(
-		private utilsService: UtilsService,
 		private authService: AuthService,
 		private config: ConfigService,
 		private http: HttpClient
@@ -136,18 +134,26 @@ export class ServiceManagementService {
 		}
 	}
 
-	getLicences(): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(this.config.baseSP + this.config.licenses, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve(response);
-				})
-				.catch(err => reject(err.statusText));
-		});
+	async getLicences(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.licenses + search :
+			this.config.baseSP + this.config.licenses;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(function (item) {
+					return {
+						type: item.license_type,
+						status: item.license_status,
+						currentInstances: item.current_instances,
+						allowedInstances: item.allowed_instances,
+						expirationDate: item.license_exp_date
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }

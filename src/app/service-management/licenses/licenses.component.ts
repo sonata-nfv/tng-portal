@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ServiceManagementService } from '../service-management.service';
-import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
 	selector: 'app-licenses',
@@ -13,69 +12,37 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 })
 export class LicencesComponent implements OnInit {
 	loading: boolean;
-	licenses = new Array();
-	dataSource = new MatTableDataSource();
-	displayedColumns = [ 'Status', 'Licence ID', 'Related Service', 'Type', 'buy' ];
-	searchText: string;
+	licenses: Array<object>;
+	displayedColumns = [ 'status', 'type', 'current', 'allowed', 'expiration', 'buy' ];
 
 	constructor(
 		private serviceManagementService: ServiceManagementService,
-		private router: Router,
-		private route: ActivatedRoute,
-		private dialogData: DialogDataService
+		private utilsService: UtilsService,
+		// private router: Router,
+		// private route: ActivatedRoute,
 	) { }
 
 	ngOnInit() {
-		this.requestLicences();
+		this.requestLicenses();
 	}
 
-	requestLicences() {
+	searchFieldData(search) {
+		this.requestLicenses(search);
+	}
+
+	async requestLicenses(search?) {
 		this.loading = true;
-		this.serviceManagementService
-			.getLicences()
-			.then(response => {
-				this.loading = false;
-				this.licenses = response.map(function (item) {
-					return {
-						searchField: item.licence_uuid,
-						licenceId: item.licence_uuid,
-						relatedService: item.service_uuid,
-						type: item.licence_type,
-						description: item.description,
-						status: item.status
-					};
-				});
-			})
-			.catch(err => {
-				this.loading = false;
-				console.error(err);
+		const response = await this.serviceManagementService.getLicences(search);
 
-				// Dialog informing the user to log in again when token expired
-				if (err === 'Unauthorized') {
-					const title = 'Your session has expired';
-					const content =
-						'Please, LOG IN again because your access token has expired.';
-					const action = 'Log in';
-
-					this.dialogData.openDialog(title, content, action, () => {
-						this.router.navigate([ '/login' ]);
-					});
-				}
-			});
+		this.loading = false;
+		if (response) {
+			this.licenses = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any license', '');
+		}
 	}
 
-	receiveMessage($event) {
-		this.searchText = $event;
-	}
-	openLicences(row) {
-		const uuid = row.licenceId;
-		this.getLicenceById(uuid);
-		this.router.navigate([ uuid ], { relativeTo: this.route });
-	}
-
-	getLicenceById(uuid) {
-		const detail = this.licenses.find(x => x.licenceId === uuid);
-	}
+	openLicences(row) { }
 
 	buy(row) { }
 }

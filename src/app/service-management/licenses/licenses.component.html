@@ -3,50 +3,64 @@
 <h1 class="title1 title-section-name" i18n="@@licenses">Licences</h1>
 
 <div class="tools">
-	<app-search-bar class="search" (searchTextEvent)="receiveMessage($event)"></app-search-bar>
-	<!--
-		<button class="icon-button-shadow reload" (click)="requestLicences()">
-		  <i class="wui wui-undo"></i>
-		</button>
-	-->
+	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+	<button class="icon-button-shadow reload" (click)="requestLicenses()" matTooltip="Reload data" i18n-matTooltip="@@reloadData">
+		<i class="wui wui-undo"></i>
+	</button>
 </div>
 
-<!--
-	<table mat-table [dataSource]="licenses | filter: searchText">
-	  <ng-container matColumnDef="Status">
-	    <th mat-header-cell *matHeaderCellDef> Status </th>
-	    <td mat-cell *matCellDef="let element">
-	      <i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
-	    </td>
-	  </ng-container>
-	  <ng-container matColumnDef="Licence ID">
-	    <th mat-header-cell *matHeaderCellDef> Licence ID </th>
-	    <td mat-cell *matCellDef="let element"> {{ element.licenceId }} </td>
-	  </ng-container>
-	  <ng-container matColumnDef="Related Service">
-	    <th mat-header-cell *matHeaderCellDef> Related Service </th>
-	    <td mat-cell *matCellDef="let element"> {{ element.relatedService }}</td>
-	  </ng-container>
-	  <ng-container matColumnDef="Type">
-	    <th mat-header-cell *matHeaderCellDef> Type </th>
-	    <td mat-cell *matCellDef="let element"> {{ element.type }}</td>
-	  </ng-container>
-	  <ng-container matColumnDef="buy">
-	    <th mat-header-cell *matHeaderCellDef>
-	    </th>
-	    <td mat-cell *matCellDef="let element" (click)="buy(element)" (click)="$event.stopPropagation()">
-	      <button mat-button class="icon-button-shadow actions ">
-	        <i class="wui wui-shopping-cart"></i>
-	      </button>
-	    </td>
-	  </ng-container>
 
-	  <tr mat-header-row *matHeaderRowDef="displayedColumns">
-	  </tr>
-	  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openLicences(row)">
-	  </tr>
-	</table>
--->
+<table mat-table [dataSource]="licenses">
+	<ng-container matColumnDef="status">
+		<th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef="let element">
+			<i [ngClass]="{ active : element.status === 'active' }" class="wui wui-circle-alt"></i>
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="type">
+		<th mat-header-cell *matHeaderCellDef i18n="@@type"> Type </th>
+		<td mat-cell *matCellDef="let element"> {{ element.type }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="current">
+		<th mat-header-cell *matHeaderCellDef i18n="@@currentInstances"> Current instances </th>
+		<td mat-cell *matCellDef="let element"> {{ element.currentInstances }} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="allowed">
+		<th mat-header-cell *matHeaderCellDef i18n="@@allowedInstances"> Allowed instances </th>
+		<td mat-cell *matCellDef="let element"> {{ element.allowedInstances }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="expiration">
+		<th mat-header-cell *matHeaderCellDef i18n="@@expirationDate"> Expiration date </th>
+		<td mat-cell *matCellDef="let element"> {{ utilsService.formatDateString(element.expirationDate) }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="buy">
+		<th mat-header-cell *matHeaderCellDef>
+		</th>
+		<td mat-cell *matCellDef="let element" (click)="buy(element)" (click)="$event.stopPropagation()">
+			<button *ngIf="element.type.toUpperCase() == 'PRIVATE'" mat-button class="icon-button-shadow actions" matTooltip="Buy"
+				i18n-matTooltip="@@buy">
+				<i class="wui wui-shopping-cart"></i>
+			</button>
+		</td>
+	</ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns">
+	</tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openLicences(row)">
+	</tr>
+</table>
+
+
+<div *ngIf="!licenses && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
 
