@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
 	selector: 'app-placement-policy',
@@ -27,6 +28,7 @@ export class PlacementPolicyComponent implements OnInit {
 	datacentersSelected = new Array();
 
 	constructor(
+		private utilsService: UtilsService,
 		private commonService: CommonService,
 		private dialogData: DialogDataService
 	) { }
@@ -53,9 +55,19 @@ export class PlacementPolicyComponent implements OnInit {
 
 		if (this.prioritise && !this.requested) {
 			this.requested = true;
+			this.getEndpoints();
+		}
+	}
 
-			// TODO request to 5GTANGO endpoint the actual vim_cities
-			this.datacenters = this.commonService.requestVims();
+	private async getEndpoints() {
+		const datacenters = await this.commonService.getEndpoints();
+
+		if (datacenters) {
+			// TODO GET location names and map them to uuid to be sent
+			this.datacenters = datacenters.map(item => item.uuid);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch datacenters', '');
+			this.datacenters = [];
 		}
 	}
 

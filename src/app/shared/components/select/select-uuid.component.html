@@ -1,5 +1,5 @@
 <mat-form-field>
 	<mat-select placeholder="{{ placeholder }}" [formControl]="select" [required]="required">
-		<mat-option *ngFor="let item of list" [value]="item"> {{ item }} </mat-option>
+		<mat-option *ngFor="let item of list" [value]="item.uuid"> {{ item.name }} </mat-option>
 	</mat-select>
 </mat-form-field>

@@ -17,8 +17,6 @@ import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
 import { LicencesComponent } from './licenses/licenses.component';
 import { LicencesDetailComponent } from './licenses-detail/licenses-detail.component';
-import { ServiceLicensesComponent } from './service-licenses/service-licenses.component';
-import { UserLicensesComponent } from './user-licenses/user-licenses.component';
 
 @NgModule({
 	declarations: [
@@ -30,9 +28,7 @@ import { UserLicensesComponent } from './user-licenses/user-licenses.component';
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
 		LicencesComponent,
-		LicencesDetailComponent,
-		ServiceLicensesComponent,
-		UserLicensesComponent
+		LicencesDetailComponent
 	],
 	entryComponents: [ NsInstantiateDialogComponent ],
 	imports: [ CommonModule, AngularMaterialModule, AppRoutingModule, ReactiveFormsModule, FormsModule, SharedModule ],

@@ -146,20 +146,9 @@
 				Network service instances
 			</button>
 
-			<button [ngClass]="{ active: section === 'licenses' }" (click)="setSection($event, 'licenses')" appIfFeatureAvailable="licenses"
-				i18n="@@licenceStore">
-				Licence store
+			<button [ngClass]="{ active: section === 'sm-licenses' }" (click)="setSection($event, 'sm-licenses')" i18n="@@licences">
+				Licences
 			</button>
-			<div class="section" *ngIf="section === 'licenses'" appIfFeatureAvailable="licenses">
-				<button [ngClass]="{ active: subsection === 'service-licenses' }" (click)="setSubsection($event, 'service-licenses')"
-					i18n="@@serviceLicenses">
-					Service licenses
-				</button>
-				<button [ngClass]="{ active: subsection === 'user-licenses' }" (click)="setSubsection($event, 'user-licenses')"
-					i18n="@@userLicenses">
-					User licenses
-				</button>
-			</div>
 		</div>
 	</mat-sidenav>
 </mat-sidenav-container>

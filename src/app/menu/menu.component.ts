@@ -125,8 +125,7 @@ export class MenuComponent implements OnInit {
 			case 'sm-network-service-instances':
 				this.router.navigate([ 'service-management/network-service-instances' ]);
 				break;
-			case 'licenses':
-				this.subsection = '';
+			case 'sm-licenses':
 				this.router.navigate([ 'service-management/licenses' ]);
 				break;
 		}
@@ -170,14 +169,6 @@ export class MenuComponent implements OnInit {
 			case 'slices-requests':
 				this.subsection = 'slices-requests';
 				this.router.navigate([ 'service-platform/slices/slices-requests' ]);
-				break;
-			case 'service-licenses':
-				this.subsection = 'service-licenses';
-				this.router.navigate([ 'service-management/licenses/service-licenses' ]);
-				break;
-			case 'user-licenses':
-				this.subsection = 'user-licenses';
-				this.router.navigate([ 'service-management/licenses/user-licenses' ]);
 				break;
 		}
 		this.subsection = buttonId;

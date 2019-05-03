@@ -42,10 +42,10 @@ export class SlaTemplateDetailComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.detail = response;
-			const response2 = await this.servicePlatformService.getOneFlavor(this.detail[ 'ns' ], this.detail[ 'uuid' ]);
+			const flavor = await this.servicePlatformService.getOneFlavor(this.detail[ 'ns' ], this.detail[ 'uuid' ]);
 
-			if (response2) {
-				this.detail[ 'flavor' ] = this.utilsService.capitalizeFirstLetter(response2);
+			if (flavor) {
+				this.detail[ 'flavor' ] = this.utilsService.capitalizeFirstLetter(flavor);
 			}
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch SLA template', '');

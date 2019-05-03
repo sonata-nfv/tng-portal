@@ -81,7 +81,11 @@ export class SliceTemplateDetailComponent implements OnInit {
 		}
 	}
 
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
 	close() {
-		this.router.navigate([ 'service-platform/slices/slices-templates' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

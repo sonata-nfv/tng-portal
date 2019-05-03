@@ -13,39 +13,41 @@ app-slice-template-detail {
 	background-color: $basic-background-color;
 	> * {
 		flex: 0 0 auto;
-  }
+  	}
 
-  form {
-    width: 50vw;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+	form {
+		width: 50vw;
+		margin-top: 2vh;
+		margin-bottom: 2vh;
 
-    .mat-form-field {
-      width: 100%;
-    }
-  }
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+	}
 
-  .title2 {
-	  margin-bottom: 0;
-  }
+	.title2 {
+		margin-bottom: 0;
+	}
 
-  table {
-	width: 100%;
-	margin-bottom: 50px;
-  }
+	table {
+		width: 100%;
+		margin-bottom: 50px;
+	}
 
-  tr.mat-row {
-	background-image: linear-gradient(
-	  to right,
-	  $basic-background-color 0%,
-	  $table-underline-color 0%,
-	  $table-underline-color 99%,
-	  $basic-background-color 99%,
-	  $basic-background-color 100%
-	);
-  }
+	tr.mat-row {
+		background-image: linear-gradient(
+		to right,
+		$basic-background-color 0%,
+		$table-underline-color 0%,
+		$table-underline-color 99%,
+		$basic-background-color 99%,
+		$basic-background-color 100%
+		);
+	}
 
-  td.mat-cell {
-	cursor: auto;
-  }
+	td.mat-cell {
+		cursor: auto;
+	}
 }

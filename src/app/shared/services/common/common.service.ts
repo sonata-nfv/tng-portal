@@ -79,10 +79,10 @@ export class CommonService {
 	getOnePackage(section, uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = this.authService.getAuthHeaders();
-			const uri = section === 'vnv' ? this.config.baseVNV : this.config.baseSP;
+			const url = section === 'vnv' ? this.config.baseVNV : this.config.baseSP;
 
 			this.http
-				.get(uri + this.config.packages + '/' + uuid, {
+				.get(url + this.config.packages + '/' + uuid, {
 					headers: headers
 				})
 				.toPromise()
@@ -265,40 +265,33 @@ export class CommonService {
 	 *
 	 * @param uuid UUID of the desired Network Service.
 	 */
-	getOneNetworkService(section, uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const uri = section === 'vnv' ? this.config.baseVNV : this.config.baseSP;
+	async getOneNetworkService(section, uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = section === 'vnv' ?
+			this.config.baseVNV + this.config.services + '/' + uuid :
+			this.config.baseSP + this.config.services + '/' + uuid;
 
-			this.http
-				.get(uri + this.config.services + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response.hasOwnProperty('nsd')) {
-						resolve({
-							uuid: response[ 'uuid' ],
-							name: response[ 'nsd' ][ 'name' ],
-							author: response[ 'nsd' ][ 'author' ],
-							version: response[ 'nsd' ][ 'version' ],
-							status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-							vendor: response[ 'nsd' ][ 'vendor' ],
-							serviceID: response[ 'uuid' ],
-							type: response[ 'user_licence' ],
-							description: response[ 'nsd' ][ 'description' ],
-							createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
-							updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-							vnf: response[ 'nsd' ][ 'network_functions' ]
-						});
-					} else {
-						reject('There was an error while fetching the network service!');
-					}
-				})
-				.catch(err =>
-					reject('There was an error while fetching the network service!')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response.hasOwnProperty('nsd') ?
+				{
+					uuid: response[ 'uuid' ],
+					// duplicated
+					serviceID: response[ 'uuid' ],
+					platform: response[ 'platform' ],
+					status: response[ 'status' ],
+					updatedAt: response[ 'updated_at' ],
+					createdAt: response[ 'created_at' ],
+					author: response[ 'nsd' ][ 'author' ],
+					name: response[ 'nsd' ][ 'name' ],
+					vendor: response[ 'nsd' ][ 'vendor' ],
+					version: response[ 'nsd' ][ 'version' ],
+					description: response[ 'nsd' ][ 'description' ],
+					vnf: response[ 'nsd' ][ 'network_functions' ]
+				} : { };
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -320,7 +313,7 @@ export class CommonService {
 			return response instanceof Array ?
 				response.map(item => ({
 					requestId: item.id,
-					name: item.name,
+					name: item.name || 'Unknown',
 					serviceName: item[ 'service' ] ? item.service.name : this.NA,
 					type: item.request_type,
 					createdAt: item.created_at,
@@ -345,7 +338,7 @@ export class CommonService {
 			return response.hasOwnProperty('id') ?
 				{
 					uuid: response[ 'id' ],
-					name: response[ 'name' ],
+					name: response[ 'name' ] || 'Unknown',
 					status: response[ 'status' ],
 					type: response[ 'request_type' ],
 					updatedAt: response[ 'updated_at' ],
@@ -368,9 +361,23 @@ export class CommonService {
 	}
 
 	/**
-	 * Retrieves the existing vims represented by the city name
+	 * Retrieves the existing vims of type endpoint
 	 */
-	requestVims(): any {
-		return [ 'bcn-1', 'bcn-2', 'bcn-3', 'bcn-4' ];
+	async getEndpoints() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.vimSettings;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.filter(item => item.type === 'endpoint').map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.name
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }

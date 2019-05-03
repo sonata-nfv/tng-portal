@@ -68,8 +68,6 @@ import {
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
 import { LicencesComponent } from './service-management/licenses/licenses.component';
 import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
-import { ServiceLicensesComponent } from './service-management/service-licenses/service-licenses.component';
-import { UserLicensesComponent } from './service-management/user-licenses/user-licenses.component';
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -203,9 +201,7 @@ const routes: Routes = [
 			{
 				path: 'service-management/licenses', component: LicencesComponent,
 				children: [ { path: ':id', component: LicencesDetailComponent } ]
-			},
-			{ path: 'service-management/licenses/service-licenses', component: ServiceLicensesComponent },
-			{ path: 'service-management/licenses/user-licenses', component: UserLicensesComponent }
+			}
 		]
 	}
 ];

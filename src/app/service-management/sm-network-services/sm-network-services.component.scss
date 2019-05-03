@@ -1,31 +1,31 @@
 @import "../../../constants.scss";
 app-sm-network-services {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  background-color: $basic-background-color;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	align-items: center;
+	width: auto;
+	height: 100%;
+	background-color: $basic-background-color;
 
-  table {
-    width: 95%;
-  }
-  tr.mat-row {
-    background-image: linear-gradient(
-      to right,
-      $basic-background-color 0%,
-      $table-underline-color 0%,
-      $table-underline-color 95%,
-      $basic-background-color 95%,
-      $basic-background-color 100%
-    );
-  }
+	table {
+		width: 95%;
+	}
+	tr.mat-row {
+		background-image: linear-gradient(
+		to right,
+		$basic-background-color 0%,
+		$table-underline-color 0%,
+		$table-underline-color 95%,
+		$basic-background-color 95%,
+		$basic-background-color 100%
+		);
+	}
 
-  // Set width for columns
-  .mat-cell:nth-child(5),
-  .mat-header-cell:nth-child(5) {
-    width: 30px;
-  }
+	// Set width for columns
+	.mat-cell:nth-child(5),
+	.mat-header-cell:nth-child(5) {
+		width: 30px;
+	}
 }

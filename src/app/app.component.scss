@@ -570,8 +570,20 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 //////////////////////////////////////
+// Basic button
+//////////////////////////////////////
+.basic-button {
+    border: none;
+    cursor: pointer;
+	outline: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+//////////////////////////////////////
 // Button for icons
 //////////////////////////////////////
+.button-shadow,
 .icon-button-shadow {
     border: none;
 	cursor: pointer;
@@ -588,7 +600,7 @@ ul.unordered-list .mat-input-element:disabled {
 //////////////////////////////////////
 // Icons
 //////////////////////////////////////
-.closeIcon {
+.close-icon {
 	position: absolute;
 	padding: 8px;
 	border: none;

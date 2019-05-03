@@ -62,6 +62,6 @@ export class SlaAgreementDetailComponent implements OnInit {
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/slas/sla-agreements' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

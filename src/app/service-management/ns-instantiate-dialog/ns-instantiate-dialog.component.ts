@@ -15,14 +15,12 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	continue = false;
-	reset = false;
 	isIngress = true;
 	instantiationForm: FormGroup;
 	ingress = new Array();
 	egress = new Array();
-	locations = new Array();
-	slas = new Array();
-	slasWithUUID = new Array();
+	locations: Array<any>;
+	slas: Array<any>;
 
 	constructor(
 		private utilsService: UtilsService,
@@ -33,104 +31,106 @@ export class NsInstantiateDialogComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.loading = true;
+		this.initForms();
+		this.getData();
+	}
 
+	private initForms() {
 		this.instantiationForm = new FormGroup({
-			location: new FormControl(null, Validators.required),
-			nap: new FormControl(),
+			location: new FormControl(),
+			nap: new FormControl(null, Validators.pattern(this.utilsService.getIpPattern())),
 			sla: new FormControl(),
-			instanceName: new FormControl()
+			instanceName: new FormControl(null, Validators.required)
 		});
-
-		// TODO request to 5GTANGO endpoint the actual vim_cities
-		this.locations = this.commonService.requestVims();
-
-		this.commonService
-			.getSLATemplates()
-			.then(response => {
-				this.loading = false;
-
-				this.slas = response
-					.filter(x => x.nsUUID === this.data.serviceUUID)
-					.map(x => x.name);
-				this.slas.unshift('None');
-
-				this.slasWithUUID = response.filter(
-					x => x.nsUUID === this.data.serviceUUID
-				);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
 	}
 
-	/**
-     * Saves the introduced ingress/egress points
-     */
+	private async getData() {
+		this.loading = true;
+		const templates = await this.commonService.getSLATemplates();
+		const endpoints = await this.commonService.getEndpoints();
+
+		this.loading = false;
+		if (templates) {
+			// GET SLA templates for this service
+			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => ({ uuid: x.uuid, name: x.name }));
+			this.slas.unshift({ uuid: 'None', name: 'None' });
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
+		}
+
+		if (endpoints) {
+			this.locations = endpoints;
+			this.locations.unshift({ uuid: 'None', name: 'None' });
+
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch locations', '');
+		}
+	}
+
 	addNew() {
-		if (this.isIngress) {
-			this.ingress.push({
-				location: this.instantiationForm.controls.location.value,
-				nap: this.instantiationForm.controls.nap.value
-			});
-		} else {
-			this.egress.push({
-				location: this.instantiationForm.controls.location.value,
-				nap: this.instantiationForm.controls.nap.value
-			});
-		}
+		const point = {
+			location: this.instantiationForm.get('location').value,
+			locationName: this.locations.find(location => location.uuid === this.instantiationForm.get('location').value).name,
+			nap: this.instantiationForm.get('nap').value
+		};
+
+		this.isIngress ? this.ingress.push(point) : this.egress.push(point);
 		this.instantiationForm.reset();
-		this.reset = true;
-		setTimeout(() => {
-			this.reset = false;
-		}, 5);
 	}
 
-	/**
-     * Removes the selected ingress/egress point from the list
-     *
-     * @param entry Ingress or egress point selected
-     */
 	eraseEntry(entry: string) {
-		if (this.isIngress) {
-			this.ingress = this.ingress.filter(x => x !== entry);
-		} else {
+		this.isIngress ?
+			this.ingress = this.ingress.filter(x => x !== entry) :
 			this.egress = this.egress.filter(x => x !== entry);
-		}
 	}
 
 	receiveLocation(location) {
-		this.instantiationForm.controls.location.setValue(location);
+		location ?
+			this.instantiationForm.get('location').setValue(location) :
+			this.instantiationForm.get('location').setValue(null);
 	}
 
 	receiveSLA(sla) {
-		if (sla !== 'None') {
-			this.instantiationForm.controls.sla.setValue(sla);
+		if (sla && sla !== 'None') {
+			this.instantiationForm.get('sla').setValue(sla);
+		} else {
+			this.instantiationForm.get('sla').setValue('');
 		}
 	}
 
-	instantiate(serviceUUID) {
-		this.close();
-		this.serviceManagementService
-			.postNSRequest(
-				this.instantiationForm.get('instanceName').value,
-				serviceUUID,
-				this.ingress,
-				this.egress,
-				this.slasWithUUID
-					.filter(x => x.name === this.instantiationForm.controls.sla.value)
-					.map(x => x.uuid)[ 0 ]
-			)
-			.then(response => {
-				this.utilsService.openSnackBar(
-					'Instantiating ' + response + '...',
-					''
-				);
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+	async instantiate(serviceUUID) {
+		this.loading = true;
+		const body = {
+			name: this.instantiationForm.get('instanceName').value,
+			ingresses: this.ingress.map(ingress => ({ location: ingress.location, nap: ingress.nap })),
+			egresses: this.egress.map(egress => ({ location: egress.location, nap: egress.nap })),
+			service_uuid: serviceUUID,
+			sla_id: this.instantiationForm.get('sla').value
+		};
+		const response = await this.serviceManagementService.postNSRequest(body);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Instantiating ' + response[ 'name' ] + '...', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('Unable to instantiate this network service', '');
+		}
+
+	}
+
+	canShowNetworkAddress() {
+		return this.instantiationForm.get('location').value && this.instantiationForm.get('location').value !== 'None' ? true : false;
+	}
+
+	canResetSelect() {
+		return this.instantiationForm.get('location').value ? false : true;
+	}
+
+	canDisableAddNew() {
+		return !this.instantiationForm.get('location').value ||
+			!this.instantiationForm.get('nap').value ||
+			this.instantiationForm.get('nap').errors;
 	}
 
 	close() {
