@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { ConfigService } from '../shared/services/config/config.service';
+
 @Component({
 	selector: 'app-dashboard',
 	templateUrl: './dashboard.component.html',
@@ -8,11 +10,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 	encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
+	section = 'vm';
 	minutes = 30;
 	refreshRate = '5s';
 
-	constructor(private sanitizer: DomSanitizer) {
-	}
+	constructor(private sanitizer: DomSanitizer, private config: ConfigService) { }
 
 	ngOnInit() { }
 
@@ -36,4 +38,7 @@ export class DashboardComponent implements OnInit {
 			`refresh=${ this.refreshRate }`);
 	}
 
+	setSection(e, buttonId) {
+		this.section = buttonId;
+	}
 }
