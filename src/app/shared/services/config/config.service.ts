@@ -5,8 +5,9 @@ import { Config } from './config';
 
 @Injectable()
 export class ConfigService extends Config {
-	baseSP: string = window.location.origin + '/api/v3/';
-	baseVNV: string = window.location.origin + '/api/v3/';
+	baseSP = window.location.origin + '/api/v3/';
+	baseVNV = window.location.origin + '/api/v3/';
+	baseMonitoring = window.location.origin.split(':')[ 0 ] + '3000';
 	register = 'users/';
 	login = 'sessions/';
 	services = 'services';
@@ -47,6 +48,7 @@ export class ConfigService extends Config {
 		if (window.location.origin.includes('localhost')) {
 			this.baseSP = 'http://pre-int-sp-ath.5gtango.eu:32002/api/v3/';
 			this.baseVNV = 'http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/';
+			this.baseMonitoring = 'http://pre-int-sp-ath.5gtango.eu:3000';
 		}
 
 		return new Promise<Config>((resolve, reject) => {

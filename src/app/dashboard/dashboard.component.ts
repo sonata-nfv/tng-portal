@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 	}
 
 	getGraphUrl(panelId) {
-		return this.sanitizer.bypassSecurityTrustResourceUrl(`http://pre-int-sp-ath.5gtango.eu:3000/d-solo/SP_dash1/sp?orgId=1&` +
+		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseMonitoring }/d-solo/sp_dash/sp?orgId=1&` +
 			`panelId=${ panelId }&` +
 			`from=getFifteenMinutesAgo()&` +
 			`to=getDate()&` +
