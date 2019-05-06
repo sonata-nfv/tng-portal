@@ -31,6 +31,10 @@
           <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
@@ -1544,6 +1548,10 @@
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">101</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="placementPolicy" datatype="html">
         <source>
@@ -1597,6 +1605,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instances" datatype="html">
@@ -1655,6 +1667,38 @@
           <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="vm" datatype="html">
+        <source>VM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="platform" datatype="html">
+        <source>Platform</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="services" datatype="html">
+        <source>Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slasAndLicensing" datatype="html">
+        <source>SLAs &amp; Licensing</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="platforms" datatype="html">
         <source>Platforms</source>
         <context-group purpose="location">
@@ -1701,13 +1745,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-list/slice-template-list.component.html</context>
           <context context-type="linenumber">51</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="platform" datatype="html">
-        <source>Platform</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
-          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deletePlatform" datatype="html">

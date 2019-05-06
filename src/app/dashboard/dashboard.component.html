@@ -1,13 +1,40 @@
 <h3 class="title3 header-section-name">DASHBOARD</h3>
 
-<div class="platform">
-	<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(10)"></iframe>
-
-	<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(13)"></iframe>
+<div class="sections-available">
+	<button class="basic-button section" [ngClass]="{ active: section === 'vm' }" (click)="setSection($event, 'vm')" i18n="@@vm">VM</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'platform' }" (click)="setSection($event, 'platform')"
+		i18n="@@platform">Platform</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')"
+		i18n="@@services">Services</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')"
+		i18n="@@functions">Functions</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')"
+		i18n="@@slices">Slices</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'slas' }" (click)="setSection($event, 'slas')"
+		i18n="@@slasAndLicensing">SLAs & Licensing</button>
+	<button class="basic-button section" [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')"
+		i18n="@@policies">Policies</button>
 </div>
 
-<div class="vm">
-	<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(2)"></iframe>
+<div class="dashboard vm" *ngIf="section === 'vm'">
+	<div class="line">
+		<iframe class="number-containers" frameborder="0" [src]="getGraphUrl(18)"></iframe>
+	</div>
 
-	<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(3)"></iframe>
+	<div class="line">
+		<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(17)"></iframe>
+		<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(20)"></iframe>
+		<iframe class="disk-usage" frameborder="0" [src]="getGraphUrl(19)"></iframe>
+	</div>
+</div>
+
+<div class="dashboard platform" *ngIf="section === 'platform'">
+	<div class="line">
+		<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(2)"></iframe>
+	</div>
+
+	<div class="line">
+		<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(3)"></iframe>
+		<iframe class="disk-usage" frameborder="0" [src]="getGraphUrl(8)"></iframe>
+	</div>
 </div>
