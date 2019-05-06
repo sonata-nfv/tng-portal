@@ -64,7 +64,7 @@
 		</span>
 	</div>
 
-	<div class="vnf">
+	<div class="vnf" *ngIf="detail['uuid']">
 		<h2 class="title2" i18n="@@vnfs">VNFs</h2>
 
 		<table mat-table [dataSource]="detail['vnf']">
