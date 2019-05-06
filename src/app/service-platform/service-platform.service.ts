@@ -330,42 +330,31 @@ export class ServicePlatformService {
 	 *                          matched by the returned list of
 	 *                          Runtime Policies.
 	 */
-	getRuntimePolicies(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.runtimePolicies + search
-					: this.config.baseSP + this.config.runtimePolicies;
+	async getRuntimePolicies(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.runtimePolicies + search
+			: this.config.baseSP + this.config.runtimePolicies;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.filter(policy => policy.ns_uuid).map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.pld.name,
-									version: item.pld.version,
-									vendor: item.pld.vendor,
-									ns: item.pld.network_service,
-									ns_uuid: item.ns_uuid,
-									sla: item.sla_name || 'None',
-									default: item.default_policy,
-									enforced: item.enforced ? 'Yes' : 'No'
-								};
-							})
-						);
-					} else {
-						reject('There was an error while fetching the policies');
-					}
-				})
-				.catch(err => reject('There was an error while fetching the policies'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.filter(policy => policy.ns_uuid).map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.pld.name,
+						version: item.pld.version,
+						vendor: item.pld.vendor,
+						ns: item.pld.network_service,
+						ns_uuid: item.ns_uuid,
+						sla: item.sla_name || 'None',
+						default: item.default_policy,
+						enforced: item.enforced ? 'Yes' : 'No'
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

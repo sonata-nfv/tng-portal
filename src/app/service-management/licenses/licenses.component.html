@@ -56,7 +56,7 @@
 </table>
 
 
-<div *ngIf="!licenses && !loading" class="no-results-container">
+<div *ngIf="(!licenses || !licenses.length) && !loading" class="no-results-container">
 	<div class="no-results-line"></div>
 	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
 	<div class="no-results-line"></div>
