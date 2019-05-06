@@ -7,7 +7,7 @@ import { Config } from './config';
 export class ConfigService extends Config {
 	baseSP = window.location.origin + '/api/v3/';
 	baseVNV = window.location.origin + '/api/v3/';
-	baseMonitoring = window.location.origin.split(':')[ 0 ] + '3000';
+	baseMonitoring = window.location.origin + ':3000';
 	register = 'users/';
 	login = 'sessions/';
 	services = 'services';

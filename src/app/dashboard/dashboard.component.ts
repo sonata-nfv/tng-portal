@@ -16,7 +16,9 @@ export class DashboardComponent implements OnInit {
 
 	constructor(private sanitizer: DomSanitizer, private config: ConfigService) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		console.log('Requesting graphs to ', this.config.baseMonitoring);
+	}
 
 	getDate() {
 		return new Date().getTime();
