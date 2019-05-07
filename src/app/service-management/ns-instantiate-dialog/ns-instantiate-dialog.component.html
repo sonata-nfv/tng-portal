@@ -38,8 +38,8 @@
 		<mat-form-field *ngIf="canShowNetworkAddress()">
 			<input matInput type="text" placeholder="Network address" formControlName="nap" />
 		</mat-form-field>
-		<p *ngIf="instantiationForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">
-			*This is not a valid IP
+		<p *ngIf="instantiationForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIpMaskExample">
+			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
 		</p>
 
 

@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material';
 @Injectable()
 export class UtilsService {
 	ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
-	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[0])';
+	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
+	ipAndMaskPattern = `${ this.ipPattern }\/${ this.maskPattern }`;
 	numberPattern = '^[0-9]*$';
 
 	constructor(
@@ -17,6 +18,10 @@ export class UtilsService {
 
 	getMaskPattern() {
 		return this.maskPattern;
+	}
+
+	getIpAndMaskPattern() {
+		return this.ipAndMaskPattern;
 	}
 
 	getNumberPattern() {
