@@ -6,7 +6,7 @@
 }
 
 * {
-	font-family: 'Calibri';
+	font-family: Calibri, Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -331,32 +331,28 @@ p {
 	flex-direction: column;
 	width: 100%;
     margin-bottom: 2vh;
-}
 
-// Header when the item has an icon on the right
-// Allows dropdown action
-.description .description-title {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
+	.description-title {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
 
-	.title4 {
-        flex: 1 1;
+		.title4 {
+			flex: 1 1;
+		}
+
+		button {
+			align-self: center;
+			margin-left: 1vw;
+			text-align: right;
+			border: none;
+			cursor: pointer;
+			outline: none;
+			color: $primary-font-color;
+			background-color: $basic-background-color;
+		}
 	}
 
-	button {
-        align-self: center;
-		margin-left: 1vw;
-		text-align: right;
-        border: none;
-		cursor: pointer;
-        outline: none;
-        color: $primary-font-color;
-		background-color: $basic-background-color;
-	}
-}
-
-.description {
 	.title4 {
         margin-bottom: 2px;
         margin-top: 3px;
