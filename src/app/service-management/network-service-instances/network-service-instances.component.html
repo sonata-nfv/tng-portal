@@ -43,7 +43,7 @@
 	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openInstance(row.uuid)"></tr>
 </table>
 
-<div *ngIf="!instances && !loading" class="no-results-container">
+<div *ngIf="(!instances || !instances.length) && !loading" class="no-results-container">
 	<div class="no-results-line"></div>
 	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
 	<div class="no-results-line"></div>

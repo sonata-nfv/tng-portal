@@ -38,7 +38,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	private initForms() {
 		this.instantiationForm = new FormGroup({
 			location: new FormControl(),
-			nap: new FormControl(null, Validators.pattern(this.utilsService.getIpPattern())),
+			nap: new FormControl(null, Validators.pattern(this.utilsService.getIpAndMaskPattern())),
 			sla: new FormControl(),
 			instanceName: new FormControl(null, Validators.required)
 		});

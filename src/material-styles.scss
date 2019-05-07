@@ -43,6 +43,7 @@ form .same-row {
 }
 
 .mat-form-field-disabled .mat-form-field-underline {
+	display: none;
 	background-image: none;
 	background-color: $form-underline-color;
 }
@@ -54,10 +55,6 @@ form .same-row {
 .mat-form-field.mat-focused .mat-form-field-ripple,
 .mat-form-field-ripple {
 	background-color: $form-focus;
-}
-
-.mat-form-field-disabled .mat-form-field-underline {
-	display: none;
 }
 
 // Label styles
@@ -169,14 +166,26 @@ table {
 		// cursor: pointer;
 	}
 
-	//   Center cells
-	th.mat-header-cell,
-	td.mat-cell {
+	// Center titles, color and font styles
+	th.mat-header-cell {
 		text-align: center;
+		border-bottom: none;
+		vertical-align: bottom;
+		font-size: 14px;
+		color: $header-color;
 	}
 
+	// // Center cells, color and font styles
 	td.mat-cell {
+		text-align: center;
 		cursor: pointer;
+		border-bottom: none;
+		vertical-align: bottom;
+		color: $cell-color;
+	}
+
+	td.mat-header-row {
+		font-size: 14px;
 	}
 
 	td.mat-cell:first-child,
@@ -191,32 +200,12 @@ table {
 		padding-right: 20px;
 	}
 
-	//   Underline styles
+	// Underline styles
 	tr.mat-row {
 		background-position: bottom;
 		background-size: 100% 1px;
 		background-repeat: no-repeat;
 		align-items: baseline;
-	}
-
-	td.mat-cell,
-	th.mat-header-cell {
-		border-bottom: none;
-		vertical-align: bottom;
-	}
-
-	//   Color and font styles
-	th.mat-header-cell {
-		color: $header-color;
-	}
-
-	td.mat-cell {
-		color: $cell-color;
-	}
-
-	th.mat-header-cell,
-	td.mat-header-row {
-		font-size: 14px;
 	}
 
 	//   Status and row options styles
