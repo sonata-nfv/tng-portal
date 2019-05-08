@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { EndpointListComponent } from './endpoint-list/endpoint-list.component';
 import { VimListComponent } from './vim-list/vim-list.component';
 import { VimComponent } from './vim/vim.component';
 import { WimListComponent } from './wim-list/wim-list.component';
@@ -16,6 +17,7 @@ import { SettingsService } from './settings.service';
 
 @NgModule({
 	declarations: [
+		EndpointListComponent,
 		VimListComponent,
 		VimComponent,
 		WimListComponent,

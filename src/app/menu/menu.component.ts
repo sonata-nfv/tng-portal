@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit {
 				this.router.navigate([ '/platforms' ]);
 				break;
 			case 'settings':
-				this.section = 'vim';
+				this.section = 'endpoint';
 				this.router.navigate([ '/settings' ]);
 				break;
 			case 'validation-and-verification':
@@ -77,6 +77,9 @@ export class MenuComponent implements OnInit {
 
 	setSection(e, buttonId) {
 		switch (buttonId) {
+			case 'endpoint':
+				this.router.navigate([ 'settings/endpoint' ]);
+				break;
 			case 'vim':
 				this.router.navigate([ 'settings/vim' ]);
 				break;
