@@ -145,6 +145,7 @@ export class ServiceManagementService {
 			return response instanceof Array ?
 				response.map(function (item) {
 					return {
+						uuid: item.ns_uuid,
 						type: item.license_type,
 						status: item.license_status,
 						currentInstances: item.current_instances,

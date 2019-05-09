@@ -15,7 +15,7 @@ import { NetworkServiceInstancesComponent } from './network-service-instances/ne
 import { NetworkServiceInstancesDetailComponent } from './network-service-instances-detail/network-service-instances-detail.component';
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
-import { LicencesComponent } from './licenses/licenses.component';
+import { LicenceListComponent } from './license-list/license-list.component';
 import { LicencesDetailComponent } from './licenses-detail/licenses-detail.component';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { LicencesDetailComponent } from './licenses-detail/licenses-detail.compo
 		NetworkServiceInstancesDetailComponent,
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
-		LicencesComponent,
+		LicenceListComponent,
 		LicencesDetailComponent
 	],
 	entryComponents: [ NsInstantiateDialogComponent ],

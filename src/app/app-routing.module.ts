@@ -67,7 +67,7 @@ import { NetworkServiceInstancesComponent } from './service-management/network-s
 import {
 	NetworkServiceInstancesDetailComponent
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
-import { LicencesComponent } from './service-management/licenses/licenses.component';
+import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
 
 const routes: Routes = [
@@ -201,7 +201,7 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'service-management/licenses', component: LicencesComponent,
+				path: 'service-management/licenses', component: LicenceListComponent,
 				children: [ { path: ':id', component: LicencesDetailComponent } ]
 			}
 		]

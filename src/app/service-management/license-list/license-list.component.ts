@@ -5,12 +5,12 @@ import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-licenses',
-	templateUrl: './licenses.component.html',
-	styleUrls: [ './licenses.component.scss' ],
+	selector: 'app-license-list',
+	templateUrl: './license-list.component.html',
+	styleUrls: [ './license-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class LicencesComponent implements OnInit {
+export class LicenceListComponent implements OnInit {
 	loading: boolean;
 	licenses: Array<object>;
 	displayedColumns = [ 'status', 'type', 'current', 'allowed', 'expiration', 'buy' ];
@@ -18,8 +18,8 @@ export class LicencesComponent implements OnInit {
 	constructor(
 		private serviceManagementService: ServiceManagementService,
 		private utilsService: UtilsService,
-		// private router: Router,
-		// private route: ActivatedRoute,
+		private router: Router,
+		private route: ActivatedRoute,
 	) { }
 
 	ngOnInit() {
@@ -42,7 +42,7 @@ export class LicencesComponent implements OnInit {
 		}
 	}
 
-	openLicences(row) { }
+	openLicences(uuid) { }
 
 	buy(row) { }
 }
