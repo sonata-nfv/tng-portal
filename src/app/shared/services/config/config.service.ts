@@ -5,8 +5,8 @@ import { Config } from './config';
 
 @Injectable()
 export class ConfigService extends Config {
-	baseSP: string = window.location.origin + '/api/v3/';
-	baseVNV: string = window.location.origin + '/api/v3/';
+	baseSP = window.location.origin + '/api/v3/';
+	baseVNV = window.location.origin + '/api/v3/';
 	register = 'users/';
 	login = 'sessions/';
 	services = 'services';
@@ -36,6 +36,7 @@ export class ConfigService extends Config {
 	wimSettings = 'settings/wims';
 	tapiSettings = 'settings/wims/tapi';
 	platformSettings = 'settings/platforms';
+	graphs = 'monitoring/graphs';
 
 	private configFile = './config.json';
 
