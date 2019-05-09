@@ -171,6 +171,7 @@ export class SettingsService {
 			return await this.http.post(url, wim, { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
+			return error.error.message;
 		}
 	}
 

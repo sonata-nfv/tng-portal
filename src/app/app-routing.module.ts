@@ -16,6 +16,7 @@ import { UsersComponent } from './users/users.component';
 import { PlatformListComponent } from './platforms/platform-list/platform-list.component';
 import { PlatformComponent } from './platforms/platform/platform.component';
 
+import { EndpointListComponent } from './settings/endpoint-list/endpoint-list.component';
 import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
 import { WimListComponent } from './settings/wim-list/wim-list.component';
@@ -66,7 +67,7 @@ import { NetworkServiceInstancesComponent } from './service-management/network-s
 import {
 	NetworkServiceInstancesDetailComponent
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
-import { LicencesComponent } from './service-management/licenses/licenses.component';
+import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
 
 const routes: Routes = [
@@ -95,7 +96,8 @@ const routes: Routes = [
 				]
 			},
 			// Settings
-			{ path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
+			{ path: 'settings', redirectTo: 'settings/endpoint', pathMatch: 'full' },
+			{ path: 'settings/endpoint', component: EndpointListComponent },
 			{
 				path: 'settings/vim', component: VimListComponent,
 				children: [
@@ -199,7 +201,7 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'service-management/licenses', component: LicencesComponent,
+				path: 'service-management/licenses', component: LicenceListComponent,
 				children: [ { path: ':id', component: LicencesDetailComponent } ]
 			}
 		]

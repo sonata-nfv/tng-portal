@@ -231,7 +231,8 @@ export class ServicePlatformService {
 						nsName: item.ns_name,
 						customer: item.cust_username,
 						date: item.sla_date,
-						status: item.sla_status
+						status: item.sla_status,
+						license: item.license_type
 					};
 				}) : [];
 		} catch (error) {

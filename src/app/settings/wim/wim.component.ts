@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SettingsService } from '../settings.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-wim',
@@ -27,7 +28,8 @@ export class WimComponent implements OnInit {
 		private settingsService: SettingsService,
 		private utilsService: UtilsService,
 		private router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private dialogData: DialogDataService
 	) { }
 
 	ngOnInit() {
@@ -229,9 +231,14 @@ export class WimComponent implements OnInit {
 		const response = await this.settingsService.postWim(wim);
 
 		this.loading = false;
-		if (response) {
+		if (response && response instanceof Object) {
 			this.utilsService.openSnackBar('WIM ' + response[ 'name' ] + ' created', '');
 			this.close();
+		} else if (response) {
+			const title = 'oh oh...';
+			const action = 'Accept';
+			const content = 'Some of the data introduced is not valid. Please, use the following hint to fix it: \n \n' + response;
+			this.dialogData.openDialog(title, content, action, () => { });
 		} else {
 			this.utilsService.openSnackBar('There was an error in the WIM creation', '');
 		}

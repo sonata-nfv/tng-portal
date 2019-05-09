@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SlaAgreementListComponent implements OnInit {
 	loading: boolean;
 	agreements: Array<any>;
-	displayedColumns = [ 'name', 'status', 'ns', 'customer', 'date' ];
+	displayedColumns = [ 'name', 'status', 'ns', 'customer', 'date', 'license' ];
 
 	constructor(
 		private router: Router,

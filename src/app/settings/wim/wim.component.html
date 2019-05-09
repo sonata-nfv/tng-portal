@@ -46,6 +46,7 @@
 			<i class="wui wui-copy-alt"></i>
 		</button>
 	</mat-form-field>
+	<p *ngIf="wimForm.get('endpoint').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a valid IP</p>
 
 	<mat-form-field>
 		<input matInput type="text" placeholder="Username" formControlName="username" required i18n-placeholder="@@username" />

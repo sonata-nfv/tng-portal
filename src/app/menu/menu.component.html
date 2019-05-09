@@ -50,6 +50,8 @@
 
 	<mat-sidenav class="menu-options" position="end" #sidenav mode="side">
 		<div class="options" *ngIf="menu === 'settings'">
+			<button [ngClass]="{ active: section === 'endpoint' }" (click)="setSection($event, 'endpoint')"
+				i18n="@@endpoint">Endpoint</button>
 			<button [ngClass]="{ active: section === 'vim' }" (click)="setSection($event, 'vim')" i18n="@@vim">VIM</button>
 			<button [ngClass]="{ active: section === 'wim' }" (click)="setSection($event, 'wim')" i18n="@@wim">WIM</button>
 		</div>
