@@ -145,7 +145,7 @@ export class ServiceManagementService {
 			return response instanceof Array ?
 				response.map(function (item) {
 					return {
-						uuid: item.ns_uuid,
+						uuid: item.nsi_uuid,
 						type: item.license_type,
 						status: item.license_status,
 						currentInstances: item.current_instances,
@@ -153,6 +153,17 @@ export class ServiceManagementService {
 						expirationDate: item.license_exp_date
 					};
 				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async getOneLicense(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.licenses + '/' + uuid;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
 		}

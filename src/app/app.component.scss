@@ -636,6 +636,11 @@ ul.unordered-list .mat-input-element:disabled {
     color: $ready-color;
 }
 
+.icon-button-shadow .wui-shopping-cart:before {
+    font-size: 20px;
+    color: $primary-color-light;
+}
+
 .icon-button-shadow .wui-undo::before {
 	font-size: 20px;
 	color: $reload-color;
@@ -645,7 +650,8 @@ ul.unordered-list .mat-input-element:disabled {
 // Action buttons in detailed views
 //////////////////////////////////////
 .stop,
-.launch {
+.launch,
+.buy {
 	display: flex;
 	align-items: center;
 	width: 30%;

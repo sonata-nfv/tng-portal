@@ -42,7 +42,9 @@ export class LicenceListComponent implements OnInit {
 		}
 	}
 
-	openLicences(uuid) { }
+	openLicences(uuid) {
+		this.router.navigate([ uuid ], { relativeTo: this.route });
+	}
 
 	buy(row) { }
 }

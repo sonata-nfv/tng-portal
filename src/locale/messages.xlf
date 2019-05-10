@@ -122,7 +122,7 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
@@ -597,7 +597,7 @@
           <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
@@ -681,7 +681,7 @@
           <context context-type="linenumber">131</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
@@ -764,8 +764,8 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="idPlaceholder" datatype="html">
@@ -860,6 +860,18 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceIDPlaceholder" datatype="html">
@@ -965,6 +977,10 @@
           <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="typePlaceholder" datatype="html">
         <source>Type</source>
@@ -992,16 +1008,16 @@
           <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="slaIDPlaceholder" datatype="html">
         <source>SLA ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/components/request-detail/request-detail.component.html</context>
           <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="updatedAtPlaceholder" datatype="html">
@@ -2317,10 +2333,6 @@
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="affectedNetworkServices" datatype="html">
         <source>Affected network services</source>
@@ -2714,7 +2726,7 @@
           <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
@@ -2787,6 +2799,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
           <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="advancedSection" datatype="html">
@@ -3429,7 +3445,7 @@
       <trans-unit id="eaad1b162a73b5a17502480d5abbeff040864cec" datatype="html">
         <source>Service management</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <note priority="1" from="description">sm</note>
@@ -3437,47 +3453,79 @@
       <trans-unit id="licenses" datatype="html">
         <source>Licences</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="currentInstances" datatype="html">
         <source> Current instances </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="allowedInstances" datatype="html">
         <source> Allowed instances </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="buy" datatype="html">
         <source>Buy</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses/licenses.component.html</context>
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="relatedServicePlaceholder" datatype="html">
-        <source>Related Service</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsiIDPlaceholder" datatype="html">
+        <source>Network service instance ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsIDPlaceholder" datatype="html">
+        <source>Network service ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerPlaceholder" datatype="html">
+        <source>Customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="buyButton" datatype="html">
         <source>Buy</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/licenses-detail/licenses-detail.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="numberCurrentInstances" datatype="html">
+        <source>Number of current instances: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="numberAllowedInstances" datatype="html">
+        <source>Number of allowed instances: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ip" datatype="html">
