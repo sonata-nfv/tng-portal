@@ -26,6 +26,10 @@
 
 	<mat-form-field *ngIf="detail['sla_uuid']" class="left-column">
 		<input matInput placeholder="SLA ID" value="{{ detail['sla_uuid'] }}" [disabled]="true" i18n-placeholder="@@slaIDPlaceholder" />
+		<button mat-button type="button" matTooltip="View SLA" class="icon-button-shadow" matSuffix
+			[routerLink]="['/service-platform/slas/sla-templates/',  detail.sla_uuid]" i18n-matTooltip="@@viewSLA">
+			<i class="wui wui-eye"></i>
+		</button>
 		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['sla_uuid'])"
 			i18n-matTooltip="@@copy">
 			<i class="wui wui-copy-alt"></i>
