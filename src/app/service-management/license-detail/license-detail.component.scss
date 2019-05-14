@@ -20,19 +20,22 @@ app-license-detail {
 		margin-bottom: 5vh;
 		margin-top: 4vh;
 
-		.left-column {
+		.left-column,
+		.same-row .left-column.mat-form-field {
 			width: 25vw;
 			margin-right: 40px;
+		}
 
-			.icon-button-shadow {
-				margin-right: 10px;
-			}
+		.right-column,
+		.same-row .right-column.mat-form-field {
+			width: 20vw;
 		}
 
 		.instances-number {
 			display: flex;
 			flex-direction: row;
 			align-items: baseline;
+			height: 5vh;
 	
 			.label {
 				margin-right: 10px;
