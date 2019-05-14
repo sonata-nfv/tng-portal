@@ -105,7 +105,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 			ingresses: this.ingress.map(ingress => ({ location: ingress.location, nap: ingress.nap })),
 			egresses: this.egress.map(egress => ({ location: egress.location, nap: egress.nap })),
 			service_uuid: serviceUUID,
-			sla_id: this.instantiationForm.get('sla').value
+			sla_id: this.instantiationForm.get('sla').value || ''
 		};
 		const response = await this.serviceManagementService.postNSRequest(body);
 
