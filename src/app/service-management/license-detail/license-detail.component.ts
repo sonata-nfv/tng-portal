@@ -51,7 +51,21 @@ export class LicenceDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
-	buy() { }
+	async buy() {
+		this.loading = true;
+		const license = {
+			ns_uuid: this.detail[ 'ns_uuid' ],
+			sla_uuid: this.detail[ 'sla_uuid' ],
+		};
+		const response = await this.serviceManagementService.postOneLicense(license);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar(response[ 'Succes' ], '');
+		} else {
+			this.utilsService.openSnackBar('Unable to buy the license', '');
+		}
+	}
 
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });

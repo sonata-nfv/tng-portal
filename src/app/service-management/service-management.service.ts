@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class ServiceManagementService {
@@ -12,6 +13,7 @@ export class ServiceManagementService {
 	constructor(
 		private authService: AuthService,
 		private config: ConfigService,
+		private utilsService: UtilsService,
 		private http: HttpClient
 	) { }
 
@@ -114,7 +116,7 @@ export class ServiceManagementService {
 		}
 	}
 
-	/*
+	/**
 	* Terminates a Network Service Instance by UUID
 	*
 	* @param uuid UUID of the desired Network Service Instance.
@@ -134,6 +136,13 @@ export class ServiceManagementService {
 		}
 	}
 
+	/**
+     * Retrieves a list of licenses.
+     * Either following a search pattern or not.
+     *
+     * @param search [Optional] License attributes that must be
+     *                          matched by the returned list.
+     */
 	async getLicences(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
@@ -150,7 +159,9 @@ export class ServiceManagementService {
 						status: item.license_status,
 						currentInstances: item.current_instances,
 						allowedInstances: item.allowed_instances,
-						expirationDate: item.license_exp_date
+						expirationDate: item.license_exp_date,
+						slaUUID: item.sla_uuid,
+						nsUUID: item.ns_uuid
 					};
 				}) : [];
 		} catch (error) {
@@ -158,12 +169,33 @@ export class ServiceManagementService {
 		}
 	}
 
+	/**
+	* Retrieves one license by UUID
+	*
+	* @param uuid UUID of the desired license.
+	*/
 	async getOneLicense(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.licenses + '/' + uuid;
 
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	* Buys a license
+	*
+	* @param license License data of the new license.
+	*/
+	async postOneLicense(license) {
+		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const url = this.config.baseSP + this.config.buyLicense;
+
+		try {
+			return await this.http.post(url, this.utilsService.urlEncode(license), { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
 		}

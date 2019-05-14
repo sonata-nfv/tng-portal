@@ -77,7 +77,7 @@
 		<button class="icon-button-shadow actions" (click)="buy()" mat-button matTooltip="Buy" i18n-matTooltip="@@buy">
 			<i class="wui wui-shopping-cart"></i>
 		</button>
-		<span class="cart" i18n="@@buyButton">Buy</span>
+		<span class="cart" (click)="buy()" i18n="@@buyButton">Buy</span>
 	</div>
 
 	<div *ngIf="detail['current_instances']" class="left-column instances-number">
