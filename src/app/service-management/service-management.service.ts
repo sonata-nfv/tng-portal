@@ -186,6 +186,23 @@ export class ServiceManagementService {
 	}
 
 	/**
+	 * Retrieves the status of the license. Whether it is private or public for the user
+	 *
+	 * @param slaUUID UUID of the SLA
+	 * @param nsUUID UUID of the network service
+	 */
+	async getLicenseStatus(slaUUID, nsUUID) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.licenseStatus + '/' + slaUUID + '/' + nsUUID;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
 	* Buys a license
 	*
 	* @param license License data of the new license.

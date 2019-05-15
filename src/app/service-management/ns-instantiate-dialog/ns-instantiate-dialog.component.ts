@@ -14,6 +14,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
+	instantiationIsAllowed = true;
 	continue = false;
 	isIngress = true;
 	instantiationForm: FormGroup;
@@ -53,6 +54,8 @@ export class NsInstantiateDialogComponent implements OnInit {
 		if (templates) {
 			// GET SLA templates for this service
 			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => ({ uuid: x.uuid, name: x.name }));
+			// If no SLA were created for the NS, there are no licenses associated
+			this.instantiationIsAllowed = this.slas.length ? false : true;
 			this.slas.unshift({ uuid: 'None', name: 'None' });
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
@@ -90,11 +93,22 @@ export class NsInstantiateDialogComponent implements OnInit {
 			this.instantiationForm.get('location').setValue(null);
 	}
 
-	receiveSLA(sla) {
+	async receiveSLA(sla) {
 		if (sla && sla !== 'None') {
-			this.instantiationForm.get('sla').setValue(sla);
+			// Check if license is valid before instantiate
+			const response = await this.serviceManagementService.getLicenseStatus(sla, this.data.serviceUUID);
+
+			if (response && response[ 'allowed_to_instantiate' ]) {
+				this.instantiationForm.get('sla').setValue(sla);
+				this.instantiationIsAllowed = true;
+			} else {
+				this.instantiationForm.get('sla').setValue('');
+				this.instantiationIsAllowed = false;
+			}
 		} else {
 			this.instantiationForm.get('sla').setValue('');
+			// If there are SLAs (more than the 'None' one) the NS is not public and instantiation is forbidden
+			this.instantiationIsAllowed = this.slas.length > 1 ? false : true;
 		}
 	}
 
@@ -131,6 +145,12 @@ export class NsInstantiateDialogComponent implements OnInit {
 		return !this.instantiationForm.get('location').value ||
 			!this.instantiationForm.get('nap').value ||
 			this.instantiationForm.get('nap').errors;
+	}
+
+	canDisableInstantiate() {
+		return (!this.instantiationForm.controls.instanceName.value ||
+			this.instantiationForm.controls.instanceName.value.trim() === '') ||
+			!this.instantiationIsAllowed;
 	}
 
 	close() {

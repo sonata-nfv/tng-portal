@@ -104,8 +104,7 @@
 <mat-dialog-actions *ngIf="continue">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@rejectButton">REJECT</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial
-			[disabled]="!instantiationForm.controls.instanceName.value || instantiationForm.controls.instanceName.value.trim() == ''"
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableInstantiate()"
 			(click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
 			INSTANTIATE
 		</button>
