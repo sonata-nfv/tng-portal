@@ -211,6 +211,12 @@ export class SlaTemplateCreateComponent implements OnInit {
 		return !this.closed && this.flavors && this.flavors.length;
 	}
 
+	changeCloseStatus() {
+		this.closed = !closed;
+		this.templateForm.get('licenseExpirationDate').setValue(null);
+		return;
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
