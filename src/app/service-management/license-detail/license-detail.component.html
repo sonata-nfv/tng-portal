@@ -73,7 +73,7 @@
 		</app-calendar>
 	</div>
 
-	<div *ngIf="detail['nsi_uuid']" class="left-column buy">
+	<div *ngIf="canShowBuy()" class="left-column buy">
 		<button class="icon-button-shadow actions" (click)="buy()" mat-button matTooltip="Buy" i18n-matTooltip="@@buy">
 			<i class="wui wui-shopping-cart"></i>
 		</button>

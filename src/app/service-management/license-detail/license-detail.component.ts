@@ -67,6 +67,10 @@ export class LicenceDetailComponent implements OnInit {
 		}
 	}
 
+	canShowBuy() {
+		return this.detail[ 'nsi_uuid' ] && this.detail[ 'license_type' ].toUpperCase() === 'PRIVATE';
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
