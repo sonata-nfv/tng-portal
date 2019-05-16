@@ -3,7 +3,7 @@
 <h2 mat-dialog-title>Instantiate {{ data['name'] }} network service</h2>
 
 <!-- FIRST DIALOG DISPLAYED -->
-<mat-dialog-content *ngIf="!continue" class="first-dialog">
+<mat-dialog-content *ngIf="section=='first'" class="first-dialog">
 	<div class="section">
 		<button [ngClass]="{ active: isIngress }" (click)="isIngress = true" class="basic-button ingress" mat-button>Ingress</button>
 		<span class="dash">-</span>
@@ -53,16 +53,16 @@
 	</form>
 </mat-dialog-content>
 
-<!-- SECOND DIALOG DISPLAYED -->
-<mat-dialog-actions *ngIf="!continue">
+<mat-dialog-actions *ngIf="section=='first'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="continue = true"
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="section = 'second'"
 			i18n="@@nextButton">NEXT</button>
 	</div>
 </mat-dialog-actions>
 
-<mat-dialog-content *ngIf="continue" class="second-dialog">
+<!-- SECOND DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='second'" class="second-dialog">
 	<div class="summary">
 		<div class="ingress-list">
 			<h2>Ingress</h2>
@@ -101,12 +101,38 @@
 	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="continue">
+<mat-dialog-actions *ngIf="section=='second'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@rejectButton">REJECT</button>
 		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableInstantiate()"
 			(click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
 			INSTANTIATE
+		</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- LICENSE ERROR DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='error'" class="error-dialog" i18n="@@trialLicenseError">
+	Trial license exceeded or allowed instances over passed.
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="section=='error'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@closeButton">CLOSE</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- LICENSE BUY DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='buy'" class="buy-dialog" i18n="@@privateLicenseError">
+	You need to buy the license before continuing with the instantiation.
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="section=='buy'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="buy()">
+			<i class="wui wui-shopping-cart"></i>
+			<span i18n="@@buy">BUY</span>
 		</button>
 	</div>
 </mat-dialog-actions>

@@ -756,6 +756,10 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
@@ -1901,7 +1905,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectPlatformTypePlaceholder" datatype="html">
@@ -3120,7 +3128,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="sliceTemplates" datatype="html">
@@ -3379,7 +3387,7 @@
         <source>NEXT</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instanceNamePlaceholder" datatype="html">
@@ -3394,6 +3402,39 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="trialLicenseError" datatype="html">
+        <source>
+	Trial license exceeded or allowed instances over passed.
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privateLicenseError" datatype="html">
+        <source>
+	You need to buy the license before continuing with the instantiation.
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buy" datatype="html">
+        <source>BUY</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="platformPlaceholder" datatype="html">
@@ -3477,17 +3518,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
           <context context-type="linenumber">32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="buy" datatype="html">
-        <source>Buy</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
-          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiIDPlaceholder" datatype="html">

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
@@ -15,7 +16,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
-	continue = false;
+	section = 'first';
 	isIngress = true;
 	instantiationForm: FormGroup;
 	ingress = new Array();
@@ -24,6 +25,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	slas: Array<any>;
 
 	constructor(
+		private router: Router,
 		private utilsService: UtilsService,
 		private commonService: CommonService,
 		public dialogRef: MatDialogRef<NsInstantiateDialogComponent>,
@@ -99,11 +101,19 @@ export class NsInstantiateDialogComponent implements OnInit {
 			const response = await this.serviceManagementService.getLicenseStatus(sla, this.data.serviceUUID);
 
 			if (response && response[ 'allowed_to_instantiate' ]) {
+				// License allows the instantiation
 				this.instantiationForm.get('sla').setValue(sla);
 				this.instantiationIsAllowed = true;
 			} else {
+				// License does not allow instantiation
 				this.instantiationForm.get('sla').setValue('');
 				this.instantiationIsAllowed = false;
+
+				// License does not allow instantiation
+				// case license public or trial : case license private
+				response[ 'license_type' ] !== 'private' ?
+					this.section = 'error' :
+					this.section = 'buy';
 			}
 		} else {
 			this.instantiationForm.get('sla').setValue('');
@@ -130,7 +140,23 @@ export class NsInstantiateDialogComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('Unable to instantiate this network service', '');
 		}
+	}
 
+	async buy() {
+		this.loading = true;
+		const license = {
+			ns_uuid: this.data.serviceUUID,
+			sla_uuid: this.instantiationForm.get('sla').value,
+		};
+		const response = await this.serviceManagementService.postOneLicense(license);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar(response[ 'Succes' ], '');
+			this.section = 'second';
+		} else {
+			this.utilsService.openSnackBar('Unable to buy the license, try again please', '');
+		}
 	}
 
 	canShowNetworkAddress() {
