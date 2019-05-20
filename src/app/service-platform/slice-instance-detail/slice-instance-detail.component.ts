@@ -14,12 +14,9 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	displayedColumns = [
-		'nsrName',
-		'slaName',
-		'status',
-		'isShared'
-	];
+	displayedColumns = [ 'nsrName', 'slaName', 'status', 'isShared' ];
+	displayedColumnsLinks = [ 'networkName', 'mngmtNetwork', 'type' ];
+
 
 	constructor(
 		private router: Router,

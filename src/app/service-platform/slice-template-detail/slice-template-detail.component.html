@@ -24,7 +24,7 @@
 	</div>
 </div>
 
-<form class="detail">
+<form>
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['uuid']" class="left-column">
 			<input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@templateIDPlaceholder" />
@@ -87,7 +87,7 @@
 		</span>
 	</div>
 
-	<h2 class="title2" *ngIf="detail['services']" i18n="@@networkServices">Network services</h2>
+	<h2 *ngIf="detail['services']" class="title2" i18n="@@networkServices">Network services</h2>
 
 	<table *ngIf="detail['services']" mat-table [dataSource]="detail['services']">
 		<ng-container matColumnDef="uuid">
@@ -114,7 +114,13 @@
 		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 	</table>
 
-	<h2 class="title2" *ngIf="detail['sliceVirtualLinks']" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
+	<div *ngIf="(detail['services'] && !detail['services'].length) && !loading" class="no-results-container">
+		<div class="no-results-line"></div>
+		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+		<div class="no-results-line"></div>
+	</div>
+
+	<h2 *ngIf="detail['sliceVirtualLinks']" class="title2" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
 
 	<table *ngIf="detail['sliceVirtualLinks']" mat-table [dataSource]="detail['sliceVirtualLinks']">
 		<ng-container matColumnDef="networkName">
@@ -135,6 +141,12 @@
 		<tr mat-header-row *matHeaderRowDef="displayedColumnsLinks"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumnsLinks"></tr>
 	</table>
+
+	<div *ngIf="(detail['sliceVirtualLinks'] && !detail['sliceVirtualLinks'].length) && !loading" class="no-results-container">
+		<div class="no-results-line"></div>
+		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+		<div class="no-results-line"></div>
+	</div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

@@ -594,21 +594,21 @@ export class ServicePlatformService {
 				usageState: response[ 'nstd' ][ 'usageState' ],
 				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
 				operationalState: response[ 'nstd' ][ 'operationalState' ],
-				services: response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
+				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
 						nsdName: item[ 'nsd-name' ],
 						isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
 						slaName: item[ 'sla-name' ]
 					};
-				}),
-				sliceVirtualLinks: response[ 'nstd' ][ 'slice_vld' ].map(item => {
+				}) : [],
+				sliceVirtualLinks: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_vld' ].map(item => {
 					return {
 						networkName: item[ 'name' ],
 						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
 						type: item[ 'type' ]
 					};
-				})
+				}) : []
 			};
 		} catch (error) {
 			console.error(error);
@@ -700,14 +700,21 @@ export class ServicePlatformService {
 				qiValue: response[ '5qiValue' ],
 				instantiationTime: response[ 'instantiateTime' ],
 				description: response[ 'description' ],
-				nsrList: response[ 'nsr-list' ].map(item => {
+				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {
 					return {
 						nsrName: item[ 'nsrName' ],
 						slaName: item[ 'sla-name' ],
 						isShared: item[ 'isshared' ] ? 'Yes' : 'No',
 						status: item[ 'working-status' ]
 					};
-				})
+				}) : [],
+				sliceVirtualLinks: response[ 'vldr-list' ] ? response[ 'vldr-list' ].map(item => {
+					return {
+						networkName: item[ 'name' ],
+						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						type: item[ 'type' ]
+					};
+				}) : []
 			};
 		} catch (error) {
 			console.error(error);
