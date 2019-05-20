@@ -110,7 +110,7 @@
           <context context-type="linenumber">14</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
@@ -197,7 +197,7 @@
           <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
@@ -300,11 +300,11 @@
           <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
@@ -494,15 +494,15 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">124</context>
         </context-group>
         <context-group purpose="location">
@@ -589,15 +589,15 @@
           <context context-type="linenumber">147</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">101</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">139</context>
         </context-group>
         <context-group purpose="location">
@@ -637,11 +637,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">127</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceName" datatype="html">
@@ -697,7 +693,7 @@
           <context context-type="linenumber">137</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
@@ -772,7 +768,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
@@ -866,11 +862,11 @@
           <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">26</context>
         </context-group>
         <context-group purpose="location">
@@ -990,7 +986,7 @@
           <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
@@ -1416,7 +1412,7 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -1560,7 +1556,7 @@
           <context context-type="linenumber">90</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
@@ -1590,7 +1586,7 @@
           <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
@@ -1604,11 +1600,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">123</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-template-detail/slice-template-detail.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="agreements" datatype="html">
@@ -1687,15 +1679,16 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="slices" datatype="html">
-        <source>Slices</source>
+      <trans-unit id="networkSlices" datatype="html">
+        <source>Network
+				Slices</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">119</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instances" datatype="html">
@@ -1704,10 +1697,14 @@
 				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">133</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/menu/menu.component.html</context>
+          <context context-type="linenumber">147</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
@@ -1715,34 +1712,26 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="availableNS" datatype="html">
+      <trans-unit id="nss" datatype="html">
         <source>
-				Available network services
+				Network Services
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">139</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="nsInstances" datatype="html">
+      <trans-unit id="services" datatype="html">
         <source>
-				Network service instances
-			</source>
+					Services
+				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">143</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="licences" datatype="html">
@@ -1751,7 +1740,7 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vm" datatype="html">
@@ -1772,11 +1761,11 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="services" datatype="html">
-        <source>Services</source>
+      <trans-unit id="slices" datatype="html">
+        <source>Slices</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slasAndLicensing" datatype="html">
@@ -1916,7 +1905,7 @@
           <context context-type="linenumber">14</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
@@ -2311,7 +2300,7 @@
           <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
@@ -2323,7 +2312,7 @@
           <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
@@ -2346,7 +2335,7 @@
           <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
@@ -2354,7 +2343,7 @@
           <context context-type="linenumber">84</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
@@ -2799,7 +2788,7 @@
           <context context-type="linenumber">30</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
@@ -2877,7 +2866,7 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
@@ -3007,7 +2996,7 @@
           <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
@@ -3109,21 +3098,21 @@
       <trans-unit id="newSliceInstance" datatype="html">
         <source>New network slice instance</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="namePlaceholder" datatype="html">
         <source>Name</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="versionPlaceholder" datatype="html">
         <source>Version</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
@@ -3134,7 +3123,7 @@
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
@@ -3143,7 +3132,7 @@
 			INSTANTIATE
 		</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
@@ -3151,15 +3140,15 @@
           <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="sliceTemplates" datatype="html">
-        <source>Slice Templates</source>
+      <trans-unit id="networkSliceTemplates" datatype="html">
+        <source>Network Slice Templates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/slice-template-list/slice-template-list.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-template-create/slice-template-create.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="sourcefile">app/service-platform/slice-template-detail/slice-template-detail.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="author" datatype="html">
@@ -3193,6 +3182,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
           <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sliceTemplates" datatype="html">
+        <source>SLICE templates</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/slice-template-create/slice-template-create.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="authorPlaceholder" datatype="html">
@@ -3283,7 +3279,7 @@
           <context context-type="linenumber">123</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
@@ -3294,7 +3290,7 @@
           <context context-type="linenumber">127</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
@@ -3305,32 +3301,32 @@
           <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="sliceInstances" datatype="html">
         <source>Slice Instances</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="template" datatype="html">
         <source>Template</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="terminate" datatype="html">
         <source>Terminate</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-list/slice-instance-list.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-list/slice-instance-list.component.html</context>
           <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
@@ -3345,7 +3341,7 @@
       <trans-unit id="instanceIDPlaceholder" datatype="html">
         <source>Instance ID</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
@@ -3356,14 +3352,14 @@
       <trans-unit id="5qiValuePlaceholder" datatype="html">
         <source>5Qi value</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="terminateInstance" datatype="html">
         <source>Terminate instance</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">57</context>
         </context-group>
         <context-group purpose="location">
@@ -3374,21 +3370,21 @@
       <trans-unit id="instantiatedAtPlaceholder" datatype="html">
         <source>Instantiated at</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsShared" datatype="html">
         <source>Shared network service?</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="networkID" datatype="html">
         <source>Network ID</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
           <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
@@ -3476,6 +3472,17 @@
           <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="availableNS" datatype="html">
+        <source>Available network services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services/sm-network-services.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="platformPlaceholder" datatype="html">
         <source>Platform</source>
         <context-group purpose="location">
@@ -3488,6 +3495,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
           <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nsInstances" datatype="html">
+        <source>Network service instances</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vnfInstances" datatype="html">
