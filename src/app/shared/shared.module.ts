@@ -20,8 +20,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FeatureAvailableDirective } from './directives/feature-available.directive';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FunctionsComponent } from './components/functions/functions.component';
-import { RequestsComponent } from './components/requests/requests.component';
-import { RequestDetailComponent } from './components/request-detail/request-detail.component';
 
 export function initConfiguration(configService: ConfigService): Function {
 	return () => configService.init();
@@ -36,9 +34,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		SelectUuidComponent,
 		SpinnerComponent,
 		FeatureAvailableDirective,
-		FunctionsComponent,
-		RequestsComponent,
-		RequestDetailComponent
+		FunctionsComponent
 	],
 	entryComponents: [ DialogComponent ],
 	imports: [
@@ -56,9 +52,7 @@ export function initConfiguration(configService: ConfigService): Function {
 		SelectUuidComponent,
 		SpinnerComponent,
 		FeatureAvailableDirective,
-		FunctionsComponent,
-		RequestsComponent,
-		RequestDetailComponent
+		FunctionsComponent
 	],
 	providers: [
 		ConfigService,

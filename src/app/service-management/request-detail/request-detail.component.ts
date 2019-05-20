@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UtilsService } from '../../services/common/utils.service';
-import { CommonService } from '../../services/common/common.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
+import { ServiceManagementService } from '../service-management.service';
 
 @Component({
 	selector: 'app-request-detail',
@@ -17,7 +17,7 @@ export class RequestDetailComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private commonService: CommonService,
+		private serviceManagementService: ServiceManagementService,
 		private utilsService: UtilsService
 	) { }
 
@@ -36,7 +36,7 @@ export class RequestDetailComponent implements OnInit {
      */
 	async requestRequest(uuid) {
 		this.loading = true;
-		const response = await this.commonService.getOneRequest(uuid);
+		const response = await this.serviceManagementService.getOneRequest(uuid);
 
 		this.loading = false;
 		if (response) {

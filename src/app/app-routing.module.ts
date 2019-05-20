@@ -61,8 +61,8 @@ import { SliceInstanceCreateComponent } from './service-management/slice-instanc
 
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
-import { RequestsComponent } from './shared/components/requests/requests.component';
-import { RequestDetailComponent } from './shared/components/request-detail/request-detail.component';
+import { RequestsComponent } from './service-management/requests/requests.component';
+import { RequestDetailComponent } from './service-management/request-detail/request-detail.component';
 import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
 import {
 	NetworkServiceInstancesDetailComponent
