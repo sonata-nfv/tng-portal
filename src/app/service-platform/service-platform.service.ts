@@ -160,33 +160,11 @@ export class ServicePlatformService {
 		const url = this.config.baseSP + this.config.slaTemplates;
 
 		try {
-			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
+			return await this.http.post(url, this.utilsService.urlEncode(template), { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
 			return error.error.ERROR;
 		}
-	}
-
-	urlEncode(obj: Object): string {
-		let str = '';
-		Object.keys(obj).forEach(key => {
-			if (obj[ key ] instanceof Array) {
-				obj[ key ].forEach(item => {
-					str +=
-						(str.length > 0 ? '&' : '') +
-						encodeURI(key) +
-						'=' +
-						encodeURI(item);
-				});
-			} else {
-				str +=
-					(str.length > 0 ? '&' : '') +
-					encodeURI(key) +
-					'=' +
-					encodeURI(obj[ key ]);
-			}
-		});
-		return str;
 	}
 
 	/**

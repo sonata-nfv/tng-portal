@@ -138,4 +138,26 @@ export class UtilsService {
 	formatDateString(dateIn) {
 		return new Date(dateIn).toDateString();
 	}
+
+	urlEncode(obj: Object): string {
+		let str = '';
+		Object.keys(obj).forEach(key => {
+			if (obj[ key ] instanceof Array) {
+				obj[ key ].forEach(item => {
+					str +=
+						(str.length > 0 ? '&' : '') +
+						encodeURI(key) +
+						'=' +
+						encodeURI(item);
+				});
+			} else {
+				str +=
+					(str.length > 0 ? '&' : '') +
+					encodeURI(key) +
+					'=' +
+					encodeURI(obj[ key ]);
+			}
+		});
+		return str;
+	}
 }
