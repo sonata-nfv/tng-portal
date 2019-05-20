@@ -239,19 +239,8 @@ table {
 	// background-color: $basic-background-color;
 	// box-shadow: 2px 1px 2px 0 $shadow-buttons;
 
-	.wui-shopping-cart:before {
-		color: $shopping-cart-color;
-	}
-
 	.wui-undo::before {
 		font-size: 12px;
 		color: $relaunch-color;
-	}
-
-	.wui-stop-alt::before {
-		font-size: 12px;
-		border-radius: 20%;
-		color: $stop-color;
-		background-color: $stop-color;
 	}
 }

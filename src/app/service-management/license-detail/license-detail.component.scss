@@ -1,0 +1,53 @@
+@import '../../../constants.scss';
+app-license-detail {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	form {
+		width: 55vw;
+		margin-bottom: 5vh;
+		margin-top: 4vh;
+
+		.left-column,
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+
+			.icon-button-shadow {
+				margin-right: 5px;
+			}
+		}
+
+		.right-column,
+		.same-row .right-column.mat-form-field {
+			width: 20vw;
+		}
+
+		.instances-number {
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
+			height: 5vh;
+	
+			.label {
+				margin-right: 10px;
+			}
+	
+			.instances {
+				width: 4vw; 
+			}
+		}
+	}	
+}

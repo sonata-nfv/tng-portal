@@ -42,7 +42,23 @@ export class LicenceListComponent implements OnInit {
 		}
 	}
 
-	openLicences(uuid) { }
+	openLicences(uuid) {
+		this.router.navigate([ uuid ], { relativeTo: this.route });
+	}
 
-	buy(row) { }
+	async buy(row) {
+		this.loading = true;
+		const license = {
+			ns_uuid: row[ 'nsUUID' ],
+			sla_uuid: row[ 'slaUUID' ],
+		};
+		const response = await this.serviceManagementService.postOneLicense(license);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar(response[ 'Succes' ], '');
+		} else {
+			this.utilsService.openSnackBar('Unable to buy the license', '');
+		}
+	}
 }

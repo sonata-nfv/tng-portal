@@ -160,33 +160,11 @@ export class ServicePlatformService {
 		const url = this.config.baseSP + this.config.slaTemplates;
 
 		try {
-			return await this.http.post(url, this.urlEncode(template), { headers: headers }).toPromise();
+			return await this.http.post(url, this.utilsService.urlEncode(template), { headers: headers }).toPromise();
 		} catch (error) {
 			console.error(error);
 			return error.error.ERROR;
 		}
-	}
-
-	urlEncode(obj: Object): string {
-		let str = '';
-		Object.keys(obj).forEach(key => {
-			if (obj[ key ] instanceof Array) {
-				obj[ key ].forEach(item => {
-					str +=
-						(str.length > 0 ? '&' : '') +
-						encodeURI(key) +
-						'=' +
-						encodeURI(item);
-				});
-			} else {
-				str +=
-					(str.length > 0 ? '&' : '') +
-					encodeURI(key) +
-					'=' +
-					encodeURI(obj[ key ]);
-			}
-		});
-		return str;
 	}
 
 	/**
@@ -616,21 +594,21 @@ export class ServicePlatformService {
 				usageState: response[ 'nstd' ][ 'usageState' ],
 				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
 				operationalState: response[ 'nstd' ][ 'operationalState' ],
-				services: response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
+				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
 						nsdName: item[ 'nsd-name' ],
 						isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
 						slaName: item[ 'sla-name' ]
 					};
-				}),
-				sliceVirtualLinks: response[ 'nstd' ][ 'slice_vld' ].map(item => {
+				}) : [],
+				sliceVirtualLinks: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_vld' ].map(item => {
 					return {
 						networkName: item[ 'name' ],
 						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
 						type: item[ 'type' ]
 					};
-				})
+				}) : []
 			};
 		} catch (error) {
 			console.error(error);
@@ -722,14 +700,23 @@ export class ServicePlatformService {
 				qiValue: response[ '5qiValue' ],
 				instantiationTime: response[ 'instantiateTime' ],
 				description: response[ 'description' ],
-				nsrList: response[ 'nsr-list' ].map(item => {
+				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {
 					return {
 						nsrName: item[ 'nsrName' ],
 						slaName: item[ 'sla-name' ],
 						isShared: item[ 'isshared' ] ? 'Yes' : 'No',
 						status: item[ 'working-status' ]
 					};
-				})
+				}) : [],
+				sliceVirtualLinks: response[ 'vldr-list' ] ? response[ 'vldr-list' ].map(item => {
+					return {
+						id: item[ 'id' ],
+						networkName: item[ 'name' ],
+						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						vldStatus: item[ 'vld-status' ],
+						type: item[ 'type' ]
+					};
+				}) : []
 			};
 		} catch (error) {
 			console.error(error);

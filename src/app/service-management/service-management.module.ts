@@ -16,7 +16,7 @@ import { NetworkServiceInstancesDetailComponent } from './network-service-instan
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
 import { LicenceListComponent } from './license-list/license-list.component';
-import { LicencesDetailComponent } from './licenses-detail/licenses-detail.component';
+import { LicenceDetailComponent } from './license-detail/license-detail.component';
 
 @NgModule({
 	declarations: [
@@ -28,7 +28,7 @@ import { LicencesDetailComponent } from './licenses-detail/licenses-detail.compo
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
 		LicenceListComponent,
-		LicencesDetailComponent
+		LicenceDetailComponent
 	],
 	entryComponents: [ NsInstantiateDialogComponent ],
 	imports: [ CommonModule, AngularMaterialModule, AppRoutingModule, ReactiveFormsModule, FormsModule, SharedModule ],

@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from '../authentication/auth.service';
 import { UtilsService } from '../shared/services/common/utils.service';
@@ -11,7 +12,8 @@ import { UtilsService } from '../shared/services/common/utils.service';
 	styleUrls: [ './menu.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+	subscription: Subscription;
 	menu: string;
 	section: string;
 	subsection: string;
@@ -22,8 +24,8 @@ export class MenuComponent implements OnInit {
 	sideNav: MatSidenav;
 	constructor(
 		private authService: AuthService,
-		private router: Router,
-		private utilsService: UtilsService
+		private utilsService: UtilsService,
+		private router: Router
 	) { }
 
 	ngOnInit() {
@@ -33,6 +35,17 @@ export class MenuComponent implements OnInit {
 
 		// Maintain menu status when reload
 		this.maintainStatus();
+
+		// Maintain status of the menu when moving through different components
+		this.subscription = this.router.events.subscribe(event => {
+			if (event instanceof NavigationEnd) {
+				this.maintainStatus();
+			}
+		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	copyToClipboard(value) {

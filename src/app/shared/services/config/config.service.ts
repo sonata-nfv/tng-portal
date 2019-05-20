@@ -13,7 +13,9 @@ export class ConfigService extends Config {
 	requests = 'requests';
 	serviceRecords = 'records/services';
 	functionRecords = 'records/functions';
-	licenses = 'slas/licenses/';
+	licenses = 'slas/licenses';
+	buyLicense = 'slas/licenses/buy';
+	licenseStatus = 'slas/licenses/status';
 	packages = 'packages';
 	slaTemplates = 'slas/templates';
 	slaAgreements = 'slas/agreements';

@@ -31,6 +31,18 @@ app-ns-instantiate-dialog {
 		font-size: 22px;
 	}
 
+	.mat-dialog-content.error-dialog,
+	.mat-dialog-content.buy-dialog {
+		display: flex;
+		flex: 1 1;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
+		font-size: 22px;
+		color: $primary-font-color-light;
+	}
+
 	// Ingress and egress buttons
 	.mat-dialog-content.first-dialog .section {
 		display: flex;
@@ -151,12 +163,18 @@ app-ns-instantiate-dialog {
 
 		.next {
 			background-color: $primary-button-color;
+
+			.wui-shopping-cart:before {
+				margin-right: 10px;
+				font-size: 20px;
+				color: $button-basic-font-color;
+			}
 		}
 
 		.cancel:disabled, 
 		.next:disabled {
 			background-color: $secondary-button-color;
 		}
-  	}
+	}
 }
 
