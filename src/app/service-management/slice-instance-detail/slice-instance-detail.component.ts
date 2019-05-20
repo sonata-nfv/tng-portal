@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ServicePlatformService } from '../service-platform.service';
+import { ServiceManagementService } from '../service-management.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
-	detail = { };
+	detail = {};
 	displayedColumns = [ 'nsrName', 'slaName', 'status', 'isShared' ];
 	displayedColumnsLinks = [ 'id', 'networkName', 'mngmtNetwork', 'status', 'type' ];
 
@@ -21,7 +21,7 @@ export class SliceInstanceDetailComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private servicePlatformService: ServicePlatformService,
+		private serviceManagementService: ServiceManagementService,
 		private dialogData: DialogDataService,
 		private utilsService: UtilsService
 	) { }
@@ -40,7 +40,7 @@ export class SliceInstanceDetailComponent implements OnInit {
      */
 	async requestSliceInstance(uuid) {
 		this.loading = true;
-		const response = await this.servicePlatformService.getOneSliceInstance(uuid);
+		const response = await this.serviceManagementService.getOneSliceInstance(uuid);
 
 		this.loading = false;
 		if (response) {
@@ -58,7 +58,7 @@ export class SliceInstanceDetailComponent implements OnInit {
 
 		this.dialogData.openDialog(title, content, action, async () => {
 			this.loading = true;
-			const response = await this.servicePlatformService.postOneSliceInstanceTermination(this.detail[ 'uuid' ]);
+			const response = await this.serviceManagementService.postOneSliceInstanceTermination(this.detail[ 'uuid' ]);
 
 			this.loading = false;
 			if (response) {

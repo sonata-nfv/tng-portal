@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
-import { SliceInstanceCreateComponent } from '../slice-instance-create/slice-instance-create.component';
+import { SliceInstanceCreateComponent } from '../../service-management/slice-instance-create/slice-instance-create.component';
 
 @Component({
 	selector: 'app-slice-template-detail',

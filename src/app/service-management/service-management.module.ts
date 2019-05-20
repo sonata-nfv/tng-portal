@@ -8,6 +8,9 @@ import { AppRoutingModule } from '../app-routing.module';
 
 import { ServiceManagementService } from './service-management.service';
 
+import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
+import { SliceInstanceDetailComponent } from './slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './slice-instance-create/slice-instance-create.component';
 import { SmNetworkServicesComponent } from './sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './sm-network-services-detail/sm-network-services-detail.component';
 import { NsInstantiateDialogComponent } from './ns-instantiate-dialog/ns-instantiate-dialog.component';
@@ -20,6 +23,9 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 
 @NgModule({
 	declarations: [
+		SliceInstanceListComponent,
+		SliceInstanceDetailComponent,
+		SliceInstanceCreateComponent,
 		SmNetworkServicesComponent,
 		SmNetworkServicesDetailComponent,
 		NsInstantiateDialogComponent,

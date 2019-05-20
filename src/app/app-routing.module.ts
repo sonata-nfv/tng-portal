@@ -55,9 +55,9 @@ import { SlaViolationsComponent } from './service-platform/sla-violations/sla-vi
 import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
 import { SliceTemplateCreateComponent } from './service-platform/slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './service-platform/slice-template-detail/slice-template-detail.component';
-import { SliceInstanceListComponent } from './service-platform/slice-instance-list/slice-instance-list.component';
-import { SliceInstanceDetailComponent } from './service-platform/slice-instance-detail/slice-instance-detail.component';
-import { SliceInstanceCreateComponent } from './service-platform/slice-instance-create/slice-instance-create.component';
+import { SliceInstanceListComponent } from './service-management/slice-instance-list/slice-instance-list.component';
+import { SliceInstanceDetailComponent } from './service-management/slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './service-management/slice-instance-create/slice-instance-create.component';
 
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
@@ -173,32 +173,35 @@ const routes: Routes = [
 					{ path: ':id', component: SliceTemplateDetailComponent }
 				]
 			},
+			// Service Management section
+			{ path: 'service-management', redirectTo: 'service-management/slices/slices-templates', pathMatch: 'full' },
 			{
-				path: 'service-platform/slices/slices-instances', component: SliceInstanceListComponent,
+				path: 'service-management/slices/slices-templates', component: SliceTemplateListComponent,
+				children: [
+					{ path: 'new', component: SliceTemplateCreateComponent },
+					{ path: ':id', component: SliceTemplateDetailComponent }
+				]
+			},
+			{
+				path: 'service-management/slices/slices-instances', component: SliceInstanceListComponent,
 				children: [
 					{ path: 'new', component: SliceInstanceCreateComponent },
 					{ path: ':id', component: SliceInstanceDetailComponent }
 				]
 			},
 			{
-				path: 'service-platform/slices/slices-requests', component: RequestsComponent,
-				children: [ { path: ':id', component: RequestDetailComponent } ]
-			},
-			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/network-services', pathMatch: 'full' },
-			{
-				path: 'service-management/network-services', component: SmNetworkServicesComponent,
+				path: 'service-management/network-services/services', component: SmNetworkServicesComponent,
 				children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
+			},
+			{
+				path: 'service-management/network-services/network-service-instances', component: NetworkServiceInstancesComponent,
+				children: [
+					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
+				]
 			},
 			{
 				path: 'service-management/requests', component: RequestsComponent,
 				children: [ { path: ':id', component: RequestDetailComponent } ]
-			},
-			{
-				path: 'service-management/network-service-instances', component: NetworkServiceInstancesComponent,
-				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
-				]
 			},
 			{
 				path: 'service-management/licenses', component: LicenceListComponent,

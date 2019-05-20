@@ -18,6 +18,120 @@ export class ServiceManagementService {
 	) { }
 
 	/**
+	 * Retrieves a list of Slices Instances.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Instances attributes that must be
+	 *                          matched by the returned list of
+	 *                          Slices instances.
+	 */
+	async getSlicesInstances(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search !== undefined ?
+			this.config.baseSP + this.config.slicesInstances + search :
+			this.config.baseSP + this.config.slicesInstances;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.name,
+						vendor: item.vendor,
+						template: item[ 'nst-name' ],
+						status: item[ 'nsi-status' ]
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Retrieves a Slices Instances by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Instance.
+	 */
+	async getOneSliceInstance(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesInstances + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'name' ],
+				nstRef: response[ 'nst-ref' ],
+				nstName: response[ 'nst-name' ],
+				nstVersion: response[ 'nst-version' ],
+				vendor: response[ 'vendor' ],
+				status: response[ 'nsi-status' ],
+				qiValue: response[ '5qiValue' ],
+				instantiationTime: response[ 'instantiateTime' ],
+				description: response[ 'description' ],
+				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {
+					return {
+						nsrName: item[ 'nsrName' ],
+						slaName: item[ 'sla-name' ],
+						isShared: item[ 'isshared' ] ? 'Yes' : 'No',
+						status: item[ 'working-status' ]
+					};
+				}) : [],
+				sliceVirtualLinks: response[ 'vldr-list' ] ? response[ 'vldr-list' ].map(item => {
+					return {
+						id: item[ 'id' ],
+						networkName: item[ 'name' ],
+						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						vldStatus: item[ 'vld-status' ],
+						type: item[ 'type' ]
+					};
+				}) : []
+			};
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Generates a Slice Instance
+	 *
+	 * @param instance Data of the desired Slice Instance.
+	 */
+	async postOneSliceInstance(instance) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+
+		try {
+			return await this.http.post(url, instance, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Terminates a Slice Instance by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Instance.
+	 */
+	async postOneSliceInstanceTermination(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.requests;
+		const terminateTime = {
+			'instance_uuid': uuid,
+			'request_type': 'TERMINATE_SLICE'
+		};
+
+		try {
+			return await this.http.post(url, terminateTime, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+
+
+	}
+
+	/**
      * Retrieves a list of Network Service instances.
      * Either following a search pattern or not.
      *

@@ -31,9 +31,6 @@ import { SlaViolationsComponent } from './sla-violations/sla-violations.componen
 import { SliceTemplateListComponent } from './slice-template-list/slice-template-list.component';
 import { SliceTemplateCreateComponent } from './slice-template-create/slice-template-create.component';
 import { SliceTemplateDetailComponent } from './slice-template-detail/slice-template-detail.component';
-import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
-import { SliceInstanceDetailComponent } from './slice-instance-detail/slice-instance-detail.component';
-import { SliceInstanceCreateComponent } from './slice-instance-create/slice-instance-create.component';
 
 @NgModule({
 	declarations: [
@@ -57,10 +54,7 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 		SlaViolationsComponent,
 		SliceTemplateListComponent,
 		SliceTemplateCreateComponent,
-		SliceTemplateDetailComponent,
-		SliceInstanceListComponent,
-		SliceInstanceDetailComponent,
-		SliceInstanceCreateComponent
+		SliceTemplateDetailComponent
 	],
 	entryComponents: [],
 	imports: [
