@@ -641,9 +641,16 @@ ul.unordered-list .mat-input-element:disabled {
 	color: $shopping-cart-color;
 }
 
-.icon-button-shadow .wui-undo::before {
+.icon-button-shadow .wui-undo:before {
 	font-size: 20px;
 	color: $reload-color;
+}
+
+.icon-button-shadow .wui-stop-alt:before {
+	font-size: 15px;
+	color: $stop-color;
+	border-radius: 20%;
+	background-color: $stop-color;
 }
 
 //////////////////////////////////////

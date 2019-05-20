@@ -42,8 +42,13 @@ app-slice-instance-detail {
 				$table-underline-color 99%,
 				$basic-background-color 99%,
 				$basic-background-color 100%
-				);
+			);
 		}
+
+		.mat-cell:nth-child(5),
+        .mat-header-cell:nth-child(5) {
+          	width: 20%;
+        }
 		
 		td.mat-cell {
 			cursor: auto;

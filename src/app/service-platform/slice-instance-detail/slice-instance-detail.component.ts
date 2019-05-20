@@ -15,7 +15,7 @@ export class SliceInstanceDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
 	displayedColumns = [ 'nsrName', 'slaName', 'status', 'isShared' ];
-	displayedColumnsLinks = [ 'networkName', 'mngmtNetwork', 'type' ];
+	displayedColumnsLinks = [ 'id', 'networkName', 'mngmtNetwork', 'status', 'type' ];
 
 
 	constructor(

@@ -710,8 +710,10 @@ export class ServicePlatformService {
 				}) : [],
 				sliceVirtualLinks: response[ 'vldr-list' ] ? response[ 'vldr-list' ].map(item => {
 					return {
+						id: item[ 'id' ],
 						networkName: item[ 'name' ],
 						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						vldStatus: item[ 'vld-status' ],
 						type: item[ 'type' ]
 					};
 				}) : []
