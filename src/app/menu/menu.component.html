@@ -72,16 +72,22 @@
 		</div>
 
 		<div class="options" *ngIf="menu === 'service-platform'">
-			<button [ngClass]="{ active: section === 'sp-packages' }" (click)="setSection($event, 'sp-packages')"
-				i18n="@@packages">Packages</button>
+			<button [ngClass]="{ active: section === 'sp-packages' }" (click)="setSection($event, 'sp-packages')" i18n="@@packages">
+				Packages
+			</button>
+
+			<button [ngClass]="{ active: section === 'sp-slices' }" (click)="setSection($event, 'sp-slices')" i18n="@@networkSlices">Network
+				Slices
+			</button>
 
 			<button [ngClass]="{ active: section === 'sp-network-services' }" (click)="setSection($event, 'sp-network-services')"
 				i18n="@@networkServices">
 				Network services
 			</button>
 
-			<button [ngClass]="{ active: section === 'sp-functions' }" (click)="setSection($event, 'sp-functions')"
-				i18n="@@functions">Functions</button>
+			<button [ngClass]="{ active: section === 'sp-functions' }" (click)="setSection($event, 'sp-functions')" i18n="@@functions">
+				Functions
+			</button>
 
 			<button [ngClass]="{ active: section === 'sp-slas' }" (click)="setSection($event, 'sp-slas')" i18n="@@sla">SLA</button>
 			<div class="section" *ngIf="section === 'sp-slas'">
@@ -115,9 +121,6 @@
 					Generated Actions
 				</button>
 			</div>
-
-			<button [ngClass]="{ active: section === 'sp-slices' }" (click)="setSection($event, 'sp-slices')" i18n="@@networkSlices">Network
-				Slices</button>
 		</div>
 
 		<div class="options" *ngIf="menu === 'service-management'">
