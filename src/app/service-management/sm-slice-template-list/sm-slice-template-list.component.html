@@ -1,13 +1,6 @@
-<h3 class="title3 header-section-name" i18n="@@sp">Service platform</h3>
+<h3 class="title3 header-section-name" i18n="@@sm">Service management</h3>
 
 <h1 class="title1 title-section-name" i18n="@@networkSliceTemplates">Network Slice Templates</h1>
-
-<!-- <div class="title-section">
-	<h1 class="title1 title-section-name" i18n="@@sliceTemplates">Slice Templates</h1>
-	<button class="add" (click)="createNew()"><i class="wui wui-plus"></i>
-		<span i18n="@@createNewTemplateButton">Create New Template</span>
-	</button>
-</div> -->
 
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
@@ -44,15 +37,7 @@
 					class="wui wui-caret-right"></i></button>
 		</td>
 	</ng-container>
-	<ng-container matColumnDef="delete">
-		<th mat-header-cell *matHeaderCellDef></th>
-		<td mat-cell *matCellDef="let element" (click)="deleteTemplate(element.uuid)" (click)="$event.stopPropagation()">
-			<button *ngIf="utilsService.capitalizeFirstLetter(element.usageState) !== 'In use'" class="actions icon-button-shadow"
-				mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</td>
-	</ng-container>
+
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openTemplate(row.uuid)"></tr>
 </table>

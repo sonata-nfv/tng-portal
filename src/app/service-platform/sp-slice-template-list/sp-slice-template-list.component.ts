@@ -1,20 +1,18 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
-
-import { SliceInstanceCreateComponent } from '../../service-management/slice-instance-create/slice-instance-create.component';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-	selector: 'app-slice-template-list',
-	templateUrl: './slice-template-list.component.html',
-	styleUrls: [ './slice-template-list.component.scss' ],
+	selector: 'app-sp-slice-template-list',
+	templateUrl: './sp-slice-template-list.component.html',
+	styleUrls: [ './sp-slice-template-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SliceTemplateListComponent implements OnInit, OnDestroy {
+export class SpSliceTemplateListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	templates: Array<Object>;
 	displayedColumns = [
@@ -23,7 +21,6 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		'version',
 		'author',
 		'usageState',
-		'instantiate',
 		'delete'
 	];
 	subscription: Subscription;
@@ -33,7 +30,7 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private servicePlatformService: ServicePlatformService,
 		private utilsService: UtilsService,
-		private instantiateDialog: MatDialog
+		private commonService: CommonService
 	) { }
 
 	ngOnInit() {
@@ -69,7 +66,7 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
      */
 	async requestTemplates(search?) {
 		this.loading = true;
-		const response = await this.servicePlatformService.getSlicesTemplates(search);
+		const response = await this.commonService.getSlicesTemplates(search);
 
 		this.loading = false;
 		if (response) {
@@ -77,17 +74,6 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		} else {
 			this.utilsService.openSnackBar('There was an error fetching the templates', '');
 		}
-	}
-
-	instantiate(nst) {
-		this.instantiateDialog.open(SliceInstanceCreateComponent, {
-			data: {
-				nstId: nst.uuid,
-				vendor: nst.vendor,
-				name: nst.name,
-				version: nst.version
-			}
-		});
 	}
 
 	async deleteTemplate(uuid) {
@@ -101,6 +87,11 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		} else {
 			this.utilsService.openSnackBar('There was an error deleting the template', '');
 		}
+	}
+
+
+	isInUse(usageState) {
+		return this.utilsService.capitalizeFirstLetter(usageState) === 'In use';
 	}
 
 	createNew() {

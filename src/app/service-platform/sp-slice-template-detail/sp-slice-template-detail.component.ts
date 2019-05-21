@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
-
-import { SliceInstanceCreateComponent } from '../../service-management/slice-instance-create/slice-instance-create.component';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-	selector: 'app-slice-template-detail',
-	templateUrl: './slice-template-detail.component.html',
-	styleUrls: [ './slice-template-detail.component.scss' ],
+	selector: 'app-sp-slice-template-detail',
+	templateUrl: './sp-slice-template-detail.component.html',
+	styleUrls: [ './sp-slice-template-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SliceTemplateDetailComponent implements OnInit {
+export class SpSliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
 	displayedColumns = [ 'uuid', 'serviceName', 'isShared', 'slaName' ];
@@ -24,7 +22,7 @@ export class SliceTemplateDetailComponent implements OnInit {
 		private route: ActivatedRoute,
 		private servicePlatformService: ServicePlatformService,
 		private utilsService: UtilsService,
-		private instantiateDialog: MatDialog
+		private commonService: CommonService
 	) { }
 
 	ngOnInit() {
@@ -41,7 +39,7 @@ export class SliceTemplateDetailComponent implements OnInit {
      */
 	async requestSliceTemplate(uuid) {
 		this.loading = true;
-		const response = await this.servicePlatformService.getOneSliceTemplate(uuid);
+		const response = await this.commonService.getOneSliceTemplate(uuid);
 
 		this.loading = false;
 		if (response) {
@@ -54,17 +52,6 @@ export class SliceTemplateDetailComponent implements OnInit {
 
 	isInUse() {
 		return this.utilsService.capitalizeFirstLetter(this.detail[ 'usageState' ]) === 'In use';
-	}
-
-	instantiate() {
-		this.instantiateDialog.open(SliceInstanceCreateComponent, {
-			data: {
-				nstId: this.detail[ 'uuid' ],
-				vendor: this.detail[ 'vendor' ],
-				name: this.detail[ 'name' ],
-				version: this.detail[ 'version' ]
-			}
-		});
 	}
 
 	async deleteTemplate() {

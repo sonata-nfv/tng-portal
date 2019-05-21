@@ -8,6 +8,8 @@ import { AppRoutingModule } from '../app-routing.module';
 
 import { ServiceManagementService } from './service-management.service';
 
+import { SmSliceTemplateDetailComponent } from './sm-slice-template-detail/sm-slice-template-detail.component';
+import { SmSliceTemplateListComponent } from './sm-slice-template-list/sm-slice-template-list.component';
 import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
 import { SliceInstanceDetailComponent } from './slice-instance-detail/slice-instance-detail.component';
 import { SliceInstanceCreateComponent } from './slice-instance-create/slice-instance-create.component';
@@ -25,6 +27,8 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 
 @NgModule({
 	declarations: [
+		SmSliceTemplateListComponent,
+		SmSliceTemplateDetailComponent,
 		SliceInstanceListComponent,
 		SliceInstanceDetailComponent,
 		SliceInstanceCreateComponent,
