@@ -3,18 +3,18 @@ import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 import { SliceInstanceCreateComponent } from '../slice-instance-create/slice-instance-create.component';
 
 @Component({
-	selector: 'app-slice-template-list',
-	templateUrl: './slice-template-list.component.html',
-	styleUrls: [ './slice-template-list.component.scss' ],
+	selector: 'app-sm-slice-template-list',
+	templateUrl: './sm-slice-template-list.component.html',
+	styleUrls: [ './sm-slice-template-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SliceTemplateListComponent implements OnInit, OnDestroy {
+export class SmSliceTemplateListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	templates: Array<Object>;
 	displayedColumns = [
@@ -23,15 +23,14 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		'version',
 		'author',
 		'usageState',
-		'instantiate',
-		'delete'
+		'instantiate'
 	];
 	subscription: Subscription;
 
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private servicePlatformService: ServicePlatformService,
+		private commonService: CommonService,
 		private utilsService: UtilsService,
 		private instantiateDialog: MatDialog
 	) { }
@@ -43,9 +42,9 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 		this.subscription = this.router.events.subscribe(event => {
 			if (
 				event instanceof NavigationEnd &&
-				event.url === '/service-platform/slices/slices-templates' &&
+				event.url === '/service-management/slices/slice-templates' &&
 				this.route.url[ 'value' ].length === 3 &&
-				this.route.url[ 'value' ][ 2 ].path === 'slices-templates'
+				this.route.url[ 'value' ][ 2 ].path === 'slice-templates'
 			) {
 				this.requestTemplates();
 			}
@@ -69,7 +68,7 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
      */
 	async requestTemplates(search?) {
 		this.loading = true;
-		const response = await this.servicePlatformService.getSlicesTemplates(search);
+		const response = await this.commonService.getSlicesTemplates(search);
 
 		this.loading = false;
 		if (response) {
@@ -88,23 +87,6 @@ export class SliceTemplateListComponent implements OnInit, OnDestroy {
 				version: nst.version
 			}
 		});
-	}
-
-	async deleteTemplate(uuid) {
-		this.loading = true;
-		const response = await this.servicePlatformService.deleteOneSlicesTemplate(uuid);
-
-		this.loading = false;
-		if (response) {
-			this.utilsService.openSnackBar('Template deleted', '');
-			this.requestTemplates();
-		} else {
-			this.utilsService.openSnackBar('There was an error deleting the template', '');
-		}
-	}
-
-	createNew() {
-		this.router.navigate([ 'new' ], { relativeTo: this.route });
 	}
 
 	openTemplate(uuid) {

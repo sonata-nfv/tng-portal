@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CommonService } from '../../services/common/common.service';
-import { UtilsService } from '../../services/common/utils.service';
+import { ServiceManagementService } from '../service-management.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
 	selector: 'app-requests',
@@ -13,22 +13,17 @@ import { UtilsService } from '../../services/common/utils.service';
 export class RequestsComponent implements OnInit {
 	loading: boolean;
 	requests: Array<object>;
-	section: string;
 	displayedColumns = [ 'name', 'serviceName', 'createdAt', 'type', 'status' ];
 	searchText: string;
 
 	constructor(
 		private router: Router,
-		private commonService: CommonService,
+		private serviceManagementService: ServiceManagementService,
 		private utilsService: UtilsService,
 		private route: ActivatedRoute
 	) { }
 
 	ngOnInit() {
-		this.section = this.route.url[ 'value' ][ 0 ].path
-			.replace(/-/g, ' ')
-			.toUpperCase();
-
 		this.requestRequests();
 	}
 
@@ -45,7 +40,7 @@ export class RequestsComponent implements OnInit {
      */
 	async requestRequests(search?) {
 		this.loading = true;
-		const response = await this.commonService.getRequests(search);
+		const response = await this.serviceManagementService.getRequests(search);
 
 		this.loading = false;
 		if (response) {

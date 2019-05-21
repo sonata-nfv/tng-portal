@@ -1,4 +1,4 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@instances">Instances</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@sliceInstances">Slice Instances</h3>
 
 <div class="title-section" *ngIf="detail['name']">
 	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
@@ -50,7 +50,7 @@
 		</mat-form-field>
 	</div>
 
-	<div *ngIf="detail['uuid'] && detail['status'].toUpperCase() == 'INSTANTIATED'" (click)="stopInstance()" class="stop">
+	<div *ngIf="isInstantiated()" (click)="stopInstance()" class="stop">
 		<button class="icon-button-shadow" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate">
 			<i class="wui wui-stop-alt"></i>
 		</button>

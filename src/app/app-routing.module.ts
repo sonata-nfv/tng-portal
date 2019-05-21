@@ -51,24 +51,26 @@ import { SlaTemplateCreateComponent } from './service-platform/sla-template-crea
 import { SlaAgreementListComponent } from './service-platform/sla-agreement-list/sla-agreement-list.component';
 import { SlaAgreementDetailComponent } from './service-platform/sla-agreement-detail/sla-agreement-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
+import { SpSliceTemplateListComponent } from './service-platform/sp-slice-template-list/sp-slice-template-list.component';
+import { SpSliceTemplateCreateComponent } from './service-platform/sp-slice-template-create/sp-slice-template-create.component';
+import { SpSliceTemplateDetailComponent } from './service-platform/sp-slice-template-detail/sp-slice-template-detail.component';
 
-import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
-import { SliceTemplateCreateComponent } from './service-platform/slice-template-create/slice-template-create.component';
-import { SliceTemplateDetailComponent } from './service-platform/slice-template-detail/slice-template-detail.component';
-import { SliceInstanceListComponent } from './service-platform/slice-instance-list/slice-instance-list.component';
-import { SliceInstanceDetailComponent } from './service-platform/slice-instance-detail/slice-instance-detail.component';
-import { SliceInstanceCreateComponent } from './service-platform/slice-instance-create/slice-instance-create.component';
-
+import { SmSliceTemplateListComponent } from './service-management/sm-slice-template-list/sm-slice-template-list.component';
+import { SmSliceTemplateDetailComponent } from './service-management/sm-slice-template-detail/sm-slice-template-detail.component';
+import { SliceInstanceListComponent } from './service-management/slice-instance-list/slice-instance-list.component';
+import { SliceInstanceDetailComponent } from './service-management/slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './service-management/slice-instance-create/slice-instance-create.component';
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
-import { RequestsComponent } from './shared/components/requests/requests.component';
-import { RequestDetailComponent } from './shared/components/request-detail/request-detail.component';
+import { RequestsComponent } from './service-management/requests/requests.component';
+import { RequestDetailComponent } from './service-management/request-detail/request-detail.component';
 import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
 import {
 	NetworkServiceInstancesDetailComponent
 } from './service-management/network-service-instances-detail/network-service-instances-detail.component';
 import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
+
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -167,38 +169,40 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
 			{
-				path: 'service-platform/slices/slices-templates', component: SliceTemplateListComponent,
+				path: 'service-platform/slices/slice-templates', component: SpSliceTemplateListComponent,
 				children: [
-					{ path: 'new', component: SliceTemplateCreateComponent },
-					{ path: ':id', component: SliceTemplateDetailComponent }
+					{ path: 'new', component: SpSliceTemplateCreateComponent },
+					{ path: ':id', component: SpSliceTemplateDetailComponent }
+				]
+			},
+			// Service Management section
+			{ path: 'service-management', redirectTo: 'service-management/slices/slice-templates', pathMatch: 'full' },
+			{
+				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
+				children: [
+					{ path: ':id', component: SmSliceTemplateDetailComponent }
 				]
 			},
 			{
-				path: 'service-platform/slices/slices-instances', component: SliceInstanceListComponent,
+				path: 'service-management/slices/slice-instances', component: SliceInstanceListComponent,
 				children: [
 					{ path: 'new', component: SliceInstanceCreateComponent },
 					{ path: ':id', component: SliceInstanceDetailComponent }
 				]
 			},
 			{
-				path: 'service-platform/slices/slices-requests', component: RequestsComponent,
-				children: [ { path: ':id', component: RequestDetailComponent } ]
-			},
-			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/network-services', pathMatch: 'full' },
-			{
-				path: 'service-management/network-services', component: SmNetworkServicesComponent,
+				path: 'service-management/network-services/services', component: SmNetworkServicesComponent,
 				children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
+			},
+			{
+				path: 'service-management/network-services/network-service-instances', component: NetworkServiceInstancesComponent,
+				children: [
+					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
+				]
 			},
 			{
 				path: 'service-management/requests', component: RequestsComponent,
 				children: [ { path: ':id', component: RequestDetailComponent } ]
-			},
-			{
-				path: 'service-management/network-service-instances', component: NetworkServiceInstancesComponent,
-				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
-				]
 			},
 			{
 				path: 'service-management/licenses', component: LicenceListComponent,

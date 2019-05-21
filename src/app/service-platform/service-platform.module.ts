@@ -28,12 +28,9 @@ import { SlaAgreementDetailComponent } from './sla-agreement-detail/sla-agreemen
 import { SlaLicenseDetailComponent } from './sla-license-detail/sla-license-detail.component';
 import { SlaGuaranteesDetailComponent } from './sla-guarantees-detail/sla-guarantees-detail.component';
 import { SlaViolationsComponent } from './sla-violations/sla-violations.component';
-import { SliceTemplateListComponent } from './slice-template-list/slice-template-list.component';
-import { SliceTemplateCreateComponent } from './slice-template-create/slice-template-create.component';
-import { SliceTemplateDetailComponent } from './slice-template-detail/slice-template-detail.component';
-import { SliceInstanceListComponent } from './slice-instance-list/slice-instance-list.component';
-import { SliceInstanceDetailComponent } from './slice-instance-detail/slice-instance-detail.component';
-import { SliceInstanceCreateComponent } from './slice-instance-create/slice-instance-create.component';
+import { SpSliceTemplateListComponent } from './sp-slice-template-list/sp-slice-template-list.component';
+import { SpSliceTemplateCreateComponent } from './sp-slice-template-create/sp-slice-template-create.component';
+import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-slice-template-detail.component';
 
 @NgModule({
 	declarations: [
@@ -55,12 +52,9 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 		SlaLicenseDetailComponent,
 		SlaGuaranteesDetailComponent,
 		SlaViolationsComponent,
-		SliceTemplateListComponent,
-		SliceTemplateCreateComponent,
-		SliceTemplateDetailComponent,
-		SliceInstanceListComponent,
-		SliceInstanceDetailComponent,
-		SliceInstanceCreateComponent
+		SpSliceTemplateListComponent,
+		SpSliceTemplateCreateComponent,
+		SpSliceTemplateDetailComponent
 	],
 	entryComponents: [],
 	imports: [

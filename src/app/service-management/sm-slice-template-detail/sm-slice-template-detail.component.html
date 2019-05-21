@@ -1,10 +1,4 @@
-<div class="header-section" *ngIf="detail['name']">
-	<h3 class="title3 header-section-name" i18n="@@templates">Templates</h3>
-	<div class="button-underline" *ngIf="!isInUse()">
-		<button class="delete-button" (click)="deleteTemplate()" i18n="@@deleteTemplateButton">Delete template</button>
-		<div class="underline"></div>
-	</div>
-</div>
+<h3 *ngIf="detail['uuid']" class="title3 header-section-name" i18n="@@networkSliceTemplates">Network Slice Templates</h3>
 
 <div class="title-section" *ngIf="detail['name']">
 	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>

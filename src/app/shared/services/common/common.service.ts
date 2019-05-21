@@ -9,7 +9,6 @@ import { UtilsService } from './utils.service';
 export class CommonService {
 	authHeaders: HttpHeaders;
 	request_uuid: string;
-	NA = 'Not available';
 
 	constructor(
 		private authService: AuthService,
@@ -295,72 +294,6 @@ export class CommonService {
 	}
 
 	/**
-	 * Retrieves a list of Network Service requests.
-	 * Either following a search pattern or not.
-	 *
-	 * @param search [Optional] Request attributes that must be
-	 *                          matched by the returned list of
-	 *                          NS requests.
-	 */
-	async getRequests(search?) {
-		const headers = this.authService.getAuthHeaders();
-		const url = search !== undefined ?
-			this.config.baseSP + this.config.requests + search :
-			this.config.baseSP + this.config.requests;
-
-		try {
-			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.map(item => ({
-					requestId: item.id,
-					name: item.name || 'Unknown',
-					serviceName: item[ 'service' ] ? item.service.name : this.NA,
-					type: item.request_type,
-					createdAt: item.created_at,
-					status: item.status
-				})) : [];
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	/**
-	 * Retrieves a Network Service request by UUID
-	 *
-	 * @param uuid UUID of the desired NS request.
-	 */
-	async getOneRequest(uuid: string) {
-		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.requests + '/' + uuid;
-
-		try {
-			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response.hasOwnProperty('id') ?
-				{
-					uuid: response[ 'id' ],
-					name: response[ 'name' ] || 'Unknown',
-					status: response[ 'status' ],
-					type: response[ 'request_type' ],
-					updatedAt: response[ 'updated_at' ],
-					slaUUID: response[ 'sla_id' ],
-					serviceVendor: response[ 'service' ] ?
-						response[ 'service' ][ 'vendor' ] : null,
-					serviceName: response[ 'service' ] ?
-						response[ 'service' ][ 'name' ] : null,
-					serviceVersion: response[ 'service' ] ?
-						response[ 'service' ][ 'version' ] : null,
-					serviceUUID: response[ 'service' ] ?
-						response[ 'service' ][ 'uuid' ] : null,
-					blacklist: response[ 'blacklist' ],
-					ingresses: response[ 'ingresses' ],
-					egresses: response[ 'egresses' ]
-				} : [];
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	/**
 	 * Retrieves the existing vims of type endpoint
 	 */
 	async getEndpoints() {
@@ -380,4 +313,84 @@ export class CommonService {
 			console.error(error);
 		}
 	}
+
+	/**
+	 * Retrieves a list of Slices Templates.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Template attributes that must be
+	 *                          matched by the returned list of
+	 *                          Slices Templates.
+	 */
+	async getSlicesTemplates(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ? this.config.baseSP + this.config.slicesTemplates + search :
+			this.config.baseSP + this.config.slicesTemplates;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.nstd.name,
+						version: item.nstd.version,
+						vendor: item.nstd.vendor,
+						usageState: item.nstd.usageState,
+						author: item.nstd.author,
+						status: item.status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Retrieves a Slices Template by UUID
+	 *
+	 * @param uuid UUID of the desired Slices Template.
+	 */
+	async getOneSliceTemplate(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesTemplates + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				status: response[ 'status' ],
+				name: response[ 'nstd' ][ 'name' ],
+				author: response[ 'nstd' ][ 'author' ],
+				createdAt: response[ 'created_at' ],
+				updatedAt: response[ 'updated_at' ],
+				version: response[ 'nstd' ][ 'version' ],
+				vendor: response[ 'nstd' ][ 'vendor' ],
+				description: response[ 'nstd' ][ 'description' ],
+				notificationType: response[ 'nstd' ][ 'notificationTypes' ],
+				userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
+				usageState: response[ 'nstd' ][ 'usageState' ],
+				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
+				operationalState: response[ 'nstd' ][ 'operationalState' ],
+				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
+					return {
+						uuid: item[ 'id' ],
+						nsdName: item[ 'nsd-name' ],
+						isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
+						slaName: item[ 'sla-name' ]
+					};
+				}) : [],
+				sliceVirtualLinks: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_vld' ].map(item => {
+					return {
+						networkName: item[ 'name' ],
+						mngmtNetwork: item[ 'mgmt-network' ] ? 'Yes' : 'No',
+						type: item[ 'type' ]
+					};
+				}) : []
+			};
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 }

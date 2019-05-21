@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ServicePlatformService } from '../service-platform.service';
+import { ServiceManagementService } from '../service-management.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
@@ -21,7 +21,7 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
-		private servicePlatformService: ServicePlatformService,
+		private serviceManagementService: ServiceManagementService,
 		private utilsService: UtilsService,
 		private dialogData: DialogDataService
 	) { }
@@ -33,9 +33,9 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		this.subscription = this.router.events.subscribe(event => {
 			if (
 				event instanceof NavigationEnd &&
-				event.url === '/service-platform/slices/slices-instances' &&
+				event.url === '/service-management/slices/slice-instances' &&
 				this.route.url[ 'value' ].length === 3 &&
-				this.route.url[ 'value' ][ 2 ].path === 'slices-instances'
+				this.route.url[ 'value' ][ 2 ].path === 'slice-instances'
 			) {
 				this.requestInstances();
 			}
@@ -59,7 +59,7 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
      */
 	async requestInstances(search?) {
 		this.loading = true;
-		const response = await this.servicePlatformService.getSlicesInstances(search);
+		const response = await this.serviceManagementService.getSlicesInstances(search);
 
 		this.loading = false;
 		if (response) {
@@ -77,7 +77,7 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 
 			this.dialogData.openDialog(title, content, action, async () => {
 				this.loading = true;
-				const response = await this.servicePlatformService.postOneSliceInstanceTermination(instance.uuid);
+				const response = await this.serviceManagementService.postOneSliceInstanceTermination(instance.uuid);
 
 				this.loading = false;
 				if (response) {
@@ -90,6 +90,10 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		} else {
 			this.openInstance(instance);
 		}
+	}
+
+	isInstantiated(element) {
+		return element.status && element.uuid && element.status.toUpperCase() === 'INSTANTIATED';
 	}
 
 	openInstance(uuid) {

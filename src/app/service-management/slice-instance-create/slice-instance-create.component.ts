@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ServicePlatformService } from '../service-platform.service';
+import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public dialogRef: MatDialogRef<SliceInstanceCreateComponent>,
-		private servicePlatformService: ServicePlatformService,
+		private serviceManagementService: ServiceManagementService,
 		private utilsService: UtilsService
 	) { }
 
@@ -38,7 +38,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 		};
 
 		this.loading = true;
-		const response = await this.servicePlatformService.postOneSliceInstance(instance);
+		const response = await this.serviceManagementService.postOneSliceInstance(instance);
 
 		this.loading = false;
 		if (response) {

@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.router.navigate([ 'service-platform' ]);
 				break;
 			case 'service-management':
-				this.section = 'sm-network-services';
+				this.section = 'sm-slices';
 				this.router.navigate([ 'service-management' ]);
 				break;
 			default:
@@ -129,17 +129,18 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.router.navigate([ 'service-platform/slas/sla-templates' ]);
 				break;
 			case 'sp-slices':
-				this.subsection = 'slices-templates';
-				this.router.navigate([ 'service-platform/slices/slices-templates' ]);
+				this.router.navigate([ 'service-platform/slices/slice-templates' ]);
+				break;
+			case 'sm-slices':
+				this.subsection = 'slice-templates';
+				this.router.navigate([ 'service-management/slices/slice-templates' ]);
 				break;
 			case 'sm-network-services':
-				this.router.navigate([ 'service-management/network-services' ]);
+				this.subsection = 'services';
+				this.router.navigate([ 'service-management/network-services/services' ]);
 				break;
 			case 'sm-requests':
 				this.router.navigate([ 'service-management/requests' ]);
-				break;
-			case 'sm-network-service-instances':
-				this.router.navigate([ 'service-management/network-service-instances' ]);
 				break;
 			case 'sm-licenses':
 				this.router.navigate([ 'service-management/licenses' ]);
@@ -174,20 +175,26 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.subsection = 'sla-violations';
 				this.router.navigate([ 'service-platform/slas/sla-violations' ]);
 				break;
-			case 'slices-templates':
-				this.subsection = 'slices-templates';
-				this.router.navigate([ 'service-platform/slices/slices-templates' ]);
+			case 'slice-templates':
+				this.subsection = 'slice-templates';
+				this.router.navigate([ 'service-management/slices/slice-templates' ]);
 				break;
-			case 'slices-instances':
-				this.subsection = 'slices-instances';
-				this.router.navigate([ 'service-platform/slices/slices-instances' ]);
+			case 'slice-instances':
+				this.subsection = 'slice-instances';
+				this.router.navigate([ 'service-management/slices/slice-instances' ]);
 				break;
-			case 'slices-requests':
-				this.subsection = 'slices-requests';
-				this.router.navigate([ 'service-platform/slices/slices-requests' ]);
+			case 'services':
+				this.subsection = 'services';
+				this.router.navigate([ 'service-management/network-services/services' ]);
+				break;
+			case 'network-service-instances':
+				this.subsection = 'network-service-instances';
+				this.router.navigate([ 'service-management/network-services/network-service-instances' ]);
+				break;
+			default:
+				this.subsection = buttonId;
 				break;
 		}
-		this.subsection = buttonId;
 	}
 
 	maintainStatus() {

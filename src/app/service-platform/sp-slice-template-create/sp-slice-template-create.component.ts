@@ -8,12 +8,12 @@ import { CommonService } from '../../shared/services/common/common.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
-	selector: 'app-slice-template-create',
-	templateUrl: './slice-template-create.component.html',
-	styleUrls: [ './slice-template-create.component.scss' ],
+	selector: 'app-sp-slice-template-create',
+	templateUrl: './sp-slice-template-create.component.html',
+	styleUrls: [ './sp-slice-template-create.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class SliceTemplateCreateComponent implements OnInit {
+export class SpSliceTemplateCreateComponent implements OnInit {
 	loading: boolean;
 	disabledButton = true;
 	templateForm: FormGroup;
