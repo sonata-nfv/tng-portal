@@ -33,9 +33,9 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		this.subscription = this.router.events.subscribe(event => {
 			if (
 				event instanceof NavigationEnd &&
-				event.url === '/service-platform/slices/slices-instances' &&
+				event.url === '/service-platform/slices/slice-instances' &&
 				this.route.url[ 'value' ].length === 3 &&
-				this.route.url[ 'value' ][ 2 ].path === 'slices-instances'
+				this.route.url[ 'value' ][ 2 ].path === 'slice-instances'
 			) {
 				this.requestInstances();
 			}

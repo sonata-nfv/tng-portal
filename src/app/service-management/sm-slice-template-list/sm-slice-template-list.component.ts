@@ -42,9 +42,9 @@ export class SmSliceTemplateListComponent implements OnInit, OnDestroy {
 		this.subscription = this.router.events.subscribe(event => {
 			if (
 				event instanceof NavigationEnd &&
-				event.url === '/service-management/slices/slices-templates' &&
+				event.url === '/service-management/slices/slice-templates' &&
 				this.route.url[ 'value' ].length === 3 &&
-				this.route.url[ 'value' ][ 2 ].path === 'slices-templates'
+				this.route.url[ 'value' ][ 2 ].path === 'slice-templates'
 			) {
 				this.requestTemplates();
 			}

@@ -169,22 +169,22 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
 			{
-				path: 'service-platform/slices/slices-templates', component: SpSliceTemplateListComponent,
+				path: 'service-platform/slices/slice-templates', component: SpSliceTemplateListComponent,
 				children: [
 					{ path: 'new', component: SpSliceTemplateCreateComponent },
 					{ path: ':id', component: SpSliceTemplateDetailComponent }
 				]
 			},
 			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/slices/slices-templates', pathMatch: 'full' },
+			{ path: 'service-management', redirectTo: 'service-management/slices/slice-templates', pathMatch: 'full' },
 			{
-				path: 'service-management/slices/slices-templates', component: SmSliceTemplateListComponent,
+				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
 				children: [
 					{ path: ':id', component: SmSliceTemplateDetailComponent }
 				]
 			},
 			{
-				path: 'service-management/slices/slices-instances', component: SliceInstanceListComponent,
+				path: 'service-management/slices/slice-instances', component: SliceInstanceListComponent,
 				children: [
 					{ path: 'new', component: SliceInstanceCreateComponent },
 					{ path: ':id', component: SliceInstanceDetailComponent }
