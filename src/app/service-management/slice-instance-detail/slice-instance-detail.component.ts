@@ -74,6 +74,10 @@ export class SliceInstanceDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	isInstantiated() {
+		return this.detail[ 'uuid' ] && this.detail[ 'status' ].toUpperCase() === 'INSTANTIATED';
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

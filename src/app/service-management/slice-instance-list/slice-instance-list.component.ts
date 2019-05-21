@@ -33,7 +33,7 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		this.subscription = this.router.events.subscribe(event => {
 			if (
 				event instanceof NavigationEnd &&
-				event.url === '/service-platform/slices/slice-instances' &&
+				event.url === '/service-management/slices/slice-instances' &&
 				this.route.url[ 'value' ].length === 3 &&
 				this.route.url[ 'value' ][ 2 ].path === 'slice-instances'
 			) {
@@ -90,6 +90,10 @@ export class SliceInstanceListComponent implements OnInit, OnDestroy {
 		} else {
 			this.openInstance(instance);
 		}
+	}
+
+	isInstantiated(element) {
+		return element.status && element.uuid && element.status.toUpperCase() === 'INSTANTIATED';
 	}
 
 	openInstance(uuid) {
