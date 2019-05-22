@@ -238,10 +238,10 @@ p {
 			color: $primary-color-light;
 		}
 
-		.wui-plus::before {
+		.wui-plus:before {
 			margin-right: 5px;
 			font-size: 20px;
-			color: $reload-color;
+			color: $add-color;
 		}
 	}
 }
@@ -651,6 +651,22 @@ ul.unordered-list .mat-input-element:disabled {
 	color: $stop-color;
 	border-radius: 20%;
 	background-color: $stop-color;
+}
+
+.wui-plus:before {
+	margin-right: 5px;
+	font-size: 14px;
+	color: $add-color;
+}
+
+.wui-caret-up:before {
+	font-size: 14px;
+	color: $arrow-color;
+}
+
+.wui-caret-down:before {
+	font-size: 14px;
+	color: $arrow-color;
 }
 
 //////////////////////////////////////
