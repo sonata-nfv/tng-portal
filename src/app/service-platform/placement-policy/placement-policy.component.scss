@@ -1,80 +1,64 @@
 @import "../../../constants.scss";
 app-placement-policy {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  background-color: $basic-background-color;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	align-items: center;
+	width: auto;
+	height: 100%;
+	background-color: $basic-background-color;
 
-  form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  	form {
+		align-items: center;
+		width: 20vw;
+  	}
 
-    &.policyForm {
-      margin-top: 90px;
-    }
+	.policy-form {
+		margin-top: 15vh;
 
-    &.datacenterForm {
-      .mat-form-field-disabled .mat-form-field-underline {
-        background-color: $form-focus;
-        background-image: none;
-      }
+		.placement-policy {
+			width: 20vw;
+		}
+	}
 
-      .mat-select.mat-select-disabled .mat-select-arrow {
-        color: $form-focus;
-      }
+	.datacenter-form {
+		align-items: flex-end;
+		margin-top: 3vh;
 
-      .mat-select-disabled .mat-select-value {
-        color: $secondary-font-color;
-      }
-    }
+		.list {
+			width: 20vw;
+			margin-bottom: 0;
 
-    .placementPolicy {
-      width: 25%;
-    }
-  }
+			.line {
+				display: flex;
 
-  .list {
-    width: 30%;
+				.select {
+					flex: 1 1;
+				}
 
-    .line .mat-form-field,
-    .select {
-      width: 86%;
-    }
-  }
+				.datacenter-name {
+					flex: 1 1;
+					margin-right: 5px;
+				}
 
-  .error-message {
-    font-size: 0.8em;
-    margin-top: -25px;
-    margin-bottom: 10px;
-    width: 24%;
-  }
+				.delete {
+					height: 4vh;
+					place-self: center;
+				}
+			}
+		}
 
-  .addMore {
-    display: flex;
-    justify-content: flex-end;
-    width: 25%;
+		.error-message {
+			margin-top: -10px;
+			margin-bottom: 10px;
+		}
 
-    button {
-      width: 100px;
-      padding: 5px;
-      font-size: 16px;
-      text-align: end;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      color: $primary-color-light;
-      background-color: $basic-background-color;
-
-      i:before {
-        font-size: 12px;
-        color: $primary-color-light;
-      }
-    }
-  }
+		.add-more {
+			padding: 8px;
+			font-size: 16px;
+			color: $primary-color-light;
+			background-color: $basic-background-color;
+		}
+	}
 }
