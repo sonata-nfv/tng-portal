@@ -5,12 +5,12 @@ import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-requests',
-	templateUrl: './requests.component.html',
-	styleUrls: [ './requests.component.scss' ],
+	selector: 'app-request-list',
+	templateUrl: './request-list.component.html',
+	styleUrls: [ './request-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class RequestsComponent implements OnInit {
+export class RequestListComponent implements OnInit {
 	loading: boolean;
 	requests: Array<object>;
 	displayedColumns = [ 'name', 'serviceName', 'createdAt', 'type', 'status' ];

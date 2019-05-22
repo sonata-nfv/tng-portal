@@ -20,7 +20,7 @@ import { NetworkServiceInstancesComponent } from './network-service-instances/ne
 import { NetworkServiceInstancesDetailComponent } from './network-service-instances-detail/network-service-instances-detail.component';
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
-import { RequestsComponent } from './requests/requests.component';
+import { RequestListComponent } from './request-list/request-list.component';
 import { RequestDetailComponent } from './request-detail/request-detail.component';
 import { LicenceListComponent } from './license-list/license-list.component';
 import { LicenceDetailComponent } from './license-detail/license-detail.component';
@@ -39,7 +39,7 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 		NetworkServiceInstancesDetailComponent,
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
-		RequestsComponent,
+		RequestListComponent,
 		RequestDetailComponent,
 		LicenceListComponent,
 		LicenceDetailComponent

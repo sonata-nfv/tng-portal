@@ -62,7 +62,7 @@ import { SliceInstanceDetailComponent } from './service-management/slice-instanc
 import { SliceInstanceCreateComponent } from './service-management/slice-instance-create/slice-instance-create.component';
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
-import { RequestsComponent } from './service-management/requests/requests.component';
+import { RequestListComponent } from './service-management/request-list/request-list.component';
 import { RequestDetailComponent } from './service-management/request-detail/request-detail.component';
 import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
 import {
@@ -201,7 +201,7 @@ const routes: Routes = [
 				]
 			},
 			{
-				path: 'service-management/requests', component: RequestsComponent,
+				path: 'service-management/requests', component: RequestListComponent,
 				children: [ { path: ':id', component: RequestDetailComponent } ]
 			},
 			{
