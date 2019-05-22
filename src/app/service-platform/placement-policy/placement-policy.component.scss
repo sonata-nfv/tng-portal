@@ -43,9 +43,11 @@ app-placement-policy {
 					margin-right: 5px;
 				}
 
-				.delete {
-					height: 4vh;
+				.delete, 
+				.arrow {
 					place-self: center;
+					height: 3vh;
+					margin-right: 5px;
 				}
 			}
 		}

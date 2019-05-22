@@ -107,12 +107,31 @@ export class PlacementPolicyComponent implements OnInit {
 		this.disabledButton = this.datacentersSelected.length ? false : true;
 	}
 
+	movePossitionInArray(oldIndex, newIndex) {
+		if (newIndex >= this.datacentersSelected.length) {
+			let k = newIndex - this.datacentersSelected.length;
+			while ((k--) + 1) {
+				this.datacentersSelected.push(undefined);
+			}
+		}
+		this.datacentersSelected.splice(newIndex, 0, this.datacentersSelected.splice(oldIndex, 1)[ 0 ]);
+		return;
+	}
+
 	canReset() {
 		return !this.placementPolicyForm.get('placementPolicy').value;
 	}
 
 	canShowAddMore() {
 		return this.prioritise && this.datacenters.length;
+	}
+
+	canShowArrowsUp(index) {
+		return this.datacentersSelected.length > 1 && index !== 0;
+	}
+
+	canShowArrowsDown(index) {
+		return this.datacentersSelected.length > 1 && index !== (this.datacentersSelected.length - 1);
 	}
 
 	canShow() {

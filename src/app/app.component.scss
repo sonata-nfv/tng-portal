@@ -659,6 +659,16 @@ ul.unordered-list .mat-input-element:disabled {
 	color: $add-color;
 }
 
+.wui-caret-up:before {
+	font-size: 14px;
+	color: $arrow-color;
+}
+
+.wui-caret-down:before {
+	font-size: 14px;
+	color: $arrow-color;
+}
+
 //////////////////////////////////////
 // Action buttons in detailed views
 //////////////////////////////////////

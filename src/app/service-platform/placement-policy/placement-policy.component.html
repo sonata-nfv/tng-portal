@@ -18,12 +18,20 @@
 <form class="datacenter-form" [formGroup]="prioritiseForm">
 	<!-- Prioritize option form fields -->
 	<ol class="list" *ngIf="prioritise">
-		<li class="line" *ngFor="let item of datacentersSelected">
+		<li class="line" *ngFor="let item of datacentersSelected; let i = index">
 			<mat-form-field class="datacenter-name">
 				<mat-select [value]="item" disabled>
 					<mat-option [value]="item">{{ item.name }}</mat-option>
 				</mat-select>
 			</mat-form-field>
+
+			<button *ngIf="canShowArrowsUp(i)" class="icon-button-shadow arrow" (click)="movePossitionInArray(i, i-1)">
+				<i class="wui wui-caret-up"></i>
+			</button>
+
+			<button *ngIf="canShowArrowsDown(i)" class="icon-button-shadow arrow" (click)="movePossitionInArray(i, i+1)">
+				<i class="wui wui-caret-down"></i>
+			</button>
 
 			<button class="icon-button-shadow delete" (click)="eraseEntry(item)">
 				<i class="wui wui-trash-alt"></i>
