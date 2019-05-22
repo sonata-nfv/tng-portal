@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { ServicePlatformService } from '../service-platform.service';
 
 @Component({
 	selector: 'app-placement-policy',
@@ -12,27 +13,26 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class PlacementPolicyComponent implements OnInit {
 	loading = false;
+	error: boolean;
+	prioritise = false;
+	originalPolicy: string;
 	placementPolicies: Array<string>;
 	placementPolicyForm: FormGroup;
 	prioritiseForm: FormGroup;
-	disabledButton = false;
-	show = false;
-	prioritise = false;
 	datacenters = new Array();
 	datacentersSelected = new Array();
-	error: boolean;
 
 
 	constructor(
 		private utilsService: UtilsService,
 		private commonService: CommonService,
+		private servicePlatformService: ServicePlatformService
 	) { }
 
 	ngOnInit() {
 		this.initForm();
-
-		// TODO GET placement policies from a service
-		this.placementPolicies = [ 'None', 'Load Balanced', 'Prioritise', 'Fill First' ];
+		this.requestPlacement();
+		this.placementPolicies = [ 'None', 'Load balanced', 'Prioritise', 'Fill first' ];
 	}
 
 	private initForm() {
@@ -49,15 +49,25 @@ export class PlacementPolicyComponent implements OnInit {
 		);
 	}
 
+	private async requestPlacement() {
+		this.loading = true;
+		const placement = await this.servicePlatformService.getPlacementPolicy();
+
+		this.loading = false;
+		if (placement) {
+			this.originalPolicy = placement[ 'policy' ] ?
+				this.utilsService.capitalizeFirstLetter(placement[ 'policy' ]) : 'None';
+			this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the actual placement policy', '');
+		}
+	}
+
 	private onFormChangesPolicy(values) {
-		this.show = true;
 		this.prioritise = values.placementPolicy === 'Prioritise' ? true : false;
 
 		if (this.prioritise) {
 			this.getEndpoints();
-			this.disabledButton = true;
-		} else {
-			this.disabledButton = false;
 		}
 	}
 
@@ -96,15 +106,11 @@ export class PlacementPolicyComponent implements OnInit {
 
 			this.prioritiseForm.reset();
 		}
-
-		this.disabledButton = this.datacentersSelected.length ? false : true;
 	}
 
 	eraseEntry(datacenter) {
 		this.datacentersSelected = this.datacentersSelected.filter(item => item.uuid !== datacenter.uuid);
 		this.datacenters.push(datacenter);
-
-		this.disabledButton = this.datacentersSelected.length ? false : true;
 	}
 
 	movePossitionInArray(oldIndex, newIndex) {
@@ -116,6 +122,23 @@ export class PlacementPolicyComponent implements OnInit {
 		}
 		this.datacentersSelected.splice(newIndex, 0, this.datacentersSelected.splice(oldIndex, 1)[ 0 ]);
 		return;
+	}
+
+	canDisableSave() {
+		const newPolicy = this.placementPolicyForm.get('placementPolicy').value;
+
+		if (newPolicy && this.originalPolicy !== newPolicy) {
+			return newPolicy === 'Prioritise' && !this.datacentersSelected.length ? true : false;
+		} else {
+			return true;
+		}
+	}
+
+	canShowAlreadySaved() {
+		const newPolicy = this.placementPolicyForm.get('placementPolicy').value;
+
+		return this.originalPolicy && newPolicy && this.originalPolicy === newPolicy ?
+			true : false;
 	}
 
 	canReset() {
@@ -134,26 +157,20 @@ export class PlacementPolicyComponent implements OnInit {
 		return this.datacentersSelected.length > 1 && index !== (this.datacentersSelected.length - 1);
 	}
 
-	canShow() {
-		// TODO check if the chosen datacenter is different from
-		// the option saved in the begining
-		// disableButton if both are the same ? warning ?
-		return this.show;
-	}
-
 	cancel() {
 		if (this.prioritise) {
 			this.prioritiseForm.reset();
 			this.datacentersSelected = new Array();
 		}
 
-		this.placementPolicyForm.reset();
+		this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
 		this.error = false;
 	}
 
 	save() {
+
+
 		// TODO Save request to catalog
-		console.log(this.placementPolicyForm.controls.placementPolicy.value);
 		console.log(this.datacentersSelected);
 	}
 }

@@ -16,6 +16,7 @@ app-placement-policy {
   	}
 
 	.policy-form {
+		align-items: flex-end;
 		margin-top: 15vh;
 
 		.placement-policy {
@@ -52,16 +53,16 @@ app-placement-policy {
 			}
 		}
 
-		.error-message {
-			margin-top: -10px;
-			margin-bottom: 10px;
-		}
-
 		.add-more {
 			padding: 8px;
 			font-size: 16px;
 			color: $primary-color-light;
 			background-color: $basic-background-color;
 		}
+	}
+
+	.error-message {
+		margin-top: -10px;
+		margin-bottom: 10px;
 	}
 }

@@ -3,16 +3,18 @@
 <div class="title-section">
 	<h1 class="title1 title-section-name" i18n="@@placementPolicy">Placement Policy</h1>
 	<div class="header-buttons">
-		<button *ngIf="canShow()" [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
-			(click)="save()" i18n="@@saveButton">SAVE</button>
-		<button *ngIf="canShow()" class="edit-options cancel" (click)="cancel()" i18n="@@cancelButton">CANCEL</button>
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options save" [disabled]="canDisableSave()" (click)="save()"
+			i18n="@@saveButton">SAVE</button>
+		<button class="edit-options cancel" (click)="cancel()" i18n="@@cancelButton">CANCEL</button>
 	</div>
 </div>
 
 <form class="policy-form" [formGroup]="placementPolicyForm">
-	<app-select class="placement-policy" placeholder="Select a policy" [list]="placementPolicies" [reset]="canReset()"
-		(selectEvent)="receivePlacementPolicy($event)" i18n-placeholder="@@selectPolicyPlaceholder">
+	<app-select class="placement-policy" placeholder="Select a policy" [list]="placementPolicies"
+		[value]="placementPolicyForm.get('placementPolicy').value" [reset]="canReset()" (selectEvent)="receivePlacementPolicy($event)"
+		i18n-placeholder="@@selectPolicyPlaceholder">
 	</app-select>
+	<span *ngIf="canShowAlreadySaved()" class="error-message" i18n="@@actualPlacementPolicyMsg">This is the actual placement policy</span>
 </form>
 
 <form class="datacenter-form" [formGroup]="prioritiseForm">
