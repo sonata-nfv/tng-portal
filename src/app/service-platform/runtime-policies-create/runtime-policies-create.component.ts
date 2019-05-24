@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
@@ -19,11 +19,12 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	disabledButton = true;
 	closed = true;
 	nsList = new Array();
-	nsListComplete = new Array();
+	slaList = new Array();
 	monitoringRules = 'This is a monitoring rule for this example!';
 
 	constructor(
 		private router: Router,
+		private route: ActivatedRoute,
 		private utilsService: UtilsService,
 		private commonService: CommonService,
 		private servicePlatformService: ServicePlatformService
@@ -31,14 +32,17 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	ngOnInit() {
 		this.initForms();
-		this.getData();
+
+		this.getNS();
+		this.getSLA();
 	}
 
 	private initForms() {
 		this.policyForm = new FormGroup({
-			name: new FormControl(),
+			name: new FormControl('', Validators.required),
 			default: new FormControl(),
 			ns: new FormControl('', Validators.required),
+			sla: new FormControl(),
 			monitoringRule: new FormControl()
 		});
 
@@ -46,68 +50,79 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	private _onFormChanges(value?) {
-		if (
-			this.policyForm.get('ns').value != null &&
-			this.policyForm.get('name').value != null
-		) {
+		if (this.policyForm.get('ns').value && this.policyForm.get('name').value) {
 			this.disabledButton = false;
 		}
 	}
 
-	private async getData() {
+	private async getNS() {
 		this.loading = true;
-		const response = await this.commonService.getNetworkServices('SP');
+		const networkServices = await this.commonService.getNetworkServices('SP');
 
-		this.loading = false;
-		if (response) {
-			// Save NS data to display
-			this.nsList = response.map(x => x.name);
-
-			// Save complete data from NS
-			this.nsListComplete = response;
+		if (networkServices) {
+			this.nsList = networkServices.map(ns =>
+				({ uuid: ns.uuid, name: ns.name, vendor: ns.vendor, version: ns.version })
+			);
 		} else {
-			this.nsList.push('None');
+			this.nsList.push({ uuid: 'None', name: 'None', vendor: '', version: '' });
 			this.utilsService.openSnackBar('Unable to fetch network services', '');
 		}
 	}
 
-	receiveNS(ns) {
-		let ns_uuid: string;
+	private async getSLA() {
+		const slas = await this.commonService.getSLATemplates();
 
-		if (ns === 'None') {
-			this.policyForm.controls.ns.setValue(null);
-			ns_uuid = null;
+		this.loading = false;
+		if (slas) {
+			this.slaList = slas.map(sla => ({ uuid: sla.uuid, name: sla.name }));
 		} else {
-			ns_uuid = this.nsListComplete.filter(x => x.name === ns)[ 0 ].serviceId;
-			this.policyForm.controls.ns.setValue(ns_uuid);
+			this.slaList.push({ uuid: 'None', name: 'None' });
+			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
 		}
 	}
 
-	createPolicy() {
-		const policy = {
-			vendor: '5GTANGO',
-			name: this.policyForm.get('name').value,
-			version: '0.1',
-			network_service: this.policyForm.get('ns').value,
-			default_policy: this.policyForm.get('default').value,
-			policyRules: [],
-			monitoringRules: this.policyForm.get('monitoringRule').value
-		};
+	receiveNS(ns) {
+		ns === 'None' ?
+			this.policyForm.controls.ns.setValue(null) :
+			this.policyForm.controls.ns.setValue(ns);
+	}
 
-		this.loading = true;
-		this.servicePlatformService
-			.postOneRuntimePolicy(policy)
-			.then(response => {
-				this.loading = false;
-				this.close();
-			})
-			.catch(err => {
-				this.loading = false;
-				// TODO display request status in toast
-			});
+	receiveSLA(sla) {
+		sla === 'None' ?
+			this.policyForm.controls.ns.setValue(null) :
+			this.policyForm.controls.ns.setValue(sla);
+	}
+
+
+
+
+	createPolicy() {
+		// const policy = {
+		// 	vendor: '5GTANGO',
+		// 	name: this.policyForm.get('name').value,
+		// 	version: '0.1',
+		// 	network_service: this.policyForm.get('ns').value,
+		// 	default_policy: this.policyForm.get('default').value,
+		// 	policyRules: [],
+		// 	monitoringRules: this.policyForm.get('monitoringRule').value
+		// };
+
+		// console.log(policy)
+
+		// this.loading = true;
+		// this.servicePlatformService
+		// 	.postOneRuntimePolicy(policy)
+		// 	.then(response => {
+		// 		this.loading = false;
+		// 		this.close();
+		// 	})
+		// 	.catch(err => {
+		// 		this.loading = false;
+		// 		// TODO display request status in toast
+		// 	});
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

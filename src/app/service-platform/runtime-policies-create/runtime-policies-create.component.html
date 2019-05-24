@@ -1,60 +1,66 @@
 <h3 class="title3 header-section-name" i18n="@@runtimePolicies">Runtime policies</h3>
 
 <form [formGroup]="policyForm" class="title-section">
-    <mat-form-field class="title1">
-        <input matInput type="text" placeholder="Policy Name" formControlName="name" required i18n-placeholder="@@policyNamePlaceholder" />
-    </mat-form-field>
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Policy Name" formControlName="name" required i18n-placeholder="@@policyNamePlaceholder" />
+	</mat-form-field>
 
-    <div class="header-buttons">
-        <button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
-            (click)="createPolicy()" i18n="@@saveButton">
-            SAVE
-        </button>
-        <button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
-    </div>
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+			(click)="createPolicy()" i18n="@@saveButton">
+			SAVE
+		</button>
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
 </form>
 
-<div class="subheader">
-    <p class="subtitle author" i18n="@@createdByYou">Created by you</p>
-</div>
-
 <form [formGroup]="policyForm">
-    <mat-checkbox formControlName="default" i18n="@@markAsDefault">Mark as default</mat-checkbox>
+	<mat-checkbox formControlName="default" i18n="@@markAsDefault">Mark as default</mat-checkbox>
 
-    <app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
-        i18n-placeholder="@@nsPlaceholder"></app-select>
+	<app-select-uuid class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+		i18n-placeholder="@@nsPlaceholder">
+	</app-select-uuid>
+
+	<app-select-uuid class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
+		i18n-placeholder="@@slaPlaceholder">
+	</app-select-uuid>
 </form>
 
 <div class="advanced-section">
-    <button class="dropdownButton" (click)="closed = !closed">
-        <div class="open">
-            <span i18n="@@monitoringRules">Monitoring Rules</span> <i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
-            <ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
-        </div>
-        <div class="underline" [ngClass]="{ opened: !closed }"></div>
-    </button>
-    <form *ngIf="!closed" [formGroup]="policyForm" class="advancedForm">
-        <div class="rules">
-            <div class="monitoringRules left">
-                <span class="title" i18n="@@existingMonitoringRules">Existing monitoring rules</span>
-                <span class="content">
-                    <p>{{ monitoringRules }}</p>
-                </span>
-            </div>
-
-            <mat-form-field class="monitoringRules">
-                <span class="title" i18n="@@addNewMonitoringRules">Add new monitoring rules</span>
-                <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
-            </mat-form-field>
-        </div>
-    </form>
-
-    <!-- TODO rules -->
-    <!--
-		<div class="rulesForm">
-		  <h2 class="title2">Rules</h2>
+	<button class="dropdown-button" (click)="closed = !closed">
+		<div class="open">
+			<span i18n="@@monitoringRules">Monitoring Rules</span>
+			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+			<ng-template #opened>
+				<i class="wui wui-caret-up"></i>
+			</ng-template>
 		</div>
-	-->
+		<div class="underline" [ngClass]="{ opened: !closed }"></div>
+	</button>
+
+	<form *ngIf="!closed" class="advanced-form" [formGroup]="policyForm">
+		<div class="rules">
+			<div class="monitoring-rules left">
+				<span class="title" i18n="@@existingMonitoringRules">Existing monitoring rules</span>
+				<span class="content">
+					<p>{{ monitoringRules }}</p>
+				</span>
+			</div>
+
+			<mat-form-field class="monitoring-rules">
+				<span class="title" i18n="@@addNewMonitoringRules">Add new monitoring rules</span>
+				<textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
+			</mat-form-field>
+		</div>
+	</form>
 </div>
+
+<div class="rules-section">
+	<h2 class="title2" i18n="@@rules">Rules</h2>
+
+
+
+</div>
+
 
 <app-spinner *ngIf="loading"></app-spinner>
