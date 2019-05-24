@@ -148,6 +148,14 @@ form .same-row {
 	background-color: $primary-background-color;
 }
 
+.mat-checkbox-layout .mat-checkbox-label {
+	color: $secondary-font-color-light;
+}
+
+.mat-checkbox-frame {
+ 	border-color: $secondary-font-color-light;
+}
+
 // Mat table styles
 table {
 	//   Include scroll in table

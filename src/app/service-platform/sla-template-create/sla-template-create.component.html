@@ -29,7 +29,7 @@
 
 <div class="advanced-section" *ngIf="canShowAdvancedSection()">
 	<!-- Show or hide the service guarantees section -->
-	<button class="dropdownButton" (click)="changeCloseStatus()">
+	<button class="dropdown-button" (click)="changeCloseStatus()">
 		<div class="open">
 			<span i18n="@@advancedSection">Advanced section</span>
 
@@ -55,7 +55,7 @@
 						<i class="wui wui-trash-alt"></i>
 					</button>
 
-					<button class="dropdownButton" (click)="item.closed = !item.closed">
+					<button class="dropdown-button" (click)="item.closed = !item.closed">
 						<i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
 						<ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
 					</button>
