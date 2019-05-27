@@ -26,39 +26,43 @@
 	</app-select-uuid>
 </form>
 
-<div class="advanced-section">
-	<button class="dropdown-button" (click)="closed = !closed">
-		<div class="open">
-			<span i18n="@@monitoringRules">Monitoring Rules</span>
-			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
-			<ng-template #opened>
-				<i class="wui wui-caret-up"></i>
-			</ng-template>
-		</div>
-		<div class="underline" [ngClass]="{ opened: !closed }"></div>
-	</button>
+<div class="rules-section">
+	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
 
-	<form *ngIf="!closed" class="advanced-form" [formGroup]="policyForm">
-		<div class="rules">
-			<div class="monitoring-rules left">
-				<span class="title" i18n="@@existingMonitoringRules">Existing monitoring rules</span>
-				<span class="content">
-					<p>{{ monitoringRules }}</p>
-				</span>
+	<form [formGroup]="policyForm">
+		<!-- TODO include form with name, description, duration, duration unit, threshold and conditions -->
+
+		<div class="description">
+			<div class="description-title">
+				<h4 class="title4" i18n="@@monitoringRules">Monitoring rules</h4>
+				<button *ngIf="!editMonitoringRules" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
+					(click)="editMonitoringRules = true" i18n-matTooltip="@@edit">
+					<i class="wui wui-pen-alt"></i>
+				</button>
+				<button *ngIf="editMonitoringRules" type="button" mat-button matTooltip="View" class="icon-button-shadow"
+					(click)="editMonitoringRules = false" i18n-matTooltip="@@view">
+					<i class="wui wui-eye"></i>
+				</button>
 			</div>
 
-			<mat-form-field class="monitoring-rules">
-				<span class="title" i18n="@@addNewMonitoringRules">Add new monitoring rules</span>
-				<textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
+			<mat-form-field *ngIf="editMonitoringRules" class="description" [ngClass]="{ 'mat-form-field-invalid': !isValidJSON() }">
+				<textarea class="content" matInput type="text" formControlName="monitoringRules" ngDefaultControl></textarea>
+				<p *ngIf="!isValidJSON()" class="error-message">*This is not a valid JSON</p>
 			</mat-form-field>
+
+			<span *ngIf="!editMonitoringRules" class="content">
+				<ngx-json-viewer [json]="getParsedJSON(policyForm.get('monitoringRules').value)"></ngx-json-viewer>
+			</span>
 		</div>
 	</form>
 </div>
 
 <div class="rules-section">
-	<h2 class="title2" i18n="@@rules">Rules</h2>
+	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
 
+	<!-- TODO here goes a table with introduced policies -->
 
+	<!-- TODO here goes the form for rules -->
 
 </div>
 

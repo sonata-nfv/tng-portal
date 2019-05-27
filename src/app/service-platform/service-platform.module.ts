@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -63,7 +64,8 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		AppRoutingModule,
 		ReactiveFormsModule,
 		FormsModule,
-		SharedModule
+		SharedModule,
+		NgxJsonViewerModule
 	],
 	providers: [ ServicePlatformService ]
 })

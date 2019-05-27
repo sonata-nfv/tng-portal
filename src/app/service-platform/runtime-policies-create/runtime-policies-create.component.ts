@@ -15,12 +15,11 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class RuntimePoliciesCreateComponent implements OnInit {
 	loading = false;
 	reset = false;
+	editMonitoringRules = false;
 	policyForm: FormGroup;
 	disabledButton = true;
-	closed = true;
 	nsList = new Array();
 	slaList = new Array();
-	monitoringRules = 'This is a monitoring rule for this example!';
 
 	constructor(
 		private router: Router,
@@ -43,7 +42,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			default: new FormControl(),
 			ns: new FormControl('', Validators.required),
 			sla: new FormControl(),
-			monitoringRule: new FormControl()
+			monitoringRules: new FormControl('', Validators.required)
 		});
 
 		this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
@@ -93,8 +92,24 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			this.policyForm.controls.ns.setValue(sla);
 	}
 
+	isValidJSON() {
+		return this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
+	}
 
+	getParsedJSON(value) {
+		let parsedJSON;
 
+		try {
+			parsedJSON = JSON.parse(value);
+		} catch (error) {
+			parsedJSON = { };
+		}
+		return parsedJSON;
+	}
+
+	getStringifiedJSON(value) {
+		return JSON.stringify(value);
+	}
 
 	createPolicy() {
 		// const policy = {
