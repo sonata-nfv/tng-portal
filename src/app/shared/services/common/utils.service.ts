@@ -112,6 +112,17 @@ export class UtilsService {
 		return true;
 	}
 
+	isValidJSON(object) {
+		try {
+			if (object) {
+				JSON.parse(object);
+			}
+			return true;
+		} catch (error) {
+			return false;
+		}
+	}
+
 	/**
      * Compares two objects property to property and returns the differences in the second one
      *
