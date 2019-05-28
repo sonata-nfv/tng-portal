@@ -146,48 +146,35 @@ export class CommonService {
      *                          matched by the returned list of
      *                          packages.
      */
-	getFunctions(section, search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getFunctions(section, search?) {
+		const headers = this.authService.getAuthHeaders();
+		let url: string;
+		if (section === 'VALIDATION AND VERIFICATION') {
+			url = search ?
+				this.config.baseVNV + this.config.functions + search
+				: this.config.baseVNV + this.config.functions;
+		} else {
+			url = search ?
+				this.config.baseSP + this.config.functions + search
+				: this.config.baseSP + this.config.functions;
+		}
 
-			let url: string;
-			if (section === 'VALIDATION AND VERIFICATION') {
-				url =
-					search !== undefined
-						? this.config.baseVNV + this.config.functions + search
-						: this.config.baseVNV + this.config.functions;
-			} else {
-				url =
-					search !== undefined
-						? this.config.baseSP + this.config.functions + search
-						: this.config.baseSP + this.config.functions;
-			}
-
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.vnfd.name,
-									vendor: item.vnfd.vendor,
-									status: this.utilsService.capitalizeFirstLetter(item.status),
-									version: item.vnfd.version,
-									type: 'public'
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the functions');
-					}
-				})
-				.catch(err => reject('There was an error fetching the functions'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.vnfd.name,
+						vendor: item.vnfd.vendor,
+						status: item.status,
+						version: item.vnfd.version,
+						type: 'public'
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
