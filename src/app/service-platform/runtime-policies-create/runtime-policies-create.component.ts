@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormControlName } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
@@ -16,10 +16,13 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	loading = false;
 	reset = false;
 	editMonitoringRules = false;
+	openedMonitoringRuleForm = false;
 	policyForm: FormGroup;
+	monitoringRulesForm: FormGroup;
 	disabledButton = true;
 	nsList = new Array();
 	slaList = new Array();
+	conditions = [ 'Condition A', 'Condition B' ];
 
 	constructor(
 		private router: Router,
@@ -45,10 +48,18 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			monitoringRules: new FormControl('', Validators.required)
 		});
 
-		this.policyForm.valueChanges.subscribe(value => this._onFormChanges(value));
+		this.monitoringRulesForm = new FormGroup({
+			description: new FormControl('', Validators.required),
+			duration: new FormControl('', Validators.required),
+			durationUnit: new FormControl('', Validators.required),
+			threshold: new FormControl('', Validators.required),
+			condition: new FormControl('', Validators.required)
+		});
+
+		this.policyForm.valueChanges.subscribe(value => this.onPolicyFormChanges(value));
 	}
 
-	private _onFormChanges(value?) {
+	private onPolicyFormChanges(value?) {
 		if (this.policyForm.get('ns').value && this.policyForm.get('name').value) {
 			this.disabledButton = false;
 		}
@@ -82,14 +93,18 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	receiveNS(ns) {
 		ns === 'None' ?
-			this.policyForm.controls.ns.setValue(null) :
-			this.policyForm.controls.ns.setValue(ns);
+			this.policyForm.get('ns').setValue(null) :
+			this.policyForm.get('ns').setValue(ns);
 	}
 
 	receiveSLA(sla) {
 		sla === 'None' ?
-			this.policyForm.controls.ns.setValue(null) :
-			this.policyForm.controls.ns.setValue(sla);
+			this.policyForm.get('sla').setValue(null) :
+			this.policyForm.get('sla').setValue(sla);
+	}
+
+	receiveCondition(condition) {
+		this.monitoringRulesForm.get('condition').setValue(condition);
 	}
 
 	isValidJSON() {
@@ -109,6 +124,40 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	getStringifiedJSON(value) {
 		return JSON.stringify(value);
+	}
+
+	canDisableAddNew() {
+		return !this.monitoringRulesForm.valid;
+	}
+
+	addNew() {
+		// TODO create the name automatically from vnf data
+		let rules: Array<Object>;
+		const rule = {
+			'name': 'ñlakjsdfgadsjgakjsdgf',
+			'description': this.monitoringRulesForm.get('description').value,
+			'duration': this.monitoringRulesForm.get('duration').value,
+			'duration_unit': this.monitoringRulesForm.get('durationUnit').value,
+			'condition': this.monitoringRulesForm.get('condition').value,
+			'threshold': this.monitoringRulesForm.get('threshold').value
+		};
+
+		if (this.policyForm.get('monitoringRules').value) {
+			rules = this.getParsedJSON(this.policyForm.get('monitoringRules').value);
+		} else {
+			rules = [];
+		}
+
+		rules.push(rule);
+
+		this.policyForm.get('monitoringRules').setValue(this.getStringifiedJSON(rules));
+		this.monitoringRulesForm.reset();
+		this.openedMonitoringRuleForm = false;
+	}
+
+	closeMonitoringRuleForm() {
+		this.openedMonitoringRuleForm = false;
+		this.monitoringRulesForm.reset();
 	}
 
 	createPolicy() {

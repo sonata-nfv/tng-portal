@@ -14,7 +14,7 @@
 	</div>
 </form>
 
-<form [formGroup]="policyForm">
+<form [formGroup]="policyForm" class="general-information-section">
 	<mat-checkbox formControlName="default" i18n="@@markAsDefault">Mark as default</mat-checkbox>
 
 	<app-select-uuid class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
@@ -26,13 +26,11 @@
 	</app-select-uuid>
 </form>
 
-<div class="rules-section">
+<div class="monitoring-rules-section">
 	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
 
 	<form [formGroup]="policyForm">
-		<!-- TODO include form with name, description, duration, duration unit, threshold and conditions -->
-
-		<div class="description">
+		<div class="description existing-monitoring-rules">
 			<div class="description-title">
 				<h4 class="title4" i18n="@@monitoringRules">Monitoring rules</h4>
 				<button *ngIf="!editMonitoringRules" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
@@ -53,18 +51,64 @@
 			<span *ngIf="!editMonitoringRules" class="content">
 				<ngx-json-viewer [json]="getParsedJSON(policyForm.get('monitoringRules').value)"></ngx-json-viewer>
 			</span>
+
+			<button *ngIf="!openedMonitoringRuleForm" class="basic-button button-shadow create-new" type="button" mat-button
+				matTooltip="Create new" (click)="openedMonitoringRuleForm = true" i18n-matTooltip="@@createNew">
+				<i class="wui wui-plus"></i>
+				<span i18n="@@createNewRule">Create new rule</span>
+			</button>
 		</div>
 	</form>
-</div>
 
+	<h3 *ngIf="openedMonitoringRuleForm" class="title3" i18n="@@createNewMonitoringRule">Create a new monitoring rule</h3>
+	<form *ngIf="openedMonitoringRuleForm" [formGroup]="monitoringRulesForm" class="add-monitoring-rule-form">
+		<div class="header">
+			<button [disabled]="canDisableAddNew()" type="button" mat-button (click)="addNew()" class="basic-button add-new">
+				<i class="wui wui-plus"></i>
+				<span i18n="@@add">Add</span>
+			</button>
+
+			<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
+				<i class="wui wui-times"></i>
+			</button>
+		</div>
+
+		<div class="same-row">
+			<mat-form-field class="left-column">
+				<input matInput type="text" placeholder="Duration" formControlName="duration" required i18n-placeholder="@@duration" />
+			</mat-form-field>
+
+			<mat-form-field>
+				<input matInput type="text" placeholder="Duration unit" formControlName="durationUnit" required
+					i18n-placeholder="@@durationUnit" />
+			</mat-form-field>
+		</div>
+
+		<div class="same-row">
+			<app-select class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
+				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
+			</app-select>
+
+			<mat-form-field>
+				<input matInput type="text" placeholder="Threshold" formControlName="threshold" required i18n-placeholder="@@threshold" />
+			</mat-form-field>
+		</div>
+
+		<mat-form-field class="description monitoring-rule-description">
+			<h4 class="title4" i18n="@@descriptionRequired">Description*</h4>
+			<textarea class="content" matInput type="text" formControlName="description" required></textarea>
+		</mat-form-field>
+	</form>
+</div>
+<!-- 
 <div class="rules-section">
-	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
+	<h2 class="title2" i18n="@@policyRules">Policy rules</h2> -->
 
-	<!-- TODO here goes a table with introduced policies -->
+<!-- TODO here goes a table with introduced policies -->
 
-	<!-- TODO here goes the form for rules -->
+<!-- TODO here goes the form for rules -->
 
-</div>
+<!-- </div> -->
 
 
 <app-spinner *ngIf="loading"></app-spinner>

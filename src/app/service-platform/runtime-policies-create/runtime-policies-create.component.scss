@@ -15,6 +15,7 @@ app-runtime-policies-create {
 		flex: 0 0 auto;
 	}
 
+	// Policy form styles
 	.title1 {
 		margin: 0;
 		width: 40%;
@@ -30,9 +31,10 @@ app-runtime-policies-create {
 		}
 	}
 
-	form {
+	.general-information-section {
 		width: 55vw;
-		margin-bottom: 5vh;
+		margin-top: 4vh;
+		margin-bottom: 4vh;
 
 		// Checkbox styles
 		.mat-checkbox {
@@ -42,13 +44,109 @@ app-runtime-policies-create {
 		.select {
 			width: 25vw;
 		}
+
 	}
 
-	.rules-section {
+	// Monitoring rules section styles
+	.monitoring-rules-section {
+		display: flex;
+		flex-direction: column;
 		width: 55vw;
+		margin-bottom: 4vh;
 
-		&.policy-rules-section {
-			margin-bottom: 5vh;
+		// Monitoring rules in description box
+		.description.existing-monitoring-rules .content, 
+		.description.existing-monitoring-rules.mat-form-field .content {
+			min-height: 20vh;
+			max-height: 25vh;
+			margin-top: 0;
+		}
+		
+		.description.existing-monitoring-rules .mat-form-field {
+			margin-bottom: 0;
+		}
+
+		.description.mat-form-field .mat-form-field-wrapper {
+			padding-bottom: 0;
+		}
+
+		// Create new monitoring policy 
+		.create-new {
+			width: 8vw;
+			height: 4vh;
+			margin-top: 1vh;
+		}
+
+		// Title of the form section to add new monitoring rules
+		.title3 {
+			margin-bottom: 0;
+		}
+
+		.title3:after {
+			background: none;
+		}
+
+		// Header with create new monitoring rule title and buttons
+		.header {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			padding-top: 1vh;
+
+			.add-new {		
+				margin-right: 1vw;		
+				font-size: 17px;
+				color: $primary-color-light;
+				background-color: $panel-background-color;
+			}
+
+			.add-new:disabled {
+				color: $button-disabled-font-color;
+				
+				i:before {
+					color: $button-disabled-font-color;
+				}
+			}
+
+			.close-icon {
+				position: relative;
+				background-color: $panel-background-color;
+			}
+		}
+
+		// Create new monitoring rule form
+		.add-monitoring-rule-form {
+			align-self: center;
+			width: 51vw;
+			padding-left: 2vw;
+			padding-right: 2vw;
+			background-color: $panel-background-color;
+			border-top: 1px solid $border-line-color;
+			border-bottom: 1px solid $border-line-color;
+
+			.same-row .mat-form-field,
+			.same-row .select {
+				width: 25vw;
+
+				&.left-column {
+					margin-right: 1vw;
+				}
+			}
+
+			// Description box in create new monitoring rule
+			.description.monitoring-rule-description.mat-form-field .content {
+				height: 5vh;
+			}
 		}
 	}
+
+
+
+	// .rules-section {
+	// 	width: 55vw;
+
+	// 	// &.policy-rules-section {
+	// 	// 	margin-bottom: 5vh;
+	// 	// }
+	// }
 }
