@@ -219,7 +219,7 @@ export class ServiceManagementService {
 	 *
 	 * @param body Body of the instantiation request
 	 */
-	async postNSRequest(body) {
+	async postOneNSInstance(body) {
 		const headers = new HttpHeaders();
 		const url = this.config.baseSP + this.config.requests;
 
