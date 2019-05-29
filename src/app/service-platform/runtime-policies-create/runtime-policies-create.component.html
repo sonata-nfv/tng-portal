@@ -26,7 +26,7 @@
 	</app-select-uuid>
 </form>
 
-<div class="monitoring-rules-section">
+<div *ngIf="canShowContinuation()" class="monitoring-rules-section">
 	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
 
 	<form [formGroup]="policyForm">
@@ -85,9 +85,9 @@
 		</div>
 
 		<div class="same-row">
-			<app-select class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
+			<app-select-uuid class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
 				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
-			</app-select>
+			</app-select-uuid>
 
 			<mat-form-field>
 				<input matInput type="text" placeholder="Threshold" formControlName="threshold" required i18n-placeholder="@@threshold" />
