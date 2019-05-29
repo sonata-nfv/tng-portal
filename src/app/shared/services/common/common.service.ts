@@ -142,9 +142,9 @@ export class CommonService {
      * Retrieves a list of Functions.
      * Either following a search pattern or not.
      *
-     * @param search [Optional] Packages attributes that must be
+     * @param search [Optional] Function attributes that must be
      *                          matched by the returned list of
-     *                          packages.
+     *                          functions.
      */
 	async getFunctions(section, search?) {
 		const headers = this.authService.getAuthHeaders();
@@ -172,6 +172,43 @@ export class CommonService {
 						type: 'public'
 					};
 				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+     * Retrieves a list of monitoring rules per function.
+     *
+     * @param search [Optional] Function attributes that must be
+     *                          matched by the returned function
+     */
+	async getFunctionMonitoringParameters(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functions + search;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			const monitoringParameters = new Array();
+			if (response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ]) {
+				response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ].map(vdu => {
+					if (vdu[ 'monitoring_parameters' ]) {
+						for (const param of vdu.monitoring_parameters) {
+							monitoringParameters.push({
+								uuid: response[ 0 ][ 'vnfd' ][ 'name' ] + ':' + vdu.id + ':' + param.name,
+								name: param.name,
+								unit: param.unit,
+								vduID: vdu.id,
+								vnfName: response[ 0 ][ 'vnfd' ][ 'name' ],
+								vnfVendor: response[ 0 ][ 'vnfd' ][ 'vendor' ],
+								vnfVersion: response[ 0 ][ 'vnfd' ][ 'version' ]
+							});
+						}
+					}
+				});
+			}
+			return monitoringParameters;
 		} catch (error) {
 			console.error(error);
 		}
