@@ -26,13 +26,13 @@
 	</app-select-uuid>
 </form>
 
-<div *ngIf="canShowContinuation()" class="monitoring-rules-section">
+<div *ngIf="canShowMonitoring()" class="monitoring-rules-section">
 	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
 
 	<form [formGroup]="policyForm">
 		<div class="description existing-monitoring-rules">
 			<div class="description-title">
-				<h4 class="title4" i18n="@@monitoringRules">Monitoring rules</h4>
+				<h4 class="title4 upper-case" i18n="@@monitoringRules">Monitoring rules</h4>
 				<button *ngIf="!editMonitoringRules" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
 					(click)="editMonitoringRules = true" i18n-matTooltip="@@edit">
 					<i class="wui wui-pen-alt"></i>
@@ -60,17 +60,20 @@
 		</div>
 	</form>
 
-	<h3 *ngIf="openedMonitoringRuleForm" class="title3" i18n="@@createNewMonitoringRule">Create a new monitoring rule</h3>
+	<h4 *ngIf="openedMonitoringRuleForm" class="title4 upper-case" i18n="@@createNewMonitoringRule">Create a new monitoring rule</h4>
 	<form *ngIf="openedMonitoringRuleForm" [formGroup]="monitoringRulesForm" class="add-monitoring-rule-form">
 		<div class="header">
-			<button [disabled]="canDisableAddNew()" type="button" mat-button (click)="addNew()" class="basic-button add-new">
-				<i class="wui wui-plus"></i>
-				<span i18n="@@add">Add</span>
-			</button>
+			<div class="button-container">
+				<button [disabled]="canDisableAddNewMonitoring()" type="button" mat-button (click)="addNewMonitoringRule()"
+					class="basic-button add-new">
+					<i class="wui wui-plus"></i>
+					<span i18n="@@add">Add</span>
+				</button>
 
-			<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
-				<i class="wui wui-times"></i>
-			</button>
+				<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
+					<i class="wui wui-times"></i>
+				</button>
+			</div>
 		</div>
 
 		<div class="same-row">
@@ -100,15 +103,80 @@
 		</mat-form-field>
 	</form>
 </div>
-<!-- 
-<div class="rules-section">
-	<h2 class="title2" i18n="@@policyRules">Policy rules</h2> -->
 
-<!-- TODO here goes a table with introduced policies -->
+<div *ngIf="canShowPolicyRules()" class="policy-rules-section">
+	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
 
-<!-- TODO here goes the form for rules -->
+	<!-- TODO here goes a table with introduced policies -->
 
-<!-- </div> -->
+	<h4 class="title4 upper-case" i18n="@@createNewPolicyRule">Create a new policy rule</h4>
+	<form [formGroup]="policyRulesForm" class="add-policy-rule-form">
+		<div class="header">
+			<mat-form-field class="name">
+				<input matInput type="text" placeholder="Name" formControlName="name" required i18n-placeholder="@@name" />
+			</mat-form-field>
+			<div class="button-container">
+				<button [disabled]="canDisableAddNewPolicyRule()" type="button" mat-button (click)="addNewPolicyRule()"
+					class="basic-button add-new">
+					<i class="wui wui-plus"></i>
+					<span i18n="@@add">Add</span>
+				</button>
+
+				<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
+					<i class="wui wui-times"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="policy-rule-salience">
+			<div class="salience-title">
+				<span class="salience-message" i18n="@@policyRulePriority">Policy rule priority: </span>
+				<span class="salience-value">{{policyRulesForm.get('salience').value}}</span>
+			</div>
+			<mat-slider min="0" max="10" step="1" formControlName="salience"></mat-slider>
+		</div>
+
+		<div class="policy-rule-inertia">
+			<p class="label" i18n="@@inertia">Inertia: </p>
+			<mat-form-field class="inertia">
+				<input matInput placeholder="0" formControlName="inertia" />
+			</mat-form-field>
+			<mat-form-field class="inertia">
+				<input matInput placeholder="s" formControlName="inertiaUnit" />
+			</mat-form-field>
+		</div>
+
+		<div class="conditions-of-rule">
+			<h3 class="title3" i18n="@@conditionsOfTheRule">Conditions of the rule</h3>
+
+			<div class="condition">
+				<button [ngClass]="{ active: !isOr }" (click)="isOr = false" class="basic-button and" mat-button>AND</button>
+				<button [ngClass]="{ active: isOr }" (click)="isOr = true" class="basic-button or" mat-button>OR</button>
+			</div>
+
+			<div class="policy-rules">
+				<ol class="list">
+					<li class="line" *ngFor="let rule of conditionRulesSelected">
+						<span>{{ rule.value }}</span>
+
+						<button class="icon-button-shadow delete" (click)="eraseConditionRule(rule)">
+							<i class="wui wui-trash-alt"></i>
+						</button>
+					</li>
+
+					<li class="line" *ngIf="monitoringRules.length">
+						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
+							(selectEvent)="receivePolicyRule($event)" [reset]=true i18n-placeholder="@@monitoringRulesPlaceholder">
+						</app-select-uuid>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<!-- ACTIONS: SELECT WITH SOME HARDCODED ACTIONS (action_object: ElasticityAction or SecurityAction) and a value (predefined is 1) -->
+	</form>
+
+</div>
 
 
 <app-spinner *ngIf="loading"></app-spinner>

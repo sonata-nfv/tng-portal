@@ -17,14 +17,16 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	loading = false;
 	reset = false;
 	editMonitoringRules = false;
-	openedMonitoringRuleForm = false;
+	openedMonitoringRuleForm = true;
 	policyForm: FormGroup;
 	monitoringRulesForm: FormGroup;
+	policyRulesForm: FormGroup;
 	disabledButton = true;
 	nsList = new Array();
 	slaList = new Array();
-	vnfs: Array<object>;
 	conditions = new Array();
+	monitoringRules = new Array();
+	conditionRulesSelected = new Array();
 
 	constructor(
 		private router: Router,
@@ -37,7 +39,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	ngOnInit() {
 		this.initForms();
-
 		this.getNS();
 		this.getSLA();
 	}
@@ -60,13 +61,26 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			condition: new FormControl('', Validators.required)
 		});
 
+		this.policyRulesForm = new FormGroup({
+			name: new FormControl('', Validators.required),
+			salience: new FormControl('', Validators.required),
+			inertia: new FormControl('', Validators.required),
+			inertiaUnit: new FormControl('', Validators.required),
+			condition: new FormControl('', Validators.required),
+			conditionRules: new FormControl('', Validators.required),
+			// actions: new FormControl('', Validators.required)
+		});
+
 		this.policyForm.valueChanges.subscribe(value => this.onPolicyFormChanges(value));
 	}
 
+	// TODO review when save must be active
 	private onPolicyFormChanges(value?) {
 		if (this.policyForm.get('ns').value && this.policyForm.get('name').value) {
 			this.disabledButton = false;
 		}
+		// TODO check if rule was added through description edit with change in
+		// policy form monitoringRules and generate new conditionRules
 	}
 
 	private async getNS() {
@@ -100,9 +114,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 		this.loading = true;
 		if (ns && ns.vnf) {
-			// Store VNF data
-			this.vnfs = ns.vnf; // really needed ?????????????
-
 			// Get monitoring parameters per VNF
 			const responses = await Promise.all(
 				ns.vnf.map(item => {
@@ -154,34 +165,42 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.monitoringRulesForm.get('name').setValue(uuid);
 	}
 
-	isValidJSON() {
-		return this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
-	}
+	receivePolicyRule(name) {
+		let rules: Array<Object>;
+		const vnf_name = this.monitoringRules.find(item => item.uuid === name).vnfName;
+		const rule = {
+			id: vnf_name,
+			field: vnf_name,
+			value: name
+		};
 
-	getParsedJSON(value) {
-		let parsedJSON;
-
-		try {
-			parsedJSON = JSON.parse(value);
-		} catch (error) {
-			parsedJSON = { };
+		if (this.policyRulesForm.get('conditionRules').value) {
+			rules = this.getParsedJSON(this.policyRulesForm.get('conditionRules').value);
+		} else {
+			rules = [];
 		}
-		return parsedJSON;
+		// Save rule to display and remove it from monitoring rules displayed
+		this.conditionRulesSelected.push(rule);
+		this.monitoringRules = this.monitoringRules.filter(item => item.name !== name);
+		console.log(this.monitoringRules);
+		console.log(this.monitoringRules.length);
+
+		// Save rule in the form to send
+		rules.push(rule);
+		this.policyRulesForm.get('conditionRules').setValue(this.getStringifiedJSON(rules));
 	}
 
-	getStringifiedJSON(value) {
-		return JSON.stringify(value);
+	eraseConditionRule(rule) {
+		this.conditionRulesSelected = this.conditionRulesSelected.filter(item => item[ 'value' ] !== rule.value);
+
+		this.monitoringRules.push({
+			uuid: rule.value,
+			name: rule.value,
+			vnfName: rule.id
+		});
 	}
 
-	canDisableAddNew() {
-		return !this.monitoringRulesForm.valid;
-	}
-
-	canShowContinuation() {
-		return (this.policyForm.get('ns').value && this.conditions.length);
-	}
-
-	addNew() {
+	addNewMonitoringRule() {
 		let rules: Array<Object>;
 		const name = this.monitoringRulesForm.get('name').value.concat(':', this.monitoringRulesForm.get('threshold').value.replace(/\s+/g, ''));
 		const rule = {
@@ -203,6 +222,81 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.policyForm.get('monitoringRules').setValue(this.getStringifiedJSON(rules));
 
 		this.closeMonitoringRuleForm();
+
+		// TODO generate policy rules from monitoring ones checking
+		// that they were not already selected in
+		// conditionRulesSelected
+		this.generatePolicyRuleValues(rules);
+	}
+
+	private generatePolicyRuleValues(rules) {
+		this.monitoringRules = rules.map(cond => {
+			const vnfName = cond.name.split(':')[ 0 ];
+			return {
+				uuid: cond.name.replace(/:/g, '_'),
+				name: cond.name.replace(/:/g, '_'),
+				vnfName: vnfName
+			};
+		});
+	}
+
+	addNewPolicyRule() {
+		// TODO add new policy rule and reset form or only reset form
+		// "name": "ElasticityRuleScaleIn",
+		// "salience": 1,
+		// "inertia": {
+		// 	"value": 30,
+		// 	"duration_unit": "m"
+		// },
+		// "conditions": {
+		// 	"condition": "AND", ---> coming from policyRulesForm.get('condition')
+		// 	"rules": [{ --> comming from policyRulesForm.get('conditionRules')
+		// 		"id": NOT SENDING THIS , //here just put the vnf name (eg. haproxy-vnf) . I will add the "LogMetric"
+		// 		"field": NOT SENDING THIS , //here just put the vnf name (eg. haproxy-vnf) . I will add the "LogMetric"
+		// 		"type": NOT SENDING THIS ,  // for the moment is always "string". do not send it. i can fill it up.
+		// 		"input": NOT SENDING THIS , // for the moment is always "text". do not send it. i can fill it up.
+		// 		"operator": NOT SENDING THIS , // for the moment is always "equal". do not send it. i can fill it up.
+		// 		"value": "haproxy_vnf_vdu01_haproxy_backend_sespsrv_more150"
+		// 	}]
+		// },
+		// "actions": [{
+	}
+
+	isValidJSON() {
+		return this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
+	}
+
+	getParsedJSON(value) {
+		let parsedJSON;
+
+		try {
+			parsedJSON = JSON.parse(value);
+		} catch (error) {
+			parsedJSON = { };
+		}
+		return parsedJSON;
+	}
+
+	getStringifiedJSON(value) {
+		return JSON.stringify(value);
+	}
+
+	canDisableAddNewMonitoring() {
+		return !this.monitoringRulesForm.valid;
+	}
+
+	canShowMonitoring() {
+		return (this.policyForm.get('ns').value && this.conditions.length);
+	}
+
+	canShowPolicyRules() {
+		return true; // TODO change this comments
+		// return this.policyForm.get('monitoringRules').value.length &&
+		// this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
+	}
+
+	canDisableAddNewPolicyRule() {
+		return !this.policyRulesForm.valid;
 	}
 
 	closeMonitoringRuleForm() {
@@ -210,17 +304,52 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.monitoringRulesForm.reset();
 	}
 
-	createPolicy() {
+	closePolicyRuleForm() {
+		this.policyRulesForm.reset();
+	}
+
+	generatePolicyObject() {
+		const nsObj = this.nsList.find(item => item.uuid === this.policyForm.get('ns').value);
+		const ns = {
+			vendor: nsObj.vendor,
+			name: nsObj.name,
+			version: nsObj.version
+		};
+
 		const policy = {
 			name: this.policyForm.get('name').value,
-			network_service: this.policyForm.get('ns').value,
+			networka_service: ns,
 			sla: this.policyForm.get('sla').value,
 			default_policy: this.policyForm.get('default').value,
-			monitoring_rules: this.policyForm.get('monitoringRules').value
+			monitoring_rules: this.policyForm.get('monitoringRules').value,
+			conditions: {
+				condition: 'AND',
+				rules: [ {
+					'value': 'haproxy_vnf_vdu01_haproxy_backend_sespsrv_more150'
+				} ]
+			},
 			// 	policyRules: [],
 		};
 
-		console.log(policy);
+
+
+		// "actions": [{  WORKING ON THIS.....
+		// 	"action_object": NOT SENDING THIS , // Please add two options here : ElasticityAction or SecurityAction
+		// 	"action_type": "ScalingType", -> WILL SEND PREDEFINED VALUES FROM PORTAL (i.e. scale in/out) unless there is an API with different types // do not send it . i can fill it up.
+		// 	"name": NOT SENDING THIS , // in case the action_object is ElasticityAction, the options should be addvnf or removevnf . In case the action_object is SecurityAction the options should be enableFirewall or alertMessage
+		// 	"value": "1",
+		// 	"target": {
+		// 		"name": "squid-vnf",
+		// 		"vendor": "eu.5gtango",
+		// 		"version": "0.2"
+		// 	}
+		// }]
+	}
+
+	createPolicy() {
+
+
+		// console.log(policy);
 
 		// this.loading = true;
 		// this.servicePlatformService
