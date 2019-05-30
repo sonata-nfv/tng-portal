@@ -7,6 +7,7 @@ $secondary-color-light: rgba(155, 155, 155, 1);
 // Background colors
 $init-background-color: rgb(237, 237, 237);
 $primary-background-color: $primary-color;
+$primary-background-color-light: $primary-color-light;
 $basic-background-color: rgb(255, 255, 255);
 $panel-background-color: rgb(240, 240, 240);
 
@@ -32,6 +33,7 @@ $button-underline-color-light: rgb(210, 205, 205);
 $button-close-color: rgb(189, 185, 185);
 
 $button-basic-font-color: rgb(255, 255, 255);
+$button-enabled-font-color: $primary-color-light;
 $button-disabled-font-color: rgb(189, 185, 185);
 
 // Border colors

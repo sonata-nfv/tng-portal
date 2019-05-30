@@ -36,7 +36,6 @@ app-runtime-policies-create {
 		margin-top: 4vh;
 		margin-bottom: 4vh;
 
-		// Checkbox styles
 		.mat-checkbox {
 			margin-bottom: 2vh;
 		}
@@ -54,7 +53,7 @@ app-runtime-policies-create {
 		width: 55vw;
 		margin-bottom: 4vh;
 
-		// Monitoring rules in description box
+		// Monitoring rules displayed in description box
 		.description.existing-monitoring-rules .content, 
 		.description.existing-monitoring-rules.mat-form-field .content {
 			min-height: 20vh;
@@ -70,48 +69,12 @@ app-runtime-policies-create {
 			padding-bottom: 0;
 		}
 
-		// Create new monitoring policy 
+		// Create new monitoring policy button
 		.create-new {
+			min-width: 120px;
 			width: 8vw;
 			height: 4vh;
 			margin-top: 1vh;
-		}
-
-		// Title of the form section to add new monitoring rules
-		.title3 {
-			margin-bottom: 0;
-		}
-
-		.title3:after {
-			background: none;
-		}
-
-		// Header with create new monitoring rule title and buttons
-		.header {
-			display: flex;
-			flex-direction: row;
-			justify-content: flex-end;
-			padding-top: 1vh;
-
-			.add-new {		
-				margin-right: 1vw;		
-				font-size: 17px;
-				color: $primary-color-light;
-				background-color: $panel-background-color;
-			}
-
-			.add-new:disabled {
-				color: $button-disabled-font-color;
-				
-				i:before {
-					color: $button-disabled-font-color;
-				}
-			}
-
-			.close-icon {
-				position: relative;
-				background-color: $panel-background-color;
-			}
 		}
 
 		// Create new monitoring rule form
@@ -140,13 +103,146 @@ app-runtime-policies-create {
 		}
 	}
 
+	// Policy rules section styles
+	.policy-rules-section {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 4vh;
 
+		// Create new policy rule form
+		.add-policy-rule-form {
+			align-self: center;
+			width: 51vw;
+			padding-left: 2vw;
+			padding-right: 2vw;
+			background-color: $panel-background-color;
+			border-top: 1px solid $border-line-color;
+			border-bottom: 1px solid $border-line-color;
 
-	// .rules-section {
-	// 	width: 55vw;
+			// Hide labels when focused or floating (name, inertia)
+			.mat-form-field.mat-focused .mat-form-field-label,
+			.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+				display: none;
+			}
+		}
 
-	// 	// &.policy-rules-section {
-	// 	// 	margin-bottom: 5vh;
-	// 	// }
-	// }
+		.policy-rule-salience {
+			display: flex;
+			flex-direction: column;
+			width: 20vw;
+
+			.salience-message {
+				color: $secondary-font-color-light;
+			}
+
+			.salience-value {
+				color: $primary-font-color-light;
+			}
+		}
+
+		.policy-rule-inertia {
+			display: flex;
+			align-items: baseline;
+			
+			.label {
+				margin-right: 10px;
+				color: $secondary-font-color-light;
+			}
+
+			.inertia {
+				width: 3vw; 
+				margin-right: 10px;
+			}
+		}
+
+		.conditions-of-rule {
+			.condition button {
+				font-size: 17px;
+				color: $button-disabled-font-color;
+				background-color: $panel-background-color;
+			}
+
+			.condition button.active {
+				color: $button-enabled-font-color;
+			}
+
+			.policy-rules .list .line {
+				display: flex;
+				align-items: center;
+				width: 30vw;
+				margin-bottom: 2vh;
+				margin-left: 3vw;
+
+				span {
+					flex: 1 1;
+					max-width: 25vw;
+					margin-right: 1vw;
+					color: $secondary-font-color-light;
+				}
+
+				.icon-button-shadow {
+					height: 4vh;
+					background-color: $panel-background-color;
+				}
+			}
+
+			.policy-rule-value .mat-form-field {
+				width: 25vw;
+			}
+		}
+	}
+
+	// Common styles for both forms
+	// Header with create new rule title and buttons
+	.header {
+		display: flex;
+		flex-direction: row;
+		padding-top: 1vh;
+
+		.name {
+			width: 25vw;
+		}
+
+		.button-container {
+			display: flex;
+    		flex: 1 1;
+    		justify-content: flex-end;
+		}
+
+		.add-new {		
+			margin-right: 1vw;		
+			font-size: 17px;
+			color: $primary-color-light;
+			background-color: $panel-background-color;
+		}
+
+		.add-new:disabled {
+			color: $button-disabled-font-color;
+				
+			i:before {
+				color: $button-disabled-font-color;
+			}
+		}
+
+		.close-icon {
+			position: relative;
+			background-color: $panel-background-color;
+		}
+	}
+
+	// Title of the rule form sections to add new monitoring/policy rules
+	.title4 {
+		margin-bottom: 2px;
+		margin-top: 3px;
+			
+		&.upper-case {
+			text-transform: uppercase;
+		}
+	}
+
+	.title4:after {
+		background: none;
+	}
+
 }
