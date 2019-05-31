@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, FormControlName } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
@@ -21,7 +21,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	policyForm: FormGroup;
 	monitoringRulesForm: FormGroup;
 	policyRulesForm: FormGroup;
-	disabledButton = true;
 	nsList = new Array();
 	slaList = new Array();
 	conditions = new Array();
@@ -44,6 +43,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	private initForms() {
+		// TODO include checks over fields: if string, if number, if json
+		// When check if json remove the unnecessary methods
 		this.policyForm = new FormGroup({
 			vendor: new FormControl('', Validators.required),
 			version: new FormControl('', Validators.required),
@@ -51,9 +52,11 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			default: new FormControl(),
 			ns: new FormControl('', Validators.required),
 			sla: new FormControl(),
-			monitoringRules: new FormControl('', Validators.required)
+			monitoringRules: new FormControl('', Validators.required),
+			// policyRules: new FormControl('', Validators.required)
 		});
 
+		// TODO include checks over fields: if string, if number, if json
 		this.monitoringRulesForm = new FormGroup({
 			name: new FormControl('', Validators.required),
 			description: new FormControl('', Validators.required),
@@ -63,6 +66,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			condition: new FormControl('', Validators.required)
 		});
 
+		// TODO include checks over fields: if string, if number, if json
 		this.policyRulesForm = new FormGroup({
 			name: new FormControl('', Validators.required),
 			salience: new FormControl('', Validators.required),
@@ -76,13 +80,11 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.policyForm.valueChanges.subscribe(value => this.onPolicyFormChanges(value));
 	}
 
-	// TODO review when save must be active
 	private onPolicyFormChanges(value?) {
-		if (this.policyForm.get('ns').value && this.policyForm.get('name').value) {
-			this.disabledButton = false;
+		if (this.policyForm.get('monitoringRules').value && this.areMonitoringRulesValid()) {
+			const rules = this.getParsedJSON(this.policyForm.get('monitoringRules').value);
+			this.generatePolicyRuleValues(rules);
 		}
-		// TODO check if rule was added through description edit with change in
-		// policy form monitoringRules and generate new conditionRules
 	}
 
 	private async getNS() {
@@ -152,6 +154,12 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		} else {
 			this.policyForm.get('ns').setValue(null);
 		}
+
+		// Reset introduced data for the previous network service
+		this.monitoringRulesForm.reset();
+		this.policyRulesForm.reset();
+		this.policyForm.get('monitoringRules').setValue('');
+		// this.policyForm.get('policyRules').setValue('');
 	}
 
 	receiveSLA(sla) {
@@ -184,8 +192,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		// Save rule to display and remove it from monitoring rules displayed
 		this.conditionRulesSelected.push(rule);
 		this.monitoringRules = this.monitoringRules.filter(item => item.name !== name);
-		console.log(this.monitoringRules);
-		console.log(this.monitoringRules.length);
 
 		// Save rule in the form to send
 		rules.push(rule);
@@ -264,7 +270,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		// "actions": [{
 	}
 
-	isValidJSON() {
+	areMonitoringRulesValid() {
 		return this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
 	}
 
@@ -283,11 +289,15 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		return JSON.stringify(value);
 	}
 
+	canDisableSave() {
+		return !(this.policyForm.valid && this.areMonitoringRulesValid());
+	}
+
 	canDisableAddNewMonitoring() {
 		return !this.monitoringRulesForm.valid;
 	}
 
-	canShowMonitoring() {
+	canShowMonitoringSection() {
 		return (this.policyForm.get('ns').value && this.conditions.length);
 	}
 
@@ -351,7 +361,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	createPolicy() {
 
 
-		// console.log(policy);
+		console.log('saving');
 
 		// this.loading = true;
 		// this.servicePlatformService

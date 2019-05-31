@@ -6,7 +6,7 @@
 	</mat-form-field>
 
 	<div class="header-buttons">
-		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options save" [disabled]="canDisableSave()"
 			(click)="createPolicy()" i18n="@@saveButton">
 			SAVE
 		</button>
@@ -34,7 +34,7 @@
 	</app-select-uuid>
 </form>
 
-<div *ngIf="canShowMonitoring()" class="monitoring-rules-section">
+<div *ngIf="canShowMonitoringSection()" class="monitoring-rules-section">
 	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
 
 	<form [formGroup]="policyForm">
@@ -51,9 +51,10 @@
 				</button>
 			</div>
 
-			<mat-form-field *ngIf="editMonitoringRules" class="description" [ngClass]="{ 'mat-form-field-invalid': !isValidJSON() }">
+			<mat-form-field *ngIf="editMonitoringRules" class="description"
+				[ngClass]="{ 'mat-form-field-invalid': !areMonitoringRulesValid() }">
 				<textarea class="content" matInput type="text" formControlName="monitoringRules" ngDefaultControl></textarea>
-				<p *ngIf="!isValidJSON()" class="error-message">*This is not a valid JSON</p>
+				<p *ngIf="!areMonitoringRulesValid()" class="error-message">*This is not a valid JSON</p>
 			</mat-form-field>
 
 			<span *ngIf="!editMonitoringRules" class="content">
@@ -174,7 +175,8 @@
 
 					<li class="line" *ngIf="monitoringRules.length">
 						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
-							(selectEvent)="receivePolicyRule($event)" [reset]=true i18n-placeholder="@@monitoringRulesPlaceholder">
+							(selectEvent)="receivePolicyRule($event)" [reset]="monitoringRules.length"
+							i18n-placeholder="@@monitoringRulesPlaceholder">
 						</app-select-uuid>
 					</li>
 				</ol>
