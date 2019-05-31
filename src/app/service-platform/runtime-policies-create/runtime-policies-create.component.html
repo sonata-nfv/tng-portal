@@ -17,6 +17,14 @@
 <form [formGroup]="policyForm" class="general-information-section">
 	<mat-checkbox formControlName="default" i18n="@@markAsDefault">Mark as default</mat-checkbox>
 
+	<mat-form-field>
+		<input matInput type="text" placeholder="Vendor" formControlName="vendor" required i18n-placeholder="@@vendor" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Version" formControlName="version" required i18n-placeholder="@@version" />
+	</mat-form-field>
+
 	<app-select-uuid class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
 		i18n-placeholder="@@nsPlaceholder">
 	</app-select-uuid>
