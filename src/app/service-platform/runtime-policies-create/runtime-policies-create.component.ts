@@ -15,7 +15,7 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 })
 export class RuntimePoliciesCreateComponent implements OnInit {
 	loading = false;
-	reset = false;
+	isOr = false;
 	editMonitoringRules = false;
 	openedMonitoringRuleForm = true;
 	policyForm: FormGroup;
@@ -175,13 +175,13 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.monitoringRulesForm.get('name').setValue(uuid);
 	}
 
-	receivePolicyRule(name) {
+	receivePolicyRuleCondition(uuid) {
 		let rules: Array<Object>;
-		const vnf_name = this.monitoringRules.find(item => item.uuid === name).vnfName;
+		const vnf_name = this.monitoringRules.find(item => item.uuid === uuid).vnfName;
 		const rule = {
 			id: vnf_name,
 			field: vnf_name,
-			value: name
+			value: uuid
 		};
 
 		if (this.policyRulesForm.get('conditionRules').value) {
@@ -191,7 +191,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		}
 		// Save rule to display and remove it from monitoring rules displayed
 		this.conditionRulesSelected.push(rule);
-		this.monitoringRules = this.monitoringRules.filter(item => item.name !== name);
+		this.monitoringRules = this.monitoringRules.filter(item => item.uuid !== uuid);
 
 		// Save rule in the form to send
 		rules.push(rule);
@@ -206,6 +206,16 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			name: rule.value,
 			vnfName: rule.id
 		});
+	}
+
+	changePolicyRuleCondition() {
+		this.isOr = !this.isOr;
+		this.setPolicyRuleCondition();
+	}
+
+	private setPolicyRuleCondition() {
+		const condition = this.isOr ? 'OR' : 'AND';
+		this.policyRulesForm.get('condition').setValue(condition);
 	}
 
 	addNewMonitoringRule() {
@@ -231,21 +241,27 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 		this.closeMonitoringRuleForm();
 
-		// TODO generate policy rules from monitoring ones checking
-		// that they were not already selected in
-		// conditionRulesSelected
 		this.generatePolicyRuleValues(rules);
+		this.setPolicyRuleCondition();
 	}
 
 	private generatePolicyRuleValues(rules) {
 		this.monitoringRules = rules.map(cond => {
 			const vnfName = cond.name.split(':')[ 0 ];
+			const ruleName = cond.name.replace(/:/g, '_');
 			return {
-				uuid: cond.name.replace(/:/g, '_'),
-				name: cond.name.replace(/:/g, '_'),
+				uuid: ruleName,
+				name: ruleName,
 				vnfName: vnfName
 			};
 		});
+
+		// If there are some already selected, remove them from the new list
+		if (this.conditionRulesSelected.length) {
+			for (const cond of this.conditionRulesSelected) {
+				this.monitoringRules = this.monitoringRules.filter(item => item.uuid !== cond.value);
+			}
+		}
 	}
 
 	addNewPolicyRule() {

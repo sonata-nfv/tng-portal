@@ -159,8 +159,8 @@
 			<h3 class="title3" i18n="@@conditionsOfTheRule">Conditions of the rule</h3>
 
 			<div class="condition">
-				<button [ngClass]="{ active: !isOr }" (click)="isOr = false" class="basic-button and" mat-button>AND</button>
-				<button [ngClass]="{ active: isOr }" (click)="isOr = true" class="basic-button or" mat-button>OR</button>
+				<button [ngClass]="{ active: !isOr }" (click)="changePolicyRuleCondition()" class="basic-button and" mat-button>AND</button>
+				<button [ngClass]="{ active: isOr }" (click)="changePolicyRuleCondition()" class="basic-button or" mat-button>OR</button>
 			</div>
 
 			<div class="policy-rules">
@@ -175,7 +175,7 @@
 
 					<li class="line" *ngIf="monitoringRules.length">
 						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
-							(selectEvent)="receivePolicyRule($event)" [reset]="monitoringRules.length"
+							(selectEvent)="receivePolicyRuleCondition($event)" [reset]="monitoringRules.length"
 							i18n-placeholder="@@monitoringRulesPlaceholder">
 						</app-select-uuid>
 					</li>
