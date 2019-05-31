@@ -45,6 +45,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	private initForms() {
 		this.policyForm = new FormGroup({
+			vendor: new FormControl('', Validators.required),
+			version: new FormControl('', Validators.required),
 			name: new FormControl('', Validators.required),
 			default: new FormControl(),
 			ns: new FormControl('', Validators.required),
