@@ -150,6 +150,7 @@
 			<p class="label" i18n="@@inertia">Inertia: </p>
 			<mat-form-field class="inertia">
 				<input matInput placeholder="0" formControlName="inertia" />
+				<mat-error *ngIf="inertiaErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
 			</mat-form-field>
 			<mat-form-field class="inertia">
 				<input matInput placeholder="s" formControlName="inertiaUnit" />
@@ -185,9 +186,9 @@
 		</div>
 
 		<div class="actions-of-rule">
-			<h3 class="title3" i18n="@@actions">Actions</h3>
-
 			<div class="header">
+				<h3 class="title3" i18n="@@actions">Actions</h3>
+
 				<div class="button-container">
 					<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
 						class="basic-button add-new">
@@ -197,30 +198,62 @@
 				</div>
 			</div>
 
-			<app-select class="select" class="select" placeholder="Target" [list]="vnfs" (selectEvent)="receivePolicyRuleTarget($event)"
-				i18n-placeholder="@@targetPlaceholder">
-			</app-select>
-
-			<div class="row">
-				<app-select class="select" placeholder="Actions" [list]="policyRuleActions" (selectEvent)="receivePolicyRuleAction($event)"
-					i18n-placeholder="@@actionsPlaceholder">
+			<form [formGroup]="actionsForm">
+				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="actionsStored.length"
+					(selectEvent)="receivePolicyRuleTarget($event)" i18n-placeholder="@@targetPlaceholder">
 				</app-select>
 
-				<app-select class="select" *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
-					[list]="policyRuleActionNames" (selectEvent)="receivePolicyRuleActionName($event)"
-					i18n-placeholder="@@actionNamePlaceholder">
-				</app-select>
+				<div class="row">
+					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="actionsStored.length"
+						(selectEvent)="receivePolicyRuleAction($event)" i18n-placeholder="@@actionsPlaceholder">
+					</app-select>
 
-				<div *ngIf="canShowPolicyRuleActionValue()" class="action-value">
-					<p class="label" i18n="@@value">Value </p>
-					<mat-form-field class="value">
-						<input matInput formControlName="actionValue" />
-						<mat-error *ngIf="valueErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
-					</mat-form-field>
+					<app-select *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
+						[list]="policyRuleActionNames" (selectEvent)="receivePolicyRuleActionName($event)"
+						i18n-placeholder="@@actionNamePlaceholder">
+					</app-select>
+
+					<div *ngIf="canShowPolicyRuleActionValue()" class="action-value">
+						<p class="label" i18n="@@value">Value </p>
+						<mat-form-field class="value">
+							<input matInput formControlName="actionValue" />
+							<mat-error *ngIf="valueErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
+						</mat-form-field>
+					</div>
 				</div>
-			</div>
+			</form>
+
+			<h3 *ngIf="actionsStored.length" class="title3" i18n="@@definedActions">Defined actions</h3>
+
+			<table *ngIf="actionsStored.length" mat-table [dataSource]="actionsStored">
+				<ng-container matColumnDef="actionObject">
+					<th mat-header-cell *matHeaderCellDef i18n="@@actionObject">Action object</th>
+					<td mat-cell *matCellDef="let element">{{ element.action_object }}</td>
+				</ng-container>
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+					<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+				</ng-container>
+				<ng-container matColumnDef="value">
+					<th mat-header-cell *matHeaderCellDef i18n="@@value">Value</th>
+					<td mat-cell *matCellDef="let element">{{ element.value }}</td>
+				</ng-container>
+				<ng-container matColumnDef="target">
+					<th mat-header-cell *matHeaderCellDef i18n="@@target">Target</th>
+					<td mat-cell *matCellDef="let element">{{ element.target.name }}</td>
+				</ng-container>
+				<ng-container matColumnDef="delete">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let element" (click)="deleteTarget(element)" (click)="$event.stopPropagation()">
+						<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
+							<i class="wui wui-trash-alt"></i>
+						</button>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+			</table>
 		</div>
-		<!-- TODO here goes a table with introduced actions -->
 	</form>
 
 </div>
