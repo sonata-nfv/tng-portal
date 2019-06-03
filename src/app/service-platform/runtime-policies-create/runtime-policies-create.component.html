@@ -119,6 +119,7 @@
 	<!-- TODO here goes a table with introduced policies -->
 
 	<h4 class="title4 upper-case" i18n="@@createNewPolicyRule">Create a new policy rule</h4>
+
 	<form [formGroup]="policyRulesForm" class="add-policy-rule-form">
 		<div class="header">
 			<mat-form-field class="name">
@@ -131,7 +132,7 @@
 					<span i18n="@@add">Add</span>
 				</button>
 
-				<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
+				<button class="close-icon" type="button" (click)="closePolicyRuleForm()">
 					<i class="wui wui-times"></i>
 				</button>
 			</div>
@@ -183,7 +184,43 @@
 			</div>
 		</div>
 
-		<!-- ACTIONS: SELECT WITH SOME HARDCODED ACTIONS (action_object: ElasticityAction or SecurityAction) and a value (predefined is 1) -->
+		<div class="actions-of-rule">
+			<h3 class="title3" i18n="@@actions">Actions</h3>
+
+			<div class="header">
+				<div class="button-container">
+					<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
+						class="basic-button add-new">
+						<i class="wui wui-plus"></i>
+						<span i18n="@@add">Add</span>
+					</button>
+				</div>
+			</div>
+
+			<app-select class="select" class="select" placeholder="Target" [list]="vnfs" (selectEvent)="receivePolicyRuleTarget($event)"
+				i18n-placeholder="@@targetPlaceholder">
+			</app-select>
+
+			<div class="row">
+				<app-select class="select" placeholder="Actions" [list]="policyRuleActions" (selectEvent)="receivePolicyRuleAction($event)"
+					i18n-placeholder="@@actionsPlaceholder">
+				</app-select>
+
+				<app-select class="select" *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
+					[list]="policyRuleActionNames" (selectEvent)="receivePolicyRuleActionName($event)"
+					i18n-placeholder="@@actionNamePlaceholder">
+				</app-select>
+
+				<div *ngIf="canShowPolicyRuleActionValue()" class="action-value">
+					<p class="label" i18n="@@value">Value </p>
+					<mat-form-field class="value">
+						<input matInput formControlName="actionValue" />
+						<mat-error *ngIf="valueErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+		<!-- TODO here goes a table with introduced actions -->
 	</form>
 
 </div>

@@ -21,11 +21,15 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	policyForm: FormGroup;
 	monitoringRulesForm: FormGroup;
 	policyRulesForm: FormGroup;
+	actionsForm: FormGroup;
 	nsList = new Array();
 	slaList = new Array();
 	conditions = new Array();
 	monitoringRules = new Array();
 	conditionRulesSelected = new Array();
+	policyRuleActions = [ 'Elasticity Action', 'Security Action' ];
+	policyRuleActionNames: Array<string>;
+	vnfs: Array<string>;
 
 	constructor(
 		private router: Router,
@@ -53,7 +57,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			ns: new FormControl('', Validators.required),
 			sla: new FormControl(),
 			monitoringRules: new FormControl('', Validators.required),
-			// policyRules: new FormControl('', Validators.required)
+			policyRules: new FormControl('', Validators.required)
 		});
 
 		// TODO include checks over fields: if string, if number, if json
@@ -66,15 +70,21 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			condition: new FormControl('', Validators.required)
 		});
 
-		// TODO include checks over fields: if string, if number, if json
 		this.policyRulesForm = new FormGroup({
 			name: new FormControl('', Validators.required),
 			salience: new FormControl('', Validators.required),
-			inertia: new FormControl('', Validators.required),
+			inertia: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			inertiaUnit: new FormControl('', Validators.required),
 			condition: new FormControl('', Validators.required),
 			conditionRules: new FormControl('', Validators.required),
-			// actions: new FormControl('', Validators.required)
+			actions: new FormControl('', Validators.required)
+		});
+
+		this.actionsForm = new FormGroup({
+			actionObject: new FormControl('', Validators.required),
+			actionName: new FormControl('', Validators.required),
+			actionValue: new FormControl(1, Validators.pattern(this.utilsService.getNumberPattern())),
+			actionTarget: new FormControl('', Validators.required)
 		});
 
 		this.policyForm.valueChanges.subscribe(value => this.onPolicyFormChanges(value));
@@ -96,8 +106,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 				({ uuid: ns.uuid, name: ns.name, vendor: ns.vendor, version: ns.version })
 			);
 		} else {
-			this.nsList.push({ uuid: 'None', name: 'None', vendor: '', version: '' });
-			this.utilsService.openSnackBar('Unable to fetch network services', '');
+			this.loading = false;
+			this.informError(1);
 		}
 	}
 
@@ -118,6 +128,9 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 		this.loading = true;
 		if (ns && ns.vnf) {
+			// Store target VNFs
+			this.vnfs = ns.vnf.map(item => item.vnf_vendor + ':' + item.vnf_name + ' ' + item.vnf_version);
+
 			// Get monitoring parameters per VNF
 			const responses = await Promise.all(
 				ns.vnf.map(item => {
@@ -159,7 +172,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.monitoringRulesForm.reset();
 		this.policyRulesForm.reset();
 		this.policyForm.get('monitoringRules').setValue('');
-		// this.policyForm.get('policyRules').setValue('');
+		this.policyForm.get('policyRules').setValue('');
+
 	}
 
 	receiveSLA(sla) {
@@ -218,6 +232,24 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.policyRulesForm.get('condition').setValue(condition);
 	}
 
+	receivePolicyRuleAction(action) {
+		action = action.replace(/\s+/g, '');
+		this.actionsForm.get('actionObject').setValue(action);
+
+		// Set the policy rule action names for this policy rule action object
+		this.policyRuleActionNames = action === 'ElasticityAction' ?
+			[ 'Add VNF', 'Remove VNF' ] : [ 'Enable Firewall', 'Alert Message' ];
+	}
+
+	receivePolicyRuleActionName(name) {
+		name = name.replace(/\s+/g, '').toLowerCase();
+		this.actionsForm.get('actionName').setValue(name);
+	}
+
+	receivePolicyRuleTarget(target) {
+		this.actionsForm.get('actionTarget').setValue(target);
+	}
+
 	addNewMonitoringRule() {
 		let rules: Array<Object>;
 		const name = this.monitoringRulesForm.get('name').value.concat(':', this.monitoringRulesForm.get('threshold').value.replace(/\s+/g, ''));
@@ -264,26 +296,67 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		}
 	}
 
+	addNewPolicyRuleAction() {
+		let actions: Array<Object>;
+		const actionTarget = this.actionsForm.get('actionTarget').value;
+		const vnfVendor = actionTarget.split(':')[ 0 ];
+		const vnfVersion = actionTarget.split(' ')[ 1 ];
+		const vnfName = actionTarget.substring(
+			actionTarget.lastIndexOf(':') + 1,
+			actionTarget.lastIndexOf(' ')
+		);
+
+		const action = {
+			'action_object': this.actionsForm.get('actionObject').value,
+			'name': this.actionsForm.get('actionName').value,
+			'value': this.actionsForm.get('actionValue').value,
+			'target': {
+				'name': vnfName,
+				'vendor': vnfVendor,
+				'version': vnfVersion
+			}
+		};
+
+		if (this.policyRulesForm.get('actions').value) {
+			actions = this.getParsedJSON(this.policyForm.get('actions').value);
+		} else {
+			actions = [];
+		}
+
+		actions.push(action);
+		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(actions));
+		this.actionsForm.reset();
+		this.actionsForm.get('actionValue').setValue(1);
+	}
+
 	addNewPolicyRule() {
-		// TODO add new policy rule and reset form or only reset form
-		// "name": "ElasticityRuleScaleIn",
-		// "salience": 1,
-		// "inertia": {
-		// 	"value": 30,
-		// 	"duration_unit": "m"
-		// },
-		// "conditions": {
-		// 	"condition": "AND", ---> coming from policyRulesForm.get('condition')
-		// 	"rules": [{ --> comming from policyRulesForm.get('conditionRules')
-		// 		"id": NOT SENDING THIS , //here just put the vnf name (eg. haproxy-vnf) . I will add the "LogMetric"
-		// 		"field": NOT SENDING THIS , //here just put the vnf name (eg. haproxy-vnf) . I will add the "LogMetric"
-		// 		"type": NOT SENDING THIS ,  // for the moment is always "string". do not send it. i can fill it up.
-		// 		"input": NOT SENDING THIS , // for the moment is always "text". do not send it. i can fill it up.
-		// 		"operator": NOT SENDING THIS , // for the moment is always "equal". do not send it. i can fill it up.
-		// 		"value": "haproxy_vnf_vdu01_haproxy_backend_sespsrv_more150"
-		// 	}]
-		// },
-		// "actions": [{
+		let rules: Array<Object>;
+		const rule = {
+			'name': this.policyRulesForm.get('name').value,
+			'salience': this.policyRulesForm.get('salience').value,
+			'inertia': {
+				'value': this.policyRulesForm.get('inertia').value,
+				'duration_unit': this.policyRulesForm.get('inertiaUnit').value
+			},
+			'conditions': {
+				'condition': this.policyRulesForm.get('condition').value,
+				'rules': this.policyRulesForm.get('conditionRules').value
+			},
+			actions: this.policyRulesForm.get('actions').value
+		};
+
+		console.log(rule);
+		if (this.policyForm.get('policyRules').value) {
+			rules = this.getParsedJSON(this.policyForm.get('policyRules').value);
+		} else {
+			rules = [];
+		}
+
+		rules.push(rule);
+		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(rules));
+		this.policyRulesForm.reset();
+
+		console.log(this.policyForm.get('policyRules').value)
 	}
 
 	areMonitoringRulesValid() {
@@ -313,6 +386,12 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		return !this.monitoringRulesForm.valid;
 	}
 
+	canDisableAddNewAction() {
+		return !this.actionsForm.get('actionObject').value || !this.actionsForm.get('actionName').value
+			|| !this.actionsForm.get('actionValue').value || !this.actionsForm.get('actionTarget').value
+			|| this.actionsForm.get('actionValue').hasError('pattern');
+	}
+
 	canShowMonitoringSection() {
 		return (this.policyForm.get('ns').value && this.conditions.length);
 	}
@@ -325,6 +404,18 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	canDisableAddNewPolicyRule() {
 		return !this.policyRulesForm.valid;
+	}
+
+	canShowPolicyRuleActionName() {
+		return this.actionsForm.get('actionObject').value ? true : false;
+	}
+
+	canShowPolicyRuleActionValue() {
+		return this.actionsForm.get('actionObject').value && this.actionsForm.get('actionName').value;
+	}
+
+	valueErrorExists() {
+		return this.actionsForm.get('actionValue').hasError('pattern');
 	}
 
 	closeMonitoringRuleForm() {
@@ -361,15 +452,15 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 
 
-		// "actions": [{  WORKING ON THIS.....
-		// 	"action_object": NOT SENDING THIS , // Please add two options here : ElasticityAction or SecurityAction
-		// 	"action_type": "ScalingType", -> WILL SEND PREDEFINED VALUES FROM PORTAL (i.e. scale in/out) unless there is an API with different types // do not send it . i can fill it up.
-		// 	"name": NOT SENDING THIS , // in case the action_object is ElasticityAction, the options should be addvnf or removevnf . In case the action_object is SecurityAction the options should be enableFirewall or alertMessage
-		// 	"value": "1",
-		// 	"target": {
-		// 		"name": "squid-vnf",
-		// 		"vendor": "eu.5gtango",
-		// 		"version": "0.2"
+		// 'actions': [{  WORKING ON THIS.....
+		// 	'action_object': NOT SENDING THIS , // Please add two options here : ElasticityAction or SecurityAction
+		// 	'action_type': 'ScalingType', -> WILL SEND PREDEFINED VALUES FROM PORTAL (i.e. scale in/out) unless there is an API with different types // do not send it . i can fill it up.
+		// 	'name': NOT SENDING THIS , // in case the action_object is ElasticityAction, the options should be addvnf or removevnf . In case the action_object is SecurityAction the options should be enableFirewall or alertMessage
+		// 	'value': '1',
+		// 	'target': {
+		// 		'name': 'squid-vnf',
+		// 		'vendor': 'eu.5gtango',
+		// 		'version': '0.2'
 		// 	}
 		// }]
 	}
