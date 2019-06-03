@@ -190,6 +190,34 @@ app-runtime-policies-create {
 
 			.policy-rule-value .mat-form-field {
 				width: 25vw;
+			}	
+		}
+
+		.actions-of-rule {
+			.row {
+				display: flex;
+				flex-direction: row;
+			}
+			
+			.mat-form-field {
+				width: 20vw;
+				margin-right: 1vw;
+			}
+		
+			.action-value {
+				display: flex;
+				flex-direction: row;
+				align-items: baseline;
+
+				.label {
+					margin-left: 1vw;
+					margin-right: 10px;
+					color: $secondary-font-color-light;
+				}
+
+				.value {
+					width: 3vw;
+				}
 			}
 		}
 	}
