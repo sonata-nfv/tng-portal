@@ -44,4 +44,9 @@
 		</mat-form-field>
 	</div>
 
+	<div>
+		<button *ngIf="!disabledButton" class="edit-options save" (click)="createService()"
+			i18n="@@saveButton">SAVE</button>
+	</div>
+
 </form>
