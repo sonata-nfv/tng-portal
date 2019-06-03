@@ -30,6 +30,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	policyRuleActions = [ 'Elasticity Action', 'Security Action' ];
 	policyRuleActionNames: Array<string>;
 	vnfs: Array<string>;
+	actionsStored = new Array();
+	displayedColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
 
 	constructor(
 		private router: Router,
@@ -64,7 +66,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.monitoringRulesForm = new FormGroup({
 			name: new FormControl('', Validators.required),
 			description: new FormControl('', Validators.required),
-			duration: new FormControl('', Validators.required),
+			duration: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			durationUnit: new FormControl('', Validators.required),
 			threshold: new FormControl('', Validators.required),
 			condition: new FormControl('', Validators.required)
@@ -318,15 +320,21 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		};
 
 		if (this.policyRulesForm.get('actions').value) {
-			actions = this.getParsedJSON(this.policyForm.get('actions').value);
+			actions = this.getParsedJSON(this.policyRulesForm.get('actions').value);
 		} else {
 			actions = [];
 		}
 
 		actions.push(action);
+		this.actionsStored = actions;
 		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(actions));
 		this.actionsForm.reset();
 		this.actionsForm.get('actionValue').setValue(1);
+	}
+
+	deleteTarget(element) {
+		this.actionsStored = this.actionsStored.filter(item => item !== element);
+		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(this.actionsStored));
 	}
 
 	addNewPolicyRule() {
@@ -345,7 +353,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			actions: this.policyRulesForm.get('actions').value
 		};
 
-		console.log(rule);
 		if (this.policyForm.get('policyRules').value) {
 			rules = this.getParsedJSON(this.policyForm.get('policyRules').value);
 		} else {
@@ -414,6 +421,10 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		return this.actionsForm.get('actionObject').value && this.actionsForm.get('actionName').value;
 	}
 
+	inertiaErrorExists() {
+		return this.policyRulesForm.get('inertia').hasError('pattern');
+	}
+
 	valueErrorExists() {
 		return this.actionsForm.get('actionValue').hasError('pattern');
 	}
@@ -435,7 +446,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			version: nsObj.version
 		};
 
-		const policy = {
+		return {
 			name: this.policyForm.get('name').value,
 			networka_service: ns,
 			sla: this.policyForm.get('sla').value,
@@ -447,40 +458,26 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 					'value': 'haproxy_vnf_vdu01_haproxy_backend_sespsrv_more150'
 				} ]
 			},
-			// 	policyRules: [],
+			policyRules: this.policyForm.get('policyRules').value
 		};
-
-
-
-		// 'actions': [{  WORKING ON THIS.....
-		// 	'action_object': NOT SENDING THIS , // Please add two options here : ElasticityAction or SecurityAction
-		// 	'action_type': 'ScalingType', -> WILL SEND PREDEFINED VALUES FROM PORTAL (i.e. scale in/out) unless there is an API with different types // do not send it . i can fill it up.
-		// 	'name': NOT SENDING THIS , // in case the action_object is ElasticityAction, the options should be addvnf or removevnf . In case the action_object is SecurityAction the options should be enableFirewall or alertMessage
-		// 	'value': '1',
-		// 	'target': {
-		// 		'name': 'squid-vnf',
-		// 		'vendor': 'eu.5gtango',
-		// 		'version': '0.2'
-		// 	}
-		// }]
 	}
 
-	createPolicy() {
-
+	async createPolicy() {
+		this.loading = true;
+		const policy = this.generatePolicyObject();
+		// const response = await this.servicePlatformService.postOneRuntimePolicy(policy);
 
 		console.log('saving');
+		console.log(policy);
 
-		// this.loading = true;
-		// this.servicePlatformService
-		// 	.postOneRuntimePolicy(policy)
-		// 	.then(response => {
-		// 		this.loading = false;
-		// 		this.close();
-		// 	})
-		// 	.catch(err => {
-		// 		this.loading = false;
+
+		// this.loading = false;
+		// if (response) {
 		// 		// TODO display request status in toast
-		// 	});
+		// 		this.close();
+		// } else {
+		// 		// TODO display request status in toast
+		// 	}
 	}
 
 	informError(option) {

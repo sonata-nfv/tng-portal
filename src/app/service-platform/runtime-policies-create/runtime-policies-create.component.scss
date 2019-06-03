@@ -194,6 +194,8 @@ app-runtime-policies-create {
 		}
 
 		.actions-of-rule {
+			margin-bottom: 2vh;
+
 			.row {
 				display: flex;
 				flex-direction: row;
@@ -217,6 +219,35 @@ app-runtime-policies-create {
 
 				.value {
 					width: 3vw;
+				}
+			}
+
+			table {
+				width: 100%;
+				background-color: $panel-background-color;
+
+				button {
+					background-color: $panel-background-color;
+				}
+
+				td.mat-cell {
+					cursor: auto;
+				}
+
+				tr.mat-row {
+					background-image: linear-gradient(
+					  to right,
+					  $panel-background-color 0%,
+					  $table-underline-color 0%,
+					  $table-underline-color 95%,
+					  $panel-background-color 95%,
+					  $panel-background-color 100%
+					);
+				}
+
+				.mat-cell:nth-child(5),
+				.mat-header-cell:nth-child(5) {
+				  	width: 25px;
 				}
 			}
 		}
