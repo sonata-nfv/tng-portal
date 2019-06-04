@@ -297,7 +297,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">228</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
@@ -1480,6 +1484,10 @@
           <context context-type="linenumber">34</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">242</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
           <context context-type="linenumber">51</context>
         </context-group>
@@ -1564,6 +1572,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
           <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
@@ -2844,54 +2860,52 @@
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="add" datatype="html">
-        <source>Add</source>
+      <trans-unit id="addButton" datatype="html">
+        <source>
+					ADD
+				</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">132</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="duration" datatype="html">
         <source>Duration</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="durationUnit" datatype="html">
         <source>Duration unit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectConditionPlaceholder" datatype="html">
         <source>Select a condition</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="threshold" datatype="html">
         <source>Threshold</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="descriptionRequired" datatype="html">
         <source>Description*</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">107</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-slice-template-create/sp-slice-template-create.component.html</context>
@@ -2902,92 +2916,124 @@
         <source>Policy rules</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createNewPolicyRule" datatype="html">
         <source>Create a new policy rule</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="policyRulePriority" datatype="html">
         <source>Policy rule priority: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="inertia" datatype="html">
         <source>Inertia: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Invalid" datatype="html">
         <source>*Invalid</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">147</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">204</context>
         </context-group>
       </trans-unit>
       <trans-unit id="conditionsOfTheRule" datatype="html">
         <source>Conditions of the rule</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="monitoringRulesPlaceholder" datatype="html">
         <source>Monitoring rules</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">179</context>
+          <context context-type="linenumber">173</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actions" datatype="html">
         <source>Actions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="targetPlaceholder" datatype="html">
         <source>Target</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actionsPlaceholder" datatype="html">
         <source>Actions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">206</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actionNamePlaceholder" datatype="html">
         <source>Action name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">210</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="value" datatype="html">
         <source>Value </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
-          <context context-type="linenumber">216</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">232</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component.html</context>
           <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="definedActions" datatype="html">
+        <source>Defined actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">220</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="actionObject" datatype="html">
+        <source>Action object</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">224</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="target" datatype="html">
+        <source>Target</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policies-create/runtime-policies-create.component.html</context>
+          <context context-type="linenumber">236</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vnfName" datatype="html">

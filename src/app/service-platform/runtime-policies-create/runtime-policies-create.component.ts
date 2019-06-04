@@ -404,9 +404,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	canShowPolicyRules() {
-		return true; // TODO change this comments
-		// return this.policyForm.get('monitoringRules').value.length &&
-		// this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
+		return this.policyForm.get('monitoringRules').value.length &&
+			this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
 	}
 
 	canDisableAddNewPolicyRule() {

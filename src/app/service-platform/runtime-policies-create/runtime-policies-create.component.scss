@@ -222,6 +222,7 @@ app-runtime-policies-create {
 				}
 			}
 
+			// Defined actions
 			table {
 				width: 100%;
 				background-color: $panel-background-color;
@@ -259,6 +260,7 @@ app-runtime-policies-create {
 		display: flex;
 		flex-direction: row;
 		padding-top: 1vh;
+		width: 100%;
 
 		.name {
 			width: 25vw;
@@ -267,14 +269,28 @@ app-runtime-policies-create {
 		.button-container {
 			display: flex;
     		flex: 1 1;
-    		justify-content: flex-end;
+		}
+
+		.header-buttons {
+			align-self: center;
+			width: 100%;
+			margin-bottom: 2vh;
+			margin-top: 1vh;
+		}
+
+		.save, 
+		.cancel {
+			min-width: 9vw;
+			height: 3vh;
 		}
 
 		.add-new {		
+			height: 3vh;
+			min-width: 6vw;
 			margin-right: 1vw;		
+			margin-bottom: 2vh;
 			font-size: 17px;
 			color: $primary-color-light;
-			background-color: $panel-background-color;
 		}
 
 		.add-new:disabled {

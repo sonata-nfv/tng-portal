@@ -71,17 +71,14 @@
 
 	<h4 *ngIf="openedMonitoringRuleForm" class="title4 upper-case" i18n="@@createNewMonitoringRule">Create a new monitoring rule</h4>
 	<form *ngIf="openedMonitoringRuleForm" [formGroup]="monitoringRulesForm" class="add-monitoring-rule-form">
-		<div class="header">
-			<div class="button-container">
-				<button [disabled]="canDisableAddNewMonitoring()" type="button" mat-button (click)="addNewMonitoringRule()"
-					class="basic-button add-new">
-					<i class="wui wui-plus"></i>
-					<span i18n="@@add">Add</span>
+		<div class="header title-section">
+			<div class="header-buttons">
+				<button [ngClass]="{ 'disabled-button': canDisableAddNewMonitoring() }" class="edit-options save" type="button" mat-button
+					[disabled]="canDisableAddNewMonitoring()" type="button" mat-button (click)="addNewMonitoringRule()" i18n="@@addButton">
+					ADD
 				</button>
 
-				<button class="close-icon" type="button" (click)="closeMonitoringRuleForm()">
-					<i class="wui wui-times"></i>
-				</button>
+				<button class="edit-options cancel" (click)="closeMonitoringRuleForm()" i18n="@@cancelButton">CANCEL</button>
 			</div>
 		</div>
 
@@ -121,20 +118,17 @@
 	<h4 class="title4 upper-case" i18n="@@createNewPolicyRule">Create a new policy rule</h4>
 
 	<form [formGroup]="policyRulesForm" class="add-policy-rule-form">
-		<div class="header">
+		<div class="header title-section">
 			<mat-form-field class="name">
 				<input matInput type="text" placeholder="Name" formControlName="name" required i18n-placeholder="@@name" />
 			</mat-form-field>
-			<div class="button-container">
-				<button [disabled]="canDisableAddNewPolicyRule()" type="button" mat-button (click)="addNewPolicyRule()"
-					class="basic-button add-new">
-					<i class="wui wui-plus"></i>
-					<span i18n="@@add">Add</span>
+			<div class="header-buttons">
+				<button [ngClass]="{ 'disabled-button': canDisableAddNewPolicyRule() }" class="edit-options save" type="button" mat-button
+					[disabled]="canDisableAddNewPolicyRule()" (click)="addNewPolicyRule()" i18n="@@addButton">
+					ADD
 				</button>
 
-				<button class="close-icon" type="button" (click)="closePolicyRuleForm()">
-					<i class="wui wui-times"></i>
-				</button>
+				<button class="edit-options cancel" (click)="closePolicyRuleForm()" i18n="@@cancelButton">CANCEL</button>
 			</div>
 		</div>
 
@@ -186,17 +180,7 @@
 		</div>
 
 		<div class="actions-of-rule">
-			<div class="header">
-				<h3 class="title3" i18n="@@actions">Actions</h3>
-
-				<div class="button-container">
-					<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
-						class="basic-button add-new">
-						<i class="wui wui-plus"></i>
-						<span i18n="@@add">Add</span>
-					</button>
-				</div>
-			</div>
+			<h3 class="title3" i18n="@@actions">Actions</h3>
 
 			<form [formGroup]="actionsForm">
 				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="actionsStored.length"
@@ -219,6 +203,16 @@
 							<input matInput formControlName="actionValue" />
 							<mat-error *ngIf="valueErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
 						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="header">
+					<div class="button-container">
+						<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
+							class="basic-button button-shadow add-new">
+							<i class="wui wui-plus"></i>
+							<span i18n="@@add">Add</span>
+						</button>
 					</div>
 				</div>
 			</form>
