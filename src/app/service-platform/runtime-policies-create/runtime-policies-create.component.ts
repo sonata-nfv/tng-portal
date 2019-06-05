@@ -187,7 +187,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	receiveCondition(uuid) {
-		const condition = this.conditions.find(cond => cond.uuid === uuid).name;
+		const condition = this.conditions.find(cond => cond.uuid === uuid).condition;
 		this.monitoringRulesForm.get('condition').setValue(condition);
 		// Included first part of the name with VNF:VDU:CONDITION
 		this.monitoringRulesForm.get('name').setValue(uuid);

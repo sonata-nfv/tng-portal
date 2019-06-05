@@ -195,12 +195,14 @@ export class CommonService {
 				response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ].map(vdu => {
 					if (vdu[ 'monitoring_parameters' ]) {
 						for (const param of vdu.monitoring_parameters) {
+							const vnf = response[ 0 ][ 'vnfd' ][ 'name' ];
 							monitoringParameters.push({
-								uuid: response[ 0 ][ 'vnfd' ][ 'name' ] + ':' + vdu.id + ':' + param.name,
-								name: param.name,
+								uuid: vnf + ':' + vdu.id + ':' + param.name,
+								name: vnf + ' : ' + param.name,
+								condition: param.name,
 								unit: param.unit,
 								vduID: vdu.id,
-								vnfName: response[ 0 ][ 'vnfd' ][ 'name' ],
+								vnfName: vnf,
 								vnfVendor: response[ 0 ][ 'vnfd' ][ 'vendor' ],
 								vnfVersion: response[ 0 ][ 'vnfd' ][ 'version' ]
 							});
