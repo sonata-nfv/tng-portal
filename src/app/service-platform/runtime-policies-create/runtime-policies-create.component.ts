@@ -31,7 +31,9 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	policyRuleActionNames: Array<string>;
 	vnfs: Array<string>;
 	actionsStored = new Array();
-	displayedColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
+	policyRulesStored = new Array();
+	displayedActionColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
+	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 
 	constructor(
 		private router: Router,
@@ -360,10 +362,16 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		}
 
 		rules.push(rule);
+		this.policyRulesStored = rules;
 		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(rules));
 		this.policyRulesForm.reset();
 
-		console.log(this.policyForm.get('policyRules').value)
+		// TODO reset list of conditions of the rule and also the condition
+	}
+
+	deletePolicyRule(element) {
+		this.policyRulesStored = this.policyRulesStored.filter(item => item !== element);
+		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(this.policyRulesStored));
 	}
 
 	areMonitoringRulesValid() {
@@ -386,7 +394,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	canDisableSave() {
-		return !(this.policyForm.valid && this.areMonitoringRulesValid());
+		return !(this.policyForm.valid && this.areMonitoringRulesValid() && this.policyRulesStored.length);
 	}
 
 	canDisableAddNewMonitoring() {
