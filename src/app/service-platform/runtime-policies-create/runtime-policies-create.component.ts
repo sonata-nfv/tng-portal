@@ -340,7 +340,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	addNewPolicyRule() {
 		let rules: Array<Object>;
 		const rule = {
-			'name': this.policyRulesForm.get('name').value,
+			'name': this.policyRulesForm.get('name').value.replace(/\s+/g, ''),
 			'salience': this.policyRulesForm.get('salience').value,
 			'inertia': {
 				'value': this.policyRulesForm.get('inertia').value,
