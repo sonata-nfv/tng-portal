@@ -330,6 +330,10 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		actions.push(action);
 		this.actionsStored = actions;
 		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(actions));
+		this.resetActionsForm();
+	}
+
+	resetActionsForm() {
 		this.actionsForm.reset();
 		this.actionsForm.get('actionValue').setValue(1);
 	}
@@ -364,9 +368,14 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		rules.push(rule);
 		this.policyRulesStored = rules;
 		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(rules));
-		this.policyRulesForm.reset();
+		this.resetPolicyRulesForm();
+	}
 
-		// TODO reset list of conditions of the rule and also the condition
+	resetPolicyRulesForm() {
+		this.policyRulesForm.reset();
+		this.resetActionsForm();
+		this.actionsStored = new Array();
+		this.conditionRulesSelected.map(rule => this.eraseConditionRule(rule));
 	}
 
 	deletePolicyRule(element) {
@@ -439,10 +448,6 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	closeMonitoringRuleForm() {
 		this.openedMonitoringRuleForm = false;
 		this.monitoringRulesForm.reset();
-	}
-
-	closePolicyRuleForm() {
-		this.policyRulesForm.reset();
 	}
 
 	generatePolicyObject() {

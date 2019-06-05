@@ -151,7 +151,7 @@
 					ADD
 				</button>
 
-				<button class="edit-options cancel" (click)="closePolicyRuleForm()" i18n="@@cancelButton">CANCEL</button>
+				<button class="edit-options cancel" (click)="resetPolicyRulesForm()" i18n="@@cancelButton">CANCEL</button>
 			</div>
 		</div>
 
@@ -206,12 +206,12 @@
 			<h3 class="title3" i18n="@@actions">Actions</h3>
 
 			<form [formGroup]="actionsForm">
-				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="actionsStored.length"
+				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="actionsStored"
 					(selectEvent)="receivePolicyRuleTarget($event)" i18n-placeholder="@@targetPlaceholder">
 				</app-select>
 
 				<div class="row">
-					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="actionsStored.length"
+					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="actionsStored"
 						(selectEvent)="receivePolicyRuleAction($event)" i18n-placeholder="@@actionsPlaceholder">
 					</app-select>
 
