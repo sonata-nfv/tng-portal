@@ -51,20 +51,17 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	private initForms() {
-		// TODO include checks over fields: if string, if number, if json
-		// When check if json remove the unnecessary methods
 		this.policyForm = new FormGroup({
 			vendor: new FormControl('', Validators.required),
 			version: new FormControl('', Validators.required),
 			name: new FormControl('', Validators.required),
-			default: new FormControl(),
+			default: new FormControl(false),
 			ns: new FormControl('', Validators.required),
 			sla: new FormControl(),
 			monitoringRules: new FormControl('', Validators.required),
 			policyRules: new FormControl('', Validators.required)
 		});
 
-		// TODO include checks over fields: if string, if number, if json
 		this.monitoringRulesForm = new FormGroup({
 			name: new FormControl('', Validators.required),
 			description: new FormControl('', Validators.required),
