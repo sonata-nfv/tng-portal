@@ -113,7 +113,7 @@
 <div *ngIf="canShowPolicyRules()" class="policy-rules-section">
 	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
 
-	<table *ngIf="policyRulesStored.length" mat-table [dataSource]="policyRulesStored">
+	<table *ngIf="canShowPolicyRulesTable()" mat-table [dataSource]="policyRulesDataSource">
 		<ng-container matColumnDef="name">
 			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
 			<td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -184,7 +184,7 @@
 
 			<div class="policy-rules">
 				<ol class="list">
-					<li class="line" *ngFor="let rule of conditionRulesSelected">
+					<li class="line" *ngFor="let rule of policyRulesForm.get('conditionRules').value">
 						<span>{{ rule.value }}</span>
 
 						<button class="icon-button-shadow delete" (click)="eraseConditionRule(rule)">
@@ -206,12 +206,12 @@
 			<h3 class="title3" i18n="@@actions">Actions</h3>
 
 			<form [formGroup]="actionsForm">
-				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="actionsStored"
+				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="canResetActionSelects()"
 					(selectEvent)="receivePolicyRuleTarget($event)" i18n-placeholder="@@targetPlaceholder">
 				</app-select>
 
 				<div class="row">
-					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="actionsStored"
+					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="canResetActionSelects()"
 						(selectEvent)="receivePolicyRuleAction($event)" i18n-placeholder="@@actionsPlaceholder">
 					</app-select>
 
@@ -240,9 +240,9 @@
 				</div>
 			</form>
 
-			<h3 *ngIf="actionsStored.length" class="title3" i18n="@@definedActions">Defined actions</h3>
+			<h3 *ngIf="canShowTableOfActions()" class="title3" i18n="@@definedActions">Defined actions</h3>
 
-			<table *ngIf="actionsStored.length" mat-table [dataSource]="actionsStored">
+			<table *ngIf="canShowTableOfActions()" mat-table [dataSource]="actionsDataSource">
 				<ng-container matColumnDef="actionObject">
 					<th mat-header-cell *matHeaderCellDef i18n="@@actionObject">Action object</th>
 					<td mat-cell *matCellDef="let element">{{ element.action_object }}</td>
