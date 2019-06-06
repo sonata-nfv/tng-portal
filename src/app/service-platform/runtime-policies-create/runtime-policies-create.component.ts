@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
@@ -26,14 +27,13 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	slaList = new Array();
 	conditions = new Array();
 	monitoringRules = new Array();
-	conditionRulesSelected = new Array();
 	policyRuleActions = [ 'Elasticity Action', 'Security Action' ];
 	policyRuleActionNames: Array<string>;
 	vnfs: Array<string>;
-	actionsStored = new Array();
-	policyRulesStored = new Array();
 	displayedActionColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
+	actionsDataSource = new MatTableDataSource;
+	policyRulesDataSource = new MatTableDataSource;
 
 	constructor(
 		private router: Router,
@@ -59,7 +59,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			ns: new FormControl('', Validators.required),
 			sla: new FormControl(),
 			monitoringRules: new FormControl('', Validators.required),
-			policyRules: new FormControl('', Validators.required)
+			policyRules: new FormControl([], Validators.required)
 		});
 
 		this.monitoringRulesForm = new FormGroup({
@@ -77,8 +77,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			inertia: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			inertiaUnit: new FormControl('', Validators.required),
 			condition: new FormControl('', Validators.required),
-			conditionRules: new FormControl('', Validators.required),
-			actions: new FormControl('', Validators.required)
+			conditionRules: new FormControl([], Validators.required),
+			actions: new FormControl([], Validators.required)
 		});
 
 		this.actionsForm = new FormGroup({
@@ -171,10 +171,10 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 		// Reset introduced data for the previous network service
 		this.monitoringRulesForm.reset();
-		this.policyRulesForm.reset();
+		this.resetPolicyRulesForm();
 		this.policyForm.get('monitoringRules').setValue('');
-		this.policyForm.get('policyRules').setValue('');
-
+		this.policyForm.get('policyRules').reset();
+		this.policyRulesDataSource.data = [];
 	}
 
 	receiveSLA(sla) {
@@ -200,21 +200,21 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		};
 
 		if (this.policyRulesForm.get('conditionRules').value) {
-			rules = this.getParsedJSON(this.policyRulesForm.get('conditionRules').value);
+			rules = this.policyRulesForm.get('conditionRules').value;
 		} else {
 			rules = [];
 		}
-		// Save rule to display and remove it from monitoring rules displayed
-		this.conditionRulesSelected.push(rule);
-		this.monitoringRules = this.monitoringRules.filter(item => item.uuid !== uuid);
 
-		// Save rule in the form to send
 		rules.push(rule);
-		this.policyRulesForm.get('conditionRules').setValue(this.getStringifiedJSON(rules));
+
+		// Save rule to display and remove it from monitoring rules displayed
+		this.policyRulesForm.get('conditionRules').setValue(rules);
+		this.monitoringRules = this.monitoringRules.filter(item => item.uuid !== uuid);
 	}
 
 	eraseConditionRule(rule) {
-		this.conditionRulesSelected = this.conditionRulesSelected.filter(item => item[ 'value' ] !== rule.value);
+		const conditionRule = this.policyRulesForm.get('conditionRules').value.filter(item => item[ 'value' ] !== rule.value);
+		this.policyRulesForm.get('conditionRules').setValue(conditionRule);
 
 		this.monitoringRules.push({
 			uuid: rule.value,
@@ -290,9 +290,11 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		});
 
 		// If there are some already selected, remove them from the new list
-		if (this.conditionRulesSelected.length) {
-			for (const cond of this.conditionRulesSelected) {
-				this.monitoringRules = this.monitoringRules.filter(item => item.uuid !== cond.value);
+		const monitoringRules = this.policyRulesForm.get('conditionRules').value;
+		if (monitoringRules && monitoringRules.length) {
+			for (const cond of monitoringRules) {
+				const filteredResult = this.policyRulesForm.get('conditionRules').value.filter(item => item.uuid !== cond.value);
+				this.policyRulesForm.get('conditionRules').setValue(filteredResult);
 			}
 		}
 	}
@@ -319,14 +321,14 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		};
 
 		if (this.policyRulesForm.get('actions').value) {
-			actions = this.getParsedJSON(this.policyRulesForm.get('actions').value);
+			actions = this.policyRulesForm.get('actions').value;
 		} else {
 			actions = [];
 		}
 
 		actions.push(action);
-		this.actionsStored = actions;
-		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(actions));
+		this.policyRulesForm.get('actions').setValue(actions);
+		this.actionsDataSource.data = actions;
 		this.resetActionsForm();
 	}
 
@@ -336,8 +338,9 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	deleteTarget(element) {
-		this.actionsStored = this.actionsStored.filter(item => item !== element);
-		this.policyRulesForm.get('actions').setValue(this.getStringifiedJSON(this.actionsStored));
+		const filteredRules = this.policyRulesForm.get('actions').value.filter(item => item !== element);
+		this.policyRulesForm.get('actions').setValue(filteredRules);
+		this.actionsDataSource.data = filteredRules;
 	}
 
 	addNewPolicyRule() {
@@ -357,27 +360,31 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		};
 
 		if (this.policyForm.get('policyRules').value) {
-			rules = this.getParsedJSON(this.policyForm.get('policyRules').value);
+			rules = this.policyForm.get('policyRules').value;
 		} else {
 			rules = [];
 		}
 
 		rules.push(rule);
-		this.policyRulesStored = rules;
-		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(rules));
+		this.policyForm.get('policyRules').setValue(rules);
+		this.policyRulesDataSource.data = rules;
 		this.resetPolicyRulesForm();
 	}
 
 	resetPolicyRulesForm() {
 		this.policyRulesForm.reset();
+		this.changePolicyRuleCondition();
 		this.resetActionsForm();
-		this.actionsStored = new Array();
-		this.conditionRulesSelected.map(rule => this.eraseConditionRule(rule));
+		this.policyRulesForm.get('actions').setValue([]);
+		if (this.policyRulesForm.get('conditionRules').value) {
+			this.policyRulesForm.get('conditionRules').value.map(rule => this.eraseConditionRule(rule));
+		}
 	}
 
 	deletePolicyRule(element) {
-		this.policyRulesStored = this.policyRulesStored.filter(item => item !== element);
-		this.policyForm.get('policyRules').setValue(this.getStringifiedJSON(this.policyRulesStored));
+		const filteredRules = this.policyForm.get('policyRules').value.filter(item => item !== element);
+		this.policyRulesDataSource.data = filteredRules;
+		this.policyForm.get('policyRules').setValue(filteredRules);
 	}
 
 	areMonitoringRulesValid() {
@@ -400,7 +407,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	}
 
 	canDisableSave() {
-		return !(this.policyForm.valid && this.areMonitoringRulesValid() && this.policyRulesStored.length);
+		return !(this.policyForm.valid && this.areMonitoringRulesValid() && this.policyForm.get('policyRules').value.length);
 	}
 
 	canDisableAddNewMonitoring() {
@@ -422,8 +429,13 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			this.utilsService.isValidJSON(this.policyForm.get('monitoringRules').value);
 	}
 
+	canShowPolicyRulesTable() {
+		return this.policyForm.get('policyRules').value && this.policyForm.get('policyRules').value.length;
+	}
+
 	canDisableAddNewPolicyRule() {
-		return !this.policyRulesForm.valid;
+		return !this.policyRulesForm.valid || !this.policyRulesForm.get('conditionRules').value ||
+			!this.policyRulesForm.get('conditionRules').value.length;
 	}
 
 	canShowPolicyRuleActionName() {
@@ -432,6 +444,15 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	canShowPolicyRuleActionValue() {
 		return this.actionsForm.get('actionObject').value && this.actionsForm.get('actionName').value;
+	}
+
+	canShowTableOfActions() {
+		return this.policyRulesForm.get('actions').value && this.policyRulesForm.get('actions').value.length;
+	}
+
+	canResetActionSelects() {
+		return this.policyRulesForm.get('actions').value && this.policyRulesForm.get('actions').value.length
+			|| this.policyRulesForm.get('actions').value;
 	}
 
 	inertiaErrorExists() {
@@ -460,13 +481,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			networka_service: ns,
 			sla: this.policyForm.get('sla').value,
 			default_policy: this.policyForm.get('default').value,
-			monitoring_rules: this.policyForm.get('monitoringRules').value,
-			conditions: {
-				condition: 'AND',
-				rules: [ {
-					'value': 'haproxy_vnf_vdu01_haproxy_backend_sespsrv_more150'
-				} ]
-			},
+			monitoring_rules: this.getParsedJSON(this.policyForm.get('monitoringRules').value),
 			policyRules: this.policyForm.get('policyRules').value
 		};
 	}
