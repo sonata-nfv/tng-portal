@@ -489,19 +489,15 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 	async createPolicy() {
 		this.loading = true;
 		const policy = this.generatePolicyObject();
-		// const response = await this.servicePlatformService.postOneRuntimePolicy(policy);
+		const response = await this.servicePlatformService.postOneRuntimePolicy(policy);
 
-		console.log('saving');
-		console.log(policy);
-
-
-		// this.loading = false;
-		// if (response) {
-		// 		// TODO display request status in toast
-		// 		this.close();
-		// } else {
-		// 		// TODO display request status in toast
-		// 	}
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Runtime policy created', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('There was an error creating the runtime policy', '');
+		}
 	}
 
 	informError(option) {
