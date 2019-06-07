@@ -92,9 +92,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 	}
 
 	private _onFormChanges(value?) {
-		this.disabledButton =
-			(this.templateForm.valid && this.storedGuarantees.length) ?
-				false : true;
+		this.disabledButton = this.templateForm.valid ? false : true;
 	}
 
 	receiveNS(ns) {
