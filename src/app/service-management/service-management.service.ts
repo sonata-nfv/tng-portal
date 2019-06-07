@@ -338,6 +338,7 @@ export class ServiceManagementService {
 						uuid: item.nsi_uuid,
 						type: item.license_type,
 						status: item.license_status,
+						customerUsername: item.cust_username,
 						currentInstances: item.current_instances,
 						allowedInstances: item.allowed_instances,
 						expirationDate: item.license_exp_date,

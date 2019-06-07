@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class LicenceListComponent implements OnInit {
 	loading: boolean;
 	licenses: Array<object>;
-	displayedColumns = [ 'status', 'type', 'current', 'allowed', 'expiration', 'buy' ];
+	displayedColumns = [ 'status', 'type', 'username', 'current', 'allowed', 'expiration', 'buy' ];
 
 	constructor(
 		private serviceManagementService: ServiceManagementService,

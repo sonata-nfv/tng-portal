@@ -23,6 +23,11 @@
 		<td mat-cell *matCellDef="let element"> {{ element.type }}</td>
 	</ng-container>
 
+	<ng-container matColumnDef="username">
+		<th mat-header-cell *matHeaderCellDef i18n="@@currentInstances"> Customer username </th>
+		<td mat-cell *matCellDef="let element"> {{ element.customerUsername  || 'Unknown' }} </td>
+	</ng-container>
+
 	<ng-container matColumnDef="current">
 		<th mat-header-cell *matHeaderCellDef i18n="@@currentInstances"> Current instances </th>
 		<td mat-cell *matCellDef="let element"> {{ element.currentInstances }} </td>
