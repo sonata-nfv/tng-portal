@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class LicenceListComponent implements OnInit {
 	loading: boolean;
 	licenses: Array<object>;
-	displayedColumns = [ 'status', 'type', 'username', 'current', 'allowed', 'expiration', 'buy' ];
+	displayedColumns = [ 'type', 'username', 'current', 'allowed', 'expiration', 'buy' ];
 
 	constructor(
 		private serviceManagementService: ServiceManagementService,
@@ -36,7 +36,7 @@ export class LicenceListComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.licenses = response;
+			this.licenses = response.filter(license => license[ 'status' ] !== 'inactive');
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch any license', '');
 		}
