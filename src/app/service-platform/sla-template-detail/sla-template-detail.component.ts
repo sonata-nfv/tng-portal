@@ -71,7 +71,7 @@ export class SlaTemplateDetailComponent implements OnInit {
 	}
 
 	canShowGuarantees() {
-		return !this.closed && this.detail[ 'storedGuarantees' ];
+		return !this.closed && this.detail[ 'storedGuarantees' ] && this.detail[ 'storedGuarantees' ].length;
 	}
 
 	canShowLicense() {

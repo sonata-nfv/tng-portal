@@ -96,23 +96,24 @@ export class ServicePlatformService {
 	}
 
 	private parseGuaranteesData(guarantees) {
-		return guarantees.map(guarantee => {
-			return {
-				uuid: guarantee[ 'guaranteeID' ],
-				name: guarantee[ 'guarantee_name' ],
-				definition: guarantee[ 'guarantee_definition' ],
-				threshold: guarantee[ 'guarantee_threshold' ],
-				unit: guarantee[ 'guarantee_unit' ],
-				slos: guarantee[ 'target_slo' ].map(slo => {
-					return {
-						kpi: slo.target_kpi,
-						operator: slo.target_operator,
-						value: slo.target_value,
-						period: slo.target_period
-					};
-				})
-			};
-		});
+		return guarantees ?
+			guarantees.map(guarantee => {
+				return {
+					uuid: guarantee[ 'guaranteeID' ],
+					name: guarantee[ 'guarantee_name' ],
+					definition: guarantee[ 'guarantee_definition' ],
+					threshold: guarantee[ 'guarantee_threshold' ],
+					unit: guarantee[ 'guarantee_unit' ],
+					slos: guarantee[ 'target_slo' ].map(slo => {
+						return {
+							kpi: slo.target_kpi,
+							operator: slo.target_operator,
+							value: slo.target_value,
+							period: slo.target_period
+						};
+					})
+				};
+			}) : [];
 	}
 
 	/**
