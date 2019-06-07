@@ -176,7 +176,7 @@ const routes: Routes = [
 				]
 			},
 			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/slices/slice-templates', pathMatch: 'full' },
+			{ path: 'service-management', redirectTo: 'service-management/network-services/services', pathMatch: 'full' },
 			{
 				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
 				children: [

@@ -124,20 +124,6 @@
 		</div>
 
 		<div class="options" *ngIf="menu === 'service-management'">
-			<button [ngClass]="{ active: section === 'sm-slices' }" (click)="setSection($event, 'sm-slices')" i18n="@@networkSlices">
-				Network Slices
-			</button>
-			<div class="section" *ngIf="section === 'sm-slices'">
-				<button [ngClass]="{ active: subsection === 'slice-templates' }" (click)="setSubsection($event, 'slice-templates')"
-					i18n="@@templates">
-					Templates
-				</button>
-				<button [ngClass]="{ active: subsection === 'slice-instances' }" (click)="setSubsection($event, 'slice-instances')"
-					i18n="@@instances">
-					Instances
-				</button>
-			</div>
-
 			<button [ngClass]="{ active: section === 'sm-network-services' }" (click)="setSection($event, 'sm-network-services')"
 				i18n="@@nss">
 				Network Services
@@ -148,6 +134,20 @@
 				</button>
 				<button [ngClass]="{ active: subsection === 'network-service-instances' }"
 					(click)="setSubsection($event, 'network-service-instances')" i18n="@@instances">
+					Instances
+				</button>
+			</div>
+
+			<button [ngClass]="{ active: section === 'sm-slices' }" (click)="setSection($event, 'sm-slices')" i18n="@@networkSlices">
+				Network Slices
+			</button>
+			<div class="section" *ngIf="section === 'sm-slices'">
+				<button [ngClass]="{ active: subsection === 'slice-templates' }" (click)="setSubsection($event, 'slice-templates')"
+					i18n="@@templates">
+					Templates
+				</button>
+				<button [ngClass]="{ active: subsection === 'slice-instances' }" (click)="setSubsection($event, 'slice-instances')"
+					i18n="@@instances">
 					Instances
 				</button>
 			</div>

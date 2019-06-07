@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.router.navigate([ 'service-platform' ]);
 				break;
 			case 'service-management':
-				this.section = 'sm-slices';
+				this.section = 'sm-network-services';
 				this.router.navigate([ 'service-management' ]);
 				break;
 			default:
