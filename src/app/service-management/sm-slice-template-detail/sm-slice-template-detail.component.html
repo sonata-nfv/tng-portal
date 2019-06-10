@@ -31,6 +31,7 @@
 			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 		</mat-form-field>
 	</div>
+
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['usageState']" class="left-column">
 			<input matInput placeholder="Usage state" value="{{ utilsService.capitalizeFirstLetter(detail['usageState']) }}" disabled
@@ -41,6 +42,7 @@
 				i18n-placeholder="@@statusPlaceholder" />
 		</mat-form-field>
 	</div>
+
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['onboardingState']" class="left-column">
 			<input matInput placeholder="Onboarding state" value="{{ utilsService.capitalizeFirstLetter(detail['onboardingState']) }}"
@@ -60,6 +62,11 @@
 	<mat-form-field *ngIf="detail['userDefinedData']" class="left-column">
 		<input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled
 			i18n-placeholder="@@userDefinedDataPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['SNSSAI']">
+		<input matInput placeholder="Slice service type" value="{{ detail['SNSSAI'] }}" disabled
+			i18n-placeholder="@@sliceServiceTypePlaceholder" />
 	</mat-form-field>
 
 	<div class="launch" *ngIf="detail['uuid']" (click)="instantiate()">
