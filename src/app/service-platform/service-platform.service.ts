@@ -83,9 +83,9 @@ export class ServicePlatformService {
 	/**
      * Retrieves a list with all the service guarantees
      */
-	async getServiceGuarantees() {
+	async getServiceGuarantees(ns) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.guarantees;
+		const url = this.config.baseSP + this.config.guarantees + '/' + ns;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -98,9 +98,11 @@ export class ServicePlatformService {
 	private parseGuaranteesData(guarantees) {
 		return guarantees ?
 			guarantees.map(guarantee => {
+				const nameToDisplay = guarantee[ 'guarantee_name' ] + ': ' + guarantee[ 'guarantee_threshold' ] + ' ' + guarantee[ 'guarantee_unit' ];
 				return {
 					uuid: guarantee[ 'guaranteeID' ],
-					name: guarantee[ 'guarantee_name' ],
+					name: nameToDisplay,
+					guaranteeName: guarantee[ 'guarantee_name' ],
 					definition: guarantee[ 'guarantee_definition' ],
 					threshold: guarantee[ 'guarantee_threshold' ],
 					unit: guarantee[ 'guarantee_unit' ],
