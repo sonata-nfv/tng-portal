@@ -68,7 +68,6 @@ export class ServiceManagementService {
 				nstVersion: response[ 'nst-version' ],
 				vendor: response[ 'vendor' ],
 				status: response[ 'nsi-status' ],
-				qiValue: response[ '5qiValue' ],
 				instantiationTime: response[ 'instantiateTime' ],
 				description: response[ 'description' ],
 				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {

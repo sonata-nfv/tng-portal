@@ -39,16 +39,10 @@
 		</mat-form-field>
 	</div>
 
-	<div class="same-row">
-		<mat-form-field *ngIf="detail['status']" class="left-column">
-			<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
-				i18n-placeholder="@@statusPlaceholder" />
-		</mat-form-field>
-
-		<mat-form-field *ngIf="detail['qiValue']">
-			<input matInput placeholder="5Qi value" value="{{ detail['qiValue'] }}" disabled i18n-placeholder="@@5qiValuePlaceholder" />
-		</mat-form-field>
-	</div>
+	<mat-form-field *ngIf="detail['status']" class="left-column">
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
+			i18n-placeholder="@@statusPlaceholder" />
+	</mat-form-field>
 
 	<div *ngIf="isInstantiated()" (click)="stopInstance()" class="stop">
 		<button class="icon-button-shadow" mat-button matTooltip="Terminate" i18n-matTooltip="@@terminate">
