@@ -14,9 +14,9 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-network-service-instances-detail',
-	templateUrl: './network-service-instances-detail.component.html',
-	styleUrls: [ './network-service-instances-detail.component.scss' ],
+	selector: 'app-ns-instance-detail',
+	templateUrl: './ns-instance-detail.component.html',
+	styleUrls: [ './ns-instance-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None,
 	animations: [
 		trigger('detailExpand', [
@@ -32,7 +32,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 		])
 	]
 })
-export class NetworkServiceInstancesDetailComponent implements OnInit {
+export class NsInstanceDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
 	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];

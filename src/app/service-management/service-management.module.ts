@@ -16,8 +16,8 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 import { SmNetworkServicesComponent } from './sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './sm-network-services-detail/sm-network-services-detail.component';
 import { NsInstantiateDialogComponent } from './ns-instantiate-dialog/ns-instantiate-dialog.component';
-import { NetworkServiceInstancesComponent } from './network-service-instances/network-service-instances.component';
-import { NetworkServiceInstancesDetailComponent } from './network-service-instances-detail/network-service-instances-detail.component';
+import { NsInstanceListComponent } from './ns-instance-list/ns-instance-list.component';
+import { NsInstanceDetailComponent } from './ns-instance-detail/ns-instance-detail.component';
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
 import { RequestListComponent } from './request-list/request-list.component';
@@ -35,8 +35,8 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 		SmNetworkServicesComponent,
 		SmNetworkServicesDetailComponent,
 		NsInstantiateDialogComponent,
-		NetworkServiceInstancesComponent,
-		NetworkServiceInstancesDetailComponent,
+		NsInstanceListComponent,
+		NsInstanceDetailComponent,
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
 		RequestListComponent,

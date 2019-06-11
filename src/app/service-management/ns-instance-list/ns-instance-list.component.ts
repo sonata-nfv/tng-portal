@@ -8,12 +8,12 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-network-service-instances',
-	templateUrl: './network-service-instances.component.html',
-	styleUrls: [ './network-service-instances.component.scss' ],
+	selector: 'app-ns-instance-list',
+	templateUrl: './ns-instance-list.component.html',
+	styleUrls: [ './ns-instance-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
+export class NsInstanceListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	subscription: Subscription;
 	displayedColumns = [ 'name', 'status', 'version', 'createdAt', 'stop' ];
