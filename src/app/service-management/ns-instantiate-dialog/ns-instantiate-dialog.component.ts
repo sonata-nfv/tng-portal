@@ -62,11 +62,6 @@ export class NsInstantiateDialogComponent implements OnInit {
 			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
 		}
 
-		// If error or no SLA received for the service include None one
-		if (!this.slas || !this.slas.length) {
-			this.slas.unshift({ uuid: 'None', name: 'None' });
-		}
-
 		if (endpoints) {
 			this.locations = endpoints;
 			this.locations.unshift({ uuid: 'None', name: 'None' });
@@ -99,7 +94,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	async receiveSLA(sla) {
-		if (sla && sla !== 'None') {
+		if (sla && sla !== this.instantiationForm.get('sla').value) {
 			this.instantiationForm.get('sla').setValue(sla);
 
 			// Check if license is valid before instantiate
@@ -116,8 +111,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 						this.section = 'buy';
 				}
 			} else {
-				this.instantiationIsAllowed = this.instantiationForm.get('sla').value[ 'license' ] === 'public' ?
+				const slaObject = this.slas.find(item => item.uuid === sla);
+				this.instantiationIsAllowed = slaObject[ 'license' ] === 'public' ?
 					true : false;
+
 
 				// If there is no response regarding license validity and the NS is not public then instantiation is forbidden
 				if (!this.instantiationIsAllowed) {
@@ -129,8 +126,6 @@ export class NsInstantiateDialogComponent implements OnInit {
 					this.dialogData.openDialog(title, content, action, () => { });
 				}
 			}
-		} else {
-			this.instantiationForm.get('sla').setValue('');
 		}
 	}
 
