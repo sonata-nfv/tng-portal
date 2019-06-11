@@ -87,7 +87,8 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 
 				this.loading = false;
 				if (response) {
-					this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+					const name = response[ 'name' ] ? response[ 'name' ] : '';
+					this.utilsService.openSnackBar('Terminating ' + name + ' instance...', '');
 					this.requestNSInstances();
 				} else {
 					this.utilsService.openSnackBar('There was an error terminating the instance', '');

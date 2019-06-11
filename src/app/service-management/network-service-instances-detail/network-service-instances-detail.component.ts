@@ -100,10 +100,13 @@ export class NetworkServiceInstancesDetailComponent implements OnInit {
 		const action = 'Terminate';
 
 		this.dialogData.openDialog(title, content, action, async () => {
+			this.loading = true;
 			const response = await this.serviceManagementService.postOneNSInstanceTermination(this.detail[ 'uuid' ]);
 
+			this.loading = false;
 			if (response) {
-				this.utilsService.openSnackBar('Terminating ' + response[ 'name' ] + ' instance...', '');
+				const name = response[ 'name' ] ? response[ 'name' ] : '';
+				this.utilsService.openSnackBar('Terminating ' + name + ' instance...', '');
 			} else {
 				this.utilsService.openSnackBar('There was an error terminating the instance', '');
 			}
