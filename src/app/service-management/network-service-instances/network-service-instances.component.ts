@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { MatSort, MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ServiceManagementService } from '../service-management.service';
@@ -14,15 +15,10 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 	loading: boolean;
-	instances: Array<Object>;
 	subscription: Subscription;
-	displayedColumns = [
-		'name',
-		'status',
-		'version',
-		'createdAt',
-		'stop'
-	];
+	displayedColumns = [ 'name', 'status', 'version', 'createdAt', 'stop' ];
+	@ViewChild(MatSort) sort: MatSort;
+	dataSource = new MatTableDataSource();
 
 	constructor(
 		private serviceManagementService: ServiceManagementService,
@@ -69,7 +65,8 @@ export class NetworkServiceInstancesComponent implements OnInit, OnDestroy {
 
 		this.loading = false;
 		if (response) {
-			this.instances = response;
+			this.dataSource.data = response;
+			this.dataSource.sort = this.sort;
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch any network service instance', '');
 		}

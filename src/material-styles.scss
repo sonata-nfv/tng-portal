@@ -154,7 +154,6 @@ table {
 	tbody {
 		display: block;
 		max-height: 65vh;
-		// max-height: 610px;
 		overflow-y: overlay;
 	}
 
@@ -163,7 +162,6 @@ table {
 		display: table;
 		width: 100%;
 		table-layout: fixed;
-		// cursor: pointer;
 	}
 
 	// Center titles, color and font styles
@@ -173,6 +171,12 @@ table {
 		vertical-align: bottom;
 		font-size: 14px;
 		color: $header-color;
+	}
+
+	// Center table titles if sort included
+	.mat-sort-header-container {
+		justify-content: center;
+		margin-left: 15px;
 	}
 
 	// // Center cells, color and font styles
