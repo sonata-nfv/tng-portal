@@ -93,38 +93,40 @@ export class NsInstantiateDialogComponent implements OnInit {
 			this.instantiationForm.get('location').setValue(null);
 	}
 
-	async receiveSLA(sla) {
+	receiveSLA(sla) {
 		if (sla && sla !== this.instantiationForm.get('sla').value) {
 			this.instantiationForm.get('sla').setValue(sla);
+			this.checkLicenseValidity(sla);
+		}
+	}
 
-			// Check if license is valid before instantiate
-			const response = await this.serviceManagementService.getLicenseStatus(sla, this.data.serviceUUID);
+	async checkLicenseValidity(slaUUID) {
+		// Check if license is valid before instantiate
+		const response = await this.serviceManagementService.getLicenseStatus(slaUUID, this.data.serviceUUID);
 
-			if (response) {
-				this.instantiationIsAllowed = response[ 'allowed_to_instantiate' ] ? true : false;
+		if (response) {
+			this.instantiationIsAllowed = response[ 'allowed_to_instantiate' ] ? true : false;
 
-				// License does not allow instantiation
-				// case license public or trial : case license private
-				if (!response[ 'allowed_to_instantiate' ]) {
-					response[ 'license_type' ] !== 'private' ?
-						this.section = 'error' :
-						this.section = 'buy';
-				}
-			} else {
-				const slaObject = this.slas.find(item => item.uuid === sla);
-				this.instantiationIsAllowed = slaObject[ 'license' ] === 'public' ?
-					true : false;
+			// License does not allow instantiation
+			// case license public or trial : case license private
+			if (!response[ 'allowed_to_instantiate' ]) {
+				response[ 'license_type' ] !== 'private' ?
+					this.section = 'error' :
+					this.section = 'buy';
+			}
+		} else {
+			const slaObject = this.slas.find(item => item.uuid === slaUUID);
+			this.instantiationIsAllowed = slaObject[ 'license' ] === 'public' ?
+				true : false;
 
-
-				// If there is no response regarding license validity and the NS is not public then instantiation is forbidden
-				if (!this.instantiationIsAllowed) {
-					this.close();
-					const title = 'oh oh...';
-					const content = 'There was an error checking the validity of the license. As this network service is not public, you are not allowed \
-								to instantiate it for the moment. Please, try again later.';
-					const action = 'Accept';
-					this.dialogData.openDialog(title, content, action, () => { });
-				}
+			// If there is no response regarding license validity and the NS is not public then instantiation is forbidden
+			if (!this.instantiationIsAllowed) {
+				this.close();
+				const title = 'oh oh...';
+				const content = 'There was an error checking the validity of the license. As this network service is not public, you are not allowed \
+										to instantiate it for the moment. Please, try again later.';
+				const action = 'Accept';
+				this.dialogData.openDialog(title, content, action, () => { });
 			}
 		}
 	}
@@ -151,9 +153,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 
 	async buy() {
 		this.loading = true;
+		const sla = this.instantiationForm.get('sla').value;
 		const license = {
 			ns_uuid: this.data.serviceUUID,
-			sla_uuid: this.instantiationForm.get('sla').value,
+			sla_uuid: sla,
 		};
 		const response = await this.serviceManagementService.postOneLicense(license);
 
@@ -161,6 +164,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 		if (response) {
 			this.utilsService.openSnackBar(response[ 'Succes' ], '');
 			this.section = 'second';
+			this.checkLicenseValidity(sla);
 		} else {
 			this.utilsService.openSnackBar('Unable to buy the license, try again please', '');
 		}
@@ -181,8 +185,8 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	canDisableInstantiate() {
-		return (!this.instantiationForm.controls.instanceName.value ||
-			this.instantiationForm.controls.instanceName.value.trim() === '') ||
+		return (!this.instantiationForm.get('instanceName').value ||
+			this.instantiationForm.get('instanceName').value.trim() === '') ||
 			!this.instantiationIsAllowed;
 	}
 
