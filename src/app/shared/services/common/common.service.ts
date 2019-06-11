@@ -368,11 +368,7 @@ export class CommonService {
 				vendor: response[ 'nstd' ][ 'vendor' ],
 				description: response[ 'nstd' ][ 'description' ],
 				SNSSAI: this.parseSNSSAI(response[ 'nstd' ][ 'SNSSAI_identifier' ][ 'slice-service-type' ]),
-				notificationType: response[ 'nstd' ][ 'notificationTypes' ],
-				userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
 				usageState: response[ 'nstd' ][ 'usageState' ],
-				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
-				operationalState: response[ 'nstd' ][ 'operationalState' ],
 				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
