@@ -5,25 +5,38 @@
 <!-- FIRST DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='first'" class="first-dialog">
 	<div class="section">
-		<button [ngClass]="{ active: isIngress }" (click)="isIngress = true" class="basic-button ingress" mat-button>Ingress</button>
+		<button [ngClass]="{ active: listName === 'ingress' }" (click)="listName = 'ingress'" class="basic-button"
+			mat-button>Ingress</button>
 		<span class="dash">-</span>
-		<button [ngClass]="{ active: !isIngress }" (click)="isIngress = false" class="basic-button egress" mat-button>Egress</button>
+		<button [ngClass]="{ active: listName === 'egress' }" (click)="listName = 'egress'" class="basic-button" mat-button>Egress</button>
+		<span class="dash">-</span>
+		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="listName = 'blacklist'" class="basic-button"
+			mat-button>Blacklist</button>
 	</div>
 
-	<!-- DISPLAY INGRESS OR EGRESS DEPENDING ON THE CHOSEN SECTION -->
-	<dl *ngIf="isIngress" class="list">
+	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
+	<dl *ngIf="listName === 'ingress'" class="list">
 		<dt *ngFor="let entry of ingress" class="list-entry">
 			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow actions">
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
 				<i class="wui wui-trash-alt"></i>
 			</button>
 		</dt>
 	</dl>
 
-	<dl *ngIf="!isIngress" class="list">
+	<dl *ngIf="listName === 'egress'" class="list">
 		<dt *ngFor="let entry of egress" class="list-entry">
 			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow actions">
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
+
+	<dl *ngIf="listName === 'blacklist'" class="list">
+		<dt *ngFor="let entry of blacklist" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
 				<i class="wui wui-trash-alt"></i>
 			</button>
 		</dt>
@@ -46,8 +59,9 @@
 		<div *ngIf="canShowNetworkAddress()" class="add-new">
 			<button [disabled]="canDisableAddNew()" (click)="addNew()" class="basic-button">
 				<i class="wui wui-plus"></i>
-				<span *ngIf="isIngress; else: isEgress" i18n="@@addNewIngress"> Add new ingress NAP</span>
-				<ng-template #isEgress i18n="@@addNewEgress"> Add new egress NAP</ng-template>
+				<span *ngIf="listName === 'ingress'" i18n="@@addNewIngress"> Add new ingress NAP</span>
+				<span *ngIf="listName === 'egress'" i18n="@@addNewEgress"> Add new egress NAP</span>
+				<span *ngIf="listName === 'blacklist'" i18n="@@addNewBlacklist"> Add new blacklist NAP</span>
 			</button>
 		</div>
 	</form>
@@ -63,32 +77,6 @@
 
 <!-- SECOND DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='second'" class="second-dialog">
-	<div class="summary">
-		<div class="ingress-list">
-			<h2>Ingress</h2>
-			<dl class="list">
-				<dt *ngFor="let entry of ingress" class="list-entry">
-					<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-					<button (click)="isIngress = true; eraseEntry(entry)" class="icon-button-shadow actions">
-						<i class="wui wui-trash-alt"></i>
-					</button>
-				</dt>
-			</dl>
-		</div>
-
-		<div class="egress-list">
-			<h2>Egress</h2>
-			<dl class="list">
-				<dt *ngFor="let entry of egress" class="list-entry">
-					<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-					<button (click)="isIngress = false; eraseEntry(entry)" class="icon-button-shadow actions">
-						<i class="wui wui-trash-alt"></i>
-					</button>
-				</dt>
-			</dl>
-		</div>
-	</div>
-
 	<form [formGroup]="instantiationForm" class="second-dialog-form">
 		<mat-form-field class="instance-name">
 			<input matInput type="text" placeholder="Instance name" formControlName="instanceName" required
@@ -104,7 +92,7 @@
 
 <mat-dialog-actions *ngIf="section=='second'">
 	<div class="button-container">
-		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@rejectButton">REJECT</button>
+		<button class="basic-button button-shadow cancel" mat-button (click)="section='first'" i18n="@@backButton">BACK</button>
 		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableInstantiate()"
 			(click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
 			INSTANTIATE

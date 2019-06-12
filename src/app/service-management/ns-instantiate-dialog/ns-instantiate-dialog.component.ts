@@ -17,10 +17,11 @@ export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
 	section = 'first';
-	isIngress = true;
+	listName = 'ingress';
 	instantiationForm: FormGroup;
 	ingress = new Array();
 	egress = new Array();
+	blacklist = new Array();
 	locations: Array<any>;
 	slas: Array<any>;
 
@@ -77,14 +78,33 @@ export class NsInstantiateDialogComponent implements OnInit {
 			nap: this.instantiationForm.get('nap').value
 		};
 
-		this.isIngress ? this.ingress.push(point) : this.egress.push(point);
+		switch (this.listName) {
+			case 'ingress':
+				this.ingress.push(point);
+				break;
+			case 'egress':
+				this.egress.push(point);
+				break;
+			case 'blacklist':
+				this.blacklist.push(point);
+				break;
+		}
+
 		this.instantiationForm.reset();
 	}
 
 	eraseEntry(entry: string) {
-		this.isIngress ?
-			this.ingress = this.ingress.filter(x => x !== entry) :
-			this.egress = this.egress.filter(x => x !== entry);
+		switch (this.listName) {
+			case 'ingress':
+				this.ingress = this.ingress.filter(x => x !== entry);
+				break;
+			case 'egress':
+				this.egress = this.egress.filter(x => x !== entry);
+				break;
+			case 'blacklist':
+				this.blacklist = this.blacklist.filter(x => x !== entry);
+				break;
+		}
 	}
 
 	receiveLocation(location) {
@@ -137,6 +157,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 			name: this.instantiationForm.get('instanceName').value,
 			ingresses: this.ingress.map(ingress => ({ location: ingress.location, nap: ingress.nap })),
 			egresses: this.egress.map(egress => ({ location: egress.location, nap: egress.nap })),
+			blacklist: this.blacklist.map(item => ({ location: item.location, nap: item.nap })),
 			service_uuid: serviceUUID,
 			sla_id: this.instantiationForm.get('sla').value || ''
 		};

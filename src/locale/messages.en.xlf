@@ -122,7 +122,7 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
@@ -328,15 +328,15 @@
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
@@ -463,19 +463,19 @@
           <context context-type="linenumber">87</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
@@ -530,15 +530,15 @@
           <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
@@ -641,7 +641,7 @@
           <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
@@ -1035,7 +1035,7 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -1607,11 +1607,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="closeButton" datatype="html">
@@ -1682,7 +1682,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">110</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
@@ -1693,7 +1693,7 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
@@ -1907,11 +1907,11 @@
           <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
@@ -2258,7 +2258,7 @@
           <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
@@ -2428,7 +2428,7 @@
           <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
@@ -2502,7 +2502,7 @@
           <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
@@ -2579,7 +2579,7 @@
           <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
@@ -2741,7 +2741,7 @@
           <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
@@ -2764,7 +2764,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="policyNamePlaceholder" datatype="html">
@@ -3428,7 +3428,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instantiate" datatype="html">
@@ -3490,11 +3490,11 @@
           <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
@@ -3505,7 +3505,7 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
@@ -3516,7 +3516,7 @@
           <context context-type="linenumber">51</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
@@ -3545,7 +3545,7 @@
         <source>Location</source><target state="final">Location</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="notValidIpMaskExample" datatype="html">
@@ -3556,42 +3556,49 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addNewIngress" datatype="html">
         <source> Add new ingress NAP</source><target state="final"> Add new ingress NAP</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addNewEgress" datatype="html">
         <source> Add new egress NAP</source><target state="final"> Add new egress NAP</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewBlacklist" datatype="html">
+        <source> Add new blacklist NAP</source><target state="final"> Add new blacklist NAP</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nextButton" datatype="html">
         <source>NEXT</source><target state="final">NEXT</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instanceNamePlaceholder" datatype="html">
         <source>Instance name</source><target state="final">Instance name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="rejectButton" datatype="html">
-        <source>REJECT</source><target state="final">REJECT</target>
+      <trans-unit id="backButton" datatype="html">
+        <source>BACK</source><target state="final">BACK</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="trialLicenseError" datatype="html">
@@ -3602,7 +3609,7 @@
 </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="privateLicenseError" datatype="html">
@@ -3613,14 +3620,14 @@
 </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="buy" datatype="html">
         <source>BUY</source><target state="final">BUY</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">124</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
@@ -3663,50 +3670,50 @@
       <trans-unit id="networkServiceInstances" datatype="html">
         <source>Network service instances</source><target state="final">Network service instances</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances/network-service-instances.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-list/ns-instance-list.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsInstances" datatype="html">
         <source>Network service instances</source><target state="final">Network service instances</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vnfInstances" datatype="html">
         <source>VNF instances</source><target state="final">VNF instances</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="updatedAt" datatype="html">
         <source>Updated At</source><target state="final">Updated At</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="noInstancesToDisplay" datatype="html">
         <source>No instances to display</source><target state="final">No instances to display</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">98</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cnfInstances" datatype="html">
         <source>CNF instances</source><target state="final">CNF instances</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/network-service-instances-detail/network-service-instances-detail.component.html</context>
+          <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
           <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>

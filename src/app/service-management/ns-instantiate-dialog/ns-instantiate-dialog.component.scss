@@ -64,9 +64,8 @@ app-ns-instantiate-dialog {
 		}
 	}
 
-		// Listed ingress and egress points
-	.mat-dialog-content.first-dialog .list,
-	.mat-dialog-content.second-dialog .list {
+	// Listed ingress and egress points
+	.mat-dialog-content.first-dialog .list {
 		color: $primary-font-color-light;
 
 		.list-entry {
@@ -80,9 +79,15 @@ app-ns-instantiate-dialog {
 	}
 
 	// Location, network address point, SLA and name
-	.mat-dialog-content.first-dialog .first-dialog-form,
+	.mat-dialog-content.first-dialog .first-dialog-form {
+		width: 60%;
+		margin-top: 1vh;
+		margin-bottom: 2vh;
+	}
+
 	.mat-dialog-content.second-dialog .second-dialog-form {
-      	width: 60%;
+		width: 60%;
+		margin-top: 6vh;
 	}
 
 	// Invalid IP error message
@@ -93,52 +98,30 @@ app-ns-instantiate-dialog {
 	}	  
 	
 	// Add new ingress or egress point button
-	.mat-dialog-content.first-dialog {
-		.add-new {
-			display: flex;
-			justify-content: flex-end;
+	.mat-dialog-content.first-dialog .add-new {
+		display: flex;
+		justify-content: flex-end;
 
-			button {
-				padding-right: 0;
-				font-size: 16px;
+		button {
+			padding-right: 0;
+			font-size: 16px;
+			color: $primary-color-light;
+			background-color: $basic-background-color;
+
+			i:before {
+				font-size: 12px;
 				color: $primary-color-light;
-				background-color: $basic-background-color;
-
-				i:before {
-					font-size: 12px;
-					color: $primary-color-light;
-				}
 			}
+		}
 
-			button:disabled {
+		button:disabled {
+			color: $button-disabled-font-color;
+
+			i:before {
 				color: $button-disabled-font-color;
-
-				i:before {
-					color: $button-disabled-font-color;
-				}
 			}
 		}
 	}
-
-	// List of ingress and egress points selected
-    .mat-dialog-content.second-dialog .summary {
-		display: flex;
-
-		.ingress-list,
-		.egress-list {
-			display: flex;
-			flex-direction: column;
-			margin-left: 3vw;
-			margin-right: 3vw;
-
-			h2 {
-				margin-top: 2vh;
-				margin-bottom: 0;
-				font-size: 37px;
-				font-weight: normal;
-			}
-		}			
-    }
   
   	.button-container {
 		.cancel, .next {
