@@ -13,8 +13,13 @@ export class SelectUuidComponent implements OnInit {
 
 	// Optional
 	@Input() required: boolean;
-	@Input() value: string;
 	@Input() list: Array<string>;
+	@Input()
+	set value(value: string) {
+		if (value) {
+			this.select.setValue(value);
+		}
+	}
 	@Input()
 	set disabled(disabled: boolean) {
 		disabled ? this.select.disable() : this.select.enable();

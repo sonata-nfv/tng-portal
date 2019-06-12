@@ -16,8 +16,8 @@
 </form>
 
 <form [formGroup]="templateForm">
-	<app-select class="ns" placeholder="Network Service" [list]="nsListSelect" (selectEvent)="receiveNS($event)"
-		i18n-placeholder="@@nsPlaceholder"></app-select>
+	<app-select-uuid class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+		i18n-placeholder="@@nsPlaceholder"></app-select-uuid>
 
 	<mat-form-field class="provider-name">
 		<input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
@@ -41,7 +41,7 @@
 		<div class="underline" [ngClass]="{ opened: !closed }"></div>
 	</button>
 
-	<form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">
+	<form *ngIf="canShowGuarantees()" [formGroup]="templateForm" class="advanced-form">
 		<h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
 
 		<!-- List stored service guarantees -->
@@ -49,9 +49,7 @@
 			<div class="description" *ngIf="item">
 				<!-- Title with delete and open details button -->
 				<div class="description-title">
-					<h4 class="title4">
-						{{ item.uuid }} - {{ item.name }}: {{ item.threshold }} {{ item.unit }}
-					</h4>
+					<h4 class="title4">{{ item.name }}</h4>
 
 					<button (click)="eraseEntry(item)" class="icon-button-shadow">
 						<i class="wui wui-trash-alt"></i>
@@ -84,11 +82,11 @@
 		</div>
 
 		<!-- Selector to list the different service guarantees -->
-		<app-select *ngIf="guaranteesListSelect.length" class="guarantees-select" placeholder="Select a guarantee"
-			[reset]="guaranteesListSelect.length" [list]="guaranteesListSelect" (selectEvent)="addGuarantee($event)"
-			i18n-placeholder="@@selectGuaranteePlaceholder"></app-select>
+		<app-select-uuid *ngIf="guaranteesList.length" class="guarantees-select" placeholder="Select a guarantee"
+			[reset]="guaranteesList.length" [list]="guaranteesList" (selectEvent)="receiveGuarantee($event)"
+			i18n-placeholder="@@selectGuaranteePlaceholder"></app-select-uuid>
 
-		<span *ngIf="guaranteesListSelect.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
+		<span *ngIf="guaranteesList.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
 	</form>
 
 	<form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">

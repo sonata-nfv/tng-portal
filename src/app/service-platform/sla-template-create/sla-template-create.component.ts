@@ -18,12 +18,11 @@ export class SlaTemplateCreateComponent implements OnInit {
 	closed = false;
 	disabledButton = true;
 	templateForm: FormGroup;
-	nsListSelect: Array<any>;
-	guaranteesListSelect: Array<any>;
-	flavors: Array<any>;
+	nsList: Array<any>;
+	guaranteesList: Array<any>;
+	guaranteesListOriginal: Array<any>;
 	storedGuarantees = new Array();
-	guaranties = new Array();
-	nss = new Array();
+	flavors: Array<any>;
 	licenses = [ 'public', 'trial', 'private' ];
 
 	constructor(
@@ -55,63 +54,48 @@ export class SlaTemplateCreateComponent implements OnInit {
 		this.templateForm.valueChanges.subscribe(value => this._onFormChanges(value));
 	}
 
+	private _onFormChanges(value?) {
+		this.disabledButton = this.templateForm.valid ? false : true;
+	}
+
 	async requestData() {
 		this.loading = true;
-		const responses = await Promise.all([
-			this.commonService.getNetworkServices('SP'),
-			this.servicePlatformService.getServiceGuarantees()
-		]);
+		const response = await this.commonService.getNetworkServices('SP');
 
 		this.loading = false;
-		if (responses && responses[ 0 ] && responses[ 1 ]) {
-			// Check there are NS and SLOs to create a template
-			if (!responses[ 0 ].length || !responses[ 1 ].length) {
-				this.utilsService.openSnackBar('There was an error fetching the information required', '');
-				this.close();
+		if (response) {
+			// Check there are NS to create a template
+			if (!response.length) {
+				this.openError();
 			}
 
-			// Save complete data from guarantees and NS
-			this.nss = responses[ 0 ];
-			this.guaranties = responses[ 1 ];
-
-			// Save NS data to display in select
-			this.nsListSelect = responses[ 0 ].map(x => x.name);
-			// Create a list of guarantees to display in the select
-			this.guaranteesListSelect = responses[ 1 ].map(x =>
-				x.uuid + ' - ' + x.name + ': ' + x.threshold + ' ' + x.unit
-			);
+			this.nsList = response;
 		} else {
-			const title = 'oh oh...';
-			const content = 'There was an error fetching the information required to create a template. Please, try again later.';
-			const action = 'Accept';
-
-			this.dialogData.openDialog(title, content, action, () => {
-				this.close();
-			});
+			this.openError();
 		}
 	}
 
-	private _onFormChanges(value?) {
-		this.disabledButton =
-			(this.templateForm.valid && this.storedGuarantees.length) ?
-				false : true;
-	}
-
-	receiveNS(ns) {
-		if (ns) {
-			this.templateForm.get('ns').setValue(ns);
-			this.requestFlavors(ns);
-		}
-	}
-
-	receiveFlavor(flavor) {
-		this.templateForm.get('flavor').setValue(flavor);
-	}
-
-	async requestFlavors(ns) {
+	async requestGuarantees(nsUUID) {
 		this.loading = true;
-		const nsd_uuid = this.nss.find(x => x.name === ns).serviceId;
-		const response = await this.servicePlatformService.getFlavors(nsd_uuid);
+		const nsName = this.nsList.find(x => x.uuid === nsUUID).name;
+		const response = await this.servicePlatformService.getServiceGuarantees(nsName);
+
+		this.loading = false;
+		if (response && response.length) {
+			if (!response.length) {
+				this.utilsService.openSnackBar('There are no network service guarantees related.', '');
+			}
+
+			this.guaranteesList = Array.from(response);
+			this.guaranteesListOriginal = response;
+		} else {
+			this.utilsService.openSnackBar('There was an error fetching the network service guarantees related.', '');
+		}
+	}
+
+	async requestFlavors(nsUUID) {
+		this.loading = true;
+		const response = await this.servicePlatformService.getFlavors(nsUUID);
 
 		this.loading = false;
 		if (response && response.length) {
@@ -121,38 +105,20 @@ export class SlaTemplateCreateComponent implements OnInit {
 		}
 	}
 
-	receiveExpirationDate(expirationDate) {
-		this.templateForm.get('expirationDate').setValue(expirationDate);
-	}
-
-	addGuarantee(guarantee) {
-		if (guarantee) {
-			const id = guarantee.split(' - ')[ 0 ];
-			const prop = guarantee.split(' - ')[ 1 ].split(': ')[ 0 ];
-
-			// Include the selected guarantee in the displayed list
-			this.storedGuarantees.push(Object.assign({ }, this.guaranties.find(x => x.uuid === id), { closed: true }));
-
-			// Remove the selected guarantee from the guarantees list offered
-			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 0 ] !== id);
-
-			// Remove other guarantees with same goals
-			this.guaranteesListSelect = this.guaranteesListSelect.filter(x => x.split(' - ')[ 1 ].split(': ')[ 0 ] !== prop);
-
-			this._onFormChanges();
+	receiveNS(ns) {
+		if (ns) {
+			this.templateForm.get('ns').setValue(ns);
+			this.requestGuarantees(ns);
+			this.requestFlavors(ns);
 		}
 	}
 
-	eraseEntry(item) {
-		// Remove item from the list of stored guarantees displayed
-		this.storedGuarantees = this.storedGuarantees.filter(x => x.uuid !== item.uuid);
+	receiveFlavor(flavor) {
+		this.templateForm.get('flavor').setValue(flavor);
+	}
 
-		// Save all items with that property in the offered guarantees
-		this.guaranteesListSelect = this.guaranteesListSelect.concat(
-			this.guaranties.filter(x => x.name === item.name).map(x => x.uuid + ' - ' + x.name + ': ' + x.threshold + ' ' + x.unit)
-		);
-
-		this._onFormChanges();
+	receiveExpirationDate(expirationDate) {
+		this.templateForm.get('expirationDate').setValue(expirationDate);
 	}
 
 	receiveLicense(license) {
@@ -163,16 +129,40 @@ export class SlaTemplateCreateComponent implements OnInit {
 		this.templateForm.get('licenseExpirationDate').setValue(expirationDate);
 	}
 
-	generateTemplate() {
-		const guarantees = this.storedGuarantees.map(x => x.uuid);
-		const nsd_uuid = this.nss.find(x => x.name === this.templateForm.get('ns').value).serviceId;
+	receiveGuarantee(guaranteeUUID) {
+		if (guaranteeUUID) {
+			const guarantee = this.guaranteesList.find(item => item.uuid === guaranteeUUID);
 
+			// Include the selected guarantee in the displayed list
+			this.storedGuarantees.push(Object.assign({ }, guarantee, { closed: true }));
+
+			// Remove the selected guarantee from the guarantees list offered
+			this.guaranteesList = this.guaranteesList.filter(item => item.uuid !== guaranteeUUID);
+
+			// Remove other guarantees with same goals
+			this.guaranteesList = this.guaranteesList.filter(item => item.guaranteeName !== guarantee.guaranteeName);
+
+			this._onFormChanges();
+		}
+	}
+
+	eraseEntry(item) {
+		// Remove item from the list of stored guarantees displayed
+		this.storedGuarantees = this.storedGuarantees.filter(x => x.uuid !== item.uuid);
+
+		// Save all items with that property in the offered guarantees
+		this.guaranteesList = this.guaranteesList.concat(this.guaranteesListOriginal.filter(x => x.guaranteeName === item.guaranteeName));
+
+		this._onFormChanges();
+	}
+
+	generateTemplate() {
 		return {
-			nsd_uuid,
+			nsd_uuid: this.templateForm.get('ns').value,
 			templateName: this.templateForm.get('name').value,
 			provider_name: this.templateForm.get('providerName').value || '',
 			expireDate: this.templateForm.get('expirationDate').value,
-			guaranteeId: guarantees,
+			guaranteeId: this.storedGuarantees.map(x => x.uuid),
 			service_licence_type: this.templateForm.get('license').value || 'public',
 			allowed_service_instances: this.templateForm.get('instances').value || '1',
 			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
@@ -200,21 +190,35 @@ export class SlaTemplateCreateComponent implements OnInit {
 	}
 
 	canShowAdvancedSection() {
-		return this.guaranteesListSelect || this.storedGuarantees.length;
+		return this.templateForm.get('ns').value;
 	}
 
-	instancesErrorExists() {
-		return this.templateForm.get('instances').hasError('pattern');
+	canShowGuarantees() {
+		return !this.closed && (this.guaranteesList || this.storedGuarantees.length);
 	}
 
 	canShowFlavors() {
 		return !this.closed && this.flavors && this.flavors.length;
 	}
 
+	instancesErrorExists() {
+		return this.templateForm.get('instances').hasError('pattern');
+	}
+
 	changeCloseStatus() {
-		this.closed = !closed;
+		this.closed = !this.closed;
 		this.templateForm.get('licenseExpirationDate').setValue(null);
 		return;
+	}
+
+	openError() {
+		const title = 'oh oh...';
+		const content = 'There was an error fetching the network services required. Please, try again later.';
+		const action = 'Accept';
+
+		this.dialogData.openDialog(title, content, action, () => {
+			this.close();
+		});
 	}
 
 	close() {

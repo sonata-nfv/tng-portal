@@ -64,10 +64,10 @@ import { SmNetworkServicesComponent } from './service-management/sm-network-serv
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
 import { RequestListComponent } from './service-management/request-list/request-list.component';
 import { RequestDetailComponent } from './service-management/request-detail/request-detail.component';
-import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
+import { NsInstanceListComponent } from './service-management/ns-instance-list/ns-instance-list.component';
 import {
-	NetworkServiceInstancesDetailComponent
-} from './service-management/network-service-instances-detail/network-service-instances-detail.component';
+	NsInstanceDetailComponent
+} from './service-management/ns-instance-detail/ns-instance-detail.component';
 import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
 
@@ -176,7 +176,7 @@ const routes: Routes = [
 				]
 			},
 			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/slices/slice-templates', pathMatch: 'full' },
+			{ path: 'service-management', redirectTo: 'service-management/network-services/services', pathMatch: 'full' },
 			{
 				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
 				children: [
@@ -195,9 +195,9 @@ const routes: Routes = [
 				children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
 			},
 			{
-				path: 'service-management/network-services/network-service-instances', component: NetworkServiceInstancesComponent,
+				path: 'service-management/network-services/network-service-instances', component: NsInstanceListComponent,
 				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent }
+					{ path: ':id', component: NsInstanceDetailComponent }
 				]
 			},
 			{

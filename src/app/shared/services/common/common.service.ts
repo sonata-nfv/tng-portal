@@ -367,11 +367,8 @@ export class CommonService {
 				version: response[ 'nstd' ][ 'version' ],
 				vendor: response[ 'nstd' ][ 'vendor' ],
 				description: response[ 'nstd' ][ 'description' ],
-				notificationType: response[ 'nstd' ][ 'notificationTypes' ],
-				userDefinedData: response[ 'nstd' ][ 'userDefinedData' ],
+				SNSSAI: this.parseSNSSAI(response[ 'nstd' ][ 'SNSSAI_identifier' ][ 'slice-service-type' ]),
 				usageState: response[ 'nstd' ][ 'usageState' ],
-				onboardingState: response[ 'nstd' ][ 'onboardingState' ],
-				operationalState: response[ 'nstd' ][ 'operationalState' ],
 				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
@@ -390,6 +387,17 @@ export class CommonService {
 			};
 		} catch (error) {
 			console.error(error);
+		}
+	}
+
+	parseSNSSAI(snssai) {
+		switch (snssai) {
+			case 'eMBB':
+				return 'Enhanced Mobile Broadband slice (eMBB)';
+			case 'URLLC':
+				return 'Ultra Reliable Low Latency Communications slice (URLLC)';
+			case 'mMTC':
+				return 'Massive Machine Type Communications slice (mMTC)';
 		}
 	}
 

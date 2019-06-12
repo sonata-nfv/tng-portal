@@ -37,6 +37,7 @@
 			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 		</mat-form-field>
 	</div>
+
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['usageState']" class="left-column">
 			<input matInput placeholder="Usage state" value="{{ utilsService.capitalizeFirstLetter(detail['usageState']) }}" disabled
@@ -47,30 +48,15 @@
 				i18n-placeholder="@@statusPlaceholder" />
 		</mat-form-field>
 	</div>
-	<div class="same-row">
-		<mat-form-field *ngIf="detail['onboardingState']" class="left-column">
-			<input matInput placeholder="Onboarding state" value="{{ utilsService.capitalizeFirstLetter(detail['onboardingState']) }}"
-				disabled i18n-placeholder="@@onboardingStatePlaceholder" />
-		</mat-form-field>
-		<mat-form-field *ngIf="detail['operationalState']">
-			<input matInput placeholder="Operational state" value="{{ utilsService.capitalizeFirstLetter(detail['operationalState']) }}"
-				disabled i18n-placeholder="@@operationalStatePlaceholder" />
-		</mat-form-field>
-	</div>
-
-	<mat-form-field *ngIf="detail['notificationType']" class="left-column">
-		<input matInput placeholder="Notification Types" value="{{ detail['notificationType'] }}" disabled
-			i18n-placeholder="@@notificationTypesPlaceholder" />
-	</mat-form-field>
-
-	<mat-form-field *ngIf="detail['userDefinedData']" class="left-column">
-		<input matInput placeholder="User defined data" value="{{ detail['userDefinedData'] }}" disabled
-			i18n-placeholder="@@userDefinedDataPlaceholder" />
-	</mat-form-field>
 
 	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
 		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['SNSSAI']">
+		<input matInput placeholder="Slice service type" value="{{ detail['SNSSAI'] }}" disabled
+			i18n-placeholder="@@sliceServiceTypePlaceholder" />
 	</mat-form-field>
 
 	<div class="description" *ngIf="detail['description']">

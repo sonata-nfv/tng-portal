@@ -68,7 +68,6 @@ export class ServiceManagementService {
 				nstVersion: response[ 'nst-version' ],
 				vendor: response[ 'vendor' ],
 				status: response[ 'nsi-status' ],
-				qiValue: response[ '5qiValue' ],
 				instantiationTime: response[ 'instantiateTime' ],
 				description: response[ 'description' ],
 				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {
@@ -338,6 +337,7 @@ export class ServiceManagementService {
 						uuid: item.nsi_uuid,
 						type: item.license_type,
 						status: item.license_status,
+						customerUsername: item.cust_username,
 						currentInstances: item.current_instances,
 						allowedInstances: item.allowed_instances,
 						expirationDate: item.license_exp_date,

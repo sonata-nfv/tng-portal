@@ -95,8 +95,9 @@
 				i18n-placeholder="@@instanceNamePlaceholder" />
 		</mat-form-field>
 
-		<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" required="false"
-			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder">
+		<app-select-uuid *ngIf="slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas"
+			[value]="instantiationForm.get('sla').value" [disabled]="loading" (selectEvent)="receiveSLA($event)"
+			i18n-placeholder="@@selectSLAPlaceholder">
 		</app-select-uuid>
 	</form>
 </mat-dialog-content>
