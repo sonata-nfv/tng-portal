@@ -37,26 +37,35 @@ app-vim {
 
     app-select,
     .mat-form-field {
-        width: 25vw;
-        margin-right: 1vw;
+        width: 24vw;
+		margin-right: 1vw;
+		
+		&.floating-ip-range {
+			width: 46vw;
+		}
     }
 
+    .same-row .dash {
+        margin-right: 20px;
+        font-size: 25px;
+        color: $secondary-font-color;
+	}
+	
     .error-message.input-error {
-        width: 20vw;
+		width: 23vw;
         margin-top: -17px;
     }
 
     .error-message.input-error.second-column {
-        width: 42vw;
-        margin-left: 20px;
-        margin-top: -29px;
-    }
-
-    .same-row p {
-        margin-right: 20px;
-        font-size: 25px;
-        color: $secondary-font-color;
-    }
+		width: 24vw;
+		margin-top: -17px;
+		margin-left: 20px;
+	}
+	
+	.error-message.floating-ip-range-error {
+		width: 46vw;
+        margin-top: -17px;
+	}
     
     .description {
         width: 100%;

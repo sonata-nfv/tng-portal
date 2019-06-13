@@ -107,41 +107,75 @@
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
-		<p> / </p>
+		<p class="dash"> / </p>
 		<mat-form-field>
 			<input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask" required
 				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetworkMask" />
 		</mat-form-field>
 	</div>
-	<p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a
-		valid IP</p>
-	<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column" i18n="@@notValidIp">
-		*This is not a valid IP mask (i.e. /24)</p>
+	<div class="same-row">
+		<p *ngIf="openstackForm.get('privateNetwork').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not a
+			valid IP</p>
+		<p *ngIf="openstackForm.get('privateNetworkMask').errors?.pattern" class="error-message input-error second-column"
+			i18n="@@notValidIpMask">
+			*This is not a valid IP mask (i.e. /24)</p>
+	</div>
 
 	<div class="same-row">
 		<mat-form-field>
-			<input matInput type="text" placeholder="External network" formControlName="externalNetworkID" required
-				[errorStateMatcher]="matcher" i18n-placeholder="@@externalNetwork" />
+			<input matInput type="text" placeholder="External network ID" formControlName="externalNetworkID" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@externalNetworkID" />
 			<button *ngIf="edition && openstackForm.get('externalNetworkID').value" mat-button matTooltip="Copy" class="icon-button-shadow"
 				matSuffix (click)="copyToClipboard(openstackForm.get('externalNetworkID').value)" i18n-matTooltip="@@copy">
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
 		<mat-form-field>
-			<input matInput type="text" placeholder="External router" formControlName="externalRouterID" required
-				[errorStateMatcher]="matcher" i18n-placeholder="@@externalRouter" />
+			<input matInput type="text" placeholder="External router ID" formControlName="externalRouterID" required
+				[errorStateMatcher]="matcher" i18n-placeholder="@@externalRouterID" />
 			<button *ngIf="edition && openstackForm.get('externalRouterID').value" mat-button matTooltip="Copy" class="icon-button-shadow"
 				matSuffix (click)="copyToClipboard(openstackForm.get('externalRouterID').value)" i18n-matTooltip="@@copy">
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
-
-		<!-- <app-select placeholder="Select an external network" [list]="externalNetworks" (selectEvent)="receiveExternalNetwork($event)"
-            i18n-placeholder="@@selectExternalNetwork"></app-select>
-
-        <app-select placeholder="Select an external router" [list]="externalRouters" (selectEvent)="receiveExternalRouter($event)"
-            i18n-placeholder="@@selectExternalRouter"></app-select> -->
 	</div>
+
+	<div class="same-row">
+		<mat-form-field>
+			<input matInput type="text" placeholder="External router IP" formControlName="externalRouterIP" [errorStateMatcher]="matcher"
+				i18n-placeholder="@@externalRouterIP" />
+			<button *ngIf="edition && openstackForm.get('externalRouterIP').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+				matSuffix (click)="copyToClipboard(openstackForm.get('externalRouterIP').value)" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Management flow IP" formControlName="managementFlowIP" [errorStateMatcher]="matcher"
+				i18n-placeholder="@@managementFlowIP" />
+			<button *ngIf="edition && openstackForm.get('managementFlowIP').value" mat-button matTooltip="Copy" class="icon-button-shadow"
+				matSuffix (click)="copyToClipboard(openstackForm.get('managementFlowIP').value)" i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+	</div>
+	<div class="same-row">
+		<p *ngIf="openstackForm.get('externalRouterIP').errors?.pattern" class="error-message input-error" i18n="@@notValidIp">*This is not
+			a valid IP</p>
+		<p *ngIf="openstackForm.get('managementFlowIP').errors?.pattern" class="error-message input-error second-column"
+			i18n="@@notValidIp">
+			*This is not a valid IP</p>
+	</div>
+
+	<div class="same-row">
+		<mat-form-field class="floating-ip-range">
+			<input matInput type="text" placeholder="Floating IP range" formControlName="floatingIpRanging" [appTrim]="openstackForm"
+				i18n-placeholder="@@floatingIpRange" />
+		</mat-form-field>
+		<button mat-button matTooltip="Help" class="icon-button-shadow help" matSuffix (click)="openTip()" i18n-matTooltip="@@help"> i
+		</button>
+	</div>
+	<p *ngIf="openstackForm.get('floatingIpRanging').errors?.pattern" class="error-message floating-ip-range-error"
+		i18n="@@notValidIpRange">*This is not a valid IP range</p>
 </form>
 
 <form [formGroup]="kubernetesForm" class="vimForm" *ngIf="canShowKubernetesForm()">

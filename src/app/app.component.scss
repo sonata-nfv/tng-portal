@@ -653,6 +653,14 @@ ul.unordered-list .mat-input-element:disabled {
 	background-color: $stop-color;
 }
 
+.icon-button-shadow.help {
+	align-self: center ;
+	height: 30px;
+	width: 30px;    
+	font-size: 17px;
+	color: $primary-font-color-light;
+}
+
 .wui-plus:before {
 	margin-right: 5px;
 	font-size: 14px;
