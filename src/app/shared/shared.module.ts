@@ -17,9 +17,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SelectComponent } from './components/select/select.component';
 import { SelectUuidComponent } from './components/select/select-uuid.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { FeatureAvailableDirective } from './directives/feature-available.directive';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FunctionsComponent } from './components/functions/functions.component';
+import { FeatureAvailableDirective } from './directives/feature-available.directive';
+import { TrimFormValuesDirective } from './directives/trimFormValues.directive';
 
 export function initConfiguration(configService: ConfigService): Function {
 	return () => configService.init();
@@ -33,8 +34,9 @@ export function initConfiguration(configService: ConfigService): Function {
 		SelectComponent,
 		SelectUuidComponent,
 		SpinnerComponent,
+		FunctionsComponent,
 		FeatureAvailableDirective,
-		FunctionsComponent
+		TrimFormValuesDirective
 	],
 	entryComponents: [ DialogComponent ],
 	imports: [
@@ -51,8 +53,9 @@ export function initConfiguration(configService: ConfigService): Function {
 		SelectComponent,
 		SelectUuidComponent,
 		SpinnerComponent,
+		FunctionsComponent,
 		FeatureAvailableDirective,
-		FunctionsComponent
+		TrimFormValuesDirective
 	],
 	providers: [
 		ConfigService,
