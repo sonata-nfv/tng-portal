@@ -35,7 +35,7 @@ export class PlacementPolicyComponent implements OnInit {
 	ngOnInit() {
 		this.initForm();
 		this.requestPlacement();
-		this.placementPolicies = [ 'None', 'Load balanced', 'Prioritise', 'Fill first' ];
+		this.placementPolicies = [ 'None', 'Load Balanced', 'Prioritise', 'Fill First' ];
 	}
 
 	private initForm() {
@@ -58,8 +58,7 @@ export class PlacementPolicyComponent implements OnInit {
 
 		this.loading = false;
 		if (placement) {
-			this.originalPolicy = placement[ 'policy' ] ?
-				this.utilsService.capitalizeFirstLetter(placement[ 'policy' ]) : 'None';
+			this.originalPolicy = placement[ 'policy' ] ? placement[ 'policy' ] : 'None';
 			this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
 
 			// Display the datacenters for Prioritise policy
