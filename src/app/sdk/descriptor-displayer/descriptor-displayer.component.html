@@ -1,3 +1,20 @@
-<p>
-  descriptor-displayer works!
-</p>
+<h3 class="title3 header-section-name" i18n="@@createSDKPackage">Service Descriptors</h3>
+
+<!-- <mat-form-field *ngFor='let file of files' class="description"> -->
+<!-- <textarea class="content" matInput type="text" [readonly]="true">
+		{{file}}
+	</textarea> -->
+
+<!-- <embed src="{{file}}" width="800px" height="2100px" /> -->
+
+<!-- </mat-form-field> -->
+
+<div *ngFor='let file of files'>
+	<!-- <embed src="{{file}}" width="800px" height="2100px" /> -->
+	<iframe class="e2e-iframe-trusted-src" width="640" height="390" [src]="file"></iframe>
+	<!-- <embed [src]="file" width="100%" height="100%"> -->
+	<!-- </embed> -->
+
+	<!-- <pdf-viewer [src]="file" [render-text]="true" style="display: block;"></pdf-viewer> -->
+
+</div>

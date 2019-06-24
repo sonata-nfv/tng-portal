@@ -26,6 +26,6 @@ import { DescriptorDisplayerComponent } from './descriptor-displayer/descriptor-
 		ReactiveFormsModule,
 		FormsModule
 	],
-	providers: [ SdkService ]
+	providers: [SdkService]
 })
 export class SdkModule { }

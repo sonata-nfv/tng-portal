@@ -53,7 +53,7 @@ import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent ],
+	declarations: [AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent],
 	imports: [
 		BrowserAnimationsModule,
 		AppRoutingModule,
@@ -69,7 +69,7 @@ import { SharedModule } from './shared/shared.module';
 		SharedModule,
 		AuthenticationModule
 	],
-	providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
-	bootstrap: [ AppComponent ]
+	providers: [{ provide: LOCALE_ID, useValue: 'en' }],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

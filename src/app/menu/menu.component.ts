@@ -136,6 +136,9 @@ export class MenuComponent implements OnInit {
 			case 'sdk-generator':
 				this.router.navigate(['sdk/descriptor-generator']);
 				break;
+			case 'sdk-edit':
+				this.router.navigate(['sdk/descriptor-displayer']);
+				break;
 		}
 		this.section = buttonId;
 	}

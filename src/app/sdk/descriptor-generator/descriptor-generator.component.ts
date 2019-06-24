@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlsValidator } from '../../shared/utils/controls-validator';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
+import { SdkService } from '../sdk.service';
 
 @Component({
 	selector: 'app-descriptor-generator',
@@ -18,7 +19,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	section = 'sdk';
 
 	constructor(private router: Router, private route: ActivatedRoute, private controlsValidator: ControlsValidator,
-		private http: HttpClient) { }
+		private http: HttpClient, private service: SdkService) { }
 
 	ngOnInit() {
 		this.initForm();
@@ -57,7 +58,11 @@ export class DescriptorGeneratorComponent implements OnInit {
 					.set('Content-Type', 'application/x-www-form-urlencoded')
 					.set('Access-Control-Allow-Origin', 'http://localhost:5098')
 			}
-		).subscribe(response => console.log(response));
+		).subscribe(response => {
+			console.log('response', response['files']);
+			this.service.changeFiles(response['files']);
+			this.router.navigate(['sdk/descriptor-displayer']);
+		});
 	}
 
 	close() {
