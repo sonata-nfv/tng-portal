@@ -58,6 +58,11 @@ export class PlacementPolicyComponent implements OnInit {
 			this.originalPolicy = placement[ 'policy' ] ?
 				this.utilsService.capitalizeFirstLetter(placement[ 'policy' ]) : 'None';
 			this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
+
+			// Display the datacenters for Prioritise policy
+			if (this.originalPolicy === 'Prioritise') {
+				this.datacentersSelected = placement[ 'datacenters' ];
+			}
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the actual placement policy', '');
 		}
@@ -76,11 +81,21 @@ export class PlacementPolicyComponent implements OnInit {
 		const datacenters = await this.commonService.getEndpoints();
 
 		this.loading = false;
-		if (datacenters) {
+		if (datacenters.length) {
 			this.datacenters = datacenters;
+
+			// If received policy already has datacenters selected, remove them from the offered list
+			if (this.datacentersSelected.length) {
+				this.datacentersSelected.forEach(datacenter => {
+					this.datacenters = this.datacenters.filter(item => item.uuid !== datacenter.uuid);
+				});
+			}
 		} else {
-			this.utilsService.openSnackBar('Unable to fetch datacenters', '');
-			this.datacenters.unshift({ uuid: 'None', name: 'None' });
+			const title = 'Oh oh...';
+			const content = 'No datacenters were found this time. Please, choose another placement policy or try again later.';
+			const action = 'Accept';
+
+			this.dialogData.openDialog(title, content, action, async () => { });
 		}
 	}
 
@@ -137,8 +152,7 @@ export class PlacementPolicyComponent implements OnInit {
 	canShowAlreadySaved() {
 		const newPolicy = this.placementPolicyForm.get('placementPolicy').value;
 
-		return this.originalPolicy && newPolicy && this.originalPolicy === newPolicy ?
-			true : false;
+		return this.originalPolicy && this.originalPolicy === newPolicy ? true : false;
 	}
 
 	canReset() {
