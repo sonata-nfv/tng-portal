@@ -208,6 +208,7 @@ export class PlacementPolicyComponent implements OnInit {
 		if (response) {
 			this.errorInSave = false;
 			this.utilsService.openSnackBar('New placement policy saved...', '');
+			this.requestPlacement();
 		} else {
 			this.errorInSave = true;
 			this.utilsService.openSnackBar('Unable to save the new placement policy', '');
