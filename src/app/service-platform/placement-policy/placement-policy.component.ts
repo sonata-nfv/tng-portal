@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CommonService } from '../../shared/services/common/common.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { ServicePlatformService } from '../service-platform.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-placement-policy',
@@ -14,6 +15,7 @@ import { ServicePlatformService } from '../service-platform.service';
 export class PlacementPolicyComponent implements OnInit {
 	loading = false;
 	error: boolean;
+	errorInSave = false;
 	prioritise = false;
 	originalPolicy: string;
 	placementPolicies: Array<string>;
@@ -26,6 +28,7 @@ export class PlacementPolicyComponent implements OnInit {
 	constructor(
 		private utilsService: UtilsService,
 		private commonService: CommonService,
+		private dialogData: DialogDataService,
 		private servicePlatformService: ServicePlatformService
 	) { }
 
@@ -100,8 +103,11 @@ export class PlacementPolicyComponent implements OnInit {
 	}
 
 	receivePlacementPolicy(policy) {
-		this.placementPolicyForm.get('placementPolicy').setValue(policy);
-		this.error = false;
+		if (policy !== this.placementPolicyForm.get('placementPolicy').value) {
+			this.placementPolicyForm.get('placementPolicy').setValue(policy);
+			this.error = false;
+			this.errorInSave = false;
+		}
 	}
 
 	receiveDatecenter(datacenter) {
@@ -179,12 +185,32 @@ export class PlacementPolicyComponent implements OnInit {
 
 		this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
 		this.error = false;
+		this.errorInSave = false;
 	}
 
-	save() {
+	async save() {
+		let placementPolicy: object;
+		const policy = this.placementPolicyForm.get('placementPolicy').value;
 
+		policy === 'Prioritise' ?
+			placementPolicy = {
+				policy: policy,
+				datacenters: this.datacentersSelected.map(item => item.uuid)
+			}
+			: placementPolicy = {
+				policy: policy
+			};
 
-		// TODO Save request to catalog
-		console.log(this.datacentersSelected);
+		this.loading = true;
+		const response = await this.servicePlatformService.postPlacementPolicy(placementPolicy);
+
+		this.loading = false;
+		if (response) {
+			this.errorInSave = false;
+			this.utilsService.openSnackBar('New placement policy saved...', '');
+		} else {
+			this.errorInSave = true;
+			this.utilsService.openSnackBar('Unable to save the new placement policy', '');
+		}
 	}
 }

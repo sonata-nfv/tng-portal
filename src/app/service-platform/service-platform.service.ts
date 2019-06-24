@@ -319,6 +319,22 @@ export class ServicePlatformService {
 	}
 
 	/**
+	 * Generates a Placement Policy
+	 *
+	 * @param placementPolicy Data of the desired Placement Policy
+	 */
+	async postPlacementPolicy(placementPolicy) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.placementPolicies;
+
+		try {
+			return await this.http.post(url, placementPolicy, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Retrieves a list of Runtime Policies.
 	 * Either following a search pattern or not.
 	 *
