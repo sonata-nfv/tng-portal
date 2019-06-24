@@ -373,6 +373,8 @@ export class CommonService {
 					return {
 						uuid: item[ 'id' ],
 						nsdName: item[ 'nsd-name' ],
+						nsdVendor: item[ 'nsd-vendor' ],
+						nsdVersion: item[ 'nsd-version' ],
 						isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
 						slaName: item[ 'sla-name' ]
 					};
