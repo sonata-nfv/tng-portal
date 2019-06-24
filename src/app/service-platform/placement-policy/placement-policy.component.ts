@@ -18,6 +18,7 @@ export class PlacementPolicyComponent implements OnInit {
 	errorInSave = false;
 	prioritise = false;
 	originalPolicy: string;
+	originalDatacenters: Array<string>;
 	placementPolicies: Array<string>;
 	placementPolicyForm: FormGroup;
 	prioritiseForm: FormGroup;
@@ -61,9 +62,8 @@ export class PlacementPolicyComponent implements OnInit {
 			this.originalPolicy = placement[ 'policy' ] ? placement[ 'policy' ] : 'None';
 			this.placementPolicyForm.get('placementPolicy').setValue(this.originalPolicy);
 
-			// Display the datacenters for Prioritise policy
 			if (this.originalPolicy === 'Prioritise') {
-				this.datacentersSelected = placement[ 'datacenters' ];
+				this.originalDatacenters = placement[ 'datacenters' ];
 			}
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the actual placement policy', '');
@@ -86,10 +86,11 @@ export class PlacementPolicyComponent implements OnInit {
 		if (datacenters.length) {
 			this.datacenters = datacenters;
 
-			// If received policy already has datacenters selected, remove them from the offered list
-			if (this.datacentersSelected.length) {
-				this.datacentersSelected.forEach(datacenter => {
-					this.datacenters = this.datacenters.filter(item => item.uuid !== datacenter.uuid);
+			// If Prioritise policy, store the datacenters selected and remove them from the offered list
+			if (this.originalPolicy === 'Prioritise') {
+				this.originalDatacenters.forEach(uuid => {
+					this.datacentersSelected.push(this.datacenters.find(item => item.uuid === uuid));
+					this.datacenters = this.datacenters.filter(item => item.uuid !== uuid);
 				});
 			}
 		} else {
