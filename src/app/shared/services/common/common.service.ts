@@ -272,14 +272,15 @@ export class CommonService {
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response instanceof Array ?
-				response.map(item => ({
-					uuid: item.uuid,
-					name: item.nsd.name,
-					serviceId: item.uuid,
-					vendor: item.nsd.vendor,
-					version: item.nsd.version,
-					status: item.status
-				})) : [];
+				response.filter(ns => ns.platform.toLowerCase() === '5gtango')
+					.map(item => ({
+						uuid: item.uuid,
+						name: item.nsd.name,
+						serviceId: item.uuid,
+						vendor: item.nsd.vendor,
+						version: item.nsd.version,
+						status: item.status
+					})) : [];
 		} catch (error) {
 			console.error(error);
 		}

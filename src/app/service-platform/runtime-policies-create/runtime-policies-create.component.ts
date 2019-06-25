@@ -116,7 +116,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		const slas = await this.commonService.getSLATemplates();
 
 		this.loading = false;
-		if (slas) {
+		if (slas && slas.length) {
 			this.slaList = slas.map(sla => ({ uuid: sla.uuid, name: sla.name }));
 		} else {
 			this.slaList.push({ uuid: 'None', name: 'None' });
