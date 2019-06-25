@@ -414,7 +414,7 @@ export class ServicePlatformService {
 	 */
 	async postOneRuntimePolicy(policy) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.runtimePolicies;
+		const url = this.config.baseSP + this.config.runtimePoliciesUI;
 
 		try {
 			return await this.http.post(url, policy, { headers: headers }).toPromise();
