@@ -149,7 +149,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 				});
 
 				if (!this.conditions.length) {
-					this.informError(2);
+					// If there is only one NS close the creation page
+					this.nsList.length > 1 ? this.informError(2) : this.informError(3);
 				}
 			} else {
 				this.informError(1);
@@ -506,11 +507,25 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		const msg2 = 'This network service does not allow to create monitoring rules. \
 					So you will not be able to create a new policy. \
 					Please, try with another.';
-		const content = option === 1 ? msg1 : msg2;
+		const msg3 = 'This network service does not allow to create monitoring rules. \
+					So you will not be able to create a new policy. \
+					Please, try again when there is a network service with monitoring rules.';
+		let content: string;
+		switch (option) {
+			case 1:
+				content = msg1;
+				break;
+			case 2:
+				content = msg2;
+				break;
+			case 3:
+				content = msg3;
+				break;
+		}
 		const action = 'Accept';
 
 		this.dialogData.openDialog(title, content, action, () => {
-			if (option === 1) {
+			if (option === 1 || option === 3) {
 				this.close();
 			}
 		});
