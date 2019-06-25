@@ -161,7 +161,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 			service_uuid: serviceUUID,
 			sla_id: this.instantiationForm.get('sla').value || ''
 		};
-		const response = await this.serviceManagementService.postNSRequest(body);
+		const response = await this.serviceManagementService.postOneNSInstance(body);
 
 		this.loading = false;
 		if (response) {

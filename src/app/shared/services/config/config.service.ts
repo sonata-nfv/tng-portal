@@ -30,6 +30,7 @@ export class ConfigService extends Config {
 	testExecutions = 'tests/results';
 	placementPolicies = 'policies/placement';
 	runtimePolicies = 'policies';
+	runtimePoliciesUI = 'policies/ui';
 	runtimePoliciesBind = 'policies/bind/';
 	runtimePoliciesDefault = 'policies/default/';
 	runtimePoliciesActions = 'policies/actions';

@@ -412,20 +412,15 @@ export class ServicePlatformService {
 	 *
 	 * @param policy Data of the desired Runtime Policy
 	 */
-	postOneRuntimePolicy(policy): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async postOneRuntimePolicy(policy) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesUI;
 
-			this.http
-				.post(this.config.baseSP + this.config.runtimePolicies, policy, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve();
-				})
-				.catch(err => reject(err.statusText));
-		});
+		try {
+			return await this.http.post(url, policy, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

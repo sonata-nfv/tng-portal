@@ -228,12 +228,7 @@ export class VimComponent implements OnInit {
 	}
 
 	checkJSONValidity() {
-		try {
-			JSON.parse(this.kubernetesForm.get('config').value);
-		} catch (error) {
-			return false;
-		}
-		return true;
+		return this.utilsService.isValidJSON(this.kubernetesForm.get('config').value);
 	}
 
 	canShowForm() {

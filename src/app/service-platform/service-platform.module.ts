@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -16,7 +17,7 @@ import { SpFunctionsDetailComponent } from './sp-functions-detail/sp-functions-d
 import { PlacementPolicyComponent } from './placement-policy/placement-policy.component';
 import { RuntimePoliciesComponent } from './runtime-policies/runtime-policies.component';
 import { RuntimePoliciesDetailComponent } from './runtime-policies-detail/runtime-policies-detail.component';
-import { RuntimePoliciesCreateComponent } from './runtime-policies-create/runtime-policies-create.component';
+import { RuntimePolicyCreateComponent } from './runtime-policy-create/runtime-policy-create.component';
 import {
 	RuntimePoliciesGeneratedActionsComponent
 } from './runtime-policies-generated-actions/runtime-policies-generated-actions.component';
@@ -42,7 +43,7 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		PlacementPolicyComponent,
 		RuntimePoliciesComponent,
 		RuntimePoliciesDetailComponent,
-		RuntimePoliciesCreateComponent,
+		RuntimePolicyCreateComponent,
 		RuntimePoliciesGeneratedActionsComponent,
 		SlaTemplateListComponent,
 		SlaTemplateDetailComponent,
@@ -63,7 +64,8 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		AppRoutingModule,
 		ReactiveFormsModule,
 		FormsModule,
-		SharedModule
+		SharedModule,
+		NgxJsonViewerModule
 	],
 	providers: [ ServicePlatformService ]
 })

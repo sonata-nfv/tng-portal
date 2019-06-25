@@ -9,7 +9,7 @@
 				{{ item.uuid }} - {{ item.name }}: {{ item.threshold }} {{ item.unit }}
 			</h4>
 
-			<button class="dropdownButton" (click)="item.closed = !item.closed">
+			<button class="dropdown-button" (click)="item.closed = !item.closed">
 				<i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
 				<ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
 			</button>

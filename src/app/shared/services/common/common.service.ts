@@ -142,52 +142,78 @@ export class CommonService {
      * Retrieves a list of Functions.
      * Either following a search pattern or not.
      *
-     * @param search [Optional] Packages attributes that must be
+     * @param search [Optional] Function attributes that must be
      *                          matched by the returned list of
-     *                          packages.
+     *                          functions.
      */
-	getFunctions(section, search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getFunctions(section, search?) {
+		const headers = this.authService.getAuthHeaders();
+		let url: string;
+		if (section === 'VALIDATION AND VERIFICATION') {
+			url = search ?
+				this.config.baseVNV + this.config.functions + search
+				: this.config.baseVNV + this.config.functions;
+		} else {
+			url = search ?
+				this.config.baseSP + this.config.functions + search
+				: this.config.baseSP + this.config.functions;
+		}
 
-			let url: string;
-			if (section === 'VALIDATION AND VERIFICATION') {
-				url =
-					search !== undefined
-						? this.config.baseVNV + this.config.functions + search
-						: this.config.baseVNV + this.config.functions;
-			} else {
-				url =
-					search !== undefined
-						? this.config.baseSP + this.config.functions + search
-						: this.config.baseSP + this.config.functions;
-			}
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.vnfd.name,
+						vendor: item.vnfd.vendor,
+						status: item.status,
+						version: item.vnfd.version,
+						type: 'public'
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.vnfd.name,
-									vendor: item.vnfd.vendor,
-									status: this.utilsService.capitalizeFirstLetter(item.status),
-									version: item.vnfd.version,
-									type: 'public'
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the functions');
+	/**
+     * Retrieves a list of monitoring rules per function.
+     *
+     * @param search [Optional] Function attributes that must be
+     *                          matched by the returned function
+     */
+	async getFunctionMonitoringParameters(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functions + search;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			const monitoringParameters = new Array();
+			if (response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ]) {
+				response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ].map(vdu => {
+					if (vdu[ 'monitoring_parameters' ]) {
+						for (const param of vdu.monitoring_parameters) {
+							const vnf = response[ 0 ][ 'vnfd' ][ 'name' ];
+							monitoringParameters.push({
+								uuid: vnf + ':' + vdu.id + ':' + param.name,
+								name: vnf + ' : ' + param.name,
+								condition: param.name,
+								unit: param.unit,
+								vduID: vdu.id,
+								vnfName: vnf,
+								vnfVendor: response[ 0 ][ 'vnfd' ][ 'vendor' ],
+								vnfVersion: response[ 0 ][ 'vnfd' ][ 'version' ]
+							});
+						}
 					}
-				})
-				.catch(err => reject('There was an error fetching the functions'));
-		});
+				});
+			}
+			return monitoringParameters;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -246,14 +272,15 @@ export class CommonService {
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response instanceof Array ?
-				response.map(item => ({
-					uuid: item.uuid,
-					name: item.nsd.name,
-					serviceId: item.uuid,
-					vendor: item.nsd.vendor,
-					version: item.nsd.version,
-					status: item.status
-				})) : [];
+				response.filter(ns => ns.platform.toLowerCase() === '5gtango')
+					.map(item => ({
+						uuid: item.uuid,
+						name: item.nsd.name,
+						serviceId: item.uuid,
+						vendor: item.nsd.vendor,
+						version: item.nsd.version,
+						status: item.status
+					})) : [];
 		} catch (error) {
 			console.error(error);
 		}

@@ -407,8 +407,8 @@ p {
 
 	.content {
 		min-height: 100px;
-		padding-top: 5px;
-		padding-left: 5px;
+		padding: 10px;
+		box-sizing: border-box;
 		margin-top: 5px;
 		background-color: $panel-background-color;
 		border-top: 1px solid $border-line-color;
@@ -451,7 +451,7 @@ ngx-json-viewer {
 		background-color: $basic-background-color;
 	}
 
-	.dropdownButton {
+	.dropdown-button {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -574,6 +574,7 @@ ul.unordered-list .mat-input-element:disabled {
 	outline: none;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	background-color: $basic-background-color;
 }
 
 //////////////////////////////////////
