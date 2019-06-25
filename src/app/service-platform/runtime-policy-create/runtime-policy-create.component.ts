@@ -9,12 +9,12 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
-	selector: 'app-runtime-policies-create',
-	templateUrl: './runtime-policies-create.component.html',
-	styleUrls: [ './runtime-policies-create.component.scss' ],
+	selector: 'app-runtime-policy-create',
+	templateUrl: './runtime-policy-create.component.html',
+	styleUrls: [ './runtime-policy-create.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class RuntimePoliciesCreateComponent implements OnInit {
+export class RuntimePolicyCreateComponent implements OnInit {
 	loading = false;
 	isOr = false;
 	editMonitoringRules = false;
