@@ -479,14 +479,21 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 			version: nsObj.version
 		};
 
-		return {
+		const policy = {
 			name: this.policyForm.get('name').value,
-			networka_service: ns,
-			sla: this.policyForm.get('sla').value,
+			vendor: this.policyForm.get('vendor').value,
+			version: this.policyForm.get('version').value,
+			network_service: ns,
 			default_policy: this.policyForm.get('default').value,
 			monitoring_rules: this.getParsedJSON(this.policyForm.get('monitoringRules').value),
 			policyRules: this.policyForm.get('policyRules').value
 		};
+
+		if (this.policyForm.get('sla').value && this.policyForm.get('sla').value !== 'None') {
+			policy[ 'sla' ] = this.policyForm.get('sla').value;
+		}
+
+		return policy;
 	}
 
 	async createPolicy() {
