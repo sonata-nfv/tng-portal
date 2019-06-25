@@ -14,7 +14,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class SpSliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	displayedColumns = [ 'uuid', 'serviceName', 'isShared', 'slaName' ];
+	displayedColumns = [ 'uuid', 'serviceName', 'serviceVendor', 'serviceVersion', 'isShared', 'slaName' ];
 	displayedColumnsLinks = [ 'networkName', 'mngmtNetwork', 'type' ];
 
 	constructor(

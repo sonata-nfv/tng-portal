@@ -66,67 +66,77 @@
 			<p>{{ detail['description'] }}</p>
 		</span>
 	</div>
-
-	<h2 *ngIf="detail['services']" class="title2" i18n="@@networkServices">Network services</h2>
-
-	<table *ngIf="detail['services']" mat-table [dataSource]="detail['services']">
-		<ng-container matColumnDef="uuid">
-			<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="serviceName">
-			<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service Name</th>
-			<td mat-cell *matCellDef="let element">{{ element.nsdName }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="isShared">
-			<th mat-header-cell *matHeaderCellDef i18n="@@serviceIsShared">Service is shared</th>
-			<td mat-cell *matCellDef="let element">{{ element.isShared }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="slaName">
-			<th mat-header-cell *matHeaderCellDef i18n="@@slaName">SLA Name</th>
-			<td mat-cell *matCellDef="let element">{{ element.slaName || 'None' }}</td>
-		</ng-container>
-
-		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-	</table>
-
-	<div *ngIf="(detail['services'] && !detail['services'].length) && !loading" class="no-results-container">
-		<div class="no-results-line"></div>
-		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
-		<div class="no-results-line"></div>
-	</div>
-
-	<h2 *ngIf="detail['sliceVirtualLinks']" class="title2" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
-
-	<table *ngIf="detail['sliceVirtualLinks']" mat-table [dataSource]="detail['sliceVirtualLinks']">
-		<ng-container matColumnDef="networkName">
-			<th mat-header-cell *matHeaderCellDef i18n="@@networkName">Network Name</th>
-			<td mat-cell *matCellDef="let element">{{ element.networkName }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="mngmtNetwork">
-			<th mat-header-cell *matHeaderCellDef i18n="@@mngmtNetwork">Management network</th>
-			<td mat-cell *matCellDef="let element">{{ element.mngmtNetwork }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="type">
-			<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
-			<td mat-cell *matCellDef="let element">{{ element.type }}</td>
-		</ng-container>
-
-		<tr mat-header-row *matHeaderRowDef="displayedColumnsLinks"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumnsLinks"></tr>
-	</table>
-
-	<div *ngIf="(detail['sliceVirtualLinks'] && !detail['sliceVirtualLinks'].length) && !loading" class="no-results-container">
-		<div class="no-results-line"></div>
-		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
-		<div class="no-results-line"></div>
-	</div>
 </form>
+
+<h2 *ngIf="detail['services']" class="title2" i18n="@@networkServices">Network services</h2>
+
+<table *ngIf="detail['services']" mat-table [dataSource]="detail['services']">
+	<ng-container matColumnDef="uuid">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
+		<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="serviceName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service name</th>
+		<td mat-cell *matCellDef="let element">{{ element.nsdName }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="serviceVendor">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceVendor">Service vendor</th>
+		<td mat-cell *matCellDef="let element">{{ element.nsdVendor }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="serviceVersion">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceVersion">Service version</th>
+		<td mat-cell *matCellDef="let element">{{ element.nsdVersion }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="isShared">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceIsShared">Service is shared</th>
+		<td mat-cell *matCellDef="let element">{{ element.isShared }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="slaName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@slaName">SLA name</th>
+		<td mat-cell *matCellDef="let element">{{ element.slaName || 'None' }}</td>
+	</ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div *ngIf="(detail['services'] && !detail['services'].length) && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
+
+<h2 *ngIf="detail['sliceVirtualLinks']" class="title2" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
+
+<table *ngIf="detail['sliceVirtualLinks']" mat-table [dataSource]="detail['sliceVirtualLinks']">
+	<ng-container matColumnDef="networkName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@networkName">Network Name</th>
+		<td mat-cell *matCellDef="let element">{{ element.networkName }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="mngmtNetwork">
+		<th mat-header-cell *matHeaderCellDef i18n="@@mngmtNetwork">Management network</th>
+		<td mat-cell *matCellDef="let element">{{ element.mngmtNetwork }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="type">
+		<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
+		<td mat-cell *matCellDef="let element">{{ element.type }}</td>
+	</ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumnsLinks"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumnsLinks"></tr>
+</table>
+
+<div *ngIf="(detail['sliceVirtualLinks'] && !detail['sliceVirtualLinks'].length) && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>

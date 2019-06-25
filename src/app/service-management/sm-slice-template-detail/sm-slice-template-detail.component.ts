@@ -16,7 +16,7 @@ import { SliceInstanceCreateComponent } from '../slice-instance-create/slice-ins
 export class SmSliceTemplateDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	displayedColumns = [ 'uuid', 'serviceName', 'isShared', 'slaName' ];
+	displayedColumns = [ 'uuid', 'serviceName', 'serviceVendor', 'serviceVersion', 'isShared', 'slaName' ];
 	displayedColumnsLinks = [ 'networkName', 'mngmtNetwork', 'type' ];
 
 	constructor(
