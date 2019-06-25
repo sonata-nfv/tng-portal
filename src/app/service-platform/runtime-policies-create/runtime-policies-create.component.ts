@@ -331,6 +331,7 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 		this.policyRulesForm.get('actions').setValue(actions);
 		this.actionsDataSource.data = actions;
 		this.resetActionsForm();
+		this.isOr = false;
 	}
 
 	resetActionsForm() {
@@ -374,7 +375,8 @@ export class RuntimePoliciesCreateComponent implements OnInit {
 
 	resetPolicyRulesForm() {
 		this.policyRulesForm.reset();
-		this.changePolicyRuleCondition();
+		this.setPolicyRuleCondition();
+		this.isOr = false;
 		this.resetActionsForm();
 		this.policyRulesForm.get('actions').setValue([]);
 		if (this.policyRulesForm.get('conditionRules').value) {
