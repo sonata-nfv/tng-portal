@@ -15,7 +15,7 @@ import { SpNetworkServicesComponent } from './sp-network-services/sp-network-ser
 import { SpNetworkServicesDetailComponent } from './sp-network-services-detail/sp-network-services-detail.component';
 import { SpFunctionsDetailComponent } from './sp-functions-detail/sp-functions-detail.component';
 import { PlacementPolicyComponent } from './placement-policy/placement-policy.component';
-import { RuntimePoliciesComponent } from './runtime-policies/runtime-policies.component';
+import { RuntimePolicyListComponent } from './runtime-policy-list/runtime-policy-list.component';
 import { RuntimePoliciesDetailComponent } from './runtime-policies-detail/runtime-policies-detail.component';
 import { RuntimePolicyCreateComponent } from './runtime-policy-create/runtime-policy-create.component';
 import {
@@ -41,7 +41,7 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		SpNetworkServicesDetailComponent,
 		SpFunctionsDetailComponent,
 		PlacementPolicyComponent,
-		RuntimePoliciesComponent,
+		RuntimePolicyListComponent,
 		RuntimePoliciesDetailComponent,
 		RuntimePolicyCreateComponent,
 		RuntimePoliciesGeneratedActionsComponent,

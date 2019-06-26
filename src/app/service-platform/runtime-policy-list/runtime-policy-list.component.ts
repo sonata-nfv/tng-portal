@@ -5,15 +5,14 @@ import { Subscription } from 'rxjs';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
-import { SelectorListContext } from '@angular/compiler';
 
 @Component({
-	selector: 'app-runtime-policies',
-	templateUrl: './runtime-policies.component.html',
-	styleUrls: [ './runtime-policies.component.scss' ],
+	selector: 'app-runtime-policy-list',
+	templateUrl: './runtime-policy-list.component.html',
+	styleUrls: [ './runtime-policy-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class RuntimePoliciesComponent implements OnInit, OnDestroy {
+export class RuntimePolicyListComponent implements OnInit, OnDestroy {
 	@ViewChild('selectNS') selectNS;
 	loading: boolean;
 	policies = new Array();
