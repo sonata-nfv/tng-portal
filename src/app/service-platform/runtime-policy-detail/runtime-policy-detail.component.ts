@@ -7,12 +7,12 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-	selector: 'app-runtime-policies-detail',
-	templateUrl: './runtime-policies-detail.component.html',
-	styleUrls: [ './runtime-policies-detail.component.scss' ],
+	selector: 'app-runtime-policy-detail',
+	templateUrl: './runtime-policy-detail.component.html',
+	styleUrls: [ './runtime-policy-detail.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class RuntimePoliciesDetailComponent implements OnInit {
+export class RuntimePolicyDetailComponent implements OnInit {
 	loading = false;
 	section: string;
 	closed = true;

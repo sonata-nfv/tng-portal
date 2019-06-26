@@ -40,7 +40,7 @@ import { FunctionsComponent } from './shared/components/functions/functions.comp
 import { SpFunctionsDetailComponent } from './service-platform/sp-functions-detail/sp-functions-detail.component';
 import { PlacementPolicyComponent } from './service-platform/placement-policy/placement-policy.component';
 import { RuntimePolicyListComponent } from './service-platform/runtime-policy-list/runtime-policy-list.component';
-import { RuntimePoliciesDetailComponent } from './service-platform/runtime-policies-detail/runtime-policies-detail.component';
+import { RuntimePolicyDetailComponent } from './service-platform/runtime-policy-detail/runtime-policy-detail.component';
 import { RuntimePolicyCreateComponent } from './service-platform/runtime-policy-create/runtime-policy-create.component';
 import {
 	GeneratedActionsComponent
@@ -152,7 +152,7 @@ const routes: Routes = [
 				path: 'service-platform/policies/runtime-policies', component: RuntimePolicyListComponent,
 				children: [
 					{ path: 'new', component: RuntimePolicyCreateComponent },
-					{ path: ':id', component: RuntimePoliciesDetailComponent }
+					{ path: ':id', component: RuntimePolicyDetailComponent }
 				]
 			},
 			{ path: 'service-platform/policies/generated-actions', component: GeneratedActionsComponent },
