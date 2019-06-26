@@ -19,7 +19,7 @@ app-tests-detail {
     display: flex;
     flex-direction: row;
 
-    .bubbleDiv .number {
+    .number-bubble .number {
       &.times {
         border: 2px solid $primary-background-color;
         background-color: $basic-background-color;

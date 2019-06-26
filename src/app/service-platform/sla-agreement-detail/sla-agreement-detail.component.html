@@ -5,7 +5,7 @@
 	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
-<div class="bubbleDiv" *ngIf="detail['templateVersion']">
+<div class="number-bubble" *ngIf="detail['templateVersion']">
 	<span class="text" i18n="@@templateVersion">Template version</span>
 	<div class="number">
 		<span>{{ detail.templateVersion }}</span>
