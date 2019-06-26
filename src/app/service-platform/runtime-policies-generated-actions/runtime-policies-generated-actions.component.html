@@ -5,8 +5,9 @@
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
 
-	<button class="icon-button-shadow reload" (click)="requestGeneratedActions()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
-			class="wui wui-undo"></i></button>
+	<button class="icon-button-shadow reload" (click)="requestGeneratedActions()" matTooltip="Reload data" i18n-matTooltip="@@reloadData">
+		<i class="wui wui-undo"></i>
+	</button>
 </div>
 
 <table mat-table [dataSource]="generatedActions">

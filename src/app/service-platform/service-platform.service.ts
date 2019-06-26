@@ -504,41 +504,29 @@ export class ServicePlatformService {
 	 *                          matched by the returned list of
 	 *                          Generated Actions.
 	 */
-	getGeneratedActions(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.runtimePoliciesActions + search
-					: this.config.baseSP + this.config.runtimePoliciesActions;
+	async getGeneratedActions(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url =
+			search ?
+				this.config.baseSP + this.config.runtimePoliciesActions + '?' + search
+				: this.config.baseSP + this.config.runtimePoliciesActions;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									correlationUUID: item.correlation_id,
-									vnfName: item.action[ 'vnf_name' ],
-									scalingType: item.action[ 'scaling_type' ],
-									serviceInstanceUUID: item.action[ 'service_instance_id' ],
-									value: item.action[ 'value' ],
-									date: item.inDateTime
-								};
-							})
-						);
-					} else {
-						reject('There was an error while fetching the generated actions');
-					}
-				})
-				.catch(err =>
-					reject('There was an error while fetching the generated actions')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						correlationUUID: item.correlation_id,
+						vnfName: item.action[ 'vnf_name' ],
+						scalingType: item.action[ 'scaling_type' ],
+						serviceInstanceUUID: item.action[ 'service_instance_id' ],
+						value: item.action[ 'value' ],
+						date: item.inDateTime
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

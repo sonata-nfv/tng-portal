@@ -12,13 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
 	loading: boolean;
 	generatedActions = new Array();
-	displayedColumns = [
-		'vnfName',
-		'scalingType',
-		'serviceInstanceUUID',
-		'value',
-		'date'
-	];
+	displayedColumns = [ 'vnfName', 'scalingType', 'serviceInstanceUUID', 'value', 'date' ];
 
 	constructor(
 		private utilsService: UtilsService,
@@ -40,18 +34,15 @@ export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of actions.
      */
-	requestGeneratedActions(search?) {
+	async requestGeneratedActions(search?) {
 		this.loading = true;
+		const actions = await this.servicePlatformService.getGeneratedActions(search);
 
-		this.servicePlatformService
-			.getGeneratedActions(search)
-			.then(response => {
-				this.loading = false;
-				this.generatedActions = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (actions) {
+			this.generatedActions = actions;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the generated actions', '');
+		}
 	}
 }
