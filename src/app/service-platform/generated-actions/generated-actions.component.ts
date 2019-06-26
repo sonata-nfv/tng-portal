@@ -4,12 +4,12 @@ import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-runtime-policies-generated-actions',
-	templateUrl: './runtime-policies-generated-actions.component.html',
-	styleUrls: [ './runtime-policies-generated-actions.component.scss' ],
+	selector: 'app-generated-actions',
+	templateUrl: './generated-actions.component.html',
+	styleUrls: [ './generated-actions.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class RuntimePoliciesGeneratedActionsComponent implements OnInit {
+export class GeneratedActionsComponent implements OnInit {
 	loading: boolean;
 	generatedActions = new Array();
 	displayedColumns = [ 'vnfName', 'scalingType', 'serviceInstanceUUID', 'value', 'date' ];

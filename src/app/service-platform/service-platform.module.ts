@@ -19,8 +19,8 @@ import { RuntimePolicyListComponent } from './runtime-policy-list/runtime-policy
 import { RuntimePoliciesDetailComponent } from './runtime-policies-detail/runtime-policies-detail.component';
 import { RuntimePolicyCreateComponent } from './runtime-policy-create/runtime-policy-create.component';
 import {
-	RuntimePoliciesGeneratedActionsComponent
-} from './runtime-policies-generated-actions/runtime-policies-generated-actions.component';
+	GeneratedActionsComponent
+} from './generated-actions/generated-actions.component';
 import { SlaTemplateListComponent } from './sla-template-list/sla-template-list.component';
 import { SlaTemplateDetailComponent } from './sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './sla-template-create/sla-template-create.component';
@@ -44,7 +44,7 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		RuntimePolicyListComponent,
 		RuntimePoliciesDetailComponent,
 		RuntimePolicyCreateComponent,
-		RuntimePoliciesGeneratedActionsComponent,
+		GeneratedActionsComponent,
 		SlaTemplateListComponent,
 		SlaTemplateDetailComponent,
 		SlaTemplateCreateComponent,
