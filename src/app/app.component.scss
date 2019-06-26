@@ -577,6 +577,18 @@ ul.unordered-list .mat-input-element:disabled {
 	background-color: $basic-background-color;
 }
 
+.circle-button {
+	padding: 8px;
+	border-radius: 50%;
+	border: 1px solid $secondary-color;
+	cursor: pointer;
+}
+
+.circle-button.active {
+	border: 1px solid $primary-color-light;
+	background-color: $primary-color-light;
+}
+
 //////////////////////////////////////
 // Button for icons
 //////////////////////////////////////

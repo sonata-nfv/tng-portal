@@ -345,7 +345,7 @@ export class ServicePlatformService {
 	async getRuntimePolicies(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
-			this.config.baseSP + this.config.runtimePolicies + search
+			this.config.baseSP + this.config.runtimePolicies + '?' + search
 			: this.config.baseSP + this.config.runtimePolicies;
 
 		try {
@@ -430,34 +430,19 @@ export class ServicePlatformService {
 	 * @param defaultPolicy Boolean setting the binding with its ns
 	 * @param nsid UUID of the desired NS
 	 */
-	setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesDefault + uuid;
+		const data = {
+			defaultPolicy,
+			nsid
+		};
 
-			const data = {
-				defaultPolicy,
-				nsid
-			};
-
-			this.http
-				.patch(
-					this.config.baseSP + this.config.runtimePoliciesDefault + uuid,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					if (response[ 'code' ] === 'INVALID') {
-						reject('There was an error setting the policy as default!');
-					}
-					resolve(response);
-				})
-				.catch(err =>
-					reject('There was an error setting the policy as default!')
-				);
-		});
+		try {
+			return await this.http.patch(url, data, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -500,23 +485,15 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired Runtime Policy.
 	 */
-	deleteOneRuntimePolicy(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async deleteOneRuntimePolicy(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePolicies + '/' + uuid;
 
-			this.http
-				.delete(this.config.baseSP + this.config.runtimePolicies + '/' + uuid, {
-					headers: headers,
-					responseType: 'text'
-				})
-				.toPromise()
-				.then(response => {
-					resolve(JSON.parse(response));
-				})
-				.catch(err => {
-					reject('There was an error while deleting the policy!');
-				});
-		});
+		try {
+			return await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

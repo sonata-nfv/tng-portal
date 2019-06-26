@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { SelectorListContext } from '@angular/compiler';
 
 @Component({
 	selector: 'app-runtime-policies',
@@ -13,21 +14,11 @@ import { CommonService } from '../../shared/services/common/common.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class RuntimePoliciesComponent implements OnInit, OnDestroy {
+	@ViewChild('selectNS') selectNS;
 	loading: boolean;
-	reset: boolean;
-	policiesDisplayed = new Array();
 	policies = new Array();
 	nsList = new Array();
-	nsListComplete = new Array();
-	displayedColumns = [
-		'vendor',
-		'name',
-		'version',
-		'ns',
-		'sla',
-		'default',
-		'delete'
-	];
+	displayedColumns = [ 'vendor', 'name', 'version', 'ns', 'sla', 'default', 'delete' ];
 	subscription: Subscription;
 
 	constructor(
@@ -62,6 +53,17 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 		this.requestRuntimePolicies(search);
 	}
 
+	filterNS(nsUUID) {
+		nsUUID === 'None' ?
+			this.requestRuntimePolicies()
+			: this.requestRuntimePolicies('ns_uuid=' + nsUUID);
+	}
+
+	reload() {
+		this.selectNS.reset = true;
+		this.requestRuntimePolicies();
+	}
+
 	/**
      * Generates the HTTP request to get the list of Runtime Policies.
      *
@@ -72,63 +74,25 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 	async requestRuntimePolicies(search?) {
 		this.loading = true;
 
-		this.reset = true;
-		setTimeout(() => {
-			this.reset = false;
-		}, 5);
-
-		const responses = await Promise.all([
-			this.commonService.getNetworkServices('SP'),
-			this.servicePlatformService.getRuntimePolicies(search)
-		]);
+		const ns = await this.commonService.getNetworkServices('SP');
+		const runtimePolicies = await this.servicePlatformService.getRuntimePolicies(search);
 
 		this.loading = false;
-		if (responses) {
-			// Save NS data to display
-			this.nsList = responses[ 0 ].map(
-				x => x.vendor + ': ' + x.name + ' - v' + x.version
-			);
-			this.nsList.unshift('None');
-
-			// Save complete data from NS and policies
-			this.nsListComplete = responses[ 0 ];
-			this.policies = responses[ 1 ];
-
-			this.sortPolicies(this.policies);
+		if (ns) {
+			this.nsList = ns;
+			this.nsList.unshift({ uuid: 'None', name: 'None' });
 		} else {
-			this.utilsService.openSnackBar('Unable to fetch the services nor the policies', '');
+			this.utilsService.openSnackBar('Unable to fetch any network service', '');
 		}
+
+		runtimePolicies ?
+			this.sortPolicies(runtimePolicies)
+			: this.utilsService.openSnackBar('Unable to fetch any runtime policy', '');
+
 	}
 
-	setDefaultPolicy(uuid) {
-		this.loading = true;
-		const policy = this.policies.find(x => x.uuid === uuid);
-
-		this.servicePlatformService
-			.setDefaultRuntimePolicy(policy.uuid, !policy.default, policy.ns_uuid)
-			.then(response => {
-				this.requestRuntimePolicies();
-
-				// Set all the other policies of the ns to false
-				this.policiesDisplayed
-					.filter(x => x.ns_uuid === policy.ns_uuid && x.uuid !== uuid)
-					.forEach(x => (x.default = false));
-
-				// Set the default value of the selected policy
-				this.policiesDisplayed.find(
-					x => x.uuid === policy.uuid
-				).default = !policy.default;
-
-				this.utilsService.openSnackBar(response[ 'message' ], '');
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
-	}
-
-	sortPolicies(policies) {
-		this.policiesDisplayed = policies.sort((a, b) => {
+	private sortPolicies(runtimePolicies) {
+		this.policies = runtimePolicies.sort((a, b) => {
 			const keyA = a.default;
 			const keyB = b.default;
 
@@ -143,36 +107,31 @@ export class RuntimePoliciesComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	receiveNS(ns) {
-		if (ns === 'None') {
-			this.policiesDisplayed = this.policies;
-			return;
+	async setDefaultPolicy(uuid) {
+		this.loading = true;
+		const policy = this.policies.find(x => x.uuid === uuid);
+		const response = await this.servicePlatformService.setDefaultRuntimePolicy(policy.uuid, !policy.default, policy.ns_uuid);
+
+		this.loading = false;
+		if (response) {
+			this.requestRuntimePolicies();
+			this.utilsService.openSnackBar('The runtime policy you selected was successfully updated', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to set this policy as the default one', '');
 		}
-
-		ns = {
-			vendor: ns.split(':')[ 0 ],
-			name: ns.split(':')[ 1 ].split(' - v')[ 0 ],
-			version: ns.split(':')[ 1 ].split(' - v')[ 1 ]
-		};
-
-		this.policiesDisplayed = this.policies.filter(x =>
-			this.utilsService.compareObjects(x.ns, ns)
-		);
 	}
 
-	deletePolicy(policy) {
+	async deletePolicy(policy) {
 		this.loading = true;
+		const response = await this.servicePlatformService.deleteOneRuntimePolicy(policy.uuid);
 
-		this.servicePlatformService
-			.deleteOneRuntimePolicy(policy.uuid)
-			.then(response => {
-				this.utilsService.openSnackBar(response[ 'message' ], '');
-				this.requestRuntimePolicies();
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.requestRuntimePolicies();
+			this.utilsService.openSnackBar('The runtime policy was successfully deleted', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to delete this runtime policy', '');
+		}
 	}
 
 	openPolicy(policy) {
