@@ -29,68 +29,50 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
 	show = false;
-	userErrorString: string;
-	passwordErrorString: string;
-	emailErrorString: string;
-	validPassword: boolean;
 	signupForm: FormGroup;
-
-	// TODO Request roles options from the API
 	roles = [ 'Developer', 'Customer' ];
 
 	constructor(private authService: AuthService, private router: Router) { }
 
 	ngOnInit() {
-		this.initForm();
-	}
-
-	private initForm() {
 		this.signupForm = new FormGroup({
-			username: new FormControl(),
-			password: new FormControl(),
-			confirmPassword: new FormControl(),
-			email: new FormControl(null, Validators.email),
+			username: new FormControl(null, Validators.required),
+			password: new FormControl(null, Validators.required),
+			confirmPassword: new FormControl(null, Validators.required),
+			email: new FormControl(null, [ Validators.required, Validators.email ]),
 			role: new FormControl(null, Validators.required),
 			termsOfUsage: new FormControl()
 		});
-		this.signupForm.valueChanges.subscribe(value => this._onFormChanges(value));
+
+		this.signupForm.valueChanges.subscribe(value => this.onFormChanges(value));
 	}
 
-	private _onFormChanges(values) {
-		// Check if both password fields match
-		// Possibility to add password restrictions
-		if (values.confirmPassword !== null) {
-			if (values.password !== values.confirmPassword) {
-				this.passwordErrorString = '*Passwords do not match.';
-				this.validPassword = false;
-			} else {
-				this.passwordErrorString = null;
-				this.validPassword = true;
-			}
+	private onFormChanges(values) {
+		if (values.confirmPassword && values.password !== values.confirmPassword) {
+			this.signupForm.get('confirmPassword').setErrors({ 'incorrect': true });
 		}
-		if (this.signupForm.controls.email.invalid && this.signupForm.controls.email.value !== ''
-			&& this.signupForm.controls.email.value != null) {
-			this.emailErrorString = '*This is not a valid email.';
+	}
+
+	receiveRole(role) {
+		this.signupForm.get('role').setValue(role);
+	}
+
+	async signup() {
+		const user = {
+			username: this.signupForm.get('username').value,
+			name: this.signupForm.get('username').value,
+			password: this.signupForm.get('password').value,
+			email: this.signupForm.get('email').value,
+			role: this.signupForm.get('role').value.toLocaleLowerCase()
+		};
+
+		const userRegistered = await this.authService.signup(user);
+
+		if (userRegistered) {
+			this.router.navigate([ '/registered' ]);
 		} else {
-			this.emailErrorString = null;
+			this.signupForm.get('username').setErrors({ 'incorrect': true });
+			this.signupForm.get('email').setErrors({ 'incorrect': true });
 		}
-		this.userErrorString = null;
-	}
-
-	signup(signupForm: FormGroup) {
-		this.authService
-			.signup(this.signupForm.value.username, this.signupForm.value.password, this.signupForm.value.email, this.signupForm.value.role)
-			.then(() => {
-				// Set welcome route when user is registered
-				this.router.navigate([ '/registered' ]);
-			})
-			.catch(err => {
-				this.userErrorString = '*' + err;
-				this.emailErrorString = '*' + err;
-			});
-	}
-
-	receiveRole($event) {
-		this.signupForm.controls.role.setValue($event);
 	}
 }

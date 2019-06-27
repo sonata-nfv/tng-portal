@@ -42,6 +42,30 @@ export class AuthService {
 		}
 	}
 
+	async signup(user: object) {
+		const url = this.config.baseSP + this.config.register;
+
+		try {
+			return await this.http.post(url, user, { headers: this.authHeaders }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	private setAuthHeaders() {
+		this.authHeaders = new HttpHeaders();
+		this.authHeaders.set('Content-Type', 'application/json');
+		this.authHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+	}
+
+	getAuthHeaders() {
+		return this.authHeaders;
+	}
+
+	isAuthenticated(): boolean {
+		return localStorage.getItem('token') ? true : false;
+	}
+
 	userData(uuid: string): any {
 		return new Promise((resolve, reject) => {
 			const headers = new HttpHeaders();
@@ -63,55 +87,5 @@ export class AuthService {
 					}
 				);
 		});
-	}
-
-	signup(
-		username: string,
-		password: string,
-		email: string,
-		userType: string
-	): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
-
-			const data = {
-				username: username,
-				password: password,
-				email: email,
-				user_type: userType.toLocaleLowerCase()
-			};
-			this.http
-				.post(
-					'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.register,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.subscribe(
-					response => {
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						// reject(error.error.error.message);
-						reject('Username or email already in use.');
-					}
-				);
-		});
-	}
-
-	private setAuthHeaders() {
-		this.authHeaders = new HttpHeaders();
-		this.authHeaders.set('Content-Type', 'application/json');
-		this.authHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-	}
-
-	getAuthHeaders() {
-		return this.authHeaders;
-	}
-
-	isAuthenticated(): boolean {
-		return localStorage.getItem('token') ? true : false;
 	}
 }

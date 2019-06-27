@@ -1,42 +1,51 @@
 <div class="container" *ngIf="!show">
 	<div class="title-section"></div>
-	<form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)" class="form">
-		<mat-form-field [ngClass]="{ 'error-form-field': userErrorString }">
+
+	<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
+		<mat-form-field>
 			<input matInput type="text" placeholder="Username" formControlName="username" required
 				i18n-placeholder="@@usernamePlaceholder" />
+			<mat-error i18n="@@usernameAlreadyInUse">*Username already in use</mat-error>
 		</mat-form-field>
-		<p class="error-message" *ngIf="userErrorString" [innerText]="userErrorString"></p>
-		<mat-form-field [ngClass]="{ 'error-form-field': passwordErrorString }">
+
+		<mat-form-field [ngClass]="{'mat-form-field-invalid': signupForm.get('confirmPassword').hasError('incorrect')}">
 			<input matInput type="password" placeholder="Password" formControlName="password" required
 				i18n-placeholder="@@passwordPlaceholder" />
 		</mat-form-field>
-		<mat-form-field [ngClass]="{ 'error-form-field': passwordErrorString }">
+
+		<mat-form-field>
 			<input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required
 				i18n-placeholder="@@confirmPasswordPlaceholder" />
+			<mat-error i18n="@@passwordsDoNotMatch">*Passwords do not match</mat-error>
 		</mat-form-field>
-		<p class="error-message" *ngIf="passwordErrorString" [innerText]="passwordErrorString"></p>
-		<mat-form-field [ngClass]="{ 'error-form-field': emailErrorString }">
+
+		<mat-form-field>
 			<input matInput type="email" placeholder="Email" formControlName="email" required i18n-placeholder="@@emailPlaceholder" />
+			<mat-error i18n="@@notValidEmail">*This is not a valid email</mat-error>
 		</mat-form-field>
-		<p class="error-message" *ngIf="emailErrorString" [innerText]="emailErrorString"></p>
+
 		<app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"
-			i18n-placeholder="@@rolePlaceholder"></app-select>
+			i18n-placeholder="@@rolePlaceholder">
+		</app-select>
+
 		<mat-checkbox class="terms-usage" formControlName="termsOfUsage" required i18n-label="@@termsOfUsageConfirmMessage">
-			I confirm that I’ve read and agreed with the <a class="terms-usage-link" (click)="show = !show" i18n="@@termsOfUsageLink">
-				Terms of Usage. </a>
+			I confirm that I’ve read and agreed with the
+			<a class="terms-usage-link" (click)="show = !show" i18n="@@termsOfUsageLink">Terms of Usage. </a>
 		</mat-checkbox>
-		<button name="signup" [disabled]="!signupForm.valid || !validPassword" i18n="@@registerButton">REGISTER</button>
+
+		<button class="signup" [disabled]="!signupForm.valid" i18n="@@registerButton">REGISTER</button>
+
 		<div class="button-underline login-container">
 			<a class="login" routerLink="/login" i18n="@@haveAnAccountLink">I have an account</a>
 			<div class="underline"></div>
 		</div>
 	</form>
-	<div class="bottom">
-		<div class="button-underline">
-			<a class="help" href="https://github.com/sonata-nfv/tng-portal" i18n="@@helpButton">Help?</a>
-			<div class="underline"></div>
+
+	<div class="bottom-section">
+		<div class="options">
+			<a class="link" href="https://github.com/sonata-nfv/tng-portal" i18n="@@helpButton">Help?</a>
 		</div>
-		<div class="redLine"></div>
+		<div class="red-line"></div>
 	</div>
 </div>
 
