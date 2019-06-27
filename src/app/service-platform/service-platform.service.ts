@@ -374,37 +374,32 @@ export class ServicePlatformService {
 	 *
 	 * @param uuid UUID of the desired Runtime Policy.
 	 */
-	getOneRuntimePolicy(uuid: string) {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getOneRuntimePolicy(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePolicies + '/' + uuid;
 
-			this.http
-				.get(this.config.baseSP + this.config.runtimePolicies + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'pld' ][ 'name' ],
-						vendor: response[ 'pld' ][ 'vendor' ],
-						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						nsUUID: response[ 'ns_uuid' ],
-						nsName: response[ 'pld' ][ 'network_service' ][ 'name' ],
-						nsVendor: response[ 'pld' ][ 'network_service' ][ 'vendor' ],
-						nsVersion: response[ 'pld' ][ 'network_service' ][ 'version' ],
-						version: response[ 'pld' ][ 'version' ],
-						default: response[ 'default_policy' ],
-						enforced: response[ 'enforced' ] ? 'Yes' : 'No',
-						sla: response[ 'sla_id' ],
-						policyRules: [],
-						monitoringRules: []
-					});
-				})
-				.catch(err =>
-					reject('There was an error while loading the policy information')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'pld' ][ 'name' ],
+				vendor: response[ 'pld' ][ 'vendor' ],
+				updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
+				nsUUID: response[ 'ns_uuid' ],
+				nsName: response[ 'pld' ][ 'network_service' ][ 'name' ],
+				nsVendor: response[ 'pld' ][ 'network_service' ][ 'vendor' ],
+				nsVersion: response[ 'pld' ][ 'network_service' ][ 'version' ],
+				version: response[ 'pld' ][ 'version' ],
+				default: response[ 'default_policy' ],
+				enforced: response[ 'enforced' ] ? 'Yes' : 'No',
+				slaUUID: response[ 'sla_id' ],
+				sla: response[ 'sla_name' ],
+				policyRules: [],
+				monitoringRules: []
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -452,32 +447,16 @@ export class ServicePlatformService {
 	 * @param slaid UUID of the desired SLA
 	 * @param nsid UUID of the desired NS
 	 */
-	bindRuntimePolicy(uuid, slaid, nsid) {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async bindRuntimePolicy(uuid, slaid, nsid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesBind + uuid;
+		const data = { slaid, nsid };
 
-			const data = {
-				slaid,
-				nsid
-			};
-
-			this.http
-				.patch(
-					this.config.baseSP + this.config.runtimePoliciesBind + uuid,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.toPromise()
-				.then(response => {
-					if (response[ 'code' ] === 'INVALID') {
-						reject('There was an error binding the sla!');
-					}
-					resolve(response);
-				})
-				.catch(err => reject('There was an error binding the sla!'));
-		});
+		try {
+			return await this.http.patch(url, data, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

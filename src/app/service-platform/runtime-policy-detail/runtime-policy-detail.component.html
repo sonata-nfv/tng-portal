@@ -3,12 +3,7 @@
 <div class="title-section" *ngIf="detail['name']">
 	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
 
-	<div class="header-buttons" *ngIf="policyForm.touched">
-		<button class="edit-options save" (click)="editPolicy()" i18n="@@saveButton">SAVE</button>
-		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
-	</div>
-
-	<div class="header-buttons" *ngIf="!policyForm.touched">
+	<div class="header-buttons">
 		<button class="edit-options cancel" (click)="close()" i18n="@@closeButton">CLOSE</button>
 	</div>
 </div>
@@ -21,9 +16,11 @@
 </div>
 
 <form [formGroup]="policyForm" *ngIf="detail['uuid']">
-	<mat-checkbox [checked]="defaultPolicy" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">Mark as
-		default</mat-checkbox>
+	<mat-checkbox formControlName="default" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">
+		Mark as default
+	</mat-checkbox>
 
+	<!-- TODO include a form like in runtime policies creation -->
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['uuid']">
 			<input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
@@ -61,46 +58,10 @@
 		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
-
-	<app-select class="select" placeholder="Select SLA" [value]="slaName" [reset]="reset" required="false" [list]="slaList"
-		(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder"></app-select>
+	<!--  -->
+	<app-select-uuid class="select" placeholder="Select SLA" [value]="policyForm.get('sla').value" required="false" [list]="slaList"
+		(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder">
+	</app-select-uuid>
 </form>
-
-<!--
-	<div class="advanced-section" *ngIf="detail['name']">
-	  <button class="dropdownButton" (click)="closed=!closed">
-	    <div class="open">
-	      <span>Monitoring Rules</span>
-	      <i class="wui wui-caret-down" *ngIf="closed; else opened"></i>
-	      <ng-template #opened>
-	        <i class="wui wui-caret-up"></i>
-	      </ng-template>
-	    </div>
-	    <div class="underline" [ngClass]="{ opened : !closed }"></div>
-	  </button>
-	  <form *ngIf="!closed" [formGroup]="policyForm" class="advancedForm">
-	    <div class="rules">
-	      <div class="monitoringRules left">
-	        <span class="title">Existing monitoring rules</span>
-	        <span class="content">
-	          <p>{{ monitoringRules }}</p>
-	        </span>
-	      </div>
-
-	      <mat-form-field class="monitoringRules" *ngIf="detail['name']">
-	        <span class="title">Add new monitoring rules</span>
-	        <textarea class="content" matInput type="text" formControlName="monitoringRule"></textarea>
-	      </mat-form-field>
-	    </div>
-	  </form>
--->
-<!-- TODO rules -->
-<!--
-	<div class="rulesForm" *ngIf="detail['name']">
-	  <h2 class="title2">Rules</h2>
-	</div>
--->
-
-<!-- </div> -->
 
 <app-spinner *ngIf="loading"></app-spinner>

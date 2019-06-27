@@ -14,14 +14,10 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class RuntimePolicyDetailComponent implements OnInit {
 	loading = false;
-	section: string;
 	closed = true;
-	slaName: string;
 	policyForm: FormGroup;
 	slaList = new Array();
-	slaListComplete = new Array();
 	detail = { };
-	defaultPolicy: boolean;
 	monitoringRules = 'This is a monitoring rule for this example!';
 
 	constructor(
@@ -33,17 +29,14 @@ export class RuntimePolicyDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.section = this.route.url[ 'value' ][ 0 ].path
-			.replace(/-/g, ' ')
-			.toUpperCase();
-
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.requestRuntimePolicy(uuid);
 		});
 
 		this.policyForm = new FormGroup({
-			monitoringRule: new FormControl()
+			default: new FormControl(),
+			sla: new FormControl()
 		});
 	}
 
@@ -53,113 +46,87 @@ export class RuntimePolicyDetailComponent implements OnInit {
      * @param uuid ID of the selected runtime policy to be displayed.
      *             Comming from the route.
      */
-	requestRuntimePolicy(uuid) {
+	async requestRuntimePolicy(uuid) {
 		this.loading = true;
+		const runtimePolicy = await this.servicePlatformService.getOneRuntimePolicy(uuid);
 
-		this.servicePlatformService
-			.getOneRuntimePolicy(uuid)
-			.then(response => {
-				this.detail = response;
-				this.defaultPolicy = this.detail[ 'default' ];
+		if (runtimePolicy) {
+			this.detail = runtimePolicy;
+			this.populateForm();
 
-				this.requestSLAs(this.detail[ 'nsUUID' ])
-					.then(res => {
-						this.loading = false;
-					})
-					.catch(err => {
-						this.loading = false;
-						this.utilsService.openSnackBar(err, '');
-					});
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+			// Request SLAs related to this NS
+			this.requestSLAs(this.detail[ 'nsUUID' ]);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the runtime policy data', '');
+			this.close();
+		}
 	}
 
-	requestSLAs(ns_uuid) {
-		return new Promise((resolve, reject) => {
-			this.commonService
-				.getSLATemplates()
-				.then(response => {
-					// Save SLA data to display
-					this.slaList = response
-						.filter(x => x.nsUUID === ns_uuid)
-						.map(x => x.name);
+	async requestSLAs(nsUUID) {
+		this.loading = true;
+		const slas = await this.commonService.getSLATemplates();
 
-					// Save complete data from SLA
-					this.slaListComplete = response;
+		this.loading = false;
+		if (slas) {
+			this.slaList = slas.filter(x => x.nsUUID === nsUUID);
+			this.slaList.unshift({ uuid: 'None', name: 'None' });
 
-					if (
-						this.detail[ 'sla' ] &&
-						this.slaListComplete.find(x => x.uuid === this.detail[ 'sla' ])
-					) {
-						this.slaName = this.slaListComplete.find(
-							x => x.uuid === this.detail[ 'sla' ]
-						).name;
-					} else if (this.detail[ 'sla' ]) {
-						this.slaList.push(this.detail[ 'sla' ]);
-						this.slaName = this.detail[ 'sla' ];
-					}
+			// Set as a value the actual SLA chosen
+			if (this.detail[ 'slaUUID' ]) {
+				let sla = this.slaList.find(item => item.uuid === this.detail[ 'slaUUID' ]);
 
-					this.slaList.unshift('None');
+				if (sla) {
+					this.policyForm.get('sla').setValue(sla);
+				} else {
+					sla = { uuid: this.detail[ 'slaUUID' ], name: this.detail[ 'sla' ] };
+					this.slaList.push(sla);
+					this.policyForm.get('sla').setValue(sla);
+				}
+			}
+		} else {
+			this.slaList.unshift({ uuid: 'None', name: 'None' });
+		}
+	}
 
-					resolve();
-				})
-				.catch(err => {
-					this.slaList.unshift('None');
-					reject(err);
-				});
-		});
+	private populateForm() {
+		this.policyForm.get('default').setValue(this.detail[ 'default' ]);
+		this.policyForm.get('sla').setValue(this.detail[ 'sla' ] ?
+			this.detail[ 'sla' ] : { uuid: 'None', name: 'None' });
 	}
 
 	receiveSLA(sla) {
-		if (sla !== 'None' && this.slaName !== sla) {
-			const slaUUID = this.slaListComplete.find(x => x.name === sla).uuid;
-			this.bindSLA(slaUUID);
-		} else if (this.slaName !== sla) {
+		const actualSLA = this.policyForm.get('sla').value;
+
+		if (sla !== 'None' && actualSLA[ 'uuid' ] !== sla[ 'uuid' ]) {
+			this.bindSLA(sla[ 'uuid' ]);
+		} else if (actualSLA[ 'uuid' ] !== sla[ 'uuid' ]) {
 			this.bindSLA(null);
 		}
-		this.slaName = sla;
 	}
 
-	setDefaultPolicy(value) {
+	async setDefaultPolicy(value) {
 		this.loading = true;
+		const response = await this.servicePlatformService.setDefaultRuntimePolicy(this.detail[ 'uuid' ], value, this.detail[ 'nsUUID' ]);
 
-		this.servicePlatformService
-			.setDefaultRuntimePolicy(
-				this.detail[ 'uuid' ],
-				value,
-				this.detail[ 'nsUUID' ]
-			)
-			.then(response => {
-				this.loading = false;
-				this.defaultPolicy = value;
-				this.utilsService.openSnackBar(response[ 'message' ], '');
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.policyForm.get('default').setValue(value);
+			this.utilsService.openSnackBar('The runtime policy you selected was successfully updated', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to set this policy as the default one', '');
+		}
 	}
 
-	bindSLA(slaUUID) {
+	async bindSLA(slaUUID) {
 		this.loading = true;
-		this.servicePlatformService
-			.bindRuntimePolicy(this.detail[ 'uuid' ], slaUUID, this.detail[ 'nsUUID' ])
-			.then(response => {
-				this.loading = false;
-				this.utilsService.openSnackBar(response[ 'message' ], '');
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
-	}
+		const response = await this.servicePlatformService.bindRuntimePolicy(this.detail[ 'uuid' ], slaUUID, this.detail[ 'nsUUID' ]);
 
-	editPolicy() {
-		// TODO edit information about the rules of the runtime policy
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('SLA binded successfully', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to bind the SLA to this policy', '');
+		}
 	}
 
 	close() {
