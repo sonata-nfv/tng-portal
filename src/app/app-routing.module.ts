@@ -79,7 +79,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent },
+	{ path: 'registered', component: RegisteredComponent, canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
