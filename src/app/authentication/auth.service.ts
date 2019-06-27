@@ -65,27 +65,4 @@ export class AuthService {
 	isAuthenticated(): boolean {
 		return localStorage.getItem('token') ? true : false;
 	}
-
-	userData(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
-
-			this.http
-				.get(this.config.baseSP + this.config.register + uuid, {
-					headers: headers
-				})
-				.subscribe(
-					response => {
-						localStorage.setItem('username', response[ 'username' ]);
-						localStorage.setItem('email', response[ 'email' ]);
-						localStorage.setItem('user_type', response[ 'user_type' ]);
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						reject(error.error.error.message);
-					}
-				);
-		});
-	}
 }
