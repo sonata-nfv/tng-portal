@@ -14,37 +14,24 @@ export class AuthService {
 		this.setAuthHeaders();
 	}
 
-	login(username: string, password: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
+	async login(username: string, password: string) {
+		const headers = new HttpHeaders();
+		headers.set('Content-Type', 'application/json');
+		const url = 'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.login;
+		const data = {
+			username: username,
+			password: password
+		};
 
-			const data = {
-				username: username,
-				password: password
-			};
-
-			this.http
-				.post(
-					'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.login,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.subscribe(
-					response => {
-						localStorage.setItem('token', response[ 'token' ][ 'access_token' ]);
-						localStorage.setItem('username', username);
-						this.setAuthHeaders();
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						// reject(error.error.error.message);
-						reject('*Your password or your user/email are wrong.');
-					}
-				);
-		});
+		try {
+			const login = await this.http.post(url, data, { headers: headers }).toPromise();
+			localStorage.setItem('token', login[ 'token' ][ 'access_token' ]);
+			localStorage.setItem('username', username);
+			this.setAuthHeaders();
+			return;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	userData(uuid: string): any {
