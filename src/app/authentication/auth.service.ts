@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from '../shared/services/config/config.service';
-import {
-	HttpClient,
-	HttpErrorResponse,
-	HttpHeaders
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -15,19 +11,31 @@ export class AuthService {
 	}
 
 	async login(username: string, password: string) {
-		const headers = new HttpHeaders();
-		headers.set('Content-Type', 'application/json');
-		const url = 'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.login;
+		const url = this.config.baseSP + this.config.login;
+
 		const data = {
 			username: username,
 			password: password
 		};
 
 		try {
-			const login = await this.http.post(url, data, { headers: headers }).toPromise();
-			localStorage.setItem('token', login[ 'token' ][ 'access_token' ]);
+			const login = await this.http.post(url, data, { headers: this.authHeaders }).toPromise();
+			localStorage.setItem('token', login[ 'token' ]);
 			localStorage.setItem('username', username);
 			this.setAuthHeaders();
+			return;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async logout() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('username');
+		const url = this.config.baseSP + this.config.login;
+
+		try {
+			await this.http.delete(url, { headers: this.authHeaders });
 			return;
 		} catch (error) {
 			console.error(error);
@@ -52,27 +60,6 @@ export class AuthService {
 					},
 					(error: HttpErrorResponse) => {
 						reject(error.error.error.message);
-					}
-				);
-		});
-	}
-
-	logout() {
-		localStorage.removeItem('token');
-		localStorage.removeItem('username');
-		return new Promise((resolve, reject) => {
-			const headers = this.getAuthHeaders();
-
-			this.http
-				.delete(this.config.baseSP + this.config.login, {
-					headers: headers
-				})
-				.subscribe(
-					() => {
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						reject(error);
 					}
 				);
 		});
@@ -116,27 +103,15 @@ export class AuthService {
 
 	private setAuthHeaders() {
 		this.authHeaders = new HttpHeaders();
-		// this.authHeaders.set(
-		//   'Content-Type',
-		//   'application/json'
-		// );
-		// this.authHeaders.set(
-		//   'Authorization',
-		//   'Bearer ' + localStorage.getItem('token')
-		// );
+		this.authHeaders.set('Content-Type', 'application/json');
+		this.authHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 	}
 
 	getAuthHeaders() {
 		return this.authHeaders;
-		// return new HttpHeaders();
 	}
 
 	isAuthenticated(): boolean {
-		return true;
-		// if (localStorage.getItem('token')) {
-		//   this.setAuthHeaders();
-		//   return true;
-		// }
-		// return false;
+		return localStorage.getItem('token') ? true : false;
 	}
 }
