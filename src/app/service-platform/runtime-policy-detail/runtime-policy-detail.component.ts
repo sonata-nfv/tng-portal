@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class RuntimePolicyDetailComponent implements OnInit {
+	@ViewChild('sla') sla;
 	loading = false;
 	policyForm: FormGroup;
 	slaList = new Array();
@@ -51,7 +52,7 @@ export class RuntimePolicyDetailComponent implements OnInit {
 
 		if (runtimePolicy) {
 			this.detail = runtimePolicy;
-			this.populateForm();
+			this.policyForm.get('default').setValue(this.detail[ 'default' ]);
 
 			// Request SLAs related to this NS
 			this.requestSLAs(this.detail[ 'nsUUID' ]);
@@ -81,24 +82,21 @@ export class RuntimePolicyDetailComponent implements OnInit {
 					this.slaList.push(sla);
 					this.policyForm.get('sla').setValue(sla);
 				}
+
+				this.sla.value = this.policyForm.get('sla').value[ 'uuid' ];
 			}
 		} else {
 			this.slaList.unshift({ uuid: 'None', name: 'None' });
 		}
 	}
 
-	private populateForm() {
-		this.policyForm.get('default').setValue(this.detail[ 'default' ]);
-		this.policyForm.get('sla').setValue(this.detail[ 'sla' ] ?
-			this.detail[ 'sla' ] : { uuid: 'None', name: 'None' });
-	}
-
 	receiveSLA(sla) {
-		const actualSLA = this.policyForm.get('sla').value;
+		const actualSLA = this.policyForm.get('sla').value ?
+			this.policyForm.get('sla').value : { uuid: 'None', name: 'None' };
 
-		if (sla !== 'None' && actualSLA[ 'uuid' ] !== sla[ 'uuid' ]) {
-			this.bindSLA(sla[ 'uuid' ]);
-		} else if (actualSLA[ 'uuid' ] !== sla[ 'uuid' ]) {
+		if (sla !== 'None' && actualSLA[ 'uuid' ] !== sla) {
+			this.bindSLA(sla);
+		} else if (actualSLA[ 'uuid' ] !== sla) {
 			this.bindSLA(null);
 		}
 	}
@@ -117,7 +115,9 @@ export class RuntimePolicyDetailComponent implements OnInit {
 
 	async bindSLA(slaUUID) {
 		this.loading = true;
-		const response = await this.servicePlatformService.bindRuntimePolicy(this.detail[ 'uuid' ], slaUUID, this.detail[ 'nsUUID' ]);
+		const data = { slaid: slaUUID, nsid: this.detail[ 'nsUUID' ] };
+
+		const response = await this.servicePlatformService.bindRuntimePolicy(this.detail[ 'uuid' ], data);
 
 		this.loading = false;
 		if (response) {

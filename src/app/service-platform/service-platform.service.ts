@@ -447,10 +447,9 @@ export class ServicePlatformService {
 	 * @param slaid UUID of the desired SLA
 	 * @param nsid UUID of the desired NS
 	 */
-	async bindRuntimePolicy(uuid, slaid, nsid) {
+	async bindRuntimePolicy(uuid, data) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.runtimePoliciesBind + uuid;
-		const data = { slaid, nsid };
 
 		try {
 			return await this.http.patch(url, data, { headers: headers }).toPromise();
