@@ -14,11 +14,10 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class RuntimePolicyDetailComponent implements OnInit {
 	loading = false;
-	closed = true;
 	policyForm: FormGroup;
 	slaList = new Array();
 	detail = { };
-	monitoringRules = 'This is a monitoring rule for this example!';
+	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 
 	constructor(
 		private router: Router,
@@ -110,7 +109,6 @@ export class RuntimePolicyDetailComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.policyForm.get('default').setValue(value);
 			this.utilsService.openSnackBar('The runtime policy you selected was successfully updated', '');
 		} else {
 			this.utilsService.openSnackBar('Unable to set this policy as the default one', '');
@@ -127,6 +125,10 @@ export class RuntimePolicyDetailComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('Unable to bind the SLA to this policy', '');
 		}
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {

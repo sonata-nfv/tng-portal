@@ -16,102 +16,70 @@ app-runtime-policy-detail {
 	}
 
 	form {
-		width: 65%;
+		width: 55vw;
+		margin-bottom: 5vh;
 
-		.select {
-			width: 40%;
-			margin-bottom: 4vh;
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
 		}
 
-		&.advancedForm {
-			width: 100%;
+		.sla-select {
+			width: 25vw;
 		}
 
 		// Checkbox styles
 		.mat-checkbox {
 			margin-bottom: 5vh;
 		}
-
-		.mat-checkbox-layout .mat-checkbox-label {
-			color: $secondary-font-color-light;
-		}
-
-		.mat-checkbox-frame {
-			border-color: $secondary-font-color-light;
-		}
-
-		// .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-		// .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-		//   background-color: $primary-background-color;
-		// }
 	}
 
-	.rules {
-		width: 100%;
+	// Monitoring rules section styles
+	.monitoring-rules-section {
 		display: flex;
-		flex-direction: row;
-		align-items: stretch;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 4vh;
 
-		.monitoringRules {
-			width: 50%;
-			display: flex;
-			flex-direction: column;
-			font-size: 18px;
-
-			&.left {
-				margin-right: 20px;
-			}
-
-			.title {
-				width: 100%;
-				color: $primary-font-color-light;
-			}
-
-			.content {
-				width: 100%;
-				min-height: 200px;
-				color: $secondary-font-color;
-				background-color: $panel-background-color;
-				border-top: 1px solid $border-line-color;
-				border-bottom: 1px solid $border-line-color;
-
-				p {
-					margin: 5px;
-				}
-			}
-
-			.mat-form-field-underline {
-				display: none;
-			}
-
-			.mat-form-field-infix {
-				padding: 0;
-				border: 0;
-
-				.content {
-					padding-top: 5px;
-					padding-left: 5px;
-					min-height: 195px;
-				}
-			}
-
-			.mat-input-element {
-				padding: 0;
-				margin-top: 0;
-			}
+		// Monitoring rules displayed in description box
+		.description.existing-monitoring-rules .content, 
+		.description.existing-monitoring-rules.mat-form-field .content {
+			min-height: 20vh;
+			max-height: 25vh;
 		}
 	}
 
-	// RULES PART
-	.rulesForm {
-		width: 100%;
-		align-items: flex-start;
-		margin-top: 20px;
-		margin-bottom: 20px;
+	// Policy rules section styles
+	.policy-rules-section {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 8vh;
+	
+		// Defined policy rules
+		table {
+			width: 100%;
 
-		.title3 {
-			font-size: 24px;
-			color: $primary-font-color-light;
+			td.mat-cell {
+				cursor: auto;
+			}
+
+			tr.mat-row {
+				background-image: linear-gradient(
+				  to right,
+				  $basic-background-color 0%,
+				  $table-underline-color 0%,
+				  $table-underline-color 94%,
+				  $basic-background-color 94%,
+				  $basic-background-color 100%
+				);
+			}
+
+			.mat-cell:nth-child(4),
+			.mat-header-cell:nth-child(4) {
+			  	width: 25px;
+			}
 		}
 	}
 }

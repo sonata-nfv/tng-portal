@@ -394,8 +394,8 @@ export class ServicePlatformService {
 				enforced: response[ 'enforced' ] ? 'Yes' : 'No',
 				slaUUID: response[ 'sla_id' ],
 				sla: response[ 'sla_name' ],
-				policyRules: [],
-				monitoringRules: []
+				policyRules: response[ 'pld' ][ 'policyRules' ],
+				monitoringRules: response[ 'pld' ][ 'monitoring_rules' ]
 			};
 		} catch (error) {
 			console.error(error);
