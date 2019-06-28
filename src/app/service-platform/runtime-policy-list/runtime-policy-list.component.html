@@ -57,12 +57,20 @@
 		</td>
 	</ng-container>
 
+	<ng-container matColumnDef="duplicate">
+		<th mat-header-cell *matHeaderCellDef></th>
+		<td mat-cell *matCellDef="let element" (click)="duplicatePolicy(element.uuid)" (click)="$event.stopPropagation()">
+			<button class="icon-button-shadow " mat-button><i class="wui wui-copy-alt"></i></button>
+		</td>
+	</ng-container>
+
 	<ng-container matColumnDef="delete">
 		<th mat-header-cell *matHeaderCellDef></th>
 		<td mat-cell *matCellDef="let element" (click)="deletePolicy(element)" (click)="$event.stopPropagation()">
-			<button class="icon-button-shadow actions " mat-button><i class="wui wui-trash-alt"></i></button>
+			<button class="icon-button-shadow " mat-button><i class="wui wui-trash-alt"></i></button>
 		</td>
 	</ng-container>
+
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ 'active-row': row.default }" (click)="openPolicy(row)"></tr>
 </table>

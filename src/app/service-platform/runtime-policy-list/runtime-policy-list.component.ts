@@ -17,7 +17,7 @@ export class RuntimePolicyListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	policies = new Array();
 	nsList = new Array();
-	displayedColumns = [ 'vendor', 'name', 'version', 'ns', 'sla', 'default', 'delete' ];
+	displayedColumns = [ 'vendor', 'name', 'version', 'ns', 'sla', 'default', 'duplicate', 'delete' ];
 	subscription: Subscription;
 
 	constructor(
@@ -117,6 +117,19 @@ export class RuntimePolicyListComponent implements OnInit, OnDestroy {
 			this.utilsService.openSnackBar('The runtime policy you selected was successfully updated', '');
 		} else {
 			this.utilsService.openSnackBar('Unable to set this policy as the default one', '');
+		}
+	}
+
+	async duplicatePolicy(uuid) {
+		this.loading = true;
+		const response = await this.servicePlatformService.duplicateOneRuntimePolicy(uuid);
+
+		this.loading = false;
+		if (response) {
+			this.requestRuntimePolicies();
+			this.utilsService.openSnackBar('Runtime policy successfully duplicated', '');
+		} else {
+			this.utilsService.openSnackBar('Unable to duplicate this runtime policy', '');
 		}
 	}
 

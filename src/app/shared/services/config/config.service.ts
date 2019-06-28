@@ -32,6 +32,7 @@ export class ConfigService extends Config {
 	runtimePolicies = 'policies';
 	runtimePoliciesUI = 'policies/ui';
 	runtimePoliciesBind = 'policies/bind/';
+	runtimePoliciesClone = 'policies/clone/';
 	runtimePoliciesDefault = 'policies/default/';
 	runtimePoliciesActions = 'policies/actions';
 	vimSettings = 'settings/vims';
