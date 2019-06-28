@@ -49,6 +49,7 @@ export class AuthService {
 			return await this.http.post(url, user, { headers: this.authHeaders }).toPromise();
 		} catch (error) {
 			console.error(error);
+			return error.error.error;
 		}
 	}
 

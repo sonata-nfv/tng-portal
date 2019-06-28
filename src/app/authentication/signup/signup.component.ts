@@ -4,6 +4,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
+import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
 	selector: 'app-signup',
@@ -31,15 +32,16 @@ export class SignupComponent implements OnInit {
 	show = false;
 	signupForm: FormGroup;
 	roles = [ 'Developer', 'Customer' ];
+	errorMsg: string;
 
-	constructor(private authService: AuthService, private router: Router) { }
+	constructor(private authService: AuthService, private router: Router, private utilsService: UtilsService) { }
 
 	ngOnInit() {
 		this.signupForm = new FormGroup({
 			username: new FormControl(null, Validators.required),
 			password: new FormControl(null, Validators.required),
 			confirmPassword: new FormControl(null, Validators.required),
-			email: new FormControl(null, [ Validators.required, Validators.email ]),
+			email: new FormControl(null, [ Validators.required, Validators.pattern(this.utilsService.getEmailPattern()) ]),
 			role: new FormControl(null, Validators.required),
 			termsOfUsage: new FormControl()
 		});
@@ -66,13 +68,16 @@ export class SignupComponent implements OnInit {
 			role: this.signupForm.get('role').value.toLocaleLowerCase()
 		};
 
-		const userRegistered = await this.authService.signup(user);
+		const response = await this.authService.signup(user);
 
-		if (userRegistered) {
+		if (response && response instanceof Object) {
 			this.router.navigate([ '/registered' ]);
 		} else {
-			this.signupForm.get('username').setErrors({ 'incorrect': true });
-			this.signupForm.get('email').setErrors({ 'incorrect': true });
+			this.errorMsg = response;
+
+			this.errorMsg.toLowerCase().includes('email') ?
+				this.signupForm.get('email').setErrors({ 'incorrect': true })
+				: this.signupForm.get('username').setErrors({ 'incorrect': true });
 		}
 	}
 }

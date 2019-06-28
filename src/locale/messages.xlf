@@ -728,7 +728,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
@@ -751,13 +751,6 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="usernameAlreadyInUse" datatype="html">
-        <source>*Username already in use</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="confirmPasswordPlaceholder" datatype="html">
         <source>Confirm Password</source>
         <context-group purpose="location">
@@ -766,7 +759,9 @@
         </context-group>
       </trans-unit>
       <trans-unit id="passwordsDoNotMatch" datatype="html">
-        <source>*Passwords do not match</source>
+        <source>
+				*Passwords do not match
+			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
           <context context-type="linenumber">19</context>
@@ -776,42 +771,42 @@
         <source>Email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="notValidEmail" datatype="html">
         <source>*This is not a valid email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="rolePlaceholder" datatype="html">
         <source>Role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageLink" datatype="html">
         <source>Terms of Usage. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="registerButton" datatype="html">
         <source>REGISTER</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="haveAnAccountLink" datatype="html">
         <source>I have an account</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tyMessage" datatype="html">
