@@ -31,12 +31,14 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SignupComponent implements OnInit {
 	show = false;
 	signupForm: FormGroup;
-	roles = [ 'Developer', 'Customer' ];
+	roles: Array<string>;
 	errorMsg: string;
 
 	constructor(private authService: AuthService, private router: Router, private utilsService: UtilsService) { }
 
 	ngOnInit() {
+		this.getRoles();
+
 		this.signupForm = new FormGroup({
 			username: new FormControl(null, Validators.required),
 			password: new FormControl(null, Validators.required),
@@ -55,6 +57,10 @@ export class SignupComponent implements OnInit {
 		}
 	}
 
+	private async getRoles() {
+		this.roles = await this.authService.getUserRoles();
+	}
+
 	receiveRole(role) {
 		this.signupForm.get('role').setValue(role);
 	}
@@ -65,7 +71,7 @@ export class SignupComponent implements OnInit {
 			name: this.signupForm.get('username').value,
 			password: this.signupForm.get('password').value,
 			email: this.signupForm.get('email').value,
-			role: this.signupForm.get('role').value.toLocaleLowerCase()
+			role: this.signupForm.get('role').value
 		};
 
 		const response = await this.authService.signup(user);

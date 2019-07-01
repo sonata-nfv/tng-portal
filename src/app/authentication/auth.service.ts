@@ -60,6 +60,20 @@ export class AuthService {
 		this.authHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 	}
 
+	async getUserRoles() {
+		const url = this.config.baseSP + this.config.roles;
+
+		try {
+			const roles = await this.http.get(url, { headers: this.authHeaders }).toPromise();
+			return roles && roles[ 'roles' ] ?
+				Object.keys(roles[ 'roles' ]) :
+				[ '-' ];
+		} catch (error) {
+			console.error(error);
+			return [ '-' ];
+		}
+	}
+
 	getAuthHeaders() {
 		return this.authHeaders;
 	}
