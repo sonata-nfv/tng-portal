@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup;
+	errorMsg: string;
 
 	constructor(private authService: AuthService, private router: Router) { }
 
@@ -25,12 +26,17 @@ export class LoginComponent implements OnInit {
 	async login(loginForm: FormGroup) {
 		const username = loginForm.get('username').value;
 		const password = loginForm.get('password').value;
-		await this.authService.login(username, password);
+		const response = await this.authService.login(username, password);
 
-		localStorage.getItem('token') ?
-			this.router.navigate([ '/' ])
-			: this.loginForm.get('password').setErrors({ 'incorrect': true });
+		if (response && response instanceof Object) {
+			this.router.navigate([ '/' ]);
+		} else {
+			this.errorMsg = response;
 
+			if (this.errorMsg.toLowerCase().includes('user') || this.errorMsg.toLowerCase().includes('password')) {
+				this.loginForm.get('password').setErrors({ 'incorrect': true });
+			}
+		}
 	}
 }
 

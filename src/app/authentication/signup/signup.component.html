@@ -5,7 +5,7 @@
 		<mat-form-field>
 			<input matInput type="text" placeholder="Username" formControlName="username" required
 				i18n-placeholder="@@usernamePlaceholder" />
-			<mat-error *ngIf="signupForm.get('username').hasError('incorrect')">*{{ errorMsg }}</mat-error>
+			<mat-error *ngIf="errorMsg">*{{ errorMsg }}</mat-error>
 		</mat-form-field>
 
 		<mat-form-field [ngClass]="{'mat-form-field-invalid': signupForm.get('confirmPassword').hasError('incorrect')}">
@@ -23,8 +23,8 @@
 
 		<mat-form-field>
 			<input matInput type="email" placeholder="Email" formControlName="email" required i18n-placeholder="@@emailPlaceholder" />
-			<mat-error *ngIf="!signupForm.get('email').hasError('incorrect')" i18n="@@notValidEmail">*This is not a valid email</mat-error>
-			<mat-error *ngIf="signupForm.get('email').hasError('incorrect')">*{{ errorMsg }}</mat-error>
+			<mat-error *ngIf="!errorMsg" i18n="@@notValidEmail">*This is not a valid email</mat-error>
+			<mat-error *ngIf="errorMsg">*{{ errorMsg }}</mat-error>
 		</mat-form-field>
 
 		<app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"

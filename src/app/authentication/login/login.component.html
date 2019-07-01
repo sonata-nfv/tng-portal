@@ -9,7 +9,8 @@
 	<mat-form-field>
 		<input matInput type="password" placeholder="Password" formControlName="password" required
 			i18n-placeholder="@@passwordPlaceholder" />
-		<mat-error i18n="@@wrongUsernamePassword">*Wrong username or password</mat-error>
+		<mat-error *ngIf="errorMsg">*{{ errorMsg }}</mat-error>
+
 	</mat-form-field>
 
 	<button class="login-button" [disabled]="!loginForm.valid" i18n="@@loginButton">LOG IN</button>

@@ -23,9 +23,10 @@ export class AuthService {
 			localStorage.setItem('token', login[ 'token' ]);
 			localStorage.setItem('username', username);
 			this.setAuthHeaders();
-			return;
+			return login;
 		} catch (error) {
 			console.error(error);
+			return error.error.error;
 		}
 	}
 
