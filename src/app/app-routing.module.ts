@@ -39,12 +39,12 @@ import { SpNetworkServicesDetailComponent } from './service-platform/sp-network-
 import { FunctionsComponent } from './shared/components/functions/functions.component';
 import { SpFunctionsDetailComponent } from './service-platform/sp-functions-detail/sp-functions-detail.component';
 import { PlacementPolicyComponent } from './service-platform/placement-policy/placement-policy.component';
-import { RuntimePoliciesComponent } from './service-platform/runtime-policies/runtime-policies.component';
-import { RuntimePoliciesDetailComponent } from './service-platform/runtime-policies-detail/runtime-policies-detail.component';
+import { RuntimePolicyListComponent } from './service-platform/runtime-policy-list/runtime-policy-list.component';
+import { RuntimePolicyDetailComponent } from './service-platform/runtime-policy-detail/runtime-policy-detail.component';
 import { RuntimePolicyCreateComponent } from './service-platform/runtime-policy-create/runtime-policy-create.component';
 import {
-	RuntimePoliciesGeneratedActionsComponent
-} from './service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component';
+	GeneratedActionsComponent
+} from './service-platform/generated-actions/generated-actions.component';
 import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
 import { SlaTemplateDetailComponent } from './service-platform/sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
@@ -149,13 +149,13 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/policies/placement-policy', component: PlacementPolicyComponent },
 			{
-				path: 'service-platform/policies/runtime-policies', component: RuntimePoliciesComponent,
+				path: 'service-platform/policies/runtime-policies', component: RuntimePolicyListComponent,
 				children: [
 					{ path: 'new', component: RuntimePolicyCreateComponent },
-					{ path: ':id', component: RuntimePoliciesDetailComponent }
+					{ path: ':id', component: RuntimePolicyDetailComponent }
 				]
 			},
-			{ path: 'service-platform/policies/generated-actions', component: RuntimePoliciesGeneratedActionsComponent },
+			{ path: 'service-platform/policies/generated-actions', component: GeneratedActionsComponent },
 			{
 				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
 				children: [

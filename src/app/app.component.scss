@@ -279,7 +279,7 @@ p {
 //////////////////////////////////////
 // Version and iteration circles
 //////////////////////////////////////
-.bubbleDiv {
+.number-bubble {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -575,6 +575,18 @@ ul.unordered-list .mat-input-element:disabled {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background-color: $basic-background-color;
+}
+
+.circle-button {
+	padding: 8px;
+	border-radius: 50%;
+	border: 1px solid $secondary-color;
+	cursor: pointer;
+}
+
+.circle-button.active {
+	border: 1px solid $primary-color-light;
+	background-color: $primary-color-light;
 }
 
 //////////////////////////////////////

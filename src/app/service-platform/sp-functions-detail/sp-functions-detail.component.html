@@ -1,47 +1,47 @@
 <h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@functions">Functions</h3>
 
 <div class="title-section" *ngIf="detail['name']">
-    <h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
-    <button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <div class="subheader" *ngIf="detail['author']">
-    <p class="subtitle author" i18n="@@createdBy">Created by</p>
-    <p class="subtitle author">{{ detail['author'] }}</p>
-    <p class="subtitle date">{{ detail['createdAt'] }}</p>
+	<p class="subtitle author" i18n="@@createdBy">Created by</p>
+	<p class="subtitle author">{{ detail['author'] }}</p>
+	<p class="subtitle date">{{ detail['createdAt'] }}</p>
 </div>
 
-<div class="bubbleDiv" *ngIf="detail['version']">
-    <span class="text" i18n="@@version">Version</span>
-    <div class="number">
-        <span>{{ detail['version'] }}</span>
-    </div>
+<div class="number-bubble" *ngIf="detail['version']">
+	<span class="text" i18n="@@version">Version</span>
+	<div class="number">
+		<span>{{ detail['version'] }}</span>
+	</div>
 </div>
 
 <form class="detail">
-    <mat-form-field class="vendor" *ngIf="detail['vendor']">
-        <input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
-    </mat-form-field>
+	<mat-form-field class="vendor" *ngIf="detail['vendor']">
+		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+	</mat-form-field>
 
-    <mat-form-field class="type" *ngIf="detail['type']">
-        <input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
-    </mat-form-field>
+	<mat-form-field class="type" *ngIf="detail['type']">
+		<input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
+	</mat-form-field>
 
-    <mat-form-field class="status" *ngIf="detail['status']">
-        <input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
-    </mat-form-field>
+	<mat-form-field class="status" *ngIf="detail['status']">
+		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+	</mat-form-field>
 
-    <mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
-        <input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
-            i18n-placeholder="@@updatedAtPlaceholder" />
-    </mat-form-field>
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+			i18n-placeholder="@@updatedAtPlaceholder" />
+	</mat-form-field>
 
-    <div class="description" *ngIf="detail['description']">
-        <h4 class="title4" i18n="@@description">Description</h4>
-        <span class="content">
-            <p>{{ detail['description'] }}</p>
-        </span>
-    </div>
+	<div class="description" *ngIf="detail['description']">
+		<h4 class="title4" i18n="@@description">Description</h4>
+		<span class="content">
+			<p>{{ detail['description'] }}</p>
+		</span>
+	</div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

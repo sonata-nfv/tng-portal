@@ -15,12 +15,12 @@ import { SpNetworkServicesComponent } from './sp-network-services/sp-network-ser
 import { SpNetworkServicesDetailComponent } from './sp-network-services-detail/sp-network-services-detail.component';
 import { SpFunctionsDetailComponent } from './sp-functions-detail/sp-functions-detail.component';
 import { PlacementPolicyComponent } from './placement-policy/placement-policy.component';
-import { RuntimePoliciesComponent } from './runtime-policies/runtime-policies.component';
-import { RuntimePoliciesDetailComponent } from './runtime-policies-detail/runtime-policies-detail.component';
+import { RuntimePolicyListComponent } from './runtime-policy-list/runtime-policy-list.component';
+import { RuntimePolicyDetailComponent } from './runtime-policy-detail/runtime-policy-detail.component';
 import { RuntimePolicyCreateComponent } from './runtime-policy-create/runtime-policy-create.component';
 import {
-	RuntimePoliciesGeneratedActionsComponent
-} from './runtime-policies-generated-actions/runtime-policies-generated-actions.component';
+	GeneratedActionsComponent
+} from './generated-actions/generated-actions.component';
 import { SlaTemplateListComponent } from './sla-template-list/sla-template-list.component';
 import { SlaTemplateDetailComponent } from './sla-template-detail/sla-template-detail.component';
 import { SlaTemplateCreateComponent } from './sla-template-create/sla-template-create.component';
@@ -41,10 +41,10 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		SpNetworkServicesDetailComponent,
 		SpFunctionsDetailComponent,
 		PlacementPolicyComponent,
-		RuntimePoliciesComponent,
-		RuntimePoliciesDetailComponent,
+		RuntimePolicyListComponent,
+		RuntimePolicyDetailComponent,
 		RuntimePolicyCreateComponent,
-		RuntimePoliciesGeneratedActionsComponent,
+		GeneratedActionsComponent,
 		SlaTemplateListComponent,
 		SlaTemplateDetailComponent,
 		SlaTemplateCreateComponent,

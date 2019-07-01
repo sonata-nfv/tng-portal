@@ -1,0 +1,51 @@
+@import "../../../constants.scss";
+app-runtime-policy-list {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	align-items: center;
+	width: auto;
+	height: 100%;
+	background-color: $basic-background-color;
+
+	.tools .select {
+		width: 25%;
+		margin-left: 20px;
+  	}
+
+	table {
+		width: 95%;
+	}
+	
+	tr.mat-row {
+		background-image: linear-gradient(
+			to right,
+			$basic-background-color 1%,
+			$table-underline-color 1%,
+			$table-underline-color 86%,
+			$basic-background-color 86%,
+			$basic-background-color 100%
+		);
+	}
+
+	.mat-cell:nth-child(6),
+	.mat-header-cell:nth-child(6) {
+		width: 60px;
+	}
+
+	.mat-cell:nth-child(7),
+	.mat-header-cell:nth-child(7) {
+		width: 50px;
+	}
+
+	.mat-cell:nth-child(8),
+	.mat-header-cell:nth-child(8) {
+		width: 50px;
+	}
+
+	tr.active-row + tr:not(.active-row) {
+		margin-top: 20px;
+		border-top: 1px solid $secondary-underline-color-light;
+	}
+}

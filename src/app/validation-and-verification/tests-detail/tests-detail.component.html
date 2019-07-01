@@ -12,14 +12,14 @@
 </div>
 
 <div class="bubbles">
-	<div class="bubbleDiv" *ngIf="detail['version']">
+	<div class="number-bubble" *ngIf="detail['version']">
 		<span class="text" i18n="@@currentVersion">Current version</span>
 		<div class="number">
 			<span>{{ detail['version'] }}</span>
 		</div>
 	</div>
 
-	<div class="bubbleDiv" *ngIf="detail['timesExecuted']">
+	<div class="number-bubble" *ngIf="detail['timesExecuted']">
 		<span class="text" i18n="@@timesExecuted">Times executed</span>
 		<div class="number times">
 			<span>{{ detail['timesExecuted'] }}</span>

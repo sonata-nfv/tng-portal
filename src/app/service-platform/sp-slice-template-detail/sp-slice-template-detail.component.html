@@ -17,7 +17,7 @@
 	<p class="subtitle date">{{ utilsService.formatUTCDate(detail['createdAt']) }}</p>
 </div>
 
-<div class="bubbleDiv" *ngIf="detail['version']">
+<div class="number-bubble" *ngIf="detail['version']">
 	<span class="text" i18n="@@version">Version</span>
 	<div class="number">
 		<span>{{ detail['version'] }}</span>

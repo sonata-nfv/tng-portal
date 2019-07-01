@@ -11,7 +11,7 @@
 	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
-<div class="bubbleDiv" *ngIf="detail['version']">
+<div class="number-bubble" *ngIf="detail['version']">
 	<span class="text" i18n="@@version">Version</span>
 	<div class="number">
 		<span>{{ detail.version }}</span>
