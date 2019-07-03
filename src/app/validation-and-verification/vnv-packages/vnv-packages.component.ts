@@ -12,9 +12,8 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class VnvPackagesComponent implements OnInit {
 	loading: boolean;
-	section: string;
 	packages = new Array();
-	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ];
+	displayedColumns = [ 'vendor', 'name', 'version', 'status' ];
 
 	constructor(
 		private utilsService: UtilsService,
@@ -24,7 +23,6 @@ export class VnvPackagesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.section = 'V&V';
 		this.requestPackages();
 	}
 
@@ -39,19 +37,16 @@ export class VnvPackagesComponent implements OnInit {
      *                          matched by the returned list of
      *                          packages.
      */
-	requestPackages(search?) {
+	async requestPackages(search?) {
 		this.loading = true;
+		const response = await this.commonService.getPackages('V&V', search);
 
-		this.commonService
-			.getPackages(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.packages = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.packages = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any package', '');
+		}
 	}
 
 	openPackage(row) {

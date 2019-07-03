@@ -25,49 +25,36 @@ export class CommonService {
      *                          matched by the returned list of
      *                          packages.
      */
-	getPackages(section, search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			let url: string;
+	async getPackages(section, search?) {
+		const headers = this.authService.getAuthHeaders();
+		let url: string;
 
-			if (section === 'V&V') {
-				url =
-					search !== undefined
-						? this.config.baseVNV + this.config.packages + search
-						: this.config.baseVNV + this.config.packages;
-			} else {
-				url =
-					search !== undefined
-						? this.config.baseSP + this.config.packages + search
-						: this.config.baseSP + this.config.packages;
-			}
+		if (section === 'V&V') {
+			url = search ?
+				this.config.baseVNV + this.config.packages + search
+				: this.config.baseVNV + this.config.packages;
+		} else {
+			url = search ?
+				this.config.baseSP + this.config.packages + search
+				: this.config.baseSP + this.config.packages;
+		}
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.pd.name,
-									vendor: item.pd.vendor,
-									version: item.pd.version,
-									createdAt: this.utilsService.formatUTCDate(item.created_at),
-									status: this.utilsService.capitalizeFirstLetter(item.status),
-									type: 'Public'
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the packages');
-					}
-				})
-				.catch(err => reject('There was an error fetching the packages'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.pd.name,
+						vendor: item.pd.vendor,
+						version: item.pd.version,
+						createdAt: item.created_at,
+						status: item.status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
