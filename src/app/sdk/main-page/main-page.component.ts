@@ -5,19 +5,22 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-main-page',
 	templateUrl: './main-page.component.html',
-	styleUrls: [ './main-page.component.scss' ],
+	styleUrls: ['./main-page.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 export class MainPageComponent implements OnInit {
+
+	section: string;
 
 	constructor(
 		private router: Router,
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.section = 'sdk';
+	}
 
 	createPackage() {
-		// Uncomment when you include your 'descriptor-generator' component
-		// this.router.navigate([ '/descriptor-generator' ]);
+		this.router.navigate(['sdk/descriptor-generator']);
 	}
 }

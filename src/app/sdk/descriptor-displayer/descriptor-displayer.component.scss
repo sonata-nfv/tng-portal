@@ -1,0 +1,99 @@
+@import "../../../constants.scss";
+
+app-descriptor-displayer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    background-color: $basic-background-color;
+
+    .title1 {
+        margin: 0;
+        width: 40%;
+
+        .mat-form-field-infix {
+            border-top: 0;
+        }
+
+        &.mat-form-field-should-float {
+            .mat-form-field-label-wrapper {
+                display: none;
+            }
+        }
+    }
+
+    .template-form {
+        width: 60vw;
+
+        .regular-input {
+            width: 20vw;
+        }
+
+        .description {
+            width: 100%;
+
+            .description-title {
+                margin-top: 2vh;
+            }
+        }
+
+        app-select {
+            width: 28vw;
+            margin-right: 30px;
+        }
+    }
+}
+
+.num-vnfs {
+    width: 20px !important;
+    max-width: 20px !important;
+}
+
+.form-header {
+    position: relative;
+
+    .title2 {
+        display: inline;
+    }
+}
+
+.status {
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+
+.status-error {
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    background-color: $form-alert-color;
+    position: absolute;
+    right: 0;
+}
+
+.status-no-error {
+    height: 15px;
+    width: 15px;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: grey;
+    border-style: solid;
+    display: inline-block;
+    background-color: $secondary-color-light;
+    position: absolute;
+    right: 0;
+}
