@@ -291,7 +291,7 @@ export class CommonService {
 					vendor: response[ 'nsd' ][ 'vendor' ],
 					version: response[ 'nsd' ][ 'version' ],
 					description: response[ 'nsd' ][ 'description' ],
-					vnf: response[ 'nsd' ][ 'network_functions' ]
+					vnf: response[ 'nsd' ][ 'network_functions' ] || []
 				} : { };
 		} catch (error) {
 			console.error(error);
