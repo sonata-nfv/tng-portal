@@ -1,57 +1,51 @@
 @import "../../../constants.scss";
 app-tests-detail {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  overflow-y: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  .bubbles {
-    display: flex;
-    flex-direction: row;
+	.bubbles {
+		display: flex;
+		flex-direction: row;
 
-    .number-bubble .number {
-      &.times {
-        border: 2px solid $primary-background-color;
-        background-color: $basic-background-color;
+		.number-bubble .number {
+			&.times {
+				border: 2px solid $primary-background-color;
+				background-color: $basic-background-color;
 
-        span {
-          color: $secondary-font-color;
-          font-size: 40px;
-        }
-      }
-    }
-  }
+				span {
+				color: $secondary-font-color;
+				font-size: 40px;
+				}
+			}
+		}
+	}
 
-  .detail {
-    width: 65%;
-    margin-bottom: 20px;
+	.detail {
+		width: 55vw;
+		margin-bottom: 2vh;
+	}
 
-    .mat-form-field {
-      width: 100%;
-    }
-  }
+	.description, .executions {
+		width: 55vw;
+		margin-bottom: 5vh;
+	}
 
-  // TEST EXECUTIONS PART
-  .executions {
-    width: 65%;
-    align-items: flex-start;
-    margin-top: 20px;
-    margin-bottom: 40px;
-
-    .title3 {
-      font-size: 24px;
-      color: $primary-font-color-light;
-    }
+	// TEST EXECUTIONS PART
+	.title2 {
+		margin-bottom: 0;
+	}
 
     table {
       width: 100%;
@@ -68,10 +62,16 @@ app-tests-detail {
       );
     }
 
+	// Styles for no instances message
+	.no-results-container {
+		align-items: center;
+		width: 100%;
+		margin-top: 7vh;
+	}
+
     // Set width for columns
     .mat-cell:nth-child(4),
     .mat-header-cell:nth-child(4) {
-      width: 10%;
+      	width: 15%;
     }
-  }
 }

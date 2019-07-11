@@ -36,55 +36,32 @@ export class TestsDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	requestTest(uuid) {
+	async requestTest(uuid) {
 		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.getOneTest(uuid);
 
-		this.verificationAndValidationPlatformService
-			.getOneTest(uuid)
-			.then(response => {
-				this.detail = response;
-			})
-			.then(() => {
-				this.verificationAndValidationPlatformService
-					.getTestExecutions(this.detail[ 'uuid' ])
-					.then(response => {
-						this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the test', '');
+			this.close();
+		}
 
-						if (response.length < 1) {
-							this.utilsService.openSnackBar(
-								'There are no test executions available',
-								''
-							);
-						} else {
-							this.executions = response;
-						}
-					});
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
-	}
+		const executions = await this.verificationAndValidationPlatformService.getTestExecutions(this.detail[ 'uuid' ]);
 
-	launch() {
-		this.verificationAndValidationPlatformService
-			.postOneTest('test', this.detail[ 'uuid' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Success!', '');
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (executions) {
+			this.executions = executions;
+		} else {
+			this.utilsService.openSnackBar('There are no test executions available', '');
+		}
 	}
 
 	openTestResults(row) {
-		this.router.navigate([ 'results', row[ 'uuid' ] ], {
-			relativeTo: this.route
-		});
+		this.router.navigate([ 'results', row[ 'uuid' ] ], { relativeTo: this.route });
 	}
 
 	close() {
-		this.router.navigate([ 'validation-and-verification/tests' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }
