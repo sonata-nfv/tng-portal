@@ -76,6 +76,11 @@
 		</div>
 
 		<div class="options" *ngIf="menu === 'validation-and-verification'">
+			<button class="basic-button" [ngClass]="{ active: section === 'vv-test-plans' }" (click)="setSection($event, 'vv-test-plans')"
+				i18n="@@testPlans">
+				Test plans
+			</button>
+
 			<button class="basic-button" [ngClass]="{ active: section === 'vv-packages' }" (click)="setSection($event, 'vv-packages')"
 				i18n="@@packages">
 				Packages

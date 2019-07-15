@@ -138,4 +138,34 @@ export class ValidationAndVerificationPlatformService {
 				);
 		});
 	}
+
+	/**
+     * Retrieves a list of test plans.
+     * Either following a search pattern or not.
+     *
+     * @param search [Optional] Test plan attributes that must be
+     *                          matched by the returned list of
+     *                          test plans.
+     */
+	async getTestPlans(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseVNV + this.config.testPlans + search
+			: this.config.baseVNV + this.config.testPlans;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						serviceUUID: item.service_uuid,
+						status: item.test_status,
+						required: item.confirm_required,
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
 }
