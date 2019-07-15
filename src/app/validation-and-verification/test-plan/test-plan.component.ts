@@ -38,10 +38,10 @@ export class TestPlanComponent implements OnInit {
 			this.detail = response;
 
 			const testd = await this.verificationAndValidationPlatformService.getOneTest(response[ 'testUUID' ]);
-			this.detail[ 'testdName' ] = testd ? testd.name : 'Unknown';
+			this.detail[ 'testdName' ] = Object.keys(testd).length ? testd.name : 'Unknown';
 
 			const ns = await this.commonService.getOneNetworkService('vnv', response[ 'serviceUUID' ]);
-			this.detail[ 'serviceName' ] = ns ? ns.name : 'Unknown';
+			this.detail[ 'serviceName' ] = Object.keys(ns).length ? ns.name : 'Unknown';
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the test plan', '');
 			this.close();

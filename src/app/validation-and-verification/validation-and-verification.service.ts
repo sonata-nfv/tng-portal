@@ -60,7 +60,7 @@ export class ValidationAndVerificationPlatformService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return {
+			return Object.keys(response).length ? {
 				uuid: response[ 'uuid' ],
 				name: response[ 'testd' ][ 'name' ],
 				vendor: response[ 'testd' ][ 'vendor' ],
@@ -72,7 +72,7 @@ export class ValidationAndVerificationPlatformService {
 				updatedAt: response[ 'updated_at' ],
 				status: response[ 'status' ],
 				lastTimeExecuted: response[ 'last_time_executed' ]
-			};
+			} : { };
 		} catch (error) {
 			console.error(error);
 		}
