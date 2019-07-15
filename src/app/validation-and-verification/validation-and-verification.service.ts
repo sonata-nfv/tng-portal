@@ -159,6 +159,7 @@ export class ValidationAndVerificationPlatformService {
 				response.map(item => {
 					return {
 						uuid: item.uuid,
+						testUUID: item.test_uuid,
 						serviceUUID: item.service_uuid,
 						status: item.test_status,
 						required: item.confirm_required

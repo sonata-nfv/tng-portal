@@ -10,14 +10,14 @@
 </div>
 
 <table mat-table [dataSource]="testPlans">
-	<ng-container matColumnDef="uuid">
-		<th mat-header-cell *matHeaderCellDef i18n="@@testPlanID">Test plan ID</th>
-		<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+	<ng-container matColumnDef="testName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@testName">Test name</th>
+		<td mat-cell *matCellDef="let element">{{ element.testdName }}</td>
 	</ng-container>
 
-	<ng-container matColumnDef="serviceUUID">
-		<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
-		<td mat-cell *matCellDef="let element">{{ element.serviceUUID }}</td>
+	<ng-container matColumnDef="serviceName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service name</th>
+		<td mat-cell *matCellDef="let element">{{ element.serviceName }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="status">
@@ -26,7 +26,7 @@
 	</ng-container>
 
 	<ng-container matColumnDef="required">
-		<th mat-header-cell *matHeaderCellDef i18n="@@required">Required</th>
+		<th mat-header-cell *matHeaderCellDef i18n="@@confirmExecution">Confirm execution</th>
 		<td mat-cell *matCellDef="let element" (click)="setRequired(element.uuid)" (click)="$event.stopPropagation()">
 			<button [ngClass]="{ active: element.required }" class="circle-button" mat-button></button>
 		</td>
