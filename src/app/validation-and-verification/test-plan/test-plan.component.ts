@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
 	selector: 'app-test-plan',
@@ -18,6 +19,7 @@ export class TestPlanComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private utilsService: UtilsService,
+		private commonService: CommonService,
 		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
 	) { }
 
@@ -34,6 +36,12 @@ export class TestPlanComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.detail = response;
+
+			const testd = await this.verificationAndValidationPlatformService.getOneTest(response[ 'testUUID' ]);
+			this.detail[ 'testdName' ] = testd ? testd.name : 'Unknown';
+
+			const ns = await this.commonService.getOneNetworkService('vnv', response[ 'serviceUUID' ]);
+			this.detail[ 'serviceName' ] = ns ? ns.name : 'Unknown';
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the test plan', '');
 			this.close();
