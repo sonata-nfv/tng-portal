@@ -161,9 +161,34 @@ export class ValidationAndVerificationPlatformService {
 						uuid: item.uuid,
 						serviceUUID: item.service_uuid,
 						status: item.test_status,
-						required: item.confirm_required,
+						required: item.confirm_required
 					};
 				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+     * Retrieves a test plan by UUID
+     *
+     * @param uuid UUID of the desired test plan.
+     */
+	async getOneTestPlan(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlans + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				serviceUUID: response[ 'service_uuid' ],
+				status: response[ 'test_status' ],
+				required: response[ 'confirm_required' ],
+				testSet: response[ 'test_set_uuid' ],
+				testUUID: response[ 'test_uuid' ],
+				updatedAt: response[ 'updated_at' ]
+			};
 		} catch (error) {
 			console.error(error);
 		}

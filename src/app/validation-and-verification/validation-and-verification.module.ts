@@ -9,6 +9,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { SharedModule } from '../shared/shared.module';
 
 import { TestPlanListComponent } from './test-plan-list/test-plan-list.component';
+import { TestPlanComponent } from './test-plan/test-plan.component';
 import { TestsComponent } from './tests/tests.component';
 import { TestsDetailComponent } from './tests-detail/tests-detail.component';
 import { TestResultsComponent } from './test-results/test-results.component';
@@ -20,6 +21,7 @@ import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail
 @NgModule({
 	declarations: [
 		TestPlanListComponent,
+		TestPlanComponent,
 		TestsComponent,
 		TestsDetailComponent,
 		TestResultsComponent,

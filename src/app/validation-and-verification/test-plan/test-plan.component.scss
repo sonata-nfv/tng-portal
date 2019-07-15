@@ -1,0 +1,28 @@
+@import "../../../constants.scss";
+app-test-plan {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	.detail {
+		width: 55vw;
+		margin-top: 10vh;
+		margin-bottom: 5vh;
+
+		// Checkbox styles
+		.mat-checkbox {
+			margin-bottom: 5vh;
+		}
+	}
+}
