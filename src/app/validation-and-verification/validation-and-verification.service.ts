@@ -109,34 +109,26 @@ export class ValidationAndVerificationPlatformService {
      *
      * @param uuid UUID of the desired test execution
      */
-	getTestResults(uuid): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
+	async getTestResults(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testExecutions + '/' + uuid;
 
-			const url = this.config.baseVNV + this.config.testExecutions + '/' + uuid;
-
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						startedAt: this.utilsService.formatUTCDate(response[ 'started_at' ]),
-						results: response[ 'results' ],
-						sterr: response[ 'sterr' ],
-						details: response[ 'details' ]
-							? response[ 'details' ][ 'details' ]
-							: null,
-						graphs: response[ 'details' ] ? response[ 'details' ][ 'graphs' ] : null
-					});
-				})
-				.catch(err =>
-					reject('There was an error while fetching the test execution results')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return Object.keys(response).length ? {
+				uuid: response[ 'uuid' ],
+				details: response[ 'details' ],
+				results: response[ 'results' ],
+				status: response[ 'status' ],
+				updatedAt: response[ 'updated_at' ],
+				endedAt: response[ 'ended_at' ],
+				startedAt: response[ 'started_at' ],
+				serviceUUID: response[ 'service_uuid' ],
+				testUUID: response[ 'test_uuid' ]
+			} : { };
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**

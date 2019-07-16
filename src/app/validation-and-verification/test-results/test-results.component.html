@@ -7,30 +7,96 @@
 
 <form class="detail">
 	<mat-form-field *ngIf="detail['status']">
-		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
+			i18n-placeholder="@@statusPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field class="time-form-field" *ngIf="detail['startedAt']">
-		<input matInput value="Last update: {{ detail['startedAt'] }}" disabled />
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['startedAt']" class="left-column">
+			<input matInput placeholder="Started at" value="{{  utilsService.formatUTCDate(detail['startedAt']) }}" disabled
+				i18n-placeholder="@@startedAtPlaceholder" />
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['endedAt']">
+			<input matInput placeholder="Ended at" value="{{  utilsService.formatUTCDate(detail['endedAt']) }}" disabled
+				i18n-placeholder="@@endedAtPlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
+		<input matInput placeholder="Test result ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@testResultIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
 	</mat-form-field>
 
-	<div class="description results" *ngIf="detail['results']">
-		<h4 class="title4" i18n="@@resultsText">Results</h4>
-		<span class="content">
-			<p>{{ convertResults() }}</p>
-			<!-- {{ detail['results'] }} -->
-		</span>
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['testUUID']" class="left-column">
+			<input matInput placeholder="Test ID" value="{{ detail['testUUID'] }}" disabled i18n-placeholder="@@testIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['testUUID'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['testdName']">
+			<input matInput placeholder="Test" value="{{ detail['testdName'] }}" disabled i18n-placeholder="@@testPlaceholder" />
+		</mat-form-field>
 	</div>
 
-	<div class="description" *ngIf="detail['sterr']">
-		<h4 class="title4" i18n="@@error">Error</h4>
-		<span class="content">
-			<p>{{ detail['sterr'] }}</p>
-		</span>
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['serviceUUID']" class="left-column">
+			<input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled
+				i18n-placeholder="@@serviceIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['serviceUUID'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['serviceName']">
+			<input matInput placeholder="Service" value="{{ detail['serviceName'] }}" disabled i18n-placeholder="@@servicePlaceholder" />
+		</mat-form-field>
 	</div>
+
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
+			i18n-placeholder="@@updatedAtPlaceholder" />
+	</mat-form-field>
 </form>
 
-<div class="results" *ngIf="detail['graphs']">
+<div class="description" *ngIf="detail['details']">
+	<div class="description-title">
+		<h4 class="title4" i18n="@@details">Details</h4>
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyJSONToClipboard(detail['details'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</div>
+
+	<span class="content">
+		<ngx-json-viewer [expanded]=false [json]="detail['details']"></ngx-json-viewer>
+	</span>
+</div>
+
+<div class="description" *ngIf="detail['results']">
+	<div class="description-title">
+		<h4 class="title4" i18n="@@results">Results</h4>
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyJSONToClipboard(detail['results'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</div>
+
+	<span class="content">
+		<ngx-json-viewer [expanded]=false [json]="detail['results']"></ngx-json-viewer>
+	</span>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<!-- <div class="results" *ngIf="detail['graphs']">
 	<h2 class="title2" i18n="results">Results</h2>
 	<div id="charts" *ngFor="let lst of charts['ds']['chart']"><canvas id="chart-{{lst}}"></canvas></div>
-</div>
+</div> -->

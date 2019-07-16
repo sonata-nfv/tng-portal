@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 import { ValidationAndVerificationPlatformService } from './validation-and-verification.service';
 
@@ -35,6 +36,7 @@ import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail
 		AngularMaterialModule,
 		ReactiveFormsModule,
 		FormsModule,
+		NgxJsonViewerModule,
 		AppRoutingModule,
 		SharedModule
 	],
