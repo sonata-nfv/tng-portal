@@ -21,9 +21,9 @@ app-login {
 
 	.title-section {
 		height: 8em;
+		background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
 		background-size: 18em;
 		background-repeat: no-repeat;
-		background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
 	}
 
 	.login-form {
