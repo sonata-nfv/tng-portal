@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
-	selector: 'app-test-results',
-	templateUrl: './test-results.component.html',
-	styleUrls: [ './test-results.component.scss' ],
+	selector: 'app-test-plan',
+	templateUrl: './test-plan.component.html',
+	styleUrls: [ './test-plan.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class TestResultsComponent implements OnInit {
+export class TestPlanComponent implements OnInit {
 	loading: boolean;
 	detail = { };
 
@@ -25,13 +25,13 @@ export class TestResultsComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.requestResults(params[ 'results_uuid' ]);
+			this.requestTestPlan(params[ 'id' ]);
 		});
 	}
 
-	async requestResults(uuid) {
+	async requestTestPlan(uuid) {
 		this.loading = true;
-		const response = await this.verificationAndValidationPlatformService.getTestResults(uuid);
+		const response = await this.verificationAndValidationPlatformService.getOneTestPlan(uuid);
 
 		this.loading = false;
 		if (response) {
@@ -43,20 +43,20 @@ export class TestResultsComponent implements OnInit {
 			const ns = await this.commonService.getOneNetworkService('vnv', response[ 'serviceUUID' ]);
 			this.detail[ 'serviceName' ] = Object.keys(ns).length ? ns.name : 'Unknown';
 		} else {
-			this.utilsService.openSnackBar('Unable to fetch the test result data', '');
+			this.utilsService.openSnackBar('Unable to fetch the test plan', '');
 			this.close();
 		}
 	}
 
-	copyJSONToClipboard(json) {
-		this.utilsService.copyToClipboard(this.stringifyJSON(json));
+	async setRequired(value) {
+		// TODO request to set/unset required
 	}
 
-	stringifyJSON(json) {
-		return JSON.stringify(json);
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {
-		this.router.navigate([ '../../' ], { relativeTo: this.route });
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

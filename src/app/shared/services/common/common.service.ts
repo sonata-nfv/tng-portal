@@ -25,49 +25,36 @@ export class CommonService {
      *                          matched by the returned list of
      *                          packages.
      */
-	getPackages(section, search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			let url: string;
+	async getPackages(section, search?) {
+		const headers = this.authService.getAuthHeaders();
+		let url: string;
 
-			if (section === 'V&V') {
-				url =
-					search !== undefined
-						? this.config.baseVNV + this.config.packages + search
-						: this.config.baseVNV + this.config.packages;
-			} else {
-				url =
-					search !== undefined
-						? this.config.baseSP + this.config.packages + search
-						: this.config.baseSP + this.config.packages;
-			}
+		if (section === 'V&V') {
+			url = search ?
+				this.config.baseVNV + this.config.packages + search
+				: this.config.baseVNV + this.config.packages;
+		} else {
+			url = search ?
+				this.config.baseSP + this.config.packages + search
+				: this.config.baseSP + this.config.packages;
+		}
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									uuid: item.uuid,
-									name: item.pd.name,
-									vendor: item.pd.vendor,
-									version: item.pd.version,
-									createdAt: this.utilsService.formatUTCDate(item.created_at),
-									status: this.utilsService.capitalizeFirstLetter(item.status),
-									type: 'Public'
-								};
-							})
-						);
-					} else {
-						reject('There was an error fetching the packages');
-					}
-				})
-				.catch(err => reject('There was an error fetching the packages'));
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.pd.name,
+						vendor: item.pd.vendor,
+						version: item.pd.version,
+						createdAt: item.created_at,
+						status: item.status
+					};
+				}) : [];
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	/**
@@ -75,59 +62,50 @@ export class CommonService {
      *
      * @param uuid UUID of the desired Package.
      */
-	getOnePackage(section, uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url = section === 'vnv' ? this.config.baseVNV : this.config.baseSP;
+	async getOnePackage(section, uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = section === 'vnv' ? this.config.baseVNV : this.config.baseSP;
 
-			this.http
-				.get(url + this.config.packages + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'pd' ][ 'name' ],
-						author: response[ 'pd' ][ 'maintainer' ],
-						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
-						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						vendor: response[ 'pd' ][ 'vendor' ],
-						version: response[ 'pd' ][ 'version' ],
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						type: 'Public',
-						ns: this.getPackageContent(response[ 'pd' ][ 'package_content' ], 'ns'),
-						vnf: this.getPackageContent(
-							response[ 'pd' ][ 'package_content' ],
-							'vnf'
-						),
-						tests: this.getPackageContent(
-							response[ 'pd' ][ 'package_content' ],
-							'tests'
-						)
-					});
-				})
-				.catch(err => reject('There was an error fetching the package'));
-		});
+		try {
+			const response = await this.http.get(url + this.config.packages + '/' + uuid, { headers: headers }).toPromise();
+			const content = this.getPackageContent(response[ 'pd' ][ 'package_content' ]);
+			const packageData = {
+				uuid: response[ 'uuid' ],
+				name: response[ 'pd' ][ 'name' ],
+				author: response[ 'pd' ][ 'maintainer' ],
+				createdAt: response[ 'created_at' ],
+				updatedAt: response[ 'updated_at' ],
+				vendor: response[ 'pd' ][ 'vendor' ],
+				version: response[ 'pd' ][ 'version' ],
+				status: response[ 'status' ],
+			};
+
+			return Object.assign({ }, packageData, content);
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
-	getPackageContent(content, type) {
-		let obj: string;
-		const result = new Array();
+	getPackageContent(content) {
+		const ns = [];
+		const vnf = [];
+		const tests = [];
 
 		content.forEach(item => {
 			if (item[ 'content-type' ] === 'application/vnd.5gtango.nsd') {
-				obj = 'ns';
+				ns.push({
+					vendor: item.id.vendor,
+					name: item.id.name,
+					version: item.id.version
+				});
 			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.vnfd') {
-				obj = 'vnf';
+				vnf.push({
+					vendor: item.id.vendor,
+					name: item.id.name,
+					version: item.id.version
+				});
 			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.tstd') {
-				obj = 'tests';
-			} else {
-				obj = null;
-			}
-
-			if (obj === type) {
-				result.push({
+				tests.push({
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
@@ -135,7 +113,7 @@ export class CommonService {
 			}
 		});
 
-		return result;
+		return { ns, vnf, tests };
 	}
 
 	/**
@@ -313,7 +291,7 @@ export class CommonService {
 					vendor: response[ 'nsd' ][ 'vendor' ],
 					version: response[ 'nsd' ][ 'version' ],
 					description: response[ 'nsd' ][ 'description' ],
-					vnf: response[ 'nsd' ][ 'network_functions' ]
+					vnf: response[ 'nsd' ][ 'network_functions' ] || []
 				} : { };
 		} catch (error) {
 			console.error(error);

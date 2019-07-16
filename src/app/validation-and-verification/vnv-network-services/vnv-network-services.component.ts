@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
-import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
@@ -14,14 +13,13 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class VnvNetworkServicesComponent implements OnInit {
 	loading: boolean;
 	networkServices: Array<Object>;
-	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ];
+	displayedColumns = [ 'vendor', 'name', 'version', 'status' ];
 
 	constructor(
 		private commonService: CommonService,
 		private utilsService: UtilsService,
 		private router: Router,
-		private route: ActivatedRoute,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private route: ActivatedRoute
 	) { }
 
 	ngOnInit() {
@@ -49,17 +47,6 @@ export class VnvNetworkServicesComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch network services', '');
 		}
-	}
-
-	execute(row) {
-		this.verificationAndValidationPlatformService
-			.postOneTest('service', row[ 'serviceId' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Success!', '');
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
 	}
 
 	openNetworkService(row) {

@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-test-results {
+app-test-plan {
 	display: flex;
 	flex-direction: column;
 	flex: 1 1;
@@ -15,10 +15,15 @@ app-test-results {
 		flex: 0 0 auto;
 	}
 
-	form {
+	.detail {
 		width: 55vw;
-		margin-top: 5vh;
-		margin-bottom: 2vh;
+		margin-top: 10vh;
+		margin-bottom: 5vh;
+
+		// Checkbox styles
+		.mat-checkbox {
+			margin-bottom: 4vh;
+		}
 
 		.left-column, 
 		.same-row .left-column.mat-form-field {
@@ -26,14 +31,4 @@ app-test-results {
 			margin-right: 40px;
 		}
 	}
-
-	.description {
-        width: 55vw;
-		margin-bottom: 5vh;
-
-        .content {
-            min-height: 20vh;
-            max-height: 30vh;
-        }
-    }
 }

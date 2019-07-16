@@ -22,6 +22,8 @@ import { VimComponent } from './settings/vim/vim.component';
 import { WimListComponent } from './settings/wim-list/wim-list.component';
 import { WimComponent } from './settings/wim/wim.component';
 
+import { TestPlanListComponent } from './validation-and-verification/test-plan-list/test-plan-list.component';
+import { TestPlanComponent } from './validation-and-verification/test-plan/test-plan.component';
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
 import { TestResultsComponent } from './validation-and-verification/test-results/test-results.component';
@@ -115,7 +117,11 @@ const routes: Routes = [
 				]
 			},
 			// Validation and verification
-			{ path: 'validation-and-verification', redirectTo: 'validation-and-verification/packages', pathMatch: 'full' },
+			{ path: 'validation-and-verification', redirectTo: 'validation-and-verification/test-plans', pathMatch: 'full' },
+			{
+				path: 'validation-and-verification/test-plans', component: TestPlanListComponent,
+				children: [ { path: ':id', component: TestPlanComponent } ]
+			},
 			{
 				path: 'validation-and-verification/packages', component: VnvPackagesComponent,
 				children: [ { path: ':id', component: VnvPackagesDetailComponent } ]

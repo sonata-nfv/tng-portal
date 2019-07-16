@@ -25,6 +25,7 @@ export class ConfigService extends Config {
 	functions = 'functions';
 	slicesTemplates = 'slices';
 	slicesInstances = 'slice-instances';
+	testPlans = 'tests/plans';
 	tests = 'tests/descriptors';
 	testExecute = 'tests/plans';
 	testExecutions = 'tests/results';

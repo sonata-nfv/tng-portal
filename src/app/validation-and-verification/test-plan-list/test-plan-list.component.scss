@@ -1,5 +1,5 @@
 @import "../../../constants.scss";
-app-tests {
+app-test-plan-list {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -18,9 +18,19 @@ app-tests {
 			to right,
 			$basic-background-color 0%,
 			$table-underline-color 0%,
-			$table-underline-color 95%,
-			$basic-background-color 95%,
+			$table-underline-color 90%,
+			$basic-background-color 90%,
 			$basic-background-color 100%
 		);
+	}
+
+	.mat-cell:nth-child(4),
+	.mat-header-cell:nth-child(4) {
+		width: 200px;
+	}
+
+	tr.active-row + tr:not(.active-row) {
+		margin-top: 20px;
+		border-top: 1px solid $secondary-underline-color-light;
 	}
 }

@@ -71,7 +71,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.router.navigate([ '/settings' ]);
 				break;
 			case 'validation-and-verification':
-				this.section = 'vv-packages';
+				this.section = 'vv-test-plans';
 				this.router.navigate([ '/validation-and-verification' ]);
 				break;
 			case 'service-platform':
@@ -98,6 +98,9 @@ export class MenuComponent implements OnInit, OnDestroy {
 				break;
 			case 'wim':
 				this.router.navigate([ 'settings/wim' ]);
+				break;
+			case 'vv-test-plans':
+				this.router.navigate([ 'validation-and-verification/test-plans' ]);
 				break;
 			case 'vv-packages':
 				this.router.navigate([ 'validation-and-verification/packages' ]);

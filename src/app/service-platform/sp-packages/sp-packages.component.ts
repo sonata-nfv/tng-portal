@@ -12,9 +12,8 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class SpPackagesComponent implements OnInit {
 	loading: boolean;
-	section: string;
 	packages = new Array();
-	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'createdAt' ];
+	displayedColumns = [ 'name', 'vendor', 'version', 'createdAt' ];
 
 	constructor(
 		private commonService: CommonService,
@@ -24,9 +23,6 @@ export class SpPackagesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.section = this.route.url[ 'value' ][ 0 ].path
-			.replace(/-/g, ' ')
-			.toUpperCase();
 		this.requestPackages();
 	}
 
@@ -41,23 +37,20 @@ export class SpPackagesComponent implements OnInit {
      *                          matched by the returned list of
      *                          packages.
      */
-	requestPackages(search?) {
+	async requestPackages(search?) {
 		this.loading = true;
+		const response = await this.commonService.getPackages('SP', search);
 
-		this.commonService
-			.getPackages(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.packages = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.packages = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any package', '');
+		}
+
 	}
 
-	openPackage(row) {
-		const uuid = row.uuid;
+	openPackage(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
 	}
 }
