@@ -66,7 +66,7 @@ export class AuthService {
 		try {
 			const roles = await this.http.get(url, { headers: this.authHeaders }).toPromise();
 			return roles && roles[ 'roles' ] ?
-				Object.keys(roles[ 'roles' ]) :
+				Object.keys(roles[ 'roles' ]).filter(role => role.toLowerCase() !== 'admin') :
 				[ '-' ];
 		} catch (error) {
 			console.error(error);
