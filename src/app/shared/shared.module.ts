@@ -9,7 +9,6 @@ import { CommonService } from './services/common/common.service';
 import { UtilsService } from './services/common/utils.service';
 import { ConfigService } from './services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
-import { ChartService } from './services/common/chart.service';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -64,7 +63,6 @@ export function initConfiguration(configService: ConfigService): Function {
 		CommonService,
 		UtilsService,
 		DialogDataService,
-		ChartService,
 		{
 			provide: APP_INITIALIZER,
 			useFactory: initConfiguration,
