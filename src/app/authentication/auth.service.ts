@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from '../shared/services/config/config.service';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -55,9 +55,12 @@ export class AuthService {
 	}
 
 	private setAuthHeaders() {
-		this.authHeaders = new HttpHeaders();
-		this.authHeaders.set('Content-Type', 'application/json');
-		this.authHeaders.set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+		localStorage.getItem('token') ?
+			this.authHeaders = new HttpHeaders()
+				.set('Content-Type', 'application/json')
+				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: this.authHeaders = new HttpHeaders()
+				.set('Content-Type', 'application/json');
 	}
 
 	async getUserRoles() {
