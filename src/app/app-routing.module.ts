@@ -73,6 +73,11 @@ import {
 import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
 
+// SDK imports
+import { MainPageComponent } from './sdk/main-page/main-page.component';
+import { DescriptorGeneratorComponent } from './sdk/descriptor-generator/descriptor-generator.component';
+import { DescriptorDisplayerComponent } from './sdk/descriptor-displayer/descriptor-displayer.component';
+
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -215,7 +220,9 @@ const routes: Routes = [
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
 			}
 		]
-	}
+	},
+	// SDK routes don't need authentication
+	{ path: 'sdk', component: MainPageComponent }
 ];
 
 @NgModule({
