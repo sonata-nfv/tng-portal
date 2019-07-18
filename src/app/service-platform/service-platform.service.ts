@@ -159,7 +159,7 @@ export class ServicePlatformService {
      *                 and templateName for the creation of a new template.
      */
 	async postOneSLATemplate(template) {
-		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const headers = this.authService.getAuthHeadersSLAMngr();
 		const url = this.config.baseSP + this.config.slaTemplates;
 
 		try {

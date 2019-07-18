@@ -389,7 +389,7 @@ export class ServiceManagementService {
 	* @param license License data of the new license.
 	*/
 	async postOneLicense(license) {
-		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const headers = this.authService.getAuthHeadersSLAMngr();
 		const url = this.config.baseSP + this.config.buyLicense;
 
 		try {

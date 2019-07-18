@@ -11,6 +11,8 @@ export class AuthService {
 	}
 
 	async login(username: string, password: string) {
+		this.removeLocalStorage();
+
 		const url = this.config.baseSP + this.config.login;
 
 		const data = {
@@ -31,8 +33,7 @@ export class AuthService {
 	}
 
 	async logout() {
-		localStorage.removeItem('token');
-		localStorage.removeItem('username');
+		this.removeLocalStorage();
 		const url = this.config.baseSP + this.config.login;
 
 		try {
@@ -41,6 +42,11 @@ export class AuthService {
 		} catch (error) {
 			console.error(error);
 		}
+	}
+
+	private removeLocalStorage() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('username');
 	}
 
 	async signup(user: object) {
@@ -79,6 +85,15 @@ export class AuthService {
 
 	getAuthHeaders() {
 		return this.authHeaders;
+	}
+
+	getAuthHeadersSLAMngr() {
+		return localStorage.getItem('token') ?
+			new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded')
+				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
 	isAuthenticated(): boolean {
