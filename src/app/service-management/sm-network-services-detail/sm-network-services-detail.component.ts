@@ -16,6 +16,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class SmNetworkServicesDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
+	displayedColumns = [ 'id', 'vendor', 'name', 'version' ];
 
 	constructor(
 		private utilsService: UtilsService,
@@ -38,32 +39,41 @@ export class SmNetworkServicesDetailComponent implements OnInit {
      * @param uuid ID of the selected NS to be displayed.
      *             Comming from the route.
      */
-	requestNS(uuid) {
+	async requestNS(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOneNetworkService('sm', uuid);
 
-		this.commonService
-			.getOneNetworkService('sm', uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the network service', '');
+			this.close();
+		}
 	}
 
 	instantiate() {
 		this.instantiateDialog.open(NsInstantiateDialogComponent, {
 			data: {
-				serviceUUID: this.detail[ 'serviceID' ],
+				serviceUUID: this.detail[ 'uuid' ],
 				name: this.detail[ 'name' ]
 			}
 		});
 	}
 
+	canShowInstantiate() {
+		return this.detail[ 'uuid' ] && this.detail[ 'name' ];
+	}
+
+	canShowVNFs() {
+		return (!this.detail[ 'vnf' ] || !this.detail[ 'vnf' ].length) && !this.loading;
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
 	close() {
-		this.router.navigate([ 'service-management/network-services' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

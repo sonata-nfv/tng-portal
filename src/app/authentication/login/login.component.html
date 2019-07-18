@@ -1,24 +1,30 @@
-<div class="container">
-	<div class="title-section"></div>
-	<form (ngSubmit)="login(loginForm)" [formGroup]="loginForm" class="form">
-		<mat-form-field [ngClass]="{ 'error-form-field': errorFormField }">
-			<input matInput type="text" placeholder="Username/email" formControlName="username" required
-				i18n-placeholder="@@usernamePlaceholder" />
-		</mat-form-field>
-		<mat-form-field [ngClass]="{ 'error-form-field': errorFormField }">
-			<input matInput type="password" placeholder="Password" formControlName="password" required
-				i18n-placeholder="@@passwordPlaceholder" />
-		</mat-form-field>
-		<p class="error-message" *ngIf="errorFormField" [innerText]="errorFormField"></p>
-		<button name="login" [disabled]="!loginForm.valid" i18n="@@loginButton">LOG IN</button>
-		<a class="newAccount" routerLink="/signup" i18n="@@newAccountButton">Create a new account</a>
-	</form>
-	<div class="bottom">
-		<div class="options">
-			<a class="help" href="https://github.com/sonata-nfv/tng-portal" i18n="@@helpButton">Help?</a>
-			<a class="forgotPassword" href="https://github.com/sonata-nfv/tng-portal" i18n="@@forgotPasswordButton">Forgot your
-				password?</a>
-		</div>
-		<div class="redLine"></div>
+<div class="title-section"></div>
+
+<form class="login-form" (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
+	<mat-form-field [ngClass]="{'mat-form-field-invalid': loginForm.get('password').hasError('incorrect')}">
+		<input matInput type="text" placeholder="Username/email" formControlName="username" required
+			i18n-placeholder="@@usernameEmailPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="password" placeholder="Password" formControlName="password" required
+			i18n-placeholder="@@passwordPlaceholder" />
+		<mat-error *ngIf="errorMsg">*{{ errorMsg }}</mat-error>
+
+	</mat-form-field>
+
+	<button class="login-button" [disabled]="!loginForm.valid" i18n="@@loginButton">LOG IN</button>
+
+	<a class="new-account" routerLink="/signup" i18n="@@newAccountButton">Create a new account</a>
+</form>
+
+<div class="bottom-section">
+	<div class="options">
+		<a class="link" href="https://github.com/sonata-nfv/tng-portal" i18n="@@helpButton">Help?</a>
+		<a class="link forgotPassword" href="https://github.com/sonata-nfv/tng-portal" i18n="@@forgotPasswordButton">
+			Forgot your password?
+		</a>
 	</div>
+
+	<div class="red-line"></div>
 </div>

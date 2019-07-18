@@ -9,7 +9,8 @@ pipeline {
 		}
         stage('Test') {
 			steps {
-				sh 'npx tslint --project .';
+				sh 'npm run lint';
+				sh 'npm run scss-lint';
 			}
 		}
         stage('Documentation') {

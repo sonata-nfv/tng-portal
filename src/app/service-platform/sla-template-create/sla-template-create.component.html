@@ -1,0 +1,121 @@
+<h3 class="title3 header-section-name" i18n="@@slaTemplates">SLA templates</h3>
+
+<form [formGroup]="templateForm" class="title-section">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Template Name" formControlName="name" required
+			i18n-placeholder="@@templateNamePlaceholder" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': disabledButton }" class="edit-options save" [disabled]="disabledButton"
+			(click)="createSlaTemplate()" i18n="@@saveButton">
+			SAVE
+		</button>
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</form>
+
+<form [formGroup]="templateForm">
+	<app-select-uuid class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+		i18n-placeholder="@@nsPlaceholder"></app-select-uuid>
+
+	<mat-form-field class="provider-name">
+		<input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
+	</mat-form-field>
+
+	<app-calendar placeholder="Expiration Date" (dateEvent)="receiveExpirationDate($event)" i18n-placeholder="@@expirationDatePlaceholder">
+	</app-calendar>
+</form>
+
+<div class="advanced-section" *ngIf="canShowAdvancedSection()">
+	<!-- Show or hide the service guarantees section -->
+	<button class="dropdown-button" (click)="changeCloseStatus()">
+		<div class="open">
+			<span i18n="@@advancedSection">Advanced section</span>
+
+			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+
+			<ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
+		</div>
+
+		<div class="underline" [ngClass]="{ opened: !closed }"></div>
+	</button>
+
+	<form *ngIf="canShowGuarantees()" [formGroup]="templateForm" class="advanced-form">
+		<h2 class="title2" i18n="@@serviceGuarantees">Service Guarantees</h2>
+
+		<!-- List stored service guarantees -->
+		<div class="guarantee-row" *ngFor="let item of storedGuarantees">
+			<div class="description" *ngIf="item">
+				<!-- Title with delete and open details button -->
+				<div class="description-title">
+					<h4 class="title4">{{ item.name }}</h4>
+
+					<button (click)="eraseEntry(item)" class="icon-button-shadow">
+						<i class="wui wui-trash-alt"></i>
+					</button>
+
+					<button class="dropdown-button" (click)="item.closed = !item.closed">
+						<i class="wui wui-caret-down" *ngIf="item.closed; else: openedSLO"></i>
+						<ng-template #openedSLO> <i class="wui wui-caret-up"></i> </ng-template>
+					</button>
+				</div>
+
+				<!-- Detailed information about the guarantee -->
+				<span class="content" *ngIf="!item.closed">
+					<p *ngIf="item.definition" class="definition">{{ item.definition }}</p>
+
+					<div class="slo-info" *ngFor="let slo of item.slos">
+						<mat-form-field class="slo">
+							<input matInput placeholder="Service Level Objective" disabled
+								value="{{ slo.kpi }} {{ slo.operator }} {{ slo.value }}"
+								i18n-placeholder="@@serviceLevelObjectivePlaceholder" />
+						</mat-form-field>
+
+						<mat-form-field class="period">
+							<input matInput placeholder="Time period" disabled value="{{ slo.period || 'None' }}"
+								i18n-placeholder="@@timePeriodPlaceholder" />
+						</mat-form-field>
+					</div>
+				</span>
+			</div>
+		</div>
+
+		<!-- Selector to list the different service guarantees -->
+		<app-select-uuid *ngIf="guaranteesList.length" class="guarantees-select" placeholder="Select a guarantee"
+			[reset]="guaranteesList.length" [list]="guaranteesList" (selectEvent)="receiveGuarantee($event)"
+			i18n-placeholder="@@selectGuaranteePlaceholder"></app-select-uuid>
+
+		<span *ngIf="guaranteesList.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
+	</form>
+
+	<form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">
+		<h2 class="title2" i18n="@@license">License</h2>
+
+		<app-select class="licenses-select" placeholder="Select a license" [list]="licenses" (selectEvent)="receiveLicense($event)"
+			[value]="templateForm.get('license').value" i18n-placeholder="@@selectLicensePlaceholder">
+		</app-select>
+
+		<app-calendar placeholder="License expiration date" (dateEvent)="receiveLicenseExpirationDate($event)"
+			i18n-placeholder="@@licenseExpirationDatePlaceholder">
+		</app-calendar>
+
+		<div class="instances-number">
+			<p class="label" i18n="@@numberInstancesAllowed">Number of instances allowed: </p>
+			<mat-form-field class="instances">
+				<input matInput formControlName="instances" />
+				<mat-error *ngIf="instancesErrorExists()" i18n="@@InvalidInput">*Invalid input</mat-error>
+			</mat-form-field>
+		</div>
+	</form>
+
+	<form *ngIf="canShowFlavors()" [formGroup]="templateForm" class="advanced-form">
+		<h2 class="title2" i18n="@@flavor">Flavor</h2>
+
+		<app-select class="flavor-select" placeholder="Select a flavor" [list]="flavors" (selectEvent)="receiveFlavor($event)"
+			[value]="templateForm.get('flavor').value" i18n-placeholder="@@selectFlavorPlaceholder">
+		</app-select>
+	</form>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

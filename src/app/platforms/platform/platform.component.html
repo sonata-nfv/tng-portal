@@ -49,6 +49,10 @@
 	<mat-form-field>
 		<input matInput type="text" placeholder="Project name" formControlName="project_name" required i18n-placeholder="@@projectName" />
 	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="VIM account" formControlName="vim_account" required i18n-placeholder="@@vimAccount" />
+	</mat-form-field>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>

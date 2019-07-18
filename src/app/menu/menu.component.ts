@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from '../authentication/auth.service';
 import { UtilsService } from '../shared/services/common/utils.service';
@@ -8,10 +9,11 @@ import { UtilsService } from '../shared/services/common/utils.service';
 @Component({
 	selector: 'app-menu',
 	templateUrl: './menu.component.html',
-	styleUrls: ['./menu.component.scss'],
+	styleUrls: [ './menu.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+	subscription: Subscription;
 	menu: string;
 	section: string;
 	subsection: string;
@@ -22,8 +24,8 @@ export class MenuComponent implements OnInit {
 	sideNav: MatSidenav;
 	constructor(
 		private authService: AuthService,
-		private router: Router,
-		private utilsService: UtilsService
+		private utilsService: UtilsService,
+		private router: Router
 	) { }
 
 	ngOnInit() {
@@ -33,6 +35,17 @@ export class MenuComponent implements OnInit {
 
 		// Maintain menu status when reload
 		this.maintainStatus();
+
+		// Maintain status of the menu when moving through different components
+		this.subscription = this.router.events.subscribe(event => {
+			if (event instanceof NavigationEnd) {
+				this.maintainStatus();
+			}
+		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	copyToClipboard(value) {
@@ -45,99 +58,95 @@ export class MenuComponent implements OnInit {
 
 		switch (buttonId) {
 			case 'dashboard':
-				this.router.navigate(['/dashboard']);
+				this.router.navigate([ '/dashboard' ]);
 				break;
 			case 'users':
-				this.router.navigate(['/users']);
+				this.router.navigate([ '/users' ]);
 				break;
 			case 'platforms':
-				this.router.navigate(['/platforms']);
+				this.router.navigate([ '/platforms' ]);
 				break;
 			case 'settings':
-				this.section = 'vim';
-				this.router.navigate(['/settings']);
-				break;
-			case 'sdk':
-				this.section = 'sdk';
-				this.router.navigate(['/sdk']);
+				this.section = 'endpoint';
+				this.router.navigate([ '/settings' ]);
 				break;
 			case 'validation-and-verification':
-				this.section = 'vv-packages';
-				this.router.navigate(['/validation-and-verification']);
+				this.section = 'vv-test-plans';
+				this.router.navigate([ '/validation-and-verification' ]);
 				break;
 			case 'service-platform':
 				this.section = 'sp-packages';
-				this.router.navigate(['service-platform']);
+				this.router.navigate([ 'service-platform' ]);
 				break;
 			case 'service-management':
 				this.section = 'sm-network-services';
-				this.router.navigate(['service-management']);
+				this.router.navigate([ 'service-management' ]);
 				break;
 			default:
-				this.router.navigate(['/dashboard']);
+				this.router.navigate([ '/dashboard' ]);
 		}
 		this.menu = buttonId;
 	}
 
 	setSection(e, buttonId) {
 		switch (buttonId) {
+			case 'endpoint':
+				this.router.navigate([ 'settings/endpoint' ]);
+				break;
 			case 'vim':
-				this.router.navigate(['settings/vim']);
+				this.router.navigate([ 'settings/vim' ]);
 				break;
 			case 'wim':
-				this.router.navigate(['settings/wim']);
+				this.router.navigate([ 'settings/wim' ]);
+				break;
+			case 'vv-test-plans':
+				this.router.navigate([ 'validation-and-verification/test-plans' ]);
 				break;
 			case 'vv-packages':
-				this.router.navigate(['validation-and-verification/packages']);
+				this.router.navigate([ 'validation-and-verification/packages' ]);
 				break;
 			case 'vv-network-services':
-				this.router.navigate(['validation-and-verification/network-services']);
+				this.router.navigate([ 'validation-and-verification/network-services' ]);
 				break;
 			case 'vv-functions':
-				this.router.navigate(['validation-and-verification/functions']);
+				this.router.navigate([ 'validation-and-verification/functions' ]);
 				break;
 			case 'vv-tests':
-				this.router.navigate(['validation-and-verification/tests']);
+				this.router.navigate([ 'validation-and-verification/tests' ]);
 				break;
 			case 'sp-packages':
-				this.router.navigate(['service-platform/packages']);
+				this.router.navigate([ 'service-platform/packages' ]);
 				break;
 			case 'sp-network-services':
-				this.router.navigate(['service-platform/network-services']);
+				this.router.navigate([ 'service-platform/network-services' ]);
 				break;
 			case 'sp-functions':
-				this.router.navigate(['service-platform/functions']);
+				this.router.navigate([ 'service-platform/functions' ]);
 				break;
 			case 'sp-policies':
 				this.subsection = 'placement-policy';
-				this.router.navigate(['service-platform/policies/placement-policy']);
+				this.router.navigate([ 'service-platform/policies/placement-policy' ]);
 				break;
 			case 'sp-slas':
 				this.subsection = 'sla-templates';
-				this.router.navigate(['service-platform/slas/sla-templates']);
+				this.router.navigate([ 'service-platform/slas/sla-templates' ]);
 				break;
 			case 'sp-slices':
-				this.subsection = 'slices-templates';
-				this.router.navigate(['service-platform/slices/slices-templates']);
+				this.router.navigate([ 'service-platform/slices/slice-templates' ]);
+				break;
+			case 'sm-slices':
+				this.subsection = 'slice-templates';
+				this.router.navigate([ 'service-management/slices/slice-templates' ]);
 				break;
 			case 'sm-network-services':
-				this.router.navigate(['service-management/network-services']);
+				this.subsection = 'services';
+				this.router.navigate([ 'service-management/network-services/services' ]);
 				break;
 			case 'sm-requests':
-				this.router.navigate(['service-management/requests']);
+				this.router.navigate([ 'service-management/requests' ]);
 				break;
-			case 'sm-network-service-instances':
-				this.router.navigate(['service-management/network-service-instances']);
-				break;
-			case 'licenses':
-				this.subsection = '';
-				this.router.navigate(['service-management/licenses']);
-				break;
-			case 'sdk-generator':
-				this.router.navigate(['sdk/descriptor-generator']);
-				break;
-			case 'sdk-edit':
-				this.router.navigate(['sdk/descriptor-displayer']);
+			case 'sm-licenses':
+				this.router.navigate([ 'service-management/licenses' ]);
 				break;
 		}
 		this.section = buttonId;
@@ -147,81 +156,79 @@ export class MenuComponent implements OnInit {
 		switch (buttonId) {
 			case 'placement-policy':
 				this.subsection = 'placement-policy';
-				this.router.navigate(['service-platform/policies/placement-policy']);
+				this.router.navigate([ 'service-platform/policies/placement-policy' ]);
 				break;
 			case 'runtime-policies':
 				this.subsection = 'runtime-policies';
-				this.router.navigate(['service-platform/policies/runtime-policies']);
+				this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
 				break;
 			case 'generated-actions':
 				this.subsection = 'generated-actions';
-				this.router.navigate(['service-platform/policies/generated-actions']);
+				this.router.navigate([ 'service-platform/policies/generated-actions' ]);
 				break;
 			case 'sla-templates':
 				this.subsection = 'sla-templates';
-				this.router.navigate(['service-platform/slas/sla-templates']);
+				this.router.navigate([ 'service-platform/slas/sla-templates' ]);
 				break;
 			case 'sla-agreements':
 				this.subsection = 'sla-agreements';
-				this.router.navigate(['service-platform/slas/sla-agreements']);
+				this.router.navigate([ 'service-platform/slas/sla-agreements' ]);
 				break;
 			case 'sla-violations':
 				this.subsection = 'sla-violations';
-				this.router.navigate(['service-platform/slas/sla-violations']);
+				this.router.navigate([ 'service-platform/slas/sla-violations' ]);
 				break;
-			case 'slices-templates':
-				this.subsection = 'slices-templates';
-				this.router.navigate(['service-platform/slices/slices-templates']);
+			case 'slice-templates':
+				this.subsection = 'slice-templates';
+				this.router.navigate([ 'service-management/slices/slice-templates' ]);
 				break;
-			case 'slices-instances':
-				this.subsection = 'slices-instances';
-				this.router.navigate(['service-platform/slices/slices-instances']);
+			case 'slice-instances':
+				this.subsection = 'slice-instances';
+				this.router.navigate([ 'service-management/slices/slice-instances' ]);
 				break;
-			case 'slices-requests':
-				this.subsection = 'slices-requests';
-				this.router.navigate(['service-platform/slices/slices-requests']);
+			case 'services':
+				this.subsection = 'services';
+				this.router.navigate([ 'service-management/network-services/services' ]);
 				break;
-			case 'service-licenses':
-				this.subsection = 'service-licenses';
-				this.router.navigate(['service-management/licenses/service-licenses']);
+			case 'network-service-instances':
+				this.subsection = 'network-service-instances';
+				this.router.navigate([ 'service-management/network-services/network-service-instances' ]);
 				break;
-			case 'user-licenses':
-				this.subsection = 'user-licenses';
-				this.router.navigate(['service-management/licenses/user-licenses']);
+			default:
+				this.subsection = buttonId;
 				break;
 		}
-		this.subsection = buttonId;
 	}
 
 	maintainStatus() {
 		const url = this.router.url.substr(1).split('/');
-		this.menu = url[0] ? url[0] : 'dashboard';
-		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms' || this.menu === 'sdk') ?
+		this.menu = url[ 0 ] ? url[ 0 ] : 'dashboard';
+		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms') ?
 			this.sideNav.close() : this.sideNav.open();
 
 		if (url.length > 1) {
 			switch (this.menu) {
 				case 'validation-and-verification':
-					this.section = 'vv-' + url[1];
+					this.section = 'vv-' + url[ 1 ];
 					break;
 				case 'service-platform':
-					this.section = 'sp-' + url[1];
+					this.section = 'sp-' + url[ 1 ];
 					break;
 				case 'service-management':
-					this.section = 'sm-' + url[1];
+					this.section = 'sm-' + url[ 1 ];
 					break;
 				default:
-					this.section = url[1];
+					this.section = url[ 1 ];
 					break;
 			}
 		}
 		if (url.length > 2) {
-			this.subsection = url[2];
+			this.subsection = url[ 2 ];
 		}
 	}
 
 	logout() {
-		this.router.navigate(['/login']);
+		this.router.navigate([ '/login' ]);
 		this.authService
 			.logout()
 			.then()

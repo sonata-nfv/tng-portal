@@ -35,30 +35,28 @@ export class SpPackagesDetailComponent implements OnInit {
      * @param uuid ID of the selected package to be displayed.
      *             Comming from the route.
      */
-	requestPackage(uuid) {
+	async requestPackage(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOnePackage('sp', uuid);
 
-		this.commonService
-			.getOnePackage('sp', uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the package details', '');
+			this.close();
+		}
+	}
 
-				if (this.detail[ 'ns' ].lenght < 1) {
-					this.detail[ 'ns' ] = [];
-				}
-				if (this.detail[ 'vnf' ].lenght < 1) {
-					this.detail[ 'vnf' ] = [];
-				}
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+	canShowNS() {
+		return this.detail[ 'ns' ] && this.detail[ 'ns' ].length;
+	}
+
+	canShowVNF() {
+		return this.detail[ 'vnf' ] && this.detail[ 'vnf' ].length;
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/packages' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

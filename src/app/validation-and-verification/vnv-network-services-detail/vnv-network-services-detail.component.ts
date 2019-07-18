@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
-import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
@@ -20,8 +19,7 @@ export class VnvNetworkServicesDetailComponent implements OnInit {
 		private commonService: CommonService,
 		private utilsService: UtilsService,
 		private router: Router,
-		private route: ActivatedRoute,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private route: ActivatedRoute
 	) { }
 
 	ngOnInit() {
@@ -31,35 +29,17 @@ export class VnvNetworkServicesDetailComponent implements OnInit {
 		});
 	}
 
-	requestNetworkService(uuid) {
+	async requestNetworkService(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOneNetworkService('vnv', uuid);
 
-		this.commonService
-			.getOneNetworkService('vnv', uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-
-				if (this.detail[ 'vnf' ].lenght < 1) {
-					this.detail[ 'vnf' ] = [];
-				}
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
-	}
-
-	execute() {
-		this.verificationAndValidationPlatformService
-			.postOneTest('service', this.detail[ 'uuid' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Success!', '');
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the network service', '');
+			this.close();
+		}
 	}
 
 	close() {

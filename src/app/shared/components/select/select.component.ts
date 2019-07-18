@@ -1,11 +1,4 @@
-import {
-	Component,
-	OnInit,
-	ViewEncapsulation,
-	Output,
-	EventEmitter,
-	Input
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -15,75 +8,41 @@ import { FormControl } from '@angular/forms';
 	encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements OnInit {
-	_disabled = false;
-	_required = true;
-	select = new FormControl({
-		disabled: this._disabled,
-		required: this._required
-	});
+	// Mandatory
+	@Input() placeholder: string;
 
-	/**
-     * [Optional] Resets the form whenever active
-     */
+	// Optional
+	@Input() required: boolean;
+	@Input() list: Array<string>;
+	@Input()
+	set value(value: string) {
+		if (value) {
+			this.select.setValue(value);
+		}
+	}
+	@Input()
+	set disabled(disabled: boolean) {
+		disabled ? this.select.disable() : this.select.enable();
+	}
 	@Input()
 	set reset(reset: boolean) {
 		if (reset) {
 			this.select.reset();
 		}
 	}
-	/**
-     * [Optional] Disables the select whenever active
-     */
-	@Input()
-	set disabled(disabled: boolean) {
-		this._disabled = disabled;
-		if (disabled) {
-			this.select.disable();
-		} else {
-			this.select.enable();
-		}
-	}
-	/**
-     * [Optional] Marks the select field as required whenever active
-     */
-	@Input()
-	set required(required: boolean) {
-		this._required = required;
-	}
-	/**
-     * [Optional] Fixes the initial value whenever set
-     */
-	@Input()
-	set value(item: string) {
-		this.select.setValue(item);
-	}
-	/**
-     * [Mandatory] Defines the placeholder for the select.
-     */
-	@Input()
-	placeholder: string;
-	/**
-     * [Mandatory] Defines the list displayed in the select.
-     */
-	@Input()
-	list: Array<string>;
-	/**
-     * Provides the selected element.
-     */
-	@Output()
-	selectEvent = new EventEmitter<string>();
+
+	@Output() selectEvent = new EventEmitter<string>();
+
+	select = new FormControl({ disabled: this.disabled || false, required: this.required || false });
+
 	constructor() { }
 
 	ngOnInit() {
-		this.select.valueChanges.subscribe(value => this._onFormChanges(value));
+		this.select.valueChanges.subscribe(value => this.onFormChanges(value));
 	}
 
-	private _onFormChanges(values) {
-		if (
-			values != null &&
-			values !== undefined &&
-			!(values.hasOwnProperty('disabled') || values.hasOwnProperty('required'))
-		) {
+	private onFormChanges(values) {
+		if (values) {
 			this.selectEvent.emit(values);
 		}
 	}

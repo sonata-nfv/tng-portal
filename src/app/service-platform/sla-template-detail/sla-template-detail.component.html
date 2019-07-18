@@ -1,0 +1,90 @@
+<div class="header-section" *ngIf="detail['name']">
+	<h3 class="title3 header-section-name" i18n="@@slaTemplates">SLA Templates</h3>
+	<div class="button-underline">
+		<button class="delete-button" (click)="deleteTemplate()" i18n="@@deleteTemplateButton">Delete template</button>
+		<div class="underline"></div>
+	</div>
+</div>
+
+<div class="title-section" *ngIf="detail['name']">
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+</div>
+
+<div class="number-bubble" *ngIf="detail['version']">
+	<span class="text" i18n="@@version">Version</span>
+	<div class="number">
+		<span>{{ detail.version }}</span>
+	</div>
+</div>
+
+<form>
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
+		<input matInput placeholder="Template ID" value="{{ detail['uuid'] }}" [disabled]="true"
+			i18n-placeholder="@@templateIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['vendor']" class="left-column">
+			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" [disabled]="true" i18n-placeholder="@@vendorPlaceholder" />
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['providerName']">
+			<input matInput placeholder="Provider name" value="{{ detail['providerName'] }}" [disabled]="true"
+				i18n-placeholder="@@providerNamePlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<div class="same-row">
+		<app-select class="left-column" *ngIf="detail['nsName']" placeholder="Network Service" [list]="[ detail.nsName ]"
+			[value]="detail.nsName" [disabled]="true" i18n-placeholder="@@nsPlaceholder">
+		</app-select>
+
+		<app-calendar *ngIf="detail['expirationDate']" class="right-column" placeholder="Expiration Date" [value]="detail['expirationDate']"
+			[disabled]="true" i18n-placeholder="@@expirationDatePlaceholder">
+		</app-calendar>
+	</div>
+
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+		<input matInput value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled />
+	</mat-form-field>
+</form>
+
+<div *ngIf="detail['uuid']" class="advanced-section">
+	<!-- Show or hide the service guarantees section -->
+	<button class="dropdown-button" (click)="closed = !closed">
+		<div class="open">
+			<span i18n="@@advancedSection">Advanced section</span>
+
+			<i class="wui wui-caret-down" *ngIf="closed; else: opened"></i>
+
+			<ng-template #opened> <i class="wui wui-caret-up"></i> </ng-template>
+		</div>
+
+		<div class="underline" [ngClass]="{ opened: !closed }"></div>
+	</button>
+
+	<form *ngIf="canShowGuarantees()" class="advanced-form">
+		<app-sla-guarantees-detail [guarantees]="detail['storedGuarantees']"></app-sla-guarantees-detail>
+	</form>
+
+	<form *ngIf="canShowLicense()" class="advanced-form">
+		<app-sla-license-detail [license]="detail['license']" [licenseExpirationDate]="detail['licenseExpirationDate']"
+			[licenseInstances]="detail['licenseInstances']">
+		</app-sla-license-detail>
+	</form>
+
+	<form *ngIf="!closed" class="advanced-form">
+		<h2 class="title2" i18n="@@flavor">Flavor</h2>
+
+		<app-select class="flavor-select" placeholder="Flavor" [list]="[ detail.flavor ]" [value]="detail.flavor" [disabled]="true"
+			i18n-placeholder="@@flavorPlaceholder">
+		</app-select>
+	</form>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

@@ -1,41 +1,46 @@
 @import '../../../constants.scss';
 app-terms-of-usage {
-	.container {
-		display: flex;
-		position: absolute;
-		flex-direction: column;
-		margin: auto;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		max-width: 870px;
-		max-height: 770px;
-		padding: 2em;
-		border-radius: 10px;
+	display: flex;
+	position: absolute;
+	flex-direction: column;
+	align-items: center;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 34vw;
+    height: 55vh;
+    min-width: 380px;
+    min-height: 450px;
+	max-width: 950px;
+	max-height: 800px;
+	padding: 2em;
+	border-radius: 10px;
+	background-color: $panel-background-color;
+
+	.close-icon {
+		right: 20px;
+		top: 15px;
 		background-color: $panel-background-color;
+	}
 
-		.closeIcon {
-			right: 20px;
-			top: 15px;
-			background-color: $panel-background-color;
-		}
+	.title-section {
+		height: 8em;
+		background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
+		background-size: 12em;
+		background-repeat: no-repeat;
+	}
 
-		.title-section {
-			height: 8em;
-			background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
-			background-size: 12em;
-			background-repeat: no-repeat;
-		}
+	.title1 {
+		width: 100%;
+    	margin-left: 20px;
+	}
 
-		.title1 {
-			padding: 0 25px 0 25px;
-		}
-
-		.content {
-			padding: 0 25px 25px 25px;
-			max-height: 500px;
-			overflow-y: auto;
-		}
+	.content {
+		width: 95%;
+		max-height: 500px;
+		padding-right: 20px;
+		overflow-y: auto;
 	}
 }

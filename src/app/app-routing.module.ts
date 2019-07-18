@@ -16,11 +16,14 @@ import { UsersComponent } from './users/users.component';
 import { PlatformListComponent } from './platforms/platform-list/platform-list.component';
 import { PlatformComponent } from './platforms/platform/platform.component';
 
+import { EndpointListComponent } from './settings/endpoint-list/endpoint-list.component';
 import { VimListComponent } from './settings/vim-list/vim-list.component';
 import { VimComponent } from './settings/vim/vim.component';
 import { WimListComponent } from './settings/wim-list/wim-list.component';
 import { WimComponent } from './settings/wim/wim.component';
 
+import { TestPlanListComponent } from './validation-and-verification/test-plan-list/test-plan-list.component';
+import { TestPlanComponent } from './validation-and-verification/test-plan/test-plan.component';
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
 import { TestResultsComponent } from './validation-and-verification/test-results/test-results.component';
@@ -38,39 +41,38 @@ import { SpNetworkServicesDetailComponent } from './service-platform/sp-network-
 import { FunctionsComponent } from './shared/components/functions/functions.component';
 import { SpFunctionsDetailComponent } from './service-platform/sp-functions-detail/sp-functions-detail.component';
 import { PlacementPolicyComponent } from './service-platform/placement-policy/placement-policy.component';
-import { RuntimePoliciesComponent } from './service-platform/runtime-policies/runtime-policies.component';
-import { RuntimePoliciesDetailComponent } from './service-platform/runtime-policies-detail/runtime-policies-detail.component';
-import { RuntimePoliciesCreateComponent } from './service-platform/runtime-policies-create/runtime-policies-create.component';
+import { RuntimePolicyListComponent } from './service-platform/runtime-policy-list/runtime-policy-list.component';
+import { RuntimePolicyDetailComponent } from './service-platform/runtime-policy-detail/runtime-policy-detail.component';
+import { RuntimePolicyCreateComponent } from './service-platform/runtime-policy-create/runtime-policy-create.component';
 import {
-	RuntimePoliciesGeneratedActionsComponent
-} from './service-platform/runtime-policies-generated-actions/runtime-policies-generated-actions.component';
-import { SlaTemplatesComponent } from './service-platform/sla-templates/sla-templates.component';
-import { SlaTemplatesDetailComponent } from './service-platform/sla-templates-detail/sla-templates-detail.component';
-import { SlaTemplatesCreateComponent } from './service-platform/sla-templates-create/sla-templates-create.component';
-import { SlaAgreementsComponent } from './service-platform/sla-agreements/sla-agreements.component';
-import { SlaAgreementsDetailComponent } from './service-platform/sla-agreements-detail/sla-agreements-detail.component';
+	GeneratedActionsComponent
+} from './service-platform/generated-actions/generated-actions.component';
+import { SlaTemplateListComponent } from './service-platform/sla-template-list/sla-template-list.component';
+import { SlaTemplateDetailComponent } from './service-platform/sla-template-detail/sla-template-detail.component';
+import { SlaTemplateCreateComponent } from './service-platform/sla-template-create/sla-template-create.component';
+import { SlaAgreementListComponent } from './service-platform/sla-agreement-list/sla-agreement-list.component';
+import { SlaAgreementDetailComponent } from './service-platform/sla-agreement-detail/sla-agreement-detail.component';
 import { SlaViolationsComponent } from './service-platform/sla-violations/sla-violations.component';
+import { SpSliceTemplateListComponent } from './service-platform/sp-slice-template-list/sp-slice-template-list.component';
+import { SpSliceTemplateCreateComponent } from './service-platform/sp-slice-template-create/sp-slice-template-create.component';
+import { SpSliceTemplateDetailComponent } from './service-platform/sp-slice-template-detail/sp-slice-template-detail.component';
 
-import { SliceTemplateListComponent } from './service-platform/slice-template-list/slice-template-list.component';
-import { SliceTemplateCreateComponent } from './service-platform/slice-template-create/slice-template-create.component';
-import { SliceTemplateDetailComponent } from './service-platform/slice-template-detail/slice-template-detail.component';
-import { SliceInstanceListComponent } from './service-platform/slice-instance-list/slice-instance-list.component';
-import { SlicesInstancesDetailComponent } from './service-platform/slices-instances-detail/slices-instances-detail.component';
-import { SlicesInstancesCreateComponent } from './service-platform/slices-instances-create/slices-instances-create.component';
-
+import { SmSliceTemplateListComponent } from './service-management/sm-slice-template-list/sm-slice-template-list.component';
+import { SmSliceTemplateDetailComponent } from './service-management/sm-slice-template-detail/sm-slice-template-detail.component';
+import { SliceInstanceListComponent } from './service-management/slice-instance-list/slice-instance-list.component';
+import { SliceInstanceDetailComponent } from './service-management/slice-instance-detail/slice-instance-detail.component';
+import { SliceInstanceCreateComponent } from './service-management/slice-instance-create/slice-instance-create.component';
 import { SmNetworkServicesComponent } from './service-management/sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './service-management/sm-network-services-detail/sm-network-services-detail.component';
-import { RequestsComponent } from './shared/components/requests/requests.component';
-import { RequestDetailComponent } from './shared/components/request-detail/request-detail.component';
-import { NetworkServiceInstancesComponent } from './service-management/network-service-instances/network-service-instances.component';
+import { RequestListComponent } from './service-management/request-list/request-list.component';
+import { RequestDetailComponent } from './service-management/request-detail/request-detail.component';
+import { NsInstanceListComponent } from './service-management/ns-instance-list/ns-instance-list.component';
 import {
-	NetworkServiceInstancesDetailComponent
-} from './service-management/network-service-instances-detail/network-service-instances-detail.component';
-import { FunctionRecordsDetailComponent } from './service-management/function-records-detail/function-records-detail.component';
-import { LicencesComponent } from './service-management/licenses/licenses.component';
-import { LicencesDetailComponent } from './service-management/licenses-detail/licenses-detail.component';
-import { ServiceLicensesComponent } from './service-management/service-licenses/service-licenses.component';
-import { UserLicensesComponent } from './service-management/user-licenses/user-licenses.component';
+	NsInstanceDetailComponent
+} from './service-management/ns-instance-detail/ns-instance-detail.component';
+import { LicenceListComponent } from './service-management/license-list/license-list.component';
+import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
+
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -79,7 +81,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent },
+	{ path: 'registered', component: RegisteredComponent, canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
@@ -98,7 +100,8 @@ const routes: Routes = [
 				]
 			},
 			// Settings
-			{ path: 'settings', redirectTo: 'settings/vim', pathMatch: 'full' },
+			{ path: 'settings', redirectTo: 'settings/endpoint', pathMatch: 'full' },
+			{ path: 'settings/endpoint', component: EndpointListComponent },
 			{
 				path: 'settings/vim', component: VimListComponent,
 				children: [
@@ -114,7 +117,11 @@ const routes: Routes = [
 				]
 			},
 			// Validation and verification
-			{ path: 'validation-and-verification', redirectTo: 'validation-and-verification/packages', pathMatch: 'full' },
+			{ path: 'validation-and-verification', redirectTo: 'validation-and-verification/test-plans', pathMatch: 'full' },
+			{
+				path: 'validation-and-verification/test-plans', component: TestPlanListComponent,
+				children: [ { path: ':id', component: TestPlanComponent } ]
+			},
 			{
 				path: 'validation-and-verification/packages', component: VnvPackagesComponent,
 				children: [ { path: ':id', component: VnvPackagesDetailComponent } ]
@@ -148,68 +155,65 @@ const routes: Routes = [
 			},
 			{ path: 'service-platform/policies/placement-policy', component: PlacementPolicyComponent },
 			{
-				path: 'service-platform/policies/runtime-policies', component: RuntimePoliciesComponent,
+				path: 'service-platform/policies/runtime-policies', component: RuntimePolicyListComponent,
 				children: [
-					{ path: 'new', component: RuntimePoliciesCreateComponent },
-					{ path: ':id', component: RuntimePoliciesDetailComponent }
+					{ path: 'new', component: RuntimePolicyCreateComponent },
+					{ path: ':id', component: RuntimePolicyDetailComponent }
 				]
 			},
-			{ path: 'service-platform/policies/generated-actions', component: RuntimePoliciesGeneratedActionsComponent },
+			{ path: 'service-platform/policies/generated-actions', component: GeneratedActionsComponent },
 			{
-				path: 'service-platform/slas/sla-templates', component: SlaTemplatesComponent,
+				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
 				children: [
-					{ path: 'new', component: SlaTemplatesCreateComponent },
-					{ path: ':id', component: SlaTemplatesDetailComponent }
+					{ path: 'new', component: SlaTemplateCreateComponent },
+					{ path: ':id', component: SlaTemplateDetailComponent }
 				]
 			},
 			{
-				path: 'service-platform/slas/sla-agreements', component: SlaAgreementsComponent,
-				children: [ { path: ':id_sla/:id_ns', component: SlaAgreementsDetailComponent } ]
+				path: 'service-platform/slas/sla-agreements', component: SlaAgreementListComponent,
+				children: [ { path: ':id_sla/:id_nsi', component: SlaAgreementDetailComponent } ]
 			},
 			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
 			{
-				path: 'service-platform/slices/slices-templates', component: SliceTemplateListComponent,
+				path: 'service-platform/slices/slice-templates', component: SpSliceTemplateListComponent,
 				children: [
-					{ path: 'new', component: SliceTemplateCreateComponent },
-					{ path: ':id', component: SliceTemplateDetailComponent }
+					{ path: 'new', component: SpSliceTemplateCreateComponent },
+					{ path: ':id', component: SpSliceTemplateDetailComponent }
 				]
-			},
-			{
-				path: 'service-platform/slices/slices-instances', component: SliceInstanceListComponent,
-				children: [
-					{ path: 'new', component: SlicesInstancesCreateComponent },
-					{ path: ':id', component: SlicesInstancesDetailComponent }
-				]
-			},
-			{
-				path: 'service-platform/slices/slices-requests', component: RequestsComponent,
-				children: [ { path: ':id', component: RequestDetailComponent } ]
 			},
 			// Service Management section
-			{ path: 'service-management', redirectTo: 'service-management/network-services', pathMatch: 'full' },
+			{ path: 'service-management', redirectTo: 'service-management/network-services/services', pathMatch: 'full' },
 			{
-				path: 'service-management/network-services', component: SmNetworkServicesComponent,
+				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
+				children: [
+					{ path: ':id', component: SmSliceTemplateDetailComponent }
+				]
+			},
+			{
+				path: 'service-management/slices/slice-instances', component: SliceInstanceListComponent,
+				children: [
+					{ path: 'new', component: SliceInstanceCreateComponent },
+					{ path: ':id', component: SliceInstanceDetailComponent }
+				]
+			},
+			{
+				path: 'service-management/network-services/services', component: SmNetworkServicesComponent,
 				children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
 			},
 			{
-				path: 'service-management/requests', component: RequestsComponent,
-				children: [ { path: ':id', component: RequestDetailComponent } ]
-			},
-			{
-				path: 'service-management/network-service-instances', component: NetworkServiceInstancesComponent,
+				path: 'service-management/network-services/network-service-instances', component: NsInstanceListComponent,
 				children: [
-					{ path: ':id', component: NetworkServiceInstancesDetailComponent },
-					{ path: ':id/vnf/:vnfr_id', component: FunctionRecordsDetailComponent }
+					{ path: ':id', component: NsInstanceDetailComponent }
 				]
 			},
 			{
-				path: 'service-management/licenses', component: LicencesComponent,
-				children: [ { path: ':id', component: LicencesDetailComponent } ]
+				path: 'service-management/requests', component: RequestListComponent,
+				children: [ { path: ':id', component: RequestDetailComponent } ]
 			},
-			{ path: 'service-management/licenses/service-licenses', component: ServiceLicensesComponent },
-			{ path: 'service-management/licenses/user-licenses', component: UserLicensesComponent },
-			// SDK section
-			{ path: 'sdk', loadChildren: './sdk/sdk.module#SdkModule' }
+			{
+				path: 'service-management/licenses', component: LicenceListComponent,
+				children: [ { path: ':id', component: LicenceDetailComponent } ]
+			}
 		]
 	}
 ];

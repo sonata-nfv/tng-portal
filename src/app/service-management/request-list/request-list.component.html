@@ -1,0 +1,49 @@
+<h3 class="title3 header-section-name" i18n="@@sm">Service management</h3>
+
+<h1 class="title1 title-section-name" i18n="@@requests">Requests</h1>
+
+<div class="tools">
+	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
+	<button class="icon-button-shadow reload" (click)="requestRequests()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
+			class="wui wui-undo"></i></button>
+</div>
+
+<table mat-table [dataSource]="requests">
+	<ng-container matColumnDef="name">
+		<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+		<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="serviceName">
+		<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service Name</th>
+		<td mat-cell *matCellDef="let element">{{ element.serviceName }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="createdAt">
+		<th mat-header-cell *matHeaderCellDef i18n="@@createdAt">Created at</th>
+		<td mat-cell *matCellDef="let element">{{ utilsService.formatUTCDate(element.createdAt) }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="type">
+		<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
+		<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.type) }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="status">
+		<th mat-header-cell *matHeaderCellDef i18n="@@status">Status</th>
+		<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.status) }}</td>
+	</ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openRequest(row.requestId)"></tr>
+</table>
+
+<div *ngIf="(!requests || !requests.length) && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<router-outlet></router-outlet>

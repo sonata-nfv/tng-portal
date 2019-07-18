@@ -4,7 +4,7 @@ form {
 	flex-direction: column;
 }
 
-form .sameRow {
+form .same-row {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -34,6 +34,7 @@ form .sameRow {
 .mat-input-element:disabled {
 	color: $form-focus;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 // Change input underline styles
@@ -42,6 +43,7 @@ form .sameRow {
 }
 
 .mat-form-field-disabled .mat-form-field-underline {
+	display: none;
 	background-image: none;
 	background-color: $form-underline-color;
 }
@@ -53,10 +55,6 @@ form .sameRow {
 .mat-form-field.mat-focused .mat-form-field-ripple,
 .mat-form-field-ripple {
 	background-color: $form-focus;
-}
-
-.mat-form-field-disabled .mat-form-field-underline {
-	display: none;
 }
 
 // Label styles
@@ -82,30 +80,25 @@ form .sameRow {
 
 .mat-form-field-can-float.mat-form-field-should-float {
 	.mat-form-field-label {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
 
-// Input styles for updated at field
-.mat-form-field.updatedAt,
-.mat-form-field.lastTimeExecuted {
-	margin-bottom: 20px;
-}
-
-.mat-form-field.updatedAt .mat-input-element:disabled,
+// Input styles for time form fields at field
+.mat-form-field.time-form-field .mat-input-element:disabled,
 .mat-form-field.lastTimeExecuted .mat-input-element:disabled {
 	font-size: 14px;
 	color: $form-disabled-color;
 }
 
-.mat-form-field.updatedAt .mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field.time-form-field .mat-form-field-label-wrapper .mat-form-field-label,
 .mat-form-field.lastTimeExecuted
 	.mat-form-field-label-wrapper
 	.mat-form-field-label {
 	display: none;
 }
 
-.mat-form-field.updatedAt .mat-form-field-infix,
+.mat-form-field.time-form-field .mat-form-field-infix,
 .mat-form-field.lastTimeExecuted .mat-form-field-infix {
 	border-top: 0;
 	padding: 0;
@@ -144,10 +137,28 @@ form .sameRow {
 	background-color: $form-alert-color;
 }
 
+.mat-error {
+	text-align: right;
+	color: $primary-font-color-light;
+}
+
 // Checkbox styles
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
 	background-color: $primary-background-color;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+	color: $secondary-font-color-light;
+}
+
+.mat-checkbox-frame {
+ 	border-color: $secondary-font-color-light;
+}
+
+// Slider styles
+.mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+	background-color: $primary-background-color-light;
 }
 
 // Mat table styles
@@ -156,7 +167,6 @@ table {
 	tbody {
 		display: block;
 		max-height: 65vh;
-		// max-height: 610px;
 		overflow-y: overlay;
 	}
 
@@ -165,17 +175,34 @@ table {
 		display: table;
 		width: 100%;
 		table-layout: fixed;
-		// cursor: pointer;
 	}
 
-	//   Center cells
-	th.mat-header-cell,
+	// Center titles, color and font styles
+	th.mat-header-cell {
+		text-align: center;
+		border-bottom: none;
+		vertical-align: bottom;
+		font-size: 14px;
+		color: $header-color;
+	}
+
+	// Center table titles if sort included
+	.mat-sort-header-container {
+		justify-content: center;
+		margin-left: 15px;
+	}
+
+	// // Center cells, color and font styles
 	td.mat-cell {
 		text-align: center;
+		cursor: pointer;
+		border-bottom: none;
+		vertical-align: bottom;
+		color: $cell-color;
 	}
 
-	td.mat-cell {
-		cursor: pointer;
+	td.mat-header-row {
+		font-size: 14px;
 	}
 
 	td.mat-cell:first-child,
@@ -190,32 +217,12 @@ table {
 		padding-right: 20px;
 	}
 
-	//   Underline styles
+	// Underline styles
 	tr.mat-row {
 		background-position: bottom;
 		background-size: 100% 1px;
 		background-repeat: no-repeat;
 		align-items: baseline;
-	}
-
-	td.mat-cell,
-	th.mat-header-cell {
-		border-bottom: none;
-		vertical-align: bottom;
-	}
-
-	//   Color and font styles
-	th.mat-header-cell {
-		color: $header-color;
-	}
-
-	td.mat-cell {
-		color: $cell-color;
-	}
-
-	th.mat-header-cell,
-	td.mat-header-row {
-		font-size: 14px;
 	}
 
 	//   Status and row options styles
@@ -249,19 +256,8 @@ table {
 	// background-color: $basic-background-color;
 	// box-shadow: 2px 1px 2px 0 $shadow-buttons;
 
-	.wui-shopping-cart:before {
-		color: $shopping-cart-color;
-	}
-
 	.wui-undo::before {
 		font-size: 12px;
 		color: $relaunch-color;
-	}
-
-	.wui-stop-alt::before {
-		font-size: 12px;
-		border-radius: 20%;
-		color: $stop-color;
-		background-color: $stop-color;
 	}
 }

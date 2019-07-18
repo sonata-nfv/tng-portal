@@ -1,198 +1,196 @@
 @import "../../constants.scss";
 app-menu {
-  .menu {
-    flex: 1 0;
-    display: flex;
-    height: 100%;
+  	.menu {
+		display: flex;
+		flex: 1 1;
+		height: 100%;
 
-    .mat-drawer {
-      background-color: transparent;
-    }
+		.mat-drawer {
+			background-color: transparent;
+		}
 
-    background: linear-gradient(
-      to left,
-      darken($panel-background-color, 10%) 3px,
-      darken($panel-background-color, 2%) 14px,
-      $panel-background-color
-    );
-  }
+		background: linear-gradient(
+			to left,
+			darken($panel-background-color, 10%) 3px,
+			darken($panel-background-color, 2%) 14px,
+			$panel-background-color
+		);
+  	}
 
-  .menu-items {
-    display: flex;
-    flex: 1 1;
-    flex-direction: column;
-    width: auto;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
+	// Left side of menu
+	.menu-items {
+		display: flex;
+		flex: 1 1;
+		flex-direction: column;
+		width: 10vw;
+		min-width: 90px;
+		max-width: 150px;
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
 
-  .avatar {
-    opacity: 0.3;
-    width: 78px;
-    height: 74px;
-    margin: auto;
-    margin-top: 2vh;
-    margin-bottom: 1vh;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: top center;
-    background-color: $basic-background-color;
-    background-image: url("../../assets/images/user.svg");
-    border: 1px solid $shadow-avatar;
-    box-shadow: 0 2px 6px 0 $shadow-avatar;
-  }
+	.avatar {
+		opacity: 0.3;
+		width: 78px;
+		height: 74px;
+		margin: auto;
+		margin-top: 2vh;
+		margin-bottom: 1vh;
+		border-radius: 50%;
+		background-size: cover;
+		background-color: $basic-background-color;
+		background-image: url("../../assets/images/user.svg");
+		border: 1px solid $shadow-avatar;
+		box-shadow: 0 2px 6px 0 $shadow-avatar;
+	}
 
-  p {
-    margin: auto;
-    color: $primary-font-color;
-    text-overflow: ellipsis;
-    overflow: hidden;
+	p {
+		margin: auto;
+		color: $primary-font-color;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 
-    &.name {
-      font-size: 21px;
-    }
+		&.name {
+			font-size: 21px;
+		}
 
-    &.email {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      cursor: pointer;
-      margin-left: 8px;
-      margin-right: 8px;
-      max-width: 7vw;
-      font-size: 12px;
-    }
-  }
+		&.email {
+			cursor: pointer;
+			max-width: 8vw;
+			font-size: 12px;
+		}
+	}
 
-  .logout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    font-size: 10px;
-    border: none;
-    background: none;
-    color: $secondary-font-color-light;
-    cursor: pointer;
+	.logout {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		font-size: 12px;
+		border: none;
+		background: none;
+		color: $secondary-font-color-light;
+		cursor: pointer;
 
-    span {
-      text-decoration: underline;
-      padding: 3px;
-    }
-  }
+		span {
+			text-decoration: underline;
+			padding: 3px;
+		}
+  	}
 
-  .logout:focus {
-    outline: none;
-  }
+	.logout:focus {
+		outline: none;
+	}
 
-  .sections {
-    flex: 1 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    border-right: 2px solid $border-line-color;
-    
-    button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-        border: none;
-        background: none;
-        color: $secondary-font-color-light;
-        cursor: pointer;
-        outline: none;
-        text-transform: uppercase;
+	.sections {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0;
+		justify-content: center;
+		margin-bottom: 10px;
+		border-right: 2px solid $border-line-color;
+		
+		button {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 2vh; 
+			background: none;
+			color: $secondary-font-color-light;
+			text-transform: uppercase;
 
-      i:before {
-        font-size: 35px;
-        color: $secondary-font-color-light;
-      }
+			i:before {
+				font-size: 4vh; 
+				color: $secondary-font-color-light;
+			}
 
-      span {
-        margin-top: 5px;
-        font-size: 11px;
-        width: 70px;
-        margin-right: 15px;
-        margin-left: 15px;
-      }
-    }
+			span {
+				width: 70px;
+				margin: auto;
+				margin-top: 5px;
+				font-size: 11px;
+			}
+		}
 
-    button.active {
-      color: $primary-button-color-light;
+		button.active {
+			color: $primary-button-color-light;
 
-      i:before {
-        font-size: 35px;
-        color: $primary-button-color-light;
-      }
-    }
-  }
+			i:before {
+				font-size: 4vh; 
+				color: $primary-button-color-light;
+			}
+		}
+	}
 
-  .logo {
-    height: 50px;
-    width: 100%;
-    margin-bottom: 10px;
-    background-position: center;
-    background-image: url("../../assets/images/sonata_powered_by_5gtango_logo.svg");
-    background-repeat: no-repeat;
-    background-size: 100px;
-  }
+	.logo {
+		height: 5vh;
+		width: 100%;
+		margin-bottom: 10px;
+		background-position: center;
+		background-image: url("../../assets/images/sonata_powered_by_5gtango_logo.svg");
+		background-repeat: no-repeat;
+		background-size: 12vh;
+	}
 
-  .menu-options {
-    flex: 1 0;
-    display: flex;
-    flex-direction: column;
-    width: 225px;
-    overflow-x: hidden;
-    overflow-y: hidden;
+	// Right side of menu   
+  	.menu-options {
+		display: flex;
+		flex: 1 0;
+		flex-direction: column;
+		width: 18vw;
+		min-width: 150px;
+		max-width: 210px;
+		overflow-x: hidden;
+		overflow-y: hidden;
 
-    .options {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
-      margin-left: 10px;
+		.mat-drawer-inner-container {
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+		}
+		
+    	.options {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1;
+			margin-left: 10px;
 
-      button {
-        padding: 2px;
-        border: none;
-        background: none;
-        width: 97%;
-        margin-top: 45px;
-        font-size: 16px;
-        text-align: left;
-        color: $secondary-button-color-light;
-        cursor: pointer;
-        outline: none;
-      }
+			button {
+				padding: 2px;
+				background: none;
+				width: 97%;
+				margin-top: 5vh;
+				font-size: 17px;
+				text-align: left;
+				color: $secondary-font-color-light;
+			}
 
-      button.active {
-        outline: none;
-        color: $primary-button-color-light;
-        border-bottom: 2px solid $primary-button-color-light;
-      }
+			button.active {
+				outline: none;
+				color: $primary-button-color-light;
+				border-bottom: 2px solid $primary-button-color-light;
+			}
 
-      .section {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+			.section {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
 
-        button {
-          margin-top: 10px;
-          margin-left: 10px;
-          font-size: 15px;
-          width: 80%;
-          border-bottom: 1px solid $button-underline-color-light;
-          outline: none;
-        }
+				button {
+					margin-top: 10px;
+					font-size: 15px;
+					width: 80%;
+					outline: none;
+					border-bottom: 1px solid $button-underline-color-light;
+				}
 
-        button.active {
-          outline: none;
-          color: $primary-button-color-light;
-          border-bottom: 2px solid $primary-button-color-light;
-        }
-      }
-    }
-  }
+				button.active {
+					outline: none;
+					color: $primary-button-color-light;
+					border-bottom: 2px solid $primary-button-color-light;
+				}
+			}
+    	}
+  	}
 }

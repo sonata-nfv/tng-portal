@@ -1,96 +1,129 @@
-<button class="closeIcon" (click)="close()"><i class="wui wui-times"></i></button>
+<button class="close-icon" (click)="close()"><i class="wui wui-times"></i></button>
 
 <h2 mat-dialog-title>Instantiate {{ data['name'] }} network service</h2>
 
-<mat-dialog-content *ngIf="!continue">
-    <div class="section">
-        <button [ngClass]="{ active: isIngress === true }" (click)="isIngress = true" class="ingress" mat-button>Ingress</button>
-        <span class="dash">-</span>
-        <button [ngClass]="{ active: isIngress === false }" (click)="isIngress = false" class="egress" mat-button>Egress</button>
-    </div>
+<!-- FIRST DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='first'" class="first-dialog">
+	<div class="section">
+		<button [ngClass]="{ active: listName === 'ingress' }" (click)="listName = 'ingress'" class="basic-button"
+			mat-button>Ingress</button>
+		<span class="dash">-</span>
+		<button [ngClass]="{ active: listName === 'egress' }" (click)="listName = 'egress'" class="basic-button" mat-button>Egress</button>
+		<span class="dash">-</span>
+		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="listName = 'blacklist'" class="basic-button"
+			mat-button>Blacklist</button>
+	</div>
 
-    <!-- DISPLAY INGRESS OR EGRESS DEPENDING ON THE CHOSEN SECTION -->
-    <dl class="list" *ngIf="isIngress">
-        <dt *ngFor="let entry of ingress">
-            <span>{{ entry.location }} ({{ entry.nap }})</span> <button (click)="eraseEntry(entry)"><i class="wui wui-trash-alt"></i></button>
-        </dt>
-    </dl>
+	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
+	<dl *ngIf="listName === 'ingress'" class="list">
+		<dt *ngFor="let entry of ingress" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
 
-    <dl class="list" *ngIf="!isIngress">
-        <dt *ngFor="let entry of egress">
-            <span>{{ entry.location }} ({{ entry.nap }})</span> <button (click)="eraseEntry(entry)"><i class="wui wui-trash-alt"></i></button>
-        </dt>
-    </dl>
+	<dl *ngIf="listName === 'egress'" class="list">
+		<dt *ngFor="let entry of egress" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
 
-    <form [formGroup]="instantiationForm" class="form">
-        <app-select class="select" placeholder="Location" [list]="locations" [disabled]="loading" [reset]="reset"
-            required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
-        </app-select>
+	<dl *ngIf="listName === 'blacklist'" class="list">
+		<dt *ngFor="let entry of blacklist" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
 
-        <mat-form-field>
-            <input matInput type="text" placeholder="Network address" formControlName="nap" />
-        </mat-form-field>
+	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
+	<form [formGroup]="instantiationForm" class="first-dialog-form">
+		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
+			required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
+		</app-select-uuid>
 
-        <div class="addNew">
-            <button [disabled]="!instantiationForm.valid || !instantiationForm.controls.nap.value" (click)="addNew()">
-                <i class="wui wui-plus"></i>
-                <span *ngIf="isIngress; else: isEgress" i18n="@@addNewIngress"> Add new ingress NAP</span>
-                <ng-template #isEgress i18n="@@addNewEgress"> Add new egress NAP</ng-template>
-            </button>
-        </div>
-    </form>
+		<mat-form-field *ngIf="canShowNetworkAddress()">
+			<input matInput type="text" placeholder="Network address" formControlName="nap" />
+		</mat-form-field>
+		<p *ngIf="instantiationForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIpMaskExample">
+			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
+		</p>
+
+
+		<div *ngIf="canShowNetworkAddress()" class="add-new">
+			<button [disabled]="canDisableAddNew()" (click)="addNew()" class="basic-button">
+				<i class="wui wui-plus"></i>
+				<span *ngIf="listName === 'ingress'" i18n="@@addNewIngress"> Add new ingress NAP</span>
+				<span *ngIf="listName === 'egress'" i18n="@@addNewEgress"> Add new egress NAP</span>
+				<span *ngIf="listName === 'blacklist'" i18n="@@addNewBlacklist"> Add new blacklist NAP</span>
+			</button>
+		</div>
+	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="!continue">
-    <div class="buttonContainer">
-        <button class="cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-        <button class="next" mat-button cdkFocusInitial (click)="continue = true" i18n="@@nextButton">NEXT</button>
-    </div>
+<mat-dialog-actions *ngIf="section=='first'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="section = 'second'"
+			i18n="@@nextButton">NEXT</button>
+	</div>
 </mat-dialog-actions>
 
-<mat-dialog-content class="continue" *ngIf="continue">
-    <div class="summary">
-        <div class="ingressList">
-            <h2>Ingress</h2>
+<!-- SECOND DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='second'" class="second-dialog">
+	<form [formGroup]="instantiationForm" class="second-dialog-form">
+		<mat-form-field class="instance-name">
+			<input matInput type="text" placeholder="Instance name" formControlName="instanceName" required
+				i18n-placeholder="@@instanceNamePlaceholder" />
+		</mat-form-field>
 
-            <dl>
-                <dt *ngFor="let entry of ingress">
-                    <span>{{ entry.location }} ({{ entry.nap }})</span>
-                    <button (click)="isIngress = true; eraseEntry(entry)"><i class="wui wui-trash-alt"></i></button>
-                </dt>
-            </dl>
-        </div>
-        <div class="egressList">
-            <h2>Egress</h2>
-
-            <dl>
-                <dt *ngFor="let entry of egress">
-                    <span>{{ entry.location }} ({{ entry.nap }})</span>
-                    <button (click)="isIngress = false; eraseEntry(entry)"><i class="wui wui-trash-alt"></i></button>
-                </dt>
-            </dl>
-        </div>
-    </div>
-
-    <form [formGroup]="instantiationForm">
-        <mat-form-field class="instanceName">
-            <input matInput type="text" placeholder="Instance name" formControlName="instanceName" required
-                i18n-placeholder="@@instanceNamePlaceholder" />
-        </mat-form-field>
-
-        <app-select class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading" required="false"
-            (selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder"></app-select>
-    </form>
+		<app-select-uuid *ngIf="slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas"
+			[value]="instantiationForm.get('sla').value" [disabled]="loading" (selectEvent)="receiveSLA($event)"
+			i18n-placeholder="@@selectSLAPlaceholder">
+		</app-select-uuid>
+	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="continue">
-    <div class="buttonContainer">
-        <button class="cancel" mat-button mat-dialog-close i18n="@@rejectButton">REJECT</button>
-        <button class="next" mat-button cdkFocusInitial [disabled]="!instantiationForm.controls.instanceName.value || instantiationForm.controls.instanceName.value.trim() == ''"
-            (click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
-            INSTANTIATE
-        </button>
-    </div>
+<mat-dialog-actions *ngIf="section=='second'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button (click)="section='first'" i18n="@@backButton">BACK</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableInstantiate()"
+			(click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
+			INSTANTIATE
+		</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- LICENSE ERROR DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='error'" class="error-dialog" i18n="@@trialLicenseError">
+	Trial license exceeded or allowed instances over passed.
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="section=='error'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@closeButton">CLOSE</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- LICENSE BUY DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='buy'" class="buy-dialog" i18n="@@privateLicenseError">
+	You need to buy the license before continuing with the instantiation.
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="section=='buy'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="buy()">
+			<i class="wui wui-shopping-cart"></i>
+			<span i18n="@@buy">BUY</span>
+		</button>
+	</div>
 </mat-dialog-actions>
 
 <app-spinner *ngIf="loading"></app-spinner>

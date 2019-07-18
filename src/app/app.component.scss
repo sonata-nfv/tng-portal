@@ -6,7 +6,7 @@
 }
 
 * {
-	font-family: 'Calibri';
+	font-family: Calibri, Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -111,6 +111,7 @@ app-spinner {
 p {
 	text-align: justify;
 	color: $secondary-font-color;
+	font-size: 18px;
 }
 
 .error-message {
@@ -157,7 +158,7 @@ p {
 		text-decoration: none;
 		text-align: center;
 		color: $primary-font-color;
-		font-size: 18px;
+		font-size: 20px;
 	}
 
 	.underline {
@@ -237,10 +238,10 @@ p {
 			color: $primary-color-light;
 		}
 
-		.wui-plus::before {
+		.wui-plus:before {
 			margin-right: 5px;
 			font-size: 20px;
-			color: $reload-color;
+			color: $add-color;
 		}
 	}
 }
@@ -278,7 +279,7 @@ p {
 //////////////////////////////////////
 // Version and iteration circles
 //////////////////////////////////////
-.bubbleDiv {
+.number-bubble {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -297,8 +298,10 @@ p {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-width: 120px;
-		min-height: 120px;
+		width: 6vw;
+		height: 6vw;
+		min-width: 80px;
+		min-height: 80px;
 		border-radius: 50%;
 		background-color: $primary-background-color;
 
@@ -327,31 +330,29 @@ p {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-    margin-bottom: 10px;
-}
+    margin-bottom: 2vh;
 
-// Header when the item has an icon on the right
-// Allows dropdown action
-.description .description-title {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
+	.description-title {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
 
-	.title4 {
-        width: 95%;
+		.title4 {
+			flex: 1 1;
+		}
+
+		button {
+			align-self: center;
+			margin-left: 1vw;
+			text-align: right;
+			border: none;
+			cursor: pointer;
+			outline: none;
+			color: $primary-font-color;
+			background-color: $basic-background-color;
+		}
 	}
-	button {
-        align-self: center;
-        text-align: right;
-        border: none;
-		cursor: pointer;
-        outline: none;
-        color: $primary-font-color;
-		background-color: $basic-background-color;
-	}
-}
 
-.description {
 	.title4 {
         margin-bottom: 2px;
         margin-top: 3px;
@@ -365,7 +366,7 @@ p {
 			overflow-y: auto;
 			overflow-x: hidden;
 			white-space: pre-line;
-			min-height: 200px;
+			min-height: 120px;
 			max-height: 200px;
 			color: $secondary-font-color;
 			background-color: $panel-background-color;
@@ -406,8 +407,8 @@ p {
 
 	.content {
 		min-height: 100px;
-		padding-top: 5px;
-		padding-left: 5px;
+		padding: 10px;
+		box-sizing: border-box;
 		margin-top: 5px;
 		background-color: $panel-background-color;
 		border-top: 1px solid $border-line-color;
@@ -438,11 +439,10 @@ ngx-json-viewer {
 //////////////////////////////////////
 // Advanced section: detailed views
 //////////////////////////////////////
-.advanceSection {
+.advanced-section {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	width: 65%;
 
 	button {
 		border: none;
@@ -451,7 +451,7 @@ ngx-json-viewer {
 		background-color: $basic-background-color;
 	}
 
-	.dropdownButton {
+	.dropdown-button {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -566,18 +566,33 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 //////////////////////////////////////
-// Button
+// Basic button
 //////////////////////////////////////
 .basic-button {
     border: none;
-	cursor: pointer;
+    cursor: pointer;
 	outline: none;
-    background-color: $basic-background-color;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-color: $basic-background-color;
+}
+
+.circle-button {
+	padding: 8px;
+	border-radius: 50%;
+	border: 1px solid $secondary-color;
+	cursor: pointer;
+}
+
+.circle-button.active {
+	border: 1px solid $primary-color-light;
+	background-color: $primary-color-light;
 }
 
 //////////////////////////////////////
 // Button for icons
 //////////////////////////////////////
+.button-shadow,
 .icon-button-shadow {
     border: none;
 	cursor: pointer;
@@ -594,7 +609,7 @@ ul.unordered-list .mat-input-element:disabled {
 //////////////////////////////////////
 // Icons
 //////////////////////////////////////
-.closeIcon {
+.close-icon {
 	position: absolute;
 	padding: 8px;
 	border: none;
@@ -634,21 +649,53 @@ ul.unordered-list .mat-input-element:disabled {
     color: $ready-color;
 }
 
-.icon-button-shadow .wui-undo::before {
+.icon-button-shadow .wui-shopping-cart:before {
+    font-size: 20px;
+	color: $shopping-cart-color;
+}
+
+.icon-button-shadow .wui-undo:before {
 	font-size: 20px;
 	color: $reload-color;
 }
 
-.wui-folder-plus:before {
-    font-size: 20px;
-    color: $secondary-font-color-light;
+.icon-button-shadow .wui-stop-alt:before {
+	font-size: 15px;
+	color: $stop-color;
+	border-radius: 20%;
+	background-color: $stop-color;
+}
+
+.icon-button-shadow.help {
+	align-self: center ;
+	height: 30px;
+	width: 30px;    
+	font-size: 17px;
+	color: $primary-font-color-light;
+}
+
+.wui-plus:before {
+	margin-right: 5px;
+	font-size: 14px;
+	color: $add-color;
+}
+
+.wui-caret-up:before {
+	font-size: 14px;
+	color: $arrow-color;
+}
+
+.wui-caret-down:before {
+	font-size: 14px;
+	color: $arrow-color;
 }
 
 //////////////////////////////////////
 // Action buttons in detailed views
 //////////////////////////////////////
 .stop,
-.launch {
+.launch,
+.buy {
 	display: flex;
 	align-items: center;
 	width: 30%;

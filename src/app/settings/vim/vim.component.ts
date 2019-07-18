@@ -6,6 +6,7 @@ import { InputErrorStateMatcher } from '../../shared/classes/input-error-state-m
 
 import { SettingsService } from '../settings.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-vim',
@@ -26,14 +27,13 @@ export class VimComponent implements OnInit {
 	vimTypes = [ 'Openstack', 'Kubernetes' ];
 	vimType: string;
 	disabledButton = true;
-	externalRouters: Array<string>;
-	externalNetworks: Array<string>;
 
 	constructor(
 		private settingsService: SettingsService,
 		private utilsService: UtilsService,
 		private router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private dialogData: DialogDataService
 	) { }
 
 	ngOnInit() {
@@ -73,7 +73,10 @@ export class VimComponent implements OnInit {
 			]),
 			privateNetworkMask: new FormControl('', [ Validators.required, Validators.pattern(this.utilsService.getMaskPattern()) ]),
 			externalNetworkID: new FormControl('', Validators.required),
-			externalRouterID: new FormControl('', Validators.required)
+			externalRouterID: new FormControl('', Validators.required),
+			externalRouterIP: new FormControl('', Validators.pattern(this.utilsService.getIpPattern())),
+			managementFlowIP: new FormControl('', Validators.pattern(this.utilsService.getIpPattern())),
+			floatingIpRanging: new FormControl('', Validators.pattern(this.utilsService.getIpRangePattern())),
 		});
 		this.kubernetesForm = new FormGroup({
 			config: new FormControl('', Validators.required)
@@ -134,6 +137,9 @@ export class VimComponent implements OnInit {
 			this.openstackForm.get('privateNetworkMask').setValue(this.originalVim[ 'private_network_length' ]);
 			this.openstackForm.get('externalNetworkID').setValue(this.originalVim[ 'external_network_id' ]);
 			this.openstackForm.get('externalRouterID').setValue(this.originalVim[ 'external_router_id' ]);
+			this.openstackForm.get('externalRouterIP').setValue(this.originalVim[ 'external_router_ip' ]);
+			this.openstackForm.get('managementFlowIP').setValue(this.originalVim[ 'management_flow_ip' ]);
+			this.openstackForm.get('floatingIpRanging').setValue(this.originalVim[ 'floating_ip_ranging' ]);
 		} else {
 			this.kubernetesForm.get('config').setValue(this.originalVim[ 'config' ]);
 		}
@@ -205,6 +211,10 @@ export class VimComponent implements OnInit {
 			vim[ 'private_network_length' ] = this.openstackForm.get('privateNetworkMask').value;
 			vim[ 'external_network_id' ] = this.openstackForm.get('externalNetworkID').value;
 			vim[ 'external_router_id' ] = this.openstackForm.get('externalRouterID').value;
+			vim[ 'external_router_ip' ] = this.openstackForm.get('externalRouterIP').value;
+			vim[ 'management_flow_ip' ] = this.openstackForm.get('managementFlowIP').value;
+			vim[ 'floating_ip_ranging' ] = this.openstackForm.get('floatingIpRanging').value;
+
 		} else {
 			vim[ 'config' ] = this.kubernetesForm.get('config').value;
 		}
@@ -218,12 +228,7 @@ export class VimComponent implements OnInit {
 	}
 
 	checkJSONValidity() {
-		try {
-			JSON.parse(this.kubernetesForm.get('config').value);
-		} catch (error) {
-			return false;
-		}
-		return true;
+		return this.utilsService.isValidJSON(this.kubernetesForm.get('config').value);
 	}
 
 	canShowForm() {
@@ -320,6 +325,16 @@ export class VimComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('There was an error deleting the VIM', '');
 		}
+	}
+
+	openTip() {
+		const title = 'Tip!';
+		const content = 'Here you have an example of a floating IP range: \n\n \
+						10.0.0.1 - 10.0.0.68, 10.0.0.80 - 10.0.0.100\n\n\n \
+						You can add as many ranges as you want but remember that the ranges must be separated by commas!';
+		const action = 'Accept';
+
+		this.dialogData.openDialog(title, content, action, async () => { });
 	}
 
 	close() {

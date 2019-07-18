@@ -1,0 +1,107 @@
+@import '../../../constants.scss';
+app-sla-template-create {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	.title1 {
+		margin: 0;
+		width: 40%;
+
+		.mat-form-field-infix {
+			border-top: 0;
+		}
+
+		&.mat-form-field-should-float {
+			.mat-form-field-label-wrapper {
+				display: none;
+			}
+		}
+	}
+
+	form {
+		width: 55vw;
+		margin-bottom: 5vh;
+
+		.ns, .provider-name {
+			width: 40%;
+		}
+	}
+
+	.advanced-section {
+		width: 55vw;
+	}
+
+	// Select guarantees
+	form.advanced-form {
+		.guarantees-select,
+		.licenses-select,
+		.flavor-select {
+			width: 50%;
+		}
+
+		.guarantees-select {
+			margin-top: 2vh;
+		}
+
+		.note {
+			display: flex;
+			justify-content: flex-end;
+			width: 50%;
+			margin-top: -16px;
+			font-size: 13px;
+			color: $primary-font-color-light;
+		}
+
+		.instances-number {
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
+
+			.label {
+				margin-right: 10px;
+			}
+
+			.instances {
+				width: 4vw; 
+			}
+		}
+	}
+
+	// Listed gurantees
+	form.advanced-form .guarantee-row {
+		.definition {
+			margin-top: 1vh;
+			margin-left: 1vw;
+			margin-bottom: 5vh;
+		}
+
+		.slo-info {
+			display: flex;
+			flex-direction: row;
+			width: 95%;
+			margin-top: 2vh;
+			margin-left: 1vw;
+			margin-right: 1vw;
+			
+			.slo {
+				width: 60%;
+			}
+			.period {
+				width: 40%;
+			}
+		}
+	}
+}
+

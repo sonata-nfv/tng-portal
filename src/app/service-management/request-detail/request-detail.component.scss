@@ -1,0 +1,34 @@
+@import "../../../constants.scss";
+app-request-detail {
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	form {
+		width: 55vw;
+		margin-top: 4vh;
+		margin-bottom: 5vh;
+
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+
+		.right-column,
+		.same-row .right-column.mat-form-field {
+			width: 20vw;
+		}
+	}
+}

@@ -68,7 +68,7 @@ export class VimListComponent implements OnInit, OnDestroy {
 
 		this.loading = false;
 		if (response) {
-			this.vims = response;
+			this.vims = response.filter(vim => vim.type !== 'endpoint');
 		} else {
 			this.utilsService.openSnackBar('There was an error fetching the VIMs', '');
 		}
