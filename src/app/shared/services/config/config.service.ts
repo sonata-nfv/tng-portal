@@ -7,8 +7,9 @@ import { Config } from './config';
 export class ConfigService extends Config {
 	baseSP = window.location.origin + '/api/v3/';
 	baseVNV = window.location.origin + '/api/v3/';
+	roles = 'users/roles';
 	register = 'users/';
-	login = 'sessions/';
+	login = 'users/sessions/';
 	services = 'services';
 	requests = 'requests';
 	serviceRecords = 'records/services';

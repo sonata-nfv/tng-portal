@@ -7,8 +7,7 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@ang
 	encapsulation: ViewEncapsulation.None
 })
 export class TermsOfUsageComponent implements OnInit {
-	@Output()
-	showTermsEvent = new EventEmitter<boolean>();
+	@Output() showTermsEvent = new EventEmitter<boolean>();
 
 	constructor() { }
 

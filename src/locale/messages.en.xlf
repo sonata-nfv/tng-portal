@@ -709,14 +709,10 @@
           <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="usernamePlaceholder" datatype="html">
+      <trans-unit id="usernameEmailPlaceholder" datatype="html">
         <source>Username/email</source><target state="final">Username/email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
@@ -724,221 +720,246 @@
         <source>Password</source><target state="final">Password</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="loginButton" datatype="html">
         <source>LOG IN</source><target state="final">LOG IN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="newAccountButton" datatype="html">
         <source>Create a new account</source><target state="final">Create a new account</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="helpButton" datatype="html">
         <source>Help?</source><target state="final">Help?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="forgotPasswordButton" datatype="html">
-        <source>Forgot your
-				password?</source><target state="final">Forgot your
-				password?</target>
+        <source>
+			Forgot your password?
+		</source><target state="final">
+			Forgot your password?
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/login/login.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="usernamePlaceholder" datatype="html">
+        <source>Username</source><target state="final">Username</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="confirmPasswordPlaceholder" datatype="html">
         <source>Confirm Password</source><target state="final">Confirm Password</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="passwordsDoNotMatch" datatype="html">
+        <source>
+				*Passwords do not match
+			</source><target state="final">
+				*Passwords do not match
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="emailPlaceholder" datatype="html">
         <source>Email</source><target state="final">Email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notValidEmail" datatype="html">
+        <source>*This is not a valid email</source><target state="final">*This is not a valid email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="rolePlaceholder" datatype="html">
         <source>Role</source><target state="final">Role</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageLink" datatype="html">
-        <source>
-				Terms of Usage. </source><target state="final">
-				Terms of Usage. </target>
+        <source>Terms of Usage. </source><target state="final">Terms of Usage. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="registerButton" datatype="html">
         <source>REGISTER</source><target state="final">REGISTER</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="haveAnAccountLink" datatype="html">
         <source>I have an account</source><target state="final">I have an account</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/signup/signup.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tyMessage" datatype="html">
         <source>Thank you</source><target state="final">Thank you</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="registerSuccessMessage" datatype="html">
         <source>You were successfully registered!!!</source><target state="final">You were successfully registered!!!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="loginLink" datatype="html">
         <source>Log in</source><target state="final">Log in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/registered/registered.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageTitle" datatype="html">
         <source>TERMS OF USAGE</source><target state="final">TERMS OF USAGE</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition1" datatype="html">
         <source>1. Collection of Personal Information</source><target state="final">1. Collection of Personal Information</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition1Text" datatype="html">
         <source>
-			5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
-			better user experience. Your personal
-			information is requested when you register with our Portal/API to access restricted content. Your Portal
-			navigation/API usage may also be monitored
-			for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
-			Personal data is not shared with third
-			parties.
-		</source><target state="final">
-			5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
-			better user experience. Your personal
-			information is requested when you register with our Portal/API to access restricted content. Your Portal
-			navigation/API usage may also be monitored
-			for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
-			Personal data is not shared with third
-			parties.
-		</target>
+		5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
+		better user experience. Your personal
+		information is requested when you register with our Portal/API to access restricted content. Your Portal
+		navigation/API usage may also be monitored
+		for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
+		Personal data is not shared with third
+		parties.
+	</source><target state="final">
+		5GTANGO collects and uses your personal information to operate SONATA V&amp;V and Service platforms and for a
+		better user experience. Your personal
+		information is requested when you register with our Portal/API to access restricted content. Your Portal
+		navigation/API usage may also be monitored
+		for statistical purposes. 5GTANGO takes responsibility for protecting the privacy and data of all users.
+		Personal data is not shared with third
+		parties.
+	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition2" datatype="html">
         <source>2. Use of your Personal Information</source><target state="final">2. Use of your Personal Information</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition2Text" datatype="html">
         <source>
-			When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
-			information with third parties without your
-			permission. It is only used for the purposes stated above.
-		</source><target state="final">
-			When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
-			information with third parties without your
-			permission. It is only used for the purposes stated above.
-		</target>
+		When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
+		information with third parties without your
+		permission. It is only used for the purposes stated above.
+	</source><target state="final">
+		When you register or submit your personal information in any 5GTANGO Portal/API, we do not share that
+		information with third parties without your
+		permission. It is only used for the purposes stated above.
+	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition3" datatype="html">
         <source>3. Security of your Personal Information</source><target state="final">3. Security of your Personal Information</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition3Text" datatype="html">
         <source>
-			5GTANGO uses a variety of security technologies and procedures to help protect your personal information
-			from unauthorized access, use, or
-			disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
-			controlled, secure environment protected
-			from unauthorized access, use, or disclosure.
-		</source><target state="final">
-			5GTANGO uses a variety of security technologies and procedures to help protect your personal information
-			from unauthorized access, use, or
-			disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
-			controlled, secure environment protected
-			from unauthorized access, use, or disclosure.
-		</target>
+		5GTANGO uses a variety of security technologies and procedures to help protect your personal information
+		from unauthorized access, use, or
+		disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
+		controlled, secure environment protected
+		from unauthorized access, use, or disclosure.
+	</source><target state="final">
+		5GTANGO uses a variety of security technologies and procedures to help protect your personal information
+		from unauthorized access, use, or
+		disclosure. 5GTANGO secures the personally identifiable information you provide on computer servers in a
+		controlled, secure environment protected
+		from unauthorized access, use, or disclosure.
+	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition4" datatype="html">
         <source>4. Data Retention</source><target state="final">4. Data Retention</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="termsOfUsageCondition4Text" datatype="html">
         <source>
-			5GTANGO will retain your information for as long as your account is active or as needed to provide you
-			services. If you wish to change your personal
-			information or request that we no longer use it, please contact us.
-		</source><target state="final">
-			5GTANGO will retain your information for as long as your account is active or as needed to provide you
-			services. If you wish to change your personal
-			information or request that we no longer use it, please contact us.
-		</target>
+		5GTANGO will retain your information for as long as your account is active or as needed to provide you
+		services. If you wish to change your personal
+		information or request that we no longer use it, please contact us.
+	</source><target state="final">
+		5GTANGO will retain your information for as long as your account is active or as needed to provide you
+		services. If you wish to change your personal
+		information or request that we no longer use it, please contact us.
+	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/authentication/terms-of-usage/terms-of-usage.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="usernameHardcoded" datatype="html">
