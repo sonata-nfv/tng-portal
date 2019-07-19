@@ -60,7 +60,7 @@
 			<button class="basic-button" [ngClass]="{ active: menu === 'sdk' }"
 					(click)="setMenu($event, 'sdk')" appIfFeatureAvailable="sdk">
 				<i class="wui wui-table-alt"></i>
-				<span i18n="@@sdk">SDK</span>
+				<span>SDK</span>
 			</button>
 		</div>
 
@@ -83,13 +83,13 @@
 
 		<div class="options" *ngIf="menu === 'sdk'">
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-generator' }"
-					(click)="setSection($event, 'sdk-generator')" i18n="@@description">Description</button>
+					(click)="setSection($event, 'sdk-generator')">Description</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-edit' }"
-					(click)="setSection($event, 'sdk-edit')" i18n="@@descriptoredit">Descriptor Edit</button>
+					(click)="setSection($event, 'sdk-edit')">Descriptor Edit</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-validation' }"
-					(click)="setSection($event, 'sdk-validation')" i18n="@@descriptoredit">Validation</button>
+					(click)="setSection($event, 'sdk-validation')">Validation</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-packaging' }"
-					(click)="setSection($event, 'sdk-packaging')" i18n="@@descriptoredit">Packaging</button>
+					(click)="setSection($event, 'sdk-packaging')">Packaging</button>
 		</div>
 
 		<div class="options" *ngIf="menu === 'validation-and-verification'">
