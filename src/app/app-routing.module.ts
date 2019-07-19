@@ -222,7 +222,9 @@ const routes: Routes = [
 		]
 	},
 	// SDK routes don't need authentication
-	{ path: 'sdk', component: MainPageComponent }
+	{ path: 'sdk', component: MainPageComponent },
+	// { path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
+	// { path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent }
 ];
 
 @NgModule({

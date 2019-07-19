@@ -82,6 +82,10 @@ export class MenuComponent implements OnInit, OnDestroy {
 				this.section = 'sm-network-services';
 				this.router.navigate([ 'service-management' ]);
 				break;
+			case 'sdk':
+				this.section = 'sdk';
+				this.router.navigate(['/sdk']);
+				break;
 			default:
 				this.router.navigate([ '/dashboard' ]);
 		}
@@ -148,6 +152,12 @@ export class MenuComponent implements OnInit, OnDestroy {
 			case 'sm-licenses':
 				this.router.navigate([ 'service-management/licenses' ]);
 				break;
+			case 'sdk-generator':
+				this.router.navigate(['sdk/descriptor-generator']);
+				break;
+			case 'sdk-edit':
+				this.router.navigate(['sdk/descriptor-displayer']);
+				break;
 		}
 		this.section = buttonId;
 	}
@@ -203,7 +213,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 	maintainStatus() {
 		const url = this.router.url.substr(1).split('/');
 		this.menu = url[ 0 ] ? url[ 0 ] : 'dashboard';
-		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms') ?
+		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms' || this.menu === 'sdk') ?
 			this.sideNav.close() : this.sideNav.open();
 
 		if (url.length > 1) {
