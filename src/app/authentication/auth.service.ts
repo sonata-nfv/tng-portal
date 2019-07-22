@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from '../shared/services/config/config.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +19,10 @@ export class AuthService {
 			password: password
 		};
 
-		this.removeLocalStorage();
+		if (localStorage.getItem('token')) {
+			await this.logout();
+		}
+
 		this.setAuthHeaders();
 
 		try {
@@ -38,8 +42,7 @@ export class AuthService {
 		const url = this.config.baseSP + this.config.login;
 
 		try {
-			await this.http.delete(url, { headers: this.authHeaders });
-			return;
+			return await this.http.delete(url, { headers: this.authHeaders }).toPromise();
 		} catch (error) {
 			console.error(error);
 		}
