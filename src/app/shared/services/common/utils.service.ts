@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+
+import { DialogDataService } from '../dialog/dialog.service';
 
 @Injectable()
 export class UtilsService {
@@ -11,7 +14,9 @@ export class UtilsService {
 	numberPattern = '^[0-9]*$';
 
 	constructor(
-		public snackBar: MatSnackBar
+		public snackBar: MatSnackBar,
+		private dialogData: DialogDataService,
+		private router: Router
 	) { }
 
 	getEmailPattern() {
@@ -180,5 +185,15 @@ export class UtilsService {
 			}
 		});
 		return str;
+	}
+
+	launchUnauthorizedError() {
+		const title = 'Oh oh...';
+		const content = 'It seems that your session has expired. Please, log in again.';
+		const action = 'Log in';
+
+		this.dialogData.openDialog(title, content, action, async () => {
+			this.router.navigate([ '/login' ]);
+		});
 	}
 }

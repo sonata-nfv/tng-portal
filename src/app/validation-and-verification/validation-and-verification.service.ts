@@ -45,6 +45,10 @@ export class ValidationAndVerificationPlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -74,6 +78,10 @@ export class ValidationAndVerificationPlatformService {
 				lastTimeExecuted: response[ 'last_time_executed' ]
 			} : { };
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -100,6 +108,10 @@ export class ValidationAndVerificationPlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -127,6 +139,10 @@ export class ValidationAndVerificationPlatformService {
 				testUUID: response[ 'test_uuid' ]
 			} : { };
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -158,6 +174,10 @@ export class ValidationAndVerificationPlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -183,6 +203,10 @@ export class ValidationAndVerificationPlatformService {
 				updatedAt: response[ 'updated_at' ]
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}

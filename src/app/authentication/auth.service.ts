@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from '../shared/services/config/config.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +19,12 @@ export class AuthService {
 			password: password
 		};
 
+		if (localStorage.getItem('token')) {
+			await this.logout();
+		}
+
+		this.setAuthHeaders();
+
 		try {
 			const login = await this.http.post(url, data, { headers: this.authHeaders }).toPromise();
 			localStorage.setItem('token', login[ 'token' ]);
@@ -31,16 +38,19 @@ export class AuthService {
 	}
 
 	async logout() {
-		localStorage.removeItem('token');
-		localStorage.removeItem('username');
+		this.removeLocalStorage();
 		const url = this.config.baseSP + this.config.login;
 
 		try {
-			await this.http.delete(url, { headers: this.authHeaders });
-			return;
+			return await this.http.delete(url, { headers: this.authHeaders }).toPromise();
 		} catch (error) {
 			console.error(error);
 		}
+	}
+
+	private removeLocalStorage() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('username');
 	}
 
 	async signup(user: object) {
@@ -79,6 +89,15 @@ export class AuthService {
 
 	getAuthHeaders() {
 		return this.authHeaders;
+	}
+
+	getAuthHeadersSLAMngr() {
+		return localStorage.getItem('token') ?
+			new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded')
+				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
 	isAuthenticated(): boolean {

@@ -45,6 +45,10 @@ export class ServiceManagementService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -89,6 +93,10 @@ export class ServiceManagementService {
 				}) : []
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -105,6 +113,10 @@ export class ServiceManagementService {
 		try {
 			return await this.http.post(url, instance, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -125,6 +137,10 @@ export class ServiceManagementService {
 		try {
 			return await this.http.post(url, terminateTime, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 
@@ -157,6 +173,10 @@ export class ServiceManagementService {
 					version: item.version
 				})) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -183,6 +203,10 @@ export class ServiceManagementService {
 				vnf: response[ 'network_functions' ]
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -210,6 +234,10 @@ export class ServiceManagementService {
 				cdus: response[ 'cloudnative_deployment_units' ]
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -220,12 +248,16 @@ export class ServiceManagementService {
 	 * @param body Body of the instantiation request
 	 */
 	async postOneNSInstance(body) {
-		const headers = new HttpHeaders();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.requests;
 
 		try {
 			return await this.http.post(url, body, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -246,6 +278,10 @@ export class ServiceManagementService {
 		try {
 			return await this.http.post(url, data, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -276,6 +312,10 @@ export class ServiceManagementService {
 					status: item.status
 				})) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -312,6 +352,10 @@ export class ServiceManagementService {
 					egresses: response[ 'egresses' ]
 				} : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -346,6 +390,10 @@ export class ServiceManagementService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -362,6 +410,10 @@ export class ServiceManagementService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -379,6 +431,10 @@ export class ServiceManagementService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -389,12 +445,16 @@ export class ServiceManagementService {
 	* @param license License data of the new license.
 	*/
 	async postOneLicense(license) {
-		const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		const headers = this.authService.getAuthHeadersSLAMngr();
 		const url = this.config.baseSP + this.config.buyLicense;
 
 		try {
 			return await this.http.post(url, this.utilsService.urlEncode(license), { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
