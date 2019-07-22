@@ -23,30 +23,31 @@ export class ServicePlatformService {
      *
      * @param uuid UUID of the desired Function.
      */
-	getOneFunction(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			this.http
-				.get(this.config.baseSP + this.config.functions + '/' + uuid, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					resolve({
-						uuid: response[ 'uuid' ],
-						name: response[ 'vnfd' ][ 'name' ],
-						author: response[ 'vnfd' ][ 'author' ],
-						createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
-						updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
-						vendor: response[ 'vnfd' ][ 'vendor' ],
-						version: response[ 'vnfd' ][ 'version' ],
-						type: 'Public',
-						status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
-						description: response[ 'vnfd' ][ 'description' ]
-					});
-				})
-				.catch(err => reject('There was an error fetching the function'));
-		});
+	async getOneFunction(uuid: string) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functions + '/' + uuid;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return {
+				uuid: response[ 'uuid' ],
+				name: response[ 'vnfd' ][ 'name' ],
+				author: response[ 'vnfd' ][ 'author' ],
+				createdAt: this.utilsService.formatUTCDate(response[ 'created_at' ]),
+				updatedAt: this.utilsService.formatUTCDate(response[ 'updated_at' ]),
+				vendor: response[ 'vnfd' ][ 'vendor' ],
+				version: response[ 'vnfd' ][ 'version' ],
+				type: 'Public',
+				status: this.utilsService.capitalizeFirstLetter(response[ 'status' ]),
+				description: response[ 'vnfd' ][ 'description' ]
+			};
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
 	}
 
 	/**
@@ -76,6 +77,10 @@ export class ServicePlatformService {
 				storedGuarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ])
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -91,6 +96,10 @@ export class ServicePlatformService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return this.parseGuaranteesData(response[ 'guaranteeTerms' ]);
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -131,6 +140,10 @@ export class ServicePlatformService {
 			return response instanceof Array ?
 				response : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -148,6 +161,10 @@ export class ServicePlatformService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response[ 'd_flavour_name' ] || 'None';
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -165,6 +182,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.post(url, this.utilsService.urlEncode(template), { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 			return error.error.ERROR;
 		}
@@ -183,6 +204,10 @@ export class ServicePlatformService {
 			const response = await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
 			return response;
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -217,6 +242,10 @@ export class ServicePlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -257,6 +286,10 @@ export class ServicePlatformService {
 				guarantees: this.parseGuaranteesData(response[ 'slad' ][ 'sla_template' ][ 'service' ][ 'guaranteeTerms' ]),
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -269,39 +302,30 @@ export class ServicePlatformService {
 	 *                          matched by the returned list of
 	 *                          SLA Violations.
 	 */
-	getSLAViolations(search?): any {
-		return new Promise((resolve, reject) => {
-			const headers = this.authService.getAuthHeaders();
-			const url =
-				search !== undefined
-					? this.config.baseSP + this.config.slaViolations + search
-					: this.config.baseSP + this.config.slaViolations;
+	async getSLAViolations(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseSP + this.config.slaViolations + search
+			: this.config.baseSP + this.config.slaViolations;
 
-			this.http
-				.get(url, {
-					headers: headers
-				})
-				.toPromise()
-				.then(response => {
-					if (response instanceof Array) {
-						resolve(
-							response.map(item => {
-								return {
-									nsInstanceUUID: item.nsi_uuid,
-									slaUUID: item.sla_uuid,
-									date: this.utilsService.formatUTCDate(item.violation_time),
-									customerUUID: item.cust_uuid
-								};
-							})
-						);
-					} else {
-						reject('There was an error while fetching the SLA violations');
-					}
-				})
-				.catch(err =>
-					reject('There was an error while fetching the SLA violations')
-				);
-		});
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						nsInstanceUUID: item.nsi_uuid,
+						slaUUID: item.sla_uuid,
+						date: this.utilsService.formatUTCDate(item.violation_time),
+						customerUUID: item.cust_uuid
+					};
+				}) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
 	}
 
 	/**
@@ -314,6 +338,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -330,6 +358,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.post(url, placementPolicy, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -365,6 +397,10 @@ export class ServicePlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -398,6 +434,10 @@ export class ServicePlatformService {
 				monitoringRules: response[ 'pld' ][ 'monitoring_rules' ]
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -414,6 +454,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.post(url, policy, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -436,6 +480,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.patch(url, data, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -454,6 +502,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.patch(url, data, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -465,6 +517,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -481,6 +537,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -514,6 +574,10 @@ export class ServicePlatformService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -530,6 +594,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.post(url, template, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -546,6 +614,10 @@ export class ServicePlatformService {
 		try {
 			return await this.http.delete(url, { headers: headers, responseType: 'text' }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}

@@ -53,6 +53,10 @@ export class CommonService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -82,6 +86,10 @@ export class CommonService {
 
 			return Object.assign({ }, packageData, content);
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -151,6 +159,10 @@ export class CommonService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -190,6 +202,10 @@ export class CommonService {
 			}
 			return monitoringParameters;
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -224,6 +240,10 @@ export class CommonService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -260,6 +280,10 @@ export class CommonService {
 						status: item.status
 					})) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -294,6 +318,10 @@ export class CommonService {
 					vnf: response[ 'nsd' ][ 'network_functions' ] || []
 				} : { };
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -315,6 +343,10 @@ export class CommonService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -347,6 +379,10 @@ export class CommonService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -393,6 +429,10 @@ export class CommonService {
 				}) : []
 			};
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}

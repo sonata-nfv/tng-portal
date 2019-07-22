@@ -11,14 +11,15 @@ export class AuthService {
 	}
 
 	async login(username: string, password: string) {
-		this.removeLocalStorage();
-
 		const url = this.config.baseSP + this.config.login;
 
 		const data = {
 			username: username,
 			password: password
 		};
+
+		this.removeLocalStorage();
+		this.setAuthHeaders();
 
 		try {
 			const login = await this.http.post(url, data, { headers: this.authHeaders }).toPromise();

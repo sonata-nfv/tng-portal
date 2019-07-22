@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class SettingsService {
@@ -10,6 +11,7 @@ export class SettingsService {
 
 	constructor(
 		private authService: AuthService,
+		private utilsService: UtilsService,
 		private config: ConfigService,
 		private http: HttpClient,
 	) { }
@@ -40,6 +42,10 @@ export class SettingsService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -56,6 +62,10 @@ export class SettingsService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -73,6 +83,10 @@ export class SettingsService {
 		try {
 			return await this.http.post(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -91,6 +105,10 @@ export class SettingsService {
 		try {
 			return await this.http.patch(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -108,6 +126,10 @@ export class SettingsService {
 			return await this.http.delete(url, { headers: headers }).toPromise();
 
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -137,6 +159,10 @@ export class SettingsService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 
@@ -154,6 +180,10 @@ export class SettingsService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -170,6 +200,10 @@ export class SettingsService {
 		try {
 			return await this.http.post(url, wim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 			return error.error.message;
 		}
@@ -187,6 +221,10 @@ export class SettingsService {
 		try {
 			return await this.http.patch(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -203,6 +241,10 @@ export class SettingsService {
 		try {
 			return await this.http.delete(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
