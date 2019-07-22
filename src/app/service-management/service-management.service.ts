@@ -220,7 +220,7 @@ export class ServiceManagementService {
 	 * @param body Body of the instantiation request
 	 */
 	async postOneNSInstance(body) {
-		const headers = new HttpHeaders();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.requests;
 
 		try {
