@@ -49,7 +49,7 @@
 	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openVim(row.uuid)"></tr>
 </table>
 
-<div *ngIf="!vims && !loading" class="no-results-container">
+<div *ngIf="(!vims || !vims.length) && !loading" class="no-results-container">
 	<div class="no-results-line"></div>
 	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
 	<div class="no-results-line"></div>

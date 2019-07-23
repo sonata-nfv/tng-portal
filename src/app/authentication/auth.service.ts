@@ -91,6 +91,12 @@ export class AuthService {
 		return this.authHeaders;
 	}
 
+	getAuthHeadersNoContentType() {
+		return localStorage.getItem('token') ?
+			new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: new HttpHeaders();
+	}
+
 	getAuthHeadersSLAMngr() {
 		return localStorage.getItem('token') ?
 			new HttpHeaders()
