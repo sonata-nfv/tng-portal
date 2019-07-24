@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './auth-guard';
+// import { AuthGuard } from './auth-guard';
 
 import { IndexComponent } from './index/index.component';
 
@@ -27,7 +27,7 @@ import { TestPlanComponent } from './validation-and-verification/test-plan/test-
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
 import { TestResultsComponent } from './validation-and-verification/test-results/test-results.component';
-import { VnvNetworkServicesComponent } from './/validation-and-verification/vnv-network-services/vnv-network-services.component';
+import { VnvNetworkServicesComponent } from './validation-and-verification/vnv-network-services/vnv-network-services.component';
 import {
 	VnvNetworkServicesDetailComponent
 } from './validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component';
@@ -86,12 +86,12 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent, canActivate: [ AuthGuard ] },
+	{ path: 'registered', component: RegisteredComponent }, // canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
 		component: IndexComponent,
-		canActivate: [ AuthGuard ],
+		// canActivate: [ AuthGuard ],
 		children: [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{ path: 'dashboard', component: DashboardComponent },
@@ -218,13 +218,14 @@ const routes: Routes = [
 			{
 				path: 'service-management/licenses', component: LicenceListComponent,
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
-			}
+			},
+
+			// SDK routes don't need authentication
+			{ path: 'sdk', component: MainPageComponent },
+			{ path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
+			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent }
 		]
 	},
-	// SDK routes don't need authentication
-	{ path: 'sdk', component: MainPageComponent },
-	// { path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
-	// { path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent }
 ];
 
 @NgModule({
@@ -232,6 +233,6 @@ const routes: Routes = [
 	// imports: [RouterModule.forRoot(routes, {useHash: true})],
 	imports: [ RouterModule.forRoot(routes) ],
 	exports: [ RouterModule ],
-	providers: [ AuthGuard ]
+	// providers: [ AuthGuard ]
 })
 export class AppRoutingModule { }
