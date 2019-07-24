@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+
+import { DialogDataService } from '../dialog/dialog.service';
 
 @Injectable()
 export class UtilsService {
-	emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}';
+	emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,}';
 	ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
 	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
 	ipAndMaskPattern = `${ this.ipPattern }\/${ this.maskPattern }`;
@@ -11,7 +14,9 @@ export class UtilsService {
 	numberPattern = '^[0-9]*$';
 
 	constructor(
-		public snackBar: MatSnackBar
+		public snackBar: MatSnackBar,
+		private dialogData: DialogDataService,
+		private router: Router
 	) { }
 
 	getEmailPattern() {
@@ -180,5 +185,15 @@ export class UtilsService {
 			}
 		});
 		return str;
+	}
+
+	launchUnauthorizedError() {
+		const title = 'Oh oh...';
+		const content = 'It seems that your session has expired. Please, log in again.';
+		const action = 'Log in';
+
+		this.dialogData.openDialog(title, content, action, async () => {
+			this.router.navigate([ '/login' ]);
+		});
 	}
 }

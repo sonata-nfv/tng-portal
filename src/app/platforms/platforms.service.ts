@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class PlatformsService {
@@ -10,6 +11,7 @@ export class PlatformsService {
 
 	constructor(
 		private authService: AuthService,
+		private utilsService: UtilsService,
 		private config: ConfigService,
 		private http: HttpClient
 	) { }
@@ -31,6 +33,10 @@ export class PlatformsService {
 			return response instanceof Array ?
 				response : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -47,6 +53,10 @@ export class PlatformsService {
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -63,6 +73,10 @@ export class PlatformsService {
 		try {
 			return await this.http.post(url, platform, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -79,6 +93,10 @@ export class PlatformsService {
 		try {
 			return await this.http.patch(url, platform, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -95,6 +113,10 @@ export class PlatformsService {
 		try {
 			return await this.http.delete(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}

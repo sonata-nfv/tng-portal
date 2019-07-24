@@ -237,13 +237,8 @@ export class MenuComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	logout() {
+	async logout() {
+		await this.authService.logout();
 		this.router.navigate([ '/login' ]);
-		this.authService
-			.logout()
-			.then()
-			.catch(err => {
-				// console.log(err);
-			});
 	}
 }

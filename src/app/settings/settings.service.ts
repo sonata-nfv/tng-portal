@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ConfigService } from '../shared/services/config/config.service';
 import { AuthService } from '../authentication/auth.service';
+import { UtilsService } from '../shared/services/common/utils.service';
 
 @Injectable()
 export class SettingsService {
@@ -10,6 +11,7 @@ export class SettingsService {
 
 	constructor(
 		private authService: AuthService,
+		private utilsService: UtilsService,
 		private config: ConfigService,
 		private http: HttpClient,
 	) { }
@@ -22,7 +24,7 @@ export class SettingsService {
      *                          matched by the returned list.
      */
 	async getVims(search?) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = search ? this.config.baseSP + this.config.vimSettings + search
 			: this.config.baseSP + this.config.vimSettings;
 
@@ -40,6 +42,10 @@ export class SettingsService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -50,12 +56,16 @@ export class SettingsService {
     * @param uuid VIM UUID of the desired VIM.
     */
 	async getOneVim(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -66,13 +76,17 @@ export class SettingsService {
      * @param vim Data of the desired VIM.
      */
 	async postVim(type, vim) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 
 		try {
 			return await this.http.post(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -83,7 +97,7 @@ export class SettingsService {
      * @param vim Data of the desired VIM.
      */
 	async patchVim(type, uuid, vim) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		let url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 		url = url + '/' + uuid;
@@ -91,6 +105,10 @@ export class SettingsService {
 		try {
 			return await this.http.patch(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -101,13 +119,17 @@ export class SettingsService {
      * @param uuid UUID of the desired VIM.
      */
 	async deleteVim(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
 		try {
 			return await this.http.delete(url, { headers: headers }).toPromise();
 
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -120,7 +142,7 @@ export class SettingsService {
     *                          matched by the returned list.
     */
 	async getWims(search?) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = search ? this.config.baseSP + this.config.wimSettings + search
 			: this.config.baseSP + this.config.wimSettings;
 
@@ -137,6 +159,10 @@ export class SettingsService {
 					};
 				}) : [];
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 
@@ -148,12 +174,16 @@ export class SettingsService {
 	 * @param uuid WIM UUID of the desired WIM.
 	 */
 	async getOneWim(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
 
 		try {
 			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -164,12 +194,16 @@ export class SettingsService {
 	 * @param wim Data of the desired WIM.
 	 */
 	async postWim(wim) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.tapiSettings;
 
 		try {
 			return await this.http.post(url, wim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 			return error.error.message;
 		}
@@ -181,12 +215,16 @@ export class SettingsService {
 	 * @param wim Data of the desired WIM.
 	 */
 	async patchWim(type, uuid, vim) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.tapiSettings + '/' + uuid;
 
 		try {
 			return await this.http.patch(url, vim, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
@@ -197,12 +235,16 @@ export class SettingsService {
 	 * @param uuid UUID of the desired WIM.
 	 */
 	async deleteWim(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersNoContentType();
 		const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
 
 		try {
 			return await this.http.delete(url, { headers: headers }).toPromise();
 		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
 			console.error(error);
 		}
 	}
