@@ -47,7 +47,6 @@ export class TestPlanListComponent implements OnInit {
 		const nsList = await this.commonService.getNetworkServices('V&V');
 
 		this.loading = false;
-
 		if (testPlans) {
 			// Additional information to test plans: test descriptor name and network service name
 			testPlans.forEach(plan => {
@@ -77,8 +76,20 @@ export class TestPlanListComponent implements OnInit {
 		});
 	}
 
-	async setRequired(uuid) {
-		// TODO request to set/unset required
+	async confirmExecution(plan) {
+		this.loading = true;
+		const uuid = plan.uuid;
+		const status = plan.status === 'WAITING_FOR_CONFIRMATION' ? 'SCHEDULED' : 'RETRIED';
+
+		const response = await this.verificationAndValidationPlatformService.putNewTestPlanStatus(uuid, status);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('The test plan was executed', '');
+			this.requestTestPlans();
+		} else {
+			this.utilsService.openSnackBar('Unable to execute the test plan', '');
+		}
 	}
 
 	isActiveRow(row) {

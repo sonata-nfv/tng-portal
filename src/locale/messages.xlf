@@ -650,11 +650,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan-list/test-plan-list.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
@@ -3425,7 +3425,7 @@
         <source>Confirm execution</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan-list/test-plan-list.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="confirmTestPlanAsRequired" datatype="html">
@@ -3482,6 +3482,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-results/test-results.component.html</context>
           <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="execute" datatype="html">
+        <source>Execute</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="currentVersion" datatype="html">

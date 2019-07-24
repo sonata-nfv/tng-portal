@@ -206,6 +206,25 @@ export class ValidationAndVerificationPlatformService {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
 			}
+		}
+	}
+
+	/**
+     * Changes test plan status to be (re)executed to scheduled or to retried in case of a retrial
+     *
+     * @param uuid UUID of the desired test plan
+	 * @param status new status to be set
+     */
+	async putNewTestPlanStatus(uuid, status) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }?status=${ status }`;
+
+		try {
+			return await this.http.put(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
 
 			console.error(error);
 		}
