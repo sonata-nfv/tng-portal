@@ -29,8 +29,8 @@ export class ValidationAndVerificationPlatformService {
 	async getTests(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
-			this.config.baseVNV + this.config.tests + search
-			: this.config.baseVNV + this.config.tests;
+			this.config.baseVNV + this.config.testDescriptors + search
+			: this.config.baseVNV + this.config.testDescriptors;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -60,7 +60,7 @@ export class ValidationAndVerificationPlatformService {
      */
 	async getOneTest(uuid: string) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.tests + '/' + uuid;
+		const url = this.config.baseVNV + this.config.testDescriptors + '/' + uuid;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -206,6 +206,29 @@ export class ValidationAndVerificationPlatformService {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
 			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+     * Creates the test plans for a given test UUID
+     *
+     * @param uuid UUID of the desired test
+	 * @param confirmRequired sets the created test plans with priority in the queue
+     */
+	async postTestPlansForTest(uuid, confirmRequired) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`;
+
+		try {
+			return await this.http.post(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
 		}
 	}
 
