@@ -217,9 +217,11 @@ export class ValidationAndVerificationPlatformService {
      * @param uuid UUID of the desired test
 	 * @param confirmRequired sets the created test plans with priority in the queue
      */
-	async postTestPlansForTest(uuid, confirmRequired) {
+	async postTestPlans(section, uuid, confirmRequired) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`;
+		const url = section === 'tests' ?
+			this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`
+			: this.config.baseVNV + this.config.testPlansServices + `?confirmRequired=${ confirmRequired }&serviceUuid=${ uuid }`;
 
 		try {
 			return await this.http.post(url, { headers: headers }).toPromise();

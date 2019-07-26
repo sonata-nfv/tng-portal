@@ -74,14 +74,12 @@ export class TestsDetailComponent implements OnInit {
 
 	async createTestPlans(uuid, confirmRequired) {
 		this.loading = true;
-		const response = await this.verificationAndValidationPlatformService.postTestPlansForTest(uuid, confirmRequired);
+		const response = await this.verificationAndValidationPlatformService.postTestPlans('tests', uuid, confirmRequired);
 
 		this.loading = false;
-		if (response) {
-			this.router.navigate([ 'validation-and-verification/test-plans' ]);
-		} else {
-			this.utilsService.openSnackBar('Unable to execute this test', '');
-		}
+		response ?
+			this.router.navigate([ 'validation-and-verification/test-plans' ])
+			: this.utilsService.openSnackBar('Unable to execute this test', '');
 	}
 
 	openTestResults(row) {

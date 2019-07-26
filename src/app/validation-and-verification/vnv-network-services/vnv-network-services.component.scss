@@ -23,4 +23,10 @@ app-vnv-network-services {
 			$basic-background-color 100%
 		);
 	}
+
+	// Set width for columns
+	.mat-cell:nth-child(5),
+	.mat-header-cell:nth-child(5) {
+		width: 30px;
+	}
 }
