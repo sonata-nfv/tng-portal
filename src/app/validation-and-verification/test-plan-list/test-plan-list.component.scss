@@ -18,18 +18,23 @@ app-test-plan-list {
 			to right,
 			$basic-background-color 0%,
 			$table-underline-color 0%,
-			$table-underline-color 95%,
-			$basic-background-color 95%,
+			$table-underline-color 94%,
+			$basic-background-color 94%,
 			$basic-background-color 100%
 		);
 	}
 
-	.icon-button-shadow.actions.hide {
-		display: none;
+	.icon-button-shadow.cancel {
+		margin-left: 10px;
 	}
 
 	.mat-cell:nth-child(4),
 	.mat-header-cell:nth-child(4) {
+		width: 30px;
+	}
+
+	.mat-cell:nth-child(5),
+	.mat-header-cell:nth-child(5) {
 		width: 30px;
 	}
 

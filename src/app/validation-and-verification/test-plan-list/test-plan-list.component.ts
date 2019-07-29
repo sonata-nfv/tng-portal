@@ -15,7 +15,7 @@ import { ServiceManagementModule } from '../../service-management/service-manage
 export class TestPlanListComponent implements OnInit {
 	loading: boolean;
 	testPlans = new Array();
-	displayedColumns = [ 'testName', 'serviceName', 'status', 'required' ];
+	displayedColumns = [ 'testName', 'serviceName', 'status', 'execute', 'stop' ];
 
 	constructor(
 		private router: Router,
@@ -92,6 +92,10 @@ export class TestPlanListComponent implements OnInit {
 		}
 	}
 
+	async cancelExecution(plan) {
+		console.log('cancelling');
+	}
+
 	isActiveRow(row) {
 		const status = row.status.toUpperCase();
 		return status !== 'COMPLETED';
@@ -99,6 +103,20 @@ export class TestPlanListComponent implements OnInit {
 
 	canShowMessage() {
 		return (!this.testPlans || !this.testPlans.length) && !this.loading;
+	}
+
+	canShowCancelExecution(testPlan) {
+		return testPlan.status === 'PENDING' || testPlan.status === 'NOT_CONFIRMED'
+			|| testPlan.status === 'STARTING' || testPlan.status === 'SCHEDULED';
+	}
+
+	canShowExecute(testPlan) {
+		return testPlan.required &&
+			(testPlan.status === 'CANCELLED' || testPlan.status === 'ERROR');
+	}
+
+	canShowRequiredConfirmation(testPlan) {
+		return testPlan.required && testPlan.status === 'WAITING_FOR_CONFIRMATION';
 	}
 
 	openTest(uuid) {
