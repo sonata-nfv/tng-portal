@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
@@ -28,6 +28,18 @@ export class TestsComponent implements OnInit {
 
 	ngOnInit() {
 		this.requestTests();
+
+		// Reloads the list when children are closed
+		this.subscription = this.router.events.subscribe(event => {
+			if (
+				event instanceof NavigationEnd &&
+				event.url === '/validation-and-verification/tests' &&
+				this.route.url[ 'value' ].length === 2 &&
+				this.route.url[ 'value' ][ 1 ].path === 'tests'
+			) {
+				this.requestTests();
+			}
+		});
 	}
 
 	searchFieldData(search) {

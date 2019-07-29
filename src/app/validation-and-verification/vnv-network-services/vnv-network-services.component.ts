@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
@@ -16,6 +17,7 @@ export class VnvNetworkServicesComponent implements OnInit {
 	loading: boolean;
 	networkServices: Array<Object>;
 	displayedColumns = [ 'vendor', 'name', 'version', 'status', 'execute' ];
+	subscription: Subscription;
 
 	constructor(
 		private commonService: CommonService,
@@ -28,6 +30,18 @@ export class VnvNetworkServicesComponent implements OnInit {
 
 	ngOnInit() {
 		this.requestServices();
+
+		// Reloads the list when children are closed
+		this.subscription = this.router.events.subscribe(event => {
+			if (
+				event instanceof NavigationEnd &&
+				event.url === '/validation-and-verification/network-services' &&
+				this.route.url[ 'value' ].length === 2 &&
+				this.route.url[ 'value' ][ 1 ].path === 'network-services'
+			) {
+				this.requestServices();
+			}
+		});
 	}
 
 	searchFieldData(search) {

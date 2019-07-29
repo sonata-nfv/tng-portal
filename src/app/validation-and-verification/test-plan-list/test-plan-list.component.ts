@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
-import { ServiceManagementModule } from '../../service-management/service-management.module';
 
 @Component({
 	selector: 'app-test-plan-list',
@@ -16,6 +16,7 @@ export class TestPlanListComponent implements OnInit {
 	loading: boolean;
 	testPlans = new Array();
 	displayedColumns = [ 'testName', 'serviceName', 'status', 'execute', 'stop' ];
+	subscription: Subscription;
 
 	constructor(
 		private router: Router,
@@ -27,6 +28,18 @@ export class TestPlanListComponent implements OnInit {
 
 	ngOnInit() {
 		this.requestTestPlans();
+
+		// Reloads the list when children are closed
+		this.subscription = this.router.events.subscribe(event => {
+			if (
+				event instanceof NavigationEnd &&
+				event.url === '/validation-and-verification/test-plans' &&
+				this.route.url[ 'value' ].length === 2 &&
+				this.route.url[ 'value' ][ 1 ].path === 'test-plans'
+			) {
+				this.requestTestPlans();
+			}
+		});
 	}
 
 	searchFieldData(search) {
