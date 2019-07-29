@@ -48,8 +48,21 @@ export class TestPlanComponent implements OnInit {
 		}
 	}
 
-	async setRequired(value) {
-		// TODO request to set/unset required
+	async confirmExecution() {
+		this.loading = true;
+		const uuid = this.detail[ 'uuid' ];
+		const status = this.detail[ 'status' ] === 'WAITING_FOR_CONFIRMATION' ? 'SCHEDULED' : 'RETRIED';
+
+		const response = await this.verificationAndValidationPlatformService.putNewTestPlanStatus(uuid, status);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('The test plan was executed', '')
+			: this.utilsService.openSnackBar('Unable to execute the test plan', '');
+	}
+
+	canShowConfirmExecution() {
+		return this.detail[ 'uuid' ] && this.detail[ 'required' ];
 	}
 
 	copyToClipboard(value) {

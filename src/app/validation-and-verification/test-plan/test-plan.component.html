@@ -6,10 +6,6 @@
 </div>
 
 <form class="detail">
-	<mat-checkbox *ngIf="detail['uuid']" (change)="setRequired($event.checked)" i18n="@@confirmTestPlanAsRequired">
-		Confirm test plan as required
-	</mat-checkbox>
-
 	<mat-form-field *ngIf="detail['uuid']" class="left-column">
 		<input matInput placeholder="Test plan ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@testPlanIDPlaceholder" />
 		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
@@ -65,5 +61,12 @@
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 </form>
+
+<div *ngIf="canShowConfirmExecution()" (click)="confirmExecution()" class="launch">
+	<button class="icon-button-shadow actions" mat-button matTooltip="Execute" i18n-matTooltip="@@execute">
+		<i class="wui wui-caret-right"></i>
+	</button>
+	<span class="play" i18n="@@confirmTestPlanAsRequired">Confirm the test plan as required</span>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
