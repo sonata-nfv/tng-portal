@@ -254,4 +254,19 @@ export class ValidationAndVerificationPlatformService {
 			console.error(error);
 		}
 	}
+
+	async deleteTestPlan(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }`;
+
+		try {
+			return await this.http.delete(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
 }

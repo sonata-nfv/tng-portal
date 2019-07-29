@@ -106,7 +106,17 @@ export class TestPlanListComponent implements OnInit {
 	}
 
 	async cancelExecution(plan) {
-		console.log('cancelling');
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.deleteTestPlan(plan.uuid);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('The test plan was cancelled', '');
+			this.requestTestPlans();
+		} else {
+			this.utilsService.openSnackBar('Unable to cancel the test plan', '');
+		}
+
 	}
 
 	isActiveRow(row) {
