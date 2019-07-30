@@ -62,11 +62,18 @@
 	</mat-form-field>
 </form>
 
-<div *ngIf="canShowConfirmExecution()" (click)="confirmExecution()" class="launch">
-	<button class="icon-button-shadow actions" mat-button matTooltip="Execute" i18n-matTooltip="@@execute">
+<div *ngIf="canShowExecute()" (click)="confirmExecution()" class="launch">
+	<button class="icon-button-shadow" mat-button matTooltip="Execute" i18n-matTooltip="@@execute">
 		<i class="wui wui-caret-right"></i>
 	</button>
 	<span class="play" i18n="@@confirmTestPlanAsRequired">Confirm the test plan as required</span>
+</div>
+
+<div *ngIf="canShowCancelExecution()" (click)="cancelExecution()" class="stop">
+	<button class="icon-button-shadow" mat-button matTooltip="Cancel execution" i18n-matTooltip="@@cancelExecution">
+		<i class="wui wui-stop-alt"></i>
+	</button>
+	<span i18n="@@cancellExecutionTestPlan">Cancel the execution of the test plan</span>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>
