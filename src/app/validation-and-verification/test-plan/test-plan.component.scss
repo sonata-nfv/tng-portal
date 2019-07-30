@@ -27,8 +27,21 @@ app-test-plan {
 		}
 	}
 
-	.launch, .stop {
+	.launch, .stop, .double-action-buttons {
 		width: 55vw;
 		margin-bottom: 5vh;
+	}
+
+	.icon-button-shadow {
+		min-height: 40px;
+		min-width: 40px;
+	}
+
+	.icon-button-shadow .wui-times:before {
+    	font-size: 23px;
+	}
+
+	.icon-button-shadow .wui-check-circle-alt:before {
+    	font-size: 27px;
 	}
 }

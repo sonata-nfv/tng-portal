@@ -2401,6 +2401,10 @@
           <context context-type="sourcefile">app/validation-and-verification/test-plan-list/test-plan-list.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cancelExecution" datatype="html">
         <source>Cancel execution</source><target state="final">Cancel execution</target>
@@ -2418,6 +2422,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan-list/test-plan-list.component.html</context>
           <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="testPlanIDPlaceholder" datatype="html">
@@ -2636,6 +2644,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
           <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="confirmOrCancelExecutionTestPlan" datatype="html">
+        <source>Confirm or cancel the execution of the test plan</source><target state="final">Confirm or cancel the execution of the test plan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createdBy" datatype="html">
