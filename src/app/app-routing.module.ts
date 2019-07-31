@@ -220,7 +220,7 @@ const routes: Routes = [
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
 			},
 
-			// SDK routes don't need authentication
+			// SDK
 			{ path: 'sdk', component: MainPageComponent },
 			{ path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
 			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent }
