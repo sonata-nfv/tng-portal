@@ -27,15 +27,15 @@ export class DescriptorGeneratorComponent implements OnInit {
 	initForm() {
 		this.serviceForm = new FormGroup({
 			name: new FormControl('', [Validators.required]),
-			author: new FormControl('', [Validators.required]),
-			vendor: new FormControl('', [Validators.required]),
-			description: new FormControl('', [Validators.required]),
+			author: new FormControl(''),
+			vendor: new FormControl(''),
+			description: new FormControl(''),
 			numberOfVNFs: new FormControl('', [Validators.required])
 		});
-		this.serviceForm.valueChanges.subscribe(value => this.onFormChanges(value));
+		this.serviceForm.valueChanges.subscribe(() => this.onFormChanges());
 	}
 
-	private onFormChanges(values?) {
+	private onFormChanges() {
 		this.disabledButton = !this.serviceForm.valid;
 		this.isEmpty = !this.serviceForm.dirty;
 	}
@@ -67,5 +67,4 @@ export class DescriptorGeneratorComponent implements OnInit {
 	close() {
 		this.router.navigate(['../'], { relativeTo: this.route });
 	}
-
 }
