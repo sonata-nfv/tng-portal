@@ -9,10 +9,12 @@ app-dialog {
   background-color: $basic-background-color;
   color: $secondary-font-color-light;
   font-size: 19px;
+
   .buttonContainer {
     display: flex;
     justify-content: flex-end;
   }
+
   button {
     margin: 20px 0 25px;
     padding: 8px 60px;
@@ -21,17 +23,20 @@ app-dialog {
     border: none;
     cursor: pointer;
     outline: none;
+
     &.cancel {
       margin-right: 15px;
       color: $basic-background-color;
       background-color: $button-close-color;
     }
+
     &.action {
       margin-left: 15px;
       color: $basic-background-color;
       background-color: $primary-button-color-light;
     }
   }
+
   .mat-dialog-title {
     width: 100%;
     margin: 55px 0 40px;
@@ -39,11 +44,12 @@ app-dialog {
     color: $primary-font-color-light;
     font-size: 29px;
   }
+
   .mat-dialog-content {
     display: flex;
     flex: 1 1;
-    width: 100%;
-    margin: 20px 0 20px;
+    width: 85%;
     justify-content: center;
+    white-space: pre-line;
   }
 }

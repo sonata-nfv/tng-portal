@@ -41,18 +41,16 @@ export class FunctionsComponent implements OnInit {
      *                          matched by the returned list of
      *                          functions.
      */
-	requestFunctions(search?) {
+	async requestFunctions(search?) {
 		this.loading = true;
-		this.commonService
-			.getFunctions(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.functions = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		const response = await this.commonService.getFunctions(this.section, search);
+
+		this.loading = false;
+		if (response) {
+			this.functions = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any function', '');
+		}
 	}
 
 	openFunction(row) {

@@ -1,207 +1,159 @@
 @import "../../../constants.scss";
 app-ns-instantiate-dialog {
-  position: relative;
-  display: flex;
-  flex: 1 1;
-  flex-direction: column;
-  align-items: center;
-  width: 700px;
-  height: auto;
-  min-height: 450px;
-  background-color: $basic-background-color;
-  color: $secondary-font-color-light;
+	position: relative;
+	display: flex;
+	flex: 1 1;
+	flex-direction: column;
+	align-items: center;
+	width: 38vw;
+	height: auto;
+	min-height: 45vh;
+	background-color: $basic-background-color;
+	color: $secondary-font-color-light;
 
-  .closeIcon {
-    right: -5px;
-    top: -10px;
-  }
+	.close-icon {
+		right: -5px;
+		top: -10px;
+	}
 
-  .mat-dialog-title {
-    width: 100%;
-    margin: 0 20px;
-    text-align: center;
-    color: $primary-font-color-light;
-    font-size: 17px;
-  }
+	.mat-dialog-title {
+		color: $primary-font-color-light;
+		font-size: 17px;
+	}
 
-  .mat-dialog-content {
-    display: flex;
-    flex: 1 1;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    font-size: 22px;
+	.mat-dialog-content.first-dialog,
+	.mat-dialog-content.second-dialog {
+		display: flex;
+		flex: 1 1;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		font-size: 22px;
+	}
 
-    .section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+	.mat-dialog-content.error-dialog,
+	.mat-dialog-content.buy-dialog {
+		display: flex;
+		flex: 1 1;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
+		font-size: 22px;
+		color: $primary-font-color-light;
+	}
 
-      button {
-        padding: 10px;
-        font-size: 37px;
-        color: $button-disabled-font-color;
-        background-color: $basic-background-color;
-      }
+	// Ingress and egress buttons
+	.mat-dialog-content.first-dialog .section {
+		display: flex;
+		align-items: center;
 
-      button.active {
-        color: $primary-button-color-light;
-      }
+		button {
+			font-size: 37px;
+			color: $button-disabled-font-color;
+			background-color: $basic-background-color;
+		}
 
-      .dash {
-        color: $button-disabled-font-color;
-        font-size: 30px;
-      }
-    }
+		button.active {
+			color: $primary-button-color-light;
+		}
 
-    dl {
-      display: flex;
-      flex-direction: column;
-      margin-top: 15px;
-      color: $primary-font-color-light;
+		.dash {
+			color: $button-disabled-font-color;
+			font-size: 30px;
+		}
+	}
 
-      dt {
-        display: flex;
-        align-items: center;
+	// Listed ingress and egress points
+	.mat-dialog-content.first-dialog .list {
+		color: $primary-font-color-light;
 
-        span {
-          flex: 1;
-          text-align: center;
-          font-size: 17px;
-        }
+		.list-entry {
+			align-items: center;
 
-        button {
-          padding: 8px;
-          background-color: $basic-background-color;
+			span {
+				flex: 1;
+				font-size: 17px;
+			}
+		}
+	}
 
-          i:before {
-            font-size: 18px;
-          }
-        }
-      }
-    }
+	// Location, network address point, SLA and name
+	.mat-dialog-content.first-dialog .first-dialog-form {
+		width: 60%;
+		margin-top: 1vh;
+		margin-bottom: 2vh;
+	}
 
-    .form {
-      width: 60%;
+	.mat-dialog-content.second-dialog .second-dialog-form {
+		width: 60%;
+		margin-top: 6vh;
+	}
 
-      .mat-form-field {
-        text-align: center;
+	// Invalid IP error message
+	.mat-dialog-content.first-dialog 
+	.first-dialog-form 
+	.error-message.input-error {
+		margin-top: -1vh;
+	}	  
+	
+	// Add new ingress or egress point button
+	.mat-dialog-content.first-dialog .add-new {
+		display: flex;
+		justify-content: flex-end;
 
-        &.instanceName {
-          margin-bottom: 5vh;
-        }
-      }
+		button {
+			padding-right: 0;
+			font-size: 16px;
+			color: $primary-color-light;
+			background-color: $basic-background-color;
 
-      .select {
-        width: 100%;
-      }
-    }
+			i:before {
+				font-size: 12px;
+				color: $primary-color-light;
+			}
+		}
 
-    .addNew {
-      display: flex;
-      justify-content: flex-end;
+		button:disabled {
+			color: $button-disabled-font-color;
 
-      button {
-        padding-right: 0;
-        font-size: 16px;
-        color: $primary-color-light;
-        background-color: $basic-background-color;
+			i:before {
+				color: $button-disabled-font-color;
+			}
+		}
+	}
+  
+  	.button-container {
+		.cancel, .next {
+			margin-top: 2vh;
+			height: 4vh;
+			width: 10vw;
+			font-size: 18px;
+			font-weight: bold;
+			margin-left: 1vw;
+			margin-right: 1vw;
+			color: $button-basic-font-color;
+			border-radius: 3%;
+		}
 
-        i:before {
-          font-size: 12px;
-          color: $primary-color-light;
-        }
-      }
+		.cancel {
+			background-color: $button-close-color;
+		}
 
-      button:disabled {
-        color: $button-disabled-font-color;
+		.next {
+			background-color: $primary-button-color;
 
-        i:before {
-          color: $button-disabled-font-color;
-        }
-      }
-    }
+			.wui-shopping-cart:before {
+				margin-right: 10px;
+				font-size: 20px;
+				color: $button-basic-font-color;
+			}
+		}
 
-    &.continue {
-      display: flex;
-      flex-direction: column;
-
-      .summary {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-
-        .ingressList,
-        .egressList {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          width: 50%;
-
-          dl {
-            dt {
-              span {
-                text-align: left;
-              }
-            }
-          }
-        }
-
-        .ingressList {
-          margin-left: 90px;
-          margin-right: 80px;
-        }
-
-        .egressList {
-          margin-left: 80px;
-          margin-right: 80px;
-        }
-
-        h2 {
-          margin-top: 10px;
-          margin-bottom: 0;
-          font-size: 37px;
-          font-weight: normal;
-        }
-      }
-
-      .select {
-        width: 300px;
-      }
-    }
-  }
-
-  .buttonContainer {
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      height: 42px;
-      width: 180px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 2px 2px 4px 0 $shadow-buttons;
-
-      &.cancel {
-        margin-right: 15px;
-        color: $button-basic-font-color;
-        background-color: $button-close-color;
-      }
-
-      &.next {
-        margin-left: 15px;
-        color: $button-basic-font-color;
-        background-color: $primary-button-color;
-      }
-    }
-
-    button:disabled {
-      background-color: $secondary-button-color;
-    }
-  }
-
-  button {
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
+		.cancel:disabled, 
+		.next:disabled {
+			background-color: $secondary-button-color;
+		}
+	}
 }
+

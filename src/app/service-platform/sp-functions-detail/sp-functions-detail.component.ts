@@ -34,23 +34,20 @@ export class SpFunctionsDetailComponent implements OnInit {
      * @param uuid ID of the selected function to be displayed.
      *             Comming from the route.
      */
-	requestFunction(uuid) {
+	async requestFunction(uuid) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getOneFunction(uuid);
 
-		this.servicePlatformService
-			.getOneFunction(uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the function data', '');
+			this.close();
+		}
 	}
 
 	close() {
-		this.router.navigate([ 'service-platform/functions' ]);
+		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
 }

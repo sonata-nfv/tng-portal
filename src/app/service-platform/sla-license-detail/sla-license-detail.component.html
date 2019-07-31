@@ -1,0 +1,16 @@
+<h2 class="title2" i18n="@@license">License</h2>
+
+<app-select *ngIf="license" class="licenses-select" placeholder="License" [list]="[ license ]" [value]="license" [disabled]="true"
+	i18n-placeholder="@@LicensePlaceholder">
+</app-select>
+
+<app-calendar *ngIf="licenseExpirationDate" placeholder="License expiration date" [value]="licenseExpirationDate" [disabled]="true"
+	i18n-placeholder="@@licenseExpirationDatePlaceholder">
+</app-calendar>
+
+<div *ngIf="licenseInstances" class="instances-number">
+	<p class="label" i18n="@@numberInstancesAllowed">Number of instances allowed: </p>
+	<mat-form-field class="instances">
+		<input matInput [value]="licenseInstances" disabled />
+	</mat-form-field>
+</div>

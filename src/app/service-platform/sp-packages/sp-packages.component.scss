@@ -23,11 +23,4 @@ app-sp-packages {
       $basic-background-color 100%
     );
   }
-
-  .mat-cell:nth-child(1),
-  .mat-header-cell:nth-child(1) {
-    padding-bottom: 2px;
-    width: 40px;
-    font-size: 14px;
-  }
 }

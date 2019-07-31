@@ -56,8 +56,8 @@ export class CalendarComponent implements OnInit {
 		this.date.valueChanges.subscribe(value => this._onFormChanges(value));
 	}
 
-	private _onFormChanges(values) {
-		const date = values
+	private _onFormChanges(value) {
+		const date = value
 			.toISOString()
 			.replace(/T.*/, '')
 			.split('-')

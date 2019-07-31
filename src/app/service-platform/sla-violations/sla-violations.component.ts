@@ -34,18 +34,15 @@ export class SlaViolationsComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of violations.
      */
-	requestViolations(search?) {
+	async requestViolations(search?) {
 		this.loading = true;
+		const response = await this.servicePlatformService.getSLAViolations(search);
 
-		this.servicePlatformService
-			.getSLAViolations(search)
-			.then(response => {
-				this.loading = false;
-				this.violations = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.violations = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any SLA violation', '');
+		}
 	}
 }

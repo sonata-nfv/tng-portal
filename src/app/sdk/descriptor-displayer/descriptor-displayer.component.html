@@ -1,20 +1,29 @@
-<h3 class="title3 header-section-name" i18n="@@createSDKPackage">Service Descriptors</h3>
+<h3 class="title3 header-section-name">Display generated descriptors</h3>
 
-<!-- <mat-form-field *ngFor='let file of files' class="description"> -->
-<!-- <textarea class="content" matInput type="text" [readonly]="true">
-		{{file}}
-	</textarea> -->
 
-<!-- <embed src="{{file}}" width="800px" height="2100px" /> -->
-
-<!-- </mat-form-field> -->
-
+<!--FIXME: fix display of generated descriptors-->
 <div *ngFor='let file of files'>
-	<!-- <embed src="{{file}}" width="800px" height="2100px" /> -->
-	<iframe class="e2e-iframe-trusted-src" width="640" height="390" [src]="file"></iframe>
-	<!-- <embed [src]="file" width="100%" height="100%"> -->
-	<!-- </embed> -->
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>{{file}}</mat-panel-title>
+		</mat-expansion-panel-header>
 
-	<!-- <pdf-viewer [src]="file" [render-text]="true" style="display: block;"></pdf-viewer> -->
-
+		<iframe>
+			TODO: Display descriptors
+		</iframe>
+	</mat-expansion-panel>
 </div>
+
+<!--localhost:5098/api/v1/projects/176260b7-2b2e-4541-9480-063e46c0c92f/tango_nsd.yml-->
+
+<!--<div *ngFor='let file of files'>-->
+<!--	<ng-include src="file"></ng-include>-->
+
+<!--	&lt;!&ndash; <embed src="{{file}}" width="800px" height="2100px" /> &ndash;&gt;-->
+<!--&lt;!&ndash;	<iframe class="e2e-iframe-trusted-src" width="640" height="390" [src]="file"></iframe>&ndash;&gt;-->
+<!--	&lt;!&ndash; <embed [src]="file" width="100%" height="100%"> &ndash;&gt;-->
+<!--	&lt;!&ndash; </embed> &ndash;&gt;-->
+
+<!--	&lt;!&ndash; <pdf-viewer [src]="file" [render-text]="true" style="display: block;"></pdf-viewer> &ndash;&gt;-->
+
+<!--</div>-->

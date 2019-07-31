@@ -1,73 +1,77 @@
 @import '../../../constants.scss';
 app-registered {
-	.container {
-		display: flex;
-		position: absolute;
-		flex-direction: column;
-		align-items: center;
-		margin: auto;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		max-width: 635px;
-		max-height: 550px;
-		padding: 2em;
-		border-radius: 10px;
-		background-color: $panel-background-color;
+	display: flex;
+	position: absolute;
+	flex-direction: column;
+	align-items: center;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 34vw;
+    height: 55vh;
+    min-width: 380px;
+    min-height: 450px;
+	max-height: 550px;
+    max-width: 800px;
+	padding: 2em;
+	border-radius: 10px;
+	background-color: $panel-background-color;
 
-		.title-section {
-			height: 8em;
-			background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
-			background-size: 18em;
-			margin-bottom: 2em;
-			background-repeat: no-repeat;
-		}
+	.title-section {
+		height: 8em;
+		background: url('../../../assets/images/sonata_powered_by_5gtango_logo.svg') no-repeat center $panel-background-color;
+		background-size: 18em;
+		background-repeat: no-repeat;
+	}
 
-		.thanks,
-		.success {
-			width: 85%;
-		}
+	.message {
+    	display: flex;
+		flex: 1 0;
+    	flex-direction: column;
+    	margin-top: 20px;
+	}
 
-		.thanks {
-			margin: 50px 0 0 0;
-			font-size: 24px;
-			color: $secondary-font-color;
-		}
+	.thanks {
+		font-size: 24px;
+		color: $secondary-font-color;
+	}
 
-		.success {
-			margin: 20px 0 0 0;
-			font-size: 38px;
-			color: $primary-font-color-light;
-		}
+	.success {
+		font-size: 32px;
+		color: $primary-font-color-light;
+	}
 
-		.button-underline.login-container {
-			flex: 1;
-			width: 10%;
-			margin-top: 100px;
-		}
+	.button-underline.login-container {
+	    margin-bottom: 40px;
+	}
 
-		.bottom {
-			display: flex;
-			flex-direction: column;
-			width: 60%;
-			margin-bottom: -2em;
+	.bottom-section {
+		width: 20vw;
+		min-width: 250px;
+		max-width: 550px;
+		margin-bottom: -2em; // Compensate padding of container
+		
+		.options {
+			margin-bottom: 10px;
 
-			.button-underline {
-				width: 15%;
-				margin-bottom: 15px;
+			.link {
+				color: $secondary-button-color;
+				font-size: 16px;
+				text-decoration-line: none;
 
-				.help {
-					font-size: 15px;
-					color: $secondary-button-color;
-					text-decoration: none;
+				&.forgotPassword {
+					margin-left: 20px;
 				}
 			}
+		}
 
-			.redLine {
-				width: 100%;
-				border-bottom: 3px solid $border-line-color;
-			}
+		.red-line {
+			width: 20vw;
+			min-width: 250px;
+			max-width: 550px;
+			border-bottom: 3px solid $border-line-color;
 		}
 	}
 }

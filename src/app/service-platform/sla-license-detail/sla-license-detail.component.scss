@@ -1,0 +1,16 @@
+@import "../../../constants.scss";
+app-sla-license-detail {
+	.instances-number {
+		display: flex;
+		flex-direction: row;
+		align-items: baseline;
+
+		.label {
+			margin-right: 10px;
+		}
+
+		.instances {
+			width: 4vw; 
+		}
+	}
+}

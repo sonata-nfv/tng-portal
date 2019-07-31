@@ -1,0 +1,26 @@
+@import "../../../constants.scss";
+app-sla-guarantees-detail {
+	.guarantee-row {
+		.definition {
+			margin-top: 1vh;
+			margin-left: 1vw;
+			margin-bottom: 5vh;
+		}
+
+		.slo-info {
+			display: flex;
+			flex-direction: row;
+			width: 95%;
+			margin-top: 2vh;
+			margin-left: 1vw;
+			margin-right: 1vw;
+			
+			.slo {
+				width: 60%;
+			}
+			.period {
+				width: 40%;
+			}
+		}
+  	}
+}

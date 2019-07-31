@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
@@ -15,7 +14,6 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class TestsComponent implements OnInit {
 	loading: boolean;
 	tests = new Array();
-	dataSource = new MatTableDataSource();
 	displayedColumns = [ 'vendor', 'name', 'version', 'status' ]; // 'launch'
 	subscription: Subscription;
 
@@ -41,32 +39,19 @@ export class TestsComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of tests.
      */
-	requestTests(search?) {
+	async requestTests(search?) {
 		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.getTests(search);
 
-		this.verificationAndValidationPlatformService
-			.getTests(search)
-			.then(response => {
-				this.loading = false;
-				this.tests = response;
-				this.dataSource = new MatTableDataSource(this.tests);
-			})
-			.catch(err => this.utilsService.openSnackBar(err, ''));
+		this.loading = false;
+		if (response) {
+			this.tests = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any test', '');
+		}
 	}
 
-	openTest(row) {
-		const uuid = row.uuid;
+	openTest(uuid) {
 		this.router.navigate([ uuid ], { relativeTo: this.route });
-	}
-
-	launch(row) {
-		this.verificationAndValidationPlatformService
-			.postOneTest('test', row[ 'uuid' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Success!', '');
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
 	}
 }

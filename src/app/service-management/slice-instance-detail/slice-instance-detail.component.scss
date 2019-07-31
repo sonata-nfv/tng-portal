@@ -1,0 +1,66 @@
+@import "../../../constants.scss";
+app-slice-instance-detail {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	overflow-y: auto;
+	position: absolute;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	form {
+		width: 55vw;
+		margin-top: 2vh;
+		margin-bottom: 5vh;
+
+		.left-column {
+			width: 25vw;
+			margin-right: 10px;
+		}
+
+		.title2 {
+			margin-bottom: 0;
+		}
+	
+		table {
+			width: 100%;
+			margin-bottom: 50px;
+		}
+	
+		tr.mat-row {
+			background-image: linear-gradient(
+				to right,
+				$basic-background-color 0%,
+				$table-underline-color 0%,
+				$table-underline-color 99%,
+				$basic-background-color 99%,
+				$basic-background-color 100%
+			);
+		}
+
+		.mat-cell:nth-child(5),
+        .mat-header-cell:nth-child(5) {
+          	width: 20%;
+        }
+		
+		td.mat-cell {
+			cursor: auto;
+		}
+
+		// Styles for no instances message
+		.no-results-container {
+			align-self: center;
+			align-items: center;
+			width: 80%;
+			margin-top: 3vh;
+			margin-bottom: 6vh;
+		}
+	}
+}

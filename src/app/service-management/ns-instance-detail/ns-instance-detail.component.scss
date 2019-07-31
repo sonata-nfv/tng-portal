@@ -1,0 +1,86 @@
+@import "../../../constants.scss";
+app-ns-instance-detail {
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	form {
+		width: 55vw;
+		margin-bottom: 5vh;
+
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+
+		.right-column,
+		.same-row .right-column.mat-form-field {
+			width: 20vw;
+		}
+		
+		// Styles for no instances message
+		.vnf, .cnf {
+			display: flex;
+			flex-direction: column;
+		}
+
+		// Styles for no instances message
+		.no-results-container {
+			align-self: center;
+			align-items: center;
+			width: 80%;
+			margin-top: 7vh;
+		}
+
+		.mat-table {
+			width: 100%;
+			overflow-x: hidden;    
+		}
+
+		// Table expansion
+		.element-row,
+		.mat-row {
+			position: relative;
+			border-bottom: none;
+			background-image: linear-gradient(
+				to right,
+				$basic-background-color 0%,
+				$table-underline-color 0%,
+				$table-underline-color 98%,
+				$basic-background-color 98%,
+				$basic-background-color 100%
+			);
+			background-image: 3px;
+		}
+
+		.element-row:not(.expanded) {
+			cursor: pointer;
+			.mat-cell {
+				color: $cell-color;
+			}
+		}
+
+		.element-row.expanded {
+			border-bottom-color: transparent;
+			.mat-cell {
+				color: $primary-font-color;
+			}
+		}
+
+		.detail-row {
+			overflow: hidden;
+		}
+	}
+}

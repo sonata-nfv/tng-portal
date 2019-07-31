@@ -1,0 +1,279 @@
+<h3 class="title3 header-section-name" i18n="@@runtimePolicies">Runtime policies</h3>
+
+<form [formGroup]="policyForm" class="title-section">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Policy Name" formControlName="name" required i18n-placeholder="@@policyNamePlaceholder" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options save" [disabled]="canDisableSave()"
+			(click)="createPolicy()" i18n="@@saveButton">
+			SAVE
+		</button>
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</form>
+
+<form [formGroup]="policyForm" class="general-information-section">
+	<mat-checkbox formControlName="default" i18n="@@markAsDefault">Mark as default</mat-checkbox>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Vendor" formControlName="vendor" required i18n-placeholder="@@vendor" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Version" formControlName="version" required i18n-placeholder="@@version" />
+	</mat-form-field>
+
+	<app-select-uuid class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+		i18n-placeholder="@@nsPlaceholder">
+	</app-select-uuid>
+
+	<app-select-uuid class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
+		i18n-placeholder="@@slaPlaceholder">
+	</app-select-uuid>
+</form>
+
+<div *ngIf="canShowMonitoringSection()" class="monitoring-rules-section">
+	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
+
+	<form [formGroup]="policyForm">
+		<div class="description existing-monitoring-rules">
+			<div class="description-title">
+				<h4 class="title4 upper-case" i18n="@@monitoringRules">Monitoring rules</h4>
+				<button *ngIf="!editMonitoringRules" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
+					(click)="editMonitoringRules = true" i18n-matTooltip="@@edit">
+					<i class="wui wui-pen-alt"></i>
+				</button>
+				<button *ngIf="editMonitoringRules" type="button" mat-button matTooltip="View" class="icon-button-shadow"
+					(click)="editMonitoringRules = false" i18n-matTooltip="@@view">
+					<i class="wui wui-eye"></i>
+				</button>
+			</div>
+
+			<mat-form-field *ngIf="editMonitoringRules" class="description"
+				[ngClass]="{ 'mat-form-field-invalid': !areMonitoringRulesValid() }">
+				<textarea class="content" matInput type="text" formControlName="monitoringRules" ngDefaultControl></textarea>
+				<p *ngIf="!areMonitoringRulesValid()" class="error-message">*This is not a valid JSON</p>
+			</mat-form-field>
+
+			<span *ngIf="!editMonitoringRules" class="content">
+				<ngx-json-viewer [json]="getParsedJSON(policyForm.get('monitoringRules').value)"></ngx-json-viewer>
+			</span>
+
+			<button *ngIf="!openedMonitoringRuleForm" class="basic-button button-shadow create-new" type="button" mat-button
+				matTooltip="Create new" (click)="openedMonitoringRuleForm = true" i18n-matTooltip="@@createNew">
+				<i class="wui wui-plus"></i>
+				<span i18n="@@createNewRule">Create new rule</span>
+			</button>
+		</div>
+	</form>
+
+	<h4 *ngIf="openedMonitoringRuleForm" class="title4 upper-case" i18n="@@createNewMonitoringRule">Create a new monitoring rule</h4>
+	<form *ngIf="openedMonitoringRuleForm" [formGroup]="monitoringRulesForm" class="add-monitoring-rule-form">
+		<div class="header title-section">
+			<div class="header-buttons">
+				<button [ngClass]="{ 'disabled-button': canDisableAddNewMonitoring() }" class="edit-options add" type="button" mat-button
+					[disabled]="canDisableAddNewMonitoring()" type="button" mat-button (click)="addNewMonitoringRule()" i18n="@@addButton">
+					ADD
+				</button>
+
+				<button class="edit-options cancel" (click)="closeMonitoringRuleForm()" i18n="@@cancelButton">CANCEL</button>
+			</div>
+		</div>
+
+		<div class="same-row">
+			<mat-form-field class="left-column">
+				<input matInput type="text" placeholder="Duration" formControlName="duration" required i18n-placeholder="@@duration" />
+			</mat-form-field>
+
+			<mat-form-field>
+				<input matInput type="text" placeholder="Duration unit" formControlName="durationUnit" required
+					i18n-placeholder="@@durationUnit" />
+			</mat-form-field>
+		</div>
+
+		<div class="same-row">
+			<app-select-uuid class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
+				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
+			</app-select-uuid>
+
+			<mat-form-field>
+				<input matInput type="text" placeholder="Threshold" formControlName="threshold" required i18n-placeholder="@@threshold" />
+			</mat-form-field>
+		</div>
+
+		<mat-form-field class="description monitoring-rule-description">
+			<h4 class="title4" i18n="@@descriptionRequired">Description*</h4>
+			<textarea class="content" matInput type="text" formControlName="description" required></textarea>
+		</mat-form-field>
+	</form>
+</div>
+
+<div *ngIf="canShowPolicyRules()" class="policy-rules-section">
+	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
+
+	<table *ngIf="canShowPolicyRulesTable()" mat-table [dataSource]="policyRulesDataSource">
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+			<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+		</ng-container>
+		<ng-container matColumnDef="salience">
+			<th mat-header-cell *matHeaderCellDef i18n="@@priority">Priority</th>
+			<td mat-cell *matCellDef="let element">{{ element.salience }}</td>
+		</ng-container>
+		<ng-container matColumnDef="inertia">
+			<th mat-header-cell *matHeaderCellDef i18n="@@inertia">Inertia</th>
+			<td mat-cell *matCellDef="let element">{{ element.inertia.value }} {{ element.inertia.duration_unit }}</td>
+		</ng-container>
+		<ng-container matColumnDef="delete">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element" (click)="deletePolicyRule(element)" (click)="$event.stopPropagation()">
+				<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
+					<i class="wui wui-trash-alt"></i>
+				</button>
+			</td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="displayedRuleColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedRuleColumns"></tr>
+	</table>
+
+	<h4 class="title4 upper-case" i18n="@@createNewPolicyRule">Create a new policy rule</h4>
+
+	<form [formGroup]="policyRulesForm" class="add-policy-rule-form">
+		<div class="header title-section">
+			<mat-form-field class="name">
+				<input matInput type="text" placeholder="Name" formControlName="name" required i18n-placeholder="@@name" />
+			</mat-form-field>
+			<div class="header-buttons">
+				<button [ngClass]="{ 'disabled-button': canDisableAddNewPolicyRule() }" class="edit-options add" type="button" mat-button
+					[disabled]="canDisableAddNewPolicyRule()" (click)="addNewPolicyRule()" i18n="@@addButton">
+					ADD
+				</button>
+
+				<button class="edit-options cancel" (click)="resetPolicyRulesForm()" i18n="@@cancelButton">CANCEL</button>
+			</div>
+		</div>
+
+		<div class="policy-rule-salience">
+			<div class="salience-title">
+				<span class="salience-message" i18n="@@policyRulePriority">Policy rule priority: </span>
+				<span class="salience-value">{{policyRulesForm.get('salience').value}}</span>
+			</div>
+			<mat-slider min="0" max="10" step="1" formControlName="salience"></mat-slider>
+		</div>
+
+		<div class="policy-rule-inertia">
+			<p class="label" i18n="@@inertia">Inertia: </p>
+			<mat-form-field class="inertia">
+				<input matInput placeholder="0" formControlName="inertia" />
+				<mat-error *ngIf="inertiaErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
+			</mat-form-field>
+			<mat-form-field class="inertia">
+				<input matInput placeholder="s" formControlName="inertiaUnit" />
+			</mat-form-field>
+		</div>
+
+		<div class="conditions-of-rule">
+			<h3 class="title3" i18n="@@conditionsOfTheRule">Conditions of the rule</h3>
+
+			<div class="condition">
+				<button [ngClass]="{ active: !isOr }" (click)="changePolicyRuleCondition()" class="basic-button and" mat-button>AND</button>
+				<button [ngClass]="{ active: isOr }" (click)="changePolicyRuleCondition()" class="basic-button or" mat-button>OR</button>
+			</div>
+
+			<div class="policy-rules">
+				<ol class="list">
+					<li class="line" *ngFor="let rule of policyRulesForm.get('conditionRules').value">
+						<span>{{ rule.value }}</span>
+
+						<button class="icon-button-shadow delete" (click)="eraseConditionRule(rule)">
+							<i class="wui wui-trash-alt"></i>
+						</button>
+					</li>
+
+					<li class="line" *ngIf="monitoringRules.length">
+						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
+							(selectEvent)="receivePolicyRuleCondition($event)" [reset]="monitoringRules.length"
+							i18n-placeholder="@@monitoringRulesPlaceholder">
+						</app-select-uuid>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<div class="actions-of-rule">
+			<h3 class="title3" i18n="@@actions">Actions</h3>
+
+			<form [formGroup]="actionsForm">
+				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="canResetActionSelects()"
+					(selectEvent)="receivePolicyRuleTarget($event)" i18n-placeholder="@@targetPlaceholder">
+				</app-select>
+
+				<div class="row">
+					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="canResetActionSelects()"
+						(selectEvent)="receivePolicyRuleAction($event)" i18n-placeholder="@@actionsPlaceholder">
+					</app-select>
+
+					<app-select *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
+						[list]="policyRuleActionNames" (selectEvent)="receivePolicyRuleActionName($event)"
+						i18n-placeholder="@@actionNamePlaceholder">
+					</app-select>
+
+					<div *ngIf="canShowPolicyRuleActionValue()" class="action-value">
+						<p class="label" i18n="@@value">Value </p>
+						<mat-form-field class="value">
+							<input matInput formControlName="actionValue" />
+							<mat-error *ngIf="valueErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="header">
+					<div class="button-container">
+						<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
+							class="basic-button button-shadow add-new">
+							<i class="wui wui-plus"></i>
+							<span i18n="@@add">Add</span>
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<h3 *ngIf="canShowTableOfActions()" class="title3" i18n="@@definedActions">Defined actions</h3>
+
+			<table *ngIf="canShowTableOfActions()" mat-table [dataSource]="actionsDataSource">
+				<ng-container matColumnDef="actionObject">
+					<th mat-header-cell *matHeaderCellDef i18n="@@actionObject">Action object</th>
+					<td mat-cell *matCellDef="let element">{{ element.action_object }}</td>
+				</ng-container>
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+					<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+				</ng-container>
+				<ng-container matColumnDef="value">
+					<th mat-header-cell *matHeaderCellDef i18n="@@value">Value</th>
+					<td mat-cell *matCellDef="let element">{{ element.value }}</td>
+				</ng-container>
+				<ng-container matColumnDef="target">
+					<th mat-header-cell *matHeaderCellDef i18n="@@target">Target</th>
+					<td mat-cell *matCellDef="let element">{{ element.target.name }}</td>
+				</ng-container>
+				<ng-container matColumnDef="delete">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let element" (click)="deleteTarget(element)" (click)="$event.stopPropagation()">
+						<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
+							<i class="wui wui-trash-alt"></i>
+						</button>
+					</td>
+				</ng-container>
+				<tr mat-header-row *matHeaderRowDef="displayedActionColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedActionColumns"></tr>
+			</table>
+		</div>
+	</form>
+
+</div>
+
+
+<app-spinner *ngIf="loading"></app-spinner>

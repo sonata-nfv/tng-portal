@@ -1,0 +1,85 @@
+@import '../../../constants.scss';
+app-runtime-policy-detail {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
+
+	form {
+		width: 55vw;
+		margin-bottom: 5vh;
+
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+
+		.sla-select {
+			width: 25vw;
+		}
+
+		// Checkbox styles
+		.mat-checkbox {
+			margin-bottom: 5vh;
+		}
+	}
+
+	// Monitoring rules section styles
+	.monitoring-rules-section {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 4vh;
+
+		// Monitoring rules displayed in description box
+		.description.existing-monitoring-rules .content, 
+		.description.existing-monitoring-rules.mat-form-field .content {
+			min-height: 20vh;
+			max-height: 25vh;
+		}
+	}
+
+	// Policy rules section styles
+	.policy-rules-section {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 8vh;
+	
+		// Defined policy rules
+		table {
+			width: 100%;
+
+			td.mat-cell {
+				cursor: auto;
+			}
+
+			tr.mat-row {
+				background-image: linear-gradient(
+				  to right,
+				  $basic-background-color 0%,
+				  $table-underline-color 0%,
+				  $table-underline-color 94%,
+				  $basic-background-color 94%,
+				  $basic-background-color 100%
+				);
+			}
+
+			.mat-cell:nth-child(4),
+			.mat-header-cell:nth-child(4) {
+			  	width: 25px;
+			}
+		}
+	}
+}

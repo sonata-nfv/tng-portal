@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+
+import { DialogDataService } from '../dialog/dialog.service';
 
 @Injectable()
 export class UtilsService {
+	emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,}';
 	ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
-	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[0])';
+	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
+	ipAndMaskPattern = `${ this.ipPattern }\/${ this.maskPattern }`;
+	ipRangePattern = `${ this.ipPattern }-${ this.ipPattern }(,${ this.ipPattern }-${ this.ipPattern })*`;
+	numberPattern = '^[0-9]*$';
 
 	constructor(
-		public snackBar: MatSnackBar
+		public snackBar: MatSnackBar,
+		private dialogData: DialogDataService,
+		private router: Router
 	) { }
+
+	getEmailPattern() {
+		return this.emailPattern;
+	}
 
 	getIpPattern() {
 		return this.ipPattern;
@@ -18,12 +31,27 @@ export class UtilsService {
 		return this.maskPattern;
 	}
 
+	getIpAndMaskPattern() {
+		return this.ipAndMaskPattern;
+	}
+
+	getIpRangePattern() {
+		return this.ipRangePattern;
+	}
+
+	getNumberPattern() {
+		return this.numberPattern;
+	}
+
 	/**
     * Formats a string so that only the first letter is a capital one
     *
     * @param str string to parse
     */
 	capitalizeFirstLetter(str): string {
+		if (!str) {
+			return;
+		}
 		if (str.includes('_')) {
 			str = str.replace(/_/g, ' ');
 		}
@@ -94,6 +122,17 @@ export class UtilsService {
 		return true;
 	}
 
+	isValidJSON(object) {
+		try {
+			if (object) {
+				JSON.parse(object);
+			}
+			return true;
+		} catch (error) {
+			return false;
+		}
+	}
+
 	/**
      * Compares two objects property to property and returns the differences in the second one
      *
@@ -119,6 +158,42 @@ export class UtilsService {
      * @param dateIn Date to be displayed
      */
 	formatUTCDate(dateIn) {
-		return new Date(Date.parse(dateIn)).toUTCString();
+		return new Date(dateIn).toUTCString();
+	}
+
+	formatDateString(dateIn) {
+		return new Date(dateIn).toDateString();
+	}
+
+	urlEncode(obj: Object): string {
+		let str = '';
+		Object.keys(obj).forEach(key => {
+			if (obj[ key ] instanceof Array) {
+				obj[ key ].forEach(item => {
+					str +=
+						(str.length > 0 ? '&' : '') +
+						encodeURI(key) +
+						'=' +
+						encodeURI(item);
+				});
+			} else {
+				str +=
+					(str.length > 0 ? '&' : '') +
+					encodeURI(key) +
+					'=' +
+					encodeURI(obj[ key ]);
+			}
+		});
+		return str;
+	}
+
+	launchUnauthorizedError() {
+		const title = 'Oh oh...';
+		const content = 'It seems that your session has expired. Please, log in again.';
+		const action = 'Log in';
+
+		this.dialogData.openDialog(title, content, action, async () => {
+			this.router.navigate([ '/login' ]);
+		});
 	}
 }

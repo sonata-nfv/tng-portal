@@ -1,38 +1,39 @@
 @import "../../../constants.scss";
 app-test-results {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  overflow-y: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	overflow-y: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  .detail {
-    width: 65%;
-    margin-bottom: 20px;
-    margin-top: 50px;
+	form {
+		width: 55vw;
+		margin-top: 5vh;
+		margin-bottom: 2vh;
 
-    .mat-form-field {
-      width: 100%;
+		.left-column, 
+		.same-row .left-column.mat-form-field {
+			width: 25vw;
+			margin-right: 40px;
+		}
+	}
+
+	.description {
+        width: 55vw;
+		margin-bottom: 5vh;
+
+        .content {
+            min-height: 20vh;
+            max-height: 30vh;
+        }
     }
-  }
-
-  .results {
-    width: 65%;
-    align-items: flex-start;
-    margin-top: 20px;
-    margin-bottom: 40px;
-
-    canvas {
-      margin: 2.5%;
-    }
-  }
 }

@@ -1,17 +1,62 @@
 @import "../../constants.scss";
 app-dashboard {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  align-items: center;
-  width: auto;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+	flex: 1 1;
+	overflow-y: auto;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    background-color: $basic-background-color;
 
-  background-color: $basic-background-color;
-  background: url("../../assets/images/sonata_powered_by_5gtango_logo.svg")
-    no-repeat center $panel-background-color;
-  background-size: 50vw;
-  background-repeat: no-repeat;
+	.sections-available .section {
+		text-align: center;
+		margin-top: 6vh;
+		margin-left: 2vw;
+		margin-right: 2vw;
+		font-size: 2vh;
+		color: $secondary-font-color-light;
+		background-color: $basic-background-color;
+	}
+
+	.sections-available .section.active {
+		text-decoration: underline;
+      	color: $primary-button-color-light;
+	}
+
+	.dashboard {
+		display: flex;
+		flex-direction: column;
+		margin-top: 5vh;
+	}
+	
+	// VM dashboard
+	.vm .line {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 2vh;
+
+		.number-containers, 
+		.cpu-usage, 
+		.memory-usage, 
+		.disk-usage {
+			width: 26vw;
+			height: 30vh;
+		}
+	}
+
+	// Platform dashboard
+	.platform .line {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 2vh;
+
+		.cpu-usage, .memory-usage, .disk-usage {
+			width: 40vw;
+			height: 35vh;
+			margin-right: 1vw;
+			margin-bottom: 4vh;
+		}
+	}
 }

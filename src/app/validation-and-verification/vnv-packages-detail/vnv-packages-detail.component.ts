@@ -35,30 +35,29 @@ export class VnvPackagesDetailComponent implements OnInit {
      * @param uuid ID of the selected package to be displayed.
      *             Comming from the route.
      */
-	requestPackage(uuid) {
+	async requestPackage(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOnePackage('vnv', uuid);
 
-		this.commonService
-			.getOnePackage('vnv', uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
+		this.loading = false;
+		if (response) {
+			this.detail = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the package details', '');
+			this.close();
+		}
+	}
 
-				if (this.detail[ 'ns' ].lenght < 1) {
-					this.detail[ 'ns' ] = [];
-				}
-				if (this.detail[ 'vnf' ].lenght < 1) {
-					this.detail[ 'vnf' ] = [];
-				}
-				if (this.detail[ 'tests' ].lenght < 1) {
-					this.detail[ 'tests' ] = [];
-				}
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+	canShowNS() {
+		return this.detail[ 'ns' ] && this.detail[ 'ns' ].length;
+	}
+
+	canShowVNF() {
+		return this.detail[ 'vnf' ] && this.detail[ 'vnf' ].length;
+	}
+
+	canShowTests() {
+		return this.detail[ 'tests' ] && this.detail[ 'tests' ].length;
 	}
 
 	close() {

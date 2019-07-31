@@ -4,15 +4,12 @@
 
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
-	<button class="icon-button-shadow reload" (click)="requestPackages()" matTooltip="Reload data" i18n-matTooltip="@@reloadData"><i
-			class="wui wui-undo"></i></button>
+	<button class="icon-button-shadow reload" (click)="requestPackages()" matTooltip="Reload data" i18n-matTooltip="@@reloadData">
+		<i class="wui wui-undo"></i>
+	</button>
 </div>
 
 <table mat-table [dataSource]="packages">
-	<ng-container matColumnDef="type">
-		<th mat-header-cell *matHeaderCellDef></th>
-		<td mat-cell *matCellDef="let element"><i [ngClass]="{ 'wui-lock': element.type === 'private' }" class="wui"></i></td>
-	</ng-container>
 	<ng-container matColumnDef="name">
 		<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
 		<td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -21,17 +18,23 @@
 		<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
 		<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
 	</ng-container>
-	<ng-container matColumnDef="createdAt">
-		<th mat-header-cell *matHeaderCellDef i18n="@@createdAt">Created at</th>
-		<td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
-	</ng-container>
 	<ng-container matColumnDef="version">
 		<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
 		<td mat-cell *matCellDef="let element">{{ element.version }}</td>
 	</ng-container>
+	<ng-container matColumnDef="createdAt">
+		<th mat-header-cell *matHeaderCellDef i18n="@@createdAt">Created at</th>
+		<td mat-cell *matCellDef="let element">{{ utilsService.formatUTCDate(element.createdAt) }}</td>
+	</ng-container>
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openPackage(row)"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openPackage(row.uuid)"></tr>
 </table>
+
+<div *ngIf="(!packages || !packages.length) && !loading" class="no-results-container">
+	<div class="no-results-line"></div>
+	<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+	<div class="no-results-line"></div>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

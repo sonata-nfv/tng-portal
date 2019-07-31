@@ -31,13 +31,18 @@ app-wim {
     }
 
     .wimForm {
-        width: 65%;
+        width: 50vw;
         margin-top: 2vh;
         margin-bottom: 2vh;
 
         .mat-form-field {
             width: 25vw;
-        }
+		}
+		
+		.error-message.input-error {
+			width: 25vw;
+			margin-top: -17px;
+		}
 
         .wims-list .mat-form-field {
             width: 35vw;

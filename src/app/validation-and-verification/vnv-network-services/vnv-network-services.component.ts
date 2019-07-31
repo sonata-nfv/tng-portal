@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CommonService } from '../../shared/services/common/common.service';
-import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
@@ -13,20 +12,17 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class VnvNetworkServicesComponent implements OnInit {
 	loading: boolean;
-	section: string;
 	networkServices: Array<Object>;
-	displayedColumns = [ 'type', 'vendor', 'name', 'version', 'status' ]; // 'execute'
+	displayedColumns = [ 'vendor', 'name', 'version', 'status' ];
 
 	constructor(
 		private commonService: CommonService,
 		private utilsService: UtilsService,
 		private router: Router,
-		private route: ActivatedRoute,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private route: ActivatedRoute
 	) { }
 
 	ngOnInit() {
-		this.section = 'V&V';
 		this.requestServices();
 	}
 
@@ -41,29 +37,16 @@ export class VnvNetworkServicesComponent implements OnInit {
      *                          must be matched by the returned
      *                          list of NS.
      */
-	requestServices(search?) {
+	async requestServices(search?) {
 		this.loading = true;
-		this.commonService
-			.getNetworkServices(this.section, search)
-			.then(response => {
-				this.loading = false;
-				this.networkServices = response;
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
-	}
+		const response = await this.commonService.getNetworkServices('V&V', search);
 
-	execute(row) {
-		this.verificationAndValidationPlatformService
-			.postOneTest('service', row[ 'serviceId' ])
-			.then(response => {
-				this.utilsService.openSnackBar('Success!', '');
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+		this.loading = false;
+		if (response) {
+			this.networkServices = response;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch network services', '');
+		}
 	}
 
 	openNetworkService(row) {

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from '../shared/services/config/config.service';
-import {
-	HttpClient,
-	HttpErrorResponse,
-	HttpHeaders
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Injectable()
 export class AuthService {
@@ -14,142 +11,102 @@ export class AuthService {
 		this.setAuthHeaders();
 	}
 
-	login(username: string, password: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
+	async login(username: string, password: string) {
+		const url = this.config.baseSP + this.config.login;
 
-			const data = {
-				username: username,
-				password: password
-			};
+		const data = {
+			username: username,
+			password: password
+		};
 
-			this.http
-				.post(
-					'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.login,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.subscribe(
-					response => {
-						localStorage.setItem('token', response[ 'token' ][ 'access_token' ]);
-						localStorage.setItem('username', username);
-						this.setAuthHeaders();
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						// reject(error.error.error.message);
-						reject('*Your password or your user/email are wrong.');
-					}
-				);
-		});
+		if (localStorage.getItem('token')) {
+			await this.logout();
+		}
+
+		this.setAuthHeaders();
+
+		try {
+			const login = await this.http.post(url, data, { headers: this.authHeaders }).toPromise();
+			localStorage.setItem('token', login[ 'token' ]);
+			localStorage.setItem('username', username);
+			this.setAuthHeaders();
+			return login;
+		} catch (error) {
+			console.error(error);
+			return error.error.error;
+		}
 	}
 
-	userData(uuid: string): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
+	async logout() {
+		this.removeLocalStorage();
+		const url = this.config.baseSP + this.config.login;
 
-			this.http
-				.get(this.config.baseSP + this.config.register + uuid, {
-					headers: headers
-				})
-				.subscribe(
-					response => {
-						localStorage.setItem('username', response[ 'username' ]);
-						localStorage.setItem('email', response[ 'email' ]);
-						localStorage.setItem('user_type', response[ 'user_type' ]);
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						reject(error.error.error.message);
-					}
-				);
-		});
+		try {
+			return await this.http.delete(url, { headers: this.authHeaders }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
-	logout() {
+	private removeLocalStorage() {
 		localStorage.removeItem('token');
 		localStorage.removeItem('username');
-		return new Promise((resolve, reject) => {
-			const headers = this.getAuthHeaders();
-
-			this.http
-				.delete(this.config.baseSP + this.config.login, {
-					headers: headers
-				})
-				.subscribe(
-					() => {
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						reject(error);
-					}
-				);
-		});
 	}
 
-	signup(
-		username: string,
-		password: string,
-		email: string,
-		userType: string
-	): any {
-		return new Promise((resolve, reject) => {
-			const headers = new HttpHeaders();
-			headers.set('Content-Type', 'application/json');
+	async signup(user: object) {
+		const url = this.config.baseSP + this.config.register;
 
-			const data = {
-				username: username,
-				password: password,
-				email: email,
-				user_type: userType.toLocaleLowerCase()
-			};
-			this.http
-				.post(
-					'https://sp.int3.sonata-nfv.eu/api/v2/' + this.config.register,
-					data,
-					{
-						headers: headers
-					}
-				)
-				.subscribe(
-					response => {
-						resolve();
-					},
-					(error: HttpErrorResponse) => {
-						// reject(error.error.error.message);
-						reject('Username or email already in use.');
-					}
-				);
-		});
+		try {
+			return await this.http.post(url, user, { headers: this.authHeaders }).toPromise();
+		} catch (error) {
+			console.error(error);
+			return error.error.error;
+		}
 	}
 
 	private setAuthHeaders() {
-		this.authHeaders = new HttpHeaders();
-		// this.authHeaders.set(
-		//   'Content-Type',
-		//   'application/json'
-		// );
-		// this.authHeaders.set(
-		//   'Authorization',
-		//   'Bearer ' + localStorage.getItem('token')
-		// );
+		localStorage.getItem('token') ?
+			this.authHeaders = new HttpHeaders()
+				.set('Content-Type', 'application/json')
+				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: this.authHeaders = new HttpHeaders()
+				.set('Content-Type', 'application/json');
+	}
+
+	async getUserRoles() {
+		const url = this.config.baseSP + this.config.roles;
+
+		try {
+			const roles = await this.http.get(url, { headers: this.authHeaders }).toPromise();
+			return roles && roles[ 'roles' ] ?
+				Object.keys(roles[ 'roles' ]).filter(role => role.toLowerCase() !== 'admin') :
+				[ '-' ];
+		} catch (error) {
+			console.error(error);
+			return [ '-' ];
+		}
 	}
 
 	getAuthHeaders() {
 		return this.authHeaders;
-		// return new HttpHeaders();
+	}
+
+	getAuthHeadersNoContentType() {
+		return localStorage.getItem('token') ?
+			new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: new HttpHeaders();
+	}
+
+	getAuthHeadersSLAMngr() {
+		return localStorage.getItem('token') ?
+			new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded')
+				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			: new HttpHeaders()
+				.set('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
 	isAuthenticated(): boolean {
-		return true;
-		// if (localStorage.getItem('token')) {
-		//   this.setAuthHeaders();
-		//   return true;
-		// }
-		// return false;
+		return localStorage.getItem('token') ? true : false;
 	}
 }

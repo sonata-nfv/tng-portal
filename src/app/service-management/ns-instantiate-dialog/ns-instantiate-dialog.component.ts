@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-ns-instantiate-dialog',
@@ -14,123 +15,200 @@ import { CommonService } from '../../shared/services/common/common.service';
 })
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
-	continue = false;
-	reset = false;
-	isIngress = true;
+	instantiationIsAllowed = true;
+	section = 'first';
+	listName = 'ingress';
 	instantiationForm: FormGroup;
 	ingress = new Array();
 	egress = new Array();
-	locations = new Array();
-	slas = new Array();
-	slasWithUUID = new Array();
+	blacklist = new Array();
+	locations: Array<any>;
+	slas: Array<any>;
 
 	constructor(
 		private utilsService: UtilsService,
 		private commonService: CommonService,
 		public dialogRef: MatDialogRef<NsInstantiateDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private serviceManagementService: ServiceManagementService
+		private serviceManagementService: ServiceManagementService,
+		private dialogData: DialogDataService
 	) { }
 
 	ngOnInit() {
-		this.loading = true;
+		this.initForms();
+		this.getData();
+	}
 
+	private initForms() {
 		this.instantiationForm = new FormGroup({
-			location: new FormControl(null, Validators.required),
-			nap: new FormControl(),
+			location: new FormControl(),
+			nap: new FormControl(null, Validators.pattern(this.utilsService.getIpAndMaskPattern())),
 			sla: new FormControl(),
-			instanceName: new FormControl()
+			instanceName: new FormControl(null, Validators.required)
 		});
-
-		// TODO request to 5GTANGO endpoint the actual vim_cities
-		this.locations = this.commonService.requestVims();
-
-		this.commonService
-			.getSLATemplates()
-			.then(response => {
-				this.loading = false;
-
-				this.slas = response
-					.filter(x => x.nsUUID === this.data.serviceUUID)
-					.map(x => x.name);
-				this.slas.unshift('None');
-
-				this.slasWithUUID = response.filter(
-					x => x.nsUUID === this.data.serviceUUID
-				);
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-			});
 	}
 
-	/**
-     * Saves the introduced ingress/egress points
-     */
-	addNew() {
-		if (this.isIngress) {
-			this.ingress.push({
-				location: this.instantiationForm.controls.location.value,
-				nap: this.instantiationForm.controls.nap.value
-			});
+	private async getData() {
+		this.loading = true;
+		const templates = await this.commonService.getSLATemplates();
+		const endpoints = await this.commonService.getEndpoints();
+
+		this.loading = false;
+		if (templates) {
+			// GET SLA templates for this service
+			this.slas = templates.filter(x => x.nsUUID === this.data.serviceUUID).map(x => ({ uuid: x.uuid, name: x.name, license: x.license }));
+			// If no SLA were created for the NS, there are no licenses associated
+			this.instantiationIsAllowed = this.slas.length ? false : true;
 		} else {
-			this.egress.push({
-				location: this.instantiationForm.controls.location.value,
-				nap: this.instantiationForm.controls.nap.value
-			});
+			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
 		}
-		this.instantiationForm.reset();
-		this.reset = true;
-		setTimeout(() => {
-			this.reset = false;
-		}, 5);
+
+		if (endpoints) {
+			this.locations = endpoints;
+			this.locations.unshift({ uuid: 'None', name: 'None' });
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch locations', '');
+		}
 	}
 
-	/**
-     * Removes the selected ingress/egress point from the list
-     *
-     * @param entry Ingress or egress point selected
-     */
+	addNew() {
+		const point = {
+			location: this.instantiationForm.get('location').value,
+			locationName: this.locations.find(location => location.uuid === this.instantiationForm.get('location').value).name,
+			nap: this.instantiationForm.get('nap').value
+		};
+
+		switch (this.listName) {
+			case 'ingress':
+				this.ingress.push(point);
+				break;
+			case 'egress':
+				this.egress.push(point);
+				break;
+			case 'blacklist':
+				this.blacklist.push(point);
+				break;
+		}
+
+		this.instantiationForm.reset();
+	}
+
 	eraseEntry(entry: string) {
-		if (this.isIngress) {
-			this.ingress = this.ingress.filter(x => x !== entry);
-		} else {
-			this.egress = this.egress.filter(x => x !== entry);
+		switch (this.listName) {
+			case 'ingress':
+				this.ingress = this.ingress.filter(x => x !== entry);
+				break;
+			case 'egress':
+				this.egress = this.egress.filter(x => x !== entry);
+				break;
+			case 'blacklist':
+				this.blacklist = this.blacklist.filter(x => x !== entry);
+				break;
 		}
 	}
 
 	receiveLocation(location) {
-		this.instantiationForm.controls.location.setValue(location);
+		location ?
+			this.instantiationForm.get('location').setValue(location) :
+			this.instantiationForm.get('location').setValue(null);
 	}
 
 	receiveSLA(sla) {
-		if (sla !== 'None') {
-			this.instantiationForm.controls.sla.setValue(sla);
+		if (sla && sla !== this.instantiationForm.get('sla').value) {
+			this.instantiationForm.get('sla').setValue(sla);
+			this.checkLicenseValidity(sla);
 		}
 	}
 
-	instantiate(serviceUUID) {
-		this.close();
-		this.serviceManagementService
-			.postNSRequest(
-				this.instantiationForm.get('instanceName').value,
-				serviceUUID,
-				this.ingress,
-				this.egress,
-				this.slasWithUUID
-					.filter(x => x.name === this.instantiationForm.controls.sla.value)
-					.map(x => x.uuid)[ 0 ]
-			)
-			.then(response => {
-				this.utilsService.openSnackBar(
-					'Instantiating ' + response + '...',
-					''
-				);
-			})
-			.catch(err => {
-				this.utilsService.openSnackBar(err, '');
-			});
+	async checkLicenseValidity(slaUUID) {
+		// Check if license is valid before instantiate
+		const response = await this.serviceManagementService.getLicenseStatus(slaUUID, this.data.serviceUUID);
+
+		if (response) {
+			this.instantiationIsAllowed = response[ 'allowed_to_instantiate' ] ? true : false;
+
+			// License does not allow instantiation
+			// case license public or trial : case license private
+			if (!response[ 'allowed_to_instantiate' ]) {
+				response[ 'license_type' ] !== 'private' ?
+					this.section = 'error' :
+					this.section = 'buy';
+			}
+		} else {
+			const slaObject = this.slas.find(item => item.uuid === slaUUID);
+			this.instantiationIsAllowed = slaObject[ 'license' ] === 'public' ?
+				true : false;
+
+			// If there is no response regarding license validity and the NS is not public then instantiation is forbidden
+			if (!this.instantiationIsAllowed) {
+				this.close();
+				const title = 'oh oh...';
+				const content = 'There was an error checking the validity of the license. As this network service is not public, you are not allowed \
+										to instantiate it for the moment. Please, try again later.';
+				const action = 'Accept';
+				this.dialogData.openDialog(title, content, action, () => { });
+			}
+		}
+	}
+
+	async instantiate(serviceUUID) {
+		this.loading = true;
+		const body = {
+			name: this.instantiationForm.get('instanceName').value,
+			ingresses: this.ingress.map(ingress => ({ location: ingress.location, nap: ingress.nap })),
+			egresses: this.egress.map(egress => ({ location: egress.location, nap: egress.nap })),
+			blacklist: this.blacklist.map(item => ({ location: item.location, nap: item.nap })),
+			service_uuid: serviceUUID,
+			sla_id: this.instantiationForm.get('sla').value || ''
+		};
+		const response = await this.serviceManagementService.postOneNSInstance(body);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Instantiating ' + response[ 'name' ] + '...', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('Unable to instantiate this network service', '');
+		}
+	}
+
+	async buy() {
+		this.loading = true;
+		const sla = this.instantiationForm.get('sla').value;
+		const license = {
+			ns_uuid: this.data.serviceUUID,
+			sla_uuid: sla,
+		};
+		const response = await this.serviceManagementService.postOneLicense(license);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar(response[ 'Succes' ], '');
+			this.section = 'second';
+			this.checkLicenseValidity(sla);
+		} else {
+			this.utilsService.openSnackBar('Unable to buy the license, try again please', '');
+		}
+	}
+
+	canShowNetworkAddress() {
+		return this.instantiationForm.get('location').value && this.instantiationForm.get('location').value !== 'None' ? true : false;
+	}
+
+	canResetSelect() {
+		return this.instantiationForm.get('location').value ? false : true;
+	}
+
+	canDisableAddNew() {
+		return !this.instantiationForm.get('location').value ||
+			!this.instantiationForm.get('nap').value ||
+			this.instantiationForm.get('nap').errors;
+	}
+
+	canDisableInstantiate() {
+		return (!this.instantiationForm.get('instanceName').value ||
+			this.instantiationForm.get('instanceName').value.trim() === '') ||
+			!this.instantiationIsAllowed;
 	}
 
 	close() {

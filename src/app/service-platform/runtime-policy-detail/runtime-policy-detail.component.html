@@ -1,0 +1,121 @@
+<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@runtimePolicies">Runtime policies</h3>
+
+<div class="title-section" *ngIf="detail['name']">
+	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+
+	<div class="header-buttons">
+		<button class="edit-options cancel" (click)="close()" i18n="@@closeButton">CLOSE</button>
+	</div>
+</div>
+
+<div class="number-bubble" *ngIf="detail['version']">
+	<span class="text" i18n="@@version">Version</span>
+	<div class="number">
+		<span>{{ detail.version }}</span>
+	</div>
+</div>
+
+<form [formGroup]="policyForm" *ngIf="detail['uuid']" class="general-information-section">
+	<mat-checkbox formControlName="default" (change)="setDefaultPolicy($event.checked)" i18n="@@markAsDefault">
+		Mark as default
+	</mat-checkbox>
+
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['uuid']" class="left-column">
+			<input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['vendor']">
+			<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['nsUUID']" class="left-column">
+			<input matInput placeholder="Service ID" value="{{ detail['nsUUID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['nsUUID'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['nsVendor']">
+			<input matInput placeholder="Service Vendor" value="{{ detail['nsVendor'] }}" disabled
+				i18n-placeholder="@@serviceVendorPlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['nsName']" class="left-column">
+			<input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled
+				i18n-placeholder="@@serviceNamePlaceholder" />
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['nsVersion']">
+			<input matInput placeholder="Service Version" value="{{ detail['nsVersion'] }}" disabled
+				i18n-placeholder="@@serviceVersionPlaceholder" />
+		</mat-form-field>
+	</div>
+
+	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
+			i18n-placeholder="@@updatedAtPlaceholder" />
+	</mat-form-field>
+
+	<app-select-uuid #sla class="sla-select" placeholder="Select SLA" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"
+		i18n-placeholder="@@selectSLAPlaceholder">
+	</app-select-uuid>
+</form>
+
+<div *ngIf="detail['monitoringRules']" class="monitoring-rules-section">
+	<h2 class="title2" i18n="@@monitoringRules">Monitoring rules</h2>
+
+	<div class="description existing-monitoring-rules">
+		<div class="description-title">
+			<h4 class="title4 upper-case" i18n="@@monitoringRules">Monitoring rules</h4>
+		</div>
+
+		<span class="content">
+			<ngx-json-viewer [json]="detail['monitoringRules']"></ngx-json-viewer>
+		</span>
+	</div>
+</div>
+
+<div *ngIf="detail['policyRules']" class="policy-rules-section">
+	<h2 class="title2" i18n="@@policyRules">Policy rules</h2>
+
+	<table mat-table [dataSource]="detail['policyRules']">
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+			<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="salience">
+			<th mat-header-cell *matHeaderCellDef i18n="@@priority">Priority</th>
+			<td mat-cell *matCellDef="let element">{{ element.salience }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="inertia">
+			<th mat-header-cell *matHeaderCellDef i18n="@@inertia">Inertia</th>
+			<td mat-cell *matCellDef="let element">{{ element.inertia.value }} {{ element.inertia.duration_unit }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="delete">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element" (click)="deletePolicyRule(element)" (click)="$event.stopPropagation()">
+				<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
+					<i class="wui wui-trash-alt"></i>
+				</button>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedRuleColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedRuleColumns"></tr>
+	</table>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

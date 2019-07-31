@@ -12,11 +12,11 @@ export class DescriptorDisplayerComponent implements OnInit {
 
 	files = [];
 
-	constructor(private service: SdkService, private sanitizer: DomSanitizer) {
+	constructor(private sdkService: SdkService, private sanitizer: DomSanitizer) {
 	}
 
 	ngOnInit() {
-		this.service.files.subscribe(files => {
+		this.sdkService.files.subscribe(files => {
 			this.files = files.map(file => this.sanitizer.bypassSecurityTrustResourceUrl(file));
 			// this.files = files.map(file => this.sanitizer.bypassSecurityTrustUrl(file));
 		});
