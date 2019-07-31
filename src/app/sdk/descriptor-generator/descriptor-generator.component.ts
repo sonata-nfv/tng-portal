@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ControlsValidator } from '../../shared/utils/controls-validator';
+import { ControlsValidatorDirective } from '../../shared/utils/controls-validator';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { SdkService } from '../sdk.service';
 
@@ -18,7 +18,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	isEmpty = true;
 	section = 'sdk';
 
-	constructor(private router: Router, private route: ActivatedRoute, private controlsValidator: ControlsValidator,
+	constructor(private router: Router, private route: ActivatedRoute, private controlsValidator: ControlsValidatorDirective,
 		private http: HttpClient, private service: SdkService) { }
 
 	ngOnInit() {
