@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ControlsValidatorDirective } from '../../shared/utils/controls-validator';
+// import { ControlsValidatorDirective } from '../../shared/utils/controls-validator';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { SdkService } from '../sdk.service';
 
@@ -18,8 +18,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	isEmpty = true;
 	section = 'sdk';
 
-	constructor(private router: Router, private route: ActivatedRoute, private controlsValidator: ControlsValidatorDirective,
-		private http: HttpClient, private service: SdkService) { }
+	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private service: SdkService) { }
 
 	ngOnInit() {
 		this.initForm();
@@ -27,10 +26,10 @@ export class DescriptorGeneratorComponent implements OnInit {
 
 	initForm() {
 		this.serviceForm = new FormGroup({
-			name: new FormControl('', [Validators.required, this.controlsValidator.noWhitespaceValidator]),
-			author: new FormControl('', [Validators.required, this.controlsValidator.noWhitespaceValidator]),
-			vendor: new FormControl('', [Validators.required, this.controlsValidator.noWhitespaceValidator]),
-			description: new FormControl('', [Validators.required, this.controlsValidator.noWhitespaceValidator]),
+			name: new FormControl('', [Validators.required]),
+			author: new FormControl('', [Validators.required]),
+			vendor: new FormControl('', [Validators.required]),
+			description: new FormControl('', [Validators.required]),
 			numberOfVNFs: new FormControl('', [Validators.required])
 		});
 		this.serviceForm.valueChanges.subscribe(value => this.onFormChanges(value));
