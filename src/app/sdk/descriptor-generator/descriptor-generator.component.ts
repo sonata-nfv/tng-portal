@@ -18,7 +18,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	isEmpty = true;
 	section = 'sdk';
 
-	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private service: SdkService) { }
+	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private sdkService: SdkService) { }
 
 	ngOnInit() {
 		this.initForm();
@@ -59,7 +59,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 			}
 		).subscribe(response => {
 			console.log('response', response['files']);
-			this.service.changeFiles(response['files']);
+			this.sdkService.changeFiles(response['files']);
 			this.router.navigate(['sdk/descriptor-displayer']);
 		});
 	}
