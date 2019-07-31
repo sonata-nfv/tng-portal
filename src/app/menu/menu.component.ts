@@ -213,7 +213,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 	maintainStatus() {
 		const url = this.router.url.substr(1).split('/');
 		this.menu = url[ 0 ] ? url[ 0 ] : 'dashboard';
-		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms' || this.menu === 'sdk') ?
+		this.menu && (this.menu === 'dashboard' || this.menu === 'platforms') ?
 			this.sideNav.close() : this.sideNav.open();
 
 		if (url.length > 1) {
