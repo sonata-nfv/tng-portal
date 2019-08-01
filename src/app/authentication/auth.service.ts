@@ -67,10 +67,8 @@ export class AuthService {
 	private setAuthHeaders() {
 		localStorage.getItem('token') ?
 			this.authHeaders = new HttpHeaders()
-				.set('Content-Type', 'application/json')
 				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-			: this.authHeaders = new HttpHeaders()
-				.set('Content-Type', 'application/json');
+			: this.authHeaders = new HttpHeaders();
 	}
 
 	async getUserRoles() {
@@ -87,23 +85,16 @@ export class AuthService {
 		}
 	}
 
+	getAuthHeadersContentTypeJSON() {
+		return this.authHeaders.set('Content-Type', 'application/json');
+	}
+
+	getAuthHeadersContentTypeURLEncoded() {
+		return this.authHeaders.set('Content-Type', 'application/x-www-form-urlencoded');
+	}
+
 	getAuthHeaders() {
 		return this.authHeaders;
-	}
-
-	getAuthHeadersNoContentType() {
-		return localStorage.getItem('token') ?
-			new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-			: new HttpHeaders();
-	}
-
-	getAuthHeadersSLAMngr() {
-		return localStorage.getItem('token') ?
-			new HttpHeaders()
-				.set('Content-Type', 'application/x-www-form-urlencoded')
-				.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-			: new HttpHeaders()
-				.set('Content-Type', 'application/x-www-form-urlencoded');
 	}
 
 	isAuthenticated(): boolean {

@@ -176,7 +176,7 @@ export class ServicePlatformService {
      *                 and templateName for the creation of a new template.
      */
 	async postOneSLATemplate(template) {
-		const headers = this.authService.getAuthHeadersSLAMngr();
+		const headers = this.authService.getAuthHeadersContentTypeURLEncoded();
 		const url = this.config.baseSP + this.config.slaTemplates;
 
 		try {
@@ -352,7 +352,7 @@ export class ServicePlatformService {
 	 * @param placementPolicy Data of the desired Placement Policy
 	 */
 	async postPlacementPolicy(placementPolicy) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.placementPolicies;
 
 		try {
@@ -448,7 +448,7 @@ export class ServicePlatformService {
 	 * @param policy Data of the desired Runtime Policy
 	 */
 	async postOneRuntimePolicy(policy) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.runtimePoliciesUI;
 
 		try {
@@ -470,7 +470,7 @@ export class ServicePlatformService {
 	 * @param nsid UUID of the desired NS
 	 */
 	async setDefaultRuntimePolicy(uuid, defaultPolicy, nsid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.runtimePoliciesDefault + uuid;
 		const data = {
 			defaultPolicy,
@@ -496,7 +496,7 @@ export class ServicePlatformService {
 	 * @param nsid UUID of the desired NS
 	 */
 	async bindRuntimePolicy(uuid, data) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.runtimePoliciesBind + uuid;
 
 		try {
@@ -588,7 +588,7 @@ export class ServicePlatformService {
 	 * @param template Data of the new slice template
 	 */
 	async postOneSliceTemplate(template) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.slicesTemplates;
 
 		try {

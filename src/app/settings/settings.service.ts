@@ -24,7 +24,7 @@ export class SettingsService {
      *                          matched by the returned list.
      */
 	async getVims(search?) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = search ? this.config.baseSP + this.config.vimSettings + search
 			: this.config.baseSP + this.config.vimSettings;
 
@@ -56,7 +56,7 @@ export class SettingsService {
     * @param uuid VIM UUID of the desired VIM.
     */
 	async getOneVim(uuid) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
 		try {
@@ -76,7 +76,7 @@ export class SettingsService {
      * @param vim Data of the desired VIM.
      */
 	async postVim(type, vim) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 
@@ -97,7 +97,7 @@ export class SettingsService {
      * @param vim Data of the desired VIM.
      */
 	async patchVim(type, uuid, vim) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		let url = type === 'Openstack' ?
 			this.config.baseSP + this.config.vimOpenstackSettings : this.config.baseSP + this.config.vimK8sSettings;
 		url = url + '/' + uuid;
@@ -119,7 +119,7 @@ export class SettingsService {
      * @param uuid UUID of the desired VIM.
      */
 	async deleteVim(uuid) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.vimSettings + '/' + uuid;
 
 		try {
@@ -142,7 +142,7 @@ export class SettingsService {
     *                          matched by the returned list.
     */
 	async getWims(search?) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = search ? this.config.baseSP + this.config.wimSettings + search
 			: this.config.baseSP + this.config.wimSettings;
 
@@ -174,7 +174,7 @@ export class SettingsService {
 	 * @param uuid WIM UUID of the desired WIM.
 	 */
 	async getOneWim(uuid) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
 
 		try {
@@ -194,7 +194,7 @@ export class SettingsService {
 	 * @param wim Data of the desired WIM.
 	 */
 	async postWim(wim) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.tapiSettings;
 
 		try {
@@ -215,7 +215,7 @@ export class SettingsService {
 	 * @param wim Data of the desired WIM.
 	 */
 	async patchWim(type, uuid, vim) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.tapiSettings + '/' + uuid;
 
 		try {
@@ -235,7 +235,7 @@ export class SettingsService {
 	 * @param uuid UUID of the desired WIM.
 	 */
 	async deleteWim(uuid) {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.wimSettings + '/' + uuid;
 
 		try {

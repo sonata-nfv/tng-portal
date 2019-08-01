@@ -330,7 +330,7 @@ export class CommonService {
 	 * Retrieves the existing vims of type endpoint
 	 */
 	async getEndpoints() {
-		const headers = this.authService.getAuthHeadersNoContentType();
+		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.vimSettings;
 
 		try {

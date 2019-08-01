@@ -218,7 +218,7 @@ export class ValidationAndVerificationPlatformService {
 	 * @param confirmRequired sets the created test plans with priority in the queue
      */
 	async postTestPlans(section, uuid, confirmRequired) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = section === 'tests' ?
 			this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`
 			: this.config.baseVNV + this.config.testPlansServices + `?confirmRequired=${ confirmRequired }&serviceUuid=${ uuid }`;
@@ -241,7 +241,7 @@ export class ValidationAndVerificationPlatformService {
 	 * @param status new status to be set
      */
 	async putNewTestPlanStatus(uuid, status) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }?status=${ status }`;
 
 		try {
