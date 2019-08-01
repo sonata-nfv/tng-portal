@@ -7,19 +7,18 @@ import { DialogComponent } from '../../components/dialog/dialog.component';
 export class DialogDataService {
 	constructor(public dialog: MatDialog) { }
 
-	openDialog(title: string, content: string, action: string, onAction: any) {
+	openDialog(title: string, content: string, action: string, onAction: any, onCancel?: any, secondaryAction?: string) {
 		const dialogRef = this.dialog.open(DialogComponent, {
 			data: {
 				title: title,
 				content: content,
-				action: action.toUpperCase()
+				action: action.toUpperCase(),
+				secondaryAction: secondaryAction ? secondaryAction.toUpperCase() : null
 			}
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-			if (result === 'action') {
-				onAction();
-			}
+			return result === 'action' ? onAction() : onCancel();
 		});
 	}
 }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
 @Component({
 	selector: 'app-tests-detail',
@@ -21,7 +22,8 @@ export class TestsDetailComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private utilsService: UtilsService,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService,
+		private dialogData: DialogDataService
 	) { }
 
 	ngOnInit() {
@@ -57,8 +59,35 @@ export class TestsDetailComponent implements OnInit {
 		}
 	}
 
+	execute() {
+		const title = this.detail[ 'name' ];
+		const content = 'Do you want to automatically execute the test? \
+						Otherwise, the tests planned will require your manual \
+						confirmation to be run. ';
+		const action = 'Yes';
+		const secondaryAction = 'No';
+
+		this.dialogData.openDialog(title, content, action,
+			() => this.createTestPlans(this.detail[ 'uuid' ], false),
+			() => this.createTestPlans(this.detail[ 'uuid' ], true), secondaryAction);
+	}
+
+	async createTestPlans(uuid, confirmRequired) {
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.postTestPlans('tests', uuid, confirmRequired);
+
+		this.loading = false;
+		response ?
+			this.router.navigate([ 'validation-and-verification/test-plans' ])
+			: this.utilsService.openSnackBar('Unable to execute this test', '');
+	}
+
 	openTestResults(row) {
 		this.router.navigate([ 'results', row[ 'uuid' ] ], { relativeTo: this.route });
+	}
+
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
 	}
 
 	close() {

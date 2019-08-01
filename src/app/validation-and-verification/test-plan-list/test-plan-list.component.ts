@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
-import { ServiceManagementModule } from '../../service-management/service-management.module';
 
 @Component({
 	selector: 'app-test-plan-list',
@@ -15,7 +15,8 @@ import { ServiceManagementModule } from '../../service-management/service-manage
 export class TestPlanListComponent implements OnInit {
 	loading: boolean;
 	testPlans = new Array();
-	displayedColumns = [ 'testName', 'serviceName', 'status', 'required' ];
+	displayedColumns = [ 'testName', 'serviceName', 'status', 'execute', 'stop' ];
+	subscription: Subscription;
 
 	constructor(
 		private router: Router,
@@ -27,6 +28,18 @@ export class TestPlanListComponent implements OnInit {
 
 	ngOnInit() {
 		this.requestTestPlans();
+
+		// Reloads the list when children are closed
+		this.subscription = this.router.events.subscribe(event => {
+			if (
+				event instanceof NavigationEnd &&
+				event.url === '/validation-and-verification/test-plans' &&
+				this.route.url[ 'value' ].length === 2 &&
+				this.route.url[ 'value' ][ 1 ].path === 'test-plans'
+			) {
+				this.requestTestPlans();
+			}
+		});
 	}
 
 	searchFieldData(search) {
@@ -47,7 +60,6 @@ export class TestPlanListComponent implements OnInit {
 		const nsList = await this.commonService.getNetworkServices('V&V');
 
 		this.loading = false;
-
 		if (testPlans) {
 			// Additional information to test plans: test descriptor name and network service name
 			testPlans.forEach(plan => {
@@ -77,8 +89,34 @@ export class TestPlanListComponent implements OnInit {
 		});
 	}
 
-	async setRequired(uuid) {
-		// TODO request to set/unset required
+	async confirmExecution(plan) {
+		this.loading = true;
+		const uuid = plan.uuid;
+		const status = plan.status === 'WAITING_FOR_CONFIRMATION' ? 'SCHEDULED' : 'RETRIED';
+
+		const response = await this.verificationAndValidationPlatformService.putNewTestPlanStatus(uuid, status);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('The test plan was executed', '');
+			this.requestTestPlans();
+		} else {
+			this.utilsService.openSnackBar('Unable to execute the test plan', '');
+		}
+	}
+
+	async cancelExecution(plan) {
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.deleteTestPlan(plan.uuid);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('The test plan was cancelled', '');
+			this.requestTestPlans();
+		} else {
+			this.utilsService.openSnackBar('Unable to cancel the test plan', '');
+		}
+
 	}
 
 	isActiveRow(row) {
@@ -88,6 +126,20 @@ export class TestPlanListComponent implements OnInit {
 
 	canShowMessage() {
 		return (!this.testPlans || !this.testPlans.length) && !this.loading;
+	}
+
+	canShowCancelExecution(testPlan) {
+		return testPlan.status === 'PENDING' || testPlan.status === 'NOT_CONFIRMED'
+			|| testPlan.status === 'STARTING' || testPlan.status === 'SCHEDULED';
+	}
+
+	canShowExecute(testPlan) {
+		return testPlan.required &&
+			(testPlan.status === 'CANCELLED' || testPlan.status === 'ERROR');
+	}
+
+	canShowRequiredConfirmation(testPlan) {
+		return testPlan.required && testPlan.status === 'WAITING_FOR_CONFIRMATION';
 	}
 
 	openTest(uuid) {

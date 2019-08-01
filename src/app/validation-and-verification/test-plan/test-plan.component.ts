@@ -48,8 +48,44 @@ export class TestPlanComponent implements OnInit {
 		}
 	}
 
-	async setRequired(value) {
-		// TODO request to set/unset required
+	async confirmExecution() {
+		this.loading = true;
+		const uuid = this.detail[ 'uuid' ];
+		const status = this.detail[ 'status' ] === 'WAITING_FOR_CONFIRMATION' ? 'SCHEDULED' : 'RETRIED';
+
+		const response = await this.verificationAndValidationPlatformService.putNewTestPlanStatus(uuid, status);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('The test plan was executed', '')
+			: this.utilsService.openSnackBar('Unable to execute the test plan', '');
+	}
+
+	async cancelExecution() {
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.deleteTestPlan(this.detail[ 'uuid' ]);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('The test plan was cancelled', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('Unable to cancel the test plan', '');
+		}
+	}
+
+	canShowExecute() {
+		return this.detail[ 'uuid' ] && this.detail[ 'required' ] &&
+			(this.detail[ 'status' ] === 'CANCELLED' || this.detail[ 'status' ] === 'ERROR');
+	}
+
+	canShowCancelExecution() {
+		return this.detail[ 'status' ] === 'PENDING' || this.detail[ 'status' ] === 'NOT_CONFIRMED'
+			|| this.detail[ 'status' ] === 'STARTING' || this.detail[ 'status' ] === 'SCHEDULED';
+	}
+
+	canShowRequiredConfirmation() {
+		return this.detail[ 'required' ] && this.detail[ 'status' ] === 'WAITING_FOR_CONFIRMATION';
 	}
 
 	copyToClipboard(value) {
