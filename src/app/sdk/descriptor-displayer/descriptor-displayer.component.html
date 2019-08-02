@@ -2,7 +2,7 @@
 
 
 <!--FIXME: fix display of generated descriptors-->
-<div *ngFor='let file of files'>
+<div *ngFor='let file of fileUrls'>
 	<mat-expansion-panel>
 		<mat-expansion-panel-header>
 			<mat-panel-title>{{file}}</mat-panel-title>
@@ -16,7 +16,7 @@
 
 <!--localhost:5098/api/v1/projects/176260b7-2b2e-4541-9480-063e46c0c92f/tango_nsd.yml-->
 
-<!--<div *ngFor='let file of files'>-->
+<!--<div *ngFor='let file of fileUrls'>-->
 <!--	<ng-include src="file"></ng-include>-->
 
 <!--	&lt;!&ndash; <embed src="{{file}}" width="800px" height="2100px" /> &ndash;&gt;-->

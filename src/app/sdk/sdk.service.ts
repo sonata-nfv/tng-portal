@@ -12,10 +12,8 @@ export class SdkService {
 
 	constructor(private http: HttpClient) { }
 
-	changeFiles(fileUrls: Array<string>) {
-		// set new file URLs
-		console.log(this.currentFileUrls);
+	// set new file URLs
+	updateFiles(fileUrls: Array<string>) {
 		this.fileUrlsSource.next(fileUrls);
-		console.log(this.currentFileUrls);
 	}
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SdkService } from '../sdk.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-descriptor-displayer',
@@ -10,16 +11,28 @@ import { SdkService } from '../sdk.service';
 })
 export class DescriptorDisplayerComponent implements OnInit {
 
-	files = [];
+	fileUrls = [];
+	fileContents = { };
 
-	constructor(private sdkService: SdkService, private sanitizer: DomSanitizer) {
-	}
+	constructor(private sdkService: SdkService, private sanitizer: DomSanitizer,
+				private http: HttpClient) { }
 
 	ngOnInit() {
 		this.sdkService.currentFileUrls.subscribe(files => {
-			this.files = files.map(file => this.sanitizer.bypassSecurityTrustResourceUrl(file));
-			// this.files = files.map(file => this.sanitizer.bypassSecurityTrustUrl(file));
+			this.fileUrls = files;
+			// this.fileUrls = files.map(file => this.sanitizer.bypassSecurityTrustResourceUrl(file));
+			this.loadFileContents();
 		});
+	}
+
+	loadFileContents(): void {
+		this.fileContents = { };
+		for (const url of this.fileUrls) {
+			console.log(url);
+			this.http.get(url, { responseType: 'text'}).subscribe(
+				(content: string) => this.fileContents[url] = content
+			);
+		}
 	}
 
 }
