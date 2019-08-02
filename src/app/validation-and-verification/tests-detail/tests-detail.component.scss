@@ -35,9 +35,13 @@ app-tests-detail {
 	.detail {
 		width: 55vw;
 		margin-bottom: 2vh;
+
+		.left-column {
+			width: 25vw;
+		}
 	}
 
-	.description, .executions {
+	.description, .executions, .launch {
 		width: 55vw;
 		margin-bottom: 5vh;
 	}

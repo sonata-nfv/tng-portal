@@ -29,8 +29,8 @@ export class ValidationAndVerificationPlatformService {
 	async getTests(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
-			this.config.baseVNV + this.config.tests + search
-			: this.config.baseVNV + this.config.tests;
+			this.config.baseVNV + this.config.testDescriptors + search
+			: this.config.baseVNV + this.config.testDescriptors;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -60,7 +60,7 @@ export class ValidationAndVerificationPlatformService {
      */
 	async getOneTest(uuid: string) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.tests + '/' + uuid;
+		const url = this.config.baseVNV + this.config.testDescriptors + '/' + uuid;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -202,6 +202,65 @@ export class ValidationAndVerificationPlatformService {
 				testUUID: response[ 'test_uuid' ],
 				updatedAt: response[ 'updated_at' ]
 			};
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+     * Creates the test plans for a given test UUID
+     *
+     * @param uuid UUID of the desired test
+	 * @param confirmRequired sets the created test plans with priority in the queue
+     */
+	async postTestPlans(section, uuid, confirmRequired) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = section === 'tests' ?
+			this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`
+			: this.config.baseVNV + this.config.testPlansServices + `?confirmRequired=${ confirmRequired }&serviceUuid=${ uuid }`;
+
+		try {
+			return await this.http.post(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+     * Changes test plan status to be (re)executed to scheduled or to retried in case of a retrial
+     *
+     * @param uuid UUID of the desired test plan
+	 * @param status new status to be set
+     */
+	async putNewTestPlanStatus(uuid, status) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }?status=${ status }`;
+
+		try {
+			return await this.http.put(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async deleteTestPlan(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }`;
+
+		try {
+			return await this.http.delete(url, { headers: headers }).toPromise();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

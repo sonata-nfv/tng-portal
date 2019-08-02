@@ -164,12 +164,11 @@ export class NsInstantiateDialogComponent implements OnInit {
 		const response = await this.serviceManagementService.postOneNSInstance(body);
 
 		this.loading = false;
-		if (response) {
-			this.utilsService.openSnackBar('Instantiating ' + response[ 'name' ] + '...', '');
-			this.close();
-		} else {
-			this.utilsService.openSnackBar('Unable to instantiate this network service', '');
-		}
+		response ?
+			this.utilsService.openSnackBar('Instantiating ' + response[ 'name' ] + '...', '')
+			: this.utilsService.openSnackBar('Unable to instantiate this network service', '');
+
+		this.close();
 	}
 
 	async buy() {

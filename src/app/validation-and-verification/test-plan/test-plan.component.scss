@@ -18,17 +18,30 @@ app-test-plan {
 	.detail {
 		width: 55vw;
 		margin-top: 10vh;
-		margin-bottom: 5vh;
-
-		// Checkbox styles
-		.mat-checkbox {
-			margin-bottom: 4vh;
-		}
+		margin-bottom: 2vh;
 
 		.left-column, 
 		.same-row .left-column.mat-form-field {
 			width: 25vw;
 			margin-right: 40px;
 		}
+	}
+
+	.launch, .stop, .double-action-buttons {
+		width: 55vw;
+		margin-bottom: 5vh;
+	}
+
+	.icon-button-shadow {
+		min-height: 40px;
+		min-width: 40px;
+	}
+
+	.icon-button-shadow .wui-times:before {
+    	font-size: 23px;
+	}
+
+	.icon-button-shadow .wui-check-circle-alt:before {
+    	font-size: 27px;
 	}
 }

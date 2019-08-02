@@ -19,12 +19,16 @@
 </div>
 
 <form class="detail">
-	<mat-form-field class="vendor" *ngIf="detail['vendor']">
-		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
+		<input matInput placeholder="Service ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
 	</mat-form-field>
 
-	<mat-form-field class="serviceId" *ngIf="detail['uuid']">
-		<input matInput placeholder="Service id" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+	<mat-form-field class="vendor" *ngIf="detail['vendor']">
+		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 	</mat-form-field>
 
 	<mat-form-field class="status" *ngIf="detail['status']">
@@ -36,6 +40,13 @@
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 </form>
+
+<div *ngIf="detail['uuid']" (click)="execute()" class="launch">
+	<button class="icon-button-shadow actions" mat-button matTooltip="Execute" i18n-matTooltip="@@execute">
+		<i class="wui wui-caret-right"></i>
+	</button>
+	<span class="play" i18n="@@generateSetTestPlansForThisNS">Generate the set of test plans for this network service</span>
+</div>
 
 <div class="description" *ngIf="detail['description']">
 	<h4 class="title4" i18n="@@description">Description</h4>

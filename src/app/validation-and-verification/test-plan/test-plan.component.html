@@ -6,10 +6,6 @@
 </div>
 
 <form class="detail">
-	<mat-checkbox *ngIf="detail['uuid']" (change)="setRequired($event.checked)" i18n="@@confirmTestPlanAsRequired">
-		Confirm test plan as required
-	</mat-checkbox>
-
 	<mat-form-field *ngIf="detail['uuid']" class="left-column">
 		<input matInput placeholder="Test plan ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@testPlanIDPlaceholder" />
 		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
@@ -65,5 +61,33 @@
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 </form>
+
+<div *ngIf="canShowExecute()" (click)="confirmExecution()" class="launch">
+	<button class="icon-button-shadow" mat-button matTooltip="Execute" i18n-matTooltip="@@execute">
+		<i class="wui wui-caret-right"></i>
+	</button>
+	<span class="play" i18n="@@confirmTestPlanAsRequired">Confirm the test plan as required</span>
+</div>
+
+<div *ngIf="canShowCancelExecution()" (click)="cancelExecution()" class="stop">
+	<button class="icon-button-shadow" mat-button matTooltip="Cancel execution" i18n-matTooltip="@@cancelExecution">
+		<i class="wui wui-stop-alt"></i>
+	</button>
+	<span i18n="@@cancellExecutionTestPlan">Cancel the execution of the test plan</span>
+</div>
+
+<div *ngIf="canShowRequiredConfirmation()" class="double-action-buttons">
+	<button class="icon-button-shadow " mat-button (click)="confirmExecution(element)" matTooltip="Confirm execution"
+		i18n-matTooltip="@@confirmExecution">
+		<i class="wui wui-check-circle-alt"></i>
+	</button>
+
+	<button class="icon-button-shadow cancel" mat-button (click)="cancelExecution(element)" matTooltip="Reject execution"
+		i18n-matTooltip="@@rejectExecution">
+		<i class="wui wui-times"></i>
+	</button>
+
+	<span i18n="@@confirmOrCancelExecutionTestPlan">Confirm or cancel the execution of the test plan</span>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
