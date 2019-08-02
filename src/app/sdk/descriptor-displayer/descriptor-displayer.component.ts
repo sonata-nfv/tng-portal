@@ -16,7 +16,7 @@ export class DescriptorDisplayerComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.sdkService.files.subscribe(files => {
+		this.sdkService.currentFileUrls.subscribe(files => {
 			this.files = files.map(file => this.sanitizer.bypassSecurityTrustResourceUrl(file));
 			// this.files = files.map(file => this.sanitizer.bypassSecurityTrustUrl(file));
 		});
