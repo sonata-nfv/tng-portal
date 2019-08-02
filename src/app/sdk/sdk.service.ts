@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-
 
 
 @Injectable()
@@ -10,7 +8,7 @@ export class SdkService {
 	private fileUrlsSource = new BehaviorSubject([]);
 	currentFileUrls = this.fileUrlsSource.asObservable();
 
-	constructor(private http: HttpClient) { }
+	constructor() { }
 
 	// set new file URLs
 	updateFiles(fileUrls: Array<string>) {
