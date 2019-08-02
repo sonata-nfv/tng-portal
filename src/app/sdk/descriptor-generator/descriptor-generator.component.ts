@@ -59,7 +59,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 			}
 		).subscribe(response => {
 			console.log('response', response['files']);
-			this.sdkService.changeFiles(response['files']);
+			this.sdkService.updateFiles(response['files']);
 			this.router.navigate(['sdk/descriptor-displayer']);
 		});
 	}

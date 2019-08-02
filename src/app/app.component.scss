@@ -594,6 +594,8 @@ ul.unordered-list .mat-input-element:disabled {
 //////////////////////////////////////
 .button-shadow,
 .icon-button-shadow {
+	min-height: 30px;
+    min-width: 30px;
     border: none;
 	cursor: pointer;
     outline: none;
@@ -649,6 +651,16 @@ ul.unordered-list .mat-input-element:disabled {
     color: $ready-color;
 }
 
+.icon-button-shadow .wui-check-circle-alt:before {
+	font-size: 22px;
+    color: $ready-color;
+}
+
+.icon-button-shadow .wui-times:before {
+	font-size: 18px;
+	color: $stop-color;
+}
+
 .icon-button-shadow .wui-shopping-cart:before {
     font-size: 20px;
 	color: $shopping-cart-color;
@@ -695,7 +707,8 @@ ul.unordered-list .mat-input-element:disabled {
 //////////////////////////////////////
 .stop,
 .launch,
-.buy {
+.buy,
+.double-action-buttons {
 	display: flex;
 	align-items: center;
 	width: 30%;

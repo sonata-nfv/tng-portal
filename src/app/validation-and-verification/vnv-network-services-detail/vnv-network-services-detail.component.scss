@@ -18,9 +18,13 @@ app-vnv-network-services-detail {
 	.detail {
 		width: 55vw;
 		margin-bottom: 2vh;
+
+		.left-column {
+			width: 25vw;
+		}
 	}
 	
-	.description, .vnf {
+	.description, .vnf, .launch {
 		width: 55vw;
 		margin-bottom: 5vh;
 	}

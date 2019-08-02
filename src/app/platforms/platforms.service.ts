@@ -67,7 +67,7 @@ export class PlatformsService {
      * @param platform Data of the desired platform.
      */
 	async postPlatform(platform) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseVNV + this.config.platformSettings;
 
 		try {
@@ -87,7 +87,7 @@ export class PlatformsService {
      * @param platform Data of the desired platform.
      */
 	async patchPlatform(uuid, platform) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseVNV + this.config.platformSettings + '/' + uuid;
 
 		try {

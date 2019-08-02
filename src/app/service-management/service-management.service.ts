@@ -107,7 +107,7 @@ export class ServiceManagementService {
 	 * @param instance Data of the desired Slice Instance.
 	 */
 	async postOneSliceInstance(instance) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.requests;
 
 		try {
@@ -127,7 +127,7 @@ export class ServiceManagementService {
 	 * @param uuid UUID of the desired Slices Instance.
 	 */
 	async postOneSliceInstanceTermination(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.requests;
 		const terminateTime = {
 			'instance_uuid': uuid,
@@ -248,7 +248,7 @@ export class ServiceManagementService {
 	 * @param body Body of the instantiation request
 	 */
 	async postOneNSInstance(body) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.requests;
 
 		try {
@@ -268,7 +268,7 @@ export class ServiceManagementService {
 	* @param uuid UUID of the desired Network Service Instance.
 	*/
 	async postOneNSInstanceTermination(uuid) {
-		const headers = this.authService.getAuthHeaders();
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
 		const url = this.config.baseSP + this.config.requests;
 		const data = {
 			instance_uuid: uuid,
@@ -445,7 +445,7 @@ export class ServiceManagementService {
 	* @param license License data of the new license.
 	*/
 	async postOneLicense(license) {
-		const headers = this.authService.getAuthHeadersSLAMngr();
+		const headers = this.authService.getAuthHeadersContentTypeURLEncoded();
 		const url = this.config.baseSP + this.config.buyLicense;
 
 		try {

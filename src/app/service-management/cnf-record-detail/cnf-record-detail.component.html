@@ -3,7 +3,7 @@
 	<table mat-table [dataSource]="_cdus">
 		<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.id }}</td>
+			<td mat-cell *matCellDef="let element">{{ element.cdu_reference }}</td>
 		</ng-container>
 
 		<ng-container matColumnDef="numberOfInstances">
