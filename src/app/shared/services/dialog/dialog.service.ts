@@ -18,7 +18,11 @@ export class DialogDataService {
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
-			return result === 'action' ? onAction() : onCancel();
+			if (result === 'action') {
+				onAction();
+			} else if (result !== 'action' && onCancel) {
+				onCancel();
+			}
 		});
 	}
 }
