@@ -1,5 +1,9 @@
 <div class="openedDetail">
-	<span class="tableDetailTitle">CDUs</span>
+	<div class="row">
+		<span class="tableDetailTitle">CDUs</span>
+		<a class="monitoring-dialog-link" (click)="openMonitoringDialog()" i18n="@@showMonitoringGraphs">Show monitoring graphs</a>
+	</div>
+
 	<table mat-table [dataSource]="_cdus">
 		<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
@@ -32,3 +36,5 @@
 		<div class="no-results-line"></div>
 	</div>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

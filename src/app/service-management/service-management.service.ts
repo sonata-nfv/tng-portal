@@ -243,6 +243,29 @@ export class ServiceManagementService {
 	}
 
 	/**
+	 * Retrieves the metrics measured in each function by UUID
+	 *
+	 * @param instanceUUID UUID of the desired network service instance.
+	 */
+	async getMonitoringMetrics(instanceUUID, functionUUID) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.monitoringData + `/${ instanceUUID }/metrics`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'vnfs' ] ?
+				response[ 'vnfs' ].filter(item => item.vnf_id === functionUUID)
+				: { };
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Network service instantiation
 	 *
 	 * @param body Body of the instantiation request
