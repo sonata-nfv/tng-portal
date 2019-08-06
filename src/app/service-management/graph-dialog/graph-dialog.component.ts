@@ -40,11 +40,12 @@ export class GraphDialogComponent implements OnInit {
 		const response = await this.serviceManagementService.getMonitoringMetrics(this.data.instanceUUID, this.data.vnfUUID);
 
 		this.loading = false;
-		if (response) {
+		if (response && response.length) {
 			this.completeMetrics = response;
 			this.functions = response.map(item => item.vduID);
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the monitoring data', '');
+			this.close();
 		}
 	}
 
@@ -52,6 +53,10 @@ export class GraphDialogComponent implements OnInit {
 		const correspondingMetrics = this.completeMetrics.find(data => data.vduID === receivedFunction);
 		this.metrics = correspondingMetrics.metrics.map(item => item.__name__);
 		this.selectedFunction = receivedFunction;
+
+		if (!this.metrics.length) {
+			this.utilsService.openSnackBar('Unable to find any metric to be measured nor graph to be displayed for this instance', '');
+		}
 	}
 
 	receiveMetric(receivedMetric) {

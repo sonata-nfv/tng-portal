@@ -8,8 +8,8 @@
 			(selectEvent)="receiveFunction($event)" i18n-placeholder="@@functionPlaceholder">
 		</app-select>
 
-		<app-select *ngIf="metrics" class="metric-select" placeholder="Metric" [list]="metrics" (selectEvent)="receiveMetric($event)"
-			i18n-placeholder="@@metricPlaceholder">
+		<app-select *ngIf="metrics && metrics.length" class="metric-select" placeholder="Metric" [list]="metrics"
+			(selectEvent)="receiveMetric($event)" i18n-placeholder="@@metricPlaceholder">
 		</app-select>
 	</div>
 
