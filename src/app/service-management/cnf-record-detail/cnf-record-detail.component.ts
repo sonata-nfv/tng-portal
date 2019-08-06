@@ -20,7 +20,7 @@ export class CnfRecordDetailComponent implements OnInit {
      */
 	@Input()
 	set cdus(cdus: Array<string>) {
-		cdus !== undefined ? (this._cdus = cdus) : (this._cdus = new Array());
+		cdus ? (this._cdus = cdus) : (this._cdus = new Array());
 	}
 
 	/**

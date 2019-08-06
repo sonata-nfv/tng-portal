@@ -5,7 +5,7 @@ app-cnf-record-detail {
   background-color: $panel-background-color;
   border-bottom: 1px solid $primary-color-light;
 
-  .openedDetail {
+  .opened-detail {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -16,6 +16,12 @@ app-cnf-record-detail {
     	align-items: flex-end;
 		justify-content: space-between;
 		width: 95%;
+
+		.table-detail-title {
+			margin-top: 1vh;
+			font-size: 18px;
+			color: $primary-font-color-light;
+		}
 
 		.monitoring-dialog-link {
 			color: $secondary-button-color;
@@ -31,12 +37,6 @@ app-cnf-record-detail {
     // Styles for no instances message
     .no-results-container {
 		margin-top: 2vh;
-	}
-
-	.tableDetailTitle {
-		margin-top: 1vh;
-		font-size: 18px;
-		color: $primary-font-color-light;
 	}
 
     table {
