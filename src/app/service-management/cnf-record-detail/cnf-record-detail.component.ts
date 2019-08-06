@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-import { ServiceManagementService } from '../service-management.service';
-import { UtilsService } from '../../shared/services/common/utils.service';
+import { GraphDialogComponent } from '../graph-dialog/graph-dialog.component';
 
 @Component({
 	selector: 'app-cnf-record-detail',
@@ -10,7 +10,6 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class CnfRecordDetailComponent implements OnInit {
-	loading: boolean;
 	_cdus: Array<any>;
 	_instanceUUID: string;
 	_vnfUUID: string;
@@ -40,24 +39,15 @@ export class CnfRecordDetailComponent implements OnInit {
 		this._vnfUUID = vnfUUID;
 	}
 
-	constructor(
-		private serviceManagementService: ServiceManagementService,
-		private utilsService: UtilsService
-	) { }
+	constructor(private graphDialog: MatDialog) { }
 
 	ngOnInit() { }
 
 	async openMonitoringDialog() {
-		this.loading = true;
-		const response = await this.serviceManagementService.getMonitoringMetrics(this._instanceUUID, this._vnfUUID);
-
-		this.loading = false;
-		if (response) {
-			console.log(response);
-
-			// TODO open the specific dialog to show the graphs
-		} else {
-			this.utilsService.openSnackBar('Unable to fetch the monitoring data', '');
-		}
+		this.graphDialog.open(GraphDialogComponent, {
+			data: {
+				instanceUUID: this._instanceUUID, vnfUUID: this._vnfUUID
+			}
+		});
 	}
 }

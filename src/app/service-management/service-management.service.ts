@@ -253,9 +253,16 @@ export class ServiceManagementService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'vnfs' ] ?
-				response[ 'vnfs' ].filter(item => item.vnf_id === functionUUID)
-				: { };
+
+			const result = new Array();
+			if (response[ 'vnfs' ] && response[ 'vnfs' ].length) {
+				const vnfs = response[ 'vnfs' ].filter(item => item.vnf_id === functionUUID);
+				vnfs.forEach(unit => {
+					unit.vdus.forEach(item => result.push({ vduID: item.vdu_id, metrics: item.metrics }));
+				});
+			}
+
+			return result;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

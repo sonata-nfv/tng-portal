@@ -4425,6 +4425,20 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="functionPlaceholder" datatype="html">
+        <source>Function</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/graph-dialog/graph-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metricPlaceholder" datatype="html">
+        <source>Metric</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/graph-dialog/graph-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="showMonitoringGraphs" datatype="html">
         <source>Show monitoring graphs</source>
         <context-group purpose="location">

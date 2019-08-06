@@ -1,0 +1,19 @@
+<button class="close-icon" (click)="close()"><i class="wui wui-times"></i></button>
+
+<h2 mat-dialog-title>Monitoring graphs of the instance</h2>
+
+<mat-dialog-content>
+	<div class="row">
+		<app-select *ngIf="functions.length" class="function-select" placeholder="Function" [list]="functions"
+			(selectEvent)="receiveFunction($event)" i18n-placeholder="@@functionPlaceholder">
+		</app-select>
+
+		<app-select *ngIf="metrics" class="metric-select" placeholder="Metric" [list]="metrics" (selectEvent)="receiveMetric($event)"
+			i18n-placeholder="@@metricPlaceholder">
+		</app-select>
+	</div>
+
+	<iframe *ngIf="canShowGraph()" class="monitoring-graph" frameborder="0" [src]="getGraphUrl()"></iframe>
+</mat-dialog-content>
+
+<app-spinner *ngIf="loading"></app-spinner>
