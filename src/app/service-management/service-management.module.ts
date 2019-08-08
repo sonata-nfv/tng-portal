@@ -20,6 +20,7 @@ import { NsInstanceListComponent } from './ns-instance-list/ns-instance-list.com
 import { NsInstanceDetailComponent } from './ns-instance-detail/ns-instance-detail.component';
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
+import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
 import { RequestListComponent } from './request-list/request-list.component';
 import { RequestDetailComponent } from './request-detail/request-detail.component';
 import { LicenceListComponent } from './license-list/license-list.component';
@@ -39,13 +40,24 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 		NsInstanceDetailComponent,
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
+		GraphDialogComponent,
 		RequestListComponent,
 		RequestDetailComponent,
 		LicenceListComponent,
 		LicenceDetailComponent
 	],
-	entryComponents: [ NsInstantiateDialogComponent ],
-	imports: [ CommonModule, AngularMaterialModule, AppRoutingModule, ReactiveFormsModule, FormsModule, SharedModule ],
+	entryComponents: [
+		NsInstantiateDialogComponent,
+		GraphDialogComponent
+	],
+	imports: [
+		CommonModule,
+		AngularMaterialModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
+		FormsModule,
+		SharedModule
+	],
 	providers: [ ServiceManagementService ]
 })
 export class ServiceManagementModule { }

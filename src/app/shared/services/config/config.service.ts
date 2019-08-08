@@ -46,6 +46,7 @@ export class ConfigService extends Config {
 	tapiSettings = 'settings/wims/tapi';
 	platformSettings = 'settings/platforms';
 	graphs = 'monitoring/graphs';
+	monitoringData = 'monitoring/data/services/';
 
 	private configFile = './config.json';
 

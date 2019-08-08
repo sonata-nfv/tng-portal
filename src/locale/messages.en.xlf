@@ -706,7 +706,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="usernameEmailPlaceholder" datatype="html">
@@ -1496,7 +1496,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="requests" datatype="html">
@@ -2845,7 +2845,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceID" datatype="html">
@@ -4388,7 +4388,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cnfInstances" datatype="html">
@@ -4515,18 +4515,39 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="functionPlaceholder" datatype="html">
+        <source>Function</source><target state="final">Function</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/graph-dialog/graph-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metricPlaceholder" datatype="html">
+        <source>Metric</source><target state="final">Metric</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/graph-dialog/graph-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showMonitoringGraphs" datatype="html">
+        <source>Show monitoring graphs</source><target state="final">Show monitoring graphs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="floatingIp" datatype="html">
         <source>Floating IP</source><target state="final">Floating IP</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="internalIp" datatype="html">
         <source>Internal IP</source><target state="final">Internal IP</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="LicensePlaceholder" datatype="html">

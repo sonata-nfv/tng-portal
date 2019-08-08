@@ -1,7 +1,11 @@
 <div *ngIf="_vdus">
 	<div *ngFor="let vdu of _vdus">
-		<div class="openedDetail" *ngFor="let instance of vdu.vnfc_instance">
-			<span class="tableDetailTitle">Connection Points - {{ vdu.id }} - # {{ instance.vc_id }}</span>
+		<div class="opened-detail" *ngFor="let instance of vdu.vnfc_instance">
+
+			<div class="row">
+				<span class="table-detail-title">Connection Points - {{ vdu.id }} - # {{ instance.vc_id }}</span>
+				<a class="monitoring-dialog-link" (click)="openMonitoringDialog()" i18n="@@showMonitoringGraphs">Show monitoring graphs</a>
+			</div>
 
 			<table mat-table *ngIf="instance.connection_points.length" [dataSource]="instance.connection_points">
 				<ng-container matColumnDef="id">
