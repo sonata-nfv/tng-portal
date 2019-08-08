@@ -448,4 +448,152 @@ export class CommonService {
 		}
 	}
 
+	async getPlatformUptime() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.platformUptime;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'uptime' ] || 'Unknown';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getNSTDNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesTemplates + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getVNFDNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functions + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getNSDNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.services + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getRPDNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePolicies + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getSLADNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slaTemplates + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getRunningSlices() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.slicesInstances + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getRunningNS() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.serviceRecords + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getRunningFunctions() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.functionRecords + `?count`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+
+			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
 }

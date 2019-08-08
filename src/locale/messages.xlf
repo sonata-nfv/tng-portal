@@ -32,7 +32,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
@@ -361,7 +365,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="version" datatype="html">
@@ -504,7 +508,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="status" datatype="html">
@@ -571,7 +575,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="noResultsToDisplay" datatype="html">
@@ -702,7 +706,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
@@ -1343,10 +1347,6 @@
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">145</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="placementPolicy" datatype="html">
         <source>
@@ -1368,6 +1368,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">155</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-list/runtime-policy-list.component.html</context>
@@ -1412,10 +1416,6 @@
           <context context-type="sourcefile">app/menu/menu.component.html</context>
           <context context-type="linenumber">172</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="instances" datatype="html">
         <source>
@@ -1458,36 +1458,99 @@
           <context context-type="linenumber">200</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="vm" datatype="html">
-        <source>VM</source>
+      <trans-unit id="platformMetrics" datatype="html">
+        <source>Platform metrics</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="platform" datatype="html">
-        <source>Platform</source>
+      <trans-unit id="storedDescriptors" datatype="html">
+        <source>Stored descriptors</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slices" datatype="html">
         <source>Slices</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">29</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="slasAndLicensing" datatype="html">
-        <source>SLAs &amp; Licensing</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ns" datatype="html">
+        <source>Network services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/runtime-policy-list/runtime-policy-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slas" datatype="html">
+        <source>SLAs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="runningInstances" datatype="html">
+        <source>Running instances</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="systemUptime" datatype="html">
+        <source>System uptime</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="serviceAlerts" datatype="html">
+        <source>Service alerts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="licenses" datatype="html">
+        <source>Licenses</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="platforms" datatype="html">
@@ -1544,7 +1607,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="host" datatype="html">
@@ -1591,6 +1654,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-slice-template-list/sp-slice-template-list.component.html</context>
           <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="platform" datatype="html">
+        <source>Platform</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="deletePlatform" datatype="html">
@@ -2771,7 +2841,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
@@ -2949,25 +3019,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
           <context context-type="linenumber">63</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ns" datatype="html">
-        <source>Network services</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/runtime-policy-list/runtime-policy-list.component.html</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
-          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="typePlaceholder" datatype="html">
@@ -4287,25 +4338,25 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="noInstancesToDisplay" datatype="html">
         <source>No instances to display</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">99</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cnfInstances" datatype="html">
         <source>CNF instances</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instance-detail/ns-instance-detail.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="eaad1b162a73b5a17502480d5abbeff040864cec" datatype="html">
@@ -4315,17 +4366,6 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <note priority="1" from="description">sm</note>
-      </trans-unit>
-      <trans-unit id="licenses" datatype="html">
-        <source>Licences</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/license-detail/license-detail.component.html</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="customerUsername" datatype="html">
         <source> Customer username </source>
@@ -4411,20 +4451,6 @@
           <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ip" datatype="html">
-        <source>IP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="mac" datatype="html">
-        <source>MAC</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="functionPlaceholder" datatype="html">
         <source>Function</source>
         <context-group purpose="location">
@@ -4442,8 +4468,26 @@
       <trans-unit id="showMonitoringGraphs" datatype="html">
         <source>Show monitoring graphs</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/cnf-record-detail/cnf-record-detail.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ip" datatype="html">
+        <source>IP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mac" datatype="html">
+        <source>MAC</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/vnf-record-detail/vnf-record-detail.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="floatingIp" datatype="html">

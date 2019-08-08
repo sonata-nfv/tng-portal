@@ -13,6 +13,7 @@ export class ConfigService extends Config {
 	services = 'services';
 	requests = 'requests';
 	serviceRecords = 'records/services';
+	platformUptime = 'records/services/uptime';
 	functionRecords = 'records/functions';
 	licenses = 'slas/licenses';
 	buyLicense = 'slas/licenses/buy';
