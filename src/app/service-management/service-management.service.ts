@@ -368,6 +368,7 @@ export class ServiceManagementService {
 					status: response[ 'status' ],
 					type: response[ 'request_type' ],
 					updatedAt: response[ 'updated_at' ],
+					duration: this.parseDuration(response[ 'duration' ]),
 					slaUUID: response[ 'sla_id' ],
 					serviceVendor: response[ 'service' ] ?
 						response[ 'service' ][ 'vendor' ] : null,
@@ -388,6 +389,13 @@ export class ServiceManagementService {
 
 			console.error(error);
 		}
+	}
+
+	private parseDuration(duration) {
+		const result = duration.toFixed(3).toString();
+		const secs = result.split('.')[ 0 ];
+		const ms = result.split('.')[ 1 ] === '000' ? '0' : result.split('.')[ 1 ];
+		return `${ secs } seconds ${ ms } miliseconds`;
 	}
 
 	/**
