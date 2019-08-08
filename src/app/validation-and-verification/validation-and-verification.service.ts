@@ -168,7 +168,9 @@ export class ValidationAndVerificationPlatformService {
 					return {
 						uuid: item.uuid,
 						testUUID: item.test_uuid,
+						testName: item.test_name || 'Unknown',
 						serviceUUID: item.service_uuid,
+						serviceName: item.service_name || 'Unknown',
 						status: item.test_status,
 						required: item.confirm_required
 					};
@@ -196,10 +198,12 @@ export class ValidationAndVerificationPlatformService {
 			return {
 				uuid: response[ 'uuid' ],
 				serviceUUID: response[ 'service_uuid' ],
+				serviceName: response[ 'service_name' ] || 'Unknown',
 				status: response[ 'test_status' ],
 				required: response[ 'confirm_required' ],
 				testSet: response[ 'test_set_uuid' ],
 				testUUID: response[ 'test_uuid' ],
+				testName: response[ 'test_name' ] || 'Unknown',
 				updatedAt: response[ 'updated_at' ]
 			};
 		} catch (error) {

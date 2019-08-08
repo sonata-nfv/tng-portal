@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
-import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
 	selector: 'app-test-plan-list',
@@ -22,7 +21,6 @@ export class TestPlanListComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private utilsService: UtilsService,
-		private commonService: CommonService,
 		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
 	) { }
 
@@ -56,25 +54,11 @@ export class TestPlanListComponent implements OnInit {
 	async requestTestPlans(search?) {
 		this.loading = true;
 		const testPlans = await this.verificationAndValidationPlatformService.getTestPlans(search);
-		const testDescriptors = await this.verificationAndValidationPlatformService.getTests();
-		const nsList = await this.commonService.getNetworkServices('V&V');
 
 		this.loading = false;
-		if (testPlans) {
-			// Additional information to test plans: test descriptor name and network service name
-			testPlans.forEach(plan => {
-				const descriptor = testDescriptors.find(item => plan.testUUID === item.uuid);
-				const testName = descriptor ? descriptor.name : 'Unknown';
-				const ns = nsList.find(item => plan.serviceUUID === item.uuid);
-				const serviceName = ns ? ns.name : 'Unknown';
-
-				return (plan[ 'testdName' ] = testName, plan[ 'serviceName' ] = serviceName);
-			});
-
-			this.testPlans = this.sortTestPlans(testPlans);
-		} else {
-			this.utilsService.openSnackBar('Unable to fetch any test plan', '');
-		}
+		testPlans ?
+			this.testPlans = this.sortTestPlans(testPlans)
+			: this.utilsService.openSnackBar('Unable to fetch any test plan', '');
 	}
 
 	private sortTestPlans(testPlans) {
