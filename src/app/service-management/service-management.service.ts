@@ -9,7 +9,7 @@ import { UtilsService } from '../shared/services/common/utils.service';
 export class ServiceManagementService {
 	authHeaders: HttpHeaders;
 	request_uuid: string;
-	unknown = '?';
+	unknown = '-';
 
 	constructor(
 		private authService: AuthService,
