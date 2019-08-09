@@ -9,7 +9,7 @@ import { UtilsService } from '../shared/services/common/utils.service';
 export class ServiceManagementService {
 	authHeaders: HttpHeaders;
 	request_uuid: string;
-	NA = 'Not available';
+	unknown = '?';
 
 	constructor(
 		private authService: AuthService,
@@ -336,7 +336,7 @@ export class ServiceManagementService {
 				response.map(item => ({
 					requestId: item.id,
 					name: item.name || 'Unknown',
-					serviceName: item[ 'service' ] ? item.service.name : this.NA,
+					duration: item.duration ? this.parseDuration(item.duration) : this.unknown,
 					type: item.request_type,
 					createdAt: item.created_at,
 					status: item.status
@@ -368,7 +368,7 @@ export class ServiceManagementService {
 					status: response[ 'status' ],
 					type: response[ 'request_type' ],
 					updatedAt: response[ 'updated_at' ],
-					duration: this.parseDuration(response[ 'duration' ]),
+					duration: response[ 'duration' ] ? this.parseDuration(response[ 'duration' ]) : this.unknown,
 					slaUUID: response[ 'sla_id' ],
 					serviceVendor: response[ 'service' ] ?
 						response[ 'service' ][ 'vendor' ] : null,
@@ -395,7 +395,7 @@ export class ServiceManagementService {
 		const result = duration.toFixed(3).toString();
 		const secs = result.split('.')[ 0 ];
 		const ms = result.split('.')[ 1 ] === '000' ? '0' : result.split('.')[ 1 ];
-		return `${ secs } seconds ${ ms } miliseconds`;
+		return `${ secs }s ${ ms }ms`;
 	}
 
 	/**
