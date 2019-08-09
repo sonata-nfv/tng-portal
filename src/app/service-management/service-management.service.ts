@@ -394,8 +394,7 @@ export class ServiceManagementService {
 	private parseDuration(duration) {
 		const result = duration.toFixed(3).toString();
 		const secs = result.split('.')[ 0 ];
-		const ms = result.split('.')[ 1 ] === '000' ? '0' : result.split('.')[ 1 ];
-		return `${ secs }s ${ ms }ms`;
+		return `${ secs }s`;
 	}
 
 	/**
