@@ -72,7 +72,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url + this.config.packages + '/' + uuid, { headers: headers }).toPromise();
-			const content = this.getPackageContent(response[ 'pd' ][ 'package_content' ]);
+			const content = this.parsePackageContent(response[ 'pd' ][ 'package_content' ]);
 			const packageData = {
 				uuid: response[ 'uuid' ],
 				name: response[ 'pd' ][ 'name' ],
@@ -94,7 +94,7 @@ export class CommonService {
 		}
 	}
 
-	getPackageContent(content) {
+	private parsePackageContent(content) {
 		const ns = [];
 		const vnf = [];
 		const tests = [];
@@ -437,7 +437,7 @@ export class CommonService {
 		}
 	}
 
-	parseSNSSAI(snssai) {
+	private parseSNSSAI(snssai) {
 		switch (snssai) {
 			case 'eMBB':
 				return 'Enhanced Mobile Broadband slice (eMBB)';
