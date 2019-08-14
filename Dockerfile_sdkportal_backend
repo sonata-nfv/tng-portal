@@ -55,16 +55,19 @@ RUN apt-get install -y \
 
 # install jupyter lab
 RUN pip install jupyterlab
-
-# install jupyter lab extensions
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+# install tng-sdk-project
+RUN pip install git+https://github.com/sonata-nfv/tng-sdk-project.git
 
 # create mount dir
 RUN mkdir /home/sdk
 WORKDIR /home/sdk
 
+EXPOSE 5098
 EXPOSE 8888
 
-# start jupyter notebook and lab (access via /lab endpoint)
-# TODO: disalbe --allow-root
-CMD jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token=''
+# add start script and start
+ADD start-sdk-portal-backend.sh start-sdk-portal-backend.sh
+RUN chmod +x start-sdk-portal-backend.sh
+CMD ./start-sdk-portal-backend.sh
