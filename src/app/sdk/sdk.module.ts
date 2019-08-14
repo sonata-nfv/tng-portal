@@ -11,7 +11,7 @@ import { SdkService } from './sdk.service';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DescriptorGeneratorComponent } from './descriptor-generator/descriptor-generator.component';
 import { DescriptorDisplayerComponent } from './descriptor-displayer/descriptor-displayer.component';
-import { MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 @NgModule({
@@ -28,7 +28,8 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 		SharedModule,
 		ReactiveFormsModule,
 		FormsModule,
-		MatCardModule
+		MatCardModule,
+		MatButtonModule
 	],
 	providers: [SdkService]
 })

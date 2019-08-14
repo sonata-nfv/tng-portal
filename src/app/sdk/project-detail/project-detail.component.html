@@ -3,6 +3,7 @@
 		<mat-card-title>Project: {{project.name}}</mat-card-title>
 		<mat-card-subtitle>UUID: {{project.uuid}}</mat-card-subtitle>
 	</mat-card-header>
+
 	<mat-card-content>
 		<p>Author: {{project.author}}</p>
 		<p>Vendor: {{project.vendor}}</p>
@@ -13,4 +14,9 @@
 			<li *ngFor="let f of project.fileNames">{{f}}</li>
 		</ul>
 	</mat-card-content>
+
+	<mat-card-actions>
+<!--		TODO: use baseip from config not hard-coded!-->
+		<a href="http://192.168.99.100:8888/lab/tree/projects/{{project.uuid}}" target="_blank">Show & Edit</a>
+	</mat-card-actions>
 </mat-card>
