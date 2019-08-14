@@ -53,6 +53,8 @@ export class DescriptorGeneratorComponent implements OnInit {
 			.set('description', this.serviceForm.get('description').value)
 			.set('vnfs', this.serviceForm.get('numberOfVNFs').value);
 
+		this.sdkService.setProjectName(this.serviceForm.get('name').value);
+
 		this.http.post(endpoint,
 			body.toString(),
 			{
@@ -63,7 +65,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 		).subscribe(response => {
 			console.log('UUID of generated project:', response['uuid']);
 			this.sdkService.updateProjectUuid(response['uuid']);
-			// this.sdkService.updateFiles(response['files']);
+			this.sdkService.updateFiles(response['files']);
 			this.router.navigate(['sdk/descriptor-displayer']);
 		});
 	}

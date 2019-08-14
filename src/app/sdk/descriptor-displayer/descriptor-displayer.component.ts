@@ -11,17 +11,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DescriptorDisplayerComponent implements OnInit {
 
+	projectUuid: string;
+	projectName: string;
 	fileUrls = [];
 	fileContents = { };
 	fileNames = { };
 
-	constructor(private sdkService: SdkService, private sanitizer: DomSanitizer,
-				private http: HttpClient) { }
+	constructor(private sdkService: SdkService, private sanitizer: DomSanitizer, private http: HttpClient) { }
 
 	ngOnInit() {
+		this.projectName = this.sdkService.projectName;
+		this.sdkService.currentProjectUuid.subscribe(uuid => this.projectUuid = uuid);
 		this.sdkService.currentFileUrls.subscribe(files => {
 			this.fileUrls = files;
-			this.loadFileContents();
+			// this.loadFileContents();
 			this.getFileNames();
 		});
 	}

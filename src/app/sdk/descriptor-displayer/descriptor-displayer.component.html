@@ -1,12 +1,14 @@
 <h3 class="title3 header-section-name">Display generated descriptors</h3>
 
-
-<div *ngFor='let f of fileUrls'>
-	<mat-expansion-panel>
-		<mat-expansion-panel-header>
-			<mat-panel-title>{{fileNames[f]}}</mat-panel-title>
-		</mat-expansion-panel-header>
-<!--	TODO: nicer display with line breaks and syntax highighting, eg, with google prettify-->
-		{{fileContents[f]}}
-	</mat-expansion-panel>
-</div>
+<mat-card class="project-card">
+	<mat-card-header>
+		<mat-card-title>New Project: {{projectName}}</mat-card-title>
+		<mat-card-subtitle>UUID: {{projectUuid}}</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-content>
+		Generated descriptors:
+		<ul>
+			<li *ngFor="let f of fileUrls">{{fileNames[f]}}</li>
+		</ul>
+	</mat-card-content>
+</mat-card>

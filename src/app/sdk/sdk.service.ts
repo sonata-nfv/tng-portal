@@ -10,6 +10,8 @@ export class SdkService {
 	private projectUuidSource = new BehaviorSubject('');
 	currentProjectUuid = this.projectUuidSource.asObservable();
 
+	projectName = 'default-name';
+
 	constructor() { }
 
 	// set new file URLs
@@ -20,5 +22,9 @@ export class SdkService {
 	// set project UUID
 	updateProjectUuid(uuid: string) {
 		this.projectUuidSource.next(uuid);
+	}
+
+	setProjectName(name: string) {
+		this.projectName = name;
 	}
 }
