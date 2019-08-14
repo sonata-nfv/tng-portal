@@ -1,30 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Project } from './Project';
 
 
 @Injectable()
 export class SdkService {
-	// see guide here: https://angularfirebase.com/lessons/sharing-data-between-angular-components-four-methods/
-	private fileUrlsSource = new BehaviorSubject([]);
-	currentFileUrls = this.fileUrlsSource.asObservable();
-	private projectUuidSource = new BehaviorSubject('');
-	currentProjectUuid = this.projectUuidSource.asObservable();
+	project: Project;
 
-	projectName = 'default-name';
-
-	constructor() { }
-
-	// set new file URLs
-	updateFiles(fileUrls: Array<string>) {
-		this.fileUrlsSource.next(fileUrls);
+	constructor() {
+		this.project = new Project(undefined, undefined, undefined, undefined, undefined, undefined, undefined);
 	}
 
-	// set project UUID
-	updateProjectUuid(uuid: string) {
-		this.projectUuidSource.next(uuid);
-	}
-
-	setProjectName(name: string) {
-		this.projectName = name;
+	newProject(name: string, author: string, vendor: string, description: string, numVnfs: number, uuid: string, fileUrls: Array<string>) {
+		this.project = new Project(name, author, vendor, description, numVnfs, uuid, fileUrls);
 	}
 }

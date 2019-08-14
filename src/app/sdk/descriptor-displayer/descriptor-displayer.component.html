@@ -1,14 +1,3 @@
 <h3 class="title3 header-section-name">Display generated descriptors</h3>
 
-<mat-card class="project-card">
-	<mat-card-header>
-		<mat-card-title>New Project: {{projectName}}</mat-card-title>
-		<mat-card-subtitle>UUID: {{projectUuid}}</mat-card-subtitle>
-	</mat-card-header>
-	<mat-card-content>
-		Generated descriptors:
-		<ul>
-			<li *ngFor="let f of fileUrls">{{fileNames[f]}}</li>
-		</ul>
-	</mat-card-content>
-</mat-card>
+<app-project-detail></app-project-detail>

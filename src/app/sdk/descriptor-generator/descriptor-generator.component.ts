@@ -46,14 +46,19 @@ export class DescriptorGeneratorComponent implements OnInit {
 		const baseip = 'http://192.168.99.100';
 		const endpoint = baseip + ':5098/api/v1/projects';
 
-		const body = new HttpParams()
-			.set('name', this.serviceForm.get('name').value)
-			.set('author', this.serviceForm.get('author').value)
-			.set('vendor', this.serviceForm.get('vendor').value)
-			.set('description', this.serviceForm.get('description').value)
-			.set('vnfs', this.serviceForm.get('numberOfVNFs').value);
+		// get info from form
+		const name = this.serviceForm.get('name').value;
+		const author = this.serviceForm.get('author').value;
+		const vendor = this.serviceForm.get('vendor').value;
+		const description = this.serviceForm.get('description').value;
+		const numVnfs = this.serviceForm.get('numberOfVNFs').value;
 
-		this.sdkService.setProjectName(this.serviceForm.get('name').value);
+		const body = new HttpParams()
+			.set('name', name)
+			.set('author', author)
+			.set('vendor', vendor)
+			.set('description', description)
+			.set('vnfs', numVnfs);
 
 		this.http.post(endpoint,
 			body.toString(),
@@ -63,9 +68,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 					.set('Access-Control-Allow-Origin', baseip + ':5098')
 			}
 		).subscribe(response => {
-			console.log('UUID of generated project:', response['uuid']);
-			this.sdkService.updateProjectUuid(response['uuid']);
-			this.sdkService.updateFiles(response['files']);
+			this.sdkService.newProject(name, author, vendor, description, numVnfs, response['uuid'], response['files']);
 			this.router.navigate(['sdk/descriptor-displayer']);
 		});
 	}
