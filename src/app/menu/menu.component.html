@@ -83,13 +83,13 @@
 
 		<div class="options" *ngIf="menu === 'sdk'">
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-generator' }"
-					(click)="setSection($event, 'sdk-generator')">Descriptor Generation</button>
+					(click)="setSection($event, 'sdk-generator')">New Project</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-edit' }"
-					(click)="setSection($event, 'sdk-edit')">Descriptor Edit</button>
+					(click)="setSection($event, 'sdk-edit')">Edit Projects</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-validation' }"
-					(click)="setSection($event, 'sdk-validation')">Validation</button>
+					(click)="setSection($event, 'sdk-validation')">Project Validation</button>
 			<button class="basic-button" [ngClass]="{ active: section === 'sdk-packaging' }"
-					(click)="setSection($event, 'sdk-packaging')">Packaging</button>
+					(click)="setSection($event, 'sdk-packaging')">Project Packaging</button>
 		</div>
 
 		<div class="options" *ngIf="menu === 'validation-and-verification'">
