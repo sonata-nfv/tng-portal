@@ -1,0 +1,50 @@
+@import "../../../constants.scss";
+app-graph-dialog {
+	position: relative;
+	display: flex;
+	flex: 1 1;
+	flex-direction: column;
+	align-items: center;
+	width: 60vw;
+	min-height: 70vh;
+	background-color: $basic-background-color;
+	color: $secondary-font-color-light;
+
+	.close-icon {
+		right: -5px;
+		top: -10px;
+	}
+
+	.mat-dialog-title {
+		color: $primary-font-color-light;
+		font-size: 17px;
+	}
+
+	.mat-dialog-content {
+    	width: 90%;
+
+		.row {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			overflow-x: hidden;
+
+			.function-select {
+				width: 30vw;
+    			margin-right: 2vw;
+			}
+
+			.metric-select {
+				width: 25vw;
+			}
+		}
+
+		.monitoring-graph {
+			margin-top: 4vh;
+			width: 55vw;
+			height: 45vh;
+		}
+	}
+	
+
+}

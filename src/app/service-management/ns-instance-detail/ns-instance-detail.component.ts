@@ -35,6 +35,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class NsInstanceDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
+	instanceUUID: string;
 	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
 
 	// Detail in row and animations
@@ -71,7 +72,7 @@ export class NsInstanceDetailComponent implements OnInit {
 
 		if (response) {
 			this.detail = response;
-
+			this.instanceUUID = this.detail[ 'uuid' ];
 			if (this.detail[ 'vnf' ]) {
 				const responses = await Promise.all(
 					this.detail[ 'vnf' ].map(item =>
@@ -83,7 +84,6 @@ export class NsInstanceDetailComponent implements OnInit {
 				if (responses) {
 					this.dataSourceVNF.data = responses.filter(instance => instance[ 'vdus' ]);
 					this.dataSourceCNF.data = responses.filter(instance => instance[ 'cdus' ]);
-
 				} else {
 					this.utilsService.openSnackBar('Unable to fetch the VNF instance', '');
 				}

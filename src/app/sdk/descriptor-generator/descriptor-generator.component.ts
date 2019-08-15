@@ -41,25 +41,34 @@ export class DescriptorGeneratorComponent implements OnInit {
 	}
 
 	createService() {
-		const endpoint = 'http://localhost:5098/api/v1/projects';
+		// TODO: move this to a new environment in the environments folder and use angular configuration instead
+		// const baseip = 'http://localhost';
+		const baseip = 'http://192.168.99.100';
+		const endpoint = baseip + ':5098/api/v1/projects';
+
+		// get info from form
+		const name = this.serviceForm.get('name').value;
+		const author = this.serviceForm.get('author').value;
+		const vendor = this.serviceForm.get('vendor').value;
+		const description = this.serviceForm.get('description').value;
+		const numVnfs = this.serviceForm.get('numberOfVNFs').value;
 
 		const body = new HttpParams()
-			.set('name', this.serviceForm.get('name').value)
-			.set('author', this.serviceForm.get('author').value)
-			.set('vendor', this.serviceForm.get('vendor').value)
-			.set('description', this.serviceForm.get('description').value)
-			.set('vnfs', this.serviceForm.get('numberOfVNFs').value);
+			.set('name', name)
+			.set('author', author)
+			.set('vendor', vendor)
+			.set('description', description)
+			.set('vnfs', numVnfs);
 
 		this.http.post(endpoint,
 			body.toString(),
 			{
 				headers: new HttpHeaders()
 					.set('Content-Type', 'application/x-www-form-urlencoded')
-					.set('Access-Control-Allow-Origin', 'http://localhost:5098')
+					.set('Access-Control-Allow-Origin', baseip + ':5098')
 			}
 		).subscribe(response => {
-			console.log('response', response['files']);
-			this.sdkService.updateFiles(response['files']);
+			this.sdkService.newProject(name, author, vendor, description, numVnfs, response['uuid'], response['files']);
 			this.router.navigate(['sdk/descriptor-displayer']);
 		});
 	}

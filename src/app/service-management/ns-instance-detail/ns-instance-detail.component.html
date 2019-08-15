@@ -80,7 +80,8 @@
 			<!-- Expanded Content Column - The detail row is made up of this one column -->
 			<ng-container matColumnDef="expandedDetail">
 				<td mat-cell *matCellDef="let detail">
-					<app-vnf-record-detail [vdus]="recordDetail['vdus']"></app-vnf-record-detail>
+					<app-vnf-record-detail [vdus]="recordDetail['vdus']" [instanceUUID]="instanceUUID" [vnfUUID]="detail.element.uuid">
+					</app-vnf-record-detail>
 				</td>
 			</ng-container>
 
@@ -129,7 +130,8 @@
 			<!-- Expanded Content Column - The detail row is made up of this one column -->
 			<ng-container matColumnDef="expandedDetail">
 				<td mat-cell *matCellDef="let detail">
-					<app-cnf-record-detail [cdus]="recordDetail['cdus']"></app-cnf-record-detail>
+					<app-cnf-record-detail [cdus]="recordDetail['cdus']" [instanceUUID]="instanceUUID" [vnfUUID]="detail.element.uuid">
+					</app-cnf-record-detail>
 				</td>
 			</ng-container>
 

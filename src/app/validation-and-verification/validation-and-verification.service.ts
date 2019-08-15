@@ -255,6 +255,11 @@ export class ValidationAndVerificationPlatformService {
 		}
 	}
 
+	/**
+     * Cancels a test plan scheduled for execution
+     *
+     * @param uuid UUID of the desired test plan
+     */
 	async deleteTestPlan(uuid) {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }`;

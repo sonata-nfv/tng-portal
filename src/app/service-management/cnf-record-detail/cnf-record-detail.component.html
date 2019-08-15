@@ -1,5 +1,9 @@
-<div class="openedDetail">
-	<span class="tableDetailTitle">CDUs</span>
+<div class="opened-detail">
+	<div class="row">
+		<span class="table-detail-title">CDUs</span>
+		<a class="monitoring-dialog-link" (click)="openMonitoringDialog()" i18n="@@showMonitoringGraphs">Show monitoring graphs</a>
+	</div>
+
 	<table mat-table [dataSource]="_cdus">
 		<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>

@@ -47,11 +47,6 @@ app-descriptor-displayer {
     }
 }
 
-.num-vnfs {
-    width: 20px !important;
-    max-width: 20px !important;
-}
-
 .form-header {
     position: relative;
 
@@ -60,40 +55,8 @@ app-descriptor-displayer {
     }
 }
 
-.status {
-    height: 15px;
-    width: 15px;
-    border-width: 1px;
-    border-radius: 50%;
-    border-color: grey;
-    border-style: solid;
-    display: inline-block;
-    position: absolute;
-    right: 0;
-}
-
-.status-error {
-    height: 15px;
-    width: 15px;
-    border-width: 1px;
-    border-radius: 50%;
-    border-color: grey;
-    border-style: solid;
-    display: inline-block;
-    background-color: $form-alert-color;
-    position: absolute;
-    right: 0;
-}
-
-.status-no-error {
-    height: 15px;
-    width: 15px;
-    border-width: 1px;
-    border-radius: 50%;
-    border-color: grey;
-    border-style: solid;
-    display: inline-block;
-    background-color: $secondary-color-light;
-    position: absolute;
-    right: 0;
+.generated-project {
+position: absolute;
+	top: 20%;
+	left: 5%;
 }
