@@ -514,11 +514,11 @@ export class CommonService {
 
 	async getRPDNumber() {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.runtimePolicies + `?count`;
+		const url = this.config.baseSP + this.config.runtimePoliciesActions + `/counter`;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'count' ] || '?';
+			return response || '?';
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
