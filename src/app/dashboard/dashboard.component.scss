@@ -141,7 +141,7 @@ app-dashboard {
 		}
 	}
 
-	// Network services and slices part
+	// Descriptors in the system part
 	.descriptors-information {
 		display: flex;
 		align-items: flex-start;
@@ -162,12 +162,11 @@ app-dashboard {
 		}
 	}
 
+	// Running instances in the system part
 	.running-instances {
 		display: flex;
 		align-items: flex-start;
 		height: 38vh;
 		width: 30vw; 
 	}
-
-
 }

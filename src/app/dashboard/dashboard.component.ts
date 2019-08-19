@@ -12,8 +12,9 @@ import { CommonService } from '../shared/services/common/common.service';
 })
 export class DashboardComponent implements OnInit {
 	minutes = 45;
-	refreshRateGraphs = '30s';
-	refreshRateRequests = 3000;
+	refreshRateGraphs = '60s';
+	refreshRateRequests = 60000;
+	refreshRateSystemUptime = 2000;
 	nsd: string;
 	vnfd: string;
 	uptime: string;
@@ -30,9 +31,8 @@ export class DashboardComponent implements OnInit {
 		private commonService: CommonService) { }
 
 	ngOnInit() {
+		this.getUptime();
 		this.getDashboardData();
-
-
 	}
 
 	getDate() {
@@ -46,8 +46,8 @@ export class DashboardComponent implements OnInit {
 	getGraphUrl(panelId) {
 		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseSP }${ this.config.graphs }/d-solo/sp_dash/sp?orgId=1&` +
 			`panelId=${ panelId }&` +
-			`from=getFifteenMinutesAgo()&` +
-			`to=getDate()&` +
+			`from=${ this.getMinutesAgo(this.minutes) }&` +
+			`to=${ this.getDate() }&` +
 			`var-id=341f4d56-8e66-cfae-6fb3-1143fff11091&` +
 			`var-entity=vm&` +
 			`var-env=pre-int-sp%3A341f4d56-8e66-cfae-6fb3-1143fff11091&` +
@@ -56,8 +56,6 @@ export class DashboardComponent implements OnInit {
 	}
 
 	async getDashboardData() {
-		console.log('requesting everything');
-		this.uptime = await this.commonService.getPlatformUptime();
 		this.nstd = await this.commonService.getNSTDNumber();
 		this.nsd = await this.commonService.getNSDNumber();
 		this.vnfd = await this.commonService.getVNFDNumber();
@@ -67,17 +65,12 @@ export class DashboardComponent implements OnInit {
 		this.runningNS = await this.commonService.getRunningNS();
 		this.runningFunctions = await this.commonService.getRunningFunctions();
 
-		// setTimeout(this.getDashboardData, 50000);
+		setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
 	}
 
+	async getUptime() {
+		this.uptime = await this.commonService.getPlatformUptime();
 
-	// 	async function newCalll () {
-	// console.log('requesting everything')
-	// await llamada1();
-	// await llamada2();
-	// await llamada31();
-	// ….
-	// setTimeout(newCalll, 3000);
-	// }
-	// newCalll();
+		setTimeout(() => { this.getUptime(); }, this.refreshRateSystemUptime);
+	}
 }
