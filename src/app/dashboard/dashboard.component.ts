@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { ConfigService } from '../shared/services/config/config.service';
@@ -10,7 +10,7 @@ import { CommonService } from '../shared/services/common/common.service';
 	styleUrls: [ './dashboard.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 	minutes = 45;
 	refreshRateGraphs = '60s';
 	refreshRateRequests = 60000;
@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
 	runningSlices: string;
 	runningNS: string;
 	runningFunctions: string;
+	getDataTimeOut;
+	getUptimeTimeOut;
 
 	constructor(
 		private sanitizer: DomSanitizer,
@@ -33,6 +35,11 @@ export class DashboardComponent implements OnInit {
 	ngOnInit() {
 		this.getUptime();
 		this.getDashboardData();
+	}
+
+	ngOnDestroy() {
+		clearTimeout(this.getDataTimeOut);
+		clearTimeout(this.getUptimeTimeOut);
 	}
 
 	getDate() {
@@ -65,12 +72,12 @@ export class DashboardComponent implements OnInit {
 		this.runningNS = await this.commonService.getRunningNS();
 		this.runningFunctions = await this.commonService.getRunningFunctions();
 
-		setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
+		this.getDataTimeOut = setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
 	}
 
 	async getUptime() {
 		this.uptime = await this.commonService.getPlatformUptime();
 
-		setTimeout(() => { this.getUptime(); }, this.refreshRateSystemUptime);
+		this.getUptimeTimeOut = setTimeout(() => { this.getUptime(); }, this.refreshRateSystemUptime);
 	}
 }
