@@ -380,7 +380,8 @@ export class ServiceManagementService {
 						response[ 'service' ][ 'uuid' ] : null,
 					blacklist: response[ 'blacklist' ],
 					ingresses: response[ 'ingresses' ],
-					egresses: response[ 'egresses' ]
+					egresses: response[ 'egresses' ],
+					error: response[ 'error' ]
 				} : [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
