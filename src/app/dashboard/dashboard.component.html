@@ -27,29 +27,29 @@
 					<div class="same-row descriptors-row">
 						<div class="text-box small slices">
 							<span class="title" i18n="@@slices">Slices</span>
-							<span class="number">{{ nstd }}</span>
+							<span class="number">{{ dashboardData['nstd'] }}</span>
 						</div>
 
 						<div class="text-box small ns">
 							<span class="title" i18n="@@ns">Network services</span>
-							<span class="number">{{ nsd }}</span>
+							<span class="number">{{ dashboardData['nsd'] }}</span>
 						</div>
 
 						<div class="text-box small vnf">
 							<span class="title" i18n="@@functions">Functions</span>
-							<span class="number">{{ vnfd }}</span>
+							<span class="number">{{ dashboardData['vnfd'] }}</span>
 						</div>
 					</div>
 
 					<div class="same-row descriptors-row centered-row">
 						<div class="text-box small rp">
 							<span class="title" i18n="@@runtimePolicies">Runtime policies</span>
-							<span class="number">{{ rpd }}</span>
+							<span class="number">{{ dashboardData['rpd'] }}</span>
 						</div>
 
 						<div class="text-box small slad">
 							<span class="title" i18n="@@slas">SLAs</span>
-							<span class="number">{{ slad }}</span>
+							<span class="number">{{ dashboardData['slad'] }}</span>
 						</div>
 					</div>
 				</div>
@@ -61,17 +61,17 @@
 				<div class="same-row">
 					<div class="text-box small running-slices">
 						<span class="title" i18n="@@slices">Slices</span>
-						<span class="number">{{ runningSlices }}</span>
+						<span class="number">{{ dashboardData['runningSlices'] }}</span>
 					</div>
 
 					<div class="text-box small running-ns">
 						<span class="title" i18n="@@ns">Network services</span>
-						<span class="number">{{ runningNS }}</span>
+						<span class="number">{{ dashboardData['runningNS'] }}</span>
 					</div>
 
 					<div class="text-box small running-functions">
 						<span class="title" i18n="@@functions">Functions</span>
-						<span class="number">{{ runningFunctions }}</span>
+						<span class="number">{{ dashboardData['runningFunctions'] }}</span>
 					</div>
 				</div>
 			</div>

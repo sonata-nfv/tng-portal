@@ -464,6 +464,19 @@ export class CommonService {
 		}
 	}
 
+	async getDashboardData() {
+		return {
+			nstd: await this.getNSTDNumber() || '?',
+			nsd: await this.getNSDNumber() || '?',
+			vnfd: await this.getVNFDNumber() || '?',
+			rpd: await this.getRPDNumber() || '?',
+			slad: await this.getSLADNumber() || '?',
+			runningSlices: await this.getRunningSlices() || '?',
+			runningNS: await this.getRunningNS() || '?',
+			runningFunctions: await this.getRunningFunctions() || '?'
+		};
+	}
+
 	async getNSTDNumber() {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseSP + this.config.slicesTemplates + `?count`;
@@ -595,5 +608,4 @@ export class CommonService {
 			console.error(error);
 		}
 	}
-
 }

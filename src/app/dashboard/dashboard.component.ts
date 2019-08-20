@@ -12,18 +12,11 @@ import { CommonService } from '../shared/services/common/common.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	minutes = 45;
-	refreshRateGraphs = '60s';
+	refreshRateGraphs = '30s';
 	refreshRateRequests = 60000;
 	refreshRateSystemUptime = 2000;
-	nsd: string;
-	vnfd: string;
+	dashboardData = { };
 	uptime: string;
-	nstd: string;
-	rpd: string;
-	slad: string;
-	runningSlices: string;
-	runningNS: string;
-	runningFunctions: string;
 	getDataTimeOut;
 	getUptimeTimeOut;
 
@@ -63,21 +56,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	async getDashboardData() {
-		this.nstd = await this.commonService.getNSTDNumber();
-		this.nsd = await this.commonService.getNSDNumber();
-		this.vnfd = await this.commonService.getVNFDNumber();
-		this.rpd = await this.commonService.getRPDNumber();
-		this.slad = await this.commonService.getSLADNumber();
-		this.runningSlices = await this.commonService.getRunningSlices();
-		this.runningNS = await this.commonService.getRunningNS();
-		this.runningFunctions = await this.commonService.getRunningFunctions();
-
+		this.dashboardData = await this.commonService.getDashboardData();
 		this.getDataTimeOut = setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
 	}
 
 	async getUptime() {
 		this.uptime = await this.commonService.getPlatformUptime();
-
 		this.getUptimeTimeOut = setTimeout(() => { this.getUptime(); }, this.refreshRateSystemUptime);
 	}
 }
