@@ -18,6 +18,8 @@
 
 	<mat-card-actions>
 <!--		TODO: use baseip from config not hard-coded!-->
-		<a href="http://192.168.99.100:8888/lab/tree/projects/{{project.uuid}}" target="_blank">Show & Edit</a>
+		<div class="button-row">
+			<a mat-raised-button href="http://192.168.99.100:8888/lab/tree/projects/{{project.uuid}}" target="_blank">Show & Edit Project Files</a>
+		</div>
 	</mat-card-actions>
 </mat-card>
