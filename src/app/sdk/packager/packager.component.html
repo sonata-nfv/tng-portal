@@ -4,3 +4,12 @@
 <app-project-detail></app-project-detail>
 
 <button class="package-button" (click)="package()">Start Packaging</button>
+<div>
+	Packaging success:
+	<mat-icon>{{pkgIcon}}</mat-icon>
+</div>
+
+<div>
+	<label for="pkgError">Error output:</label>
+	<textarea id="pkgError">{{pkgError}}</textarea>
+</div>
