@@ -23,5 +23,6 @@
 
 <!--buttons for on-boarding and downloading the package-->
 <!--FIXME: when disabled, the button color should change-->
-<button [class.next-page-button.enabled]="this.pkgSuccess" [class.next-page-button.disabled]="!this.pkgSuccess"
-		(click)="downloadPackage()" [disabled]="!this.pkgSuccess">Download Package</button>
+<!--TODO: add field to specify SP address rather than hard-coding-->
+<button mat-raised-button class="onboard-button" color="primary" (click)="onboardPackage()" [disabled]="!this.pkgSuccess">On-board Package to SP</button>
+<a mat-raised-button routerLink="https://google.com" color="primary">Download Package</a>

@@ -14,6 +14,8 @@ export class PackagerComponent implements OnInit {
 	pkgOutput = 'Packaging not started yet';
 	pkgPath: string;
 	pkgSuccess: boolean;
+	// TODO: move this to a new environment in the environments folder and use angular configuration instead
+	baseip = 'http://192.168.99.100';
 
 	constructor(private sdkService: SdkService, private http: HttpClient) {
 		this.pkgSuccess = false;
@@ -25,13 +27,10 @@ export class PackagerComponent implements OnInit {
 
 	// start packaging
 	package(): void {
-		// TODO: move this to a new environment in the environments folder and use angular configuration instead
-		// const baseip = 'http://localhost';
-		const baseip = 'http://192.168.99.100';
-		const endpoint = baseip + ':5098/api/v1/projects/' + this.projectUuid + '/package';
+		const endpoint = this.baseip + ':5098/api/v1/projects/' + this.projectUuid + '/package';
 		const header = new HttpHeaders()
 			.set('Content-Type', 'application/x-www-form-urlencoded')
-			.set('Access-Control-Allow-Origin', baseip + ':5098');
+			.set('Access-Control-Allow-Origin', this.baseip + ':5098');
 
 		// skip validation if selected (add mat-checkbox)
 		const body = new HttpParams().set('skip_validation', String(this.skipValidation));
@@ -56,10 +55,12 @@ export class PackagerComponent implements OnInit {
 			});
 	}
 
+	onboardPackage(): void {
+		console.log('On-boarding not yet implemented');
+	}
+
 	downloadPackage(): void {
-		// TODO: move this to a new environment in the environments folder and use angular configuration instead
-		const baseip = 'http://192.168.99.100';
-		const endpoint = baseip + ':5098/api/v1/' + this.pkgPath;
+		const endpoint = this.baseip + ':5098/api/v1/' + this.pkgPath;
 		window.open(endpoint);
 	}
 }
