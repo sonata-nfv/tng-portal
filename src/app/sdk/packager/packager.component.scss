@@ -19,8 +19,16 @@ app-packager {
 	height: 40px;
 	font-size: 17px;
 	font-weight: bold;
-	color: $button-basic-font-color;
-	background-color: $primary-button-color-light;
+
+	.enabled {
+		color: $button-basic-font-color;
+		background-color: $primary-button-color-light;
+	}
+
+	.disabled {
+		color: $button-disabled-font-color;
+		background: $secondary-button-color;
+	}
 }
 
 .package-button {

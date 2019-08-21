@@ -12,8 +12,12 @@ export class PackagerComponent implements OnInit {
 	projectUuid: string;
 	skipValidation = false;
 	pkgOutput = 'Packaging not started yet';
+	pkgPath: string;
+	pkgSuccess: boolean;
 
-	constructor(private sdkService: SdkService, private http: HttpClient) { }
+	constructor(private sdkService: SdkService, private http: HttpClient) {
+		this.pkgSuccess = false;
+	}
 
 	ngOnInit() {
 		this.projectUuid = this.sdkService.project.uuid;
@@ -44,9 +48,18 @@ export class PackagerComponent implements OnInit {
 				console.log(response);
 				if (response['error_msg'] == null) {
 					this.pkgOutput = 'Success';
+					this.pkgPath = response['package_path'];
+					this.pkgSuccess = true;
 				} else {
 					this.pkgOutput = response['error_msg'];
 				}
 			});
+	}
+
+	downloadPackage(): void {
+		// TODO: move this to a new environment in the environments folder and use angular configuration instead
+		const baseip = 'http://192.168.99.100';
+		const endpoint = baseip + ':5098/api/v1/' + this.pkgPath;
+		window.open(endpoint);
 	}
 }

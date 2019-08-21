@@ -5,6 +5,7 @@
 	<app-project-detail></app-project-detail>
 </div>
 
+<!--elements for packaging-->
 <div>
 	<mat-form-field class="package-fields">
 		<mat-label>Packaging output:</mat-label>
@@ -20,3 +21,7 @@
 	<button class="package-button" (click)="package()">Start Packaging</button>
 </div>
 
+<!--buttons for on-boarding and downloading the package-->
+<!--FIXME: when disabled, the button color should change-->
+<button [class.next-page-button.enabled]="this.pkgSuccess" [class.next-page-button.disabled]="!this.pkgSuccess"
+		(click)="downloadPackage()" [disabled]="!this.pkgSuccess">Download Package</button>
