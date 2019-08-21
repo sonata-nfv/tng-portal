@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { ConfigService } from '../shared/services/config/config.service';
+import { CommonService } from '../shared/services/common/common.service';
 
 @Component({
 	selector: 'app-dashboard',
@@ -9,36 +10,38 @@ import { ConfigService } from '../shared/services/config/config.service';
 	styleUrls: [ './dashboard.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
-	section = 'vm';
-	minutes = 30;
-	refreshRate = '5s';
+export class DashboardComponent implements OnInit, OnDestroy {
+	refreshRateGraphs = '10s';
+	// refreshRateRequests = 60000;
+	dashboardData = { };
+	uptime: string;
+	// getDataTimeOut;
 
-	constructor(private sanitizer: DomSanitizer, private config: ConfigService) { }
+	constructor(
+		private sanitizer: DomSanitizer,
+		private config: ConfigService,
+		private commonService: CommonService) { }
 
-	ngOnInit() { }
-
-	getDate() {
-		return new Date().getTime();
+	ngOnInit() {
+		this.getDashboardData();
+		// this.getDataTimeOut = setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
 	}
 
-	getMinutesAgo(minutes) {
-		return new Date().getTime() - (minutes * 60);
+	ngOnDestroy() {
+		// clearTimeout(this.getDataTimeOut);
 	}
 
 	getGraphUrl(panelId) {
 		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseSP }${ this.config.graphs }/d-solo/sp_dash/sp?orgId=1&` +
 			`panelId=${ panelId }&` +
-			`from=getFifteenMinutesAgo()&` +
-			`to=getDate()&` +
 			`var-id=341f4d56-8e66-cfae-6fb3-1143fff11091&` +
 			`var-entity=vm&` +
 			`var-env=pre-int-sp%3A341f4d56-8e66-cfae-6fb3-1143fff11091&` +
 			`theme=light&` +
-			`refresh=${ this.refreshRate }`);
+			`refresh=${ this.refreshRateGraphs }`);
 	}
 
-	setSection(e, buttonId) {
-		this.section = buttonId;
+	async getDashboardData() {
+		this.dashboardData = await this.commonService.getDashboardData();
 	}
 }

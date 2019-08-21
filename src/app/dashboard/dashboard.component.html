@@ -1,40 +1,114 @@
-<h3 class="title3 header-section-name">DASHBOARD</h3>
+<div class="all-content">
+	<div class="same-column">
+		<div class="same-column dashboard-platform">
+			<h3 class="title3" i18n="@@platformMetrics">Platform metrics</h3>
 
-<div class="sections-available">
-	<button class="basic-button section" [ngClass]="{ active: section === 'vm' }" (click)="setSection($event, 'vm')" i18n="@@vm">VM</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'platform' }" (click)="setSection($event, 'platform')"
-		i18n="@@platform">Platform</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'services' }" (click)="setSection($event, 'services')"
-		i18n="@@services">Services</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'functions' }" (click)="setSection($event, 'functions')"
-		i18n="@@functions">Functions</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'slices' }" (click)="setSection($event, 'slices')"
-		i18n="@@slices">Slices</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'slas' }" (click)="setSection($event, 'slas')"
-		i18n="@@slasAndLicensing">SLAs & Licensing</button>
-	<button class="basic-button section" [ngClass]="{ active: section === 'policies' }" (click)="setSection($event, 'policies')"
-		i18n="@@policies">Policies</button>
-</div>
+			<div class="same-row">
+				<div class="same-column">
+					<iframe class="platform-disk-usage" frameborder="0" [src]="getGraphUrl(8)"></iframe>
+					<div class="same-row">
+						<iframe class="platform-cpu-usage" frameborder="0" [src]="getGraphUrl(2)"></iframe>
+						<iframe class="platform-memory-usage" frameborder="0" [src]="getGraphUrl(3)"></iframe>
+					</div>
+				</div>
 
-<div class="dashboard vm" *ngIf="section === 'vm'">
-	<div class="line">
-		<iframe class="number-containers" frameborder="0" [src]="getGraphUrl(18)"></iframe>
+				<div class="same-column platform-gauge-graphs">
+					<iframe class="medium-gauge-graph cpu-usage" frameborder="0" [src]="getGraphUrl(17)"></iframe>
+					<iframe class="medium-gauge-graph memory-usage" frameborder="0" [src]="getGraphUrl(20)"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="same-row">
+			<div class="same-column descriptors-information">
+				<h3 class="title3" i18n="@@storedDescriptors">Stored descriptors</h3>
+
+				<div class="same-column">
+					<div class="same-row descriptors-row">
+						<div class="text-box small slices">
+							<span class="title" i18n="@@slices">Slices</span>
+							<span class="number">{{ dashboardData['nstd'] }}</span>
+						</div>
+
+						<div class="text-box small ns">
+							<span class="title" i18n="@@ns">Network services</span>
+							<span class="number">{{ dashboardData['nsd'] }}</span>
+						</div>
+
+						<div class="text-box small vnf">
+							<span class="title" i18n="@@functions">Functions</span>
+							<span class="number">{{ dashboardData['vnfd'] }}</span>
+						</div>
+					</div>
+
+					<div class="same-row descriptors-row centered-row">
+						<div class="text-box small rp">
+							<span class="title" i18n="@@runtimePolicies">Runtime policies</span>
+							<span class="number">{{ dashboardData['rpd'] }}</span>
+						</div>
+
+						<div class="text-box small slad">
+							<span class="title" i18n="@@slas">SLAs</span>
+							<span class="number">{{ dashboardData['slad'] }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="same-column running-instances">
+				<h3 class="title3" i18n="@@runningInstances">Running instances</h3>
+
+				<div class="same-row">
+					<div class="text-box small running-slices">
+						<span class="title" i18n="@@slices">Slices</span>
+						<span class="number">{{ dashboardData['runningSlices'] }}</span>
+					</div>
+
+					<div class="text-box small running-ns">
+						<span class="title" i18n="@@ns">Network services</span>
+						<span class="number">{{ dashboardData['runningNS'] }}</span>
+					</div>
+
+					<div class="text-box small running-functions">
+						<span class="title" i18n="@@functions">Functions</span>
+						<span class="number">{{ dashboardData['runningFunctions'] }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="line">
-		<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(17)"></iframe>
-		<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(20)"></iframe>
-		<iframe class="disk-usage" frameborder="0" [src]="getGraphUrl(19)"></iframe>
-	</div>
-</div>
+	<div class="same-column">
+		<div class="second-column dashboard-system">
+			<h3 class="title3" i18n="@@systemUptime">System uptime</h3>
 
-<div class="dashboard platform" *ngIf="section === 'platform'">
-	<div class="line">
-		<iframe class="cpu-usage" frameborder="0" [src]="getGraphUrl(2)"></iframe>
-	</div>
+			<div class="text-box uptime">
+				<span class="number">{{ dashboardData['uptime'] }}</span>
+			</div>
+		</div>
 
-	<div class="line">
-		<iframe class="memory-usage" frameborder="0" [src]="getGraphUrl(3)"></iframe>
-		<iframe class="disk-usage" frameborder="0" [src]="getGraphUrl(8)"></iframe>
+		<div class="second-column dashboard-service-alerts">
+			<h3 class="title3" i18n="@@serviceAlerts">Service alerts</h3>
+
+			<div class="same-row">
+				<iframe class="medium-gauge-graph sla-violations" frameborder="0" [src]="getGraphUrl(26)"></iframe>
+
+				<div class="text-box policy-alerts">
+					<span class="title" i18n="@@policyAlerts">Policy alerts</span>
+					<span class="number">{{ dashboardData['policyAlerts'] }}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="second-column dashboard-licenses">
+			<h3 class="title3" i18n="@@licenses">Licenses</h3>
+
+			<div class="same-row">
+				<iframe class="small-gauge-graph license license-acquired" frameborder="0" [src]="getGraphUrl(23)"></iframe>
+				<iframe class="small-gauge-graph license license-expired" frameborder="0" [src]="getGraphUrl(24)"></iframe>
+			</div>
+
+			<iframe class="small-gauge-graph license license-utilized" frameborder="0" [src]="getGraphUrl(25)"></iframe>
+		</div>
 	</div>
 </div>
