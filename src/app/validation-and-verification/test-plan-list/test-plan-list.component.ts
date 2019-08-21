@@ -103,11 +103,6 @@ export class TestPlanListComponent implements OnInit {
 
 	}
 
-	isActiveRow(row) {
-		const status = row.status.toUpperCase();
-		return status !== 'COMPLETED';
-	}
-
 	canShowMessage() {
 		return (!this.testPlans || !this.testPlans.length) && !this.loading;
 	}
