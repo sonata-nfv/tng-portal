@@ -533,7 +533,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response || '?';
+			return response.toString() || '?';
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -617,7 +617,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response || '?';
+			return response.toString() || '?';
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
