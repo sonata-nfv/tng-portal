@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
 	selector: 'app-packager',
 	templateUrl: './packager.component.html',
-	styleUrls: ['./packager.component.scss']
+	styleUrls: ['./packager.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class PackagerComponent implements OnInit {
 
@@ -11,5 +12,4 @@ export class PackagerComponent implements OnInit {
 
 	ngOnInit() {
 	}
-
 }

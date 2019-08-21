@@ -1,1 +1,56 @@
-//placholder
+@import "../../../constants.scss";
+
+app-packager {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	align-items: center;
+	width: auto;
+	height: 100%;
+	background-color: $basic-background-color;
+
+	.title1 {
+		margin: 0;
+		width: 40%;
+
+		.mat-form-field-infix {
+			border-top: 0;
+		}
+
+		&.mat-form-field-should-float {
+			.mat-form-field-label-wrapper {
+				display: none;
+			}
+		}
+	}
+
+	.template-form {
+		width: 60vw;
+
+		.regular-input {
+			width: 20vw;
+		}
+
+		.description {
+			width: 100%;
+
+			.description-title {
+				margin-top: 2vh;
+			}
+		}
+
+		app-select {
+			width: 28vw;
+			margin-right: 30px;
+		}
+	}
+}
+
+.form-header {
+	position: relative;
+
+	.title2 {
+		display: inline;
+	}
+}

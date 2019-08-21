@@ -77,6 +77,7 @@ import { LicenceDetailComponent } from './service-management/license-detail/lice
 import { MainPageComponent } from './sdk/main-page/main-page.component';
 import { DescriptorGeneratorComponent } from './sdk/descriptor-generator/descriptor-generator.component';
 import { DescriptorDisplayerComponent } from './sdk/descriptor-displayer/descriptor-displayer.component';
+import { PackagerComponent } from './sdk/packager/packager.component';
 
 
 const routes: Routes = [
@@ -223,7 +224,8 @@ const routes: Routes = [
 			// SDK
 			{ path: 'sdk', component: MainPageComponent },
 			{ path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
-			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent }
+			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent },
+			{ path: 'sdk/packager', component: PackagerComponent }
 		]
 	},
 ];

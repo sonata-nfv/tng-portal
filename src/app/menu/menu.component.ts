@@ -158,6 +158,9 @@ export class MenuComponent implements OnInit, OnDestroy {
 			case 'sdk-edit':
 				this.router.navigate(['sdk/descriptor-displayer']);
 				break;
+			case 'sdk-packaging':
+				this.router.navigate(['sdk/packager']);
+				break;
 		}
 		this.section = buttonId;
 	}

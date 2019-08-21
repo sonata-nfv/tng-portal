@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DescriptorGeneratorComponent } from './descriptor-generator/descriptor-generator.component';
 import { DescriptorDisplayerComponent } from './descriptor-displayer/descriptor-displayer.component';
+import { PackagerComponent } from './packager/packager.component';
 
 const routes: Routes = [
 	{
@@ -18,6 +19,9 @@ const routes: Routes = [
 			}, {
 				path: 'descriptor-displayer',
 				component: DescriptorDisplayerComponent
+			}, {
+				path: 'packager',
+				component: PackagerComponent
 			}
 		]
 	}
