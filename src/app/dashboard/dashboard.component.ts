@@ -12,7 +12,7 @@ import { CommonService } from '../shared/services/common/common.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	minutes = 30;
-	refreshRateGraphs = '10s';
+	refreshRateGraphs = '30s';
 	// refreshRateRequests = 60000;
 	dashboardData = { };
 	uptime: string;
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	getMinutesAgo(minutes) {
-		return new Date().getTime() - (minutes * 60);
+		return new Date().getTime() - (minutes * 60000);
 	}
 
 	getGraphUrl(panelId) {
