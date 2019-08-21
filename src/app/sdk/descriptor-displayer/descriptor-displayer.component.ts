@@ -12,7 +12,7 @@ export class DescriptorDisplayerComponent implements OnInit {
 
 	ngOnInit() { }
 
-	package(): void {
-		this.router.navigate(['sdk/packager']);
-	}
+	// package(): void {
+	// 	this.router.navigate(['sdk/packager']);
+	// }
 }
