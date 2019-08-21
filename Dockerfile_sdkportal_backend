@@ -58,6 +58,8 @@ RUN pip install jupyterlab
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # install sdk tools
+# no-cache from here on: simply change arg value to avoid caching
+ARG CACHEBUST=2
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-project.git
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-validation.git
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-package.git
