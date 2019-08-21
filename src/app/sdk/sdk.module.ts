@@ -10,13 +10,15 @@ import { DescriptorGeneratorComponent } from './descriptor-generator/descriptor-
 import { DescriptorDisplayerComponent } from './descriptor-displayer/descriptor-displayer.component';
 import { MatButtonModule, MatCardModule } from '@angular/material';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { PackagerComponent } from './packager/packager.component';
 
 @NgModule({
 	declarations: [
 		MainPageComponent,
 		DescriptorGeneratorComponent,
 		DescriptorDisplayerComponent,
-		ProjectDetailComponent
+		ProjectDetailComponent,
+		PackagerComponent
 	],
 	imports: [
 		CommonModule,
