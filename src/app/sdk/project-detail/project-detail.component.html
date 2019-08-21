@@ -36,9 +36,9 @@
 		</div>
 
 		<div class="button-row">
-			<button mat-raised-button [disabled]="!projectLoaded()">Package</button>
-			<button mat-raised-button [disabled]="!projectLoaded()">Download Package</button>
-			<button mat-raised-button [disabled]="!projectLoaded()">On-board Package</button>
+			<button mat-raised-button [disabled]="!projectLoaded()" (click)="package()">Package</button>
+			<a mat-raised-button [disabled]="!pkgSuccess" href="{{baseip}}:5098/api/v1/{{pkgPath}}">Download Package</a>
+			<button mat-raised-button [disabled]="!pkgSuccess" (click)="onboardPackage()">On-board Package</button>
 		</div>
 	</mat-card-actions>
 </mat-card>
