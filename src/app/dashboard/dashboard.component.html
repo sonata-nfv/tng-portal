@@ -82,7 +82,7 @@
 		<div class="second-column dashboard-system">
 			<h3 class="title3" i18n="@@systemUptime">System uptime</h3>
 
-			<div class="text-box medium uptime">
+			<div class="text-box uptime">
 				<span class="number">{{ dashboardData['uptime'] }}</span>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 			<div class="same-row">
 				<iframe class="medium-gauge-graph sla-violations" frameborder="0" [src]="getGraphUrl(26)"></iframe>
 
-				<div class="text-box medium">
+				<div class="text-box policy-alerts">
 					<span class="title" i18n="@@policyAlerts">Policy alerts</span>
 					<span class="number">{{ dashboardData['policyAlerts'] }}</span>
 				</div>

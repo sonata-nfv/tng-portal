@@ -61,7 +61,6 @@ app-dashboard {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-evenly;
 		color: $graphs-font-color;
 
 		&.small {
@@ -69,14 +68,10 @@ app-dashboard {
     		width: 8vw;
 		}
 
-		&.medium {
-			height: 10vh;
-			width: 12vw;
-		}
-
 		.title {
     		font-weight: 500;
 			font-size: 15px;
+			margin-bottom: 2vh;
 		}
 
 		.number {
@@ -89,7 +84,9 @@ app-dashboard {
 		height: 26vh;
 
 		.uptime {
+			justify-content: space-evenly;
 			height: 100%;
+			width: 23vw;
 		}
 	}
 
@@ -100,6 +97,15 @@ app-dashboard {
 
 		.sla-violations {
 			margin-right: 1vw;
+		}
+
+		.policy-alerts {
+			height: 100%;
+			width: 12vw;
+
+			.title {
+				margin-bottom: 5vh;
+			}
 		}
 	}
 
