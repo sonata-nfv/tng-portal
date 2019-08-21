@@ -1,19 +1,22 @@
 <h3 class="title3 header-section-name">Create new NFV Package</h3>
 <h2 class="title2">Package NFV Project</h2>
 
-<app-project-detail></app-project-detail>
+<div>
+	<app-project-detail></app-project-detail>
+</div>
+
+<div>
+	<mat-form-field class="package-fields">
+		<mat-label>Packaging output:</mat-label>
+		<textarea matInput>{{pkgOutput}}</textarea>
+	</mat-form-field>
+</div>
 
 <div>
 	<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
-	<button class="package-button" (click)="package()">Start Packaging</button>
 </div>
 
 <div>
-	Packaging success:
-	<mat-icon>{{pkgIcon}}</mat-icon>
+	<button class="package-button" (click)="package()">Start Packaging</button>
 </div>
 
-<mat-form-field>
-	<mat-label>Error output:</mat-label>
-	<textarea matInput>{{pkgError}}</textarea>
-</mat-form-field>

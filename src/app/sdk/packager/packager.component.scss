@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "../../../constants.scss";
 
 app-packager {
@@ -32,4 +31,8 @@ app-packager {
 	font-weight: bold;
 	color: $button-basic-font-color;
 	background-color: $primary-button-color-light;
+}
+
+.package-fields {
+	width: 500px;
 }

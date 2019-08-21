@@ -11,8 +11,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class PackagerComponent implements OnInit {
 	projectUuid: string;
 	skipValidation = false;
-	pkgIcon = '';
-	pkgError = '';
+	pkgOutput = 'Packaging not started yet';
 
 	constructor(private sdkService: SdkService, private http: HttpClient) { }
 
@@ -34,22 +33,19 @@ export class PackagerComponent implements OnInit {
 		const body = new HttpParams().set('skip_validation', String(this.skipValidation));
 
 		// update icon to show progress circle
-		this.pkgIcon = 'loop';
 		if (this.skipValidation) {
-			this.pkgError = 'Packaging without validation...';
+			this.pkgOutput = 'Packaging without validation...';
 		} else {
-			this.pkgError = 'Valdiating and packaging...';
+			this.pkgOutput = 'Valdiating and packaging...';
 		}
 
 		this.http.post(endpoint, body.toString(), { headers: header })
 			.subscribe(response => {
 				console.log(response);
 				if (response['error_msg'] == null) {
-					this.pkgIcon = 'done';
-					this.pkgError = 'Success';
+					this.pkgOutput = 'Success';
 				} else {
-					this.pkgIcon = 'error';
-					this.pkgError = response['error_msg'];
+					this.pkgOutput = response['error_msg'];
 				}
 			});
 	}
