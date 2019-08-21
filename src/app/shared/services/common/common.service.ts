@@ -527,7 +527,7 @@ export class CommonService {
 
 	async getRPDNumber() {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.runtimePoliciesActions + `/counter`;
+		const url = this.config.baseSP + this.config.runtimePolicies + `/counter`;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -600,6 +600,22 @@ export class CommonService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 
 			return response[ 'count' ] || '?';
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	async getPolicyAlertsNumber() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesActions + `/counter`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response || '?';
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

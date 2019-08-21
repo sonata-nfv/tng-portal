@@ -92,8 +92,11 @@
 
 			<div class="same-row">
 				<iframe class="medium-gauge-graph sla-violations" frameborder="0" [src]="getGraphUrl(26)"></iframe>
-				<!-- TODO include policy alerts. panos/felipe will provide -->
-				<iframe class="medium-gauge-graph policy-alerts" frameborder="0" [src]="getGraphUrl(26)"></iframe>
+
+				<div class="text-box medium">
+					<span class="title" i18n="@@policyAlerts">Policy alerts</span>
+					<span class="number">{{ dashboardData['policyAlerts'] }}</span>
+				</div>
 			</div>
 		</div>
 
