@@ -25,11 +25,13 @@
 		<mat-divider class="space-divider"></mat-divider>
 
 		<mat-form-field class="package-fields">
-			<textarea matInput>Packaging output. Packaging not yet started.</textarea>
+			<textarea matInput>{{pkgOutput}}</textarea>
 		</mat-form-field>
 	</mat-card-content>
 
 	<mat-card-actions>
+		<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
+
 		<div class="button-row">
 			<a mat-raised-button href="{{baseip}}:8888/lab/tree/projects/{{project.uuid}}"
 			   target="_blank" [disabled]="!projectLoaded()">Show & Edit Project Files</a>
