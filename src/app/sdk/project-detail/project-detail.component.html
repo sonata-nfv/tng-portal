@@ -30,15 +30,15 @@
 	</mat-card-content>
 
 	<mat-card-actions>
-<!--		TODO: use baseip from config not hard-coded!-->
 		<div class="button-row">
-			<a mat-raised-button href="http://192.168.99.100:8888/lab/tree/projects/{{project.uuid}}" target="_blank">Show & Edit Project Files</a>
+			<a mat-raised-button href="{{baseip}}:8888/lab/tree/projects/{{project.uuid}}"
+			   target="_blank" [disabled]="!projectLoaded()">Show & Edit Project Files</a>
 		</div>
 
 		<div class="button-row">
-			<button mat-raised-button>Package</button>
-			<button mat-raised-button>Download Package</button>
-			<button mat-raised-button>On-board Package</button>
+			<button mat-raised-button [disabled]="!projectLoaded()">Package</button>
+			<button mat-raised-button [disabled]="!projectLoaded()">Download Package</button>
+			<button mat-raised-button [disabled]="!projectLoaded()">On-board Package</button>
 		</div>
 	</mat-card-actions>
 </mat-card>
