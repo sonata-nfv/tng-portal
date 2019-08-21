@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class PackagerComponent implements OnInit {
 	projectUuid: string;
+	skipValidation = false;
 	pkgIcon = '';
 	pkgError = '';
 
@@ -29,12 +30,16 @@ export class PackagerComponent implements OnInit {
 			.set('Content-Type', 'application/x-www-form-urlencoded')
 			.set('Access-Control-Allow-Origin', baseip + ':5098');
 
-		// TODO: skip validation if selected (add mat-checkbox)
-		const body = new HttpParams().set('skip_validation', 'true');
+		// skip validation if selected (add mat-checkbox)
+		const body = new HttpParams().set('skip_validation', String(this.skipValidation));
 
 		// update icon to show progress circle
-		this.pkgIcon = 'autorenew';
-		this.pkgError = 'Packaging...';
+		this.pkgIcon = 'loop';
+		if (this.skipValidation) {
+			this.pkgError = 'Packaging without validation...';
+		} else {
+			this.pkgError = 'Valdiating and packaging...';
+		}
 
 		this.http.post(endpoint, body.toString(), { headers: header })
 			.subscribe(response => {
