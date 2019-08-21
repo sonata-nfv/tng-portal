@@ -12,13 +12,11 @@ import { CommonService } from '../shared/services/common/common.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	minutes = 45;
-	refreshRateGraphs = '30s';
+	refreshRateGraphs = '1m';
 	refreshRateRequests = 60000;
-	refreshRateSystemUptime = 2000;
 	dashboardData = { };
 	uptime: string;
 	getDataTimeOut;
-	getUptimeTimeOut;
 
 	constructor(
 		private sanitizer: DomSanitizer,
@@ -26,13 +24,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		private commonService: CommonService) { }
 
 	ngOnInit() {
-		this.getUptime();
 		this.getDashboardData();
 	}
 
 	ngOnDestroy() {
 		clearTimeout(this.getDataTimeOut);
-		clearTimeout(this.getUptimeTimeOut);
 	}
 
 	getDate() {
@@ -58,10 +54,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	async getDashboardData() {
 		this.dashboardData = await this.commonService.getDashboardData();
 		this.getDataTimeOut = setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
-	}
-
-	async getUptime() {
-		this.uptime = await this.commonService.getPlatformUptime();
-		this.getUptimeTimeOut = setTimeout(() => { this.getUptime(); }, this.refreshRateSystemUptime);
 	}
 }
