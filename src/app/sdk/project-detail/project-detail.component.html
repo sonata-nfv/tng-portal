@@ -25,8 +25,7 @@
 		<mat-divider class="space-divider"></mat-divider>
 
 		<mat-form-field class="package-fields">
-			<mat-label>Packaging output:</mat-label>
-			<textarea matInput>test</textarea>
+			<textarea matInput>Packaging output. Packaging not yet started.</textarea>
 		</mat-form-field>
 	</mat-card-content>
 
@@ -34,6 +33,12 @@
 <!--		TODO: use baseip from config not hard-coded!-->
 		<div class="button-row">
 			<a mat-raised-button href="http://192.168.99.100:8888/lab/tree/projects/{{project.uuid}}" target="_blank">Show & Edit Project Files</a>
+		</div>
+
+		<div class="button-row">
+			<button mat-raised-button>Package</button>
+			<button mat-raised-button>Download Package</button>
+			<button mat-raised-button>On-board Package</button>
 		</div>
 	</mat-card-actions>
 </mat-card>

@@ -6,23 +6,23 @@
 </div>
 
 <!--elements for packaging-->
-<div>
-	<mat-form-field class="package-fields">
-		<mat-label>Packaging output:</mat-label>
-		<textarea matInput>{{pkgOutput}}</textarea>
-	</mat-form-field>
-</div>
+<!--<div>-->
+<!--	<mat-form-field class="package-fields">-->
+<!--		<mat-label>Packaging output:</mat-label>-->
+<!--		<textarea matInput>{{pkgOutput}}</textarea>-->
+<!--	</mat-form-field>-->
+<!--</div>-->
 
-<div>
-	<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
-</div>
+<!--<div>-->
+<!--	<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>-->
+<!--</div>-->
 
-<div>
-	<button class="package-button" (click)="package()">Start Packaging</button>
-</div>
+<!--<div>-->
+<!--	<button class="package-button" (click)="package()">Start Packaging</button>-->
+<!--</div>-->
 
 <!--buttons for on-boarding and downloading the package-->
 <!--FIXME: when disabled, the button color should change-->
 <!--TODO: add field to specify SP address rather than hard-coding-->
-<button mat-raised-button class="onboard-button" color="primary" (click)="onboardPackage()" [disabled]="!this.pkgSuccess">On-board Package to SP</button>
-<a mat-raised-button routerLink="https://google.com" color="primary">Download Package</a>
+<!--<button mat-raised-button class="onboard-button" color="primary" (click)="onboardPackage()" [disabled]="!this.pkgSuccess">On-board Package to SP</button>-->
+<!--<a mat-raised-button class="download-button" href="https://www.google.com" color="primary">Download Package</a>-->
