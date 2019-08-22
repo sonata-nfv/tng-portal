@@ -8,7 +8,16 @@ import { SdkService } from './sdk.service';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DescriptorGeneratorComponent } from './descriptor-generator/descriptor-generator.component';
 import { DescriptorDisplayerComponent } from './descriptor-displayer/descriptor-displayer.component';
-import { MatButtonModule, MatCardModule } from '@angular/material';
+import {
+	MatButtonModule,
+	MatCardModule,
+	MatIconModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatCheckboxModule,
+	MatDividerModule, MatListModule, MatTreeModule, MatExpansionModule
+} from '@angular/material';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 @NgModule({
@@ -26,7 +35,16 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 		ReactiveFormsModule,
 		FormsModule,
 		MatCardModule,
-		MatButtonModule
+		MatButtonModule,
+		MatIconModule,
+		MatFormFieldModule,
+		TextFieldModule,
+		MatInputModule,
+		MatCheckboxModule,
+		MatDividerModule,
+		MatListModule,
+		MatTreeModule,
+		MatExpansionModule
 	],
 	providers: [SdkService]
 })

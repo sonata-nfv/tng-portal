@@ -158,6 +158,12 @@ export class MenuComponent implements OnInit, OnDestroy {
 			case 'sdk-edit':
 				this.router.navigate(['sdk/descriptor-displayer']);
 				break;
+			case 'sdk-jupyter':
+				// open a new tab with the jupyter lab to show all available projects
+				// TODO: don't hard-code ip, but get from environment/config
+				const baseip = 'http://192.168.99.100';
+				window.open(baseip + ':8888/lab/tree/projects', '_blank');
+				break;
 		}
 		this.section = buttonId;
 	}

@@ -56,7 +56,19 @@ app-descriptor-displayer {
 }
 
 .generated-project {
-position: absolute;
+	position: absolute;
 	top: 20%;
 	left: 5%;
+}
+
+.next-page-button {
+	position: absolute;
+	right: 3%;
+	bottom: 3%;
+
+	height: 40px;
+	font-size: 17px;
+	font-weight: bold;
+	color: $button-basic-font-color;
+	background-color: $primary-button-color-light;
 }

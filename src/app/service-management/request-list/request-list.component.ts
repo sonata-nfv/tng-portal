@@ -13,7 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class RequestListComponent implements OnInit {
 	loading: boolean;
 	requests: Array<object>;
-	displayedColumns = [ 'name', 'serviceName', 'createdAt', 'type', 'status' ];
+	displayedColumns = [ 'name', 'createdAt', 'type', 'duration', 'status' ];
 	searchText: string;
 
 	constructor(

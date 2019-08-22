@@ -13,6 +13,7 @@ export class ConfigService extends Config {
 	services = 'services';
 	requests = 'requests';
 	serviceRecords = 'records/services';
+	platformUptime = 'records/services/uptime';
 	functionRecords = 'records/functions';
 	licenses = 'slas/licenses';
 	buyLicense = 'slas/licenses/buy';
@@ -46,7 +47,7 @@ export class ConfigService extends Config {
 	tapiSettings = 'settings/wims/tapi';
 	platformSettings = 'settings/platforms';
 	graphs = 'monitoring/graphs';
-	monitoringData = 'monitoring/data/services/';
+	monitoringData = 'monitoring/data/services';
 
 	private configFile = './config.json';
 
