@@ -6,13 +6,19 @@
 </div>
 
 <form class="detail">
-	<mat-form-field *ngIf="detail['uuid']" class="left-column">
-		<input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
-		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
-			i18n-matTooltip="@@copy">
-			<i class="wui wui-copy-alt"></i>
-		</button>
-	</mat-form-field>
+	<div class="same-row">
+		<mat-form-field *ngIf="detail['uuid']" class="left-column">
+			<input matInput placeholder="ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@idPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+				i18n-matTooltip="@@copy">
+				<i class="wui wui-copy-alt"></i>
+			</button>
+		</mat-form-field>
+
+		<mat-form-field *ngIf="detail['duration']" class="right-column">
+			<input matInput placeholder="Duration" value="{{ detail['duration'] }}" disabled i18n-placeholder="@@durationPlaceholder" />
+		</mat-form-field>
+	</div>
 
 	<div class="same-row">
 		<mat-form-field *ngIf="detail['serviceUUID']" class="left-column">
@@ -61,6 +67,13 @@
 		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
+
+	<div class="description" *ngIf="detail['error']">
+		<h4 class="title4" i18n="@@error">Error</h4>
+		<span class="content">
+			<p>{{ detail['error'] }}</p>
+		</span>
+	</div>
 </form>
 
 <app-spinner *ngIf="loading"></app-spinner>
