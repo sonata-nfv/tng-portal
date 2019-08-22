@@ -172,7 +172,8 @@ export class ValidationAndVerificationPlatformService {
 						serviceUUID: item.service_uuid,
 						serviceName: item.service_name || 'Unknown',
 						status: item.test_status,
-						required: item.confirm_required
+						required: item.confirm_required,
+						updatedAt: item.updated_at
 					};
 				}) : [];
 		} catch (error) {

@@ -14,7 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class TestPlanListComponent implements OnInit {
 	loading: boolean;
 	testPlans = new Array();
-	displayedColumns = [ 'testName', 'serviceName', 'status', 'execute', 'stop' ];
+	displayedColumns = [ 'testName', 'serviceName', 'updatedAt', 'status', 'execute', 'stop' ];
 	subscription: Subscription;
 
 	constructor(
