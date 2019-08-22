@@ -134,10 +134,7 @@ const routes: Routes = [
 			{ path: 'validation-and-verification/functions', component: FunctionsComponent },
 			{
 				path: 'validation-and-verification/tests', component: TestsComponent,
-				children: [
-					{ path: ':id', component: TestsDetailComponent },
-					{ path: ':id/results/:results_uuid', component: TestResultsComponent }
-				]
+				children: [ { path: ':id', component: TestsDetailComponent } ]
 			},
 			// Service Platform section
 			{ path: 'service-platform', redirectTo: 'service-platform/packages', pathMatch: 'full' },

@@ -117,6 +117,34 @@ export class ValidationAndVerificationPlatformService {
 	}
 
 	/**
+     * Recovers the list of network services related to a test
+     *
+     * @param uuid UUID of the desired test
+     */
+	async getTestRelatedServices(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlansTests + `/${ uuid }/services`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						vendor: item.nsd.vendor,
+						name: item.nsd.name,
+						version: item.nsd.version
+					};
+				}) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
      * Recovers the results of a test execution
      *
      * @param uuid UUID of the desired test execution

@@ -14,9 +14,10 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 export class TestsDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	executions = new Array();
+	testPlans = new Array();
+	relatedServices = new Array();
 	displayedColumns = [ 'vendor', 'name', 'version' ];
-	displayedColumnsExecutions = [ 'uuid', 'serviceUUID', 'date', 'status' ];
+	displayedColumnsTestPlans = [ 'serviceName', 'updatedAt', 'status' ];
 
 	constructor(
 		private router: Router,
@@ -49,11 +50,17 @@ export class TestsDetailComponent implements OnInit {
 			this.close();
 		}
 
-		const executions = await this.verificationAndValidationPlatformService.getTestExecutions(this.detail[ 'uuid' ]);
+		const relatedServices = await this.verificationAndValidationPlatformService.getTestRelatedServices(this.detail[ 'uuid' ]);
+		if (relatedServices) {
+			this.relatedServices = relatedServices;
+		} else {
+			this.utilsService.openSnackBar('There are no network services related to this test available', '');
+		}
 
+		const testPlans = await this.verificationAndValidationPlatformService.getTestPlans(`?testUuid=${ this.detail[ 'uuid' ] }`);
 		this.loading = false;
-		if (executions) {
-			this.executions = executions;
+		if (testPlans) {
+			this.testPlans = testPlans;
 		} else {
 			this.utilsService.openSnackBar('There are no test executions available', '');
 		}
@@ -80,10 +87,6 @@ export class TestsDetailComponent implements OnInit {
 		response ?
 			this.router.navigate([ 'validation-and-verification/test-plans' ])
 			: this.utilsService.openSnackBar('Unable to execute this test', '');
-	}
-
-	openTestResults(row) {
-		this.router.navigate([ 'results', row[ 'uuid' ] ], { relativeTo: this.route });
 	}
 
 	copyToClipboard(value) {
