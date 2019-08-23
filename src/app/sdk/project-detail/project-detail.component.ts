@@ -17,7 +17,7 @@ export class ProjectDetailComponent implements OnInit {
 	pkgPath = '';
 	pkgSuccess = false;
 
-	constructor(private config: ConfigService, private sdkService: SdkService, private http: HttpClient) { }
+	constructor(public config: ConfigService, private sdkService: SdkService, private http: HttpClient) { }
 
 	ngOnInit() {
 		this.project = this.sdkService.project;
