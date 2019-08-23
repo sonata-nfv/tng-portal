@@ -30,8 +30,8 @@
 # acknowledge the contributions of their colleagues of the SONATA
 # partner consortium (www.5gtango.eu).
 
-# build with "docker build -f Dockerfile_sdkportal_backend -t sonatanfv/sdk-portal-backend ."
-# run with "docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/sdk-portal-backend"
+# build with "docker build -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend ."
+# run with "docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/tng-sdk-portal-backend"
 
 
 FROM python:3.6-slim
@@ -63,7 +63,7 @@ RUN pip install jupyterlab
 
 # install sdk tools
 # no-cache from here on: simply change arg value to avoid caching
-ARG CACHEBUST=1
+ARG CACHEBUST=0
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-project.git
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-validation.git
 RUN pip install git+https://github.com/sonata-nfv/tng-sdk-package.git
