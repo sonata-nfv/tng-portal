@@ -87,10 +87,9 @@
 				<input matInput type="text" placeholder="Duration" formControlName="duration" required i18n-placeholder="@@duration" />
 			</mat-form-field>
 
-			<mat-form-field>
-				<input matInput type="text" placeholder="Duration unit" formControlName="durationUnit" required
-					i18n-placeholder="@@durationUnit" />
-			</mat-form-field>
+			<app-select-uuid class="select" placeholder="Duration unit" [required]=true [list]="durationUnits"
+				(selectEvent)="receiveDurationUnit($event)" i18n-placeholder="@@durationUnit">
+			</app-select-uuid>
 		</div>
 
 		<div class="same-row">
@@ -98,8 +97,13 @@
 				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
 			</app-select-uuid>
 
+			<app-select-uuid class="select left-column" placeholder="Select an operator" [required]=true [list]="thresholds"
+				(selectEvent)="receiveThresholdOperator($event)" i18n-placeholder="@@selectOperatorPlaceholder">
+			</app-select-uuid>
+
 			<mat-form-field>
-				<input matInput type="text" placeholder="Threshold" formControlName="threshold" required i18n-placeholder="@@threshold" />
+				<input matInput type="text" placeholder="Threshold value" formControlName="thresholdValue" required
+					i18n-placeholder="@@thresholdValue" />
 			</mat-form-field>
 		</div>
 

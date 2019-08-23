@@ -34,6 +34,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 	actionsDataSource = new MatTableDataSource;
 	policyRulesDataSource = new MatTableDataSource;
+	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
+	durationUnits = [ { uuid: 'h', name: 'hours' }, { uuid: 'm', name: 'minutes' }, { uuid: 's', name: 'seconds' } ];
 
 	constructor(
 		private router: Router,
@@ -68,6 +70,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			duration: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			durationUnit: new FormControl('', Validators.required),
 			threshold: new FormControl('', Validators.required),
+			thresholdValue: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			condition: new FormControl('', Validators.required)
 		});
 
@@ -184,11 +187,19 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			this.policyForm.get('sla').setValue(sla);
 	}
 
+	receiveDurationUnit(uuid) {
+		this.monitoringRulesForm.get('durationUnit').setValue(uuid);
+	}
+
 	receiveCondition(uuid) {
 		const condition = this.conditions.find(cond => cond.uuid === uuid).condition;
 		this.monitoringRulesForm.get('condition').setValue(condition);
 		// Included first part of the name with VNF:VDU:CONDITION
 		this.monitoringRulesForm.get('name').setValue(uuid);
+	}
+
+	receiveThresholdOperator(operator) {
+		this.monitoringRulesForm.get('threshold').setValue(operator);
 	}
 
 	receivePolicyRuleCondition(uuid) {
@@ -254,14 +265,15 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 	addNewMonitoringRule() {
 		let rules: Array<Object>;
-		const name = this.monitoringRulesForm.get('name').value.concat(':', this.monitoringRulesForm.get('threshold').value.replace(/\s+/g, ''));
+		const threshold = this.monitoringRulesForm.get('threshold').value.concat('', this.monitoringRulesForm.get('thresholdValue').value);
+		const name = this.monitoringRulesForm.get('name').value.concat(':', threshold);
 		const rule = {
 			'name': name,
 			'description': this.monitoringRulesForm.get('description').value,
-			'duration': this.monitoringRulesForm.get('duration').value,
+			'duration': parseInt(this.monitoringRulesForm.get('duration').value, 10),
 			'duration_unit': this.monitoringRulesForm.get('durationUnit').value,
 			'condition': this.monitoringRulesForm.get('condition').value,
-			'threshold': this.monitoringRulesForm.get('threshold').value
+			'threshold': threshold
 		};
 
 		if (this.policyForm.get('monitoringRules').value) {

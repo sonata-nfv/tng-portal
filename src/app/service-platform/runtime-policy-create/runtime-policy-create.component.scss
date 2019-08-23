@@ -88,10 +88,16 @@ app-runtime-policy-create {
 			border-top: 1px solid $border-line-color;
 			border-bottom: 1px solid $border-line-color;
 
+			.same-row .mat-form-field {
+				width: 9vw;
+			}
+
+			.same-row .select .mat-form-field {
+				width: 20vw;
+			}
+
 			.same-row .mat-form-field,
 			.same-row .select {
-				width: 25vw;
-
 				&.left-column {
 					margin-right: 1vw;
 				}
