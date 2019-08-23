@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
 		stage('Setup npm') {
 			steps {
@@ -35,11 +35,26 @@ pipeline {
                 echo 'Test styles and building docker image...'
                 sh 'docker build --no-cache -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
             }
+            // build sdk portal backend image
+            when {
+            	branch 'sdk'
+            }
+            steps {
+            	echo 'Building SDK Portal Backend Docker image...'
+            	sh 'docker build --no-cache -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend .'
+            }
         }
         stage('Publishing') {
             steps {
                 echo 'Publishing docker image....'
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
+            }
+            when {
+            	branch 'sdk'
+            }
+            steps {
+            	echo 'Publishing SDK Portal Backend Docker image...'
+            	sh 'docker push sonatanfv/tng-sdk-portal-backend'
             }
         }
         stage('Deploying in pre-int') {
@@ -51,12 +66,12 @@ pipeline {
                     sh 'ansible-playbook roles/sp.yml -i environments -e "target=pre-int-sp component=portal"'
                     sh 'ansible-playbook roles/vnv.yml -i environments -e "target=pre-int-vnv component=portal"'
                 }
-            }      
+            }
         }
         stage('Deployment in Integration') {
             when {
                 branch 'master'
-            } 
+            }
             steps {
                 sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest registry.sonata-nfv.eu:5000/tng-portal:int'
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal:int'

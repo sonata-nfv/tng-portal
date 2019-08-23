@@ -30,8 +30,8 @@
 # acknowledge the contributions of their colleagues of the SONATA
 # partner consortium (www.5gtango.eu).
 
-# build with "docker build -f Dockerfile-sdk-portal-backend -t sonatanfv/sdk-portal-backend ."
-# run with "docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/sdk-portal-backend"
+# build with "docker build -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend ."
+# run with "docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/tng-sdk-portal-backend"
 
 
 FROM python:3.6-slim
