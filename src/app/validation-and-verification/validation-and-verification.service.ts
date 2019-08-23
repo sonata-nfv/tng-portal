@@ -87,24 +87,22 @@ export class ValidationAndVerificationPlatformService {
 	}
 
 	/**
-     * Recovers the list of test executions for a test
+     * Recovers the list of network services related to a test
      *
      * @param uuid UUID of the desired test
      */
-	async getTestExecutions(uuid) {
+	async getTestRelatedServices(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.testExecutions + '?test_uuid=' + uuid;
+		const url = this.config.baseVNV + this.config.testPlansTests + `/${ uuid }/services`;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response instanceof Array ?
 				response.map(item => {
 					return {
-						uuid: item.uuid,
-						serviceUUID: item.service_uuid,
-						createdAt: item.created_at,
-						testUUID: item.test_uuid,
-						status: item.status
+						vendor: item.nsd.vendor,
+						name: item.nsd.name,
+						version: item.nsd.version
 					};
 				}) : [];
 		} catch (error) {
@@ -172,7 +170,8 @@ export class ValidationAndVerificationPlatformService {
 						serviceUUID: item.service_uuid,
 						serviceName: item.service_name || 'Unknown',
 						status: item.test_status,
-						required: item.confirm_required
+						required: item.confirm_required,
+						updatedAt: item.updated_at
 					};
 				}) : [];
 		} catch (error) {
@@ -204,6 +203,7 @@ export class ValidationAndVerificationPlatformService {
 				testSet: response[ 'test_set_uuid' ],
 				testUUID: response[ 'test_uuid' ],
 				testName: response[ 'test_name' ] || 'Unknown',
+				testResultUuid: response[ 'test_result_uuid' ],
 				updatedAt: response[ 'updated_at' ]
 			};
 		} catch (error) {

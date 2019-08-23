@@ -13,7 +13,6 @@ import { TestPlanListComponent } from './test-plan-list/test-plan-list.component
 import { TestPlanComponent } from './test-plan/test-plan.component';
 import { TestsComponent } from './tests/tests.component';
 import { TestsDetailComponent } from './tests-detail/tests-detail.component';
-import { TestResultsComponent } from './test-results/test-results.component';
 import { VnvPackagesComponent } from './vnv-packages/vnv-packages.component';
 import { VnvPackagesDetailComponent } from './vnv-packages-detail/vnv-packages-detail.component';
 import { VnvNetworkServicesComponent } from './vnv-network-services/vnv-network-services.component';
@@ -25,7 +24,6 @@ import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail
 		TestPlanComponent,
 		TestsComponent,
 		TestsDetailComponent,
-		TestResultsComponent,
 		VnvPackagesComponent,
 		VnvPackagesDetailComponent,
 		VnvNetworkServicesComponent,
