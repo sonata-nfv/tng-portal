@@ -325,7 +325,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		const action = {
 			'action_object': this.actionsForm.get('actionObject').value,
 			'name': this.actionsForm.get('actionName').value,
-			'value': this.actionsForm.get('actionValue').value,
+			'value': this.actionsForm.get('actionValue').value.toString(),
 			'target': {
 				'name': vnfName,
 				'vendor': vnfVendor,
@@ -348,7 +348,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 	resetActionsForm() {
 		this.actionsForm.reset();
-		this.actionsForm.get('actionValue').setValue(1);
+		this.actionsForm.get('actionValue').setValue('1');
 	}
 
 	deleteTarget(element) {
@@ -363,7 +363,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			'name': this.policyRulesForm.get('name').value.replace(/\s+/g, ''),
 			'salience': this.policyRulesForm.get('salience').value,
 			'inertia': {
-				'value': this.policyRulesForm.get('inertia').value,
+				'value': parseInt(this.policyRulesForm.get('inertia').value, 10),
 				'duration_unit': this.policyRulesForm.get('inertiaUnit').value
 			},
 			'conditions': {
