@@ -2,6 +2,7 @@
 [![Join the chat at https://gitter.im/sonata-nfv/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sonata-nfv/Lobby)
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/wiki/images/sonata-5gtango-logo-500px.png" /></p>
+
 # 5GTANGO Portal
 
 This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) Portal.
@@ -11,6 +12,7 @@ The main function of this web application is to provide a method to unify monito
 There is also a version of the Portal for using the 5GTANGO Service Development Kit, which is further described [below](#sdk-portal).
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
+
 ## Dependencies
 
 - Node.js >= v8.9
@@ -78,10 +80,11 @@ By default, if the Portal is launched locally, the used services come from:
 
 - For SP: `http://pre-int-sp-ath.5gtango.eu:32002`
 - For V&V: `http://pre-int-vnv-bcn.5gtango.eu:32002`
+- For SDK: `http://localhost`
 
 ### Menu sections displayed
 
-Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/environments/environment.ts` and in `/src/environments/environment.prod.ts`.
+Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/config.json`.
 
 These are the sections that can be activated:
 
@@ -97,6 +100,10 @@ These are the sections that can be activated:
 ```
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
+
+For SP, V&V, and SDK environments there is already a config predefined that will only display the sections of interest.
+
+*Note: The SDK functionality is currently separated and only available in the [`sdk` branch](https://github.com/sonata-nfv/tng-portal/tree/sdk) of the repository.*
 
 ## SDK Portal
 
