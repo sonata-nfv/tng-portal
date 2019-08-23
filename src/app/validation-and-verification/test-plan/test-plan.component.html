@@ -1,63 +1,63 @@
-<h3 class="title3 header-section-name" *ngIf="detail['uuid']" i18n="@@testPlans">Test plans</h3>
+<h3 class="title3 header-section-name" *ngIf="testPlan['uuid']" i18n="@@testPlans">Test plans</h3>
 
-<div class="title-section" *ngIf="detail['uuid']">
-	<h1 class="title1 title-section-name">{{ detail['uuid'] }}</h1>
+<div class="title-section" *ngIf="testPlan['uuid']">
+	<h1 class="title1 title-section-name">{{ testPlan['uuid'] }}</h1>
 	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
 <form class="detail">
-	<mat-form-field *ngIf="detail['uuid']" class="left-column">
-		<input matInput placeholder="Test plan ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@testPlanIDPlaceholder" />
-		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+	<mat-form-field *ngIf="testPlan['uuid']" class="left-column">
+		<input matInput placeholder="Test plan ID" value="{{ testPlan['uuid'] }}" disabled i18n-placeholder="@@testPlanIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(testPlan['uuid'])"
 			i18n-matTooltip="@@copy">
 			<i class="wui wui-copy-alt"></i>
 		</button>
 	</mat-form-field>
 
-	<mat-form-field *ngIf="detail['testSet']" class="left-column">
-		<input matInput placeholder="Test set" value="{{ detail['testSet'] }}" disabled i18n-placeholder="@@testSetPlaceholder" />
-		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['testSet'])"
+	<mat-form-field *ngIf="testPlan['testSet']" class="left-column">
+		<input matInput placeholder="Test set" value="{{ testPlan['testSet'] }}" disabled i18n-placeholder="@@testSetPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(testPlan['testSet'])"
 			i18n-matTooltip="@@copy">
 			<i class="wui wui-copy-alt"></i>
 		</button>
 	</mat-form-field>
 
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['testUUID']" class="left-column">
-			<input matInput placeholder="Test ID" value="{{ detail['testUUID'] }}" disabled i18n-placeholder="@@testIDPlaceholder" />
-			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['testUUID'])"
+		<mat-form-field *ngIf="testPlan['testUUID']" class="left-column">
+			<input matInput placeholder="Test ID" value="{{ testPlan['testUUID'] }}" disabled i18n-placeholder="@@testIDPlaceholder" />
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(testPlan['testUUID'])"
 				i18n-matTooltip="@@copy">
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
 
-		<mat-form-field *ngIf="detail['testName']">
-			<input matInput placeholder="Test" value="{{ detail['testName'] }}" disabled i18n-placeholder="@@testPlaceholder" />
+		<mat-form-field *ngIf="testPlan['testName']">
+			<input matInput placeholder="Test" value="{{ testPlan['testName'] }}" disabled i18n-placeholder="@@testPlaceholder" />
 		</mat-form-field>
 	</div>
 
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['serviceUUID']" class="left-column">
-			<input matInput placeholder="Service ID" value="{{ detail['serviceUUID'] }}" disabled
+		<mat-form-field *ngIf="testPlan['serviceUUID']" class="left-column">
+			<input matInput placeholder="Service ID" value="{{ testPlan['serviceUUID'] }}" disabled
 				i18n-placeholder="@@serviceIDPlaceholder" />
-			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['serviceUUID'])"
+			<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(testPlan['serviceUUID'])"
 				i18n-matTooltip="@@copy">
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
 
-		<mat-form-field *ngIf="detail['serviceName']">
-			<input matInput placeholder="Service" value="{{ detail['serviceName'] }}" disabled i18n-placeholder="@@servicePlaceholder" />
+		<mat-form-field *ngIf="testPlan['serviceName']">
+			<input matInput placeholder="Service" value="{{ testPlan['serviceName'] }}" disabled i18n-placeholder="@@servicePlaceholder" />
 		</mat-form-field>
 	</div>
 
-	<mat-form-field *ngIf="detail['status']">
-		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
+	<mat-form-field *ngIf="testPlan['status']">
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(testPlan['status']) }}" disabled
 			i18n-placeholder="@@statusPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
-		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(detail['updatedAt']) }}" disabled
+	<mat-form-field class="time-form-field" *ngIf="testPlan['updatedAt']">
+		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(testPlan['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 </form>
@@ -88,6 +88,56 @@
 	</button>
 
 	<span i18n="@@confirmOrCancelExecutionTestPlan">Confirm or cancel the execution of the test plan</span>
+</div>
+
+<!-- Test results -->
+<form class="results" *ngIf="result">
+	<h4 class="title2" i18n="@@results">Results</h4>
+
+	<mat-form-field *ngIf="result['status']">
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(result['status']) }}" disabled
+			i18n-placeholder="@@statusPlaceholder" />
+	</mat-form-field>
+
+	<div class="same-row">
+		<mat-form-field *ngIf="result['startedAt']" class="left-column">
+			<input matInput placeholder="Started at" value="{{  utilsService.formatUTCDate(result['startedAt']) }}" disabled
+				i18n-placeholder="@@startedAtPlaceholder" />
+		</mat-form-field>
+
+		<mat-form-field *ngIf="result['endedAt']">
+			<input matInput placeholder="Ended at" value="{{  utilsService.formatUTCDate(result['endedAt']) }}" disabled
+				i18n-placeholder="@@endedAtPlaceholder" />
+		</mat-form-field>
+	</div>
+</form>
+
+<div class="description" *ngIf="result && result['details']">
+	<div class="description-title">
+		<h4 class="title4" i18n="@@details">Details</h4>
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyJSONToClipboard(result['details'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</div>
+
+	<span class="content">
+		<ngx-json-viewer [expanded]=false [json]="result['details']"></ngx-json-viewer>
+	</span>
+</div>
+
+<div class="description" *ngIf="result && result['results']">
+	<div class="description-title">
+		<h4 class="title4" i18n="@@results">Results</h4>
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyJSONToClipboard(result['results'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</div>
+
+	<span class="content">
+		<ngx-json-viewer [expanded]=false [json]="result['results']"></ngx-json-viewer>
+	</span>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>
