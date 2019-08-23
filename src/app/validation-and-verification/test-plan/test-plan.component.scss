@@ -17,14 +17,18 @@ app-test-plan {
 
 	.detail {
 		width: 55vw;
-		margin-top: 10vh;
-		margin-bottom: 2vh;
+		margin-top: 8vh;
+	}
 
-		.left-column, 
-		.same-row .left-column.mat-form-field {
-			width: 25vw;
-			margin-right: 40px;
-		}
+	.results {
+		width: 55vw;
+		margin-bottom: 2vh;
+	}
+
+	.left-column, 
+	.same-row .left-column.mat-form-field {
+		width: 25vw;
+		margin-right: 40px;
 	}
 
 	.launch, .stop, .double-action-buttons {
@@ -44,4 +48,14 @@ app-test-plan {
 	.icon-button-shadow .wui-check-circle-alt:before {
     	font-size: 27px;
 	}
+
+	.description {
+        width: 55vw;
+		margin-bottom: 5vh;
+
+        .content {
+            min-height: 20vh;
+            max-height: 30vh;
+        }
+    }
 }

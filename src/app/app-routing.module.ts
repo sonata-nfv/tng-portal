@@ -26,7 +26,6 @@ import { TestPlanListComponent } from './validation-and-verification/test-plan-l
 import { TestPlanComponent } from './validation-and-verification/test-plan/test-plan.component';
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
-import { TestResultsComponent } from './validation-and-verification/test-results/test-results.component';
 import { VnvNetworkServicesComponent } from './/validation-and-verification/vnv-network-services/vnv-network-services.component';
 import {
 	VnvNetworkServicesDetailComponent
@@ -134,10 +133,7 @@ const routes: Routes = [
 			{ path: 'validation-and-verification/functions', component: FunctionsComponent },
 			{
 				path: 'validation-and-verification/tests', component: TestsComponent,
-				children: [
-					{ path: ':id', component: TestsDetailComponent },
-					{ path: ':id/results/:results_uuid', component: TestResultsComponent }
-				]
+				children: [ { path: ':id', component: TestsDetailComponent } ]
 			},
 			// Service Platform section
 			{ path: 'service-platform', redirectTo: 'service-platform/packages', pathMatch: 'full' },
