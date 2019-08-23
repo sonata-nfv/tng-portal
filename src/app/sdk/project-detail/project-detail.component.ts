@@ -57,7 +57,33 @@ export class ProjectDetailComponent implements OnInit {
 			});
 	}
 
+	// on-board the package to the currently configured service platform
 	onboardPackage(): void {
-		console.log('On-boarding not yet implemented');
+		const endpoint = this.config.baseSP + this.config.packages;
+		const pkgPath = this.config.baseSDK + ':5098/api/v1/' + this.pkgPath;
+
+		// get package from endpoint
+		this.http.get(pkgPath, { responseType: 'blob' }).subscribe(pkg => {
+			console.log(pkg);
+
+			// set package in form data
+			const formData = new FormData();
+			formData.append('file', pkg, 'package');
+
+			// FIXME: fails at CORS error?
+			// upload package
+			const header = new HttpHeaders().set('Access-Control-Allow-Origin', endpoint);
+			this.http.post(endpoint, formData, { headers: header }).subscribe(response => {
+				console.log(response);
+			});
+		});
+
+		// set package in form data
+		// const formData = new FormData();
+		// formData.append('file', pkgPath, 'package');
+		//
+		// this.http.post(endpoint, formData).subscribe(response => {
+		// 	console.log(response);
+		// });
 	}
 }
