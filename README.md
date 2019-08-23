@@ -78,10 +78,11 @@ By default, if the Portal is launched locally, the used services come from:
 
 - For SP: `http://pre-int-sp-ath.5gtango.eu:32002`
 - For V&V: `http://pre-int-vnv-bcn.5gtango.eu:32002`
+- For SDK: `http://localhost`
 
 ### Menu sections displayed
 
-Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/environments/environment.ts` and in `/src/environments/environment.prod.ts`.
+Depending on the deployed modules in the infraestructure, the menu will display only those available. For that, there is a configuration variable called `features_available` in `/src/config.json`.
 
 These are the sections that can be activated:
 
@@ -101,7 +102,9 @@ These are the sections that can be activated:
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
 
-** Note: For V&V and for SP environments there is already a config predefined that will only display the sections of interest.
+For SP, V&V, and SDK environments there is already a config predefined that will only display the sections of interest.
+
+*Note: The SDK functionality is currently separated and only available in the [`sdk` branch](https://github.com/sonata-nfv/tng-portal/tree/sdk) of the repository.*
 
 ## Documentation
 
