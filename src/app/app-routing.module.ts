@@ -26,7 +26,6 @@ import { TestPlanListComponent } from './validation-and-verification/test-plan-l
 import { TestPlanComponent } from './validation-and-verification/test-plan/test-plan.component';
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
-import { TestResultsComponent } from './validation-and-verification/test-results/test-results.component';
 import { VnvNetworkServicesComponent } from './/validation-and-verification/vnv-network-services/vnv-network-services.component';
 import {
 	VnvNetworkServicesDetailComponent
