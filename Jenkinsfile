@@ -36,7 +36,7 @@ pipeline {
                 sh 'docker build --no-cache -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
             }
         }
-        stage('Build SDK Portal Backend Docker image')
+        stage('Build SDK Portal Backend Docker image') {
             when {
             	branch 'sdk'
             }
@@ -50,7 +50,7 @@ pipeline {
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
             }
         }
-        stage('Publishing SDK Portal Backend Docker image')
+        stage('Publishing SDK Portal Backend Docker image') {
             when {
             	branch 'sdk'
             }
