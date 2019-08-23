@@ -49,6 +49,10 @@ export class ConfigService extends Config {
 	graphs = 'monitoring/graphs';
 	monitoringData = 'monitoring/data/services';
 
+	// IP of SDK backend container
+	baseSDK = 'http://localhost';
+	// baseSDK = 'http://192.168.99.100';
+
 	private configFile = './config.json';
 
 	constructor(private http: HttpClient) {

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../authentication/auth.service';
 import { UtilsService } from '../shared/services/common/utils.service';
+import { ConfigService } from '../shared/services/config/config.service';
 
 @Component({
 	selector: 'app-menu',
@@ -23,6 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 	@ViewChild('sidenav')
 	sideNav: MatSidenav;
 	constructor(
+		private config: ConfigService,
 		private authService: AuthService,
 		private utilsService: UtilsService,
 		private router: Router
@@ -160,9 +162,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 				break;
 			case 'sdk-jupyter':
 				// open a new tab with the jupyter lab to show all available projects
-				// TODO: don't hard-code ip, but get from environment/config
-				const baseip = 'http://192.168.99.100';
-				window.open(baseip + ':8888/lab/tree/projects', '_blank');
+				window.open(this.config.baseSDK + ':8888/lab/tree/projects', '_blank');
 				break;
 		}
 		this.section = buttonId;

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { ControlsValidatorDirective } from '../../shared/utils/controls-validator';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { SdkService } from '../sdk.service';
+import { ConfigService } from '../../shared/services/config/config.service';
 
 @Component({
 	selector: 'app-descriptor-generator',
@@ -18,7 +19,8 @@ export class DescriptorGeneratorComponent implements OnInit {
 	isEmpty = true;
 	section = 'sdk';
 
-	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private sdkService: SdkService) { }
+	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private sdkService: SdkService,
+				private config: ConfigService) { }
 
 	ngOnInit() {
 		this.initForm();
@@ -41,10 +43,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	}
 
 	createService() {
-		// TODO: move this to a new environment in the environments folder and use angular configuration instead
-		// const baseip = 'http://localhost';
-		const baseip = 'http://192.168.99.100';
-		const endpoint = baseip + ':5098/api/v1/projects';
+		const endpoint = this.config.baseSDK + ':5098/api/v1/projects';
 
 		// get info from form
 		const name = this.serviceForm.get('name').value;
@@ -65,7 +64,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 			{
 				headers: new HttpHeaders()
 					.set('Content-Type', 'application/x-www-form-urlencoded')
-					.set('Access-Control-Allow-Origin', baseip + ':5098')
+					.set('Access-Control-Allow-Origin', this.config.baseSDK + ':5098')
 			}
 		).subscribe(response => {
 			this.sdkService.newProject(name, author, vendor, description, numVnfs, response['uuid'], response['files']);
