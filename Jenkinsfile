@@ -35,12 +35,12 @@ pipeline {
                 echo 'Test styles and building docker image...'
                 sh 'docker build --no-cache -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
             }
-            // build sdk portal backend image
+        }
+        stage('Build SDK Portal Backend Docker image')
             when {
             	branch 'sdk'
             }
             steps {
-            	echo 'Building SDK Portal Backend Docker image...'
             	sh 'docker build --no-cache -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend .'
             }
         }
@@ -49,11 +49,12 @@ pipeline {
                 echo 'Publishing docker image....'
                 sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
             }
+        }
+        stage('Publishing SDK Portal Backend Docker image')
             when {
             	branch 'sdk'
             }
             steps {
-            	echo 'Publishing SDK Portal Backend Docker image...'
             	sh 'docker push sonatanfv/tng-sdk-portal-backend'
             }
         }
