@@ -12,7 +12,7 @@ import { ConfigService } from '../../shared/services/config/config.service';
 export class ProjectDetailComponent implements OnInit {
 	project: Project;
 	// packaging related variables
-	skipValidation = true;
+	skipValidation = false;
 	pkgOutput = 'Packaging output. Packaging not yet started.';
 	pkgPath = '';
 	pkgSuccess = false;

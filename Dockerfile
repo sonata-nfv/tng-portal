@@ -32,6 +32,7 @@ COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 # Enable selected environment
 COPY src/config-sp.json /usr/share/nginx/html/
 COPY src/config-vnv.json /usr/share/nginx/html/
+COPY src/config-sdk.json /usr/share/nginx/html/
 COPY src/config.json /usr/share/nginx/html/
 COPY src/entrypoint.sh /
 
