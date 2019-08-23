@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../Project';
 import { SdkService } from '../sdk.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { ConfigService } from '../../shared/services/config/config.service';
 
 @Component({
 	selector: 'app-project-detail',
@@ -9,8 +10,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 	styleUrls: ['./project-detail.component.scss']
 })
 export class ProjectDetailComponent implements OnInit {
-	// TODO: move this to a new environment in the environments folder and use angular configuration instead
-	baseip = 'http://192.168.99.100';
 	project: Project;
 	// packaging related variables
 	skipValidation = true;
@@ -18,7 +17,7 @@ export class ProjectDetailComponent implements OnInit {
 	pkgPath = '';
 	pkgSuccess = false;
 
-	constructor(private sdkService: SdkService, private http: HttpClient) { }
+	constructor(public config: ConfigService, private sdkService: SdkService, private http: HttpClient) { }
 
 	ngOnInit() {
 		this.project = this.sdkService.project;
@@ -30,10 +29,10 @@ export class ProjectDetailComponent implements OnInit {
 	}
 
 	package(): void {
-		const endpoint = this.baseip + ':5098/api/v1/projects/' + this.project.uuid + '/package';
+		const endpoint = this.config.baseSDK + ':5098/api/v1/projects/' + this.project.uuid + '/package';
 		const header = new HttpHeaders()
 			.set('Content-Type', 'application/x-www-form-urlencoded')
-			.set('Access-Control-Allow-Origin', this.baseip + ':5098');
+			.set('Access-Control-Allow-Origin', this.config.baseSDK + ':5098');
 
 		// skip validation if selected (add mat-checkbox)
 		const body = new HttpParams().set('skip_validation', String(this.skipValidation));

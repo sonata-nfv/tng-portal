@@ -64,49 +64,48 @@
 	</span>
 </div>
 
-<div class="description" *ngIf="detail['services']">
-	<h4 class="title4" i18n="@@affectedNetworkServices">Affected network services</h4>
+<div class="internal-table" *ngIf="!loading">
+	<h4 class="title2" i18n="@@affectedNetworkServices">Affected network services</h4>
 
-	<span class="content">
-		<table mat-table [dataSource]="detail['services']">
-			<ng-container matColumnDef="vendor">
-				<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
-				<td mat-cell *matCellDef="let element">{{ element.sVendor }}</td>
-			</ng-container>
+	<table mat-table [dataSource]="relatedServices">
+		<ng-container matColumnDef="vendor">
+			<th mat-header-cell *matHeaderCellDef i18n="@@vendor">Vendor</th>
+			<td mat-cell *matCellDef="let element">{{ element.vendor }}</td>
+		</ng-container>
 
-			<ng-container matColumnDef="name">
-				<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
-				<td mat-cell *matCellDef="let element">{{ element.sName }}</td>
-			</ng-container>
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
+			<td mat-cell *matCellDef="let element">{{ element.name }}</td>
+		</ng-container>
 
-			<ng-container matColumnDef="version">
-				<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
-				<td mat-cell *matCellDef="let element">{{ element.sVersion }}</td>
-			</ng-container>
+		<ng-container matColumnDef="version">
+			<th mat-header-cell *matHeaderCellDef i18n="@@version">Version</th>
+			<td mat-cell *matCellDef="let element">{{ element.version }}</td>
+		</ng-container>
 
-			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-			<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-		</table>
-	</span>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+	</table>
+
+	<div *ngIf="(!relatedServices || !relatedServices.length) && !loading" class="no-results-container">
+		<div class="no-results-line"></div>
+		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+		<div class="no-results-line"></div>
+	</div>
 </div>
 
-<div class="executions" *ngIf="!loading">
-	<h2 class="title2" i18n="@@testExecutions">Test Executions</h2>
+<div class="internal-table" *ngIf="!loading">
+	<h2 class="title2" i18n="@@testPlans">Test plans</h2>
 
-	<table mat-table [dataSource]="executions">
-		<ng-container matColumnDef="uuid">
-			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.uuid }}</td>
+	<table mat-table [dataSource]="testPlans">
+		<ng-container matColumnDef="serviceName">
+			<th mat-header-cell *matHeaderCellDef i18n="@@serviceName">Service name</th>
+			<td mat-cell *matCellDef="let element">{{ element.serviceName }}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="serviceUUID">
-			<th mat-header-cell *matHeaderCellDef i18n="@@serviceID">Service ID</th>
-			<td mat-cell *matCellDef="let element">{{ element.serviceUUID }}</td>
-		</ng-container>
-
-		<ng-container matColumnDef="date">
-			<th mat-header-cell *matHeaderCellDef i18n="@@date">Date</th>
-			<td mat-cell *matCellDef="let element">{{ utilsService.formatUTCDate(element.createdAt) }}</td>
+		<ng-container matColumnDef="updatedAt">
+			<th mat-header-cell *matHeaderCellDef i18n="@@updatedAt">Updated at</th>
+			<td mat-cell *matCellDef="let element">{{ utilsService.formatUTCDate(element.updatedAt) }}</td>
 		</ng-container>
 
 		<ng-container matColumnDef="status">
@@ -114,11 +113,11 @@
 			<td mat-cell *matCellDef="let element">{{ utilsService.capitalizeFirstLetter(element.status) }}</td>
 		</ng-container>
 
-		<tr mat-header-row *matHeaderRowDef="displayedColumnsExecutions"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumnsExecutions" (click)="openTestResults(row)"></tr>
+		<tr mat-header-row *matHeaderRowDef="displayedColumnsTestPlans"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumnsTestPlans"></tr>
 	</table>
 
-	<div *ngIf="(!executions || !executions.length) && !loading" class="no-results-container">
+	<div *ngIf="(!testPlans || !testPlans.length) && !loading" class="no-results-container">
 		<div class="no-results-line"></div>
 		<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
 		<div class="no-results-line"></div>

@@ -33,13 +33,13 @@
 		<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
 
 		<div class="button-row">
-			<a mat-raised-button href="{{baseip}}:8888/lab/tree/projects/{{project.uuid}}"
+			<a mat-raised-button href="{{config.baseSDK}}:8888/lab/tree/projects/{{project.uuid}}"
 			   target="_blank" [disabled]="!projectLoaded()">Show & Edit Project Files</a>
 		</div>
 
 		<div class="button-row">
 			<button mat-raised-button [disabled]="!projectLoaded()" (click)="package()">Package</button>
-			<a mat-raised-button [disabled]="!pkgSuccess" href="{{baseip}}:5098/api/v1/{{pkgPath}}">Download Package</a>
+			<a mat-raised-button [disabled]="!pkgSuccess" href="{{config.baseSDK}}:5098/api/v1/{{pkgPath}}">Download Package</a>
 			<button mat-raised-button [disabled]="!pkgSuccess" (click)="onboardPackage()">On-board Package</button>
 		</div>
 	</mat-card-actions>
