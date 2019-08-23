@@ -2,15 +2,15 @@
 [![Join the chat at https://gitter.im/sonata-nfv/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sonata-nfv/Lobby)
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/wiki/images/sonata-5gtango-logo-500px.png" /></p>
-
 # 5GTANGO Portal
 
 This repository contains an Angular 6 application for the [5GTANGO](http://5gtango.eu) Portal.
 
 The main function of this web application is to provide a method to unify monitoring, user management and interactions with the Validation and Verification Platform, the Service Platform and with the Service Management.
 
-<p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
+There is also a version of the Portal for using the 5GTANGO Service Development Kit, which is further described [below](#sdk-portal).
 
+<p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
 ## Dependencies
 
 - Node.js >= v8.9
@@ -97,6 +97,50 @@ These are the sections that can be activated:
 ```
 
 To remove any of them from the menu just erase the desired item from the configuration variable and compile the project again.
+
+## SDK Portal
+
+The SDK Portal is currently an independent extension to the regular 5GTANGO Portal. It provides a simple graphical user interface for creating new NFV projects, generating and editing corresponding network service and VNF descriptors. These NFV projects can then be then be validated, packaged, and downloaded for further usage. 
+
+The SDK Portal is maintained in the [`sdk` branch](https://github.com/sonata-nfv/tng-portal/tree/sdk). To use it, check out and use the code from that branch for all following commands.
+
+### Running the SDK Backend
+
+The SDK Portal connects to the 5GTANGO SDK tools, which are installed in a dedicated Docker image. To build or pull the image and run at the project root do:
+
+```bash
+# pull from Docker Hub
+[sudo] docker pull sonatanfv/tng-sdk-portal-backend
+# or build locally
+[sudo] docker build --no-cache -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend .
+
+# run
+[sudo] docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/tng-sdk-portal-backend
+```
+
+### Configuring the SDK Portal to Connect to the Backend
+
+The IP address of the SDK backend container needs to be configured in `config.service.ts` before starting the SDK Portal. The default value is `http://localhost` for a locally deployed SDK backend container.
+
+### Running the SDK Portal
+
+The SDK Portal is installed and started similar to the regular 5GTANGO Portal, as described above.
+
+#### Running a Dev Server
+
+```bash
+npm install
+ng serve --open
+```
+
+#### Running in a Docker Container
+
+Important: Set environmental variable `-e PLATFORM=sdk` when running the container.
+
+```bash
+[sudo] docker build -t tng-portal .
+[sudo] docker run -p 80:4200 -e PLATFORM=sdk tng-portal
+```
 
 ## Documentation
 
