@@ -202,6 +202,10 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.monitoringRulesForm.get('threshold').setValue(operator);
 	}
 
+	receiveInertiaUnit(uuid) {
+		this.policyRulesForm.get('inertiaUnit').setValue(uuid);
+	}
+
 	receivePolicyRuleCondition(uuid) {
 		let rules: Array<Object>;
 		const vnf_name = this.monitoringRules.find(item => item.uuid === uuid).vnfName;
@@ -451,6 +455,10 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	canDisableAddNewPolicyRule() {
 		return !this.policyRulesForm.valid || !this.policyRulesForm.get('conditionRules').value ||
 			!this.policyRulesForm.get('conditionRules').value.length;
+	}
+
+	canResetInertiaUnit() {
+		return !this.policyRulesForm.get('inertiaUnit').value;
 	}
 
 	canShowPolicyRuleActionName() {
