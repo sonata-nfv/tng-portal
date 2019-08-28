@@ -43,7 +43,7 @@ Make sure that you have all the dependencies installed. Then, run the following 
 npm install
 ```
 
-## Running a dev server
+## Developing
 
 If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (HTML/CSS/JS) change.
 
@@ -51,7 +51,7 @@ If you just want to test the app, or start developing something you can quickly 
 ng serve --open
 ```
 
-## Running a docker container
+### Running a docker container
 
 If you want to launch a container locally, place yourself in the Dockerfile folder and try the following:
 
@@ -62,17 +62,17 @@ If you want to launch a container locally, place yourself in the Dockerfile fold
 
 The container should be up and running in http://0.0.0.0:80.
 
-### Exposed port in docker container
+#### Exposed port in docker container
 
 The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
 
-### Docker dependencies
+#### Docker dependencies
 
 Make sure you have installed Docker >= 18.06.0-ce
 
 - [https://docs.docker.com/install/](https://docs.docker.com/install/)
 
-## Configuration parameters
+## Configuration
 Portal allows two different configurations: the base URL of the deployment and the displayed sections of the menu.
 
 ### Routes to the services
@@ -161,7 +161,7 @@ The documentation relative to this project can be found in the [Wiki page](https
 
 The tng-gui is published under Apache 2.0 license. Please see the LICENSE file for more details.
 
-#### Lead Developers
+### Lead Developers
 
 The following lead developers are responsible for this repository and have admin rights. They can, for example, merge pull requests.
 
@@ -170,7 +170,7 @@ The following lead developers are responsible for this repository and have admin
 - Daniel Fernandez Calvo (daniel.fernandez@quobis.es)
 - Stefan Schneider (stefan.schneider@upb.de)
 
-#### Feedback-Chanel
+### Feedback-Chanel
 
-- You may use the mailing list [tango-5g-wp2@lists.atosresearch.eu](mailto:tango-5g-wp2@lists.atosresearch.eu)
-- [GitHub issues](https://github.com/sonata-nfv/tng-gui/issues)
+- You may use the mailing list [sonata-dev-list](mailto:sonata-dev@lists.atosresearch.eu)
+- Gitter room [![Gitter](https://badges.gitter.im/sonata-nfv/Lobby.svg)](https://gitter.im/sonata-nfv/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
