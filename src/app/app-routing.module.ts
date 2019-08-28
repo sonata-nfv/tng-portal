@@ -72,7 +72,6 @@ import {
 import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
 
-
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
 	// Use authGuard module to authenticate user in every step
@@ -209,7 +208,9 @@ const routes: Routes = [
 			{
 				path: 'service-management/licenses', component: LicenceListComponent,
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
-			}
+			},
+			// No match in the route sends the user to dashboard again
+			{ path: '**', redirectTo: 'dashboard' }
 		]
 	}
 ];
