@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './auth-guard';
+import { CanDisplayGuard } from './canDisplay-guard';
 
 import { IndexComponent } from './index/index.component';
 
@@ -88,10 +89,11 @@ const routes: Routes = [
 		children: [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{ path: 'dashboard', component: DashboardComponent },
-			{ path: 'users', component: UsersComponent },
+			{ path: 'users', component: UsersComponent, canActivate: [ CanDisplayGuard ], data: { section: 'users' } },
 			// Platforms
 			{
 				path: 'platforms', component: PlatformListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'platforms' },
 				children: [
 					{ path: 'new', component: PlatformComponent },
 					{ path: ':id', component: PlatformComponent }
@@ -99,9 +101,10 @@ const routes: Routes = [
 			},
 			// Settings
 			{ path: 'settings', redirectTo: 'settings/endpoint', pathMatch: 'full' },
-			{ path: 'settings/endpoint', component: EndpointListComponent },
+			{ path: 'settings/endpoint', component: EndpointListComponent, canActivate: [ CanDisplayGuard ], data: { section: 'settings' } },
 			{
 				path: 'settings/vim', component: VimListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'settings' },
 				children: [
 					{ path: 'new', component: VimComponent },
 					{ path: ':id', component: VimComponent }
@@ -109,6 +112,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'settings/wim', component: WimListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'settings' },
 				children: [
 					{ path: 'new', component: WimComponent },
 					{ path: ':id', component: WimComponent }
@@ -118,47 +122,64 @@ const routes: Routes = [
 			{ path: 'validation-and-verification', redirectTo: 'validation-and-verification/test-plans', pathMatch: 'full' },
 			{
 				path: 'validation-and-verification/test-plans', component: TestPlanListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
 				children: [ { path: ':id', component: TestPlanComponent } ]
 			},
 			{
 				path: 'validation-and-verification/packages', component: VnvPackagesComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
 				children: [ { path: ':id', component: VnvPackagesDetailComponent } ]
 			},
 			{
-				path: 'validation-and-verification/network-services',
-				component: VnvNetworkServicesComponent,
+				path: 'validation-and-verification/network-services', component: VnvNetworkServicesComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
 				children: [ { path: ':id', component: VnvNetworkServicesDetailComponent } ]
 			},
-			{ path: 'validation-and-verification/functions', component: FunctionsComponent },
+			{
+				path: 'validation-and-verification/functions', component: FunctionsComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
+			},
 			{
 				path: 'validation-and-verification/tests', component: TestsComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
 				children: [ { path: ':id', component: TestsDetailComponent } ]
 			},
 			// Service Platform section
 			{ path: 'service-platform', redirectTo: 'service-platform/packages', pathMatch: 'full' },
 			{
 				path: 'service-platform/packages', component: SpPackagesComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [ { path: ':id', component: SpPackagesDetailComponent } ]
 			},
 			{
 				path: 'service-platform/network-services', component: SpNetworkServicesComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [ { path: ':id', component: SpNetworkServicesDetailComponent } ]
 			},
 			{
 				path: 'service-platform/functions', component: FunctionsComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [ { path: ':id', component: SpFunctionsDetailComponent } ]
 			},
-			{ path: 'service-platform/policies/placement-policy', component: PlacementPolicyComponent },
+			{
+				path: 'service-platform/policies/placement-policy', component: PlacementPolicyComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
+			},
 			{
 				path: 'service-platform/policies/runtime-policies', component: RuntimePolicyListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [
 					{ path: 'new', component: RuntimePolicyCreateComponent },
 					{ path: ':id', component: RuntimePolicyDetailComponent }
 				]
 			},
-			{ path: 'service-platform/policies/generated-actions', component: GeneratedActionsComponent },
+			{
+				path: 'service-platform/policies/generated-actions', component: GeneratedActionsComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
+			},
 			{
 				path: 'service-platform/slas/sla-templates', component: SlaTemplateListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [
 					{ path: 'new', component: SlaTemplateCreateComponent },
 					{ path: ':id', component: SlaTemplateDetailComponent }
@@ -166,11 +187,16 @@ const routes: Routes = [
 			},
 			{
 				path: 'service-platform/slas/sla-agreements', component: SlaAgreementListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [ { path: ':id_sla/:id_nsi', component: SlaAgreementDetailComponent } ]
 			},
-			{ path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent },
+			{
+				path: 'service-platform/slas/sla-violations', component: SlaViolationsComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
+			},
 			{
 				path: 'service-platform/slices/slice-templates', component: SpSliceTemplateListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [
 					{ path: 'new', component: SpSliceTemplateCreateComponent },
 					{ path: ':id', component: SpSliceTemplateDetailComponent }
@@ -180,12 +206,14 @@ const routes: Routes = [
 			{ path: 'service-management', redirectTo: 'service-management/network-services/services', pathMatch: 'full' },
 			{
 				path: 'service-management/slices/slice-templates', component: SmSliceTemplateListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [
 					{ path: ':id', component: SmSliceTemplateDetailComponent }
 				]
 			},
 			{
 				path: 'service-management/slices/slice-instances', component: SliceInstanceListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [
 					{ path: 'new', component: SliceInstanceCreateComponent },
 					{ path: ':id', component: SliceInstanceDetailComponent }
@@ -193,20 +221,24 @@ const routes: Routes = [
 			},
 			{
 				path: 'service-management/network-services/services', component: SmNetworkServicesComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [ { path: ':id', component: SmNetworkServicesDetailComponent } ]
 			},
 			{
 				path: 'service-management/network-services/network-service-instances', component: NsInstanceListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [
 					{ path: ':id', component: NsInstanceDetailComponent }
 				]
 			},
 			{
 				path: 'service-management/requests', component: RequestListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [ { path: ':id', component: RequestDetailComponent } ]
 			},
 			{
 				path: 'service-management/licenses', component: LicenceListComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
 			},
 			// No match in the route sends the user to dashboard again
@@ -220,6 +252,6 @@ const routes: Routes = [
 	// imports: [RouterModule.forRoot(routes, {useHash: true})],
 	imports: [ RouterModule.forRoot(routes) ],
 	exports: [ RouterModule ],
-	providers: [ AuthGuard ]
+	providers: [ AuthGuard, CanDisplayGuard ]
 })
 export class AppRoutingModule { }
