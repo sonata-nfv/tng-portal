@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
 	constructor(
 		private sanitizer: DomSanitizer,
 		private config: ConfigService,
-		private commonService: CommonService) { }
+		private commonService: CommonService,
+		private configService: ConfigService) { }
 
 	ngOnInit() {
-		this.environment = this.config.base.includes('sp') ? 'SP' : 'VNV';
+		this.environment = this.configService.environment;
 
 		this.environment === 'SP' ?
 			this.getSPDashboardData()

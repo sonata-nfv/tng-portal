@@ -3,5 +3,6 @@
 		"DASHBOARD",
 		"PLATFORMS",
 		"VALIDATION"
-	]
+	],
+	"environment": "VNV"
 }
