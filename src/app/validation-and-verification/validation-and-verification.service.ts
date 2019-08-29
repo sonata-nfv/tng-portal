@@ -269,7 +269,8 @@ export class ValidationAndVerificationPlatformService {
 		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }`;
 
 		try {
-			return await this.http.delete(url, { headers: headers }).toPromise();
+			await this.http.delete(url, { headers: headers }).toPromise();
+			return uuid;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

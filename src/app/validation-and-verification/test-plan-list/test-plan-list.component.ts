@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
@@ -13,9 +14,10 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class TestPlanListComponent implements OnInit {
 	loading: boolean;
-	testPlans = new Array();
 	displayedColumns = [ 'testName', 'serviceName', 'updatedAt', 'status', 'execute', 'stop' ];
 	subscription: Subscription;
+	@ViewChild(MatSort) sort: MatSort;
+	dataSource = new MatTableDataSource();
 
 	constructor(
 		private router: Router,
@@ -56,9 +58,12 @@ export class TestPlanListComponent implements OnInit {
 		const testPlans = await this.verificationAndValidationPlatformService.getTestPlans(search);
 
 		this.loading = false;
-		testPlans ?
-			this.testPlans = this.sortTestPlans(testPlans)
-			: this.utilsService.openSnackBar('Unable to fetch any test plan', '');
+		if (testPlans) {
+			this.dataSource.data = this.sortTestPlans(testPlans);
+			this.dataSource.sort = this.sort;
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch any test plan', '');
+		}
 	}
 
 	private sortTestPlans(testPlans) {
@@ -104,7 +109,7 @@ export class TestPlanListComponent implements OnInit {
 	}
 
 	canShowMessage() {
-		return (!this.testPlans || !this.testPlans.length) && !this.loading;
+		return (!this.dataSource.data || !this.dataSource.data.length) && !this.loading;
 	}
 
 	canShowCancelExecution(testPlan) {

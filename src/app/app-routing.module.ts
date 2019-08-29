@@ -88,8 +88,14 @@ const routes: Routes = [
 		canActivate: [ AuthGuard ],
 		children: [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-			{ path: 'dashboard', component: DashboardComponent },
-			{ path: 'users', component: UsersComponent, canActivate: [ CanDisplayGuard ], data: { section: 'users' } },
+			{
+				path: 'dashboard', component: DashboardComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'dashboard' }
+			},
+			{
+				path: 'users', component: UsersComponent,
+				canActivate: [ CanDisplayGuard ], data: { section: 'users' }
+			},
 			// Platforms
 			{
 				path: 'platforms', component: PlatformListComponent,
