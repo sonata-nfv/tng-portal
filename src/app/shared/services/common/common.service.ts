@@ -448,7 +448,7 @@ export class CommonService {
 		}
 	}
 
-	async getDashboardData() {
+	async getSPDashboardData() {
 		return {
 			nstd: await this.getNSTDNumber() || '?',
 			nsd: await this.getNSDNumber() || '?',
