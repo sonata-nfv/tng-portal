@@ -459,8 +459,7 @@ export class CommonService {
 			runningSlices: await this.getRunningSlices() || this.unknown,
 			runningNS: await this.getRunningNS() || this.unknown,
 			runningFunctions: await this.getRunningFunctions() || this.unknown,
-			policyAlerts: await this.getPolicyAlertsNumber() || this.unknown,
-			uptime: await this.getPlatformUptime() || 'Unknown'
+			policyAlerts: await this.getPolicyAlertsNumber() || this.unknown
 		};
 	}
 
@@ -471,7 +470,6 @@ export class CommonService {
 			testd: await this.getTDNumber() || this.unknown,
 			nsd: await this.getNSDNumber() || this.unknown,
 			vnfd: await this.getVNFDNumber() || this.unknown,
-			uptime: await this.getPlatformUptime() || 'Unknown',
 			sonataPlatforms: platforms[ 'SONATA' ] || this.unknown,
 			osmPlatforms: platforms[ 'OSM' ] || this.unknown,
 			onapPlatforms: platforms[ 'ONAP' ] || this.unknown,
@@ -481,22 +479,6 @@ export class CommonService {
 			testsScheduled: await this.getTestsNumber('scheduled') || this.unknown,
 			testsFailed: await this.getTestsNumber('error') || this.unknown
 		};
-	}
-
-	async getPlatformUptime() {
-		const headers = this.authService.getAuthHeaders();
-		const url = this.config.base + this.config.platformUptime;
-
-		try {
-			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'uptime' ] || 'Unknown';
-		} catch (error) {
-			if (error.status === 401 && error.statusText === 'Unauthorized') {
-				this.utilsService.launchUnauthorizedError();
-			}
-
-			console.error(error);
-		}
 	}
 
 	async getTDNumber() {

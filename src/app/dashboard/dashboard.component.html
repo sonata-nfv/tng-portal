@@ -21,34 +21,32 @@
 		</div>
 
 		<div class="same-row">
-			<div class="same-column descriptors-information">
+			<div class="same-column descriptors-information sp-descriptors">
 				<h3 class="title3" i18n="@@storedDescriptors">Stored descriptors</h3>
 
 				<div class="same-column">
-					<div class="same-row descriptors-row">
-						<div class="text-box small slices">
+					<div class="same-row text-box-row">
+						<div class="text-box small">
 							<span class="title" i18n="@@slices">Slices</span>
 							<span class="number">{{ dashboardData['nstd'] }}</span>
 						</div>
 
-						<div class="text-box small ns">
+						<div class="text-box small">
 							<span class="title" i18n="@@ns">Network services</span>
 							<span class="number">{{ dashboardData['nsd'] }}</span>
 						</div>
 
-						<div class="text-box small vnf">
+						<div class="text-box small">
 							<span class="title" i18n="@@functions">Functions</span>
 							<span class="number">{{ dashboardData['vnfd'] }}</span>
 						</div>
-					</div>
 
-					<div class="same-row descriptors-row centered-row">
-						<div class="text-box small rp">
+						<div class="text-box small">
 							<span class="title" i18n="@@runtimePolicies">Runtime policies</span>
 							<span class="number">{{ dashboardData['rpd'] }}</span>
 						</div>
 
-						<div class="text-box small slad">
+						<div class="text-box small">
 							<span class="title" i18n="@@slas">SLAs</span>
 							<span class="number">{{ dashboardData['slad'] }}</span>
 						</div>
@@ -56,21 +54,21 @@
 				</div>
 			</div>
 
-			<div class="same-column running-instances">
+			<div class="same-column running-instances sp-instances">
 				<h3 class="title3" i18n="@@runningInstances">Running instances</h3>
 
-				<div class="same-row">
-					<div class="text-box small running-slices">
+				<div class="same-row text-box-row">
+					<div class="text-box small">
 						<span class="title" i18n="@@slices">Slices</span>
 						<span class="number">{{ dashboardData['runningSlices'] }}</span>
 					</div>
 
-					<div class="text-box small running-ns">
+					<div class="text-box small">
 						<span class="title" i18n="@@ns">Network services</span>
 						<span class="number">{{ dashboardData['runningNS'] }}</span>
 					</div>
 
-					<div class="text-box small running-functions">
+					<div class="text-box small">
 						<span class="title" i18n="@@functions">Functions</span>
 						<span class="number">{{ dashboardData['runningFunctions'] }}</span>
 					</div>
@@ -79,37 +77,23 @@
 		</div>
 	</div>
 
-	<div class="same-column">
-		<div class="second-column dashboard-system">
-			<h3 class="title3" i18n="@@systemUptime">System uptime</h3>
-
-			<div class="text-box uptime">
-				<span class="number">{{ dashboardData['uptime'] }}</span>
-			</div>
-		</div>
-
-		<div class="second-column dashboard-service-alerts">
+	<div class="right-side">
+		<div class="same-column dashboard-service-alerts">
 			<h3 class="title3" i18n="@@serviceAlerts">Service alerts</h3>
 
-			<div class="same-row">
-				<iframe class="medium-gauge-graph sla-violations" frameborder="0" [src]="getSPGraphUrl(26)"></iframe>
-
-				<div class="text-box policy-alerts">
-					<span class="title" i18n="@@policyAlerts">Policy alerts</span>
-					<span class="number">{{ dashboardData['policyAlerts'] }}</span>
-				</div>
+			<iframe class="small-gauge-graph policy-alerts" frameborder="0" [src]="getSPGraphUrl(26)"></iframe>
+			<div class="text-box small">
+				<span class="title" i18n="@@policyAlerts">Policy alerts</span>
+				<span class="number">{{ dashboardData['policyAlerts'] }}</span>
 			</div>
 		</div>
 
-		<div class="second-column dashboard-licenses">
+		<div class="same-column dashboard-licenses">
 			<h3 class="title3" i18n="@@licenses">Licenses</h3>
 
-			<div class="same-row">
-				<iframe class="small-gauge-graph license license-acquired" frameborder="0" [src]="getSPGraphUrl(23)"></iframe>
-				<iframe class="small-gauge-graph license license-expired" frameborder="0" [src]="getSPGraphUrl(24)"></iframe>
-			</div>
-
-			<iframe class="small-gauge-graph license license-utilized" frameborder="0" [src]="getSPGraphUrl(25)"></iframe>
+			<iframe class="small-gauge-graph" frameborder="0" [src]="getSPGraphUrl(23)"></iframe>
+			<iframe class="small-gauge-graph" frameborder="0" [src]="getSPGraphUrl(24)"></iframe>
+			<iframe class="small-gauge-graph" frameborder="0" [src]="getSPGraphUrl(25)"></iframe>
 		</div>
 	</div>
 </div>
@@ -137,42 +121,42 @@
 		</div>
 
 		<div class="same-row">
-			<div class="same-column descriptors-information one-row">
+			<div class="same-column descriptors-information">
 				<h3 class="title3" i18n="@@storedDescriptors">Stored descriptors</h3>
 
-				<div class="same-row descriptors-row">
-					<div class="text-box small slices">
+				<div class="same-row text-box-row">
+					<div class="text-box medium">
 						<span class="title" i18n="@@tests">Tests</span>
 						<span class="number">{{ dashboardData['testd'] }}</span>
 					</div>
 
-					<div class="text-box small ns">
+					<div class="text-box medium">
 						<span class="title" i18n="@@ns">Network services</span>
 						<span class="number">{{ dashboardData['nsd'] }}</span>
 					</div>
 
-					<div class="text-box small vnf">
+					<div class="text-box medium">
 						<span class="title" i18n="@@functions">Functions</span>
 						<span class="number">{{ dashboardData['vnfd'] }}</span>
 					</div>
 				</div>
 			</div>
 
-			<div class="same-column available-platforms one-row">
+			<div class="same-column available-platforms">
 				<h3 class="title3" i18n="@@availablePlatforms">Available platforms</h3>
 
-				<div class="same-row platforms">
-					<div class="text-box small">
+				<div class="same-row text-box-row">
+					<div class="text-box medium">
 						<span class="title" i18n="@@sonata">SONATA</span>
 						<span class="number">{{ dashboardData['sonataPlatforms'] }}</span>
 					</div>
 
-					<div class="text-box small">
+					<div class="text-box medium">
 						<span class="title" i18n="@@osm">OSM</span>
 						<span class="number">{{ dashboardData['osmPlatforms'] }}</span>
 					</div>
 
-					<div class="text-box small">
+					<div class="text-box medium">
 						<span class="title" i18n="@@onap">ONAP</span>
 						<span class="number">{{ dashboardData['onapPlatforms'] }}</span>
 					</div>
@@ -181,46 +165,32 @@
 		</div>
 	</div>
 
-	<div class="same-column">
-		<div class="second-column dashboard-system">
-			<h3 class="title3" i18n="@@systemUptime">System uptime</h3>
+	<div class="same-column right-side">
+		<h3 class="title3" i18n="@@testsStatus">Tests status</h3>
 
-			<div class="text-box uptime">
-				<span class="number">{{ dashboardData['uptime'] }}</span>
-			</div>
+		<div class="text-box big">
+			<span class="title" i18n="@@executed">Executed</span>
+			<span class="number">{{ dashboardData['testsExecuted'] }}</span>
 		</div>
 
-		<div class="second-column tests-status">
-			<h3 class="title3" i18n="@@testsStatus">Tests status</h3>
+		<div class="text-box big">
+			<span class="title" i18n="@@inProgress">In progress</span>
+			<span class="number">{{ dashboardData['testsInProgress'] }}</span>
+		</div>
 
-			<div class="same-row">
-				<div class="text-box medium">
-					<span class="title" i18n="@@executed">Executed</span>
-					<span class="number">{{ dashboardData['testsExecuted'] }}</span>
-				</div>
+		<div class="text-box big">
+			<span class="title" i18n="@@scheduled">Scheduled</span>
+			<span class="number">{{ dashboardData['testsScheduled'] }}</span>
+		</div>
 
-				<div class="text-box medium">
-					<span class="title" i18n="@@inProgress">In progress</span>
-					<span class="number">{{ dashboardData['testsInProgress'] }}</span>
-				</div>
-			</div>
+		<div class="text-box big">
+			<span class="title" i18n="@@failing">Failing</span>
+			<span class="number">{{ dashboardData['testsFailed'] }}</span>
+		</div>
 
-			<div class="same-row">
-				<div class="text-box medium">
-					<span class="title" i18n="@@scheduled">Scheduled</span>
-					<span class="number">{{ dashboardData['testsScheduled'] }}</span>
-				</div>
-
-				<div class="text-box medium">
-					<span class="title" i18n="@@failing">Failing</span>
-					<span class="number">{{ dashboardData['testsFailed'] }}</span>
-				</div>
-			</div>
-
-			<div class="text-box medium">
-				<span class="title" i18n="@@waitingForConfirmation">Waiting for confirmation</span>
-				<span class="number">{{ dashboardData['testsWaitingForConfirmation'] }}</span>
-			</div>
+		<div class="text-box big">
+			<span class="title" i18n="@@waitingForConfirmation">Waiting for confirmation</span>
+			<span class="number">{{ dashboardData['testsWaitingForConfirmation'] }}</span>
 		</div>
 	</div>
 </div>
