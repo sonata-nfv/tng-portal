@@ -5,6 +5,7 @@ app-dashboard {
     flex-direction: column;
 	flex: 1 1;
 	overflow-y: auto;
+	overflow-x: hidden;
     width: auto;
     height: 100%;
     background-color: $basic-background-color;
@@ -68,6 +69,11 @@ app-dashboard {
     		width: 8vw;
 		}
 
+		&.medium {
+    		height: 22vh;
+    		width: 12vw;
+		}
+
 		.title {
     		font-weight: 500;
 			font-size: 15px;
@@ -107,6 +113,12 @@ app-dashboard {
 				margin-bottom: 5vh;
 			}
 		}
+	}
+
+	// Tests relative information
+	.tests-status {
+		height: 70vh;
+
 	}
 
 	// Licenses information part
@@ -155,7 +167,12 @@ app-dashboard {
 		width: 33vw; 
 		margin-right: 1vw;
 
+		&.one-row {
+			margin-top: 5vh;
+		}
+
 		.descriptors-row {
+			margin-top: 1vh;
 			margin-bottom: 1vh;
 		}
 		
@@ -169,10 +186,19 @@ app-dashboard {
 	}
 
 	// Running instances in the system part
-	.running-instances {
+	.running-instances, 
+	.available-platforms {
 		display: flex;
 		align-items: flex-start;
 		height: 38vh;
 		width: 30vw; 
+
+		.platforms {
+			margin-top: 1vh;
+		}
+	}
+
+	.available-platforms.one-row {
+		margin-top: 5vh;
 	}
 }

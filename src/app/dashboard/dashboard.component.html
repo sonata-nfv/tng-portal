@@ -1,3 +1,4 @@
+<!-- SP Dashboard -->
 <div *ngIf="environment === 'SP'" class="all-content">
 	<div class="same-column">
 		<div class="same-column dashboard-platform">
@@ -113,5 +114,113 @@
 	</div>
 </div>
 
+<!-- V&V Dashboard -->
 <div *ngIf="environment === 'VNV'" class="all-content">
+	<div class="same-column">
+		<div class="same-column dashboard-platform">
+			<h3 class="title3" i18n="@@platformMetrics">Platform metrics</h3>
+
+			<div class="same-row">
+				<div class="same-column">
+					<iframe class="platform-disk-usage" frameborder="0" [src]="getVNVGraphUrl(8)"></iframe>
+					<div class="same-row">
+						<iframe class="platform-cpu-usage" frameborder="0" [src]="getVNVGraphUrl(2)"></iframe>
+						<iframe class="platform-memory-usage" frameborder="0" [src]="getVNVGraphUrl(3)"></iframe>
+					</div>
+				</div>
+
+				<div class="same-column platform-gauge-graphs">
+					<iframe class="medium-gauge-graph cpu-usage" frameborder="0" [src]="getVNVGraphUrl(17)"></iframe>
+					<iframe class="medium-gauge-graph memory-usage" frameborder="0" [src]="getVNVGraphUrl(20)"></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="same-row">
+			<div class="same-column descriptors-information one-row">
+				<h3 class="title3" i18n="@@storedDescriptors">Stored descriptors</h3>
+
+				<div class="same-row descriptors-row">
+					<div class="text-box small slices">
+						<span class="title" i18n="@@tests">Tests</span>
+						<span class="number">{{ dashboardData['testd'] }}</span>
+					</div>
+
+					<div class="text-box small ns">
+						<span class="title" i18n="@@ns">Network services</span>
+						<span class="number">{{ dashboardData['nsd'] }}</span>
+					</div>
+
+					<div class="text-box small vnf">
+						<span class="title" i18n="@@functions">Functions</span>
+						<span class="number">{{ dashboardData['vnfd'] }}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="same-column available-platforms one-row">
+				<h3 class="title3" i18n="@@availablePlatforms">Available platforms</h3>
+
+				<div class="same-row platforms">
+					<div class="text-box small">
+						<span class="title" i18n="@@sonata">SONATA</span>
+						<span class="number">{{ dashboardData['sonataPlatforms'] }}</span>
+					</div>
+
+					<div class="text-box small">
+						<span class="title" i18n="@@osm">OSM</span>
+						<span class="number">{{ dashboardData['osmPlatforms'] }}</span>
+					</div>
+
+					<div class="text-box small">
+						<span class="title" i18n="@@onap">ONAP</span>
+						<span class="number">{{ dashboardData['onapPlatforms'] }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="same-column">
+		<div class="second-column dashboard-system">
+			<h3 class="title3" i18n="@@systemUptime">System uptime</h3>
+
+			<div class="text-box uptime">
+				<span class="number">{{ dashboardData['uptime'] }}</span>
+			</div>
+		</div>
+
+		<div class="second-column tests-status">
+			<h3 class="title3" i18n="@@testsStatus">Tests status</h3>
+
+			<div class="same-row">
+				<div class="text-box medium">
+					<span class="title" i18n="@@executed">Executed</span>
+					<span class="number">{{ dashboardData['testsExecuted'] }}</span>
+				</div>
+
+				<div class="text-box medium">
+					<span class="title" i18n="@@inProgress">In progress</span>
+					<span class="number">{{ dashboardData['testsInProgress'] }}</span>
+				</div>
+			</div>
+
+			<div class="same-row">
+				<div class="text-box medium">
+					<span class="title" i18n="@@scheduled">Scheduled</span>
+					<span class="number">{{ dashboardData['testsScheduled'] }}</span>
+				</div>
+
+				<div class="text-box medium">
+					<span class="title" i18n="@@failing">Failing</span>
+					<span class="number">{{ dashboardData['testsFailed'] }}</span>
+				</div>
+			</div>
+
+			<div class="text-box medium">
+				<span class="title" i18n="@@waitingForConfirmation">Waiting for confirmation</span>
+				<span class="number">{{ dashboardData['testsWaitingForConfirmation'] }}</span>
+			</div>
+		</div>
+	</div>
 </div>
