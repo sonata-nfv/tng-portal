@@ -6,5 +6,6 @@
 		"VALIDATION",
 		"SERVICE PLATFORM",
 		"SERVICE MANAGEMENT"
-	]
+	],
+	"environment": "VNV"
 }

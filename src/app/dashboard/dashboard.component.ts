@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
 	constructor(
 		private sanitizer: DomSanitizer,
 		private config: ConfigService,
-		private commonService: CommonService) { }
+		private commonService: CommonService,
+		private configService: ConfigService) { }
 
 	ngOnInit() {
-		this.environment = this.config.base.includes('sp') ? 'SP' : 'VNV';
+		this.environment = this.configService.environment;
 
 		this.environment === 'SP' ?
 			this.getSPDashboardData()
@@ -39,10 +40,21 @@ export class DashboardComponent implements OnInit {
 			`refresh=${ this.refreshRateGraphs }`);
 	}
 
+	getVNVGraphUrl(panelId) {
+		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseVNV }${ this.config.graphs }/d-solo/sp_dash/sp?orgId=1&` +
+			`panelId=${ panelId }&` +
+			`var-id=4fd837f6-5f49-11dc-a9ed-000ea629289b&` +
+			`var-entity=vm&` +
+			`var-env=pre-int-vnv-bcn.5gtango.eu%3A4fd837f6-5f49-11dc-a9ed-000ea629289b&` +
+			`theme=light&` +
+			`refresh=${ this.refreshRateGraphs }`);
+	}
+
 	async getSPDashboardData() {
 		this.dashboardData = await this.commonService.getSPDashboardData();
 	}
 
 	async getVNVDashboardData() {
+		this.dashboardData = await this.commonService.getVNVDashboardData();
 	}
 }
