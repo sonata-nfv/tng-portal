@@ -64,6 +64,7 @@ pipeline {
                 sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
                 dir(path: 'tng-devops') {
                     sh 'ansible-playbook roles/sp.yml -i environments -e "target=int-sp component=portal"'
+					sh 'ansible-playbook roles/vnv.yml -i environments -e "target=int-vnv component=portal"'
                 }
             }
         }
