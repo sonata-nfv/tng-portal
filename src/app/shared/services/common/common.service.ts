@@ -149,16 +149,17 @@ export class CommonService {
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			return response instanceof Array ?
-				response.map(item => {
-					return {
-						uuid: item.uuid,
-						name: item.vnfd.name,
-						vendor: item.vnfd.vendor,
-						status: item.status,
-						version: item.vnfd.version,
-						type: 'public'
-					};
-				}) : [];
+				response.filter(funct => funct.platform.toLowerCase() === '5gtango')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							name: item.vnfd.name,
+							vendor: item.vnfd.vendor,
+							status: item.status,
+							version: item.vnfd.version,
+							type: 'public'
+						};
+					}) : [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
