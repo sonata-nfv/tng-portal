@@ -101,19 +101,19 @@ export class CommonService {
 		const tests = [];
 
 		content.forEach(item => {
-			if (item[ 'content-type' ] === 'application/vnd.5gtango.nsd') {
+			if (item[ 'content-type' ].endsWith('.nsd')) {
 				ns.push({
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
-			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.vnfd') {
+			} else if (item[ 'content-type' ].endsWith('.vnfd')) {
 				vnf.push({
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
-			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.tstd') {
+			} else if (item[ 'content-type' ].endsWith('.tstd')) {
 				tests.push({
 					vendor: item.id.vendor,
 					name: item.id.name,
