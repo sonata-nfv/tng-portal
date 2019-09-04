@@ -148,8 +148,8 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.filter(funct => funct.platform.toLowerCase() === '5gtango')
+			if (response instanceof Array) {
+				const tango = response.filter(funct => funct.platform.toLowerCase() === '5gtango')
 					.map(item => {
 						return {
 							uuid: item.uuid,
@@ -157,9 +157,23 @@ export class CommonService {
 							vendor: item.vnfd.vendor,
 							status: item.status,
 							version: item.vnfd.version,
-							type: 'public'
 						};
-					}) : [];
+					});
+
+				const osm = response.filter(funct => funct.platform.toLowerCase() === 'osm')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							name: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.name,
+							vendor: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.vendor,
+							status: item.status,
+							version: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.version,
+						};
+					});
+
+				return tango.concat(osm);
+			}
+			return [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -271,15 +285,27 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.filter(ns => ns.platform.toLowerCase() === '5gtango')
+			if (response instanceof Array) {
+				const tango = response.filter(ns => ns.platform.toLowerCase() === '5gtango')
 					.map(item => ({
 						uuid: item.uuid,
 						name: item.nsd.name,
 						vendor: item.nsd.vendor,
 						version: item.nsd.version,
 						status: item.status
-					})) : [];
+					}));
+
+				const osm = response.filter(ns => ns.platform.toLowerCase() === 'osm')
+					.map(item => ({
+						uuid: item.uuid,
+						name: item.nsd[ 'nsd:nsd-catalog' ].nsd.name,
+						vendor: item.nsd[ 'nsd:nsd-catalog' ].nsd.vendor,
+						version: item.nsd[ 'nsd:nsd-catalog' ].nsd.version,
+						status: item.status
+					}));
+				return tango.concat(osm);
+			}
+			return [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
