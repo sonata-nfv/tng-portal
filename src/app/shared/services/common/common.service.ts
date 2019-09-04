@@ -276,7 +276,6 @@ export class CommonService {
 					.map(item => ({
 						uuid: item.uuid,
 						name: item.nsd.name,
-						serviceId: item.uuid,
 						vendor: item.nsd.vendor,
 						version: item.nsd.version,
 						status: item.status
