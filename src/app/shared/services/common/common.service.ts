@@ -328,8 +328,8 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response.hasOwnProperty('nsd') ?
-				{
+			if (response.hasOwnProperty('nsd') && response[ 'platform' ].toLowerCase() === '5gtango') {
+				return {
 					uuid: response[ 'uuid' ],
 					platform: response[ 'platform' ],
 					status: response[ 'status' ],
@@ -341,7 +341,31 @@ export class CommonService {
 					version: response[ 'nsd' ][ 'version' ],
 					description: response[ 'nsd' ][ 'description' ],
 					vnf: response[ 'nsd' ][ 'network_functions' ] || []
-				} : { };
+				};
+			} else if (response.hasOwnProperty('nsd') && response[ 'platform' ].toLowerCase() === 'osm') {
+				const components = response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'constituent-vnfd' ] ?
+					response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'constituent-vnfd' ].map(vnfd => ({
+						vnf_id: vnfd[ 'member-vnf-index' ],
+						vnf_name: vnfd[ 'vnfd-id-ref' ],
+						vnf_vendor: '-',
+						vnf_version: '-'
+					})) : [];
+				return {
+					uuid: response[ 'uuid' ],
+					platform: response[ 'platform' ],
+					status: response[ 'status' ],
+					updatedAt: response[ 'updated_at' ],
+					createdAt: response[ 'created_at' ],
+					author: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'author' ],
+					name: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'name' ],
+					vendor: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'vendor' ],
+					version: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'version' ],
+					description: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'description' ],
+					vnf: components
+				};
+			} else {
+				return { };
+			}
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
