@@ -331,8 +331,6 @@ export class CommonService {
 			return response.hasOwnProperty('nsd') ?
 				{
 					uuid: response[ 'uuid' ],
-					// duplicated
-					serviceID: response[ 'uuid' ],
 					platform: response[ 'platform' ],
 					status: response[ 'status' ],
 					updatedAt: response[ 'updated_at' ],
