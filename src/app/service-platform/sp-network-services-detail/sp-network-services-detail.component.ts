@@ -29,24 +29,21 @@ export class SpNetworkServicesDetailComponent implements OnInit {
 		});
 	}
 
-	requestNetworkService(uuid) {
+	async requestNetworkService(uuid) {
 		this.loading = true;
+		const response = await this.commonService.getOneNetworkService('sp', uuid);
 
-		this.commonService
-			.getOneNetworkService('sp', uuid)
-			.then(response => {
-				this.loading = false;
-				this.detail = response;
+		this.loading = false;
+		if (response) {
+			this.detail = response;
 
-				if (this.detail[ 'vnf' ].lenght < 1) {
-					this.detail[ 'vnf' ] = [];
-				}
-			})
-			.catch(err => {
-				this.loading = false;
-				this.utilsService.openSnackBar(err, '');
-				this.close();
-			});
+			if (this.detail[ 'vnf' ].lenght < 1) {
+				this.detail[ 'vnf' ] = [];
+			}
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the network service', '');
+			this.close();
+		}
 	}
 
 	close() {
