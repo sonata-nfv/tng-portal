@@ -465,6 +465,7 @@ export class CommonService {
 				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
+						nsdRef: item[ 'nsd-ref' ],
 						nsdName: item[ 'nsd-name' ],
 						nsdVendor: item[ 'nsd-vendor' ],
 						nsdVersion: item[ 'nsd-version' ],
