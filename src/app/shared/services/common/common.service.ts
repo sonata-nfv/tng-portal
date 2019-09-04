@@ -82,7 +82,7 @@ export class CommonService {
 				updatedAt: response[ 'updated_at' ],
 				vendor: response[ 'pd' ][ 'vendor' ],
 				version: response[ 'pd' ][ 'version' ],
-				status: response[ 'status' ],
+				status: response[ 'status' ]
 			};
 
 			return Object.assign({ }, packageData, content);
@@ -474,11 +474,11 @@ export class CommonService {
 			sonataPlatforms: platforms[ 'SONATA' ] || this.unknown,
 			osmPlatforms: platforms[ 'OSM' ] || this.unknown,
 			onapPlatforms: platforms[ 'ONAP' ] || this.unknown,
-			testsExecuted: await this.getTestsNumber('executed') || this.unknown,
-			testsInProgress: await this.getTestsNumber('in_progress') || this.unknown,
-			testsWaitingForConfirmation: await this.getTestsNumber('waiting_for_confirmation') || this.unknown,
-			testsScheduled: await this.getTestsNumber('scheduled') || this.unknown,
-			testsFailed: await this.getTestsNumber('error') || this.unknown
+			testsCompleted: await this.getTestsNumber('COMPLETED') || this.unknown,
+			testsInProgress: await this.getTestsNumber('STARTING') || this.unknown,
+			testsWaitingForConfirmation: await this.getTestsNumber('WAITING_FOR_CONFIRMATION') || this.unknown,
+			testsScheduled: await this.getTestsNumber('SCHEDULED') || this.unknown,
+			testsFailed: await this.getTestsNumber('ERROR') || this.unknown
 		};
 	}
 
