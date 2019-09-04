@@ -103,18 +103,21 @@ export class CommonService {
 		content.forEach(item => {
 			if (item[ 'content-type' ].endsWith('.nsd')) {
 				ns.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
 			} else if (item[ 'content-type' ].endsWith('.vnfd')) {
 				vnf.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
 			} else if (item[ 'content-type' ].endsWith('.tstd')) {
 				tests.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
