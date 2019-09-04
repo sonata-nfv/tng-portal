@@ -56,6 +56,14 @@ export class SpPackagesDetailComponent implements OnInit {
 		return this.detail[ 'vnf' ] && this.detail[ 'vnf' ].length;
 	}
 
+	openRow(section, row) {
+		if (section === 'service') {
+			this.router.navigate([ `service-platform/network-services/${ row.uuid }` ]);
+		} else if (section === 'function') {
+			this.router.navigate([ `service-platform/functions/${ row.uuid }` ]);
+		}
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
