@@ -59,23 +59,11 @@ export class TestPlanListComponent implements OnInit {
 
 		this.loading = false;
 		if (testPlans) {
-			this.dataSource.data = this.sortTestPlans(testPlans);
+			this.dataSource.data = testPlans;
 			this.dataSource.sort = this.sort;
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch any test plan', '');
 		}
-	}
-
-	private sortTestPlans(testPlans) {
-		return testPlans.sort((a) => {
-			const status = a.status.toUpperCase();
-
-			if (status !== 'COMPLETED') {
-				return -1;
-			} else {
-				return 1;
-			}
-		});
 	}
 
 	async confirmExecution(plan) {
