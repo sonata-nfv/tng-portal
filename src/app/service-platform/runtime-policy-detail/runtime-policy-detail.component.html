@@ -50,8 +50,8 @@
 	</div>
 
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['nsName']" class="left-column">
-			<input matInput placeholder="Service Name" value="{{ detail['nsName'] }}" disabled
+		<mat-form-field *ngIf="detail['nsName']" class="left-column" (click)="openService()">
+			<input matInput class="opening-item" placeholder="Service Name" value="{{ detail['nsName'] }}" disabled
 				i18n-placeholder="@@serviceNamePlaceholder" />
 		</mat-form-field>
 
