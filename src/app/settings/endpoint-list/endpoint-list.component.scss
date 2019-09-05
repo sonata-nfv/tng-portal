@@ -11,16 +11,20 @@ app-endpoint-list {
     
     table {
         width: 95%;
-    }
     
-    tr.mat-row {
-        background-image: linear-gradient(
-          to right,
-          $basic-background-color 0%,
-          $table-underline-color 0%,
-          $table-underline-color 100%,
-          $basic-background-color 100%,
-          $basic-background-color 100%
-        );
+		tr.mat-row {
+			background-image: linear-gradient(
+			to right,
+			$basic-background-color 0%,
+			$table-underline-color 0%,
+			$table-underline-color 100%,
+			$basic-background-color 100%,
+			$basic-background-color 100%
+			);
+		}
+
+		td.mat-cell {
+        	cursor: auto;
+      	}
     }
 }

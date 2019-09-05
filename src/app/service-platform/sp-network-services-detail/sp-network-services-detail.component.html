@@ -19,22 +19,31 @@
 </div>
 
 <form class="detail">
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
+		<input matInput placeholder="Service id" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
 	<mat-form-field class="vendor" *ngIf="detail['vendor']">
 		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placehoder="@@vendorPlaceholder" />
 	</mat-form-field>
-	<mat-form-field class="serviceId" *ngIf="detail['serviceID']">
-		<input matInput placeholder="Service id" value="{{ detail['serviceID'] }}" disabled i18n-placeholder="@@serviceIDPlaceholder" />
-	</mat-form-field>
+
 	<mat-form-field class="status" *ngIf="detail['status']">
 		<input matInput placeholder="Status" value="{{ detail['status'] }}" disabled i18n-placeholder="@@statusPlaceholder" />
 	</mat-form-field>
+
 	<mat-form-field class="type" *ngIf="detail['type']">
 		<input matInput placeholder="Type" value="{{ detail['type'] }}" disabled i18n-placeholder="@@typePlaceholder" />
 	</mat-form-field>
+
 	<mat-form-field class="time-form-field" *ngIf="detail['updatedAt']">
 		<input matInput placeholder="Updated at" value="Last update: {{ detail['updatedAt'] }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
+
 	<div class="description" *ngIf="detail['description']">
 		<h4 class="title4" i18n="description">Description</h4>
 		<span class="content">
@@ -44,8 +53,7 @@
 
 	<div class="vnf" *ngIf="detail['vnf']">
 		<h2 class="title2" i18n="@@vnfs">VNFs</h2>
-		<span class="message" *ngIf="detail['vnf'].length == 0" i18n="@@noVNFToDisplayMsg">There are no virtual network
-			functions to display</span>
+
 		<table mat-table *ngIf="detail['vnf'].length > 0" [dataSource]="detail['vnf']">
 			<ng-container matColumnDef="id">
 				<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
@@ -70,6 +78,12 @@
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 			<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 		</table>
+
+		<div *ngIf="canShowVNFs()" class="no-results-container">
+			<div class="no-results-line"></div>
+			<span class="no-results-text" i18n="@@noResultsToDisplay">No results to display</span>
+			<div class="no-results-line"></div>
+		</div>
 	</div>
 </form>
 

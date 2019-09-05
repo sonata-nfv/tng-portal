@@ -82,7 +82,7 @@ export class CommonService {
 				updatedAt: response[ 'updated_at' ],
 				vendor: response[ 'pd' ][ 'vendor' ],
 				version: response[ 'pd' ][ 'version' ],
-				status: response[ 'status' ],
+				status: response[ 'status' ]
 			};
 
 			return Object.assign({ }, packageData, content);
@@ -101,20 +101,23 @@ export class CommonService {
 		const tests = [];
 
 		content.forEach(item => {
-			if (item[ 'content-type' ] === 'application/vnd.5gtango.nsd') {
+			if (item[ 'content-type' ].endsWith('.nsd')) {
 				ns.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
-			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.vnfd') {
+			} else if (item[ 'content-type' ].endsWith('.vnfd')) {
 				vnf.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
 				});
-			} else if (item[ 'content-type' ] === 'application/vnd.5gtango.tstd') {
+			} else if (item[ 'content-type' ].endsWith('.tstd')) {
 				tests.push({
+					uuid: item.uuid,
 					vendor: item.id.vendor,
 					name: item.id.name,
 					version: item.id.version
@@ -148,17 +151,32 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.map(item => {
-					return {
-						uuid: item.uuid,
-						name: item.vnfd.name,
-						vendor: item.vnfd.vendor,
-						status: item.status,
-						version: item.vnfd.version,
-						type: 'public'
-					};
-				}) : [];
+			if (response instanceof Array) {
+				const tango = response.filter(funct => funct.platform.toLowerCase() === '5gtango')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							name: item.vnfd.name,
+							vendor: item.vnfd.vendor,
+							status: item.status,
+							version: item.vnfd.version,
+						};
+					});
+
+				const osm = response.filter(funct => funct.platform.toLowerCase() === 'osm')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							name: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.name,
+							vendor: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.vendor,
+							status: item.status,
+							version: item.vnfd[ 'vnfd:vnfd-catalog' ].vnfd.version,
+						};
+					});
+
+				return tango.concat(osm);
+			}
+			return [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -270,16 +288,27 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.filter(ns => ns.platform.toLowerCase() === '5gtango')
+			if (response instanceof Array) {
+				const tango = response.filter(ns => ns.platform.toLowerCase() === '5gtango')
 					.map(item => ({
 						uuid: item.uuid,
 						name: item.nsd.name,
-						serviceId: item.uuid,
 						vendor: item.nsd.vendor,
 						version: item.nsd.version,
 						status: item.status
-					})) : [];
+					}));
+
+				const osm = response.filter(ns => ns.platform.toLowerCase() === 'osm')
+					.map(item => ({
+						uuid: item.uuid,
+						name: item.nsd[ 'nsd:nsd-catalog' ].nsd.name,
+						vendor: item.nsd[ 'nsd:nsd-catalog' ].nsd.vendor,
+						version: item.nsd[ 'nsd:nsd-catalog' ].nsd.version,
+						status: item.status
+					}));
+				return tango.concat(osm);
+			}
+			return [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -302,11 +331,9 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response.hasOwnProperty('nsd') ?
-				{
+			if (response.hasOwnProperty('nsd') && response[ 'platform' ].toLowerCase() === '5gtango') {
+				return {
 					uuid: response[ 'uuid' ],
-					// duplicated
-					serviceID: response[ 'uuid' ],
 					platform: response[ 'platform' ],
 					status: response[ 'status' ],
 					updatedAt: response[ 'updated_at' ],
@@ -317,7 +344,31 @@ export class CommonService {
 					version: response[ 'nsd' ][ 'version' ],
 					description: response[ 'nsd' ][ 'description' ],
 					vnf: response[ 'nsd' ][ 'network_functions' ] || []
-				} : { };
+				};
+			} else if (response.hasOwnProperty('nsd') && response[ 'platform' ].toLowerCase() === 'osm') {
+				const components = response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'constituent-vnfd' ] ?
+					response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'constituent-vnfd' ].map(vnfd => ({
+						vnf_id: vnfd[ 'member-vnf-index' ],
+						vnf_name: vnfd[ 'vnfd-id-ref' ],
+						vnf_vendor: '-',
+						vnf_version: '-'
+					})) : [];
+				return {
+					uuid: response[ 'uuid' ],
+					platform: response[ 'platform' ],
+					status: response[ 'status' ],
+					updatedAt: response[ 'updated_at' ],
+					createdAt: response[ 'created_at' ],
+					author: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'author' ],
+					name: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'name' ],
+					vendor: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'vendor' ],
+					version: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'version' ],
+					description: response[ 'nsd' ][ 'nsd:nsd-catalog' ][ 'nsd' ][ 'description' ],
+					vnf: components
+				};
+			} else {
+				return null;
+			}
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -414,6 +465,7 @@ export class CommonService {
 				services: response[ 'nstd' ] ? response[ 'nstd' ][ 'slice_ns_subnets' ].map(item => {
 					return {
 						uuid: item[ 'id' ],
+						nsdRef: item[ 'nsd-ref' ],
 						nsdName: item[ 'nsd-name' ],
 						nsdVendor: item[ 'nsd-vendor' ],
 						nsdVersion: item[ 'nsd-version' ],
@@ -473,11 +525,11 @@ export class CommonService {
 			sonataPlatforms: platforms[ 'SONATA' ] || this.unknown,
 			osmPlatforms: platforms[ 'OSM' ] || this.unknown,
 			onapPlatforms: platforms[ 'ONAP' ] || this.unknown,
-			testsExecuted: await this.getTestsNumber('executed') || this.unknown,
-			testsInProgress: await this.getTestsNumber('in_progress') || this.unknown,
-			testsWaitingForConfirmation: await this.getTestsNumber('waiting_for_confirmation') || this.unknown,
-			testsScheduled: await this.getTestsNumber('scheduled') || this.unknown,
-			testsFailed: await this.getTestsNumber('error') || this.unknown
+			testsCompleted: await this.getTestsNumber('COMPLETED') || this.unknown,
+			testsInProgress: await this.getTestsNumber('STARTING') || this.unknown,
+			testsWaitingForConfirmation: await this.getTestsNumber('WAITING_FOR_CONFIRMATION') || this.unknown,
+			testsScheduled: await this.getTestsNumber('SCHEDULED') || this.unknown,
+			testsFailed: await this.getTestsNumber('ERROR') || this.unknown
 		};
 	}
 

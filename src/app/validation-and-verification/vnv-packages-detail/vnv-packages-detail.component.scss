@@ -18,6 +18,11 @@ app-vnv-packages-detail {
 	form {
 		width: 55vw;
 		margin-bottom: 5vh;
+
+		.left-column {
+			width: 25vw;
+			margin-right: 40px;
+		}
 	}
 
     .vnf,
@@ -33,26 +38,24 @@ app-vnv-packages-detail {
 
     table {
       	width: 95%;
-    }
 
-    tr.mat-row {
-		background-image: linear-gradient(
-			to right,
-			$basic-background-color 0%,
-			$table-underline-color 0%,
-			$table-underline-color 100%,
-			$basic-background-color 100%,
-			$basic-background-color 100%
-		);
-    }
+		&.no-opening-table td.mat-cell {
+			cursor: auto;
+		}
 
-    td.mat-cell {
-      	cursor: auto;
+		tr.mat-row {
+			background-image: linear-gradient(
+				to right,
+				$basic-background-color 0%,
+				$table-underline-color 0%,
+				$table-underline-color 100%,
+				$basic-background-color 100%,
+				$basic-background-color 100%
+			);
+    	}
+		.mat-cell:nth-child(1),
+		.mat-header-cell:nth-child(1) {
+			width: 30%;
+		}
     }
-
-    .mat-cell:nth-child(1),
-    .mat-header-cell:nth-child(1) {
-      	width: 30%;
-    }
-  
 }
