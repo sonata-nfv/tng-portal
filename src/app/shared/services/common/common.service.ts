@@ -367,7 +367,7 @@ export class CommonService {
 					vnf: components
 				};
 			} else {
-				return { };
+				return null;
 			}
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
