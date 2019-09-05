@@ -13,7 +13,15 @@ There is also a version of the Portal for using the 5GTANGO Service Development 
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
 
-## Dependencies
+## Installation
+
+Make sure that you have all the dependencies installed. Then, run the following command to install all the required modules.
+
+```
+npm install
+```
+
+### Dependencies
 
 - Node.js >= v8.9
 
@@ -29,19 +37,9 @@ There is also a version of the Portal for using the 5GTANGO Service Development 
 [sudo] npm install -g @angular/cli
 ```
 
-### Running dependencies
+- Athens VPN credentials: requests made from the Portal in the development mode need the VPN in order to receive a response.
 
-Requests made from the Portal in the development mode need the VPN in order to receive a response.
-
-- Athens VPN credentials
-
-## Installation
-
-Make sure that you have all the dependencies installed. Then, run the following command to install all the required modules.
-
-```
-npm install
-```
+- Make sure you have installed [Docker](https://docs.docker.com/install/) >= 18.06.0-ce if you are going to deploy the Portal like this.
 
 ## Developing
 
@@ -62,15 +60,7 @@ If you want to launch a container locally, place yourself in the Dockerfile fold
 
 The container should be up and running in http://0.0.0.0:80.
 
-#### Exposed port in docker container
-
-The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.
-
-#### Docker dependencies
-
-Make sure you have installed Docker >= 18.06.0-ce
-
-- [https://docs.docker.com/install/](https://docs.docker.com/install/)
+*Note: The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.*
 
 ## Configuration
 Portal allows two different configurations: the base URL of the deployment and the displayed sections of the menu.
