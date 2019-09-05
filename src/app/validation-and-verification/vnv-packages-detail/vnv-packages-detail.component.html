@@ -19,6 +19,14 @@
 </div>
 
 <form class="detail">
+	<mat-form-field *ngIf="detail['uuid']" class="left-column">
+		<input matInput placeholder="Package ID" value="{{ detail['uuid'] }}" disabled i18n-placeholder="@@packageIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['uuid'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
 	<mat-form-field *ngIf="detail['vendor']">
 		<input matInput placeholder="Vendor" value="{{ detail['vendor'] }}" disabled i18n-placeholder="@@vendorPlaceholder" />
 	</mat-form-field>

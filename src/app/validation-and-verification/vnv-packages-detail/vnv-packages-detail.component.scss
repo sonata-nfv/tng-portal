@@ -18,6 +18,11 @@ app-vnv-packages-detail {
 	form {
 		width: 55vw;
 		margin-bottom: 5vh;
+
+		.left-column {
+			width: 25vw;
+			margin-right: 40px;
+		}
 	}
 
     .vnf,
