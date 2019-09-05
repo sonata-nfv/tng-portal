@@ -46,6 +46,14 @@ export class SpNetworkServicesDetailComponent implements OnInit {
 		}
 	}
 
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
+	canShowVNFs() {
+		return (!this.detail[ 'vnf' ] || !this.detail[ 'vnf' ].length) && !this.loading;
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

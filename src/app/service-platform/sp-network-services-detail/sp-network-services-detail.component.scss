@@ -1,58 +1,62 @@
 @import "../../../constants.scss";
 app-sp-network-services-detail {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  position: absolute;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: $basic-background-color;
-  > * {
-    flex: 0 0 auto;
-  }
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+	position: absolute;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $basic-background-color;
+	> * {
+		flex: 0 0 auto;
+	}
 
-  .detail {
-    width: 65%;
-    margin-bottom: 20px;
+  	.detail {
+		width: 55vw;
+		margin-bottom: 5vh;
 
-    .mat-form-field {
-      width: 100%;
-    }
+		.left-column {
+			width: 25vw;
+			margin-right: 40px;
+		}
 
-    .description {
-      margin-bottom: 50px;
-    }
+		.description {
+			margin-bottom: 50px;
+		}
 
-    .title3 {
-      font-size: 24px;
-    }
+		.title3 {
+			font-size: 24px;
+		}
 
-    .message {
-      color: $secondary-font-color-light;
-    }
+		table {
+			width: 100%;
+			margin-bottom: 50px;
 
-    table {
-      width: 100%;
-      margin-bottom: 50px;
-    }
+			tr.mat-row {
+				background-image: linear-gradient(
+					to right,
+					$basic-background-color 0%,
+					$table-underline-color 0%,
+					$table-underline-color 99%,
+					$basic-background-color 99%,
+					$basic-background-color 100%
+				);
+			}
 
-    tr.mat-row {
-      background-image: linear-gradient(
-        to right,
-        $basic-background-color 0%,
-        $table-underline-color 0%,
-        $table-underline-color 99%,
-        $basic-background-color 99%,
-        $basic-background-color 100%
-      );
-    }
+			td.mat-cell {
+				cursor: auto;
+			}
+		}
 
-    td.mat-cell {
-      cursor: auto;
-    }
-  }
+		// Styles for no vnfs message
+		.no-results-container {
+			align-self: center;
+			width: 100%;
+			margin-top: 7vh;
+		}
+ 	}
 }
