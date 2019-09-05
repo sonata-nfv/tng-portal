@@ -84,7 +84,7 @@
 		</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openRow('service', row)"></tr>
 	</table>
 
 	<div *ngIf="(!relatedServices || !relatedServices.length) && !loading" class="no-results-container">
@@ -114,7 +114,7 @@
 		</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumnsTestPlans"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumnsTestPlans"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumnsTestPlans" (click)="openRow('testPlan', row)"></tr>
 	</table>
 
 	<div *ngIf="(!testPlans || !testPlans.length) && !loading" class="no-results-container">
