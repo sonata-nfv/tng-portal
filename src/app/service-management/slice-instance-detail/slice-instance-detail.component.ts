@@ -78,6 +78,10 @@ export class SliceInstanceDetailComponent implements OnInit {
 		return this.detail[ 'uuid' ] && this.detail[ 'status' ].toUpperCase() === 'INSTANTIATED';
 	}
 
+	openTemplate() {
+		this.router.navigate([ `service-management/slices/slice-templates/${ this.detail[ 'nstRef' ] }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

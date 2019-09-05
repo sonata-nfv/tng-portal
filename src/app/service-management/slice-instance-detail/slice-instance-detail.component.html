@@ -30,8 +30,8 @@
 	</mat-form-field>
 
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['nstName']" class="left-column">
-			<input matInput placeholder="Template name" value="{{ detail['nstName'] }}" disabled
+		<mat-form-field *ngIf="detail['nstName']" class="left-column" (click)="openTemplate()">
+			<input matInput class="opening-item" placeholder="Template name" value="{{ detail['nstName'] }}" disabled
 				i18n-placeholder="@@templateNamePlaceholder" />
 		</mat-form-field>
 		<mat-form-field *ngIf="detail['vendor']">
