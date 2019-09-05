@@ -99,6 +99,14 @@ export class TestPlanComponent implements OnInit {
 		return JSON.stringify(json);
 	}
 
+	openService() {
+		this.router.navigate([ `validation-and-verification/network-services/${ this.testPlan[ 'serviceUUID' ] }` ]);
+	}
+
+	openTest() {
+		this.router.navigate([ `validation-and-verification/tests/${ this.testPlan[ 'testUUID' ] }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
