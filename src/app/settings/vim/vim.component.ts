@@ -290,7 +290,10 @@ export class VimComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.utilsService.openSnackBar('VIM ' + response[ 'name' ] + ' created', '');
-			this.close();
+
+			response[ 'uuid' ] ?
+				this.router.navigate([ `settings/vim/${ response[ 'uuid' ] }` ])
+				: this.close();
 		} else {
 			this.utilsService.openSnackBar('There was an error in the VIM creation', '');
 		}
@@ -308,7 +311,10 @@ export class VimComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.utilsService.openSnackBar('VIM ' + response[ 'name' ] + ' updated', '');
-			this.close();
+
+			response[ 'uuid' ] ?
+				this.requestVim(response[ 'uuid' ])
+				: this.close();
 		} else {
 			this.utilsService.openSnackBar('There was an error in the VIM update', '');
 		}
