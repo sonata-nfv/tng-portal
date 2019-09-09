@@ -1,0 +1,13 @@
+@import "../../../constants.scss";
+app-vim-config {
+	display: flex;
+    flex-direction: column;
+
+	.action-button {
+		align-self: center;
+	}
+
+	.vimConfigForm .mat-form-field {
+		width: 30vw;
+	}
+}

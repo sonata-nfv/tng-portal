@@ -577,6 +577,21 @@ ul.unordered-list .mat-input-element:disabled {
 	background-color: $basic-background-color;
 }
 
+.action-button {
+	width: 10vw;
+	height: 5vh;
+	max-width: 180px;
+	max-height: 35px;
+	border: none;
+    cursor: pointer;
+	outline: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-color: $button-enabled-font-color;
+	color: $button-basic-font-color;
+	font-size: 17px;
+}
+
 .circle-button {
 	padding: 8px;
 	border-radius: 50%;

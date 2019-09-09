@@ -1,0 +1,38 @@
+<h2 class="title2" i18n="@@monitoringConfiguration">Monitoring configuration</h2>
+
+<button *ngIf="!canShowForm" class="action-button" (click)="canShowForm=true" i18n="@@configureButton">CONFIGURE</button>
+
+<form *ngIf="canShowForm" [formGroup]="vimConfigForm" class="vimConfigForm">
+	<mat-form-field>
+		<input matInput type="text" placeholder="Job name" formControlName="jobName" i18n-placeholder="@@jobName" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Metrics path" formControlName="metricsPath" i18n-placeholder="@@metricsPath" />
+	</mat-form-field>
+
+	<ol class="list">
+		<li class="line" *ngFor="let item of targets; let i = index">
+			<mat-form-field>
+				<input matInput type="text" disabled [value]="item" />
+			</mat-form-field>
+
+			<button class="icon-button-shadow delete" (click)="eraseEntry(item)">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</li>
+
+		<li class="line">
+			<mat-form-field>
+				<input matInput type="text" formControlName="target" placeholder="Target" i18n-placeholder="@@target" />
+				<mat-error *ngIf="patternErrorExists()" i18n="@@invalidFormatIPPort">*Invalid format ( IP:port )</mat-error>
+				<mat-error *ngIf="repeatedErrorExists()" i18n="@@repeatedTarget">*Repeated target</mat-error>
+			</mat-form-field>
+		</li>
+	</ol>
+
+	<button *ngIf="canShowAddTarget()" class="basic-button add-more" (click)="addTarget()">
+		<i class="wui wui-plus"></i>
+		<span i18n="@@addTargetButton">Add target</span>
+	</button>
+</form>
