@@ -3,6 +3,11 @@ app-vim-config {
 	display: flex;
     flex-direction: column;
 
+	.header {
+		justify-content: space-between;
+		align-items: center;
+	}
+
 	.action-button {
 		align-self: center;
 	}

@@ -1,4 +1,15 @@
-<h2 class="title2" i18n="@@monitoringConfiguration">Monitoring configuration</h2>
+<div class="header title-section">
+	<h2 class="title2" i18n="@@monitoringConfiguration">Monitoring configuration</h2>
+
+	<div *ngIf="canShowForm" class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options add" type="button" mat-button
+			[disabled]="canDisableSave()" type="button" mat-button (click)="postVimConfig()" i18n="@@saveButton">
+			SAVE
+		</button>
+
+		<button class="edit-options cancel" (click)="canShowForm=false" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</div>
 
 <button *ngIf="!canShowForm" class="action-button" (click)="canShowForm=true" i18n="@@configureButton">CONFIGURE</button>
 

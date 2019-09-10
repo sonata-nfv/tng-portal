@@ -17,6 +17,7 @@ export class VimConfigComponent implements OnInit {
 	canShowForm = false;
 	vimConfigForm: FormGroup;
 	targets = new Array<string>();
+	originalConfig: object;
 	vimConfig: object;
 
 	constructor(
@@ -44,10 +45,15 @@ export class VimConfigComponent implements OnInit {
 		const response = await this.settingsService.getVimsConfig();
 
 		this.loading = false;
-		(response && response[ 'targets' ]) ?
+		if (response && response[ 'targets' ]) {
+			// Store original object to be sent when updating/creating the config
+			this.originalConfig = response;
+			// Store the existing config if any
 			this.vimConfig = response[ 'targets' ]
-				.find(item => item.job_name.toLowerCase() === this.configID.toLowerCase())
-			: this.utilsService.openSnackBar('Unable to fetch the VIMs configuration data', '');
+				.find(item => item.job_name.toLowerCase() === this.configID.toLowerCase());
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the VIMs configuration data', '');
+		}
 
 		if (this.vimConfig) {
 			this.populateForm();
@@ -81,6 +87,11 @@ export class VimConfigComponent implements OnInit {
 		return this.vimConfigForm.get('target').value && !this.patternErrorExists() && !this.repeatedErrorExists();
 	}
 
+	canDisableSave() {
+		// TODO check if existing targets have changed / have been updated
+		return !this.vimConfigForm.valid || !this.targets.length;
+	}
+
 	patternErrorExists() {
 		return this.vimConfigForm.get('target').hasError('pattern');
 	}
@@ -96,6 +107,71 @@ export class VimConfigComponent implements OnInit {
 		return false;
 	}
 
-	// TODO create vim config object and send it
+	createConfig() {
+		let config = new Object();
+		let vimsConfig = new Object();
 
+		if (this.vimType.toLowerCase() === 'openstack') {
+			config = {
+				'job_name': this.configID,
+				'metrics_path': this.vimConfigForm.get('metricsPath').value,
+				'scheme': 'http',
+				'scrape_interval': '5s',
+				'scrape_timeout': '5s',
+				'static_configs': [
+					{
+						'targets': this.targets
+					}
+				]
+			};
+		} else if (this.vimType.toLowerCase() === 'kubernetes') {
+			config = {
+				'honor_labels': true,
+				'job_name': this.configID,
+				'metrics_path': this.vimConfigForm.get('metricsPath').value,
+				'params': {
+					'match[]': [
+						'{job=\'kubernetes-apiservers\'}',
+						'{job=\'kubernetes-cadvisor\'}',
+						'{job=\'kubernetes-nodes\'}',
+						'{job=\'kubernetes-pods\'}',
+						'{job=\'kubernetes-service-endpoints\'}',
+						'{job=\'pushgateway\'}'
+					]
+				},
+				'scrape_interval': '10s',
+				'scrape_timeout': '10s',
+				'static_configs': [
+					{
+						'targets': this.targets
+					}
+				]
+			};
+		}
+
+		if (this.originalConfig) {
+			vimsConfig = Object.assign({ }, this.originalConfig);
+			vimsConfig[ 'targets' ].push(config);
+		} else {
+			vimsConfig = {
+				'targets': config
+			};
+		}
+
+		return vimsConfig;
+	}
+
+	updateConfig() {
+		// TODO update existing config data
+		// Update over this.originalConfig
+	}
+
+	async postVimConfig() {
+		const vimsConfig = this.vimConfig ? this.updateConfig() : this.createConfig();
+
+		const response = await this.settingsService.postVimConfig(vimsConfig);
+		response ?
+			this.utilsService.openSnackBar('VIM configuration data successfully stored', '')
+			: this.utilsService.openSnackBar('Unable to store this configuration', '');
+	}
 }
