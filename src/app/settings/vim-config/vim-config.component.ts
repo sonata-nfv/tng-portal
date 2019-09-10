@@ -11,7 +11,7 @@ import { SettingsService } from '../settings.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class VimConfigComponent implements OnInit {
-	@Input() vimName: string;
+	@Input() configID: string;
 	@Input() vimType: string;
 	loading: boolean;
 	canShowForm = false;
@@ -34,7 +34,6 @@ export class VimConfigComponent implements OnInit {
 			'/metrics' : '/federate';
 
 		this.vimConfigForm = new FormGroup({
-			jobName: new FormControl({ value: this.vimName, disabled: true }, Validators.required),
 			metricsPath: new FormControl(path, Validators.required),
 			target: new FormControl(null, Validators.pattern(this.utilsService.getIpAndPortPattern())),
 		});
@@ -47,7 +46,7 @@ export class VimConfigComponent implements OnInit {
 		this.loading = false;
 		(response && response[ 'targets' ]) ?
 			this.vimConfig = response[ 'targets' ]
-				.find(item => item.job_name.toLowerCase() === this.vimName.toLowerCase())
+				.find(item => item.job_name.toLowerCase() === this.configID.toLowerCase())
 			: this.utilsService.openSnackBar('Unable to fetch the VIMs configuration data', '');
 
 		if (this.vimConfig) {
@@ -59,7 +58,6 @@ export class VimConfigComponent implements OnInit {
 	}
 
 	private populateForm() {
-		this.vimConfigForm.get('jobName').setValue(this.vimConfig[ 'job_name' ]);
 		this.vimConfigForm.get('metricsPath').setValue(this.vimConfig[ 'metrics_path' ]);
 		this.vimConfig[ 'static_configs' ].forEach(config =>
 			(this.targets = this.targets.concat(config.targets))

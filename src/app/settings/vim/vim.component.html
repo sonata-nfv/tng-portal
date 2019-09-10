@@ -209,7 +209,7 @@
 	</div>
 </form>
 
-<app-vim-config *ngIf="canShowConfigMenu()" [vimName]="vimForm.get('name').value" [vimType]=vimType></app-vim-config>
+<app-vim-config *ngIf="canShowConfigMenu()" [configID]="originalVim.name + ':' + originalVim.uuid" [vimType]=vimType></app-vim-config>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

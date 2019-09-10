@@ -3,15 +3,9 @@
 <button *ngIf="!canShowForm" class="action-button" (click)="canShowForm=true" i18n="@@configureButton">CONFIGURE</button>
 
 <form *ngIf="canShowForm" [formGroup]="vimConfigForm" class="vimConfigForm">
-	<div class="same-row">
-		<mat-form-field class="left-column">
-			<input matInput type="text" placeholder="Job name" formControlName="jobName" i18n-placeholder="@@jobName" />
-		</mat-form-field>
-
-		<mat-form-field>
-			<input matInput type="text" placeholder="Metrics path" formControlName="metricsPath" i18n-placeholder="@@metricsPath" />
-		</mat-form-field>
-	</div>
+	<mat-form-field>
+		<input matInput type="text" placeholder="Metrics path" formControlName="metricsPath" i18n-placeholder="@@metricsPath" />
+	</mat-form-field>
 
 	<ol class="list">
 		<h3 *ngIf="targets.length" class="title3" i18n="@@targets">Targets</h3>
@@ -27,7 +21,7 @@
 		</li>
 
 		<li class="line">
-			<mat-form-field class="left-column" [ngClass]="{'upper-space': targets.length}">
+			<mat-form-field [ngClass]="{'upper-space': targets.length}">
 				<input matInput type="text" formControlName="target" placeholder="Target" i18n-placeholder="@@target" />
 				<mat-error *ngIf="patternErrorExists()" i18n="@@invalidFormatIPPort">*Invalid format ( IP:port )</mat-error>
 				<mat-error *ngIf="repeatedErrorExists()" i18n="@@repeatedTarget">*Repeated target</mat-error>
