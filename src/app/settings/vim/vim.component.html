@@ -209,8 +209,7 @@
 	</div>
 </form>
 
-<!-- // DO NOT ALLOW MOCKS TO HAVE THIS: only openstack and k8s -->
-<app-vim-config *ngIf="edition && !loading" [vimName]="vimForm.get('name').value" [vimType]=vimType></app-vim-config>
+<app-vim-config *ngIf="canShowConfigMenu()" [vimName]="vimForm.get('name').value" [vimType]=vimType></app-vim-config>
 
 <app-spinner *ngIf="loading"></app-spinner>
 
