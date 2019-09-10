@@ -208,6 +208,14 @@ p {
 			background-color: $secondary-button-color;
 		}
 
+		.add {
+			background-color: $primary-button-color-light;
+		}
+
+		.add.disabled-button {
+			background-color: $secondary-button-color;
+		}
+
 		.cancel {
 			background-color: $button-close-color;
 		}
