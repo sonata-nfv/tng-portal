@@ -7,7 +7,29 @@ app-vim-config {
 		align-self: center;
 	}
 
-	.vimConfigForm .mat-form-field {
-		width: 30vw;
+	.vimConfigForm {
+		.mat-form-field {
+			width: 25vw;
+
+			&.left-column {
+				margin-right: 1vw;
+			}
+
+			&.upper-space {
+				margin-top: 3vh;
+			}
+
+			&.listed-target {
+				width: 65%;
+			}
+		}
+
+		.list {
+			width: 25vw;
+
+			.add-more {
+				align-self: flex-end;
+			}
+		}	
 	}
 }
