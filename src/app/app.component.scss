@@ -566,7 +566,7 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 //////////////////////////////////////
-// Basic button
+// Basic button styles
 //////////////////////////////////////
 .basic-button {
     border: none;
@@ -734,6 +734,13 @@ ul.unordered-list .mat-input-element:disabled {
 		margin-left: 10px;
 		color: $secondary-font-color;
 	}
+}
+
+.add-more {
+	padding: 8px;
+	font-size: 16px;
+	color: $primary-color-light;
+	background-color: $basic-background-color;
 }
 
 //////////////////////////////////////

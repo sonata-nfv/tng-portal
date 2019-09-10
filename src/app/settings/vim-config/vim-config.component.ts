@@ -19,10 +19,10 @@ export class VimConfigComponent implements OnInit {
 	constructor(private utilsService: UtilsService) { }
 
 	ngOnInit() {
+		// TODO check if there is any previous config and modify accordingly canShowForm
 		const path = this.vimType.toLowerCase() === 'openstack' ?
 			'/metrics' : '/federate';
 
-		console.log(path);
 		this.vimConfigForm = new FormGroup({
 			jobName: new FormControl({ value: this.vimName, disabled: true }, Validators.required),
 			metricsPath: new FormControl(path, Validators.required),
