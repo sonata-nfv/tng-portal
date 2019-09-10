@@ -40,6 +40,10 @@ app-vim {
 			width: 24vw;
 			margin-right: 1vw;
 			
+			&.private-network-mask {
+				width: 5vw;
+			}
+
 			&.floating-ip-range {
 				width: 46vw;
 			}

@@ -2364,8 +2364,8 @@
           <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="privateNetworkMask" datatype="html">
-        <source>Private network mask</source><target state="final">Private network mask</target>
+      <trans-unit id="mask" datatype="html">
+        <source>Mask</source><target state="final">Mask</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
           <context context-type="linenumber">112</context>
