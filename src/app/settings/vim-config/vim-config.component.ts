@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { SettingsService } from '../settings.service';
 
 @Component({
 	selector: 'app-vim-config',
@@ -12,14 +13,23 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class VimConfigComponent implements OnInit {
 	@Input() vimName: string;
 	@Input() vimType: string;
-	canShowForm: false;
+	loading: boolean;
+	canShowForm = false;
 	vimConfigForm: FormGroup;
 	targets = new Array<string>();
+	vimConfig: object;
 
-	constructor(private utilsService: UtilsService) { }
+	constructor(
+		private utilsService: UtilsService,
+		private settingsService: SettingsService
+	) { }
 
 	ngOnInit() {
-		// TODO check if there is any previous config and modify accordingly canShowForm
+		this.initForm();
+		this.getVimConfig();
+	}
+
+	initForm() {
 		const path = this.vimType.toLowerCase() === 'openstack' ?
 			'/metrics' : '/federate';
 
@@ -28,6 +38,32 @@ export class VimConfigComponent implements OnInit {
 			metricsPath: new FormControl(path, Validators.required),
 			target: new FormControl(null, Validators.pattern(this.utilsService.getIpAndPortPattern())),
 		});
+	}
+
+	private async getVimConfig() {
+		this.loading = true;
+		const response = await this.settingsService.getVimsConfig();
+
+		this.loading = false;
+		(response && response[ 'targets' ]) ?
+			this.vimConfig = response[ 'targets' ]
+				.find(item => item.job_name.toLowerCase() === this.vimName.toLowerCase())
+			: this.utilsService.openSnackBar('Unable to fetch the VIMs configuration data', '');
+
+		if (this.vimConfig) {
+			this.populateForm();
+			this.canShowForm = true;
+		} else {
+			this.canShowForm = false;
+		}
+	}
+
+	private populateForm() {
+		this.vimConfigForm.get('jobName').setValue(this.vimConfig[ 'job_name' ]);
+		this.vimConfigForm.get('metricsPath').setValue(this.vimConfig[ 'metrics_path' ]);
+		this.vimConfig[ 'static_configs' ].forEach(config =>
+			(this.targets = this.targets.concat(config.targets))
+		);
 	}
 
 	addTarget() {

@@ -71,6 +71,25 @@ export class SettingsService {
 	}
 
 	/**
+    * Retrieves all VIMs monitoring configuration
+    *
+    */
+	async getVimsConfig() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.base + this.config.monitoringTargets;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
      * Generates a VIM
      *
      * @param vim Data of the desired VIM.
