@@ -31,7 +31,6 @@ export class VimConfigComponent implements OnInit {
 	}
 
 	addTarget() {
-		// TODO error when enter
 		const target = this.vimConfigForm.get('target').value;
 
 		if (target && !(this.targets.includes(target))) {
