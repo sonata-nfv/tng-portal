@@ -25,9 +25,8 @@ app-vnv-packages-detail {
 		}
 	}
 
-    .vnf,
-    .ns,
-    .tests {
+    .vnf, .ns, .tests,
+	.other-components {
       	width: 55vw;
 		margin-bottom: 5vh;
     }

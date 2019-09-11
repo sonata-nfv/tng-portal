@@ -1755,6 +1755,10 @@
           <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-slice-template-detail/sp-slice-template-detail.component.html</context>
           <context context-type="linenumber">128</context>
         </context-group>
@@ -1880,6 +1884,10 @@
           <context context-type="sourcefile">app/service-platform/sp-slice-template-create/sp-slice-template-create.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cancelButton" datatype="html">
         <source>CANCEL</source><target state="final">CANCEL</target>
@@ -1930,6 +1938,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">121</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="closeButton" datatype="html">
@@ -3076,6 +3088,10 @@
           <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
           <context context-type="linenumber">59</context>
         </context-group>
@@ -3127,6 +3143,31 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
           <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="otherComponents" datatype="html">
+        <source>Other components</source><target state="final">Other components</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noOtherComponentsToDisplayMsg" datatype="html">
+        <source>
+		There are no other components to display
+	</source><target state="final">
+		There are no other components to display
+	</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="source" datatype="html">
+        <source>Source</source><target state="final">Source</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createdAt" datatype="html">
@@ -3620,7 +3661,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vnfName" datatype="html">
@@ -4716,56 +4757,49 @@
         <source>Monitoring configuration</source><target state="final">Monitoring configuration</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="configureButton" datatype="html">
         <source>CONFIGURE</source><target state="final">CONFIGURE</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="jobName" datatype="html">
-        <source>Job name</source><target state="final">Job name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="metricsPath" datatype="html">
         <source>Metrics path</source><target state="final">Metrics path</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="targets" datatype="html">
         <source>Targets</source><target state="final">Targets</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="invalidFormatIPPort" datatype="html">
         <source>*Invalid format ( IP:port )</source><target state="final">*Invalid format ( IP:port )</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="repeatedTarget" datatype="html">
         <source>*Repeated target</source><target state="final">*Repeated target</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addTargetButton" datatype="html">
         <source>Add target</source><target state="final">Add target</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
     </body>

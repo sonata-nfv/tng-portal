@@ -99,6 +99,7 @@ export class CommonService {
 		const ns = [];
 		const vnf = [];
 		const tests = [];
+		const otherComponents = [];
 
 		content.forEach(item => {
 			if (item[ 'content-type' ].endsWith('.nsd')) {
@@ -122,20 +123,26 @@ export class CommonService {
 					name: item.id.name,
 					version: item.id.version
 				});
+			} else if (item[ 'content-type' ] === 'text/plain' || item[ 'content-type' ] === 'image/png') {
+				otherComponents.push({
+					uuid: item.uuid,
+					id: item.id,
+					type: item[ 'content-type' ],
+					source: item.source
+				});
 			}
 		});
 
-		return { ns, vnf, tests };
+		return { ns, vnf, tests, otherComponents };
 	}
-
 	/**
-     * Retrieves a list of Functions.
-     * Either following a search pattern or not.
-     *
-     * @param search [Optional] Function attributes that must be
-     *                          matched by the returned list of
-     *                          functions.
-     */
+	 * Retrieves a list of Functions.
+	 * Either following a search pattern or not.
+	 *
+	 * @param search [Optional] Function attributes that must be
+	 *                          matched by the returned list of
+	 *                          functions.
+	 */
 	async getFunctions(section, search?) {
 		const headers = this.authService.getAuthHeaders();
 		let url: string;

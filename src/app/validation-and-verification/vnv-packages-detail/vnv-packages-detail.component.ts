@@ -12,6 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 })
 export class VnvPackagesDetailComponent implements OnInit {
 	displayedColumns = [ 'name', 'vendor', 'version' ];
+	displayedColumnsOtherComponents = [ 'id', 'type', 'source' ];
 	loading: boolean;
 	detail = { };
 
@@ -58,6 +59,10 @@ export class VnvPackagesDetailComponent implements OnInit {
 
 	canShowTests() {
 		return this.detail[ 'tests' ] && this.detail[ 'tests' ].length;
+	}
+
+	canShowOtherComponents() {
+		return this.detail[ 'otherComponents' ] && this.detail[ 'otherComponents' ].length;
 	}
 
 	copyToClipboard(value) {

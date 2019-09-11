@@ -126,4 +126,32 @@
 	</table>
 </div>
 
+<div class="other-components" *ngIf="detail['otherComponents']">
+	<h2 class="title2" i18n="@@otherComponents">Other components</h2>
+
+	<span class="message" *ngIf="!canShowOtherComponents()" i18n="@@noOtherComponentsToDisplayMsg">
+		There are no other components to display
+	</span>
+
+	<table class="no-opening-table" mat-table *ngIf="canShowOtherComponents()" [dataSource]="detail['otherComponents']">
+		<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
+			<td mat-cell *matCellDef="let element">{{ element.id }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="type">
+			<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
+			<td mat-cell *matCellDef="let element">{{ element.type }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="source">
+			<th mat-header-cell *matHeaderCellDef i18n="@@source">Source</th>
+			<td mat-cell *matCellDef="let element">{{ element.source }}</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumnsOtherComponents"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumnsOtherComponents"></tr>
+	</table>
+</div>
+
 <app-spinner *ngIf="loading"></app-spinner>
