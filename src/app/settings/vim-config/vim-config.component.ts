@@ -17,6 +17,7 @@ export class VimConfigComponent implements OnInit {
 	canShowForm = false;
 	vimConfigForm: FormGroup;
 	targets = new Array<string>();
+	originalTargets: Array<string>;
 	originalConfig: object;
 	vimConfig: object;
 
@@ -31,8 +32,7 @@ export class VimConfigComponent implements OnInit {
 	}
 
 	initForm() {
-		const path = this.vimType.toLowerCase() === 'openstack' ?
-			'/metrics' : '/federate';
+		const path = this.vimType.toLowerCase() === 'openstack' ? '/metrics' : '/federate';
 
 		this.vimConfigForm = new FormGroup({
 			metricsPath: new FormControl(path, Validators.required),
@@ -68,6 +68,8 @@ export class VimConfigComponent implements OnInit {
 		this.vimConfig[ 'static_configs' ].forEach(config =>
 			(this.targets = this.targets.concat(config.targets))
 		);
+
+		this.originalTargets = [ ...this.targets ];
 	}
 
 	addTarget() {
@@ -88,8 +90,10 @@ export class VimConfigComponent implements OnInit {
 	}
 
 	canDisableSave() {
-		// TODO check if existing targets have changed / have been updated
-		return !this.vimConfigForm.valid || !this.targets.length;
+		const configHasChanged = (JSON.stringify(this.originalTargets) !== JSON.stringify(this.targets))
+			|| (this.vimConfig[ 'metrics_path' ] !== this.vimConfigForm.get('metricsPath').value);
+
+		return (!this.vimConfigForm.valid || !this.targets.length) || !configHasChanged;
 	}
 
 	patternErrorExists() {
