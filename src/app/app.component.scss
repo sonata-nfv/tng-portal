@@ -595,9 +595,10 @@ ul.unordered-list .mat-input-element:disabled {
 	outline: none;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: 17px;
 	background-color: $button-enabled-font-color;
 	color: $button-basic-font-color;
-	font-size: 17px;
+	box-shadow: 2px 2px 4px 0 $shadow-buttons;
 }
 
 .circle-button {
