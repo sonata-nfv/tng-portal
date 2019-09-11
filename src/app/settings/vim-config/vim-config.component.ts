@@ -65,6 +65,7 @@ export class VimConfigComponent implements OnInit {
 
 	private populateForm() {
 		this.vimConfigForm.get('metricsPath').setValue(this.vimConfig[ 'metrics_path' ]);
+		this.targets = new Array<string>();
 		this.vimConfig[ 'static_configs' ].forEach(config =>
 			(this.targets = this.targets.concat(config.targets))
 		);
@@ -166,16 +167,23 @@ export class VimConfigComponent implements OnInit {
 	}
 
 	updateConfig() {
-		// TODO update existing config data
-		// Update over this.originalConfig
+		const configUpdated = this.originalConfig[ 'targets' ]
+			.find(item => item.job_name.toLowerCase() === this.configID.toLowerCase());
+		configUpdated[ 'metrics_path' ] = this.vimConfigForm.get('metricsPath').value;
+		configUpdated[ 'static_configs' ] = [ { 'targets': this.targets } ];
+
+		return this.originalConfig;
 	}
 
 	async postVimConfig() {
+		this.loading = true;
 		const vimsConfig = this.vimConfig ? this.updateConfig() : this.createConfig();
 
 		const response = await this.settingsService.postVimConfig(vimsConfig);
 		response ?
 			this.utilsService.openSnackBar('VIM configuration data successfully stored', '')
 			: this.utilsService.openSnackBar('Unable to store this configuration', '');
+
+		this.getVimConfig();
 	}
 }
