@@ -57,7 +57,9 @@ export class DescriptorGeneratorComponent implements OnInit {
 			.set('author', author)
 			.set('vendor', vendor)
 			.set('description', description)
-			.set('vnfs', numVnfs);
+			.set('vnfs', numVnfs)
+			// only generate Tango descriptors as the SP doesn't accept packages with Tango and OSM
+			.set('only_tango', 'true');
 
 		this.http.post(endpoint,
 			body.toString(),

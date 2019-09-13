@@ -72,6 +72,7 @@ EXPOSE 5098
 EXPOSE 8888
 
 # add start script and start
+ARG CACHEBUST2=1
 ADD start-sdk-portal-backend.sh start-sdk-portal-backend.sh
 RUN chmod +x start-sdk-portal-backend.sh
 CMD ./start-sdk-portal-backend.sh
