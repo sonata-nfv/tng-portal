@@ -48,7 +48,7 @@ export class ProjectDetailComponent implements OnInit {
 			.subscribe(response => {
 				console.log(response);
 				if (response['error_msg'] == null) {
-					this.pkgOutput = 'Success';
+					this.pkgOutput = 'Packaging successful';
 					this.pkgPath = response['package_path'];
 					this.pkgSuccess = true;
 				} else {
@@ -71,6 +71,11 @@ export class ProjectDetailComponent implements OnInit {
 			// upload package; need to disable CORS in browser!
 			this.http.post(endpoint, formData).subscribe(response => {
 				console.log(response);
+				if  (response['error_msg'] == null) {
+					this.pkgOutput = 'On-boarding successful.';
+				} else {
+					this.pkgOutput = response['error_msg'];
+				}
 			});
 		});
 	}
