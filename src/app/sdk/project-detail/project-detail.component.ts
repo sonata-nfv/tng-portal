@@ -68,22 +68,12 @@ export class ProjectDetailComponent implements OnInit {
 
 			// set package in form data
 			const formData = new FormData();
-			formData.append('file', pkg, 'package');
+			formData.append('package', pkg);
 
-			// FIXME: fails at CORS error?
-			// upload package
-			const header = new HttpHeaders().set('Access-Control-Allow-Origin', endpoint);
-			this.http.post(endpoint, formData, { headers: header }).subscribe(response => {
+			// upload package; need to disable CORS in browser!
+			this.http.post(endpoint, formData).subscribe(response => {
 				console.log(response);
 			});
 		});
-
-		// set package in form data
-		// const formData = new FormData();
-		// formData.append('file', pkgPath, 'package');
-		//
-		// this.http.post(endpoint, formData).subscribe(response => {
-		// 	console.log(response);
-		// });
 	}
 }
