@@ -37,8 +37,9 @@
 	</div>
 
 	<div class="same-row">
-		<mat-form-field *ngIf="detail['serviceName']" class="left-column">
-			<input matInput placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled i18n="@@serviceNamePlaceholder" />
+		<mat-form-field *ngIf="detail['serviceName']" class="left-column" (click)="openService()">
+			<input matInput class="opening-item" placeholder="Service Name" value="{{ detail['serviceName'] }}" disabled
+				i18n="@@serviceNamePlaceholder" />
 		</mat-form-field>
 
 		<mat-form-field *ngIf="detail['serviceVersion']" class="right-column">

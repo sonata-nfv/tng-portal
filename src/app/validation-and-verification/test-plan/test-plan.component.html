@@ -31,8 +31,9 @@
 			</button>
 		</mat-form-field>
 
-		<mat-form-field *ngIf="testPlan['testName']">
-			<input matInput placeholder="Test" value="{{ testPlan['testName'] }}" disabled i18n-placeholder="@@testPlaceholder" />
+		<mat-form-field *ngIf="testPlan['testName']" (click)="openTest()">
+			<input matInput class="opening-item" placeholder="Test" value="{{ testPlan['testName'] }}" disabled
+				i18n-placeholder="@@testPlaceholder" />
 		</mat-form-field>
 	</div>
 
@@ -46,8 +47,9 @@
 			</button>
 		</mat-form-field>
 
-		<mat-form-field *ngIf="testPlan['serviceName']">
-			<input matInput placeholder="Service" value="{{ testPlan['serviceName'] }}" disabled i18n-placeholder="@@servicePlaceholder" />
+		<mat-form-field *ngIf="testPlan['serviceName']" (click)="openService()">
+			<input matInput class="opening-item" placeholder="Service" value="{{ testPlan['serviceName'] }}" disabled
+				i18n-placeholder="@@servicePlaceholder" />
 		</mat-form-field>
 	</div>
 

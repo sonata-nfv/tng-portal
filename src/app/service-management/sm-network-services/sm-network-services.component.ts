@@ -65,7 +65,7 @@ export class SmNetworkServicesComponent implements OnInit {
 
 	instantiate(row) {
 		this.instantiateDialog.open(NsInstantiateDialogComponent, {
-			data: { serviceUUID: row.serviceId, name: row.name }
+			data: { serviceUUID: row.uuid, name: row.name }
 		});
 	}
 }

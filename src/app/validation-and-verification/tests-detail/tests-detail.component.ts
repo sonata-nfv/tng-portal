@@ -93,6 +93,14 @@ export class TestsDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openRow(section, row) {
+		if (section === 'service') {
+			this.router.navigate([ `validation-and-verification/network-services/${ row.uuid }` ]);
+		} else if (section === 'testPlan') {
+			this.router.navigate([ `validation-and-verification/test-plans/${ row.uuid }` ]);
+		}
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

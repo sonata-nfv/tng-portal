@@ -4,5 +4,6 @@
 		"SERVICE PLATFORM",
 		"SERVICE MANAGEMENT",
 		"SETTINGS"
-	]
+	],
+	"environment": "SP"
 }

@@ -72,6 +72,10 @@ export class SpSliceTemplateDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openRow(row) {
+		this.router.navigate([ `service-platform/network-services/${ row.nsdRef }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { ConfigService } from '../shared/services/config/config.service';
@@ -10,28 +10,27 @@ import { CommonService } from '../shared/services/common/common.service';
 	styleUrls: [ './dashboard.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
 	refreshRateGraphs = '10s';
-	// refreshRateRequests = 60000;
 	dashboardData = { };
 	uptime: string;
-	// getDataTimeOut;
+	environment: string;
 
 	constructor(
 		private sanitizer: DomSanitizer,
 		private config: ConfigService,
-		private commonService: CommonService) { }
+		private commonService: CommonService,
+		private configService: ConfigService) { }
 
 	ngOnInit() {
-		this.getDashboardData();
-		// this.getDataTimeOut = setTimeout(() => { this.getDashboardData(); }, this.refreshRateRequests);
+		this.environment = this.configService.environment;
+
+		this.environment === 'SP' ?
+			this.getSPDashboardData()
+			: this.getVNVDashboardData();
 	}
 
-	ngOnDestroy() {
-		// clearTimeout(this.getDataTimeOut);
-	}
-
-	getGraphUrl(panelId) {
+	getSPGraphUrl(panelId) {
 		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseSP }${ this.config.graphs }/d-solo/sp_dash/sp?orgId=1&` +
 			`panelId=${ panelId }&` +
 			`var-id=341f4d56-8e66-cfae-6fb3-1143fff11091&` +
@@ -41,7 +40,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 			`refresh=${ this.refreshRateGraphs }`);
 	}
 
-	async getDashboardData() {
-		this.dashboardData = await this.commonService.getDashboardData();
+	getVNVGraphUrl(panelId) {
+		return this.sanitizer.bypassSecurityTrustResourceUrl(`${ this.config.baseVNV }${ this.config.graphs }/d-solo/sp_dash/sp?orgId=1&` +
+			`panelId=${ panelId }&` +
+			`var-id=4fd837f6-5f49-11dc-a9ed-000ea629289b&` +
+			`var-entity=vm&` +
+			`var-env=pre-int-vnv-bcn.5gtango.eu%3A4fd837f6-5f49-11dc-a9ed-000ea629289b&` +
+			`theme=light&` +
+			`refresh=${ this.refreshRateGraphs }`);
+	}
+
+	async getSPDashboardData() {
+		this.dashboardData = await this.commonService.getSPDashboardData();
+	}
+
+	async getVNVDashboardData() {
+		this.dashboardData = await this.commonService.getVNVDashboardData();
 	}
 }

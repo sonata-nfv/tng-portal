@@ -34,6 +34,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 	actionsDataSource = new MatTableDataSource;
 	policyRulesDataSource = new MatTableDataSource;
+	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
+	durationUnits = [ { uuid: 'h', name: 'hours' }, { uuid: 'm', name: 'minutes' }, { uuid: 's', name: 'seconds' } ];
 
 	constructor(
 		private router: Router,
@@ -68,6 +70,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			duration: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			durationUnit: new FormControl('', Validators.required),
 			threshold: new FormControl('', Validators.required),
+			thresholdValue: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			condition: new FormControl('', Validators.required)
 		});
 
@@ -184,11 +187,23 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			this.policyForm.get('sla').setValue(sla);
 	}
 
+	receiveDurationUnit(uuid) {
+		this.monitoringRulesForm.get('durationUnit').setValue(uuid);
+	}
+
 	receiveCondition(uuid) {
 		const condition = this.conditions.find(cond => cond.uuid === uuid).condition;
 		this.monitoringRulesForm.get('condition').setValue(condition);
 		// Included first part of the name with VNF:VDU:CONDITION
 		this.monitoringRulesForm.get('name').setValue(uuid);
+	}
+
+	receiveThresholdOperator(operator) {
+		this.monitoringRulesForm.get('threshold').setValue(operator);
+	}
+
+	receiveInertiaUnit(uuid) {
+		this.policyRulesForm.get('inertiaUnit').setValue(uuid);
 	}
 
 	receivePolicyRuleCondition(uuid) {
@@ -254,14 +269,15 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 	addNewMonitoringRule() {
 		let rules: Array<Object>;
-		const name = this.monitoringRulesForm.get('name').value.concat(':', this.monitoringRulesForm.get('threshold').value.replace(/\s+/g, ''));
+		const threshold = this.monitoringRulesForm.get('threshold').value.concat('', this.monitoringRulesForm.get('thresholdValue').value);
+		const name = this.monitoringRulesForm.get('name').value.concat(':', threshold);
 		const rule = {
 			'name': name,
 			'description': this.monitoringRulesForm.get('description').value,
-			'duration': this.monitoringRulesForm.get('duration').value,
+			'duration': parseInt(this.monitoringRulesForm.get('duration').value, 10),
 			'duration_unit': this.monitoringRulesForm.get('durationUnit').value,
 			'condition': this.monitoringRulesForm.get('condition').value,
-			'threshold': this.monitoringRulesForm.get('threshold').value
+			'threshold': threshold
 		};
 
 		if (this.policyForm.get('monitoringRules').value) {
@@ -313,7 +329,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		const action = {
 			'action_object': this.actionsForm.get('actionObject').value,
 			'name': this.actionsForm.get('actionName').value,
-			'value': this.actionsForm.get('actionValue').value,
+			'value': this.actionsForm.get('actionValue').value.toString(),
 			'target': {
 				'name': vnfName,
 				'vendor': vnfVendor,
@@ -336,7 +352,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 	resetActionsForm() {
 		this.actionsForm.reset();
-		this.actionsForm.get('actionValue').setValue(1);
+		this.actionsForm.get('actionValue').setValue('1');
 	}
 
 	deleteTarget(element) {
@@ -351,7 +367,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			'name': this.policyRulesForm.get('name').value.replace(/\s+/g, ''),
 			'salience': this.policyRulesForm.get('salience').value,
 			'inertia': {
-				'value': this.policyRulesForm.get('inertia').value,
+				'value': parseInt(this.policyRulesForm.get('inertia').value, 10),
 				'duration_unit': this.policyRulesForm.get('inertiaUnit').value
 			},
 			'conditions': {
@@ -439,6 +455,10 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	canDisableAddNewPolicyRule() {
 		return !this.policyRulesForm.valid || !this.policyRulesForm.get('conditionRules').value ||
 			!this.policyRulesForm.get('conditionRules').value.length;
+	}
+
+	canResetInertiaUnit() {
+		return !this.policyRulesForm.get('inertiaUnit').value;
 	}
 
 	canShowPolicyRuleActionName() {

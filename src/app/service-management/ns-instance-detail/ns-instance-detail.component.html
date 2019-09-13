@@ -29,8 +29,8 @@
 				<i class="wui wui-copy-alt"></i>
 			</button>
 		</mat-form-field>
-		<mat-form-field *ngIf="detail['serviceVersion']" class="right-column">
-			<input matInput placeholder="Service version" value="{{ detail['serviceVersion'] }}" [disabled]="true"
+		<mat-form-field *ngIf="detail['serviceVersion']" class="right-column" (click)="openService()">
+			<input matInput class="opening-item" placeholder="Service version" value="{{ detail['serviceVersion'] }}" [disabled]="true"
 				i18n-placeholder="@@serviceVersionPlaceholder" />
 		</mat-form-field>
 	</div>

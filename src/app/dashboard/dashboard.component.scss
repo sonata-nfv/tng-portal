@@ -5,6 +5,7 @@ app-dashboard {
     flex-direction: column;
 	flex: 1 1;
 	overflow-y: auto;
+	overflow-x: hidden;
     width: auto;
     height: 100%;
     background-color: $basic-background-color;
@@ -33,9 +34,9 @@ app-dashboard {
 	}
 
 	.medium-gauge-graph {
-		height: 25vh;
-		width: 11vw;
-		margin-bottom: 1vh;
+		height: 30vh;
+		width: 15vw;
+		margin-bottom: 2vh;
 	}
 
 	.title3 {
@@ -48,15 +49,6 @@ app-dashboard {
 		min-width: 140px;
 	}
 
-	// Shared column styles
-	.second-column {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 25vw;
-		margin-left: 1vh;
-	}
-
 	.text-box {
 		display: flex;
 		flex-direction: column;
@@ -65,81 +57,80 @@ app-dashboard {
 
 		&.small {
     		height: 14vh;
+    		width: 9vw;
+		}
+		
+		&.medium {
+    		height: 14vh;
     		width: 8vw;
+			margin-right: 2vw; 
+		}
+
+		&.big {
+    		height: 15vh;
+    		width: 15vw;
+			margin-top: 2vh;
 		}
 
 		.title {
-    		font-weight: 500;
-			font-size: 15px;
+			font-size: 16px;
 			margin-bottom: 2vh;
 		}
 
 		.number {
-			font-size: 72px;
+			font-size: 95px;
 		}
 	}
 
-	// System part
-	.dashboard-system {
-		height: 26vh;
-
-		.uptime {
-			justify-content: space-evenly;
-			height: 100%;
-			width: 23vw;
-		}
+	// Shared styles of right side of the dashboard
+	.right-side {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 16vw;
+		margin-left: 1vh;
 	}
 
 	// Service alerts part
 	.dashboard-service-alerts {
-		height: 30vh;
+		align-items: center;
+		height: 40vh;
+		width: 15vw;
 		margin-bottom: 1vh;
 
-		.sla-violations {
-			margin-right: 1vw;
-		}
-
 		.policy-alerts {
-			height: 100%;
-			width: 12vw;
-
-			.title {
-				margin-bottom: 5vh;
-			}
+			margin-bottom: 3vh;
 		}
 	}
 
 	// Licenses information part
 	.dashboard-licenses {
-		height: 40vh;
-
-		.license-acquired {
-			margin-right: 1vw;
-		}
+		align-items: center;
+		height: 55vh;
+		width: 15vw;
 	}
 
 	// Platform information part
 	.dashboard-platform {
 		display: flex;
 		align-items: center;
-		width: 64vw;
-		height: 58vh;
-		margin-bottom: 1vh;
+		width: 73vw;
+		height: 70vh;
 
 		.platform-gauge-graphs {
-			margin-left: 1vw;
+			margin-left: 2vw;
 		}
 
 		.platform-disk-usage {
 			width: 49vw;
-    		height: 25vh;
-			margin-bottom: 1vh;
+    		height: 30vh;
+			margin-bottom: 2vh;
 		}
 
 		.platform-cpu-usage,
 		.platform-memory-usage {
 			width: 24vw;
-    		height: 25vh;
+    		height: 30vh;
 		}
 
 		.platform-cpu-usage {
@@ -147,32 +138,27 @@ app-dashboard {
 		}
 	}
 
-	// Descriptors in the system part
-	.descriptors-information {
+	// Descriptors and running instances in the system
+	.descriptors-information,
+	.running-instances, 
+	.available-platforms {
 		display: flex;
 		align-items: flex-start;
-		height: 38vh;
-		width: 33vw; 
-		margin-right: 1vw;
+		height: 25vh;
+		width: 35vw; 
 
-		.descriptors-row {
+		&.sp-descriptors {
+			width: 45vw; 
+			margin-right: 1vw;
+		}
+
+		&.sp-instances {
+			width: 28vw; 
+		}
+
+		.text-box-row {
+			margin-top: 1vh;
 			margin-bottom: 1vh;
 		}
-		
-		.slices, .ns, .rp {
-			margin-right: 1vw; 
-		}
-
-		.centered-row {
-			align-self: center;
-		}
-	}
-
-	// Running instances in the system part
-	.running-instances {
-		display: flex;
-		align-items: flex-start;
-		height: 38vh;
-		width: 30vw; 
 	}
 }
