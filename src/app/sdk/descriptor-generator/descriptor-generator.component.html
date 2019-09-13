@@ -2,35 +2,32 @@
 
 <form [formGroup]="serviceForm" class="title-section">
 	<div class="header-buttons">
-		<!-- <button *ngIf="!disabledButton" class="edit-options save" (click)="createService()"
-      i18n="@@saveButton">SAVE</button> -->
 		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
 	</div>
 </form>
 
-<!-- <p *ngIf="disabledButton">Fill all the fields correctly</p> -->
 
 <form [formGroup]="serviceForm" class="template-form">
 	<div class="form-header">
 		<h2 class="title2">Project Information for Descriptor Generation</h2>
-		<span class="status" [ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span>
+<!--		<span class="status" [ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span>-->
 	</div>
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Service Name" formControlName="name" required/>
+			<input matInput placeholder="Service Name" formControlName="name" value="example-service"/>
 		</label>
 	</mat-form-field>
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Author" formControlName="author"/>
+			<input matInput placeholder="Author" formControlName="author" value="eu.tango"/>
 		</label>
 	</mat-form-field>
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Vendor" formControlName="vendor"/>
+			<input matInput placeholder="Vendor" formControlName="vendor" value="eu.tango"/>
 		</label>
 	</mat-form-field>
 
@@ -40,7 +37,8 @@
 		</div>
 		<mat-form-field class="description">
 			<label>
-				<textarea class="content" matInput type="text" formControlName="description"></textarea>
+				<textarea class="content" matInput type="text" formControlName="description"
+						  value="Example description"></textarea>
 			</label>
 		</mat-form-field>
 	</div>
@@ -49,14 +47,13 @@
 		Num. VNFs:
 		<mat-form-field class="num-vnfs">
 			<label>
-				<input matInput formControlName="numberOfVNFs" required maxlength="2" />
+				<input matInput maxlength="2" formControlName="numberOfVNFs" value="1" required/>
 			</label>
 		</mat-form-field>
 	</div>
 
-<!--	TODO: add nicer button in same style as rest of GUI. Always show but disable until required fields are provided -->
 	<div class="button-container">
-		<button mat-button class="basic-button button-shadow next" [disabled]="disabledButton" (click)="createService()">Generate</button>
+		<button mat-button class="basic-button button-shadow next" (click)="createService()">Generate</button>
 	</div>
 
 </form>

@@ -16,7 +16,6 @@ export class DescriptorGeneratorComponent implements OnInit {
 
 	serviceForm: FormGroup;
 	disabledButton = true;
-	isEmpty = true;
 	section = 'sdk';
 
 	constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private sdkService: SdkService,
@@ -28,7 +27,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 
 	initForm() {
 		this.serviceForm = new FormGroup({
-			name: new FormControl('', [Validators.required]),
+			name: new FormControl(''),
 			author: new FormControl(''),
 			vendor: new FormControl(''),
 			description: new FormControl(''),
@@ -39,11 +38,13 @@ export class DescriptorGeneratorComponent implements OnInit {
 
 	private onFormChanges() {
 		this.disabledButton = !this.serviceForm.valid;
-		this.isEmpty = !this.serviceForm.dirty;
 	}
 
 	createService() {
 		const endpoint = this.config.baseSDK + ':5098/api/v1/projects';
+
+		// only generate Tango descriptors as the SP doesn't accept packages with Tango and OSM
+		const body = new HttpParams().set('only_tango', 'true');
 
 		// get info from form
 		const name = this.serviceForm.get('name').value;
@@ -52,14 +53,22 @@ export class DescriptorGeneratorComponent implements OnInit {
 		const description = this.serviceForm.get('description').value;
 		const numVnfs = this.serviceForm.get('numberOfVNFs').value;
 
-		const body = new HttpParams()
-			.set('name', name)
-			.set('author', author)
-			.set('vendor', vendor)
-			.set('description', description)
-			.set('vnfs', numVnfs)
-			// only generate Tango descriptors as the SP doesn't accept packages with Tango and OSM
-			.set('only_tango', 'true');
+		// set values that are not empty
+		// if (name !== '') {
+		// 	body.set('name', name);
+		// }
+		// if (author !== '') {
+		// 	body.set('author', author);
+		// }
+		// if (vendor !== '') {
+		// 	body.set('vendor', vendor);
+		// }
+		// if (description !== '') {
+		// 	body.set('description', description);
+		// }
+		// if (numVnfs !== '') {
+		// 	body.set('vnfs', numVnfs);
+		// }
 
 		this.http.post(endpoint,
 			body.toString(),
