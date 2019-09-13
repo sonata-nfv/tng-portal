@@ -7,7 +7,7 @@
 </form>
 
 
-<form [formGroup]="serviceForm" class="template-form">
+<form class="template-form">
 	<div class="form-header">
 		<h2 class="title2">Project Information for Descriptor Generation</h2>
 <!--		<span class="status" [ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span>-->
@@ -15,19 +15,19 @@
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Service Name" formControlName="name" value="example-service"/>
+			<input matInput [(ngModel)]="project.name" name="service" placeholder="Service Name"/>
 		</label>
 	</mat-form-field>
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Author" formControlName="author" value="eu.tango"/>
+			<input matInput [(ngModel)]="project.author" name="author" placeholder="Author"/>
 		</label>
 	</mat-form-field>
 
 	<mat-form-field>
 		<label>
-			<input matInput placeholder="Vendor" formControlName="vendor" value="eu.tango"/>
+			<input matInput [(ngModel)]="project.vendor" name="vendor" placeholder="Vendor"/>
 		</label>
 	</mat-form-field>
 
@@ -37,8 +37,8 @@
 		</div>
 		<mat-form-field class="description">
 			<label>
-				<textarea class="content" matInput type="text" formControlName="description"
-						  value="Example description"></textarea>
+				<textarea matInput [(ngModel)]="project.description" name="description" class="content" type="text">
+				</textarea>
 			</label>
 		</mat-form-field>
 	</div>
@@ -47,7 +47,7 @@
 		Num. VNFs:
 		<mat-form-field class="num-vnfs">
 			<label>
-				<input matInput maxlength="2" formControlName="numberOfVNFs" value="1" required/>
+				<input matInput [(ngModel)]="project.numVnfs" name="numVnfs" required/>
 			</label>
 		</mat-form-field>
 	</div>
