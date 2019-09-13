@@ -55,8 +55,8 @@
 	</div>
 
 <!--	TODO: add nicer button in same style as rest of GUI. Always show but disable until required fields are provided -->
-	<div class="header-buttons">
-		<button *ngIf="!disabledButton" class="edit-options save" (click)="createService()">Generate</button>
+	<div class="button-container">
+		<button mat-button class="basic-button button-shadow next" [disabled]="disabledButton" (click)="createService()">Generate</button>
 	</div>
 
 </form>
