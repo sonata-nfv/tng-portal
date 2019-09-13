@@ -64,8 +64,6 @@ export class ProjectDetailComponent implements OnInit {
 
 		// get package from endpoint
 		this.http.get(pkgPath, { responseType: 'blob' }).subscribe(pkg => {
-			console.log(pkg);
-
 			// set package in form data
 			const formData = new FormData();
 			formData.append('package', pkg);
