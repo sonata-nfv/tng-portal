@@ -88,10 +88,16 @@ app-runtime-policy-create {
 			border-top: 1px solid $border-line-color;
 			border-bottom: 1px solid $border-line-color;
 
+			.same-row .mat-form-field {
+				width: 9vw;
+			}
+
+			.same-row .select .mat-form-field {
+				width: 20vw;
+			}
+
 			.same-row .mat-form-field,
 			.same-row .select {
-				width: 25vw;
-
 				&.left-column {
 					margin-right: 1vw;
 				}
@@ -121,7 +127,7 @@ app-runtime-policy-create {
 			border-top: 1px solid $border-line-color;
 			border-bottom: 1px solid $border-line-color;
 
-			// Hide labels when focused or floating (name, inertia)
+			// Hide labels when focused or floating (name)
 			.mat-form-field.mat-focused .mat-form-field-label,
 			.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
 				display: none;
@@ -152,7 +158,7 @@ app-runtime-policy-create {
 			}
 
 			.inertia {
-				width: 3vw; 
+				width: 4vw; 
 				margin-right: 10px;
 			}
 		}

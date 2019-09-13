@@ -60,6 +60,18 @@ export class VnvPackagesDetailComponent implements OnInit {
 		return this.detail[ 'tests' ] && this.detail[ 'tests' ].length;
 	}
 
+	copyToClipboard(value) {
+		this.utilsService.copyToClipboard(value);
+	}
+
+	openRow(section, row) {
+		if (section === 'service') {
+			this.router.navigate([ `validation-and-verification/network-services/${ row.uuid }` ]);
+		} else if (section === 'test') {
+			this.router.navigate([ `validation-and-verification/tests/${ row.uuid }` ]);
+		}
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

@@ -48,7 +48,7 @@ export class ProjectDetailComponent implements OnInit {
 			.subscribe(response => {
 				console.log(response);
 				if (response['error_msg'] == null) {
-					this.pkgOutput = 'Success';
+					this.pkgOutput = 'Packaging successful';
 					this.pkgPath = response['package_path'];
 					this.pkgSuccess = true;
 				} else {
@@ -57,7 +57,26 @@ export class ProjectDetailComponent implements OnInit {
 			});
 	}
 
+	// on-board the package to the currently configured service platform
 	onboardPackage(): void {
-		console.log('On-boarding not yet implemented');
+		const endpoint = this.config.baseSP + this.config.packages;
+		const pkgPath = this.config.baseSDK + ':5098/api/v1/' + this.pkgPath;
+
+		// get package from endpoint
+		this.http.get(pkgPath, { responseType: 'blob' }).subscribe(pkg => {
+			// set package in form data
+			const formData = new FormData();
+			formData.append('package', pkg);
+
+			// upload package; need to disable CORS in browser!
+			this.http.post(endpoint, formData).subscribe(response => {
+				console.log(response);
+				if  (response['error_msg'] == null) {
+					this.pkgOutput = 'On-boarding successful.';
+				} else {
+					this.pkgOutput = response['error_msg'];
+				}
+			});
+		});
 	}
 }

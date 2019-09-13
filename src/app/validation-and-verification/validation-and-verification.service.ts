@@ -97,14 +97,31 @@ export class ValidationAndVerificationPlatformService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response instanceof Array ?
-				response.map(item => {
-					return {
-						vendor: item.nsd.vendor,
-						name: item.nsd.name,
-						version: item.nsd.version
-					};
-				}) : [];
+			if (response instanceof Array) {
+				const tango = response.filter(ns => ns.platform.toLowerCase() === '5gtango')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							vendor: item.nsd.vendor,
+							name: item.nsd.name,
+							version: item.nsd.version
+						};
+					});
+
+				const osm = response.filter(ns => ns.platform.toLowerCase() === 'osm')
+					.map(item => {
+						return {
+							uuid: item.uuid,
+							vendor: item.nsd[ 'nsd:nsd-catalog' ][ 'nsd' ].vendor,
+							name: item.nsd[ 'nsd:nsd-catalog' ][ 'nsd' ].name,
+							version: item.nsd[ 'nsd:nsd-catalog' ][ 'nsd' ].version
+						};
+					});
+
+				return tango.concat(osm);
+			}
+
+			return [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -269,7 +286,8 @@ export class ValidationAndVerificationPlatformService {
 		const url = this.config.baseVNV + this.config.testPlans + `/${ uuid }`;
 
 		try {
-			return await this.http.delete(url, { headers: headers }).toPromise();
+			await this.http.delete(url, { headers: headers }).toPromise();
+			return uuid;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

@@ -131,6 +131,10 @@ export class RuntimePolicyDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openService() {
+		this.router.navigate([ `service-platform/network-services/${ this.detail[ 'nsUUID' ] }` ]);
+	}
+
 	close() {
 		this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
 	}

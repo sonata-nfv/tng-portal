@@ -129,6 +129,10 @@ export class NsInstanceDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openService() {
+		this.router.navigate([ `service-management/network-services/services/${ this.detail[ 'serviceID' ] }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

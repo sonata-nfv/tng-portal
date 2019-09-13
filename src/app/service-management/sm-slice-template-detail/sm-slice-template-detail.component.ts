@@ -67,6 +67,10 @@ export class SmSliceTemplateDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openRow(row) {
+		this.router.navigate([ `service-management/network-services/services/${ row.nsdRef }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

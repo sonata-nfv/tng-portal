@@ -1,6 +1,8 @@
 {
 	"features_available": [
+		"DASHBOARD",
 		"PLATFORMS",
 		"VALIDATION"
-	]
+	],
+	"environment": "VNV"
 }

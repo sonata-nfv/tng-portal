@@ -417,14 +417,14 @@ p {
 }
 
 //////////////////////////////////////
-// JSON viewer styles  
+// JSON viewer styles
 //////////////////////////////////////
 ngx-json-viewer {
     .ngx-json-viewer[_ngcontent-c12] {
-        height: auto; 
-        width: auto; 
+        height: auto;
+        width: auto;
         margin: 5px;
-    
+
         .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-key[_ngcontent-c12],
         .segment[_ngcontent-c12] .segment-main[_ngcontent-c12] .segment-separator[_ngcontent-c12] {
             color: $secondary-font-color;
@@ -496,20 +496,20 @@ ngx-json-viewer {
     justify-content: space-around;
     width: 55%;
     margin-top: 15vh;
-  
+
     .no-results-line {
       height: 45%;
       width: 15vw;
       border-bottom: 1px solid $secondary-font-color-light;
     }
-  
+
     .no-results-text {
       color: $secondary-font-color-light;
     }
 }
 
 //////////////////////////////////////
-// Lists 
+// Lists
 //////////////////////////////////////
 
 // Ordered lists
@@ -681,7 +681,7 @@ ul.unordered-list .mat-input-element:disabled {
 .icon-button-shadow.help {
 	align-self: center ;
 	height: 30px;
-	width: 30px;    
+	width: 30px;
 	font-size: 17px;
 	color: $primary-font-color-light;
 }
@@ -719,4 +719,11 @@ ul.unordered-list .mat-input-element:disabled {
 		margin-left: 10px;
 		color: $secondary-font-color;
 	}
+}
+
+//////////////////////////////////////
+// Generic styles
+//////////////////////////////////////
+.opening-item {
+	cursor: pointer;
 }

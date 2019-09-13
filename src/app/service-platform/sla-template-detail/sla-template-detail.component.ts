@@ -78,6 +78,10 @@ export class SlaTemplateDetailComponent implements OnInit {
 		return !this.closed && (this.detail[ 'license' ] || this.detail[ 'licenseExpirationDate' ] || this.detail[ 'licenseInstances' ]);
 	}
 
+	openService() {
+		this.router.navigate([ `service-platform/network-services/${ this.detail[ 'ns' ] }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}
