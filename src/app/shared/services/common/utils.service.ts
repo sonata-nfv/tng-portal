@@ -6,12 +6,14 @@ import { DialogDataService } from '../dialog/dialog.service';
 
 @Injectable()
 export class UtilsService {
-	emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,}';
-	ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
-	maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
-	ipAndMaskPattern = `${ this.ipPattern }\/${ this.maskPattern }`;
-	ipRangePattern = `${ this.ipPattern }-${ this.ipPattern }(,${ this.ipPattern }-${ this.ipPattern })*`;
-	numberPattern = '^[0-9]*$';
+	private emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,}';
+	private ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
+	private maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
+	private ipAndMaskPattern = `${ this.ipPattern }\/${ this.maskPattern }`;
+	private ipRangePattern = `${ this.ipPattern }-${ this.ipPattern }(,${ this.ipPattern }-${ this.ipPattern })*`;
+	private numberPattern = '^[0-9]*$';
+	private portPattern = '([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$';
+	private ipAndPortPattern = `${ this.ipPattern }:${ this.portPattern }`;
 
 	constructor(
 		public snackBar: MatSnackBar,
@@ -41,6 +43,10 @@ export class UtilsService {
 
 	getNumberPattern() {
 		return this.numberPattern;
+	}
+
+	getIpAndPortPattern() {
+		return this.ipAndPortPattern;
 	}
 
 	/**

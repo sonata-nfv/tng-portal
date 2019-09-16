@@ -66,11 +66,11 @@ app-index {
 // Spinner centering in components
 //////////////////////////////////////
 app-spinner {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+	position: fixed;
+	align-self: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 //////////////////////////////////////
@@ -205,6 +205,14 @@ p {
 		}
 
 		.save.disabled-button {
+			background-color: $secondary-button-color;
+		}
+
+		.add {
+			background-color: $primary-button-color-light;
+		}
+
+		.add.disabled-button {
 			background-color: $secondary-button-color;
 		}
 
@@ -566,7 +574,7 @@ ul.unordered-list .mat-input-element:disabled {
 }
 
 //////////////////////////////////////
-// Basic button
+// Basic button styles
 //////////////////////////////////////
 .basic-button {
     border: none;
@@ -575,6 +583,22 @@ ul.unordered-list .mat-input-element:disabled {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background-color: $basic-background-color;
+}
+
+.action-button {
+	width: 10vw;
+	height: 5vh;
+	max-width: 180px;
+	max-height: 35px;
+	border: none;
+    cursor: pointer;
+	outline: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 17px;
+	background-color: $button-enabled-font-color;
+	color: $button-basic-font-color;
+	box-shadow: 2px 2px 4px 0 $shadow-buttons;
 }
 
 .circle-button {
@@ -719,6 +743,13 @@ ul.unordered-list .mat-input-element:disabled {
 		margin-left: 10px;
 		color: $secondary-font-color;
 	}
+}
+
+.add-more {
+	padding: 8px;
+	font-size: 16px;
+	color: $primary-color-light;
+	background-color: $basic-background-color;
 }
 
 //////////////////////////////////////
