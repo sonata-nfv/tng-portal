@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import * as jsyaml from 'js-yaml';
 
 import { DialogDataService } from '../dialog/dialog.service';
 
@@ -136,6 +137,15 @@ export class UtilsService {
 			return true;
 		} catch (error) {
 			return false;
+		}
+	}
+
+	yamlToJSON(input) {
+		try {
+			const loadedObject = jsyaml.load(input);
+			return JSON.stringify(loadedObject);
+		} catch (error) {
+			console.error(error);
 		}
 	}
 
