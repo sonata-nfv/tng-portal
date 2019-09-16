@@ -1,9 +1,9 @@
 export class Project {
-	name = 'defaultName';
+	name = 'example-service';
 	uuid = 'defaultUuid';
-	author = 'defaultAuthor';
-	vendor = 'defaultVendor';
-	description = 'defaultDescription';
+	author = 'eu.tango';
+	vendor = 'eu.tango';
+	description = 'Example description';
 	numVnfs = 1;
 	fileNames = [];
 	fileUrls = [];
