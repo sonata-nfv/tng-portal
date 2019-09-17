@@ -82,9 +82,7 @@ export class SmSliceTemplateListComponent implements OnInit, OnDestroy {
 		this.instantiateDialog.open(SliceInstanceCreateComponent, {
 			data: {
 				nstId: nst.uuid,
-				vendor: nst.vendor,
-				name: nst.name,
-				version: nst.version
+				networkServices: nst.networkServices
 			}
 		});
 	}

@@ -391,7 +391,8 @@ export class CommonService {
 						vendor: item.nstd.vendor,
 						usageState: item.nstd.usageState,
 						author: item.nstd.author,
-						status: item.status
+						status: item.status,
+						networkServices: item.nstd.slice_ns_subnets
 					};
 				}) : [];
 		} catch (error) {
