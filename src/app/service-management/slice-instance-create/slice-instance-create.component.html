@@ -2,32 +2,20 @@
 
 <h2 mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
 
-<!-- <app-select class="select" placeholder="Available NST" [list]="availableNst" [disabled]="loading" (selectEvent)="receiveNst($event)"></app-select> -->
 <mat-dialog-content>
-	<form [formGroup]="instantiationForm" class="form">
-		<div class="nstDetails">
-			<mat-form-field>
-				<input matInput type="text" placeholder="Vendor" [value]="data.vendor" disabled i18n-placeholder="@@vendorPlaceholder" />
-			</mat-form-field>
-			<mat-form-field>
-				<input matInput type="text" placeholder="Name" [value]="data.name" disabled i18n-placeholder="@@namePlaceholder" />
-			</mat-form-field>
-			<mat-form-field>
-				<input matInput type="text" placeholder="Version" [value]="data.version" disabled i18n-placeholder="@@versionPlaceholder" />
-			</mat-form-field>
-		</div>
+	<div *ngIf="step === 'first'" class="first-screen">
+		<!-- TODO list of ns with list of slas -->
+	</div>
 
-		<div class="nsiDetails">
-			<mat-form-field>
-				<input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required
-					i18n-placeholder="@@nsiNamePlaceholder" />
-			</mat-form-field>
+	<form *ngIf="step === 'second'" [formGroup]="instantiationForm" class="second-screen">
+		<mat-form-field>
+			<input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required i18n-placeholder="@@nsiNamePlaceholder" />
+		</mat-form-field>
 
-			<mat-form-field class="description">
-				<h4 class="title4" i18n="@@description">Description</h4>
-				<textarea class="content" matInput type="text" formControlName="nsiDescription" required></textarea>
-			</mat-form-field>
-		</div>
+		<mat-form-field class="description">
+			<h4 class="title4" i18n="@@description">Description</h4>
+			<textarea class="content" matInput type="text" formControlName="nsiDescription" required></textarea>
+		</mat-form-field>
 	</form>
 </mat-dialog-content>
 
