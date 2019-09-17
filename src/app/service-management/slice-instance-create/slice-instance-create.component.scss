@@ -46,38 +46,4 @@ app-slice-instance-create {
 			}
 		}
 	}
-
-	button {
-		border: none;
-		cursor: pointer;
-		outline: none;
-	}
-
-	.buttonContainer {
-		button {
-			margin-top: 20px;
-			padding: 12px;
-			height: 42px;
-			width: 180px;
-			font-size: 18px;
-			font-weight: bold;
-			box-shadow: 2px 2px 4px 0 $shadow-buttons;
-
-			&.secondary {
-				margin-right: 15px;
-				color: $button-basic-font-color;
-				background-color: $button-close-color;
-			}
-
-			&.primary {
-				margin-left: 15px;
-				color: $button-basic-font-color;
-				background-color: $primary-button-color;
-			}
-		}
-
-		button:disabled {
-			background-color: $secondary-button-color;
-		}
-	}
 }
