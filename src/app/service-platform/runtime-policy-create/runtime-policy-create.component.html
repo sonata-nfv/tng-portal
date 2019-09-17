@@ -240,13 +240,11 @@
 				</div>
 
 				<div class="header">
-					<div class="button-container">
-						<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
-							class="basic-button button-shadow add-new">
-							<i class="wui wui-plus"></i>
-							<span i18n="@@add">Add</span>
-						</button>
-					</div>
+					<button [disabled]="canDisableAddNewAction()" type="button" mat-button (click)="addNewPolicyRuleAction()"
+						class="basic-button button-shadow add-new">
+						<i class="wui wui-plus"></i>
+						<span i18n="@@add">Add</span>
+					</button>
 				</div>
 			</form>
 
