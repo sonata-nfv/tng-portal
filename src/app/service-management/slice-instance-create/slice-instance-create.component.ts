@@ -14,6 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
 	instantiationForm: FormGroup;
+	step = 'second';
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,11 +42,10 @@ export class SliceInstanceCreateComponent implements OnInit {
 		const response = await this.serviceManagementService.postOneSliceInstance(instance);
 
 		this.loading = false;
-		if (response) {
-			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '');
-		} else {
-			this.utilsService.openSnackBar('There was an error instantiating the sclice template', '');
-		}
+		response ?
+			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '')
+			: this.utilsService.openSnackBar('There was an error instantiating the sclice template', '');
+
 		this.close();
 	}
 
