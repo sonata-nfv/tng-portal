@@ -1,3 +1,5 @@
+@import "../../../constants.scss";
+
 .project-icon {
 	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Add_document_icon_%28the_Noun_Project_27896%29.svg/1024px-Add_document_icon_%28the_Noun_Project_27896%29.svg.png');
 	background-size: cover;
@@ -11,4 +13,35 @@
 
 .space-divider {
 	margin-top: 10px;
+}
+
+.button-container {
+	.cancel, .next {
+		margin-top: 2vh;
+		height: 4vh;
+		font-size: 18px;
+		margin-left: 1vw;
+		margin-right: 1vw;
+		color: $button-basic-font-color;
+		border-radius: 3%;
+	}
+
+	.cancel {
+		background-color: $button-close-color;
+	}
+
+	.next {
+		background-color: $primary-button-color;
+
+		.wui-shopping-cart:before {
+			margin-right: 10px;
+			font-size: 20px;
+			color: $button-basic-font-color;
+		}
+	}
+
+	.cancel:disabled,
+	.next:disabled {
+		background-color: $secondary-button-color;
+	}
 }
