@@ -2,12 +2,23 @@
 
 <h2 mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
 
-<mat-dialog-content>
-	<div *ngIf="step === 'first'" class="first-screen">
-		<!-- TODO list of ns with list of slas -->
+<mat-dialog-content *ngIf="step === 'first'" class="first-screen">
+	<div class="same-row" *ngFor="let ns of data.networkServices">
+		<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
+		<!-- TODO filter slas by ns -->
+		<!-- TODO style these two elements -->
+		<app-select-uuid *ngIf="slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
+			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder">
+		</app-select-uuid>
 	</div>
+</mat-dialog-content>
 
-	<form *ngIf="step === 'second'" [formGroup]="instantiationForm" class="second-screen">
+<mat-dialog-content *ngIf="step=='sla-error'" class="error-dialog" i18n="@@slaErrorInSliceInstantiation">
+	No SLAs were found. Please continue with the instantiation without applying any SLA to your network services.
+</mat-dialog-content>
+
+<mat-dialog-content *ngIf="step === 'second'">
+	<form [formGroup]="instantiationForm" class="second-screen">
 		<mat-form-field>
 			<input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required i18n-placeholder="@@nsiNamePlaceholder" />
 		</mat-form-field>
@@ -19,11 +30,20 @@
 	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions>
-	<div class="buttonContainer">
-		<button class="secondary" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="primary" mat-button cdkFocusInitial [disabled]="!instantiationForm.valid" (click)="instantiate()"
-			i18n="@@instantiateButton">
+<mat-dialog-actions *ngIf="step !== 'second'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="step = 'second'" i18n="@@nextButton">
+			NEXT
+		</button>
+	</div>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="step === 'second'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button (click)="chooseBackStep()" i18n="@@backButton">BACK</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="!instantiationForm.valid"
+			(click)="instantiate()" i18n="@@instantiateButton">
 			INSTANTIATE
 		</button>
 	</div>
