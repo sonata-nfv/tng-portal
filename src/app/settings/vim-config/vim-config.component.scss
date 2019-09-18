@@ -1,0 +1,36 @@
+@import "../../../constants.scss";
+app-vim-config {
+	display: flex;
+    flex-direction: column;
+
+	.header {
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.action-button {
+		align-self: center;
+	}
+
+	.vimConfigForm {
+		.mat-form-field {
+			width: 25vw;
+
+			&.upper-space {
+				margin-top: 3vh;
+			}
+
+			&.listed-target {
+				width: 65%;
+			}
+		}
+
+		.list {
+			width: 25vw;
+
+			.add-more {
+				align-self: flex-end;
+			}
+		}	
+	}
+}

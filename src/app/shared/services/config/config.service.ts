@@ -49,6 +49,7 @@ export class ConfigService extends Config {
 	platformSettings = 'settings/platforms';
 	graphs = 'monitoring/graphs';
 	monitoringData = 'monitoring/data/services';
+	monitoringTargets = 'monitoring/data/prometheus/targets';
 
 	// IP of SDK backend container
 	baseSDK = 'http://localhost';
