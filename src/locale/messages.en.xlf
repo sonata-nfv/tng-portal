@@ -1929,7 +1929,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -3028,7 +3028,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -4306,20 +4306,22 @@
       </trans-unit>
       <trans-unit id="slaErrorInSliceInstantiation" datatype="html">
         <source>
-	No SLAs were found. Please continue with the instantiation without applying any SLA to your network services.
+	No SLAs were found, at least not for this network services.
+	Please, continue with the instantiation without applying any SLA to your network services.
 </source><target state="final">
-	No SLAs were found. Please continue with the instantiation without applying any SLA to your network services.
+	No SLAs were found, at least not for this network services.
+	Please, continue with the instantiation without applying any SLA to your network services.
 </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source><target state="final">NSI Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nextButton" datatype="html">
@@ -4330,7 +4332,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4341,7 +4343,7 @@
         <source>BACK</source><target state="final">BACK</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4356,7 +4358,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
