@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-descriptor-displayer',
@@ -8,11 +7,7 @@ import { Router } from '@angular/router';
 	encapsulation: ViewEncapsulation.None
 })
 export class DescriptorDisplayerComponent implements OnInit {
-	constructor(private router: Router) { }
+	constructor() { }
 
 	ngOnInit() { }
-
-	// package(): void {
-	// 	this.router.navigate(['sdk/packager']);
-	// }
 }
