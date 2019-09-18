@@ -18,7 +18,7 @@ app-slice-instance-create {
 	}
 
 	.mat-dialog-title {
-		margin: 0;
+		margin-bottom: 5vh;
 		color: $primary-font-color-light;
 		font-size: 17px;
 	}
@@ -28,17 +28,27 @@ app-slice-instance-create {
 		flex: 1 1;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		width: 100%;
+		width: 75%;
+		max-height: 500px;
+		margin-bottom: 2vh;
 		font-size: 22px;
-		overflow: hidden;
+		overflow-x: hidden;
+    	overflow-y: auto;
 
 		// Fist screen
-		
+		.assignation-line {
+			margin-bottom: 5vh;
+
+			// Hide labels when focused or floating (name)
+			.select .mat-form-field.mat-focused .mat-form-field-label,
+			.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+				display: none;
+			}	
+		}
 
 		// Second screen
 		.second-screen {
-			width: 60%;
+			width: 100%;
 
 			.description .content {
 				height: 150px;

@@ -2,12 +2,11 @@
 
 <h2 mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
 
-<mat-dialog-content *ngIf="step === 'first'" class="first-screen">
-	<div class="same-row" *ngFor="let ns of data.networkServices">
+<mat-dialog-content *ngIf="step === 'first' && slas.length" class="first-screen">
+	<div class="assignation-line" *ngFor="let ns of data.networkServices">
 		<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
 		<!-- TODO filter slas by ns -->
-		<!-- TODO style these two elements -->
-		<app-select-uuid *ngIf="slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
+		<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
 			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLAPlaceholder">
 		</app-select-uuid>
 	</div>
@@ -30,7 +29,7 @@
 	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="step !== 'second'">
+<mat-dialog-actions *ngIf="step !== 'second' && !loading">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
 		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="step = 'second'" i18n="@@nextButton">
