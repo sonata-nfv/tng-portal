@@ -28,29 +28,47 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	ngOnInit() {
 		this.getSLAs();
-		// TODO include ns with their slas in the form / request
 		this.instantiationForm = new FormGroup({
 			nsiName: new FormControl(null, Validators.required),
 			nsiDescription: new FormControl(null, Validators.required)
 		});
-
-		console.log(this.data);
 	}
 
 	private async getSLAs() {
 		this.loading = true;
+		const ns = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
 		const templates = await this.commonService.getSLATemplates();
 
 		this.loading = false;
-		templates && templates.length ? this.slas = templates : this.step = 'sla-error';
+		// Save online the SLAs related to the slice network services
+		templates && templates.length ?
+			this.slas = templates.filter(item => ns.includes(item[ 'nsUUID' ]))
+			: this.step = 'sla-error';
+
+		if (!this.slas.length) {
+			this.step = 'sla-error';
+		}
+	}
+
+	getSLAForService(uuid) {
+		return this.slas.filter(sla => sla[ 'nsUUID' ] === uuid);
 	}
 
 	async instantiate() {
+		// TODO send parameters
+		// const slasForServices: [
+		// 	{
+		// 		service_uuid: uuid, //--> (nsd_ref is the ns uuid),
+		// 		sla_name: name,
+		// 		sla_uuid
+		// 	}
+		// ];
 		const instance = {
 			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
 			description: this.instantiationForm.get('nsiDescription').value,
-			'request_type': 'CREATE_SLICE'
+			'request_type': 'CREATE_SLICE',
+			// services_sla: slasForServices
 		};
 
 		this.loading = true;
@@ -64,8 +82,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.close();
 	}
 
-	receiveSLA(sla) {
-
+	receiveSLA(nsUUID, slaUUID) {
+		// TODO find slaName with sla UUID
+		// TODO create array of objects with the nsUUID, slaUUID and slaName
 	}
 
 	chooseBackStep() {
