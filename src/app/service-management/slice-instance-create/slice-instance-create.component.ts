@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { CommonService } from '../../shared/services/common/common.service';
 
 @Component({
 	selector: 'app-slice-instance-create',
@@ -14,20 +15,34 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
 	instantiationForm: FormGroup;
-	step = 'second';
+	slas = new Array<object>();
+	step = 'first';
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public dialogRef: MatDialogRef<SliceInstanceCreateComponent>,
 		private serviceManagementService: ServiceManagementService,
-		private utilsService: UtilsService
+		private utilsService: UtilsService,
+		private commonService: CommonService
 	) { }
 
 	ngOnInit() {
+		this.getSLAs();
+		// TODO include ns with their slas in the form / request
 		this.instantiationForm = new FormGroup({
 			nsiName: new FormControl(null, Validators.required),
 			nsiDescription: new FormControl(null, Validators.required)
 		});
+
+		console.log(this.data);
+	}
+
+	private async getSLAs() {
+		this.loading = true;
+		const templates = await this.commonService.getSLATemplates();
+
+		this.loading = false;
+		templates && templates.length ? this.slas = templates : this.step = 'sla-error';
 	}
 
 	async instantiate() {
@@ -47,6 +62,14 @@ export class SliceInstanceCreateComponent implements OnInit {
 			: this.utilsService.openSnackBar('There was an error instantiating the sclice template', '');
 
 		this.close();
+	}
+
+	receiveSLA(sla) {
+
+	}
+
+	chooseBackStep() {
+		this.step = this.slas.length ? 'first' : 'sla-error';
 	}
 
 	close() {

@@ -34,7 +34,6 @@ app-slice-instance-create {
 		overflow: hidden;
 
 		// Fist screen
-
 		
 
 		// Second screen
@@ -44,6 +43,12 @@ app-slice-instance-create {
 			.description .content {
 				height: 150px;
 			}
+		}
+
+		// Error screen
+		&.error-dialog {
+			width: 80%;
+			color: $primary-font-color-light;
 		}
 	}
 }
