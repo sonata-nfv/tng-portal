@@ -13,7 +13,7 @@ export class ProjectDetailComponent implements OnInit {
 	project: Project;
 	// packaging related variables
 	skipValidation = false;
-	pkgOutput = 'Packaging output. Packaging not yet started.';
+	pkgOutput = 'Packaging not yet started.';
 	pkgPath = '';
 	pkgSuccess = false;
 

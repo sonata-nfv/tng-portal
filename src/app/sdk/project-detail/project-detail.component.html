@@ -1,4 +1,5 @@
 <!--Project details-->
+<!--FIXME: avoid line break-->
 <div class="title-section">
 	<h1 class="title1 title-section-name">{{ project.name }}</h1>
 </div>
@@ -37,7 +38,6 @@
 	</div>
 </form>
 
-<!--FIXME: Change color when button is disabled-->
 <div class="button-container">
 	<a mat-button class="basic-button button-shadow next" [disabled]="!projectLoaded()"
 	   href="{{config.baseSDK}}:8888/lab/tree/projects/{{project.uuid}}" target="_blank">
@@ -47,11 +47,27 @@
 
 
 <!--Packaging and validation-->
-<h2 class="title2">Packaging</h2>
+<h2 class="title2">Validation and Packaging</h2>
 
 <mat-form-field class="package-fields" style="width: 400px;">
-	<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Packaging output" disabled>
+	<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Validation and Packaging Output" disabled>
 		{{pkgOutput}}
 	</textarea>
 </mat-form-field>
 
+<div>
+	<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
+</div>
+
+<!--FIXME: properly align buttons and a element-->
+<div class="button-row button-container">
+	<button mat-button class="next" [disabled]="!projectLoaded()" (click)="package()">
+		Package
+	</button>
+	<a mat-button class="next" [disabled]="!pkgSuccess" href="{{config.baseSDK}}:5098/api/v1/{{pkgPath}}">
+		Download Package
+	</a>
+	<button mat-button class="next" [disabled]="!pkgSuccess" (click)="onboardPackage()">
+		On-board Package
+	</button>
+</div>
