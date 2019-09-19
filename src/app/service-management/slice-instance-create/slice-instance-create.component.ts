@@ -81,10 +81,10 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.close();
 	}
 
-	receiveSLA(nsUUID, slaUUID) {
+	receiveSLA(nsID, slaUUID) {
 		const slaName = this.slas.find(item => item[ 'uuid' ] === slaUUID)[ 'name' ];
 		this.slaAssociation.push({
-			service_uuid: nsUUID,
+			service_uuid: nsID,
 			sla_name: slaName,
 			sla_uuid: slaUUID
 		});
