@@ -4,11 +4,10 @@
 
 <mat-dialog-content *ngIf="step === 'first' && slas.length" class="first-screen">
 	<div class="assignation-line" *ngFor="let ns of data.networkServices">
-		<div *ngIf="getSLAForService(ns['nsd-ref']).length">
+		<div>
 			<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
-			<!-- TODO force SLA selection if any -->
-			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="getSLAForService(ns['nsd-ref'])"
-				[disabled]="loading" (selectEvent)="receiveSLA(ns['nsd-ref'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
+			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
+				(selectEvent)="receiveSLA(ns['nsd-ref'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
 			</app-select-uuid>
 		</div>
 	</div>
@@ -35,7 +34,8 @@
 <mat-dialog-actions *ngIf="step !== 'second' && !loading">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="step = 'second'" i18n="@@nextButton">
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableNext()" (click)="step = 'second'"
+			i18n="@@nextButton">
 			NEXT
 		</button>
 	</div>
