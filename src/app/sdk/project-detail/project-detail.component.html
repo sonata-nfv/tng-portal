@@ -1,46 +1,76 @@
-<mat-card>
-	<mat-card-header>
-		<div mat-card-avatar class="project-icon"></div>
-		<mat-card-title>Project: {{project.name}}</mat-card-title>
-		<mat-card-subtitle>UUID: {{project.uuid}}</mat-card-subtitle>
-	</mat-card-header>
+<!--Project details-->
+<!--FIXME: avoid line break-->
+<div class="title-section">
+	<h1 class="title1 title-section-name">{{ project.name }}</h1>
+</div>
 
-	<mat-card-content>
-		<mat-list>
-			<mat-list-item>Author: {{project.author}}</mat-list-item>
-			<mat-list-item>Vendor: {{project.vendor}}</mat-list-item>
-			<mat-list-item>Description: {{project.description}}</mat-list-item>
-			<mat-list-item>Number of VNFs: {{project.numVnfs}}</mat-list-item>
-			<mat-expansion-panel>
-				<mat-expansion-panel-header>
-					<mat-panel-title>Generated Descriptors</mat-panel-title>
-				</mat-expansion-panel-header>
-				<mat-list>
-					<mat-list-item *ngFor="let f of project.fileNames">{{f}}</mat-list-item>
-				</mat-list>
+<div class="number-bubble">
+	<span class="text">Number of VNFs</span>
+	<div class="number">
+		<span>{{ project.numVnfs }}</span>
+	</div>
+</div>
 
-			</mat-expansion-panel>
-		</mat-list>
+<form>
+	<mat-form-field *ngIf="project['uuid']" class="left-column">
+		<input matInput placeholder="Project UUID" value="{{ project['uuid'] }}" disabled/>
+	</mat-form-field>
 
-		<mat-divider class="space-divider"></mat-divider>
-
-		<mat-form-field class="package-fields">
-			<textarea matInput>{{pkgOutput}}</textarea>
+	<div class="same-row">
+		<mat-form-field class="left-column">
+			<input matInput placeholder="Author" value="{{ project.author }}" disabled/>
 		</mat-form-field>
-	</mat-card-content>
+		<mat-form-field class="right-column">
+			<input matInput placeholder="Vendor" value="{{ project.vendor }}" disabled/>
+		</mat-form-field>
+	</div>
+</form>
 
-	<mat-card-actions>
-		<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
 
-		<div class="button-row">
-			<a mat-raised-button href="{{config.baseSDK}}:8888/lab/tree/projects/{{project.uuid}}"
-			   target="_blank" [disabled]="!projectLoaded()">Show & Edit Project Files</a>
-		</div>
+<!--Project files, display, and editing-->
+<form>
+	<div class="vnf">
+		<h2 class="title2">Project Files</h2>
+		<mat-list>
+			<mat-list-item *ngFor="let f of project.fileNames">{{f}}</mat-list-item>
+			<mat-list-item *ngIf="project.fileNames.length === 0">No files</mat-list-item>
+		</mat-list>
+	</div>
+</form>
 
-		<div class="button-row">
-			<button mat-raised-button [disabled]="!projectLoaded()" (click)="package()">Package</button>
-			<a mat-raised-button [disabled]="!pkgSuccess" href="{{config.baseSDK}}:5098/api/v1/{{pkgPath}}">Download Package</a>
-			<button mat-raised-button [disabled]="!pkgSuccess" (click)="onboardPackage()">On-board Package</button>
-		</div>
-	</mat-card-actions>
-</mat-card>
+<div class="button-container">
+	<a mat-button class="basic-button button-shadow next" [disabled]="!projectLoaded()"
+	   href="{{config.baseSDK}}:8888/lab/tree/projects/{{project.uuid}}" target="_blank">
+		Show and Edit Project Files
+	</a>
+</div>
+
+
+<!--Packaging and validation-->
+<h2 class="title2">Validation and Packaging</h2>
+
+<mat-form-field class="package-fields" style="width: 400px;">
+	<textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Validation and Packaging Output" disabled>
+		{{pkgOutput}}
+	</textarea>
+</mat-form-field>
+
+<div>
+	<mat-checkbox [(ngModel)]="skipValidation">Skip Validation</mat-checkbox>
+</div>
+
+<!--FIXME: properly align buttons and a element-->
+<div class="button-row button-container">
+	<button mat-button class="next" [disabled]="!projectLoaded()" (click)="package()">
+		Package
+	</button>
+	<a mat-button class="next" [disabled]="!pkgSuccess" href="{{config.baseSDK}}:5098/api/v1/{{pkgPath}}">
+		Download Package
+	</a>
+	<button mat-button class="next" [disabled]="!pkgSuccess" (click)="onboardPackage()">
+		On-board Package
+	</button>
+</div>
+
+<!--FIXME: Allow scrolling-->
+

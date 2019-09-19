@@ -108,9 +108,9 @@
 			</button>
 		</mat-form-field>
 		<p class="dash"> / </p>
-		<mat-form-field>
-			<input matInput type="text" placeholder="Private network mask" formControlName="privateNetworkMask" required
-				[errorStateMatcher]="matcher" i18n-placeholder="@@privateNetworkMask" />
+		<mat-form-field class="private-network-mask">
+			<input matInput type="text" placeholder="Mask" formControlName="privateNetworkMask" required [errorStateMatcher]="matcher"
+				i18n-placeholder="@@mask" />
 		</mat-form-field>
 	</div>
 	<div class="same-row">
@@ -208,6 +208,8 @@
 		</span>
 	</div>
 </form>
+
+<app-vim-config *ngIf="canShowConfigMenu()" [configID]="originalVim.name + ':' + originalVim.uuid" [vimType]=vimType></app-vim-config>
 
 <app-spinner *ngIf="loading"></app-spinner>
 

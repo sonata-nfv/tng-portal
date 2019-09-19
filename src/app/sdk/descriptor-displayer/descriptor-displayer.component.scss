@@ -1,6 +1,7 @@
 @import "../../../constants.scss";
 
 app-descriptor-displayer {
+	overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;

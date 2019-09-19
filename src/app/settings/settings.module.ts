@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EndpointListComponent } from './endpoint-list/endpoint-list.component';
 import { VimListComponent } from './vim-list/vim-list.component';
 import { VimComponent } from './vim/vim.component';
+import { VimConfigComponent } from './vim-config/vim-config.component';
 import { WimListComponent } from './wim-list/wim-list.component';
 import { WimComponent } from './wim/wim.component';
 
@@ -20,6 +21,7 @@ import { SettingsService } from './settings.service';
 		EndpointListComponent,
 		VimListComponent,
 		VimComponent,
+		VimConfigComponent,
 		WimListComponent,
 		WimComponent
 	],

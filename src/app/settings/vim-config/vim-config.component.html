@@ -1,0 +1,49 @@
+<div class="header title-section">
+	<h2 class="title2" i18n="@@monitoringConfiguration">Monitoring configuration</h2>
+
+	<div *ngIf="canShowForm" class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options add" type="button" mat-button
+			[disabled]="canDisableSave()" type="button" mat-button (click)="postVimConfig()" i18n="@@saveButton">
+			SAVE
+		</button>
+
+		<button class="edit-options cancel" (click)="canShowForm=false" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</div>
+
+<button *ngIf="!canShowForm" class="action-button" (click)="canShowForm=true" i18n="@@configureButton">CONFIGURE</button>
+
+<form *ngIf="canShowForm" [formGroup]="vimConfigForm" class="vimConfigForm">
+	<mat-form-field>
+		<input matInput type="text" placeholder="Metrics path" formControlName="metricsPath" i18n-placeholder="@@metricsPath" />
+	</mat-form-field>
+
+	<ol class="list">
+		<h3 *ngIf="targets.length" class="title3" i18n="@@targets">Targets</h3>
+
+		<li class="line" *ngFor="let item of targets; let i = index">
+			<mat-form-field class="listed-target">
+				<input matInput type="text" disabled [value]="item" />
+			</mat-form-field>
+
+			<button class="icon-button-shadow delete" type="button" (click)="eraseEntry(item)">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</li>
+
+		<li class="line">
+			<mat-form-field [ngClass]="{'upper-space': targets.length}">
+				<input matInput type="text" formControlName="target" placeholder="Target" i18n-placeholder="@@target" />
+				<mat-error *ngIf="patternErrorExists()" i18n="@@invalidFormatIPPort">*Invalid format ( IP:port )</mat-error>
+				<mat-error *ngIf="repeatedErrorExists()" i18n="@@repeatedTarget">*Repeated target</mat-error>
+			</mat-form-field>
+		</li>
+
+		<button *ngIf="canShowAddTarget()" class="basic-button add-more" (click)="addTarget()">
+			<i class="wui wui-plus"></i>
+			<span i18n="@@addTargetButton">Add target</span>
+		</button>
+	</ol>
+</form>
+
+<app-spinner *ngIf="loading"></app-spinner>
