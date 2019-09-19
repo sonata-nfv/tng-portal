@@ -16,6 +16,8 @@ export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
 	instantiationForm: FormGroup;
 	slas = new Array<object>();
+	slaAssociation = new Array<object>();
+	nsWithSLA = 0;
 	step = 'first';
 
 	constructor(
@@ -47,6 +49,11 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 		if (!this.slas.length) {
 			this.step = 'sla-error';
+		} else {
+			// Count the number of ns with a possible SLA
+			let nsUUIDInSLA = this.slas.map(sla => sla[ 'nsUUID' ]);
+			nsUUIDInSLA = nsUUIDInSLA.filter((sla, index) => nsUUIDInSLA.indexOf(sla) >= index);
+			ns.filter(uuid => nsUUIDInSLA.includes(uuid) ? this.nsWithSLA += 1 : this.nsWithSLA += 0);
 		}
 	}
 
@@ -55,20 +62,12 @@ export class SliceInstanceCreateComponent implements OnInit {
 	}
 
 	async instantiate() {
-		// TODO send parameters
-		// const slasForServices: [
-		// 	{
-		// 		service_uuid: uuid, //--> (nsd_ref is the ns uuid),
-		// 		sla_name: name,
-		// 		sla_uuid
-		// 	}
-		// ];
 		const instance = {
 			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
 			description: this.instantiationForm.get('nsiDescription').value,
 			'request_type': 'CREATE_SLICE',
-			// services_sla: slasForServices
+			services_sla: this.slaAssociation.length ? this.slaAssociation : []
 		};
 
 		this.loading = true;
@@ -77,18 +76,26 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.loading = false;
 		response ?
 			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '')
-			: this.utilsService.openSnackBar('There was an error instantiating the sclice template', '');
+			: this.utilsService.openSnackBar('There was an error instantiating the slice template', '');
 
 		this.close();
 	}
 
 	receiveSLA(nsUUID, slaUUID) {
-		// TODO find slaName with sla UUID
-		// TODO create array of objects with the nsUUID, slaUUID and slaName
+		const slaName = this.slas.find(item => item[ 'uuid' ] === slaUUID)[ 'name' ];
+		this.slaAssociation.push({
+			service_uuid: nsUUID,
+			sla_name: slaName,
+			sla_uuid: slaUUID
+		});
 	}
 
 	chooseBackStep() {
 		this.step = this.slas.length ? 'first' : 'sla-error';
+	}
+
+	canDisableNext() {
+		return this.slas.length && this.slaAssociation.length !== this.nsWithSLA ? true : false;
 	}
 
 	close() {
