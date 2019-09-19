@@ -7,7 +7,7 @@
 		<div>
 			<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
 			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
-				(selectEvent)="receiveSLA(ns['nsd-ref'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
+				(selectEvent)="receiveSLA(ns['id'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
 			</app-select-uuid>
 		</div>
 	</div>
