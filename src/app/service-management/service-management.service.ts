@@ -77,6 +77,7 @@ export class ServiceManagementService {
 				description: response[ 'description' ],
 				nsrList: response[ 'nsr-list' ] ? response[ 'nsr-list' ].map(item => {
 					return {
+						uuid: item[ 'nsrId' ],
 						nsrName: item[ 'nsrName' ],
 						slaName: item[ 'sla-name' ],
 						isShared: item[ 'isshared' ] ? 'Yes' : 'No',

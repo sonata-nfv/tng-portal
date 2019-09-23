@@ -32,26 +32,26 @@ app-slice-instance-detail {
 		table {
 			width: 100%;
 			margin-bottom: 50px;
-		}
-	
-		tr.mat-row {
-			background-image: linear-gradient(
-				to right,
-				$basic-background-color 0%,
-				$table-underline-color 0%,
-				$table-underline-color 99%,
-				$basic-background-color 99%,
-				$basic-background-color 100%
-			);
-		}
-
-		.mat-cell:nth-child(5),
-        .mat-header-cell:nth-child(5) {
-          	width: 20%;
-        }
 		
-		td.mat-cell {
-			cursor: auto;
+			tr.mat-row {
+				background-image: linear-gradient(
+					to right,
+					$basic-background-color 0%,
+					$table-underline-color 0%,
+					$table-underline-color 99%,
+					$basic-background-color 99%,
+					$basic-background-color 100%
+				);
+			}
+		
+			.mat-cell:nth-child(5),
+			.mat-header-cell:nth-child(5) {
+				width: 20%;
+			}
+		
+			&.no-opening-table td.mat-cell {
+				cursor: auto;
+			}
 		}
 
 		// Styles for no instances message
