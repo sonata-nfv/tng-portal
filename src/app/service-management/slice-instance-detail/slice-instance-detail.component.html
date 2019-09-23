@@ -70,7 +70,7 @@
 		</span>
 	</div>
 
-	<h2 *ngIf="detail['nsrList']" class="title2" i18n="@@networkServices">Network services</h2>
+	<h2 *ngIf="detail['nsrList']" class="title2" i18n="@@networkServiceInstances">Network service instances</h2>
 
 	<table *ngIf="detail['nsrList']" mat-table [dataSource]="detail['nsrList']">
 		<ng-container matColumnDef="nsrName">
