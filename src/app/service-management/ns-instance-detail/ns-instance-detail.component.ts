@@ -37,6 +37,15 @@ export class NsInstanceDetailComponent implements OnInit {
 	detail = { };
 	instanceUUID: string;
 	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
+	policy = {
+		'enforced': false, 'policy': {
+			'policy_uuid': 'uuid',
+			'policy_name': 'name',
+			'policy_vendor': 'vendor',
+			'policy_version': 'version',
+			'sla_name': 'slaName'
+		}
+	};
 
 	// Detail in row and animations
 	dataSourceVNF = new CustomDataSource();
@@ -57,6 +66,7 @@ export class NsInstanceDetailComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.requestNsInstance(uuid);
+			this.requestPolicy(uuid);
 		});
 	}
 
@@ -94,6 +104,10 @@ export class NsInstanceDetailComponent implements OnInit {
 		}
 	}
 
+	async requestPolicy(uuid) {
+		// TODO request policy data and fill this.policy with it
+	}
+
 	terminate() {
 		const title = 'Are you sure...?';
 		const content = 'Are you sure you want to terminate this instance?';
@@ -125,12 +139,26 @@ export class NsInstanceDetailComponent implements OnInit {
 		return (!this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
 	}
 
+	canShowPolicyData() {
+		// TODO check if this check is valid with received data
+		return !this.loading && this.policy && this.policy.policy;
+	}
+
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	changePolicyActivation(value) {
+		// TODO request activation or deactivation
+		console.log('TCL: NsInstanceDetailComponent -> changePolicyActivation -> event', value);
+	}
+
 	openService() {
 		this.router.navigate([ `service-management/network-services/services/${ this.detail[ 'serviceID' ] }` ]);
+	}
+
+	openPolicy() {
+		this.router.navigate([ `service-platform/policies/runtime-policies/${ this.policy[ 'policy' ][ 'policy_uuid' ] }` ]);
 	}
 
 	close() {

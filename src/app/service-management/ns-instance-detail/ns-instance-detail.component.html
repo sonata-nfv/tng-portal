@@ -53,17 +53,26 @@
 	</mat-form-field>
 </form>
 
-<!-- TODO check if there is a policy to show this subsection -->
 <!-- Active policy section -->
-<div *ngIf="!loading" class="runtime-policy">
+<div *ngIf="canShowPolicyData()" class="runtime-policy">
 	<div class="policy-title">
 		<h2 class="title2" i18n="@@runtimePolicyAssociated">Runtime policy associated</h2>
-		<!-- TODO check the value and request activation or deactivation according to it -->
-		<mat-slide-toggle></mat-slide-toggle>
+		<mat-slide-toggle [checked]="policy.enforced" (change)="changePolicyActivation($event.checked)"></mat-slide-toggle>
 	</div>
 
-	<!-- TODO include policy information  -->
+	<form class="form policy-form">
+		<mat-form-field>
+			<input matInput placeholder="Vendor" value="{{ policy.policy.policy_vendor }}" disabled i18n-placeholder="@@vendor" />
+		</mat-form-field>
 
+		<mat-form-field (click)="openPolicy()">
+			<input matInput class="opening-item" placeholder="Name" value="{{ policy.policy.policy_name }}" disabled i18n-placeholder="@@name" />
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Version" value="{{ policy.policy.policy_version }}" disabled i18n-placeholder="@@version" />
+		</mat-form-field>
+	</form>
 </div>
 
 <!-- VNFs table section -->
