@@ -99,6 +99,15 @@
 			<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
 		</ng-container>
 
+		<ng-container matColumnDef="delete">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element" (click)="scaleIn(element)" (click)="$event.stopPropagation()">
+				<button class="icon-button-shadow actions " mat-button matTooltip="Scale in" i18n-matTooltip="@@scaleIn">
+					<i class="wui wui-trash-alt"></i>
+				</button>
+			</td>
+		</ng-container>
+
 		<!-- Expanded Content Column - The detail row is made up of this one column -->
 		<ng-container matColumnDef="expandedDetail">
 			<td mat-cell *matCellDef="let detail">
@@ -145,6 +154,15 @@
 		<ng-container matColumnDef="updatedAt">
 			<th mat-header-cell *matHeaderCellDef i18n="@@updatedAt">Updated At</th>
 			<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="delete">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element" (click)="scaleIn(element)" (click)="$event.stopPropagation()">
+				<button class="icon-button-shadow actions " mat-button matTooltip="Scale in" i18n-matTooltip="@@scaleIn">
+					<i class="wui wui-trash-alt"></i>
+				</button>
+			</td>
 		</ng-container>
 
 		<!-- Expanded Content Column - The detail row is made up of this one column -->

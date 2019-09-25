@@ -36,9 +36,9 @@ export class NsInstanceDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
 	instanceUUID: string;
-	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
+	displayedColumns = [ 'name', 'version', 'status', 'updatedAt', 'delete' ];
 	policy = {
-		'enforced': false, 'policy': {
+		'enforced': true, 'policy': {
 			'policy_uuid': 'uuid',
 			'policy_name': 'name',
 			'policy_vendor': 'vendor',
@@ -151,6 +151,42 @@ export class NsInstanceDetailComponent implements OnInit {
 	changePolicyActivation(value) {
 		// TODO request activation or deactivation
 		console.log('TCL: NsInstanceDetailComponent -> changePolicyActivation -> event', value);
+	}
+
+	private canScale() {
+		return this.policy && !this.policy.enforced ? true : false;
+	}
+
+	scaleIn(instance) {
+		const scaleIn = {
+			'instance_uuid': instance.uuid,
+			'request_type': 'SCALE_SERVICE',
+			'scaling_type': 'REMOVE_VNF',
+			'vnf_uuid': instance.descriptorRef
+		};
+
+		if (this.canScale()) {
+			this.sendScaleRequest(scaleIn);
+		} else {
+			const title = 'Oh oh...?';
+			const content = 'You can not scale while there is an active policy applied to this instance';
+			const action = 'Deactivate';
+
+			this.dialogData.openDialog(title, content, action, async () => {
+				// TODO deactivate policy
+			});
+		}
+	}
+
+	async sendScaleRequest(requestBody) {
+		// TODO check if it is scale in and the last instance if response is different and another msg should be sent
+		this.loading = true;
+		const response = await this.serviceManagementService.postScaleAction(requestBody);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('Instance successfully scaled in', '')
+			: this.utilsService.openSnackBar('There was an error scaling in the instance', '');
 	}
 
 	openService() {

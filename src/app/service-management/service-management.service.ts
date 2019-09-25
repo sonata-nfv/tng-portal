@@ -319,6 +319,26 @@ export class ServiceManagementService {
 	}
 
 	/**
+	 * Manually scales an instance out or in
+	 *
+	 * @param requestBody Body of the request to scale out or in
+	 */
+	async postScaleAction(requestBody) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = this.config.baseSP + this.config.requests;
+
+		try {
+			return await this.http.post(url, requestBody, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Retrieves a list of Network Service requests.
 	 * Either following a search pattern or not.
 	 *
