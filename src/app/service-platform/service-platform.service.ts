@@ -316,7 +316,7 @@ export class ServicePlatformService {
 						nsInstanceUUID: item.nsi_uuid,
 						slaUUID: item.sla_uuid,
 						date: this.utilsService.formatUTCDate(item.violation_time),
-						customerUUID: item.cust_uuid
+						customer: item.cust_username
 					};
 				}) : [];
 		} catch (error) {

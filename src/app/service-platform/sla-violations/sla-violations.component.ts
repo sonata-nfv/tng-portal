@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class SlaViolationsComponent implements OnInit {
 	loading = false;
 	violations = new Array();
-	displayedColumns = [ 'nsInstanceUUID', 'slaUUID', 'customerUUID', 'date' ];
+	displayedColumns = [ 'nsInstanceUUID', 'slaUUID', 'customer', 'date' ];
 
 	constructor(
 		private servicePlatformService: ServicePlatformService,
