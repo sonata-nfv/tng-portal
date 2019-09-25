@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { AuthGuard } from './auth-guard';
+import { AuthGuard } from './auth-guard';
 import { CanDisplayGuard } from './canDisplay-guard';
 
 import { IndexComponent } from './index/index.component';
@@ -86,12 +86,12 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent }, // canActivate: [ AuthGuard ] },
+	{ path: 'registered', component: RegisteredComponent , canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
 		component: IndexComponent,
-		// canActivate: [ AuthGuard ],
+		canActivate: [ AuthGuard ],
 		children: [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{
@@ -270,7 +270,6 @@ const routes: Routes = [
 	// imports: [RouterModule.forRoot(routes, {useHash: true})],
 	imports: [ RouterModule.forRoot(routes) ],
 	exports: [ RouterModule ],
-	// providers: [ AuthGuard, CanDisplayGuard ]
-	providers: [ CanDisplayGuard ]
+	providers: [ AuthGuard, CanDisplayGuard ]
 })
 export class AppRoutingModule { }
