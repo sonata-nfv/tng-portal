@@ -164,7 +164,7 @@ export class SlaTemplateCreateComponent implements OnInit {
 			expireDate: this.templateForm.get('expirationDate').value,
 			guaranteeId: this.storedGuarantees.map(x => x.uuid),
 			service_licence_type: this.templateForm.get('license').value || 'public',
-			allowed_service_instances: this.templateForm.get('instances').value || '1',
+			allowed_service_instances: this.templateForm.get('instances').value.toString() || '1',
 			service_licence_expiration_date: this.templateForm.get('licenseExpirationDate').value || '',
 			dflavour_name: this.templateForm.get('flavor').value || ''
 		};
