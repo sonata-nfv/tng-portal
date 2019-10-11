@@ -63,6 +63,13 @@
 		</span>
 	</div>
 
+	<div class="description" *ngIf="detail['errorMsg']">
+		<h4 class="title4" i18n="@@error">Error</h4>
+		<span class="content">
+			<p>{{ detail['errorMsg'] }}</p>
+		</span>
+	</div>
+
 	<h2 *ngIf="detail['nsrList']" class="title2" i18n="@@networkServices">Network services</h2>
 
 	<table *ngIf="detail['nsrList']" mat-table [dataSource]="detail['nsrList']">

@@ -2194,7 +2194,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">193</context>
+          <context context-type="linenumber">194</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
@@ -2452,7 +2452,7 @@
         <source>Edit</source><target state="final">Edit</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">186</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
@@ -2463,11 +2463,36 @@
         <source>View</source><target state="final">View</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">190</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
           <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="convertYamlToJson" datatype="html">
+        <source>
+				Convert YAML to JSON
+			</source><target state="final">
+				Convert YAML to JSON
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notAValidJson" datatype="html">
+        <source>*This is not a valid JSON</source><target state="final">*This is not a valid JSON</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notAValidYaml" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ yamlErrorMsg }}"/></source><target state="final"><x id="INTERPOLATION" equiv-text="{{ yamlErrorMsg }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/settings/vim/vim.component.html</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createNewWimButton" datatype="html">
@@ -3089,7 +3114,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/vnv-packages-detail/vnv-packages-detail.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
