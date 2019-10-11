@@ -321,7 +321,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">261</context>
+          <context context-type="linenumber">259</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
@@ -1818,7 +1818,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">275</context>
+          <context context-type="linenumber">273</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
@@ -1929,7 +1929,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -2989,10 +2989,6 @@
           <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
           <context context-type="linenumber">31</context>
         </context-group>
@@ -3032,7 +3028,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -3411,6 +3407,10 @@
           <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">86</context>
         </context-group>
@@ -3650,7 +3650,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">265</context>
+          <context context-type="linenumber">263</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/generated-actions/generated-actions.component.html</context>
@@ -3661,28 +3661,28 @@
         <source>Add</source><target state="final">Add</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">247</context>
+          <context context-type="linenumber">246</context>
         </context-group>
       </trans-unit>
       <trans-unit id="definedActions" datatype="html">
         <source>Defined actions</source><target state="final">Defined actions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">253</context>
+          <context context-type="linenumber">251</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actionObject" datatype="html">
         <source>Action object</source><target state="final">Action object</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">257</context>
+          <context context-type="linenumber">255</context>
         </context-group>
       </trans-unit>
       <trans-unit id="target" datatype="html">
         <source>Target</source><target state="final">Target</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">269</context>
+          <context context-type="linenumber">267</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
@@ -4171,10 +4171,6 @@
           <context context-type="sourcefile">app/service-platform/sp-slice-template-create/sp-slice-template-create.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="selectNSPlaceholder" datatype="html">
         <source>Select Network Service</source><target state="final">Select Network Service</target>
@@ -4308,18 +4304,50 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="namePlaceholder" datatype="html">
-        <source>Name</source><target state="final">Name</target>
+      <trans-unit id="slaErrorInSliceInstantiation" datatype="html">
+        <source>
+	No SLAs were found, at least not for this network services.
+	Please, continue with the instantiation without applying any SLA to your network services.
+</source><target state="final">
+	No SLAs were found, at least not for this network services.
+	Please, continue with the instantiation without applying any SLA to your network services.
+</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source><target state="final">NSI Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nextButton" datatype="html">
+        <source>
+			NEXT
+		</source><target state="final">
+			NEXT
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="backButton" datatype="html">
+        <source>BACK</source><target state="final">BACK</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instantiateButton" datatype="html">
@@ -4330,7 +4358,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4486,25 +4514,11 @@
           <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="nextButton" datatype="html">
-        <source>NEXT</source><target state="final">NEXT</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="instanceNamePlaceholder" datatype="html">
         <source>Instance name</source><target state="final">Instance name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">82</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="backButton" datatype="html">
-        <source>BACK</source><target state="final">BACK</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="trialLicenseError" datatype="html">
