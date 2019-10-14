@@ -359,6 +359,26 @@ export class ServiceManagementService {
 	}
 
 	/**
+	 * Activate or deactivate the runtime policy in use
+	 *
+	 * @param action Activation or deactivation action to be done
+	 * @param nsrUUID UUID of the network service instance going to be activated/deactivated
+	 * @param policyUUID UUID of the policy going to be activated
+	 */
+	async getRuntimePolicyActivation(action, nsrUUID, policyUUID) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = action === 'activate' ?
+			`${ this.config.baseSP }${ this.config.runtimePolicyActivation }${ nsrUUID }/${ policyUUID }`
+			: `${ this.config.baseSP }${ this.config.runtimePolicyDeactivation }${ nsrUUID }`;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Retrieves a list of Network Service requests.
 	 * Either following a search pattern or not.
 	 *

@@ -132,24 +132,38 @@ export class NsInstanceDetailComponent implements OnInit {
 	}
 
 	canShowNoResultsCNF() {
-		return (!this.dataSourceCNF || !this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
+		return (!this.dataSourceCNF || !this.dataSourceCNF.data || !this.dataSourceCNF.data.length);
 	}
 
 	canShowNoResultsVNF() {
-		return (!this.dataSourceVNF || !this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
+		return (!this.dataSourceVNF || !this.dataSourceVNF.data || !this.dataSourceVNF.data.length);
 	}
 
 	canShowPolicyData() {
-		return !this.loading && Object.keys(this.policy).length && Object.keys(this.policy[ 'policy' ]).length;
+		return Object.keys(this.policy).length && Object.keys(this.policy[ 'policy' ]).length;
 	}
 
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
 	}
 
-	changePolicyActivation(value) {
-		// TODO request activation or deactivation
-		console.log('TCL: NsInstanceDetailComponent -> changePolicyActivation -> event', value);
+	async changePolicyActivation(activation) {
+		this.loading = true;
+		const policyUUID = this.policy[ 'policy' ][ 'policy_uuid' ];
+		const response = activation ?
+			await this.serviceManagementService.getRuntimePolicyActivation('activate', this.detail[ 'uuid' ], policyUUID)
+			: await this.serviceManagementService.getRuntimePolicyActivation('deactivate', this.detail[ 'uuid' ], policyUUID);
+
+		this.loading = false;
+		response ?
+			activation ?
+				this.utilsService.openSnackBar('Runtime policy activated', '')
+				: this.utilsService.openSnackBar('Runtime policy deactivated', '')
+			: activation ?
+				this.utilsService.openSnackBar('There was an error activating the runtime policy', '')
+				: this.utilsService.openSnackBar('There was an error deactivating the runtime policy', '');
+
+		this.requestPolicy(this.detail[ 'uuid' ]);
 	}
 
 	private canScale() {
@@ -172,7 +186,7 @@ export class NsInstanceDetailComponent implements OnInit {
 			const action = 'Deactivate';
 
 			this.dialogData.openDialog(title, content, action, async () => {
-				// TODO deactivate policy
+				this.changePolicyActivation(false);
 			});
 		}
 	}
