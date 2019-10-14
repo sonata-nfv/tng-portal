@@ -37,19 +37,11 @@ export class NsInstanceDetailComponent implements OnInit {
 	detail = { };
 	instanceUUID: string;
 	displayedColumns = [ 'name', 'version', 'status', 'updatedAt', 'delete' ];
-	policy = {
-		'enforced': true, 'policy': {
-			'policy_uuid': 'uuid',
-			'policy_name': 'name',
-			'policy_vendor': 'vendor',
-			'policy_version': 'version',
-			'sla_name': 'slaName'
-		}
-	};
-
+	policy = { };
 	// Detail in row and animations
-	dataSourceVNF = new CustomDataSource();
-	dataSourceCNF = new CustomDataSource();
+	dataSourceVNF: CustomDataSource;
+	dataSourceCNF: CustomDataSource;
+
 	recordDetail = { };
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
@@ -76,7 +68,7 @@ export class NsInstanceDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	async requestNsInstance(uuid) {
+	private async requestNsInstance(uuid) {
 		this.loading = true;
 		const response = await this.serviceManagementService.getOneNSInstance(uuid);
 
@@ -92,6 +84,8 @@ export class NsInstanceDetailComponent implements OnInit {
 
 				this.loading = false;
 				if (responses) {
+					this.dataSourceVNF = new CustomDataSource();
+					this.dataSourceCNF = new CustomDataSource();
 					this.dataSourceVNF.data = responses.filter(instance => instance[ 'vdus' ]);
 					this.dataSourceCNF.data = responses.filter(instance => instance[ 'cdus' ]);
 				} else {
@@ -104,8 +98,14 @@ export class NsInstanceDetailComponent implements OnInit {
 		}
 	}
 
-	async requestPolicy(uuid) {
-		// TODO request policy data and fill this.policy with it
+	private async requestPolicy(uuid) {
+		this.loading = true;
+		const policy = await this.serviceManagementService.getInstancePolicyData(uuid);
+
+		this.loading = false;
+		policy ?
+			this.policy = policy
+			: this.utilsService.openSnackBar('Unable to fetch the policy data of the instance', '');
 	}
 
 	terminate() {
@@ -132,16 +132,15 @@ export class NsInstanceDetailComponent implements OnInit {
 	}
 
 	canShowNoResultsCNF() {
-		return (!this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
+		return (!this.dataSourceCNF || !this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
 	}
 
 	canShowNoResultsVNF() {
-		return (!this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
+		return (!this.dataSourceVNF || !this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
 	}
 
 	canShowPolicyData() {
-		// TODO check if this check is valid with received data
-		return !this.loading && this.policy && this.policy.policy;
+		return !this.loading && Object.keys(this.policy).length && Object.keys(this.policy[ 'policy' ]).length;
 	}
 
 	copyToClipboard(value) {
@@ -154,7 +153,7 @@ export class NsInstanceDetailComponent implements OnInit {
 	}
 
 	private canScale() {
-		return this.policy && !this.policy.enforced ? true : false;
+		return Object.keys(this.policy).length && !this.policy[ 'enforced' ] ? true : false;
 	}
 
 	scaleIn(instance) {

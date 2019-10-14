@@ -41,6 +41,7 @@ export class ConfigService extends Config {
 	runtimePoliciesClone = 'policies/clone/';
 	runtimePoliciesDefault = 'policies/default/';
 	runtimePoliciesActions = 'policies/actions';
+	runtimePoliciesRecords = 'policies/records';
 	vimSettings = 'settings/vims';
 	vimOpenstackSettings = 'settings/vims/heat';
 	vimK8sSettings = 'settings/vims/k8s';

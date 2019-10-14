@@ -339,6 +339,26 @@ export class ServiceManagementService {
 	}
 
 	/**
+	 * Get the policy data related to a network service instance
+	 *
+	 * @param uuid UUID of the network service instance
+	 */
+	async getInstancePolicyData(uuid) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = this.config.baseSP + this.config.runtimePoliciesRecords + `/${ uuid }`;
+
+		try {
+			return await this.http.get(url, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Retrieves a list of Network Service requests.
 	 * Either following a search pattern or not.
 	 *
