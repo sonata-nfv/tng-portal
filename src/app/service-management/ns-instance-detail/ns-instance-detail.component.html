@@ -66,7 +66,8 @@
 		</mat-form-field>
 
 		<mat-form-field (click)="openPolicy()">
-			<input matInput class="opening-item" placeholder="Name" value="{{ policy.policy.policy_name }}" disabled i18n-placeholder="@@name" />
+			<input matInput class="opening-item" placeholder="Name" value="{{ policy.policy.policy_name }}" disabled
+				i18n-placeholder="@@name" />
 		</mat-form-field>
 
 		<mat-form-field>
@@ -78,6 +79,10 @@
 <!-- VNFs table section -->
 <div *ngIf="!loading" class="vnf">
 	<h2 class="title2" i18n="@@vnfInstances">VNF instances</h2>
+
+	<app-scale-out *ngIf="canShowScaleOutVNF()" [list]="dataSourceVNF.data" (scaleOutEvent)="scaleOut($event)">
+	</app-scale-out>
+
 	<table mat-table [dataSource]="dataSourceVNF">
 		<ng-container matColumnDef="name">
 			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
@@ -99,7 +104,7 @@
 			<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="delete">
+		<ng-container matColumnDef="scaleIn">
 			<th mat-header-cell *matHeaderCellDef></th>
 			<td mat-cell *matCellDef="let element" (click)="scaleIn(element)" (click)="$event.stopPropagation()">
 				<button class="icon-button-shadow actions " mat-button matTooltip="Scale in" i18n-matTooltip="@@scaleIn">
@@ -135,6 +140,10 @@
 <!-- CNFs table section -->
 <div *ngIf="!loading" class="cnf">
 	<h2 class="title2" i18n="@@cnfInstances">CNF instances</h2>
+
+	<app-scale-out *ngIf="canShowScaleOutCNF()" [list]="dataSourceCNF.data" (scaleOutEvent)="scaleOut($event)">
+	</app-scale-out>
+
 	<table mat-table [dataSource]="dataSourceCNF">
 		<ng-container matColumnDef="name">
 			<th mat-header-cell *matHeaderCellDef i18n="@@name">Name</th>
@@ -156,7 +165,7 @@
 			<td mat-cell *matCellDef="let element">{{ utilsService.formatDateString(element.updatedAt) }}</td>
 		</ng-container>
 
-		<ng-container matColumnDef="delete">
+		<ng-container matColumnDef="scaleIn">
 			<th mat-header-cell *matHeaderCellDef></th>
 			<td mat-cell *matCellDef="let element" (click)="scaleIn(element)" (click)="$event.stopPropagation()">
 				<button class="icon-button-shadow actions " mat-button matTooltip="Scale in" i18n-matTooltip="@@scaleIn">

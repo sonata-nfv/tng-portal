@@ -18,6 +18,7 @@ import { SmNetworkServicesDetailComponent } from './sm-network-services-detail/s
 import { NsInstantiateDialogComponent } from './ns-instantiate-dialog/ns-instantiate-dialog.component';
 import { NsInstanceListComponent } from './ns-instance-list/ns-instance-list.component';
 import { NsInstanceDetailComponent } from './ns-instance-detail/ns-instance-detail.component';
+import { ScaleOutComponent } from './ns-instance-detail/scale-out.component';
 import { VnfRecordDetailComponent } from './vnf-record-detail/vnf-record-detail.component';
 import { CnfRecordDetailComponent } from './cnf-record-detail/cnf-record-detail.component';
 import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
@@ -38,6 +39,7 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 		NsInstantiateDialogComponent,
 		NsInstanceListComponent,
 		NsInstanceDetailComponent,
+		ScaleOutComponent,
 		VnfRecordDetailComponent,
 		CnfRecordDetailComponent,
 		GraphDialogComponent,

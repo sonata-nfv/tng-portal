@@ -98,4 +98,21 @@ app-ns-instance-detail {
 			width: 50vw;
 		}
 	}
+
+	// App scale out component styles
+	.scale-out-form {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 55vw;
+
+		.select, .mat-form-field {
+			margin-right: 1vw;
+		}
+
+		.select {
+			width: 25vw;
+		}
+	}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
 	animate,
 	state,
@@ -36,9 +37,8 @@ export class NsInstanceDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
 	instanceUUID: string;
-	displayedColumns = [ 'name', 'version', 'status', 'updatedAt', 'delete' ];
+	displayedColumns = [ 'name', 'version', 'status', 'updatedAt', 'scaleIn' ];
 	policy = { };
-	// Detail in row and animations
 	dataSourceVNF: CustomDataSource;
 	dataSourceCNF: CustomDataSource;
 
@@ -143,6 +143,14 @@ export class NsInstanceDetailComponent implements OnInit {
 		return Object.keys(this.policy).length && Object.keys(this.policy[ 'policy' ]).length;
 	}
 
+	canShowScaleOutVNF() {
+		return this.dataSourceVNF && this.dataSourceVNF.data && this.dataSourceVNF.data.length;
+	}
+
+	canShowScaleOutCNF() {
+		return this.dataSourceCNF && this.dataSourceCNF.data && this.dataSourceCNF.data.length;
+	}
+
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
 	}
@@ -155,32 +163,25 @@ export class NsInstanceDetailComponent implements OnInit {
 			: await this.serviceManagementService.getRuntimePolicyActivation('deactivate', this.detail[ 'uuid' ], policyUUID);
 
 		this.loading = false;
-		response ?
+		if (response) {
 			activation ?
 				this.utilsService.openSnackBar('Runtime policy activated', '')
-				: this.utilsService.openSnackBar('Runtime policy deactivated', '')
-			: activation ?
+				: this.utilsService.openSnackBar('Runtime policy deactivated', '');
+		} else {
+			activation ?
 				this.utilsService.openSnackBar('There was an error activating the runtime policy', '')
 				: this.utilsService.openSnackBar('There was an error deactivating the runtime policy', '');
+
+		}
 
 		this.requestPolicy(this.detail[ 'uuid' ]);
 	}
 
 	private canScale() {
-		return Object.keys(this.policy).length && !this.policy[ 'enforced' ] ? true : false;
-	}
+		const canScale = Object.keys(this.policy).length && !this.policy[ 'enforced' ];
+		const isPolicyActive = Object.keys(this.policy).length && this.policy[ 'enforced' ];
 
-	scaleIn(instance) {
-		const scaleIn = {
-			'instance_uuid': instance.uuid,
-			'request_type': 'SCALE_SERVICE',
-			'scaling_type': 'REMOVE_VNF',
-			'vnf_uuid': instance.descriptorRef
-		};
-
-		if (this.canScale()) {
-			this.sendScaleRequest(scaleIn);
-		} else {
+		if (isPolicyActive) {
 			const title = 'Oh oh...?';
 			const content = 'You can not scale while there is an active policy applied to this instance';
 			const action = 'Deactivate';
@@ -189,17 +190,39 @@ export class NsInstanceDetailComponent implements OnInit {
 				this.changePolicyActivation(false);
 			});
 		}
+
+		return canScale;
+	}
+
+	scaleIn(instance) {
+		const scaleIn = {
+			'instance_uuid': instance.uuid,
+			'request_type': 'SCALE_SERVICE',
+			'scaling_type': 'REMOVE_VNF',
+			'vnfd_uuid': instance.descriptorRef
+		};
+
+		if (this.canScale()) {
+			this.sendScaleRequest(scaleIn);
+		}
+	}
+
+	scaleOut(scaleOut) {
+		if (this.canScale()) {
+			this.sendScaleRequest(scaleOut);
+		}
 	}
 
 	async sendScaleRequest(requestBody) {
-		// TODO check if it is scale in and the last instance if response is different and another msg should be sent
+		// TODO check if it is scale in and the last instance if response
+		// is different and another msg should be sent
 		this.loading = true;
 		const response = await this.serviceManagementService.postScaleAction(requestBody);
 
 		this.loading = false;
 		response ?
-			this.utilsService.openSnackBar('Instance successfully scaled in', '')
-			: this.utilsService.openSnackBar('There was an error scaling in the instance', '');
+			this.utilsService.openSnackBar('Instance successfully scaled', '')
+			: this.utilsService.openSnackBar('There was an error scaling the instance', '');
 	}
 
 	openService() {
