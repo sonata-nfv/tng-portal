@@ -443,6 +443,27 @@ export class ServicePlatformService {
 	}
 
 	/**
+	 * Obtain the monitoring parameters for an specified network service
+	 *
+	 * @param nsUUID Identifier of the network service
+	 */
+	async getMonitoringMetrics(nsUUID) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesMonitoringMetrics + nsUUID;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ? response : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Generates a Runtime Policy
 	 *
 	 * @param policy Data of the desired Runtime Policy
