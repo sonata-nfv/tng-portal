@@ -567,8 +567,9 @@ export class ServicePlatformService {
 					return {
 						correlationUUID: item.correlation_id,
 						vnfName: item.action[ 'vnf_name' ],
-						scalingType: item.action[ 'scaling_type' ],
+						actionType: item.action[ 'action_object' ],
 						serviceInstanceUUID: item.action[ 'service_instance_id' ],
+						name: item.action[ 'name' ],
 						value: item.action[ 'value' ],
 						date: item.inDateTime
 					};

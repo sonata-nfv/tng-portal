@@ -601,6 +601,10 @@ ul.unordered-list .mat-input-element:disabled {
 	box-shadow: 2px 2px 4px 0 $shadow-buttons;
 }
 
+.action-button:disabled {
+	background-color: $button-disabled-font-color;
+}
+
 .circle-button {
 	padding: 8px;
 	border-radius: 50%;

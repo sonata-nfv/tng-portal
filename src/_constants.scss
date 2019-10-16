@@ -27,6 +27,7 @@ $form-disabled-color: $secondary-color-light;
 // Button colors
 $primary-button-color: $primary-color;
 $primary-button-color-light: $primary-color-light;
+$primary-button-color-light-degraded: rgba(212, 11, 13, .56);
 $secondary-button-color: $secondary-color;
 $secondary-button-color-light: $secondary-color-light;
 
@@ -60,7 +61,7 @@ $table-underline-color: rgba(212, 11, 13, 0.2);
 $advanced-button-underline-color: rgba(212, 11, 13, 0.65);
 $secondary-underline-color-light: rgba(151, 151, 151, 0.18);
 
-// Scrollbar colors
+// Scroll bar colors
 $track-color: rgb(232, 198, 201);
 $thumb-background-color: rgb(169, 169, 169);
 $thumb-outline-color: rgb(112, 128, 144);

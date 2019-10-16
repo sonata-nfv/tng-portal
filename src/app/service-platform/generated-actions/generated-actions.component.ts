@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class GeneratedActionsComponent implements OnInit {
 	loading: boolean;
 	generatedActions = new Array();
-	displayedColumns = [ 'vnfName', 'scalingType', 'serviceInstanceUUID', 'value', 'date' ];
+	displayedColumns = [ 'vnfName', 'actionType', 'serviceInstanceUUID', 'name', 'value', 'date' ];
 
 	constructor(
 		private utilsService: UtilsService,
