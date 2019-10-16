@@ -196,7 +196,7 @@ export class NsInstanceDetailComponent implements OnInit {
 
 	scaleIn(instance) {
 		const scaleIn = {
-			'instance_uuid': instance.uuid,
+			'instance_uuid': this.detail[ 'uuid' ],
 			'request_type': 'SCALE_SERVICE',
 			'scaling_type': 'REMOVE_VNF',
 			'vnfd_uuid': instance.descriptorRef

@@ -80,7 +80,8 @@
 <div *ngIf="!loading" class="vnf">
 	<h2 class="title2" i18n="@@vnfInstances">VNF instances</h2>
 
-	<app-scale-out *ngIf="canShowScaleOutVNF()" [list]="dataSourceVNF.data" (scaleOutEvent)="scaleOut($event)">
+	<app-scale-out *ngIf="canShowScaleOutVNF()" [instanceID]="detail['uuid']" [list]="dataSourceVNF.data"
+		(scaleOutEvent)="scaleOut($event)">
 	</app-scale-out>
 
 	<table mat-table [dataSource]="dataSourceVNF">
@@ -141,7 +142,8 @@
 <div *ngIf="!loading" class="cnf">
 	<h2 class="title2" i18n="@@cnfInstances">CNF instances</h2>
 
-	<app-scale-out *ngIf="canShowScaleOutCNF()" [list]="dataSourceCNF.data" (scaleOutEvent)="scaleOut($event)">
+	<app-scale-out *ngIf="canShowScaleOutCNF()" [instanceID]="detail['uuid']" [list]="dataSourceCNF.data"
+		(scaleOutEvent)="scaleOut($event)">
 	</app-scale-out>
 
 	<table mat-table [dataSource]="dataSourceCNF">
