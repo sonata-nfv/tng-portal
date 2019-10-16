@@ -296,4 +296,33 @@ export class ValidationAndVerificationPlatformService {
 			console.error(error);
 		}
 	}
+
+	async getAnalyticResults(search?) {
+		const headers = this.authService.getAuthHeaders();
+		const url = search ?
+			this.config.baseVNV + this.config.analyticResults + search
+			: this.config.baseVNV + this.config.analyticResults;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.id,
+						// name:
+						// test:
+						// testResult:
+						serviceName: item.analyticServiceName,
+						status: item.status,
+						executionDate: item.executionDate
+					};
+				}) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
 }
