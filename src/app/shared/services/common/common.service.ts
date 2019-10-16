@@ -194,49 +194,6 @@ export class CommonService {
 	}
 
 	/**
-     * Retrieves a list of monitoring rules per function.
-     *
-     * @param search [Optional] Function attributes that must be
-     *                          matched by the returned function
-     */
-	async getFunctionMonitoringParameters(search?) {
-		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.functions + search;
-
-		try {
-			const response = await this.http.get(url, { headers: headers }).toPromise();
-
-			const monitoringParameters = new Array();
-			if (response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ]) {
-				response[ 0 ][ 'vnfd' ][ 'virtual_deployment_units' ].map(vdu => {
-					if (vdu[ 'monitoring_parameters' ]) {
-						for (const param of vdu.monitoring_parameters) {
-							const vnf = response[ 0 ][ 'vnfd' ][ 'name' ];
-							monitoringParameters.push({
-								uuid: vnf + ':' + vdu.id + ':' + param.name,
-								name: vnf + ' : ' + param.name,
-								condition: param.name,
-								unit: param.unit,
-								vduID: vdu.id,
-								vnfName: vnf,
-								vnfVendor: response[ 0 ][ 'vnfd' ][ 'vendor' ],
-								vnfVersion: response[ 0 ][ 'vnfd' ][ 'version' ]
-							});
-						}
-					}
-				});
-			}
-			return monitoringParameters;
-		} catch (error) {
-			if (error.status === 401 && error.statusText === 'Unauthorized') {
-				this.utilsService.launchUnauthorizedError();
-			}
-
-			console.error(error);
-		}
-	}
-
-	/**
      * Retrieves a list of SLA Templates.
      * Either following a search pattern or not.
      *

@@ -93,9 +93,9 @@
 		</div>
 
 		<div class="same-row">
-			<app-select-uuid class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
+			<app-select class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
 				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
-			</app-select-uuid>
+			</app-select>
 
 			<app-select-uuid class="select left-column" placeholder="Select an operator" [required]=true [list]="thresholds"
 				(selectEvent)="receiveThresholdOperator($event)" i18n-placeholder="@@selectOperatorPlaceholder">
