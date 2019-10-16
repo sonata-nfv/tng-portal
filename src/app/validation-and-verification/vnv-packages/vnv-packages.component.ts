@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { CommonService } from '../../shared/services/common/common.service';
 	styleUrls: [ './vnv-packages.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class VnvPackagesComponent implements OnInit {
+export class VnvPackagesComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	packages = new Array();
 	displayedColumns = [ 'vendor', 'name', 'version', 'status' ];
@@ -38,6 +38,10 @@ export class VnvPackagesComponent implements OnInit {
 				this.requestPackages();
 			}
 		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	searchFieldData(search) {

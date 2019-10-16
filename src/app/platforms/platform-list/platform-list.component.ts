@@ -43,7 +43,6 @@ export class PlatformListComponent implements OnInit, OnDestroy {
 		});
 	}
 
-
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}

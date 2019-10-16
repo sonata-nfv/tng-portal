@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { ValidationAndVerificationPlatformService } from '../validation-and-veri
 	styleUrls: [ './vnv-network-services.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class VnvNetworkServicesComponent implements OnInit {
+export class VnvNetworkServicesComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	networkServices: Array<Object>;
 	displayedColumns = [ 'vendor', 'name', 'version', 'status', 'execute' ];
@@ -42,6 +42,10 @@ export class VnvNetworkServicesComponent implements OnInit {
 				this.requestServices();
 			}
 		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	searchFieldData(search) {

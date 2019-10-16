@@ -44,7 +44,6 @@ export class WimListComponent implements OnInit, OnDestroy {
 		});
 	}
 
-
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}

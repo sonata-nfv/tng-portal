@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSort, MatTableDataSource } from '@angular/material';
@@ -12,7 +12,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 	styleUrls: [ './test-plan-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class TestPlanListComponent implements OnInit {
+export class TestPlanListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	displayedColumns = [ 'testName', 'serviceName', 'updatedAt', 'status', 'execute', 'stop' ];
 	subscription: Subscription;
@@ -40,6 +40,10 @@ export class TestPlanListComponent implements OnInit {
 				this.requestTestPlans();
 			}
 		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	searchFieldData(search) {

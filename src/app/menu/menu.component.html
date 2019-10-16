@@ -100,6 +100,11 @@
 				i18n="@@tests">
 				Tests
 			</button>
+
+			<button class="basic-button" [ngClass]="{ active: section === 'vv-analytic-results' }" (click)="setSection($event, 'vv-analytic-results')"
+				i18n="@@analyticResults">
+				Analytic results
+			</button>
 		</div>
 
 		<div class="options" *ngIf="menu === 'service-platform'">
