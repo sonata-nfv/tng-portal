@@ -221,7 +221,7 @@ export class NsInstanceDetailComponent implements OnInit {
 
 		this.loading = false;
 		response ?
-			this.utilsService.openSnackBar('Instance successfully scaled', '')
+			this.utilsService.openSnackBar('Instance being scaled...', '')
 			: this.utilsService.openSnackBar('There was an error scaling the instance', '');
 	}
 
