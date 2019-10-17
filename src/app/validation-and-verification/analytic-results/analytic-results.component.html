@@ -1,6 +1,13 @@
 <h3 class="title3 header-section-name" i18n="@@validationAndVerification">Validation and verification</h3>
 
-<h1 class="title1 title-section-name" i18n="@@analyticResults">Analytic results</h1>
+<div class="title-section">
+	<h1 class="title1 title-section-name" i18n="@@analyticResults">Analytic results</h1>
+
+	<button class="add" (click)="createNew()">
+		<i class="wui wui-plus"></i>
+		<span i18n="@@createNewAnalyticProcess">Create New Analytic Process</span>
+	</button>
+</div>
 
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>

@@ -18,6 +18,7 @@ import { VnvPackagesDetailComponent } from './vnv-packages-detail/vnv-packages-d
 import { VnvNetworkServicesComponent } from './vnv-network-services/vnv-network-services.component';
 import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail/vnv-network-services-detail.component';
 import { AnalyticResultsComponent } from './analytic-results/analytic-results.component';
+import { AnalyticProcessCreateComponent } from './analytic-process-create/analytic-process-create.component';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { AnalyticResultsComponent } from './analytic-results/analytic-results.co
 		VnvPackagesDetailComponent,
 		VnvNetworkServicesComponent,
 		VnvNetworkServicesDetailComponent,
-		AnalyticResultsComponent
+		AnalyticResultsComponent,
+		AnalyticProcessCreateComponent
 	],
 	imports: [
 		CommonModule,

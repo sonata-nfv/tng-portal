@@ -66,4 +66,8 @@ export class AnalyticResultsComponent implements OnInit, OnDestroy {
 			this.utilsService.openSnackBar('Unable to fetch any analytic result', '');
 		}
 	}
+
+	createNew() {
+		this.router.navigate([ 'new' ], { relativeTo: this.route });
+	}
 }

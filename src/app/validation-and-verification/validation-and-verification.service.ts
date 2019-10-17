@@ -297,6 +297,13 @@ export class ValidationAndVerificationPlatformService {
 		}
 	}
 
+	/**
+	 * Obtains the analytic results available to the moment.
+	 *
+	 * @param search [Optional] Attributes that must be
+     *                          matched by the returned list of
+     *                          results.
+	 */
 	async getAnalyticResults(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
@@ -325,4 +332,92 @@ export class ValidationAndVerificationPlatformService {
 			console.error(error);
 		}
 	}
+
+	/**
+	 * Obtain all the tests executed to the moment
+	 */
+	async getAllTestResults() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testExecutions;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => {
+					return {
+						uuid: item.uuid,
+						name: item.uuid,
+						instanceUUID: item.instance_uuid
+					};
+				}) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Obtain all the services provided by the analytics engine
+	 */
+	async getAnalyticServices() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.analyticServices;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ? response : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Obtain all the monitoring metrics from a network service instance tested
+	 *
+	 * @param nsr_uuid UUID of the network service instance tested
+	 */
+	async getMonitoringMetrics(nsr_uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.analyticMonitoringMetrics + `${ nsr_uuid }/metrics`;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return (response && response[ 'data' ] instanceof Array) ?
+				response[ 'data' ] : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Generates an analytic process and runs it
+	 *
+	 * @param processObj Object describing the analytic process to be run
+	 */
+	async postAnalyticProcess(processObj) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.analyticProcessExecution;
+
+		try {
+			return await this.http.post(url, processObj, { headers: headers }).toPromise();
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
 }
+
