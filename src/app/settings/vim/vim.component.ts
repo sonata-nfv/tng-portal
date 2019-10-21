@@ -24,6 +24,7 @@ export class VimComponent implements OnInit {
 	openstackForm: FormGroup;
 	kubernetesForm: FormGroup;
 	matcher: InputErrorStateMatcher;
+	yamlErrorMsg: String;
 	vimTypes = [ 'Openstack', 'Kubernetes' ];
 	vimType: string;
 	disabledButton = true;
@@ -175,6 +176,7 @@ export class VimComponent implements OnInit {
 				this.disabledButton = this.edition ?
 					(this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() && this.canUpdateVim() ? false : true :
 					(this.kubernetesForm.valid && this.vimForm.valid) && this.checkJSONValidity() ? false : true;
+				this.yamlErrorMsg = null;
 				break;
 			default:
 				this.disabledButton = false;
@@ -227,8 +229,18 @@ export class VimComponent implements OnInit {
 		return vim;
 	}
 
+	convertYamlToJson() {
+		const input = this.kubernetesForm.get('config').value;
+		const parsedFromYaml = this.utilsService.yamlToJSON(input);
+
+		parsedFromYaml && this.utilsService.isValidJSON(parsedFromYaml) ?
+			this.kubernetesForm.get('config').setValue(parsedFromYaml)
+			: this.yamlErrorMsg = '*This is not a valid YAML';
+	}
+
 	checkJSONValidity() {
-		return this.utilsService.isValidJSON(this.kubernetesForm.get('config').value);
+		const input = this.kubernetesForm.get('config').value;
+		return this.utilsService.isValidJSON(input);
 	}
 
 	canShowForm() {
@@ -266,6 +278,10 @@ export class VimComponent implements OnInit {
 		return this.edition && !this.loading
 			&& (this.vimType.toLocaleLowerCase() === 'openstack'
 				|| this.vimType.toLocaleLowerCase() === 'kubernetes');
+	}
+
+	canShowError() {
+		return this.kubernetesForm.valid && !this.checkJSONValidity() && !this.yamlErrorMsg;
 	}
 
 	isMockType() {

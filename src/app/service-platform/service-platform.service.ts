@@ -316,7 +316,7 @@ export class ServicePlatformService {
 						nsInstanceUUID: item.nsi_uuid,
 						slaUUID: item.sla_uuid,
 						date: this.utilsService.formatUTCDate(item.violation_time),
-						customerUUID: item.cust_uuid
+						customer: item.cust_username
 					};
 				}) : [];
 		} catch (error) {
@@ -433,6 +433,27 @@ export class ServicePlatformService {
 				policyRules: response[ 'pld' ][ 'policyRules' ],
 				monitoringRules: response[ 'pld' ][ 'monitoring_rules' ]
 			};
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Obtain the monitoring parameters for an specified network service
+	 *
+	 * @param nsUUID Identifier of the network service
+	 */
+	async getMonitoringMetrics(nsUUID) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.runtimePoliciesMonitoringMetrics + nsUUID;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ? response : [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -567,8 +588,9 @@ export class ServicePlatformService {
 					return {
 						correlationUUID: item.correlation_id,
 						vnfName: item.action[ 'vnf_name' ],
-						scalingType: item.action[ 'scaling_type' ],
+						actionType: item.action[ 'action_object' ],
 						serviceInstanceUUID: item.action[ 'service_instance_id' ],
+						name: item.action[ 'name' ],
 						value: item.action[ 'value' ],
 						date: item.inDateTime
 					};

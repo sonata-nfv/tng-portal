@@ -601,6 +601,10 @@ ul.unordered-list .mat-input-element:disabled {
 	box-shadow: 2px 2px 4px 0 $shadow-buttons;
 }
 
+.action-button:disabled {
+	background-color: $button-disabled-font-color;
+}
+
 .circle-button {
 	padding: 8px;
 	border-radius: 50%;
@@ -611,6 +615,18 @@ ul.unordered-list .mat-input-element:disabled {
 .circle-button.active {
 	border: 1px solid $primary-color-light;
 	background-color: $primary-color-light;
+}
+
+.link {
+	align-self: flex-end;
+	color: $secondary-button-color;
+	font-size: 14px;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.link:hover {
+	color: $primary-font-color;
 }
 
 //////////////////////////////////////

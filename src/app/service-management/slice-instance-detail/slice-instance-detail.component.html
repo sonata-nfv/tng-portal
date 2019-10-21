@@ -63,7 +63,14 @@
 		</span>
 	</div>
 
-	<h2 *ngIf="detail['nsrList']" class="title2" i18n="@@networkServices">Network services</h2>
+	<div class="description" *ngIf="detail['errorMsg']">
+		<h4 class="title4" i18n="@@error">Error</h4>
+		<span class="content">
+			<p>{{ detail['errorMsg'] }}</p>
+		</span>
+	</div>
+
+	<h2 *ngIf="detail['nsrList']" class="title2" i18n="@@networkServiceInstances">Network service instances</h2>
 
 	<table *ngIf="detail['nsrList']" mat-table [dataSource]="detail['nsrList']">
 		<ng-container matColumnDef="nsrName">
@@ -87,7 +94,7 @@
 		</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openRow(row)"></tr>
 	</table>
 
 	<div *ngIf="(detail['nsrList'] && !detail['nsrList'].length) && !loading" class="no-results-container">
@@ -98,7 +105,7 @@
 
 	<h2 *ngIf="detail['sliceVirtualLinks']" class="title2" i18n="@@sliceVirtualLinks">Slice virtual links</h2>
 
-	<table *ngIf="detail['sliceVirtualLinks']" mat-table [dataSource]="detail['sliceVirtualLinks']">
+	<table *ngIf="detail['sliceVirtualLinks']" class="no-opening-table" mat-table [dataSource]="detail['sliceVirtualLinks']">
 		<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef i18n="@@networkID">Network ID</th>
 			<td mat-cell *matCellDef="let element">{{ element.id }}</td>

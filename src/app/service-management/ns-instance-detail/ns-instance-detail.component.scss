@@ -10,14 +10,19 @@ app-ns-instance-detail {
 	bottom: 0;
 	right: 0;
 	left: 0;
+	margin-bottom: 5vh;
 	background-color: $basic-background-color;
 	> * {
 		flex: 0 0 auto;
 	}
 
-	form {
+	.form {
 		width: 55vw;
 		margin-bottom: 5vh;
+
+		&.policy-form {
+			margin-bottom: 0;
+		}
 
 		.left-column, 
 		.same-row .left-column.mat-form-field {
@@ -29,13 +34,15 @@ app-ns-instance-detail {
 		.same-row .right-column.mat-form-field {
 			width: 20vw;
 		}
+	}
 		
-		// Styles for no instances message
-		.vnf, .cnf {
-			display: flex;
-			flex-direction: column;
-		}
-
+	// Styles for no instances message
+	.vnf, .cnf, .runtime-policy {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-bottom: 5vh;
+	
 		// Styles for no instances message
 		.no-results-container {
 			align-self: center;
@@ -58,8 +65,8 @@ app-ns-instance-detail {
 				to right,
 				$basic-background-color 0%,
 				$table-underline-color 0%,
-				$table-underline-color 98%,
-				$basic-background-color 98%,
+				$table-underline-color 95%,
+				$basic-background-color 95%,
 				$basic-background-color 100%
 			);
 			background-image: 3px;
@@ -78,9 +85,34 @@ app-ns-instance-detail {
 				color: $primary-font-color;
 			}
 		}
-
+		
 		.detail-row {
 			overflow: hidden;
+		}
+
+		.policy-title {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			width: 50vw;
+		}
+	}
+
+	// App scale out component styles
+	.scale-out-form {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 55vw;
+
+		.select, .mat-form-field {
+			margin-right: 1vw;
+		}
+
+		.select {
+			width: 25vw;
 		}
 	}
 }

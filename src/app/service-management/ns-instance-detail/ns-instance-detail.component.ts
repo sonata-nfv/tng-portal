@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
 	animate,
 	state,
@@ -36,11 +37,11 @@ export class NsInstanceDetailComponent implements OnInit {
 	loading = false;
 	detail = { };
 	instanceUUID: string;
-	displayedColumns = [ 'name', 'version', 'status', 'updatedAt' ];
+	displayedColumns = [ 'name', 'version', 'status', 'updatedAt', 'scaleIn' ];
+	policy = { };
+	dataSourceVNF: CustomDataSource;
+	dataSourceCNF: CustomDataSource;
 
-	// Detail in row and animations
-	dataSourceVNF = new CustomDataSource();
-	dataSourceCNF = new CustomDataSource();
 	recordDetail = { };
 	isExpansionDetailRow = (i: number, row: Object) =>
 		row.hasOwnProperty('detailRow')
@@ -57,6 +58,7 @@ export class NsInstanceDetailComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.requestNsInstance(uuid);
+			this.requestPolicy(uuid);
 		});
 	}
 
@@ -66,7 +68,7 @@ export class NsInstanceDetailComponent implements OnInit {
      * @param uuid ID of the selected instance to be displayed.
      *             Comming from the route.
      */
-	async requestNsInstance(uuid) {
+	private async requestNsInstance(uuid) {
 		this.loading = true;
 		const response = await this.serviceManagementService.getOneNSInstance(uuid);
 
@@ -82,6 +84,8 @@ export class NsInstanceDetailComponent implements OnInit {
 
 				this.loading = false;
 				if (responses) {
+					this.dataSourceVNF = new CustomDataSource();
+					this.dataSourceCNF = new CustomDataSource();
 					this.dataSourceVNF.data = responses.filter(instance => instance[ 'vdus' ]);
 					this.dataSourceCNF.data = responses.filter(instance => instance[ 'cdus' ]);
 				} else {
@@ -92,6 +96,16 @@ export class NsInstanceDetailComponent implements OnInit {
 			this.utilsService.openSnackBar('Unable to fetch the network service instance', '');
 			this.close();
 		}
+	}
+
+	private async requestPolicy(uuid) {
+		this.loading = true;
+		const policy = await this.serviceManagementService.getInstancePolicyData(uuid);
+
+		this.loading = false;
+		policy ?
+			this.policy = policy
+			: this.utilsService.openSnackBar('Unable to fetch the policy data of the instance', '');
 	}
 
 	terminate() {
@@ -118,19 +132,105 @@ export class NsInstanceDetailComponent implements OnInit {
 	}
 
 	canShowNoResultsCNF() {
-		return (!this.dataSourceCNF.data || !this.dataSourceCNF.data.length) && !this.loading;
+		return (!this.dataSourceCNF || !this.dataSourceCNF.data || !this.dataSourceCNF.data.length);
 	}
 
 	canShowNoResultsVNF() {
-		return (!this.dataSourceVNF.data || !this.dataSourceVNF.data.length) && !this.loading;
+		return (!this.dataSourceVNF || !this.dataSourceVNF.data || !this.dataSourceVNF.data.length);
+	}
+
+	canShowPolicyData() {
+		return Object.keys(this.policy).length && Object.keys(this.policy[ 'policy' ]).length;
+	}
+
+	canShowScaleOutVNF() {
+		return this.dataSourceVNF && this.dataSourceVNF.data && this.dataSourceVNF.data.length;
+	}
+
+	canShowScaleOutCNF() {
+		return this.dataSourceCNF && this.dataSourceCNF.data && this.dataSourceCNF.data.length;
 	}
 
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	async changePolicyActivation(activation) {
+		this.loading = true;
+		const policyUUID = this.policy[ 'policy' ][ 'policy_uuid' ];
+		const response = activation ?
+			await this.serviceManagementService.getRuntimePolicyActivation('activate', this.detail[ 'uuid' ], policyUUID)
+			: await this.serviceManagementService.getRuntimePolicyActivation('deactivate', this.detail[ 'uuid' ], policyUUID);
+
+		this.loading = false;
+		if (response) {
+			activation ?
+				this.utilsService.openSnackBar('Runtime policy activated', '')
+				: this.utilsService.openSnackBar('Runtime policy deactivated', '');
+		} else {
+			activation ?
+				this.utilsService.openSnackBar('There was an error activating the runtime policy', '')
+				: this.utilsService.openSnackBar('There was an error deactivating the runtime policy', '');
+
+		}
+
+		this.requestPolicy(this.detail[ 'uuid' ]);
+	}
+
+	private canScale() {
+		const canScale = Object.keys(this.policy).length && !this.policy[ 'enforced' ];
+		const isPolicyActive = Object.keys(this.policy).length && this.policy[ 'enforced' ];
+
+		if (isPolicyActive) {
+			const title = 'Oh oh...?';
+			const content = 'You can not scale while there is an active policy applied to this instance';
+			const action = 'Deactivate';
+
+			this.dialogData.openDialog(title, content, action, async () => {
+				this.changePolicyActivation(false);
+			});
+		}
+
+		return canScale;
+	}
+
+	scaleIn(instance) {
+		const scaleIn = {
+			'instance_uuid': this.detail[ 'uuid' ],
+			'request_type': 'SCALE_SERVICE',
+			'scaling_type': 'REMOVE_VNF',
+			'vnfd_uuid': instance.descriptorRef
+		};
+
+		if (this.canScale()) {
+			this.sendScaleRequest(scaleIn);
+		}
+	}
+
+	scaleOut(scaleOut) {
+		if (this.canScale()) {
+			this.sendScaleRequest(scaleOut);
+		}
+	}
+
+	async sendScaleRequest(requestBody) {
+		// TODO check if it is scale in and the last instance if response
+		// is different and another msg should be sent
+		this.loading = true;
+		const response = await this.serviceManagementService.postScaleAction(requestBody);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('Instance being scaled...', '')
+			: this.utilsService.openSnackBar('There was an error scaling the instance', '');
+	}
+
 	openService() {
 		this.router.navigate([ `service-management/network-services/services/${ this.detail[ 'serviceID' ] }` ]);
+	}
+
+	openPolicy() {
+		this.router.navigate([ `service-platform/policies/runtime-policies/${ this.policy[ 'policy' ][ 'policy_uuid' ] }` ]);
 	}
 
 	close() {

@@ -82,6 +82,10 @@ export class SliceInstanceDetailComponent implements OnInit {
 		this.router.navigate([ `service-management/slices/slice-templates/${ this.detail[ 'nstRef' ] }` ]);
 	}
 
+	openRow(row) {
+		this.router.navigate([ `service-management/network-services/network-service-instances/${ row.uuid }` ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

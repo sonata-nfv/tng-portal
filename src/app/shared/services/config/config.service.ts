@@ -36,11 +36,15 @@ export class ConfigService extends Config {
 	testExecutions = 'tests/results';
 	placementPolicies = 'policies/placement';
 	runtimePolicies = 'policies';
+	runtimePolicyActivation = 'policies/activate/';
+	runtimePolicyDeactivation = 'policies/deactivate/';
 	runtimePoliciesUI = 'policies/ui';
 	runtimePoliciesBind = 'policies/bind/';
 	runtimePoliciesClone = 'policies/clone/';
 	runtimePoliciesDefault = 'policies/default/';
 	runtimePoliciesActions = 'policies/actions';
+	runtimePoliciesRecords = 'policies/records';
+	runtimePoliciesMonitoringMetrics = 'policies/monitoring_metrics/';
 	vimSettings = 'settings/vims';
 	vimOpenstackSettings = 'settings/vims/heat';
 	vimK8sSettings = 'settings/vims/k8s';

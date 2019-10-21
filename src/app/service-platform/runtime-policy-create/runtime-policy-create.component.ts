@@ -65,7 +65,6 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		});
 
 		this.monitoringRulesForm = new FormGroup({
-			name: new FormControl('', Validators.required),
 			description: new FormControl('', Validators.required),
 			duration: new FormControl('', Validators.pattern(this.utilsService.getNumberPattern())),
 			durationUnit: new FormControl('', Validators.required),
@@ -128,40 +127,24 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	}
 
 	private async getConditionsForService(nsUUID) {
-		const ns = await this.commonService.getOneNetworkService('SP', nsUUID);
-
 		this.loading = true;
-		if (ns && ns.vnf) {
-			// Store target VNFs
-			this.vnfs = ns.vnf.map(item => item.vnf_vendor + ':' + item.vnf_name + ' ' + item.vnf_version);
+		const monitoringMetrics = await this.servicePlatformService.getMonitoringMetrics(nsUUID);
 
-			// Get monitoring parameters per VNF
-			const responses = await Promise.all(
-				ns.vnf.map(item => {
-					const searchString = `?vendor=${ item.vnf_vendor }&name=${ item.vnf_name }&version=${ item.vnf_version }`;
-					return this.commonService.getFunctionMonitoringParameters(searchString);
-				})
-			);
-
-			this.loading = false;
-			if (responses) {
-				responses.map(response => {
-					if (response instanceof Array && response.length) {
-						this.conditions = this.conditions.concat(response);
-					}
-				});
-
-				if (!this.conditions.length) {
-					// If there is only one NS close the creation page
-					this.nsList.length > 1 ? this.informError(2) : this.informError(3);
-				}
-			} else {
-				this.informError(1);
-			}
-
+		this.loading = false;
+		if (monitoringMetrics && monitoringMetrics.length) {
+			this.conditions = monitoringMetrics;
 		} else {
 			this.informError(1);
 		}
+	}
+
+	private async getVNFPerService(nsUUID) {
+		const ns = await this.commonService.getOneNetworkService('SP', nsUUID);
+
+		this.loading = true;
+		(ns && ns.vnf) ?
+			this.vnfs = ns.vnf.map(item => item.vnf_vendor + ':' + item.vnf_name + ' ' + item.vnf_version)
+			: this.informError(1);
 	}
 
 	receiveNS(nsUUID) {
@@ -169,6 +152,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 			this.policyForm.get('ns').setValue(nsUUID);
 			this.conditions = new Array();
 			this.getConditionsForService(nsUUID);
+			this.getVNFPerService(nsUUID);
 		} else {
 			this.policyForm.get('ns').setValue(null);
 		}
@@ -191,11 +175,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.monitoringRulesForm.get('durationUnit').setValue(uuid);
 	}
 
-	receiveCondition(uuid) {
-		const condition = this.conditions.find(cond => cond.uuid === uuid).condition;
+	receiveCondition(condition) {
 		this.monitoringRulesForm.get('condition').setValue(condition);
-		// Included first part of the name with VNF:VDU:CONDITION
-		this.monitoringRulesForm.get('name').setValue(uuid);
 	}
 
 	receiveThresholdOperator(operator) {
@@ -270,7 +251,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	addNewMonitoringRule() {
 		let rules: Array<Object>;
 		const threshold = this.monitoringRulesForm.get('threshold').value.concat('', this.monitoringRulesForm.get('thresholdValue').value);
-		const name = this.monitoringRulesForm.get('name').value.concat(':', threshold);
+		const name = this.monitoringRulesForm.get('condition').value.concat(':', threshold);
 		const rule = {
 			'name': name,
 			'description': this.monitoringRulesForm.get('description').value,

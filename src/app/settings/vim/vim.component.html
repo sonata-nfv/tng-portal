@@ -182,6 +182,7 @@
 	<div class="description">
 		<div class="description-title">
 			<h4 class="title4" i18n="@@configurationRequired">Configuration *</h4>
+			<!-- OPTIONS FOR VIM EDITION -->
 			<button *ngIf="edition && !editingConfig" type="button" mat-button matTooltip="Edit" class="icon-button-shadow"
 				(click)="editingConfig = true" i18n-matTooltip="@@edit">
 				<i class="wui wui-pen-alt"></i>
@@ -194,13 +195,18 @@
 				(click)="copyJSONToClipboard(originalVim['config'])" i18n-matTooltip="@@copy">
 				<i class="wui wui-copy-alt"></i>
 			</button>
+			<!-- OPTIONS FOR VIM CREATION -->
+			<a *ngIf="!edition" class="link" (click)="convertYamlToJson()" i18n="@@convertYamlToJson">
+				Convert YAML to JSON
+			</a>
 		</div>
 
 		<mat-form-field *ngIf="editingConfig || !edition" class="description"
 			[ngClass]="{ 'mat-form-field-invalid': kubernetesForm.valid && !checkJSONValidity() }">
 			<textarea class="content" matInput type="text" formControlName="config" [errorStateMatcher]="matcher"
 				ngDefaultControl></textarea>
-			<p *ngIf="kubernetesForm.valid && !checkJSONValidity()" class="error-message">*This is not a valid JSON</p>
+			<p *ngIf="canShowError()" class="error-message" i18n="@@notAValidJson">*This is not a valid JSON</p>
+			<p *ngIf="yamlErrorMsg" class="error-message" i18n="@@notAValidYaml">{{ yamlErrorMsg }}</p>
 		</mat-form-field>
 
 		<span *ngIf="edition && !editingConfig" class="content">
