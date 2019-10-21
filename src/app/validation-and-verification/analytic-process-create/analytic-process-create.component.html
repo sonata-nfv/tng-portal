@@ -31,10 +31,15 @@
 			[reset]="!analyticProcessForm.get('stepUnit').value" i18n-placeholder="@@stepUnit">
 		</app-select-uuid>
 	</div>
-
-	<!-- TODO change this by a checkbox or add the list to choose more than one -->
-	<app-select-uuid *ngIf="canShowMonitoringMetricsSelect()" class="select" placeholder="Monitoring metric" [list]="monitoringMetric"
-		(selectEvent)="receiveMonitoringMetric($event)" i18n-placeholder="@@monitoringMetricsPlaceholder"></app-select-uuid>
 </form>
+
+<div *ngIf="canShowMonitoringMetricsSelect()" class="description">
+	<h4 class="title4" i18n="@@monitoringMetrics">Monitoring metrics</h4>
+	<div class="content">
+		<div *ngFor="let metric of monitoringMetrics">
+			<mat-checkbox (change)="manageMonitoringMetricsList(metric)">{{ metric }}</mat-checkbox>
+		</div>
+	</div>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>

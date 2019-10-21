@@ -17,7 +17,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 	analyticProcessForm: FormGroup;
 	tests: Array<object>;
 	services: Array<object>;
-	monitoringMetrics: Array<object>;
+	monitoringMetrics: Array<string>;
 	stepUnits: Array<object>;
 
 	constructor(
@@ -41,7 +41,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 			service: new FormControl('', Validators.required),
 			step: new FormControl(),
 			stepUnit: new FormControl(),
-			monitoringMetric: new FormControl()
+			monitoringMetrics: new FormControl()
 		});
 
 		this.controlStepValidity();
@@ -86,14 +86,13 @@ export class AnalyticProcessCreateComponent implements OnInit {
 
 	private async getMonitoringMetrics(nsr_uuid) {
 		this.loading = true;
+		this.monitoringMetrics = new Array<string>();
 		const monitoringMetrics = await this.verificationAndValidationPlatformService.getMonitoringMetrics(nsr_uuid);
 
 		this.loading = false;
-		if (monitoringMetrics && monitoringMetrics.length) {
-			this.monitoringMetrics = monitoringMetrics;
-		} else {
-			this.utilsService.openSnackBar('Unable to fetch any monitoring metric for this test execution', '');
-		}
+		(monitoringMetrics && monitoringMetrics.length) ?
+			this.monitoringMetrics = monitoringMetrics
+			: this.utilsService.openSnackBar('Unable to fetch any monitoring metric for this test execution', '');
 	}
 
 	canDisableSave() {
@@ -103,18 +102,12 @@ export class AnalyticProcessCreateComponent implements OnInit {
 	receiveTest(uuid) {
 		const instanceUUID = this.tests.find(test => test[ 'uuid' ] === uuid)[ 'instanceUUID' ];
 		this.analyticProcessForm.get('test').setValue(uuid);
-		this.monitoringMetrics = new Array<object>();
 		this.getMonitoringMetrics(instanceUUID);
 	}
 
 	receiveService(uuid) {
 		const serviceName = this.services.find(service => service[ 'id' ] === uuid)[ 'name' ];
 		this.analyticProcessForm.get('service').setValue(serviceName);
-	}
-
-	receiveMonitoringMetric(uuid) {
-		// TODO form the array of metrics
-		console.log(uuid);
 	}
 
 	receiveStepUnit(unit) {
@@ -129,8 +122,16 @@ export class AnalyticProcessCreateComponent implements OnInit {
 		return this.monitoringMetrics && this.monitoringMetrics.length;
 	}
 
+	manageMonitoringMetricsList(metric) {
+		let monitoringMetrics = this.analyticProcessForm.get('monitoringMetrics').value || [];
+		monitoringMetrics.indexOf(metric) > -1 ?
+			monitoringMetrics = monitoringMetrics.filter(item => item !== metric)
+			: monitoringMetrics.push(metric);
+
+		this.analyticProcessForm.get('monitoringMetrics').setValue(monitoringMetrics);
+	}
+
 	async createAnalyticProcess() {
-		// TODO include metrics
 		this.loading = true;
 		const step = this.analyticProcessForm.get('step').value.concat(this.analyticProcessForm.get('stepUnit').value);
 		const processObj = {
@@ -139,7 +140,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 			'name': this.analyticProcessForm.get('service').value,
 			'vendor': '5gtango.vnv',
 			'testr_uuid': this.analyticProcessForm.get('test').value,
-			'metrics': []
+			'metrics': this.analyticProcessForm.get('monitoringMetrics').value
 		};
 		const response = await this.verificationAndValidationPlatformService.postAnalyticProcess(processObj);
 
