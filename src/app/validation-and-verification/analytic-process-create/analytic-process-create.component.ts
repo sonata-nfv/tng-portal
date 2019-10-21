@@ -18,6 +18,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 	tests: Array<object>;
 	services: Array<object>;
 	monitoringMetrics: Array<object>;
+	stepUnits: Array<object>;
 
 	constructor(
 		private router: Router,
@@ -30,6 +31,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 	ngOnInit() {
 		this.initForm();
 		this.getRequiredData();
+		this.stepUnits = this.utilsService.getDurationUnits();
 	}
 
 	private initForm() {
@@ -38,8 +40,28 @@ export class AnalyticProcessCreateComponent implements OnInit {
 			test: new FormControl('', Validators.required),
 			service: new FormControl('', Validators.required),
 			step: new FormControl(),
+			stepUnit: new FormControl(),
 			monitoringMetric: new FormControl()
 		});
+
+		this.controlStepValidity();
+	}
+
+	private controlStepValidity() {
+		this.analyticProcessForm.get('step').valueChanges
+			.subscribe(stepValue => {
+				if (stepValue) {
+					this.analyticProcessForm.get('step').setValidators(Validators.pattern(this.utilsService.getNumberPattern()));
+					this.analyticProcessForm.get('stepUnit').setValidators(Validators.required);
+				} else {
+					this.analyticProcessForm.get('step').setValidators(null);
+					this.analyticProcessForm.get('stepUnit').setValidators(null);
+					this.analyticProcessForm.get('stepUnit').setValue(null);
+				}
+
+				this.analyticProcessForm.get('step').updateValueAndValidity({ onlySelf: false, emitEvent: false });
+				this.analyticProcessForm.get('stepUnit').updateValueAndValidity({ onlySelf: false, emitEvent: false });
+			});
 	}
 
 	private async getRequiredData() {
@@ -48,7 +70,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 		const services = await this.verificationAndValidationPlatformService.getAnalyticServices();
 
 		this.loading = false;
-		if (tests && services) {
+		if (tests && tests.length && services && services.length) {
 			this.tests = tests;
 			this.services = services;
 		} else {
@@ -67,7 +89,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 		const monitoringMetrics = await this.verificationAndValidationPlatformService.getMonitoringMetrics(nsr_uuid);
 
 		this.loading = false;
-		if (monitoringMetrics) {
+		if (monitoringMetrics && monitoringMetrics.length) {
 			this.monitoringMetrics = monitoringMetrics;
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch any monitoring metric for this test execution', '');
@@ -95,17 +117,25 @@ export class AnalyticProcessCreateComponent implements OnInit {
 		console.log(uuid);
 	}
 
+	receiveStepUnit(unit) {
+		this.analyticProcessForm.get('stepUnit').setValue(unit);
+	}
+
+	canShowForm() {
+		return this.services && this.services.length && this.tests && this.tests.length;
+	}
+
 	canShowMonitoringMetricsSelect() {
 		return this.monitoringMetrics && this.monitoringMetrics.length;
 	}
 
 	async createAnalyticProcess() {
-		// TODO include step field in form with input and dropdown with seconds, minutes, hours
 		// TODO include metrics
 		this.loading = true;
+		const step = this.analyticProcessForm.get('step').value.concat(this.analyticProcessForm.get('stepUnit').value);
 		const processObj = {
 			'process_friendly_name': this.analyticProcessForm.get('name').value,
-			step: '10s',
+			'step': step,
 			'name': this.analyticProcessForm.get('service').value,
 			'vendor': '5gtango.vnv',
 			'testr_uuid': this.analyticProcessForm.get('test').value,
@@ -115,7 +145,7 @@ export class AnalyticProcessCreateComponent implements OnInit {
 
 		this.loading = false;
 		if (response) {
-			this.utilsService.openSnackBar('Starting the analytic process...', '');
+			this.utilsService.openSnackBar(`Starting the analytic process ${ response }...`, '');
 			this.close();
 		} else {
 			this.utilsService.openSnackBar('Unable to run the analytic process', '');

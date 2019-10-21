@@ -39,4 +39,19 @@ app-analytic-process-create {
 			width: 30vw;
 		}
 	}
+
+	.same-row {
+		display: flex;
+		flex-direction: row;
+		align-items: baseline;
+
+		.step-input {
+			width: 8vw;
+		}
+
+		.step-unit .mat-form-field {
+			width: 20vw;
+			margin-left: 2vw;
+		}
+	}
 }

@@ -410,7 +410,8 @@ export class ValidationAndVerificationPlatformService {
 		const url = this.config.baseVNV + this.config.analyticProcessExecution;
 
 		try {
-			return await this.http.post(url, processObj, { headers: headers }).toPromise();
+			await this.http.post(url, processObj, { headers: headers }).toPromise();
+			return processObj.name;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

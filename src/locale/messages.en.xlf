@@ -3300,21 +3300,35 @@
         <source>Test execution</source><target state="final">Test execution</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="analyticServicePlaceholder" datatype="html">
         <source>Analytic service</source><target state="final">Analytic service</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="step" datatype="html">
+        <source>Step</source><target state="final">Step</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stepUnit" datatype="html">
+        <source>Step unit</source><target state="final">Step unit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="monitoringMetricsPlaceholder" datatype="html">
         <source>Monitoring metric</source><target state="final">Monitoring metric</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createdAt" datatype="html">
