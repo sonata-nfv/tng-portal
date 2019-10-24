@@ -316,9 +316,9 @@ export class ValidationAndVerificationPlatformService {
 				response.map(item => {
 					return {
 						uuid: item.id,
-						// name:
-						// test:
-						// testResult:
+						name: item.analyticProcessFriendlyName,
+						test: item.metadata.test_uuid,
+						testResult: item.metadata.testr_uuid,
 						serviceName: item.analyticServiceName,
 						status: item.status,
 						executionDate: item.executionDate
