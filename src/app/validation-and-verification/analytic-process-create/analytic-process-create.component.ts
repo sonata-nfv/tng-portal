@@ -133,15 +133,24 @@ export class AnalyticProcessCreateComponent implements OnInit {
 
 	async createAnalyticProcess() {
 		this.loading = true;
-		const step = this.analyticProcessForm.get('step').value.concat(this.analyticProcessForm.get('stepUnit').value);
 		const processObj = {
 			'process_friendly_name': this.analyticProcessForm.get('name').value,
-			'step': step,
 			'name': this.analyticProcessForm.get('service').value,
 			'vendor': '5gtango.vnv',
-			'testr_uuid': this.analyticProcessForm.get('test').value,
-			'metrics': this.analyticProcessForm.get('monitoringMetrics').value
+			'testr_uuid': this.analyticProcessForm.get('test').value
 		};
+
+		const monitoringMetrics = this.analyticProcessForm.get('monitoringMetrics').value;
+		if (monitoringMetrics && monitoringMetrics.length) {
+			processObj[ 'metrics' ] = monitoringMetrics;
+		}
+
+		const step = this.analyticProcessForm.get('step').value;
+		const stepUnit = this.analyticProcessForm.get('stepUnit').value;
+		if (step && stepUnit) {
+			processObj[ 'step' ] = step.concat(stepUnit);
+		}
+
 		const response = await this.verificationAndValidationPlatformService.postAnalyticProcess(processObj);
 
 		this.loading = false;
