@@ -383,7 +383,9 @@ p {
 		border-bottom: 1px solid $border-line-color;
 
 		p, 
-		mat-checkbox, .mat-checkbox-label {
+		mat-checkbox, .mat-checkbox-label,
+		.link {
+			font-size: 16px;
 			margin: 5px;
 		}
 

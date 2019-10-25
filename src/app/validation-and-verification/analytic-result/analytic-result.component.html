@@ -46,14 +46,27 @@
 		<input matInput placeholder="Executed at" value="Last update: {{ utilsService.formatUTCDate(detail['executedAt']) }}" disabled
 			i18n-placeholder="@@executedAtPlaceholder" />
 	</mat-form-field>
+</form>
 
-	<div class="description" *ngIf="detail['executionMessage']">
-		<h4 class="title4" i18n="@@executionMessage">Execution message</h4>
+<div *ngIf="detail['executionMessage']" class="description">
+	<h4 class="title4" i18n="@@executionMessage">Execution message</h4>
+	<span class="content">
+		<p>{{ detail['executionMessage'] }}</p>
+	</span>
+</div>
+
+<div *ngIf="detail['results']" class="results">
+	<h2 class="title2" i18n="@@results">Results</h2>
+
+	<!-- TODO insert here embeded HTML result -->
+
+	<div class="description">
 		<span class="content">
-			<p>{{ detail['executionMessage'] }}</p>
+			<div *ngFor="let result of detail['results']">
+				<a *ngIf="result.type != 'html'" href="{{ result.result }}" class="link">{{ result.result }}</a>
+			</div>
 		</span>
 	</div>
-
-</form>
+</div>
 
 <app-spinner *ngIf="loading"></app-spinner>
