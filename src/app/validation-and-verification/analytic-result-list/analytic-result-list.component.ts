@@ -6,12 +6,12 @@ import { ValidationAndVerificationPlatformService } from '../validation-and-veri
 import { UtilsService } from '../../shared/services/common/utils.service';
 
 @Component({
-	selector: 'app-analytic-results',
-	templateUrl: './analytic-results.component.html',
-	styleUrls: [ './analytic-results.component.scss' ],
+	selector: 'app-analytic-result-list',
+	templateUrl: './analytic-result-list.component.html',
+	styleUrls: [ './analytic-result-list.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class AnalyticResultsComponent implements OnInit, OnDestroy {
+export class AnalyticResultListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	results = new Array();
 	displayedColumns = [ 'name', 'test', 'testResult', 'serviceName', 'status', 'executionDate' ];
@@ -69,5 +69,9 @@ export class AnalyticResultsComponent implements OnInit, OnDestroy {
 
 	createNew() {
 		this.router.navigate([ 'new' ], { relativeTo: this.route });
+	}
+
+	openTest(testUUID) {
+		this.router.navigate([ testUUID ], { relativeTo: this.route });
 	}
 }
