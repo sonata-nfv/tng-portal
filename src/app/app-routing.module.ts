@@ -35,6 +35,7 @@ import { VnvPackagesComponent } from './validation-and-verification/vnv-packages
 import { VnvPackagesDetailComponent } from './validation-and-verification/vnv-packages-detail/vnv-packages-detail.component';
 import { AnalyticResultListComponent } from './validation-and-verification/analytic-result-list/analytic-result-list.component';
 import { AnalyticProcessCreateComponent } from './validation-and-verification/analytic-process-create/analytic-process-create.component';
+import { AnalyticResultComponent } from './validation-and-verification/analytic-result/analytic-result.component';
 
 import { SpPackagesComponent } from './service-platform/sp-packages/sp-packages.component';
 import { SpPackagesDetailComponent } from './service-platform/sp-packages-detail/sp-packages-detail.component';
@@ -156,7 +157,8 @@ const routes: Routes = [
 				path: 'validation-and-verification/analytic-results', component: AnalyticResultListComponent,
 				canActivate: [ CanDisplayGuard ], data: { section: 'validation' },
 				children: [
-					{ path: 'new', component: AnalyticProcessCreateComponent }
+					{ path: 'new', component: AnalyticProcessCreateComponent },
+					{ path: ':id', component: AnalyticResultComponent }
 				]
 			},
 			// Service Platform section

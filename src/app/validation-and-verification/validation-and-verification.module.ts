@@ -19,6 +19,7 @@ import { VnvNetworkServicesComponent } from './vnv-network-services/vnv-network-
 import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail/vnv-network-services-detail.component';
 import { AnalyticResultListComponent } from './analytic-result-list/analytic-result-list.component';
 import { AnalyticProcessCreateComponent } from './analytic-process-create/analytic-process-create.component';
+import { AnalyticResultComponent } from './analytic-result/analytic-result.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,8 @@ import { AnalyticProcessCreateComponent } from './analytic-process-create/analyt
 		VnvNetworkServicesComponent,
 		VnvNetworkServicesDetailComponent,
 		AnalyticResultListComponent,
-		AnalyticProcessCreateComponent
+		AnalyticProcessCreateComponent,
+		AnalyticResultComponent
 	],
 	imports: [
 		CommonModule,
