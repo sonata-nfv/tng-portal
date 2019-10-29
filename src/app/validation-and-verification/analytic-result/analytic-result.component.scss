@@ -27,4 +27,17 @@ app-analytic-result {
 	.description, .results {
 		width: 55vw;
 	}
+
+	.results {
+		display: flex;
+	    flex-direction: column;
+
+		.html-result {
+			place-self: center;
+			width: 55vw;
+			height: 60vh;
+			margin-bottom: 5vh;
+		}
+
+	}
 }

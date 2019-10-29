@@ -58,7 +58,7 @@
 <div class="results">
 	<h2 *ngIf="detail['htmlResult'] || canShowOtherResults()" class="title2" i18n="@@results">Results</h2>
 
-	<!-- TODO insert here embeded HTML result -->
+	<iframe #htmlResult class="html-result" frameborder="0"></iframe>
 
 	<div *ngIf="canShowOtherResults()" class="description">
 		<span class="content">

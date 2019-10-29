@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
@@ -13,6 +13,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class AnalyticResultComponent implements OnInit {
 	loading = false;
 	detail = { };
+	@ViewChild('htmlResult') htmlResult: ElementRef;
 
 	constructor(
 		private router: Router,
@@ -25,6 +26,9 @@ export class AnalyticResultComponent implements OnInit {
 		this.route.params.subscribe(params => {
 			this.requestAnalyticResult(params[ 'id' ]);
 		});
+
+		// Hide HTML embed while the URL of the resource is obtained
+		this.htmlResult.nativeElement.style.display = 'none';
 	}
 
 	async requestAnalyticResult(id) {
@@ -34,9 +38,23 @@ export class AnalyticResultComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.detail = response;
+			this.setURL(this.detail[ 'htmlResult' ]);
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch the analytic result', '');
 			this.close();
+		}
+	}
+
+	setURL(url) {
+		try {
+			if (!url) {
+				return;
+			}
+
+			this.htmlResult.nativeElement.src = url;
+			this.htmlResult.nativeElement.style.display = '';
+		} catch (error) {
+			console.error(error);
 		}
 	}
 
