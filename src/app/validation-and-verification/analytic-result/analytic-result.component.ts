@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
+import { ConfigService } from '../../shared/services/config/config.service';
 
 @Component({
 	selector: 'app-analytic-result',
@@ -18,6 +19,7 @@ export class AnalyticResultComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
+		private config: ConfigService,
 		private utilsService: UtilsService,
 		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
 	) { }
@@ -51,7 +53,8 @@ export class AnalyticResultComponent implements OnInit {
 				return;
 			}
 
-			this.htmlResult.nativeElement.src = url;
+			const finalUrl = url.replace('http://tng-analytics-rserver/', `${ this.config.baseVNV }ranalytics/`);
+			this.htmlResult.nativeElement.src = finalUrl;
 			this.htmlResult.nativeElement.style.display = '';
 		} catch (error) {
 			console.error(error);
