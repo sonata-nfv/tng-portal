@@ -54,6 +54,10 @@ export class ConfigService extends Config {
 	graphs = 'monitoring/graphs';
 	monitoringData = 'monitoring/data/services';
 	monitoringTargets = 'monitoring/data/prometheus/targets';
+	analyticResults = 'analytics/results/list';
+	analyticServices = 'analytics/list';
+	analyticMonitoringMetrics = 'analytics/tests/vnv/';
+	analyticProcessExecution = 'analytics/analytic_service';
 
 	private configFile = './config.json';
 

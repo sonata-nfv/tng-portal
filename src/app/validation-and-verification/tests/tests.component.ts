@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 	styleUrls: [ './tests.component.scss' ],
 	encapsulation: ViewEncapsulation.None
 })
-export class TestsComponent implements OnInit {
+export class TestsComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	tests = new Array();
 	displayedColumns = [ 'vendor', 'name', 'version', 'status', 'execute' ];
@@ -40,6 +40,10 @@ export class TestsComponent implements OnInit {
 				this.requestTests();
 			}
 		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	searchFieldData(search) {

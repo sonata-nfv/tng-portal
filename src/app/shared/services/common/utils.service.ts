@@ -15,6 +15,7 @@ export class UtilsService {
 	private numberPattern = '^[0-9]*$';
 	private portPattern = '([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$';
 	private ipAndPortPattern = `${ this.ipPattern }:${ this.portPattern }`;
+	private durationUnits = [ { uuid: 'h', name: 'hours' }, { uuid: 'm', name: 'minutes' }, { uuid: 's', name: 'seconds' } ];
 
 	constructor(
 		public snackBar: MatSnackBar,
@@ -48,6 +49,10 @@ export class UtilsService {
 
 	getIpAndPortPattern() {
 		return this.ipAndPortPattern;
+	}
+
+	getDurationUnits() {
+		return this.durationUnits;
 	}
 
 	/**

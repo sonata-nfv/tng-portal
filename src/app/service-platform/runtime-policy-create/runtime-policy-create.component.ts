@@ -35,7 +35,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	actionsDataSource = new MatTableDataSource;
 	policyRulesDataSource = new MatTableDataSource;
 	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
-	durationUnits = [ { uuid: 'h', name: 'hours' }, { uuid: 'm', name: 'minutes' }, { uuid: 's', name: 'seconds' } ];
+	durationUnits: Array<object>;
 
 	constructor(
 		private router: Router,
@@ -50,6 +50,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.initForms();
 		this.getNS();
 		this.getSLA();
+		this.durationUnits = this.utilsService.getDurationUnits();
 	}
 
 	private initForms() {

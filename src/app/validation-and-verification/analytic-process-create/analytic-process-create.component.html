@@ -1,0 +1,45 @@
+<h3 class="title3 header-section-name" i18n="@@analyticProcess">Analytic process</h3>
+
+<form [formGroup]="analyticProcessForm" class="title-section">
+	<mat-form-field class="title1">
+		<input matInput type="text" placeholder="Analytic process name" formControlName="name" required
+			i18n-placeholder="@@analyticProcessNamePlaceholder" />
+	</mat-form-field>
+
+	<div class="header-buttons">
+		<button [ngClass]="{ 'disabled-button': canDisableSave() }" class="edit-options save" [disabled]="canDisableSave()"
+			(click)="createAnalyticProcess()" i18n="@@saveButton">
+			SAVE
+		</button>
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</form>
+
+<form *ngIf="canShowForm()" class="form" [formGroup]="analyticProcessForm">
+	<app-select-uuid class="select" placeholder="Test execution" [list]="tests" (selectEvent)="receiveTest($event)"
+		i18n-placeholder="@@testExecutionPlaceholder"></app-select-uuid>
+
+	<app-select-uuid class="select" placeholder="Analytic service" [list]="services" (selectEvent)="receiveService($event)"
+		i18n-placeholder="@@analyticServicePlaceholder"></app-select-uuid>
+
+	<div class="same-row">
+		<mat-form-field class="step-input">
+			<input matInput type="text" placeholder="Step" formControlName="step" i18n-placeholder="@@step" />
+		</mat-form-field>
+
+		<app-select-uuid class="step-unit" placeholder="Step unit" [list]="stepUnits" (selectEvent)="receiveStepUnit($event)"
+			[reset]="!analyticProcessForm.get('stepUnit').value" i18n-placeholder="@@stepUnit">
+		</app-select-uuid>
+	</div>
+</form>
+
+<div *ngIf="canShowMonitoringMetricsSelect()" class="description">
+	<h4 class="title4" i18n="@@monitoringMetrics">Monitoring metrics</h4>
+	<div class="content">
+		<div *ngFor="let metric of monitoringMetrics">
+			<mat-checkbox (change)="manageMonitoringMetricsList(metric)">{{ metric }}</mat-checkbox>
+		</div>
+	</div>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

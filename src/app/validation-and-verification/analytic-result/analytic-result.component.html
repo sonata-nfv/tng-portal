@@ -1,0 +1,72 @@
+<h3 class="title3 header-section-name" *ngIf="detail['id']" i18n="@@analyticResults">Analytic results</h3>
+
+<div class="title-section" *ngIf="detail['analyticProcessFriendlyName']">
+	<h1 class="title1 title-section-name">{{ detail['analyticProcessFriendlyName'] }}</h1>
+	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
+</div>
+
+<form class="detail">
+	<mat-form-field *ngIf="detail['id']">
+		<input matInput placeholder="Analytic process ID" value="{{ detail['id'] }}" disabled
+			i18n-placeholder="@@analyticProcessIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['id'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['testUUID']">
+		<input matInput placeholder="Test ID" value="{{ detail['testUUID'] }}" disabled i18n-placeholder="@@testIDPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['testUUID'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['testResultUUID']">
+		<input matInput class="opening-item" placeholder="Test" value="{{ detail['testResultUUID'] }}" disabled
+			i18n-placeholder="@@testPlaceholder" />
+		<button mat-button matTooltip="Copy" class="icon-button-shadow" matSuffix (click)="copyToClipboard(detail['testResultUUID'])"
+			i18n-matTooltip="@@copy">
+			<i class="wui wui-copy-alt"></i>
+		</button>
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['analyticServiceName']">
+		<input matInput placeholder="Analytic service name" value="{{ detail['analyticServiceName'] }}" disabled
+			i18n-placeholder="@@analyticServiceNamePlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['status']">
+		<input matInput placeholder="Status" value="{{ utilsService.capitalizeFirstLetter(detail['status']) }}" disabled
+			i18n-placeholder="@@statusPlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field *ngIf="detail['executionDate']" class="time-form-field">
+		<input matInput placeholder="Executed at" value="Last update: {{ utilsService.formatUTCDate(detail['executionDate']) }}" disabled
+			i18n-placeholder="@@executedAtPlaceholder" />
+	</mat-form-field>
+</form>
+
+<div *ngIf="detail['executionMessage']" class="description">
+	<h4 class="title4" i18n="@@executionMessage">Execution message</h4>
+	<span class="content">
+		<p>{{ detail['executionMessage'] }}</p>
+	</span>
+</div>
+
+<div class="results">
+	<h2 *ngIf="detail['htmlResult'] || canShowOtherResults()" class="title2" i18n="@@results">Results</h2>
+
+	<iframe #htmlResult class="html-result" frameborder="0"></iframe>
+
+	<div *ngIf="canShowOtherResults()" class="description">
+		<span class="content">
+			<div *ngFor="let result of detail['otherResults']">
+				<a href="{{ result.result }}" class="link">{{ result.result }}</a>
+			</div>
+		</span>
+	</div>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>
