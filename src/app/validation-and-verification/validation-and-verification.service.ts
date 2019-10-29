@@ -340,29 +340,25 @@ export class ValidationAndVerificationPlatformService {
 	 */
 	async getAnalyticResult(id) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.analyticResults + `/${ id }`;
+		const url = this.config.baseVNV + this.config.analyticResults + `?result_id=${ id }`;
 
 		try {
-			// return await this.http.get(url, { headers: headers }).toPromise();
-			return {
-				'name': 'blabla',
-				'id': '5d92f7c5a927cb000104c8db',
-				'analyticServiceName': 'correlogram',
-				'status': 'SUCCESS',
-				'testUUID': 'blabla',
-				'testResultUUID': 'blabla',
-				'executedAt': 'Tue Oct 01 06:52:53 UTC 2019',
-				'executionMessage': 'The analytic service has successfully completed.',
-
-				'results': [ {
-					'result': 'http://tng-analytics-rserver/ocpu/tmp/x0c8c54738528d4/files/correlogram.html',
-					'type': 'html'
-				},
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Object ?
 				{
-					'result': 'http://tng-analytics-rserver/ocpu/tmp/x05b110705a8e25/files/healthy_metrics.json',
-					'type': 'json'
-				} ],
-			};
+					'analyticProcessFriendlyName': response[ 'analyticProcessFriendlyName' ],
+					'id': response[ 'id' ],
+					'analyticServiceName': response[ 'analyticServiceName' ],
+					'status': response[ 'status' ],
+					'testUUID': response[ 'metadata' ][ 'test_uuid' ],
+					'testResultUUID': response[ 'metadata' ][ 'testr_uuid' ],
+					'executedAt': response[ 'executionDate' ],
+					'executionMessage': response[ 'executionMessage' ],
+					'htmlResult': response[ 'results' ] && response[ 'results' ].length ?
+						response[ 'results' ].find(item => item.type === 'html')[ 'result' ] : '',
+					'otherResults': response[ 'results' ] && response[ 'results' ].length ?
+						response[ 'results' ].filter(item => item.type !== 'html') : []
+				} : { };
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

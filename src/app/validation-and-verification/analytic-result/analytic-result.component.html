@@ -1,7 +1,7 @@
-<h3 class="title3 header-section-name" *ngIf="detail['name']" i18n="@@analyticResults">Analytic results</h3>
+<h3 class="title3 header-section-name" *ngIf="detail['id']" i18n="@@analyticResults">Analytic results</h3>
 
-<div class="title-section" *ngIf="detail['name']">
-	<h1 class="title1 title-section-name">{{ detail['name'] }}</h1>
+<div class="title-section" *ngIf="detail['analyticProcessFriendlyName']">
+	<h1 class="title1 title-section-name">{{ detail['analyticProcessFriendlyName'] }}</h1>
 	<button class="close" (click)="close()" i18n="@@closeButton">CLOSE</button>
 </div>
 
@@ -42,8 +42,8 @@
 			i18n-placeholder="@@statusPlaceholder" />
 	</mat-form-field>
 
-	<mat-form-field *ngIf="detail['executedAt']" class="time-form-field">
-		<input matInput placeholder="Executed at" value="Last update: {{ utilsService.formatUTCDate(detail['executedAt']) }}" disabled
+	<mat-form-field *ngIf="detail['executionDate']" class="time-form-field">
+		<input matInput placeholder="Executed at" value="Last update: {{ utilsService.formatUTCDate(detail['executionDate']) }}" disabled
 			i18n-placeholder="@@executedAtPlaceholder" />
 	</mat-form-field>
 </form>
@@ -55,15 +55,15 @@
 	</span>
 </div>
 
-<div *ngIf="detail['results']" class="results">
-	<h2 class="title2" i18n="@@results">Results</h2>
+<div class="results">
+	<h2 *ngIf="detail['htmlResult'] || canShowOtherResults()" class="title2" i18n="@@results">Results</h2>
 
 	<!-- TODO insert here embeded HTML result -->
 
-	<div class="description">
+	<div *ngIf="canShowOtherResults()" class="description">
 		<span class="content">
-			<div *ngFor="let result of detail['results']">
-				<a *ngIf="result.type != 'html'" href="{{ result.result }}" class="link">{{ result.result }}</a>
+			<div *ngFor="let result of detail['otherResults']">
+				<a href="{{ result.result }}" class="link">{{ result.result }}</a>
 			</div>
 		</span>
 	</div>

@@ -40,6 +40,10 @@ export class AnalyticResultComponent implements OnInit {
 		}
 	}
 
+	canShowOtherResults() {
+		return this.detail[ 'otherResults' ] && this.detail[ 'otherResults' ].length;
+	}
+
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
 	}
