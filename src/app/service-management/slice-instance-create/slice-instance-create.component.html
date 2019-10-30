@@ -2,8 +2,21 @@
 
 <h2 mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
 
-<mat-dialog-content *ngIf="step === 'first' && slas.length" class="first-screen">
-	<div class="assignation-line" *ngFor="let ns of data.networkServices">
+<mat-dialog-content *ngIf="step=='intro' || step=='sla-warning'" class="dialog">
+	<p i18n="@@introInSliceInstantiation">
+		These are the network services composing this slice. In the following steps you will be able to configure them individually.
+	</p>
+	<span *ngFor="let ns of data.networkServices">{{ ns['nsd-name'] }}</span>
+	<p *ngIf="step === 'sla-warning'" class="error" i18n="@@slaErrorInSliceInstantiation">
+		*No SLAs were found, at least not for these network services.
+		Please, continue with the instantiation without applying any SLA.
+	</p>
+</mat-dialog-content>
+
+<!-- <mat-dialog-content *ngIf="step === 'first' && slas.length" class="first-screen">
+
+
+ <div class="assignation-line" *ngFor="let ns of data.networkServices">
 		<div>
 			<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
 			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
@@ -11,15 +24,12 @@
 			</app-select-uuid>
 		</div>
 	</div>
-</mat-dialog-content>
 
-<mat-dialog-content *ngIf="step=='sla-error'" class="error-dialog" i18n="@@slaErrorInSliceInstantiation">
-	No SLAs were found, at least not for this network services.
-	Please, continue with the instantiation without applying any SLA to your network services.
-</mat-dialog-content>
 
-<mat-dialog-content *ngIf="step === 'second'">
-	<form [formGroup]="instantiationForm" class="second-screen">
+ </mat-dialog-content> -->
+
+<mat-dialog-content *ngIf="step === 'last'">
+	<form [formGroup]="instantiationForm" class="last-screen">
 		<mat-form-field>
 			<input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required i18n-placeholder="@@nsiNamePlaceholder" />
 		</mat-form-field>
@@ -31,17 +41,17 @@
 	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="step !== 'second' && !loading">
+<!-- BUTTONS FOR EACH OF THE DIALOGS -->
+<mat-dialog-actions *ngIf="step === 'intro' || step === 'sla-warning'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableNext()" (click)="step = 'second'"
-			i18n="@@nextButton">
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="step = 'last'" i18n="@@nextButton">
 			NEXT
 		</button>
 	</div>
 </mat-dialog-actions>
 
-<mat-dialog-actions *ngIf="step === 'second'">
+<mat-dialog-actions *ngIf="step === 'last'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button (click)="chooseBackStep()" i18n="@@backButton">BACK</button>
 		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="!instantiationForm.valid"

@@ -1988,7 +1988,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -3123,7 +3123,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -3612,10 +3612,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-detail/runtime-policy-detail.component.html</context>
           <context context-type="linenumber">69</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4511,24 +4507,35 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="slaErrorInSliceInstantiation" datatype="html">
+      <trans-unit id="introInSliceInstantiation" datatype="html">
         <source>
-	No SLAs were found, at least not for this network services.
-	Please, continue with the instantiation without applying any SLA to your network services.
-</source><target state="final">
-	No SLAs were found, at least not for this network services.
-	Please, continue with the instantiation without applying any SLA to your network services.
-</target>
+		These are the network services composing this slice. In the following steps you will be able to configure them individually.
+	</source><target state="final">
+		These are the network services composing this slice. In the following steps you will be able to configure them individually.
+	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="slaErrorInSliceInstantiation" datatype="html">
+        <source>
+		*No SLAs were found, at least not for these network services.
+		Please, continue with the instantiation without applying any SLA.
+	</source><target state="final">
+		*No SLAs were found, at least not for these network services.
+		Please, continue with the instantiation without applying any SLA.
+	</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source><target state="final">NSI Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nextButton" datatype="html">
@@ -4539,7 +4546,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4550,7 +4557,7 @@
         <source>BACK</source><target state="final">BACK</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4565,7 +4572,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>

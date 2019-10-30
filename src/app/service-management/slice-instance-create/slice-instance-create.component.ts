@@ -18,7 +18,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	slas = new Array<object>();
 	slaAssociation = new Array<object>();
 	nsWithSLA = 0;
-	step = 'first';
+	step = 'intro';
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,22 +38,22 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	private async getSLAs() {
 		this.loading = true;
-		const ns = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
+		const networkServices = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
 		const templates = await this.commonService.getSLATemplates();
 
 		this.loading = false;
-		// Save online the SLAs related to the slice network services
+		// Save only the SLAs related to the slice network services
 		templates && templates.length ?
-			this.slas = templates.filter(item => ns.includes(item[ 'nsUUID' ]))
-			: this.step = 'sla-error';
+			this.slas = templates.filter(item => networkServices.includes(item[ 'nsUUID' ]))
+			: this.step = 'sla-warning';
 
 		if (!this.slas.length) {
-			this.step = 'sla-error';
+			this.step = 'sla-warning';
 		} else {
 			// Count the number of ns with a possible SLA
 			let nsUUIDInSLA = this.slas.map(sla => sla[ 'nsUUID' ]);
 			nsUUIDInSLA = nsUUIDInSLA.filter((sla, index) => nsUUIDInSLA.indexOf(sla) >= index);
-			ns.filter(uuid => nsUUIDInSLA.includes(uuid) ? this.nsWithSLA += 1 : this.nsWithSLA += 0);
+			networkServices.forEach(uuid => nsUUIDInSLA.includes(uuid) ? this.nsWithSLA += 1 : this.nsWithSLA += 0);
 		}
 	}
 
@@ -91,7 +91,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	}
 
 	chooseBackStep() {
-		this.step = this.slas.length ? 'first' : 'sla-error';
+		this.step = this.slas.length ? 'intro' : 'sla-warning';
 	}
 
 	canDisableNext() {

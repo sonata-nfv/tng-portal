@@ -46,8 +46,8 @@ app-slice-instance-create {
 			}	
 		}
 
-		// Second screen
-		.second-screen {
+		// Last screen
+		.last-screen {
 			width: 100%;
 
 			.description .content {
@@ -55,10 +55,16 @@ app-slice-instance-create {
 			}
 		}
 
-		// Error screen
-		&.error-dialog {
-			width: 80%;
-			color: $primary-font-color-light;
+		// Dialog screens
+		&.dialog {
+			span, p {
+				color: $secondary-font-color-light;
+			}
+
+			.error {
+				margin-top: 5vh;
+				color: $primary-font-color-light;
+			}
 		}
 	}
 }
