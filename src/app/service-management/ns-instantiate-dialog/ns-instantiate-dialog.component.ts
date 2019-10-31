@@ -17,7 +17,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
 	section = 'first';
-	listName = 'ingress';
+	listName: string;
 	instantiationForm: FormGroup;
 	ingress = new Array();
 	egress = new Array();
@@ -105,6 +105,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 				this.blacklist = this.blacklist.filter(x => x !== entry);
 				break;
 		}
+	}
+
+	receiveListName(listName) {
+		this.listName = listName;
 	}
 
 	receiveLocation(location) {

@@ -1,0 +1,37 @@
+@import "../../../constants.scss";
+app-nap-lists {
+	// Ingress, egress, blacklist buttons
+	.section {
+		display: flex;
+		align-items: center;
+
+		button {
+			font-size: 37px;
+			color: $button-disabled-font-color;
+			background-color: $basic-background-color;
+		}
+
+		button.active {
+			color: $primary-button-color-light;
+		}
+
+		.dash {
+			color: $button-disabled-font-color;
+			font-size: 30px;
+		}
+	}
+
+	// Styles of the listed items
+	.list {
+		color: $primary-font-color-light;
+
+		.list-entry {
+			align-items: center;
+
+			span {
+				flex: 1;
+				font-size: 17px;
+			}
+		}
+	}
+}

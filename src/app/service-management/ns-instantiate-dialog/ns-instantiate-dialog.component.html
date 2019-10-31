@@ -4,43 +4,7 @@
 
 <!-- FIRST DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='first'" class="first-dialog">
-	<div class="section">
-		<button [ngClass]="{ active: listName === 'ingress' }" (click)="listName = 'ingress'" class="basic-button"
-			mat-button>Ingress</button>
-		<span class="dash">-</span>
-		<button [ngClass]="{ active: listName === 'egress' }" (click)="listName = 'egress'" class="basic-button" mat-button>Egress</button>
-		<span class="dash">-</span>
-		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="listName = 'blacklist'" class="basic-button"
-			mat-button>Blacklist</button>
-	</div>
-
-	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
-	<dl *ngIf="listName === 'ingress'" class="list">
-		<dt *ngFor="let entry of ingress" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
-
-	<dl *ngIf="listName === 'egress'" class="list">
-		<dt *ngFor="let entry of egress" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
-
-	<dl *ngIf="listName === 'blacklist'" class="list">
-		<dt *ngFor="let entry of blacklist" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
+	<app-nap-lists (listNameEvent)="receiveListName($event)" [ingress]="ingress" [egress]="egress" [blacklist]="blacklist"></app-nap-lists>
 
 	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
 	<form [formGroup]="instantiationForm" class="first-dialog-form">
