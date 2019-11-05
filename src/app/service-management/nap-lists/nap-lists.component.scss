@@ -1,5 +1,8 @@
 @import "../../../constants.scss";
 app-nap-lists {
+	display: flex;
+	flex: 1 1;
+
 	// Ingress, egress, blacklist buttons
 	.section {
 		display: flex;
@@ -33,5 +36,51 @@ app-nap-lists {
 				font-size: 17px;
 			}
 		}
+	}
+
+	// Form styles to add location and nap 
+	.first-dialog-form {
+		width: 100%;
+		margin-top: 1vh;
+		margin-bottom: 2vh;
+
+		// Add new ingress or egress point button
+		.add-new {
+			display: flex;
+			justify-content: flex-end;
+
+			button {
+				padding-right: 0;
+				font-size: 16px;
+				color: $primary-color-light;
+				background-color: $basic-background-color;
+
+				i:before {
+					font-size: 12px;
+					color: $primary-color-light;
+				}
+			}
+
+			button:disabled {
+				color: $button-disabled-font-color;
+
+				i:before {
+					color: $button-disabled-font-color;
+				}
+			}
+		}
+		
+		// Invalid IP error message
+		.error-message.input-error {
+			margin-top: -1vh;
+		}	
+	}  
+
+	// No locations error message
+	.error-message-dialog {
+		align-self: center;
+		font-size: 18px;
+		text-align: justify;
+		color: $primary-font-color-light;
 	}
 }

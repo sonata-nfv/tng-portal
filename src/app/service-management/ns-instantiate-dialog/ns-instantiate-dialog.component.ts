@@ -6,6 +6,7 @@ import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+import { LocationNap } from '../nap-lists/location-nap';
 
 @Component({
 	selector: 'app-ns-instantiate-dialog',
@@ -17,13 +18,11 @@ export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
 	section = 'first';
-	listName: string;
 	instantiationForm: FormGroup;
-	ingress = new Array();
-	egress = new Array();
-	blacklist = new Array();
-	locations: Array<any>;
 	slas: Array<any>;
+	ingress = new Array<LocationNap>();
+	egress = new Array<LocationNap>();
+	blacklist = new Array<LocationNap>();
 
 	constructor(
 		private utilsService: UtilsService,
@@ -41,8 +40,6 @@ export class NsInstantiateDialogComponent implements OnInit {
 
 	private initForms() {
 		this.instantiationForm = new FormGroup({
-			location: new FormControl(),
-			nap: new FormControl(null, Validators.pattern(this.utilsService.getIpAndMaskPattern())),
 			sla: new FormControl(),
 			instanceName: new FormControl(null, Validators.required)
 		});
@@ -51,7 +48,6 @@ export class NsInstantiateDialogComponent implements OnInit {
 	private async getData() {
 		this.loading = true;
 		const templates = await this.commonService.getSLATemplates();
-		const endpoints = await this.commonService.getEndpoints();
 
 		this.loading = false;
 		if (templates) {
@@ -62,59 +58,20 @@ export class NsInstantiateDialogComponent implements OnInit {
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch SLA templates', '');
 		}
-
-		if (endpoints) {
-			this.locations = endpoints;
-			this.locations.unshift({ uuid: 'None', name: 'None' });
-		} else {
-			this.utilsService.openSnackBar('Unable to fetch locations', '');
-		}
 	}
 
-	addNew() {
-		const point = {
-			location: this.instantiationForm.get('location').value,
-			locationName: this.locations.find(location => location.uuid === this.instantiationForm.get('location').value).name,
-			nap: this.instantiationForm.get('nap').value
-		};
-
-		switch (this.listName) {
+	receiveList(listObject) {
+		switch (listObject.listName) {
 			case 'ingress':
-				this.ingress.push(point);
+				this.ingress = listObject.list;
 				break;
 			case 'egress':
-				this.egress.push(point);
+				this.egress = listObject.list;
 				break;
 			case 'blacklist':
-				this.blacklist.push(point);
+				this.blacklist = listObject.list;
 				break;
 		}
-
-		this.instantiationForm.reset();
-	}
-
-	eraseEntry(entry: string) {
-		switch (this.listName) {
-			case 'ingress':
-				this.ingress = this.ingress.filter(x => x !== entry);
-				break;
-			case 'egress':
-				this.egress = this.egress.filter(x => x !== entry);
-				break;
-			case 'blacklist':
-				this.blacklist = this.blacklist.filter(x => x !== entry);
-				break;
-		}
-	}
-
-	receiveListName(listName) {
-		this.listName = listName;
-	}
-
-	receiveLocation(location) {
-		location ?
-			this.instantiationForm.get('location').setValue(location) :
-			this.instantiationForm.get('location').setValue(null);
 	}
 
 	receiveSLA(sla) {
@@ -194,18 +151,8 @@ export class NsInstantiateDialogComponent implements OnInit {
 		}
 	}
 
-	canShowNetworkAddress() {
-		return this.instantiationForm.get('location').value && this.instantiationForm.get('location').value !== 'None' ? true : false;
-	}
-
-	canResetSelect() {
-		return this.instantiationForm.get('location').value ? false : true;
-	}
-
-	canDisableAddNew() {
-		return !this.instantiationForm.get('location').value ||
-			!this.instantiationForm.get('nap').value ||
-			this.instantiationForm.get('nap').errors;
+	canShowLoading() {
+		return this.loading && this.section !== 'first';
 	}
 
 	canDisableInstantiate() {

@@ -4,31 +4,7 @@
 
 <!-- FIRST DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='first'" class="first-dialog">
-	<app-nap-lists (listNameEvent)="receiveListName($event)" [ingress]="ingress" [egress]="egress" [blacklist]="blacklist"></app-nap-lists>
-
-	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
-	<form [formGroup]="instantiationForm" class="first-dialog-form">
-		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
-			required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
-		</app-select-uuid>
-
-		<mat-form-field *ngIf="canShowNetworkAddress()">
-			<input matInput type="text" placeholder="Network address" formControlName="nap" />
-		</mat-form-field>
-		<p *ngIf="instantiationForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIpMaskExample">
-			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
-		</p>
-
-
-		<div *ngIf="canShowNetworkAddress()" class="add-new">
-			<button [disabled]="canDisableAddNew()" (click)="addNew()" class="basic-button">
-				<i class="wui wui-plus"></i>
-				<span *ngIf="listName === 'ingress'" i18n="@@addNewIngress"> Add new ingress NAP</span>
-				<span *ngIf="listName === 'egress'" i18n="@@addNewEgress"> Add new egress NAP</span>
-				<span *ngIf="listName === 'blacklist'" i18n="@@addNewBlacklist"> Add new blacklist NAP</span>
-			</button>
-		</div>
-	</form>
+	<app-nap-lists [ingress]="ingress" [egress]="egress" [blacklist]="blacklist" (listEvent)="receiveList($event)"></app-nap-lists>
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="section=='first'">
@@ -90,4 +66,4 @@
 	</div>
 </mat-dialog-actions>
 
-<app-spinner *ngIf="loading"></app-spinner>
+<app-spinner *ngIf="canShowLoading()"></app-spinner>

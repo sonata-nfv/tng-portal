@@ -43,49 +43,10 @@ app-ns-instantiate-dialog {
 		color: $primary-font-color-light;
 	}
 
-	// Location, network address point, SLA and name
-	.mat-dialog-content.first-dialog .first-dialog-form {
-		width: 100%;
-		margin-top: 1vh;
-		margin-bottom: 2vh;
-	}
-
+	// SLA and name dialog styles
 	.mat-dialog-content.second-dialog .second-dialog-form {
 		width: 100%;
 		margin-top: 6vh;
-	}
-
-	// Invalid IP error message
-	.mat-dialog-content.first-dialog 
-	.first-dialog-form 
-	.error-message.input-error {
-		margin-top: -1vh;
-	}	  
-	
-	// Add new ingress or egress point button
-	.mat-dialog-content.first-dialog .add-new {
-		display: flex;
-		justify-content: flex-end;
-
-		button {
-			padding-right: 0;
-			font-size: 16px;
-			color: $primary-color-light;
-			background-color: $basic-background-color;
-
-			i:before {
-				font-size: 12px;
-				color: $primary-color-light;
-			}
-		}
-
-		button:disabled {
-			color: $button-disabled-font-color;
-
-			i:before {
-				color: $button-disabled-font-color;
-			}
-		}
 	}
 }
 

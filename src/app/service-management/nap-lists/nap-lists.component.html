@@ -1,36 +1,71 @@
-<div class="section">
-	<button [ngClass]="{ active: listName === 'ingress' }" (click)="sendListName('ingress')" class="basic-button" mat-button>Ingress</button>
-	<span class="dash">-</span>
-	<button [ngClass]="{ active: listName === 'egress' }" (click)="sendListName('egress')" class="basic-button" mat-button>Egress</button>
-	<span class="dash">-</span>
-	<button [ngClass]="{ active: listName === 'blacklist' }" (click)="sendListName('blacklist')" class="basic-button"
-		mat-button>Blacklist</button>
+<div *ngIf="canShowForm()">
+	<div class="section">
+		<button [ngClass]="{ active: listName === 'ingress' }" (click)="setListName('ingress')" class="basic-button"
+			mat-button>Ingress</button>
+		<span class="dash">-</span>
+		<button [ngClass]="{ active: listName === 'egress' }" (click)="setListName('egress')" class="basic-button"
+			mat-button>Egress</button>
+		<span class="dash">-</span>
+		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="setListName('blacklist')" class="basic-button"
+			mat-button>Blacklist</button>
+	</div>
+
+	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
+	<dl *ngIf="listName === 'ingress'" class="list">
+		<dt *ngFor="let entry of ingress" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
+
+	<dl *ngIf="listName === 'egress'" class="list">
+		<dt *ngFor="let entry of egress" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
+
+	<dl *ngIf="listName === 'blacklist'" class="list">
+		<dt *ngFor="let entry of blacklist" class="list-entry">
+			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
+			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
+				<i class="wui wui-trash-alt"></i>
+			</button>
+		</dt>
+	</dl>
+
+	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
+	<form [formGroup]="napForm" class="first-dialog-form">
+		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
+			required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
+		</app-select-uuid>
+
+		<mat-form-field *ngIf="canShowNetworkAddress()">
+			<input matInput type="text" placeholder="Network address" formControlName="nap" />
+		</mat-form-field>
+		<p *ngIf="napForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIpMaskExample">
+			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
+		</p>
+
+
+		<div *ngIf="canShowNetworkAddress()" class="add-new">
+			<button [disabled]="canDisableAddNew()" (click)="addNew()" class="basic-button">
+				<i class="wui wui-plus"></i>
+				<span *ngIf="listName === 'ingress'" i18n="@@addNewIngress"> Add new ingress NAP</span>
+				<span *ngIf="listName === 'egress'" i18n="@@addNewEgress"> Add new egress NAP</span>
+				<span *ngIf="listName === 'blacklist'" i18n="@@addNewBlacklist"> Add new blacklist NAP</span>
+			</button>
+		</div>
+	</form>
 </div>
 
-<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
-<dl *ngIf="listName === 'ingress'" class="list">
-	<dt *ngFor="let entry of ingress" class="list-entry">
-		<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-		<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-			<i class="wui wui-trash-alt"></i>
-		</button>
-	</dt>
-</dl>
+<p *ngIf="canShowNoLocationsError()" class="error-message-dialog" i18n="@@noLocationsError">
+	No locations were found at this moment. Please, click on NEXT and continue with
+	the instantiation without selecting any, or you could try again later.
+</p>
 
-<dl *ngIf="listName === 'egress'" class="list">
-	<dt *ngFor="let entry of egress" class="list-entry">
-		<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-		<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-			<i class="wui wui-trash-alt"></i>
-		</button>
-	</dt>
-</dl>
-
-<dl *ngIf="listName === 'blacklist'" class="list">
-	<dt *ngFor="let entry of blacklist" class="list-entry">
-		<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-		<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-			<i class="wui wui-trash-alt"></i>
-		</button>
-	</dt>
-</dl>
+<app-spinner *ngIf="loading"></app-spinner>
