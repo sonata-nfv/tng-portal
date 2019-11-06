@@ -1,36 +1,43 @@
 <button class="close-icon" (click)="close()"><i class="wui wui-times"></i></button>
 
-<h2 mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
+<h2 *ngIf="step!='network-services-config'" mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
+<h2 *ngIf="step=='network-services-config'" mat-dialog-title>
+	{{ data.networkServices[networkServiceIterator]['id'] }}: {{ data.networkServices[networkServiceIterator]['nsd-name'] }}
+</h2>
 
+<!-- POP UPS CONTENT -->
 <mat-dialog-content *ngIf="step=='intro' || step=='sla-warning'" class="dialog">
 	<p i18n="@@introInSliceInstantiation">
 		These are the network services composing this slice. In the following steps you will be able to configure them individually.
 	</p>
 	<span *ngFor="let ns of data.networkServices">{{ ns['nsd-name'] }}</span>
 	<p *ngIf="step === 'sla-warning'" class="error" i18n="@@slaErrorInSliceInstantiation">
-		*No SLAs were found, at least not for these network services.
+		No SLAs were found, at least not for these network services.
 		Please, continue with the instantiation without applying any SLA.
 	</p>
 </mat-dialog-content>
 
-<!-- <mat-dialog-content *ngIf="step === 'first' && slas.length" class="first-screen">
+<mat-dialog-content *ngIf="step === 'network-services-config'">
+	<app-nap-lists [activateBlacklist]="false" [ingress]="getIngresses()" [egress]="getEgresses()" (listEvent)="receiveList($event)">
+	</app-nap-lists>
 
+	<!-- TODO include SLA dropdown -->
+	<!-- TODO include VIMs dropdown -->
 
- <div class="assignation-line" *ngFor="let ns of data.networkServices">
+	<!-- <div class="assignation-line" *ngFor="let ns of data.networkServices">
 		<div>
 			<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
 			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
 				(selectEvent)="receiveSLA(ns['id'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
 			</app-select-uuid>
 		</div>
-	</div>
+	</div> -->
 
-
- </mat-dialog-content> -->
+</mat-dialog-content>
 
 <mat-dialog-content *ngIf="step === 'last'">
 	<form [formGroup]="instantiationForm" class="last-screen">
-		<mat-form-field>
+		<mat-form-field class="slice-name">
 			<input matInput type="text" placeholder="NSI Name" formControlName="nsiName" required i18n-placeholder="@@nsiNamePlaceholder" />
 		</mat-form-field>
 
@@ -45,7 +52,17 @@
 <mat-dialog-actions *ngIf="step === 'intro' || step === 'sla-warning'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="step = 'last'" i18n="@@nextButton">
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="chooseForwardStep()" i18n="@@nextButton">
+			NEXT
+		</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- TODO disable next if there is an sla for the ns -->
+<mat-dialog-actions *ngIf="step === 'network-services-config'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button (click)="chooseBackStep()" i18n="@@backButton">BACK</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="chooseForwardStep()" i18n="@@nextButton">
 			NEXT
 		</button>
 	</div>
@@ -61,4 +78,4 @@
 	</div>
 </mat-dialog-actions>
 
-<app-spinner *ngIf="loading"></app-spinner>
+<app-spinner *ngIf="canShowLoading()"></app-spinner>

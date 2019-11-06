@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { LocationNap } from '../nap-lists/location-nap';
 
 @Component({
 	selector: 'app-slice-instance-create',
@@ -19,6 +20,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 	slaAssociation = new Array<object>();
 	nsWithSLA = 0;
 	step = 'intro';
+	networkServiceIterator = 0;
+	ingress = new Array<LocationNap>();
+	egress = new Array<LocationNap>();
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -81,6 +85,22 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.close();
 	}
 
+	// TODO get the list related to each ns used
+	getIngresses() {
+		return this.ingress;
+	}
+
+	getEgresses() {
+		return this.egress;
+	}
+
+	receiveList(listObject) {
+		listObject.listName === 'ingress' ?
+			this.ingress = listObject.list
+			: this.egress = listObject.list;
+	}
+
+	// TODO when next save all the information of the ns as an object
 	receiveSLA(nsID, slaUUID) {
 		const slaName = this.slas.find(item => item[ 'uuid' ] === slaUUID)[ 'name' ];
 		this.slaAssociation.push({
@@ -90,12 +110,34 @@ export class SliceInstanceCreateComponent implements OnInit {
 		});
 	}
 
+	// TODO save previous data from previous ns and display it in the screen when back
 	chooseBackStep() {
-		this.step = this.slas.length ? 'intro' : 'sla-warning';
+		if (this.step === 'last') {
+			this.step = 'network-services-config';
+		} else if (this.step === 'network-services-config' && this.networkServiceIterator) {
+			this.networkServiceIterator -= 1;
+		} else {
+			this.step = this.slas.length ? 'intro' : 'sla-warning';
+		}
 	}
 
+	chooseForwardStep() {
+		if (this.step === 'intro' || this.step === 'sla-warning') {
+			this.step = 'network-services-config';
+		} else if (this.data.networkServices[ this.networkServiceIterator + 1 ]) {
+			this.networkServiceIterator += 1;
+		} else {
+			this.step = 'last';
+		}
+	}
+
+	// TODO check this using networkServiceIterator
 	canDisableNext() {
 		return this.slas.length && this.slaAssociation.length !== this.nsWithSLA ? true : false;
+	}
+
+	canShowLoading() {
+		return this.loading && this.step !== 'network-services-config';
 	}
 
 	close() {
