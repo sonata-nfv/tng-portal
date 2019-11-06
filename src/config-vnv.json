@@ -2,6 +2,7 @@
 	"features_available": [
 		"DASHBOARD",
 		"PLATFORMS",
+		"SDK",
 		"VALIDATION"
 	],
 	"environment": "VNV"
