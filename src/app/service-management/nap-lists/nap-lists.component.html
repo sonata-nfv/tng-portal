@@ -5,8 +5,8 @@
 		<span class="dash">-</span>
 		<button [ngClass]="{ active: listName === 'egress' }" (click)="setListName('egress')" class="basic-button"
 			mat-button>Egress</button>
-		<span class="dash">-</span>
-		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="setListName('blacklist')" class="basic-button"
+		<span *ngIf="activateBlacklist" class="dash">-</span>
+		<button *ngIf="activateBlacklist" [ngClass]="{ active: listName === 'blacklist' }" (click)="setListName('blacklist')" class="basic-button"
 			mat-button>Blacklist</button>
 	</div>
 

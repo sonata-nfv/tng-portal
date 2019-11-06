@@ -16,6 +16,7 @@ export class NapListsComponent implements OnInit {
 	napForm: FormGroup;
 	locations: Array<any>;
 
+	@Input() activateBlacklist: boolean;
 	@Input() ingress: Array<LocationNap>;
 	@Input() egress: Array<LocationNap>;
 	@Input() blacklist: Array<LocationNap>;

@@ -4,7 +4,8 @@
 
 <!-- FIRST DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='first'" class="first-dialog">
-	<app-nap-lists [ingress]="ingress" [egress]="egress" [blacklist]="blacklist" (listEvent)="receiveList($event)"></app-nap-lists>
+	<app-nap-lists [activateBlacklist]="true" [ingress]="ingress" [egress]="egress" [blacklist]="blacklist"
+		(listEvent)="receiveList($event)"></app-nap-lists>
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="section=='first'">
