@@ -60,7 +60,7 @@ export class ConfigService extends Config {
 	analyticProcessExecution = 'analytics/analytic_service';
 
 	// IP of SDK backend container
-	baseSDK = 'http://localhost';
+	baseSDK = window.location.hostname;
 	// baseSDK = 'http://192.168.99.100';
 
 	private configFile = './config.json';
