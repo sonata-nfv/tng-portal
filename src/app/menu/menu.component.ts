@@ -120,6 +120,9 @@ export class MenuComponent implements OnInit, OnDestroy {
 			case 'vv-tests':
 				this.router.navigate([ 'validation-and-verification/tests' ]);
 				break;
+			case 'vv-analytic-results':
+				this.router.navigate([ 'validation-and-verification/analytic-results' ]);
+				break;
 			case 'sp-packages':
 				this.router.navigate([ 'service-platform/packages' ]);
 				break;

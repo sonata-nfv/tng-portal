@@ -369,34 +369,37 @@ p {
 	span {
 		width: 100%;
 		min-height: 20px;
+	}
 
-		&.content {
-			overflow-y: auto;
-			overflow-x: hidden;
-			white-space: pre-line;
-			min-height: 120px;
-			max-height: 200px;
-			color: $secondary-font-color;
+	.content {
+		overflow-y: auto;
+		overflow-x: hidden;
+		white-space: pre-line;
+		min-height: 120px;
+		max-height: 200px;
+		color: $secondary-font-color;
+		background-color: $panel-background-color;
+		border-top: 1px solid $border-line-color;
+		border-bottom: 1px solid $border-line-color;
+
+		p, 
+		mat-checkbox, .mat-checkbox-label,
+		.link {
+			font-size: 16px;
+			margin: 5px;
+		}
+
+		// Styles for a table inside the description div
+		table th.mat-header-cell,
+		table td.mat-cell {
 			background-color: $panel-background-color;
-			border-top: 1px solid $border-line-color;
-			border-bottom: 1px solid $border-line-color;
+		}
 
-			p {
-				margin: 5px;
-			}
-
-			// Styles for a table inside the description div
-			table th.mat-header-cell,
-			table td.mat-cell {
-				background-color: $panel-background-color;
-			}
-
-			// Underline styles
-			tr.mat-row {
-				background-position: bottom;
-				background-size: 100% 1px;
-				background-repeat: no-repeat;
-			}
+		// Underline styles
+		tr.mat-row {
+			background-position: bottom;
+			background-size: 100% 1px;
+			background-repeat: no-repeat;
 		}
 	}
 }

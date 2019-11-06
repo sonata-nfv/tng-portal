@@ -156,6 +156,11 @@ form .same-row {
  	border-color: $secondary-font-color-light;
 }
 
+// Display the whole label 
+.mat-checkbox-label { 
+    white-space: initial; 
+} 
+
 // Slider and slide toggle styles
 .mat-accent .mat-slider-thumb, 
 .mat-accent .mat-slider-thumb-label, 
