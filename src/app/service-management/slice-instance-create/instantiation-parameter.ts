@@ -1,7 +1,9 @@
 export class InstantiationParameter {
-	subnet_id: string;
-	sla_id: string;
-	sla_name: string;
+	subnetID: string;
+	nsID: string;
+	nsName: string;
+	slaID: string;
+	slaName: string;
 	ingresses: Array<{
 		location: string;
 		nap: string;
@@ -10,6 +12,6 @@ export class InstantiationParameter {
 		location: string;
 		nap: string;
 	}>;
-	vim_id: string;
+	vimID: string;
 	params: object;
 }

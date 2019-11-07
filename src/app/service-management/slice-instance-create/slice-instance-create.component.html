@@ -2,7 +2,7 @@
 
 <h2 *ngIf="step!='network-services-config'" mat-dialog-title i18n="@@newSliceInstance">New network slice instance</h2>
 <h2 *ngIf="step=='network-services-config'" mat-dialog-title>
-	{{ data.networkServices[networkServiceIterator]['id'] }}: {{ data.networkServices[networkServiceIterator]['nsd-name'] }}
+	{{ instantiationParameters[networkServiceIterator].subnetID }}: {{ instantiationParameters[networkServiceIterator].nsName }}
 </h2>
 
 <!-- POP UPS CONTENT -->
@@ -21,17 +21,16 @@
 	<app-nap-lists [activateBlacklist]="false" [ingress]="getIngresses()" [egress]="getEgresses()" (listEvent)="receiveList($event)">
 	</app-nap-lists>
 
-	<!-- TODO include SLA dropdown -->
-	<!-- TODO include VIMs dropdown -->
+	<app-select-uuid *ngIf="getSLAForService().length" class="select" placeholder="Select a SLA from the list" [list]="getSLAForService()"
+		(selectEvent)="receiveSlaPerNS($event)" i18n-placeholder="@@selectSLAPlaceholder">
+	</app-select-uuid>
 
-	<!-- <div class="assignation-line" *ngFor="let ns of data.networkServices">
-		<div>
-			<span>{{ ns['id'] }}: {{ ns['nsd-name'] }}</span>
-			<app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
-				(selectEvent)="receiveSLA(ns['id'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
-			</app-select-uuid>
-		</div>
-	</div> -->
+	<!-- TODO include VIMs dropdown -->
+	<!-- <app-select-uuid class="select" placeholder="Select a SLA from the list" [list]="slas" [disabled]="loading"
+		(selectEvent)="receiveSLA(ns['id'], $event)" i18n-placeholder="@@selectSLAPlaceholder">
+	</app-select-uuid> -->
+
+	<!-- TODO include SLA dropdown -->
 
 </mat-dialog-content>
 

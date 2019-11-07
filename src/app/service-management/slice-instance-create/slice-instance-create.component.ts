@@ -20,10 +20,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	instantiationForm: FormGroup;
 	networkServiceIterator = 0;
 	instantiationParameters = new Array<InstantiationParameter>();
-
 	slas = new Array<object>();
-	slaAssociation = new Array<object>();
-	nsWithSLA = 0;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -46,7 +43,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 	private populateInstantiationParameters() {
 		this.data.networkServices.forEach(ns => {
 			const instantiationParameter = new InstantiationParameter();
-			instantiationParameter.subnet_id = ns.id;
+			instantiationParameter.subnetID = ns.id;
+			instantiationParameter.nsID = ns[ 'nsd-ref' ];
+			instantiationParameter.nsName = ns[ 'nsd-name' ];
 			instantiationParameter.egresses = new Array<LocationNap>();
 			instantiationParameter.ingresses = new Array<LocationNap>();
 			this.instantiationParameters.push(instantiationParameter);
@@ -59,43 +58,18 @@ export class SliceInstanceCreateComponent implements OnInit {
 		const templates = await this.commonService.getSLATemplates();
 
 		this.loading = false;
-		// Save only the SLAs related to the slice network services
+		// Save only the SLAs related to the network services of the slice
 		templates && templates.length ?
 			this.slas = templates.filter(item => networkServices.includes(item[ 'nsUUID' ]))
 			: this.step = 'sla-warning';
 
 		if (!this.slas.length) {
 			this.step = 'sla-warning';
-		} else {
-			// Count the number of ns with a possible SLA
-			let nsUUIDInSLA = this.slas.map(sla => sla[ 'nsUUID' ]);
-			nsUUIDInSLA = nsUUIDInSLA.filter((sla, index) => nsUUIDInSLA.indexOf(sla) >= index);
-			networkServices.forEach(uuid => nsUUIDInSLA.includes(uuid) ? this.nsWithSLA += 1 : this.nsWithSLA += 0);
 		}
 	}
 
-	getSLAForService(uuid) {
-		return this.slas.filter(sla => sla[ 'nsUUID' ] === uuid);
-	}
-
-	async instantiate() {
-		const instance = {
-			nst_id: this.data.nstId,
-			name: this.instantiationForm.get('nsiName').value,
-			description: this.instantiationForm.get('nsiDescription').value,
-			'request_type': 'CREATE_SLICE',
-			services_sla: this.slaAssociation.length ? this.slaAssociation : []
-		};
-
-		this.loading = true;
-		const response = await this.serviceManagementService.postOneSliceInstance(instance);
-
-		this.loading = false;
-		response ?
-			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '')
-			: this.utilsService.openSnackBar('There was an error instantiating the slice template', '');
-
-		this.close();
+	getSLAForService() {
+		return this.slas.filter(sla => sla[ 'nsUUID' ] === this.instantiationParameters[ this.networkServiceIterator ].nsID);
 	}
 
 	getIngresses() {
@@ -112,17 +86,13 @@ export class SliceInstanceCreateComponent implements OnInit {
 			: this.instantiationParameters[ this.networkServiceIterator ].egresses = listObject.list;
 	}
 
-	// TODO when next save all the information of the ns as an object
-	receiveSLA(nsID, slaUUID) {
+	// TODO set SLA if back step and already selected
+	receiveSlaPerNS(slaUUID) {
 		const slaName = this.slas.find(item => item[ 'uuid' ] === slaUUID)[ 'name' ];
-		this.slaAssociation.push({
-			service_uuid: nsID,
-			sla_name: slaName,
-			sla_uuid: slaUUID
-		});
+		this.instantiationParameters[ this.networkServiceIterator ].slaID = slaUUID;
+		this.instantiationParameters[ this.networkServiceIterator ].slaName = slaName;
 	}
 
-	// TODO save previous data from previous ns and display it in the screen when back
 	chooseBackStep() {
 		if (this.step === 'last') {
 			this.step = 'network-services-config';
@@ -143,13 +113,29 @@ export class SliceInstanceCreateComponent implements OnInit {
 		}
 	}
 
-	// TODO check this using networkServiceIterator
-	canDisableNext() {
-		return this.slas.length && this.slaAssociation.length !== this.nsWithSLA ? true : false;
-	}
-
 	canShowLoading() {
 		return this.loading && this.step !== 'network-services-config';
+	}
+
+	// TODO disable instantiate if sla is missing
+	// check this using instantiationParameters array. NS with no SLA must not be in the sla list 
+	async instantiate() {
+		const instance = {
+			nst_id: this.data.nstId,
+			name: this.instantiationForm.get('nsiName').value,
+			description: this.instantiationForm.get('nsiDescription').value,
+			'request_type': 'CREATE_SLICE',
+		};
+
+		this.loading = true;
+		const response = await this.serviceManagementService.postOneSliceInstance(instance);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('Slice template ' + response[ 'name' ] + ' instantiating...', '')
+			: this.utilsService.openSnackBar('There was an error instantiating the slice template', '');
+
+		this.close();
 	}
 
 	close() {
