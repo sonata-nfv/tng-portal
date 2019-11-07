@@ -1,4 +1,4 @@
-<div *ngIf="canShowForm()">
+<div *ngIf="canShowForm()" class="content">
 	<div class="section">
 		<button [ngClass]="{ active: listName === 'ingress' }" (click)="setListName('ingress')" class="basic-button"
 			mat-button>Ingress</button>
@@ -6,8 +6,8 @@
 		<button [ngClass]="{ active: listName === 'egress' }" (click)="setListName('egress')" class="basic-button"
 			mat-button>Egress</button>
 		<span *ngIf="activateBlacklist" class="dash">-</span>
-		<button *ngIf="activateBlacklist" [ngClass]="{ active: listName === 'blacklist' }" (click)="setListName('blacklist')" class="basic-button"
-			mat-button>Blacklist</button>
+		<button *ngIf="activateBlacklist" [ngClass]="{ active: listName === 'blacklist' }" (click)="setListName('blacklist')"
+			class="basic-button" mat-button>Blacklist</button>
 	</div>
 
 	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
@@ -63,9 +63,9 @@
 	</form>
 </div>
 
-<p *ngIf="canShowNoLocationsError()" class="error-message-dialog" i18n="@@noLocationsError">
+<p *ngIf="canShowNoLocationsError()" class="content error-message-dialog" i18n="@@noLocationsError">
 	No locations were found at this moment. Please, click on NEXT and continue with
 	the instantiation without selecting any, or you could try again later.
 </p>
 
-<app-spinner *ngIf="loading"></app-spinner>
+<app-spinner *ngIf="loading" class="pop-up-spinner"></app-spinner>
