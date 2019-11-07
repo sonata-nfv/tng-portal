@@ -35,7 +35,7 @@ pipeline {
 				echo 'Test styles and building docker image...'
 				sh 'docker build --no-cache -f ./Dockerfile -t registry.sonata-nfv.eu:5000/tng-portal .'
 				echo 'Build SDK Portal Backend Docker image'
-				sh 'docker build --no-cache -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend .'
+				sh 'docker build --no-cache -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend -t registry.sonata-nfv.eu:5000/tng-sdk-portal-backend .'
 			}
 		}
 		stage('Publishing') {
@@ -44,6 +44,7 @@ pipeline {
 				sh 'docker push registry.sonata-nfv.eu:5000/tng-portal'
 				echo 'Publishing SDK Portal Backend Docker image'
 				sh 'docker push sonatanfv/tng-sdk-portal-backend'
+				sh 'docker push registry.sonata-nfv.eu:5000/tng-sdk-portal-backend'
 			}
 		}
 		stage('Deploying in pre-int') {
@@ -64,6 +65,8 @@ pipeline {
 			steps {
 				sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest registry.sonata-nfv.eu:5000/tng-portal:int'
 				sh 'docker push registry.sonata-nfv.eu:5000/tng-portal:int'
+				sh 'docker tag registry.sonata-nfv.eu:5000/tng-sdk-portal-backend:latest registry.sonata-nfv.eu:5000/tng-sdk-portal-backend:int'
+				sh 'docker push registry.sonata-nfv.eu:5000/tng-sdk-portal-backend:int'
 				sh 'rm -rf tng-devops || true'
 				sh 'git clone https://github.com/sonata-nfv/tng-devops.git'
 				dir(path: 'tng-devops') {
