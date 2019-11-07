@@ -6,6 +6,7 @@ import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 import { LocationNap } from '../nap-lists/location-nap';
+import { InstantiationParameter } from './instantiation-parameter';
 
 @Component({
 	selector: 'app-slice-instance-create',
@@ -15,14 +16,14 @@ import { LocationNap } from '../nap-lists/location-nap';
 })
 export class SliceInstanceCreateComponent implements OnInit {
 	loading: boolean;
+	step = 'intro';
 	instantiationForm: FormGroup;
+	networkServiceIterator = 0;
+	instantiationParameters = new Array<InstantiationParameter>();
+
 	slas = new Array<object>();
 	slaAssociation = new Array<object>();
 	nsWithSLA = 0;
-	step = 'intro';
-	networkServiceIterator = 0;
-	ingress = new Array<LocationNap>();
-	egress = new Array<LocationNap>();
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -37,6 +38,18 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.instantiationForm = new FormGroup({
 			nsiName: new FormControl(null, Validators.required),
 			nsiDescription: new FormControl(null, Validators.required)
+		});
+
+		this.populateInstantiationParameters();
+	}
+
+	private populateInstantiationParameters() {
+		this.data.networkServices.forEach(ns => {
+			const instantiationParameter = new InstantiationParameter();
+			instantiationParameter.subnet_id = ns.id;
+			instantiationParameter.egresses = new Array<LocationNap>();
+			instantiationParameter.ingresses = new Array<LocationNap>();
+			this.instantiationParameters.push(instantiationParameter);
 		});
 	}
 
@@ -85,19 +98,18 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.close();
 	}
 
-	// TODO get the list related to each ns used
 	getIngresses() {
-		return this.ingress;
+		return this.instantiationParameters[ this.networkServiceIterator ].ingresses;
 	}
 
 	getEgresses() {
-		return this.egress;
+		return this.instantiationParameters[ this.networkServiceIterator ].egresses;
 	}
 
 	receiveList(listObject) {
 		listObject.listName === 'ingress' ?
-			this.ingress = listObject.list
-			: this.egress = listObject.list;
+			this.instantiationParameters[ this.networkServiceIterator ].ingresses = listObject.list
+			: this.instantiationParameters[ this.networkServiceIterator ].egresses = listObject.list;
 	}
 
 	// TODO when next save all the information of the ns as an object
