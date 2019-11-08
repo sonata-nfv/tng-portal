@@ -49,11 +49,18 @@ app-nap-lists {
 			width: 100%;
 			margin-top: 1vh;
 			margin-bottom: 2vh;
+			align-items: center;
+
+			.select, 
+			.mat-form-field {
+				width: 100%;
+			}
 
 			// Add new ingress or egress point button
 			.add-new {
 				display: flex;
 				justify-content: flex-end;
+				width: 100%;
 
 				button {
 					padding-right: 0;

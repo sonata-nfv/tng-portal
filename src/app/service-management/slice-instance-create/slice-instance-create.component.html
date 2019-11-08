@@ -21,7 +21,7 @@
 	<app-nap-lists [activateBlacklist]="false" [ingress]="getIngresses()" [egress]="getEgresses()" (listEvent)="receiveList($event)">
 	</app-nap-lists>
 
-	<app-select-uuid *ngIf="getSLAForService().length" class="select" placeholder="Select a SLA from the list" [list]="getSLAForService()"
+	<app-select-uuid *ngIf="getSLAForService().length" class="sla-select" placeholder="Select a SLA from the list" [list]="getSLAForService()"
 		(selectEvent)="receiveSlaPerNS($event)" i18n-placeholder="@@selectSLAPlaceholder">
 	</app-select-uuid>
 

@@ -35,7 +35,12 @@ app-slice-instance-create {
     	overflow-y: auto;
 
 		app-nap-lists {
-			width: 100%;
+			width: 80%;
+		}
+
+		.sla-select,
+		.vim-select { 
+			width: 80%;
 		}
 
 		// Last screen
