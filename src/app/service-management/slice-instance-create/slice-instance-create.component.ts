@@ -21,6 +21,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	networkServiceIterator = 0;
 	instantiationParameters = new Array<InstantiationParameter>();
 	slas = new Array<object>();
+	vims = new Array<object>();
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -31,7 +32,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.getSLAs();
+		this.getData();
 		this.instantiationForm = new FormGroup({
 			nsiName: new FormControl(null, Validators.required),
 			nsiDescription: new FormControl(null, Validators.required)
@@ -52,19 +53,24 @@ export class SliceInstanceCreateComponent implements OnInit {
 		});
 	}
 
-	private async getSLAs() {
+	private async getData() {
 		this.loading = true;
 		const networkServices = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
 		const templates = await this.commonService.getSLATemplates();
+		const vims = await this.commonService.getVims();
 
 		this.loading = false;
 		// Save only the SLAs related to the network services of the slice
 		templates && templates.length ?
 			this.slas = templates.filter(item => networkServices.includes(item[ 'nsUUID' ]))
-			: this.step = 'sla-warning';
+			: this.step = 'warning';
 
-		if (!this.slas.length) {
-			this.step = 'sla-warning';
+		vims && vims.length ?
+			this.vims = vims
+			: this.step = 'warning';
+
+		if (!this.slas.length || !this.vims.length) {
+			this.step = 'warning';
 		}
 	}
 
@@ -93,18 +99,23 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.instantiationParameters[ this.networkServiceIterator ].slaName = slaName;
 	}
 
+	// TODO set VIM if back step and already selected
+	receiveVimPerNS(vimUUID) {
+		this.instantiationParameters[ this.networkServiceIterator ].vimID = vimUUID;
+	}
+
 	chooseBackStep() {
 		if (this.step === 'last') {
 			this.step = 'network-services-config';
 		} else if (this.step === 'network-services-config' && this.networkServiceIterator) {
 			this.networkServiceIterator -= 1;
 		} else {
-			this.step = this.slas.length ? 'intro' : 'sla-warning';
+			this.step = this.slas.length ? 'intro' : 'warning';
 		}
 	}
 
 	chooseForwardStep() {
-		if (this.step === 'intro' || this.step === 'sla-warning') {
+		if (this.step === 'intro' || this.step === 'warning') {
 			this.step = 'network-services-config';
 		} else if (this.data.networkServices[ this.networkServiceIterator + 1 ]) {
 			this.networkServiceIterator += 1;
@@ -115,6 +126,14 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	canShowLoading() {
 		return this.loading && this.step !== 'network-services-config';
+	}
+
+	canShowErrorSLAs() {
+		return this.step === 'warning' && !this.slas.length;
+	}
+
+	canShowErrorVIMs() {
+		return this.step === 'warning' && !this.vims.length;
 	}
 
 	// TODO disable instantiate if sla is missing

@@ -1917,7 +1917,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -2555,6 +2555,10 @@
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
           <context context-type="linenumber">65</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="testName" datatype="html">
         <source>Test name</source>
@@ -3049,7 +3053,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -4435,14 +4439,23 @@
 	</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vimErrorInSliceInstantiation" datatype="html">
+        <source>
+		No VIMs were found. Please, continue with the instantiation without selecting any VIM.
+	</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nextButton" datatype="html">
@@ -4451,11 +4464,11 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4466,11 +4479,11 @@
         <source>BACK</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4483,7 +4496,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>

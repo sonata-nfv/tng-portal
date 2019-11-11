@@ -405,6 +405,34 @@ export class CommonService {
 	}
 
 	/**
+     * Retrieves a list of VIMs.
+     * Either following a search pattern or not.
+	 * 
+     */
+	async getVims() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.vimSettings;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response
+					.filter(vim => vim.type !== 'endpoint')
+					.map(vim => ({
+						uuid: vim.uuid,
+						name: vim.name
+					}))
+				: [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
 	 * Retrieves a Slices Template by UUID
 	 *
 	 * @param uuid UUID of the desired Slices Template.
