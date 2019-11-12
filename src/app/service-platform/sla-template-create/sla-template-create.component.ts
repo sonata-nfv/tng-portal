@@ -201,6 +201,10 @@ export class SlaTemplateCreateComponent implements OnInit {
 		return !this.closed && this.flavors && this.flavors.length;
 	}
 
+	canResetGuaranteeSelect() {
+		return this.guaranteesList.length ? true : false;
+	}
+
 	instancesErrorExists() {
 		return this.templateForm.get('instances').hasError('pattern');
 	}

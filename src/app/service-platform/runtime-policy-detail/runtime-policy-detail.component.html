@@ -66,7 +66,7 @@
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 
-	<app-select-uuid #sla class="sla-select" placeholder="Select SLA" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"
+	<app-select-uuid class="sla-select" placeholder="Select SLA" [value]="slaValue" [list]="slaList" (selectEvent)="receiveSLA($event)"
 		i18n-placeholder="@@selectSLAPlaceholder">
 	</app-select-uuid>
 </form>

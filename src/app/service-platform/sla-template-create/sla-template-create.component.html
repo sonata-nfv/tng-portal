@@ -17,7 +17,8 @@
 
 <form [formGroup]="templateForm">
 	<app-select-uuid class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
-		i18n-placeholder="@@nsPlaceholder"></app-select-uuid>
+		i18n-placeholder="@@nsPlaceholder">
+	</app-select-uuid>
 
 	<mat-form-field class="provider-name">
 		<input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
@@ -83,8 +84,9 @@
 
 		<!-- Selector to list the different service guarantees -->
 		<app-select-uuid *ngIf="guaranteesList.length" class="guarantees-select" placeholder="Select a guarantee"
-			[reset]="guaranteesList.length" [list]="guaranteesList" (selectEvent)="receiveGuarantee($event)"
-			i18n-placeholder="@@selectGuaranteePlaceholder"></app-select-uuid>
+			[reset]="canResetGuaranteeSelect()" [list]="guaranteesList" (selectEvent)="receiveGuarantee($event)"
+			i18n-placeholder="@@selectGuaranteePlaceholder">
+		</app-select-uuid>
 
 		<span *ngIf="guaranteesList.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
 	</form>

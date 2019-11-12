@@ -87,17 +87,17 @@
 				<input matInput type="text" placeholder="Duration" formControlName="duration" required i18n-placeholder="@@duration" />
 			</mat-form-field>
 
-			<app-select-uuid class="select" placeholder="Duration unit" [required]=true [list]="durationUnits"
+			<app-select-uuid class="select" placeholder="Duration unit" required=true [list]="durationUnits"
 				(selectEvent)="receiveDurationUnit($event)" i18n-placeholder="@@durationUnit">
 			</app-select-uuid>
 		</div>
 
 		<div class="same-row">
-			<app-select class="select left-column" placeholder="Select a condition" [required]=true [list]="conditions"
+			<app-select class="select left-column" placeholder="Select a condition" required=true [list]="conditions"
 				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
 			</app-select>
 
-			<app-select-uuid class="select left-column" placeholder="Select an operator" [required]=true [list]="thresholds"
+			<app-select-uuid class="select left-column" placeholder="Select an operator" required=true [list]="thresholds"
 				(selectEvent)="receiveThresholdOperator($event)" i18n-placeholder="@@selectOperatorPlaceholder">
 			</app-select-uuid>
 
@@ -179,8 +179,8 @@
 				<mat-error *ngIf="inertiaErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
 			</mat-form-field>
 
-			<app-select-uuid class="select" placeholder="Duration unit" [required]=true [list]="durationUnits"
-				[reset]="canResetInertiaUnit()" (selectEvent)="receiveInertiaUnit($event)" i18n-placeholder="@@durationUnit">
+			<app-select-uuid class="select" placeholder="Duration unit" required=true [list]="durationUnits" [reset]="canResetInertiaUnit()"
+				(selectEvent)="receiveInertiaUnit($event)" i18n-placeholder="@@durationUnit">
 			</app-select-uuid>
 		</div>
 
@@ -204,8 +204,7 @@
 
 					<li class="line" *ngIf="monitoringRules.length">
 						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
-							(selectEvent)="receivePolicyRuleCondition($event)" [reset]="monitoringRules.length"
-							i18n-placeholder="@@monitoringRulesPlaceholder">
+							(selectEvent)="receivePolicyRuleCondition($event)" i18n-placeholder="@@monitoringRulesPlaceholder">
 						</app-select-uuid>
 					</li>
 				</ol>

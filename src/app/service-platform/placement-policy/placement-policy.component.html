@@ -43,7 +43,7 @@
 		</li>
 
 		<li class="line" *ngIf="datacenters.length">
-			<app-select-uuid class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="datacentersSelected.length"
+			<app-select-uuid class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="canResetDatacenterSelect()"
 				[required]="false" (selectEvent)="receiveDatecenter($event)" i18n-placeholder="@@selectDatacenterPlaceholder">
 			</app-select-uuid>
 		</li>

@@ -165,6 +165,10 @@ export class PlacementPolicyComponent implements OnInit {
 		return !this.placementPolicyForm.get('placementPolicy').value;
 	}
 
+	canResetDatacenterSelect() {
+		return !this.prioritiseForm.get('datacenter').value;
+	}
+
 	canShowAddMore() {
 		return this.prioritise && this.datacenters.length;
 	}

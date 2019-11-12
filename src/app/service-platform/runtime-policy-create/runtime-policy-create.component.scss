@@ -183,7 +183,6 @@ app-runtime-policy-create {
 
 				span {
 					flex: 1 1;
-					max-width: 25vw;
 					margin-right: 1vw;
 					color: $secondary-font-color-light;
 				}
@@ -195,7 +194,7 @@ app-runtime-policy-create {
 			}
 
 			.policy-rule-value .mat-form-field {
-				width: 25vw;
+				width: 35vw;
 			}	
 		}
 
