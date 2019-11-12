@@ -143,16 +143,35 @@ export class SliceInstanceCreateComponent implements OnInit {
 	}
 
 	// TODO disable instantiate if sla is missing
-	// check this using instantiationParameters array. NS with no SLA must not be in the sla list 
+	// check this using instantiationParameters array. NS with no SLA must not be in the sla list
 	async instantiate() {
+		this.loading = true;
 		const instance = {
 			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
 			description: this.instantiationForm.get('nsiDescription').value,
 			'request_type': 'CREATE_SLICE',
+			instantiation_parameters: this.instantiationParameters.map(item => {
+				const mappedObject = {
+					subnet_id: item.subnetID,
+				};
+				if (item.slaID && item.slaName) {
+					mappedObject[ 'sla_name' ] = item.slaName;
+					mappedObject[ 'sla_id' ] = item.slaID;
+				}
+				if (item.vimID) {
+					mappedObject[ 'vim_id' ] = item.vimID;
+				}
+				if (item.ingresses.length) {
+					mappedObject[ 'ingresses' ] = item.ingresses.map(o => ({ location: o.location, nap: o.nap }));
+				}
+				if (item.egresses.length) {
+					mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
+				}
+				return mappedObject;
+			})
 		};
 
-		this.loading = true;
 		const response = await this.serviceManagementService.postOneSliceInstance(instance);
 
 		this.loading = false;

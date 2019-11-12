@@ -407,7 +407,7 @@ export class CommonService {
 	/**
      * Retrieves a list of VIMs.
      * Either following a search pattern or not.
-	 * 
+	 *
      */
 	async getVims() {
 		const headers = this.authService.getAuthHeaders();
