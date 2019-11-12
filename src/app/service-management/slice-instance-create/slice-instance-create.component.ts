@@ -22,6 +22,8 @@ export class SliceInstanceCreateComponent implements OnInit {
 	instantiationParameters = new Array<InstantiationParameter>();
 	slas = new Array<object>();
 	vims = new Array<object>();
+	vimValue: string;
+	slaValue: string;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -92,16 +94,16 @@ export class SliceInstanceCreateComponent implements OnInit {
 			: this.instantiationParameters[ this.networkServiceIterator ].egresses = listObject.list;
 	}
 
-	// TODO set SLA if back step and already selected
 	receiveSlaPerNS(slaUUID) {
 		const slaName = this.slas.find(item => item[ 'uuid' ] === slaUUID)[ 'name' ];
 		this.instantiationParameters[ this.networkServiceIterator ].slaID = slaUUID;
 		this.instantiationParameters[ this.networkServiceIterator ].slaName = slaName;
+		this.slaValue = slaUUID;
 	}
 
-	// TODO set VIM if back step and already selected
 	receiveVimPerNS(vimUUID) {
 		this.instantiationParameters[ this.networkServiceIterator ].vimID = vimUUID;
+		this.vimValue = vimUUID;
 	}
 
 	chooseBackStep() {
@@ -109,6 +111,8 @@ export class SliceInstanceCreateComponent implements OnInit {
 			this.step = 'network-services-config';
 		} else if (this.step === 'network-services-config' && this.networkServiceIterator) {
 			this.networkServiceIterator -= 1;
+			this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
+			this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
 		} else {
 			this.step = this.slas.length ? 'intro' : 'warning';
 		}
@@ -119,6 +123,8 @@ export class SliceInstanceCreateComponent implements OnInit {
 			this.step = 'network-services-config';
 		} else if (this.data.networkServices[ this.networkServiceIterator + 1 ]) {
 			this.networkServiceIterator += 1;
+			this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
+			this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
 		} else {
 			this.step = 'last';
 		}

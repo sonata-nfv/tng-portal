@@ -27,12 +27,11 @@
 	</app-nap-lists>
 
 	<app-select-uuid *ngIf="getSLAForService().length" class="sla-select" placeholder="Select a SLA from the list"
-		[list]="getSLAForService()" [reset]="networkServiceIterator" (selectEvent)="receiveSlaPerNS($event)"
-		i18n-placeholder="@@selectSLAPlaceholder">
+		[list]="getSLAForService()" [value]="slaValue" (selectEvent)="receiveSlaPerNS($event)" i18n-placeholder="@@selectSLAPlaceholder">
 	</app-select-uuid>
 
-	<app-select-uuid *ngIf="vims.length" #vimSelect class="vim-select" placeholder="Select a VIM from the list" [list]="vims"
-		[reset]="networkServiceIterator" (selectEvent)="receiveVimPerNS($event)" i18n-placeholder="@@selectVimPlaceholder">
+	<app-select-uuid *ngIf="vims.length" class="vim-select" placeholder="Select a VIM from the list" [list]="vims" [value]="vimValue"
+		(selectEvent)="receiveVimPerNS($event)" i18n-placeholder="@@selectVimPlaceholder">
 	</app-select-uuid>
 </mat-dialog-content>
 
