@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { MatSelect } from '@angular/material';
 
 @Component({
 	selector: 'app-select-uuid',
@@ -8,42 +8,34 @@ import { FormControl } from '@angular/forms';
 	encapsulation: ViewEncapsulation.None
 })
 export class SelectUuidComponent implements OnInit {
+	_value: string;
+	@ViewChild('select') select: MatSelect;
 	// Mandatory
 	@Input() placeholder: string;
-
+	@Input() list: Array<string>;
 	// Optional
 	@Input() required: boolean;
-	@Input() list: Array<string>;
+	@Input() disabled: boolean;
 	@Input()
 	set value(value: string) {
-		if (value) {
-			this.select.setValue(value);
-		}
-	}
-	@Input()
-	set disabled(disabled: boolean) {
-		disabled ? this.select.disable() : this.select.enable();
+		value ? this._value = value : this._value = '';
 	}
 	@Input()
 	set reset(reset: boolean) {
-		if (reset) {
-			this.select.reset();
-		}
+		this._value = '';
 	}
 
 	@Output() selectEvent = new EventEmitter<string>();
 
-	select = new FormControl({ value: this.value, disabled: this.disabled || false, required: this.required || false });
-
 	constructor() { }
 
 	ngOnInit() {
-		this.select.valueChanges.subscribe(value => this.onFormChanges(value));
+		this.select.valueChange.subscribe(value => this.onValueChanges(value));
 	}
 
-	private onFormChanges(values) {
-		if (values) {
-			this.selectEvent.emit(values);
+	private onValueChanges(inputValue) {
+		if (inputValue) {
+			this.selectEvent.emit(inputValue);
 		}
 	}
 }
