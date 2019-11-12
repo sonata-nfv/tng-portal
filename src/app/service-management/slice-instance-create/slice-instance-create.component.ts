@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { InstantiationParameter } from './instantiation-parameter';
 	encapsulation: ViewEncapsulation.None
 })
 export class SliceInstanceCreateComponent implements OnInit {
+	@ViewChild('napListComponent') napListComponent;
 	loading: boolean;
 	step = 'intro';
 	instantiationForm: FormGroup;
@@ -111,8 +112,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 			this.step = 'network-services-config';
 		} else if (this.step === 'network-services-config' && this.networkServiceIterator) {
 			this.networkServiceIterator -= 1;
-			this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
-			this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
+			this.recoverPreviouslySavedData();
 		} else {
 			this.step = this.slas.length ? 'intro' : 'warning';
 		}
@@ -123,11 +123,16 @@ export class SliceInstanceCreateComponent implements OnInit {
 			this.step = 'network-services-config';
 		} else if (this.data.networkServices[ this.networkServiceIterator + 1 ]) {
 			this.networkServiceIterator += 1;
-			this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
-			this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
+			this.recoverPreviouslySavedData();
 		} else {
 			this.step = 'last';
 		}
+	}
+
+	recoverPreviouslySavedData() {
+		this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
+		this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
+		this.napListComponent.resetForm = true;
 	}
 
 	canShowLoading() {

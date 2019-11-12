@@ -23,7 +23,8 @@
 </mat-dialog-content>
 
 <mat-dialog-content *ngIf="step === 'network-services-config'">
-	<app-nap-lists [activateBlacklist]="false" [ingress]="getIngresses()" [egress]="getEgresses()" (listEvent)="receiveList($event)">
+	<app-nap-lists #napListComponent [activateBlacklist]="false" [ingress]="getIngresses()" [egress]="getEgresses()"
+		(listEvent)="receiveList($event)">
 	</app-nap-lists>
 
 	<app-select-uuid *ngIf="getSLAForService().length" class="sla-select" placeholder="Select a SLA from the list"

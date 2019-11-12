@@ -22,7 +22,9 @@ export class SelectUuidComponent implements OnInit {
 	}
 	@Input()
 	set reset(reset: boolean) {
-		this._value = '';
+		if (reset) {
+			this._value = '';
+		}
 	}
 
 	@Output() selectEvent = new EventEmitter<string>();

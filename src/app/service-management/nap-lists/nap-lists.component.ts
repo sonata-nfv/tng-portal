@@ -20,6 +20,12 @@ export class NapListsComponent implements OnInit {
 	@Input() ingress: Array<LocationNap>;
 	@Input() egress: Array<LocationNap>;
 	@Input() blacklist: Array<LocationNap>;
+	@Input()
+	set resetForm(resetForm: boolean) {
+		if (resetForm) {
+			this.napForm.reset();
+		}
+	}
 
 	@Output() listEvent = new EventEmitter<{
 		listName: string,
