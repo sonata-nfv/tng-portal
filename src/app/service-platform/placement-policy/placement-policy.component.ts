@@ -161,8 +161,8 @@ export class PlacementPolicyComponent implements OnInit {
 		return this.originalPolicy && this.originalPolicy === newPolicy ? true : false;
 	}
 
-	canReset() {
-		return !this.placementPolicyForm.get('placementPolicy').value;
+	canResetDatacenterSelect() {
+		return !this.prioritiseForm.get('datacenter').value;
 	}
 
 	canShowAddMore() {

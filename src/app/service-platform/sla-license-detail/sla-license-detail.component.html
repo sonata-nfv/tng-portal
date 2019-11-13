@@ -1,7 +1,7 @@
 <h2 class="title2" i18n="@@license">License</h2>
 
-<app-select *ngIf="license" class="licenses-select" placeholder="License" [list]="[ license ]" [value]="license" [disabled]="true"
-	i18n-placeholder="@@LicensePlaceholder">
+<app-select selectOfStrings="true" *ngIf="license" class="licenses-select" placeholder="License" [list]="[ license ]" [value]="license"
+	[disabled]="true" i18n-placeholder="@@LicensePlaceholder">
 </app-select>
 
 <app-calendar *ngIf="licenseExpirationDate" placeholder="License expiration date" [value]="licenseExpirationDate" [disabled]="true"

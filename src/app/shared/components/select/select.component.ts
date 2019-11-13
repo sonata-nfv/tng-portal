@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { MatSelect } from '@angular/material';
 
 @Component({
 	selector: 'app-select',
@@ -8,42 +8,41 @@ import { FormControl } from '@angular/forms';
 	encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements OnInit {
+	_value: string;
+	_selectOfStrings = false;
+	@ViewChild('select') select: MatSelect;
 	// Mandatory
 	@Input() placeholder: string;
-
-	// Optional
-	@Input() required: boolean;
 	@Input() list: Array<string>;
 	@Input()
-	set value(value: string) {
-		if (value) {
-			this.select.setValue(value);
-		}
+	set selectOfStrings(selectOfStrings: boolean) {
+		this._selectOfStrings = selectOfStrings;
 	}
+	// Optional
+	@Input() required: boolean;
+	@Input() disabled: boolean;
 	@Input()
-	set disabled(disabled: boolean) {
-		disabled ? this.select.disable() : this.select.enable();
+	set value(value: string) {
+		value ? this._value = value : this._value = '';
 	}
 	@Input()
 	set reset(reset: boolean) {
 		if (reset) {
-			this.select.reset();
+			this._value = '';
 		}
 	}
 
 	@Output() selectEvent = new EventEmitter<string>();
 
-	select = new FormControl({ disabled: this.disabled || false, required: this.required || false });
-
 	constructor() { }
 
 	ngOnInit() {
-		this.select.valueChanges.subscribe(value => this.onFormChanges(value));
+		this.select.valueChange.subscribe(value => this.onValueChanges(value));
 	}
 
-	private onFormChanges(values) {
-		if (values) {
-			this.selectEvent.emit(values);
+	private onValueChanges(inputValue) {
+		if (inputValue) {
+			this.selectEvent.emit(inputValue);
 		}
 	}
 }

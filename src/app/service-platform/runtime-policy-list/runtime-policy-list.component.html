@@ -12,8 +12,8 @@
 <div class="tools">
 	<app-search-bar class="search" (searchTextEvent)="searchFieldData($event)"></app-search-bar>
 
-	<app-select-uuid #selectNS *ngIf="nsList.length" class="select" placeholder="Network Service" [list]="nsList" required="false"
-		(selectEvent)="filterNS($event)" i18n-placeholder="@@nsPlaceholder"></app-select-uuid>
+	<app-select #selectNS *ngIf="nsList.length" class="select" placeholder="Network Service" [list]="nsList" required="false"
+		(selectEvent)="filterNS($event)" i18n-placeholder="@@nsPlaceholder"></app-select>
 
 	<button class="icon-button-shadow reload" (click)="reload()" matTooltip="Reload data" i18n-matTooltip="@@reloadData">
 		<i class="wui wui-undo"></i>

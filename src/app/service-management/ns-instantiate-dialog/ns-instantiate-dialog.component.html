@@ -4,67 +4,8 @@
 
 <!-- FIRST DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='first'" class="first-dialog">
-	<div class="section">
-		<button [ngClass]="{ active: listName === 'ingress' }" (click)="listName = 'ingress'" class="basic-button"
-			mat-button>Ingress</button>
-		<span class="dash">-</span>
-		<button [ngClass]="{ active: listName === 'egress' }" (click)="listName = 'egress'" class="basic-button" mat-button>Egress</button>
-		<span class="dash">-</span>
-		<button [ngClass]="{ active: listName === 'blacklist' }" (click)="listName = 'blacklist'" class="basic-button"
-			mat-button>Blacklist</button>
-	</div>
-
-	<!-- DISPLAY INGRESS, EGRESS OR BLACKLIST DEPENDING ON THE CHOSEN SECTION -->
-	<dl *ngIf="listName === 'ingress'" class="list">
-		<dt *ngFor="let entry of ingress" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
-
-	<dl *ngIf="listName === 'egress'" class="list">
-		<dt *ngFor="let entry of egress" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
-
-	<dl *ngIf="listName === 'blacklist'" class="list">
-		<dt *ngFor="let entry of blacklist" class="list-entry">
-			<span>{{ entry.locationName }} ({{ entry.nap }})</span>
-			<button (click)="eraseEntry(entry)" class="icon-button-shadow">
-				<i class="wui wui-trash-alt"></i>
-			</button>
-		</dt>
-	</dl>
-
-	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
-	<form [formGroup]="instantiationForm" class="first-dialog-form">
-		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
-			required="false" (selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
-		</app-select-uuid>
-
-		<mat-form-field *ngIf="canShowNetworkAddress()">
-			<input matInput type="text" placeholder="Network address" formControlName="nap" />
-		</mat-form-field>
-		<p *ngIf="instantiationForm.get('nap').errors?.pattern" class="error-message input-error" i18n="@@notValidIpMaskExample">
-			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
-		</p>
-
-
-		<div *ngIf="canShowNetworkAddress()" class="add-new">
-			<button [disabled]="canDisableAddNew()" (click)="addNew()" class="basic-button">
-				<i class="wui wui-plus"></i>
-				<span *ngIf="listName === 'ingress'" i18n="@@addNewIngress"> Add new ingress NAP</span>
-				<span *ngIf="listName === 'egress'" i18n="@@addNewEgress"> Add new egress NAP</span>
-				<span *ngIf="listName === 'blacklist'" i18n="@@addNewBlacklist"> Add new blacklist NAP</span>
-			</button>
-		</div>
-	</form>
+	<app-nap-lists [activateBlacklist]="true" [ingress]="ingress" [egress]="egress" [blacklist]="blacklist"
+		(listEvent)="receiveList($event)"></app-nap-lists>
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="section=='first'">
@@ -83,10 +24,10 @@
 				i18n-placeholder="@@instanceNamePlaceholder" />
 		</mat-form-field>
 
-		<app-select-uuid *ngIf="slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas"
+		<app-select *ngIf="slas && slas.length" class="select" placeholder="Select a SLA from the list" [list]="slas"
 			[value]="instantiationForm.get('sla').value" [disabled]="loading" (selectEvent)="receiveSLA($event)"
 			i18n-placeholder="@@selectSLAPlaceholder">
-		</app-select-uuid>
+		</app-select>
 	</form>
 </mat-dialog-content>
 
@@ -126,4 +67,4 @@
 	</div>
 </mat-dialog-actions>
 
-<app-spinner *ngIf="loading"></app-spinner>
+<app-spinner *ngIf="canShowLoading()"></app-spinner>

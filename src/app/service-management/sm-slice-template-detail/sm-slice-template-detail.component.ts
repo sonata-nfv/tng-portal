@@ -56,9 +56,7 @@ export class SmSliceTemplateDetailComponent implements OnInit {
 		this.instantiateDialog.open(SliceInstanceCreateComponent, {
 			data: {
 				nstId: this.detail[ 'uuid' ],
-				vendor: this.detail[ 'vendor' ],
-				name: this.detail[ 'name' ],
-				version: this.detail[ 'version' ]
+				networkServices: this.detail[ 'services' ]
 			}
 		});
 	}

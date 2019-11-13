@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -13,11 +13,11 @@ import { CommonService } from '../../shared/services/common/common.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class RuntimePolicyDetailComponent implements OnInit {
-	@ViewChild('sla') sla;
 	loading = false;
 	policyForm: FormGroup;
 	slaList = new Array();
 	detail = { };
+	slaValue: string;
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 
 	constructor(
@@ -83,7 +83,7 @@ export class RuntimePolicyDetailComponent implements OnInit {
 					this.policyForm.get('sla').setValue(sla);
 				}
 
-				this.sla.value = this.policyForm.get('sla').value[ 'uuid' ];
+				this.slaValue = this.policyForm.get('sla').value[ 'uuid' ];
 			}
 		} else {
 			this.slaList.unshift({ uuid: 'None', name: 'None' });

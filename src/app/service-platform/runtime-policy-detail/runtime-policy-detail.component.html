@@ -66,9 +66,9 @@
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
 
-	<app-select-uuid #sla class="sla-select" placeholder="Select SLA" required="false" [list]="slaList" (selectEvent)="receiveSLA($event)"
+	<app-select class="sla-select" placeholder="Select SLA" [value]="slaValue" [list]="slaList" (selectEvent)="receiveSLA($event)"
 		i18n-placeholder="@@selectSLAPlaceholder">
-	</app-select-uuid>
+	</app-select>
 </form>
 
 <div *ngIf="detail['monitoringRules']" class="monitoring-rules-section">

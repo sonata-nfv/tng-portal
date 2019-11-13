@@ -40,21 +40,21 @@
 <dl class="template-form">
 	<!-- Display the selection of NS with SLAs -->
 	<dt *ngFor="let item of sliceServices; let i = index">
-		<app-select *ngIf="sliceServices.length" placeholder="Network Service" [list]="[item.name]" [value]="item.name" [disabled]="true"
-			i18n="@@nsPlaceholder"></app-select>
+		<app-select selectOfStrings="true" *ngIf="sliceServices.length" placeholder="Network Service" [list]="[item.name]"
+			[value]="item.name" [disabled]="true" i18n="@@nsPlaceholder"></app-select>
 
-		<app-select *ngIf="sliceServices.length" class="slaSelectList " placeholder="SLA Template" [list]="[item.slaName]"
-			[value]="item.slaName" [disabled]="true" i18n="@@slaTemplatePlaceholder"></app-select>
+		<app-select selectOfStrings="true" *ngIf="sliceServices.length" class="slaSelectList " placeholder="SLA Template"
+			[list]="[item.slaName]" [value]="item.slaName" [disabled]="true" i18n="@@slaTemplatePlaceholder"></app-select>
 
 		<button class="actions " mat-button (click)="eraseEntry(i)"><i class="wui wui-trash-alt "></i></button>
 	</dt>
 
 	<dt>
-		<app-select *ngIf="nsSelectList" placeholder="Select Network Service" [reset]="!nsObj" [list]="nsSelectList"
+		<app-select selectOfStrings="true" *ngIf="nsSelectList" placeholder="Select Network Service" [reset]="!nsObj" [list]="nsSelectList"
 			(selectEvent)="receiveNS($event)" i18n-placeholder="@@selectNSPlaceholder">
 		</app-select>
 
-		<app-select *ngIf="nsObj" class="slaSelectList" placeholder="Select SLA Template" [list]="slaSelectList"
+		<app-select selectOfStrings="true" *ngIf="nsObj" class="slaSelectList" placeholder="Select SLA Template" [list]="slaSelectList"
 			(selectEvent)="receiveSLA($event)" i18n-placeholder="@@selectSLATemplatePlaceholder">
 		</app-select>
 	</dt>

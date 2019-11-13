@@ -10,8 +10,8 @@
 </div>
 
 <form class="policy-form" [formGroup]="placementPolicyForm">
-	<app-select class="placement-policy" placeholder="Select a policy" [list]="placementPolicies"
-		[value]="placementPolicyForm.get('placementPolicy').value" [reset]="canReset()" (selectEvent)="receivePlacementPolicy($event)"
+	<app-select selectOfStrings="true" class="placement-policy" placeholder="Select a policy" [list]="placementPolicies"
+		[value]="placementPolicyForm.get('placementPolicy').value" (selectEvent)="receivePlacementPolicy($event)"
 		i18n-placeholder="@@selectPolicyPlaceholder">
 	</app-select>
 	<span *ngIf="canShowAlreadySaved()" class="error-message" i18n="@@actualPlacementPolicyMsg">This is the actual placement policy</span>
@@ -43,9 +43,9 @@
 		</li>
 
 		<li class="line" *ngIf="datacenters.length">
-			<app-select-uuid class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="datacentersSelected.length"
+			<app-select class="select" placeholder="Select a datacenter" [list]="datacenters" [reset]="canResetDatacenterSelect()"
 				[required]="false" (selectEvent)="receiveDatecenter($event)" i18n-placeholder="@@selectDatacenterPlaceholder">
-			</app-select-uuid>
+			</app-select>
 		</li>
 	</ol>
 

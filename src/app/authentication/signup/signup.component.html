@@ -27,7 +27,7 @@
 			<mat-error *ngIf="errorMsg">*{{ errorMsg }}</mat-error>
 		</mat-form-field>
 
-		<app-select class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"
+		<app-select selectOfStrings="true" class="select" placeholder="Role" [list]="roles" (selectEvent)="receiveRole($event)"
 			i18n-placeholder="@@rolePlaceholder">
 		</app-select>
 
