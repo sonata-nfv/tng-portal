@@ -61,6 +61,7 @@ export class ProjectDetailComponent implements OnInit {
 	onboardPackage(): void {
 		const endpoint = this.config.baseSP + this.config.packages;
 		const pkgPath = this.config.baseSDK + ':5098/api/v1/' + this.pkgPath;
+		this.pkgOutput = 'On-boarding...';
 
 		// get package from endpoint
 		this.http.get(pkgPath, { responseType: 'blob' }).subscribe(pkg => {
@@ -72,7 +73,8 @@ export class ProjectDetailComponent implements OnInit {
 			this.http.post(endpoint, formData).subscribe(response => {
 				console.log(response);
 				if  (response['error_msg'] == null) {
-					this.pkgOutput = 'On-boarding successful.';
+					this.pkgOutput = 'On-boarding request successful. Status: ' + response['status'];
+					// TODO: check status periodically to see if on-boarding succeeds?
 				} else {
 					this.pkgOutput = response['error_msg'];
 				}
