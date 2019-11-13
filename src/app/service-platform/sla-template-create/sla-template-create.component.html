@@ -16,9 +16,9 @@
 </form>
 
 <form [formGroup]="templateForm">
-	<app-select-uuid class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+	<app-select class="ns" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
 		i18n-placeholder="@@nsPlaceholder">
-	</app-select-uuid>
+	</app-select>
 
 	<mat-form-field class="provider-name">
 		<input matInput placeholder="Provider name" formControlName="providerName" i18n-placeholder="@@providerName" />
@@ -83,10 +83,10 @@
 		</div>
 
 		<!-- Selector to list the different service guarantees -->
-		<app-select-uuid *ngIf="guaranteesList.length" class="guarantees-select" placeholder="Select a guarantee"
+		<app-select *ngIf="guaranteesList.length" class="guarantees-select" placeholder="Select a guarantee"
 			[reset]="canResetGuaranteeSelect()" [list]="guaranteesList" (selectEvent)="receiveGuarantee($event)"
 			i18n-placeholder="@@selectGuaranteePlaceholder">
-		</app-select-uuid>
+		</app-select>
 
 		<span *ngIf="guaranteesList.length" class="note" i18n="@@addNewGuarantee">Add a new guarantee</span>
 	</form>
@@ -94,8 +94,9 @@
 	<form *ngIf="!closed" [formGroup]="templateForm" class="advanced-form">
 		<h2 class="title2" i18n="@@license">License</h2>
 
-		<app-select class="licenses-select" placeholder="Select a license" [list]="licenses" (selectEvent)="receiveLicense($event)"
-			[value]="templateForm.get('license').value" i18n-placeholder="@@selectLicensePlaceholder">
+		<app-select selectOfStrings="true" class="licenses-select" placeholder="Select a license" [list]="licenses"
+			(selectEvent)="receiveLicense($event)" [value]="templateForm.get('license').value"
+			i18n-placeholder="@@selectLicensePlaceholder">
 		</app-select>
 
 		<app-calendar placeholder="License expiration date" (dateEvent)="receiveLicenseExpirationDate($event)"
@@ -114,8 +115,8 @@
 	<form *ngIf="canShowFlavors()" [formGroup]="templateForm" class="advanced-form">
 		<h2 class="title2" i18n="@@flavor">Flavor</h2>
 
-		<app-select class="flavor-select" placeholder="Select a flavor" [list]="flavors" (selectEvent)="receiveFlavor($event)"
-			[value]="templateForm.get('flavor').value" i18n-placeholder="@@selectFlavorPlaceholder">
+		<app-select selectOfStrings="true" class="flavor-select" placeholder="Select a flavor" [list]="flavors"
+			(selectEvent)="receiveFlavor($event)" [value]="templateForm.get('flavor').value" i18n-placeholder="@@selectFlavorPlaceholder">
 		</app-select>
 	</form>
 </div>

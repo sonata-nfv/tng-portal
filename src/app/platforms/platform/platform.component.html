@@ -23,8 +23,8 @@
 </form>
 
 <form [formGroup]="platformForm" class="platformForm" *ngIf="canShowForm()">
-	<app-select placeholder="Select a platform type" [list]="platformTypes" (selectEvent)="receiveType($event)" [disabled]="edition"
-		[value]="platformType" i18n-placeholder="@@selectPlatformTypePlaceholder"></app-select>
+	<app-select selectOfStrings="true" placeholder="Select a platform type" [list]="platformTypes" (selectEvent)="receiveType($event)"
+		[disabled]="edition" [value]="platformType" i18n-placeholder="@@selectPlatformTypePlaceholder"></app-select>
 </form>
 
 <form [formGroup]="platformForm" class="platformForm" *ngIf="canShowPlatformForm()">

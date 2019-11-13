@@ -4,11 +4,11 @@
 
 <mat-dialog-content>
 	<div class="row">
-		<app-select *ngIf="functions.length" class="function-select" placeholder="Function" [list]="functions"
+		<app-select selectOfStrings="true" *ngIf="functions.length" class="function-select" placeholder="Function" [list]="functions"
 			(selectEvent)="receiveFunction($event)" i18n-placeholder="@@functionPlaceholder">
 		</app-select>
 
-		<app-select *ngIf="metrics && metrics.length" class="metric-select" placeholder="Metric" [list]="metrics"
+		<app-select selectOfStrings="true" *ngIf="metrics && metrics.length" class="metric-select" placeholder="Metric" [list]="metrics"
 			(selectEvent)="receiveMetric($event)" i18n-placeholder="@@metricPlaceholder">
 		</app-select>
 	</div>

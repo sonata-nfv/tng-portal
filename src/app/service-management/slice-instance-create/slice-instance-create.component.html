@@ -27,13 +27,13 @@
 		(listEvent)="receiveList($event)">
 	</app-nap-lists>
 
-	<app-select-uuid *ngIf="getSLAForService().length" class="sla-select" placeholder="Select a SLA from the list"
-		[list]="getSLAForService()" [value]="slaValue" (selectEvent)="receiveSlaPerNS($event)" i18n-placeholder="@@selectSLAPlaceholder">
-	</app-select-uuid>
+	<app-select *ngIf="getSLAForService().length" class="sla-select" placeholder="Select a SLA from the list" [list]="getSLAForService()"
+		[value]="slaValue" (selectEvent)="receiveSlaPerNS($event)" i18n-placeholder="@@selectSLAPlaceholder">
+	</app-select>
 
-	<app-select-uuid *ngIf="vims.length" class="vim-select" placeholder="Select a VIM from the list" [list]="vims" [value]="vimValue"
+	<app-select *ngIf="vims.length" class="vim-select" placeholder="Select a VIM from the list" [list]="vims" [value]="vimValue"
 		(selectEvent)="receiveVimPerNS($event)" i18n-placeholder="@@selectVimPlaceholder">
-	</app-select-uuid>
+	</app-select>
 </mat-dialog-content>
 
 <mat-dialog-content *ngIf="step === 'last'">

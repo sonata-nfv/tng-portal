@@ -40,9 +40,9 @@
 
 	<!-- FORM TO INCLUDE NEW INGRESS AND EGRESS POINTS -->
 	<form [formGroup]="napForm" class="first-dialog-form">
-		<app-select-uuid *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()" (selectEvent)="receiveLocation($event)"
-			i18n-placeholder="@@locationPlaceholder">
-		</app-select-uuid>
+		<app-select *ngIf="!loading" class="select" placeholder="Location" [list]="locations" [reset]="canResetSelect()"
+			(selectEvent)="receiveLocation($event)" i18n-placeholder="@@locationPlaceholder">
+		</app-select>
 
 		<mat-form-field *ngIf="canShowNetworkAddress()">
 			<input matInput type="text" placeholder="Network address" formControlName="nap" />

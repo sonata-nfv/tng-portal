@@ -25,13 +25,13 @@
 		<input matInput type="text" placeholder="Version" formControlName="version" required i18n-placeholder="@@version" />
 	</mat-form-field>
 
-	<app-select-uuid class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+	<app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
 		i18n-placeholder="@@nsPlaceholder">
-	</app-select-uuid>
+	</app-select>
 
-	<app-select-uuid class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
+	<app-select class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
 		i18n-placeholder="@@slaPlaceholder">
-	</app-select-uuid>
+	</app-select>
 </form>
 
 <div *ngIf="canShowMonitoringSection()" class="monitoring-rules-section">
@@ -87,19 +87,19 @@
 				<input matInput type="text" placeholder="Duration" formControlName="duration" required i18n-placeholder="@@duration" />
 			</mat-form-field>
 
-			<app-select-uuid class="select" placeholder="Duration unit" required=true [list]="durationUnits"
+			<app-select class="select" placeholder="Duration unit" required=true [list]="durationUnits"
 				(selectEvent)="receiveDurationUnit($event)" i18n-placeholder="@@durationUnit">
-			</app-select-uuid>
+			</app-select>
 		</div>
 
 		<div class="same-row">
-			<app-select class="select left-column" placeholder="Select a condition" required=true [list]="conditions"
+			<app-select selectOfStrings="true" class="select left-column" placeholder="Select a condition" required=true [list]="conditions"
 				(selectEvent)="receiveCondition($event)" i18n-placeholder="@@selectConditionPlaceholder">
 			</app-select>
 
-			<app-select-uuid class="select left-column" placeholder="Select an operator" required=true [list]="thresholds"
+			<app-select class="select left-column" placeholder="Select an operator" required=true [list]="thresholds"
 				(selectEvent)="receiveThresholdOperator($event)" i18n-placeholder="@@selectOperatorPlaceholder">
-			</app-select-uuid>
+			</app-select>
 
 			<mat-form-field>
 				<input matInput type="text" placeholder="Threshold value" formControlName="thresholdValue" required
@@ -179,9 +179,9 @@
 				<mat-error *ngIf="inertiaErrorExists()" i18n="@@Invalid">*Invalid</mat-error>
 			</mat-form-field>
 
-			<app-select-uuid class="select" placeholder="Duration unit" required=true [list]="durationUnits" [reset]="canResetInertiaUnit()"
+			<app-select class="select" placeholder="Duration unit" required=true [list]="durationUnits" [reset]="canResetInertiaUnit()"
 				(selectEvent)="receiveInertiaUnit($event)" i18n-placeholder="@@durationUnit">
-			</app-select-uuid>
+			</app-select>
 		</div>
 
 		<div class="conditions-of-rule">
@@ -203,9 +203,9 @@
 					</li>
 
 					<li class="line" *ngIf="monitoringRules.length">
-						<app-select-uuid class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
+						<app-select class="select policy-rule-value" placeholder="Monitoring rules" [list]="monitoringRules"
 							(selectEvent)="receivePolicyRuleCondition($event)" i18n-placeholder="@@monitoringRulesPlaceholder">
-						</app-select-uuid>
+						</app-select>
 					</li>
 				</ol>
 			</div>
@@ -215,16 +215,18 @@
 			<h3 class="title3" i18n="@@actions">Actions</h3>
 
 			<form [formGroup]="actionsForm">
-				<app-select class="select" class="select" placeholder="Target" [list]="vnfs" [reset]="canResetActionSelects()"
-					(selectEvent)="receivePolicyRuleTarget($event)" i18n-placeholder="@@targetPlaceholder">
+				<app-select selectOfStrings="true" class="select" class="select" placeholder="Target" [list]="vnfs"
+					[reset]="canResetActionSelects()" (selectEvent)="receivePolicyRuleTarget($event)"
+					i18n-placeholder="@@targetPlaceholder">
 				</app-select>
 
 				<div class="row">
-					<app-select class="select" placeholder="Actions" [list]="policyRuleActions" [reset]="canResetActionSelects()"
-						(selectEvent)="receivePolicyRuleAction($event)" i18n-placeholder="@@actionsPlaceholder">
+					<app-select selectOfStrings="true" class="select" placeholder="Actions" [list]="policyRuleActions"
+						[reset]="canResetActionSelects()" (selectEvent)="receivePolicyRuleAction($event)"
+						i18n-placeholder="@@actionsPlaceholder">
 					</app-select>
 
-					<app-select *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
+					<app-select selectOfStrings="true" *ngIf="canShowPolicyRuleActionName()" class="select" placeholder="Action name"
 						[list]="policyRuleActionNames" (selectEvent)="receivePolicyRuleActionName($event)"
 						i18n-placeholder="@@actionNamePlaceholder">
 					</app-select>

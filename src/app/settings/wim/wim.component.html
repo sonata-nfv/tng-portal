@@ -23,10 +23,11 @@
 </form>
 
 <form class="wimForm" *ngIf="canShowForm()">
-	<app-select *ngIf="!isMockType()" placeholder="Select a WIM type" [list]="wimTypes" (selectEvent)="receiveType($event)"
-		[disabled]="edition" [value]="wimType" i18n-placeholder="@@selectWimTypePlaceholder"></app-select>
+	<app-select selectOfStrings="true" *ngIf="!isMockType()" placeholder="Select a WIM type" [list]="wimTypes"
+		(selectEvent)="receiveType($event)" [disabled]="edition" [value]="wimType" i18n-placeholder="@@selectWimTypePlaceholder">
+	</app-select>
 
-	<app-select *ngIf="isMockType()" placeholder="Select a WIM type" [list]="['Mock']" disabled="true" value="Mock"
+	<app-select selectOfStrings="true" *ngIf="isMockType()" placeholder="Select a WIM type" [list]="['Mock']" disabled="true" value="Mock"
 		i18n-placeholder="@@selectWimTypePlaceholder"></app-select>
 </form>
 
@@ -62,8 +63,8 @@
 
 	<h4 class="title3" *ngIf="(vims && vims.length) || (vimsIncluded && vimsIncluded.length)" i18n="@@vimList">VIM list</h4>
 
-	<app-select *ngIf="vims && vims.length" class="wims-list" placeholder="Select the VIMs" [list]="vims" [reset]="canResetVIMs()"
-		(selectEvent)="receiveVim($event)" i18n-placeholder="@@selectVimPlaceholder">
+	<app-select selectOfStrings="true" *ngIf="vims && vims.length" class="wims-list" placeholder="Select the VIMs" [list]="vims"
+		[reset]="canResetVIMs()" (selectEvent)="receiveVim($event)" i18n-placeholder="@@selectVimPlaceholder">
 	</app-select>
 
 	<ul class="unordered-list">

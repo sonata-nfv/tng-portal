@@ -16,20 +16,20 @@
 </form>
 
 <form *ngIf="canShowForm()" class="form" [formGroup]="analyticProcessForm">
-	<app-select-uuid class="select" placeholder="Test execution" [list]="tests" (selectEvent)="receiveTest($event)"
-		i18n-placeholder="@@testExecutionPlaceholder"></app-select-uuid>
+	<app-select class="select" placeholder="Test execution" [list]="tests" (selectEvent)="receiveTest($event)"
+		i18n-placeholder="@@testExecutionPlaceholder"></app-select>
 
-	<app-select-uuid class="select" placeholder="Analytic service" [list]="services" (selectEvent)="receiveService($event)"
-		i18n-placeholder="@@analyticServicePlaceholder"></app-select-uuid>
+	<app-select class="select" placeholder="Analytic service" [list]="services" (selectEvent)="receiveService($event)"
+		i18n-placeholder="@@analyticServicePlaceholder"></app-select>
 
 	<div class="same-row">
 		<mat-form-field class="step-input">
 			<input matInput type="text" placeholder="Step" formControlName="step" i18n-placeholder="@@step" />
 		</mat-form-field>
 
-		<app-select-uuid class="step-unit" placeholder="Step unit" [list]="stepUnits" (selectEvent)="receiveStepUnit($event)"
+		<app-select class="step-unit" placeholder="Step unit" [list]="stepUnits" (selectEvent)="receiveStepUnit($event)"
 			[reset]="!analyticProcessForm.get('stepUnit').value" i18n-placeholder="@@stepUnit">
-		</app-select-uuid>
+		</app-select>
 	</div>
 </form>
 
