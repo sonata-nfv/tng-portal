@@ -180,6 +180,10 @@ export class WimComponent implements OnInit {
 		}
 	}
 
+	canResetVIMs() {
+		return this.vims.length ? true : false;
+	}
+
 	private createWimObject() {
 		const wim = {
 			name: this.wimForm.get('name').value,

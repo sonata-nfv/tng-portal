@@ -11,7 +11,7 @@
 
 <form class="policy-form" [formGroup]="placementPolicyForm">
 	<app-select class="placement-policy" placeholder="Select a policy" [list]="placementPolicies"
-		[value]="placementPolicyForm.get('placementPolicy').value" [reset]="canReset()" (selectEvent)="receivePlacementPolicy($event)"
+		[value]="placementPolicyForm.get('placementPolicy').value" (selectEvent)="receivePlacementPolicy($event)"
 		i18n-placeholder="@@selectPolicyPlaceholder">
 	</app-select>
 	<span *ngIf="canShowAlreadySaved()" class="error-message" i18n="@@actualPlacementPolicyMsg">This is the actual placement policy</span>

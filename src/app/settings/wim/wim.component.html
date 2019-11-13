@@ -62,7 +62,7 @@
 
 	<h4 class="title3" *ngIf="(vims && vims.length) || (vimsIncluded && vimsIncluded.length)" i18n="@@vimList">VIM list</h4>
 
-	<app-select *ngIf="vims && vims.length" class="wims-list" placeholder="Select the VIMs" [list]="vims" [reset]="vims.length"
+	<app-select *ngIf="vims && vims.length" class="wims-list" placeholder="Select the VIMs" [list]="vims" [reset]="canResetVIMs()"
 		(selectEvent)="receiveVim($event)" i18n-placeholder="@@selectVimPlaceholder">
 	</app-select>
 

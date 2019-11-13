@@ -456,8 +456,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	}
 
 	canResetActionSelects() {
-		return this.policyRulesForm.get('actions').value && this.policyRulesForm.get('actions').value.length
-			|| this.policyRulesForm.get('actions').value;
+		return !this.actionsForm.get('actionTarget').value;
 	}
 
 	inertiaErrorExists() {
