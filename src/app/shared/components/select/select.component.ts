@@ -9,10 +9,15 @@ import { MatSelect } from '@angular/material';
 })
 export class SelectComponent implements OnInit {
 	_value: string;
+	_selectOfStrings = false;
 	@ViewChild('select') select: MatSelect;
 	// Mandatory
 	@Input() placeholder: string;
 	@Input() list: Array<string>;
+	@Input()
+	set selectOfStrings(selectOfStrings: boolean) {
+		this._selectOfStrings = selectOfStrings;
+	}
 	// Optional
 	@Input() required: boolean;
 	@Input() disabled: boolean;

@@ -1,5 +1,10 @@
 <mat-form-field>
 	<mat-select #select [(value)]="_value" [disabled]="disabled" placeholder="{{ placeholder }}" [required]="required">
-		<mat-option *ngFor="let item of list" [value]="item"> {{ item }} </mat-option>
+		<div *ngIf="!_selectOfStrings">
+			<mat-option *ngFor="let item of list" [value]="item.uuid || item.id"> {{ item.name }} </mat-option>
+		</div>
+		<div *ngIf="_selectOfStrings">
+			<mat-option *ngFor="let item of list" [value]="item"> {{ item }} </mat-option>
+		</div>
 	</mat-select>
 </mat-form-field>
