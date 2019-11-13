@@ -4,9 +4,9 @@
 			formControlName="numberOfInstances" i18n-placeholder="@@numberOfInstances" />
 	</mat-form-field>
 
-	<app-select-uuid class="select" placeholder="Function to scale out" [list]="list" (selectEvent)="receiveFunction($event)"
+	<app-select class="select" placeholder="Function to scale out" [list]="list" (selectEvent)="receiveFunction($event)"
 		i18n-placeholder="@@functionToScaleOut">
-	</app-select-uuid>
+	</app-select>
 
 	<button class="action-button" type="button" (click)="scaleOut()" [disabled]="!scaleOutForm.valid" i18n="@@scaleOut">
 		Scale out

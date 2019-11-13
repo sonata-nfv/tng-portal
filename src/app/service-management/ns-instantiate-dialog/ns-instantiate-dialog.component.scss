@@ -27,7 +27,7 @@ app-ns-instantiate-dialog {
 		flex: 1 1;
 		flex-direction: column;
 		align-items: center;
-		width: 100%;
+		width: 80%;
 		font-size: 22px;
 	}
 
@@ -43,117 +43,10 @@ app-ns-instantiate-dialog {
 		color: $primary-font-color-light;
 	}
 
-	// Ingress and egress buttons
-	.mat-dialog-content.first-dialog .section {
-		display: flex;
-		align-items: center;
-
-		button {
-			font-size: 37px;
-			color: $button-disabled-font-color;
-			background-color: $basic-background-color;
-		}
-
-		button.active {
-			color: $primary-button-color-light;
-		}
-
-		.dash {
-			color: $button-disabled-font-color;
-			font-size: 30px;
-		}
-	}
-
-	// Listed ingress and egress points
-	.mat-dialog-content.first-dialog .list {
-		color: $primary-font-color-light;
-
-		.list-entry {
-			align-items: center;
-
-			span {
-				flex: 1;
-				font-size: 17px;
-			}
-		}
-	}
-
-	// Location, network address point, SLA and name
-	.mat-dialog-content.first-dialog .first-dialog-form {
-		width: 60%;
-		margin-top: 1vh;
-		margin-bottom: 2vh;
-	}
-
+	// SLA and name dialog styles
 	.mat-dialog-content.second-dialog .second-dialog-form {
-		width: 60%;
+		width: 100%;
 		margin-top: 6vh;
-	}
-
-	// Invalid IP error message
-	.mat-dialog-content.first-dialog 
-	.first-dialog-form 
-	.error-message.input-error {
-		margin-top: -1vh;
-	}	  
-	
-	// Add new ingress or egress point button
-	.mat-dialog-content.first-dialog .add-new {
-		display: flex;
-		justify-content: flex-end;
-
-		button {
-			padding-right: 0;
-			font-size: 16px;
-			color: $primary-color-light;
-			background-color: $basic-background-color;
-
-			i:before {
-				font-size: 12px;
-				color: $primary-color-light;
-			}
-		}
-
-		button:disabled {
-			color: $button-disabled-font-color;
-
-			i:before {
-				color: $button-disabled-font-color;
-			}
-		}
-	}
-  
-  	.button-container {
-		.cancel, .next {
-			margin-top: 2vh;
-			height: 4vh;
-			width: 10vw;
-			font-size: 18px;
-			font-weight: bold;
-			margin-left: 1vw;
-			margin-right: 1vw;
-			color: $button-basic-font-color;
-			border-radius: 3%;
-		}
-
-		.cancel {
-			background-color: $button-close-color;
-		}
-
-		.next {
-			background-color: $primary-button-color;
-
-			.wui-shopping-cart:before {
-				margin-right: 10px;
-				font-size: 20px;
-				color: $button-basic-font-color;
-			}
-		}
-
-		.cancel:disabled, 
-		.next:disabled {
-			background-color: $secondary-button-color;
-		}
 	}
 }
 

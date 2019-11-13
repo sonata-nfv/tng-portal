@@ -71,6 +71,10 @@ app-spinner {
     top: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+
+	&.pop-up-spinner {
+		left: 50%;
+	}
 }
 
 //////////////////////////////////////
@@ -630,6 +634,42 @@ ul.unordered-list .mat-input-element:disabled {
 
 .link:hover {
 	color: $primary-font-color;
+}
+
+.button-container {
+	.cancel, .next {
+		margin-top: 2vh;
+		height: 4vh;
+		width: 10vw;
+		font-size: 18px;
+		font-weight: bold;
+		margin-left: 1vw;
+		margin-right: 1vw;
+		color: $button-basic-font-color;
+		border-radius: 3%;
+		border: none;
+		cursor: pointer;
+		outline: none;
+	}
+
+	.cancel {
+		background-color: $button-close-color;
+	}
+
+	.next {
+		background-color: $primary-button-color;
+
+		.wui-shopping-cart:before {
+			margin-right: 10px;
+			font-size: 20px;
+			color: $button-basic-font-color;
+		}
+	}
+
+	.cancel:disabled, 
+	.next:disabled {
+		background-color: $secondary-button-color;
+	}
 }
 
 //////////////////////////////////////

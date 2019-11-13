@@ -391,9 +391,38 @@ export class CommonService {
 						vendor: item.nstd.vendor,
 						usageState: item.nstd.usageState,
 						author: item.nstd.author,
-						status: item.status
+						status: item.status,
+						networkServices: item.nstd.slice_ns_subnets
 					};
 				}) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+     * Retrieves a list of VIMs.
+     * Either following a search pattern or not.
+	 *
+     */
+	async getVims() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseSP + this.config.vimSettings;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response
+					.filter(vim => vim.type !== 'endpoint')
+					.map(vim => ({
+						uuid: vim.uuid,
+						name: vim.name
+					}))
+				: [];
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
