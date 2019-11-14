@@ -175,7 +175,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 		});
 
 		// Filter empty objects from previous mapping (null, undefined...)
-		return parsedObject.filter(Boolean);
+		return JSON.stringify(parsedObject.filter(Boolean));
 	}
 
 	async instantiate() {
