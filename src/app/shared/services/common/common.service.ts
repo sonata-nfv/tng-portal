@@ -392,7 +392,17 @@ export class CommonService {
 						usageState: item.nstd.usageState,
 						author: item.nstd.author,
 						status: item.status,
-						networkServices: item.nstd.slice_ns_subnets
+						networkServices: item.nstd ? item.nstd.slice_ns_subnets.map(item => {
+							return {
+								uuid: item[ 'id' ],
+								nsdRef: item[ 'nsd-ref' ],
+								nsdName: item[ 'nsd-name' ],
+								nsdVendor: item[ 'nsd-vendor' ],
+								nsdVersion: item[ 'nsd-version' ],
+								isShared: item[ 'is-shared' ] ? 'Yes' : 'No',
+								slaName: item[ 'sla-name' ]
+							};
+						}) : []
 					};
 				}) : [];
 		} catch (error) {

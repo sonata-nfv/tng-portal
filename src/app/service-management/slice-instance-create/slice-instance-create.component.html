@@ -10,7 +10,7 @@
 	<p i18n="@@introInSliceInstantiation">
 		These are the network services composing this slice. In the following steps you will be able to configure them individually.
 	</p>
-	<span *ngFor="let ns of data.networkServices">{{ ns['nsd-name'] }}</span>
+	<span *ngFor="let ns of data.networkServices">{{ ns['nsdName'] }}</span>
 
 	<p *ngIf="canShowErrorSLAs()" class="error" i18n="@@slaErrorInSliceInstantiation">
 		No SLAs were found, at least not for these network services.

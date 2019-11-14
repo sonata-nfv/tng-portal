@@ -47,9 +47,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 	private populateInstantiationParameters() {
 		this.data.networkServices.forEach(ns => {
 			const instantiationParameter = new InstantiationParameter();
-			instantiationParameter.subnetID = ns.id;
-			instantiationParameter.nsID = ns[ 'nsd-ref' ];
-			instantiationParameter.nsName = ns[ 'nsd-name' ];
+			instantiationParameter.subnetID = ns.uuid;
+			instantiationParameter.nsID = ns[ 'nsdRef' ];
+			instantiationParameter.nsName = ns[ 'nsdName' ];
 			instantiationParameter.egresses = new Array<LocationNap>();
 			instantiationParameter.ingresses = new Array<LocationNap>();
 			this.instantiationParameters.push(instantiationParameter);
@@ -58,7 +58,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	private async getData() {
 		this.loading = true;
-		const networkServices = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
+		const networkServices = this.data.networkServices.map(item => item[ 'nsdRef' ]);
 		const templates = await this.commonService.getSLATemplates();
 		const vims = await this.commonService.getVims();
 
