@@ -147,34 +147,44 @@ export class SliceInstanceCreateComponent implements OnInit {
 		return this.step === 'warning' && !this.vims.length;
 	}
 
+	parseInstantiationParams() {
+		const parsedObject = this.instantiationParameters.map(item => {
+			const mappedObject = { };
+			if (item.slaID && item.slaName) {
+				mappedObject[ 'sla_name' ] = item.slaName;
+				mappedObject[ 'sla_id' ] = item.slaID;
+			}
+			if (item.vimID) {
+				mappedObject[ 'vim_id' ] = item.vimID;
+			}
+			if (item.ingresses.length) {
+				mappedObject[ 'ingresses' ] = item.ingresses.map(o => ({ location: o.location, nap: o.nap }));
+			}
+			if (item.egresses.length) {
+				mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
+			}
+			if (Object.keys(mappedObject).length) {
+				mappedObject[ 'subnet_id' ] = item.subnetID;
+				return mappedObject;
+			}
+			return;
+		});
+
+		// Filter empty objects from previous mapping (null, undefined...)
+		return parsedObject.filter(Boolean);
+	}
+
 	// TODO disable instantiate if sla is missing
 	// check this using instantiationParameters array. NS with no SLA must not be in the sla list
 	async instantiate() {
 		this.loading = true;
+		const instantiationParams = this.parseInstantiationParams();
 		const instance = {
 			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
 			description: this.instantiationForm.get('nsiDescription').value,
 			'request_type': 'CREATE_SLICE',
-			instantiation_parameters: this.instantiationParameters.map(item => {
-				const mappedObject = {
-					subnet_id: item.subnetID,
-				};
-				if (item.slaID && item.slaName) {
-					mappedObject[ 'sla_name' ] = item.slaName;
-					mappedObject[ 'sla_id' ] = item.slaID;
-				}
-				if (item.vimID) {
-					mappedObject[ 'vim_id' ] = item.vimID;
-				}
-				if (item.ingresses.length) {
-					mappedObject[ 'ingresses' ] = item.ingresses.map(o => ({ location: o.location, nap: o.nap }));
-				}
-				if (item.egresses.length) {
-					mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
-				}
-				return mappedObject;
-			})
+			instantiation_params: instantiationParams
 		};
 
 		const response = await this.serviceManagementService.postOneSliceInstance(instance);
