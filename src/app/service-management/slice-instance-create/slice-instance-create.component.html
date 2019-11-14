@@ -10,7 +10,13 @@
 	<p i18n="@@introInSliceInstantiation">
 		These are the network services composing this slice. In the following steps you will be able to configure them individually.
 	</p>
-	<span *ngFor="let ns of data.networkServices">{{ ns['nsd-name'] }}</span>
+	<span *ngFor="let ns of data.networkServices">{{ ns['nsdName'] }}</span>
+
+	<p *ngIf="!canShowErrorSLAs()" i18n="@@slaWarningInSliceInstantiation">
+		There are SLAs for your network services.
+		Please, select one on every network service offering the choice.
+		Otherwise you will not be able to continue with the instantiation.
+	</p>
 
 	<p *ngIf="canShowErrorSLAs()" class="error" i18n="@@slaErrorInSliceInstantiation">
 		No SLAs were found, at least not for these network services.
@@ -59,11 +65,11 @@
 	</div>
 </mat-dialog-actions>
 
-<!-- TODO disable next if there is an sla for the ns -->
 <mat-dialog-actions *ngIf="step === 'network-services-config'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button (click)="chooseBackStep()" i18n="@@backButton">BACK</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="chooseForwardStep()" i18n="@@nextButton">
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canChooseSLA()" (click)="chooseForwardStep()"
+			i18n="@@nextButton">
 			NEXT
 		</button>
 	</div>

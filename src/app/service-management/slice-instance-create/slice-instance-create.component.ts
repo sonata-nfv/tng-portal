@@ -47,9 +47,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 	private populateInstantiationParameters() {
 		this.data.networkServices.forEach(ns => {
 			const instantiationParameter = new InstantiationParameter();
-			instantiationParameter.subnetID = ns.id;
-			instantiationParameter.nsID = ns[ 'nsd-ref' ];
-			instantiationParameter.nsName = ns[ 'nsd-name' ];
+			instantiationParameter.subnetID = ns.uuid;
+			instantiationParameter.nsID = ns[ 'nsdRef' ];
+			instantiationParameter.nsName = ns[ 'nsdName' ];
 			instantiationParameter.egresses = new Array<LocationNap>();
 			instantiationParameter.ingresses = new Array<LocationNap>();
 			this.instantiationParameters.push(instantiationParameter);
@@ -58,7 +58,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	private async getData() {
 		this.loading = true;
-		const networkServices = this.data.networkServices.map(item => item[ 'nsd-ref' ]);
+		const networkServices = this.data.networkServices.map(item => item[ 'nsdRef' ]);
 		const templates = await this.commonService.getSLATemplates();
 		const vims = await this.commonService.getVims();
 
@@ -147,34 +147,46 @@ export class SliceInstanceCreateComponent implements OnInit {
 		return this.step === 'warning' && !this.vims.length;
 	}
 
-	// TODO disable instantiate if sla is missing
-	// check this using instantiationParameters array. NS with no SLA must not be in the sla list
+	canChooseSLA() {
+		return this.getSLAForService().length && !this.instantiationParameters[ this.networkServiceIterator ].slaID;
+	}
+
+	parseInstantiationParams() {
+		const parsedObject = this.instantiationParameters.map(item => {
+			const mappedObject = { };
+			if (item.slaID && item.slaName) {
+				mappedObject[ 'sla_name' ] = item.slaName;
+				mappedObject[ 'sla_id' ] = item.slaID;
+			}
+			if (item.vimID) {
+				mappedObject[ 'vim_id' ] = item.vimID;
+			}
+			if (item.ingresses.length) {
+				mappedObject[ 'ingresses' ] = item.ingresses.map(o => ({ location: o.location, nap: o.nap }));
+			}
+			if (item.egresses.length) {
+				mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
+			}
+			if (Object.keys(mappedObject).length) {
+				mappedObject[ 'subnet_id' ] = item.subnetID;
+				return mappedObject;
+			}
+			return;
+		});
+
+		// Filter empty objects from previous mapping (null, undefined...)
+		return JSON.stringify(parsedObject.filter(Boolean));
+	}
+
 	async instantiate() {
 		this.loading = true;
+		const instantiationParams = this.parseInstantiationParams();
 		const instance = {
 			nst_id: this.data.nstId,
 			name: this.instantiationForm.get('nsiName').value,
 			description: this.instantiationForm.get('nsiDescription').value,
 			'request_type': 'CREATE_SLICE',
-			instantiation_parameters: this.instantiationParameters.map(item => {
-				const mappedObject = {
-					subnet_id: item.subnetID,
-				};
-				if (item.slaID && item.slaName) {
-					mappedObject[ 'sla_name' ] = item.slaName;
-					mappedObject[ 'sla_id' ] = item.slaID;
-				}
-				if (item.vimID) {
-					mappedObject[ 'vim_id' ] = item.vimID;
-				}
-				if (item.ingresses.length) {
-					mappedObject[ 'ingresses' ] = item.ingresses.map(o => ({ location: o.location, nap: o.nap }));
-				}
-				if (item.egresses.length) {
-					mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
-				}
-				return mappedObject;
-			})
+			instantiation_params: instantiationParams
 		};
 
 		const response = await this.serviceManagementService.postOneSliceInstance(instance);

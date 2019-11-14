@@ -333,7 +333,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">259</context>
+          <context context-type="linenumber">260</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/generated-actions/generated-actions.component.html</context>
@@ -1206,7 +1206,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vim" datatype="html">
@@ -1869,7 +1869,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">273</context>
+          <context context-type="linenumber">274</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-list/sla-template-list.component.html</context>
@@ -1988,7 +1988,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -2113,7 +2113,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="password" datatype="html">
@@ -2128,7 +2128,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="monitoringUrls" datatype="html">
@@ -2261,11 +2261,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
@@ -2420,7 +2420,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tenant" datatype="html">
@@ -2599,39 +2599,39 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="wimID" datatype="html">
         <source>WIM ID</source><target state="final">WIM ID</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="authKey" datatype="html">
         <source>Authentication key</source><target state="final">Authentication key</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vimList" datatype="html">
         <source>VIM list</source><target state="final">VIM list</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectVimPlaceholder" datatype="html">
         <source>Select the VIMs</source><target state="final">Select the VIMs</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim/wim.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="testName" datatype="html">
@@ -3127,7 +3127,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -3618,6 +3618,10 @@
           <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
@@ -3804,7 +3808,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">237</context>
+          <context context-type="linenumber">238</context>
         </context-group>
       </trans-unit>
       <trans-unit id="conditionsOfTheRule" datatype="html">
@@ -3825,14 +3829,14 @@
         <source>Actions</source><target state="final">Actions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">216</context>
+          <context context-type="linenumber">215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="targetPlaceholder" datatype="html">
         <source>Target</source><target state="final">Target</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actionsPlaceholder" datatype="html">
@@ -3846,18 +3850,18 @@
         <source>Action name</source><target state="final">Action name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">228</context>
+          <context context-type="linenumber">229</context>
         </context-group>
       </trans-unit>
       <trans-unit id="value" datatype="html">
         <source>Value </source><target state="final">Value </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">234</context>
+          <context context-type="linenumber">235</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">263</context>
+          <context context-type="linenumber">264</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/generated-actions/generated-actions.component.html</context>
@@ -3868,28 +3872,28 @@
         <source>Add</source><target state="final">Add</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">246</context>
+          <context context-type="linenumber">247</context>
         </context-group>
       </trans-unit>
       <trans-unit id="definedActions" datatype="html">
         <source>Defined actions</source><target state="final">Defined actions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">251</context>
+          <context context-type="linenumber">252</context>
         </context-group>
       </trans-unit>
       <trans-unit id="actionObject" datatype="html">
         <source>Action object</source><target state="final">Action object</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">255</context>
+          <context context-type="linenumber">256</context>
         </context-group>
       </trans-unit>
       <trans-unit id="target" datatype="html">
         <source>Target</source><target state="final">Target</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-create/runtime-policy-create.component.html</context>
-          <context context-type="linenumber">267</context>
+          <context context-type="linenumber">268</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
@@ -3973,7 +3977,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-agreement-list/sla-agreement-list.component.html</context>
@@ -4033,7 +4037,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
@@ -4052,7 +4056,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-agreement-detail/sla-agreement-detail.component.html</context>
@@ -4067,7 +4071,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="flavorPlaceholder" datatype="html">
@@ -4096,14 +4100,14 @@
         <source>Provider name</source><target state="final">Provider name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceGuarantees" datatype="html">
         <source>Service Guarantees</source><target state="final">Service Guarantees</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-guarantees-detail/sla-guarantees-detail.component.html</context>
@@ -4114,7 +4118,7 @@
         <source>Service Level Objective</source><target state="final">Service Level Objective</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-guarantees-detail/sla-guarantees-detail.component.html</context>
@@ -4125,7 +4129,7 @@
         <source>Time period</source><target state="final">Time period</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-guarantees-detail/sla-guarantees-detail.component.html</context>
@@ -4136,28 +4140,28 @@
         <source>Select a guarantee</source><target state="final">Select a guarantee</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addNewGuarantee" datatype="html">
         <source>Add a new guarantee</source><target state="final">Add a new guarantee</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectLicensePlaceholder" datatype="html">
         <source>Select a license</source><target state="final">Select a license</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="licenseExpirationDatePlaceholder" datatype="html">
         <source>License expiration date</source><target state="final">License expiration date</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">102</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-license-detail/sla-license-detail.component.html</context>
@@ -4168,7 +4172,7 @@
         <source>Number of instances allowed: </source><target state="final">Number of instances allowed: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">107</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-license-detail/sla-license-detail.component.html</context>
@@ -4179,14 +4183,14 @@
         <source>*Invalid input</source><target state="final">*Invalid input</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="selectFlavorPlaceholder" datatype="html">
         <source>Select a flavor</source><target state="final">Select a flavor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sla-template-create/sla-template-create.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="slaAgreements" datatype="html">
@@ -4522,6 +4526,21 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="slaWarningInSliceInstantiation" datatype="html">
+        <source>
+		There are SLAs for your network services.
+		Please, select one on every network service offering the choice.
+		Otherwise you will not be able to continue with the instantiation.
+	</source><target state="final">
+		There are SLAs for your network services.
+		Please, select one on every network service offering the choice.
+		Otherwise you will not be able to continue with the instantiation.
+	</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="slaErrorInSliceInstantiation" datatype="html">
         <source>
 		No SLAs were found, at least not for these network services.
@@ -4532,7 +4551,7 @@
 	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vimErrorInSliceInstantiation" datatype="html">
@@ -4543,14 +4562,14 @@
 	</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nsiNamePlaceholder" datatype="html">
         <source>NSI Name</source><target state="final">NSI Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nextButton" datatype="html">
@@ -4561,11 +4580,11 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4576,11 +4595,11 @@
         <source>BACK</source><target state="final">BACK</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4595,7 +4614,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
