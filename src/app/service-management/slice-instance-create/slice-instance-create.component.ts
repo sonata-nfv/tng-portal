@@ -147,6 +147,10 @@ export class SliceInstanceCreateComponent implements OnInit {
 		return this.step === 'warning' && !this.vims.length;
 	}
 
+	canChooseSLA() {
+		return this.getSLAForService().length && !this.instantiationParameters[ this.networkServiceIterator ].slaID;
+	}
+
 	parseInstantiationParams() {
 		const parsedObject = this.instantiationParameters.map(item => {
 			const mappedObject = { };
@@ -174,8 +178,6 @@ export class SliceInstanceCreateComponent implements OnInit {
 		return parsedObject.filter(Boolean);
 	}
 
-	// TODO disable instantiate if sla is missing
-	// check this using instantiationParameters array. NS with no SLA must not be in the sla list
 	async instantiate() {
 		this.loading = true;
 		const instantiationParams = this.parseInstantiationParams();
