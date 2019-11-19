@@ -6,7 +6,7 @@ import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
-import { LocationNap } from '../nap-lists/location-nap';
+import { LocationNap } from '../nap-lists/nap-lists.component';
 
 @Component({
 	selector: 'app-ns-instantiate-dialog',
