@@ -17,7 +17,7 @@ import { LocationNap } from '../nap-lists/nap-lists.component';
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
-	section = 'first';
+	section = 'location-nap';
 	instantiationForm: FormGroup;
 	slas: Array<any>;
 	ingress = new Array<LocationNap>();
@@ -144,7 +144,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.utilsService.openSnackBar(response[ 'Succes' ], '');
-			this.section = 'second';
+			this.section = 'naming';
 			this.checkLicenseValidity(sla);
 		} else {
 			this.utilsService.openSnackBar('Unable to buy the license, try again please', '');
@@ -152,7 +152,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	canShowLoading() {
-		return this.loading && this.section !== 'first';
+		return this.loading && this.section !== 'location-nap';
 	}
 
 	canDisableInstantiate() {
