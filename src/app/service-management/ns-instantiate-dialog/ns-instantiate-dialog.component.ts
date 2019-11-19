@@ -23,6 +23,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	ingress = new Array<LocationNap>();
 	egress = new Array<LocationNap>();
 	blacklist = new Array<LocationNap>();
+	customParameters: Array<object>;
 
 	constructor(
 		private utilsService: UtilsService,
@@ -81,6 +82,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 		}
 	}
 
+	receiveCustomParameters(list) {
+		this.customParameters = list;
+	}
+
 	async checkLicenseValidity(slaUUID) {
 		// Check if license is valid before instantiate
 		const response = await this.serviceManagementService.getLicenseStatus(slaUUID, this.data.serviceUUID);
@@ -122,6 +127,11 @@ export class NsInstantiateDialogComponent implements OnInit {
 			service_uuid: serviceUUID,
 			sla_id: this.instantiationForm.get('sla').value || ''
 		};
+
+		if (this.customParameters && this.customParameters.length) {
+			body[ 'params' ] = this.customParameters;
+		}
+
 		const response = await this.serviceManagementService.postOneNSInstance(body);
 
 		this.loading = false;

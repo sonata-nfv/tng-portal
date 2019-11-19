@@ -18,7 +18,8 @@
 
 <!-- SECOND DIALOG DISPLAYED -->
 <mat-dialog-content *ngIf="section=='custom-parameters'" class="custom-parameters-dialog">
-	<app-custom-instantiation-parameters></app-custom-instantiation-parameters>
+	<app-custom-instantiation-parameters [customParameters]="customParameters" (customParametersEvent)="receiveCustomParameters($event)">
+	</app-custom-instantiation-parameters>
 </mat-dialog-content>
 
 <mat-dialog-actions *ngIf="section=='custom-parameters'">
