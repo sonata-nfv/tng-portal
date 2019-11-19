@@ -2,7 +2,12 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } fro
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
-import { LocationNap } from './location-nap';
+
+export interface LocationNap {
+	location: string;
+	locationName: string;
+	nap: string;
+}
 
 @Component({
 	selector: 'app-nap-lists',

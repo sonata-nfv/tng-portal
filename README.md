@@ -31,10 +31,10 @@ npm install
 [sudo] npm install -g npm
 ```
 
-- Angular >= v6
+- Angular >= v6 and < v8
 
 ```
-[sudo] npm install -g @angular/cli
+[sudo] npm install -g @angular/cli@7.2.15
 ```
 
 - Athens VPN credentials: requests made from the Portal in the development mode need the VPN in order to receive a response.

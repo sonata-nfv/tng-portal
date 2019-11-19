@@ -5,8 +5,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServiceManagementService } from '../service-management.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
-import { LocationNap } from '../nap-lists/location-nap';
-import { InstantiationParameter } from './instantiation-parameter';
+import { LocationNap } from '../nap-lists/nap-lists.component';
+
+interface InstantiationParameter {
+	subnetID: string;
+	nsID: string;
+	nsName: string;
+	ingresses: Array<LocationNap>;
+	egresses: Array<LocationNap>;
+	slaID?: string;
+	slaName?: string;
+	vimID?: string;
+	params?: object;
+}
 
 @Component({
 	selector: 'app-slice-instance-create',
@@ -46,13 +57,13 @@ export class SliceInstanceCreateComponent implements OnInit {
 
 	private populateInstantiationParameters() {
 		this.data.networkServices.forEach(ns => {
-			const instantiationParameter = new InstantiationParameter();
-			instantiationParameter.subnetID = ns.uuid;
-			instantiationParameter.nsID = ns[ 'nsdRef' ];
-			instantiationParameter.nsName = ns[ 'nsdName' ];
-			instantiationParameter.egresses = new Array<LocationNap>();
-			instantiationParameter.ingresses = new Array<LocationNap>();
-			this.instantiationParameters.push(instantiationParameter);
+			this.instantiationParameters.push({
+				subnetID: ns.uuid,
+				nsID: ns[ 'nsdRef' ],
+				nsName: ns[ 'nsdName' ],
+				egresses: new Array<LocationNap>(),
+				ingresses: new Array<LocationNap>(),
+			});
 		});
 	}
 
