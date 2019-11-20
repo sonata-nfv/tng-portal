@@ -3,22 +3,36 @@
 <h2 mat-dialog-title>Instantiate {{ data['name'] }} network service</h2>
 
 <!-- FIRST DIALOG DISPLAYED -->
-<mat-dialog-content *ngIf="section=='first'" class="first-dialog">
+<mat-dialog-content *ngIf="section=='location-nap'" class="location-nap-dialog">
 	<app-nap-lists [activateBlacklist]="true" [ingress]="ingress" [egress]="egress" [blacklist]="blacklist"
 		(listEvent)="receiveList($event)"></app-nap-lists>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="section=='first'">
+<mat-dialog-actions *ngIf="section=='location-nap'">
 	<div class="button-container">
 		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
-		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="section = 'second'"
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="section = 'custom-parameters'"
 			i18n="@@nextButton">NEXT</button>
 	</div>
 </mat-dialog-actions>
 
 <!-- SECOND DIALOG DISPLAYED -->
-<mat-dialog-content *ngIf="section=='second'" class="second-dialog">
-	<form [formGroup]="instantiationForm" class="second-dialog-form">
+<mat-dialog-content *ngIf="section=='custom-parameters'" class="custom-parameters-dialog">
+	<app-custom-instantiation-parameters [customParameters]="customParameters" (customParametersEvent)="receiveCustomParameters($event)">
+	</app-custom-instantiation-parameters>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="section=='custom-parameters'">
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button (click)="section='location-nap'" i18n="@@backButton">BACK</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="section = 'naming'"
+			i18n="@@nextButton">NEXT</button>
+	</div>
+</mat-dialog-actions>
+
+<!-- THIRD DIALOG DISPLAYED -->
+<mat-dialog-content *ngIf="section=='naming'" class="naming-dialog">
+	<form [formGroup]="instantiationForm" class="naming-dialog-form">
 		<mat-form-field class="instance-name">
 			<input matInput type="text" placeholder="Instance name" formControlName="instanceName" required
 				i18n-placeholder="@@instanceNamePlaceholder" />
@@ -31,9 +45,9 @@
 	</form>
 </mat-dialog-content>
 
-<mat-dialog-actions *ngIf="section=='second'">
+<mat-dialog-actions *ngIf="section=='naming'">
 	<div class="button-container">
-		<button class="basic-button button-shadow cancel" mat-button (click)="section='first'" i18n="@@backButton">BACK</button>
+		<button class="basic-button button-shadow cancel" mat-button (click)="section='custom-parameters'" i18n="@@backButton">BACK</button>
 		<button class="basic-button button-shadow next" mat-button cdkFocusInitial [disabled]="canDisableInstantiate()"
 			(click)="instantiate(data.serviceUUID)" i18n="@@instantiateButton">
 			INSTANTIATE

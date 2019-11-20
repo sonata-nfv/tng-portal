@@ -16,6 +16,7 @@ import { SliceInstanceCreateComponent } from './slice-instance-create/slice-inst
 import { SmNetworkServicesComponent } from './sm-network-services/sm-network-services.component';
 import { SmNetworkServicesDetailComponent } from './sm-network-services-detail/sm-network-services-detail.component';
 import { NsInstantiateDialogComponent } from './ns-instantiate-dialog/ns-instantiate-dialog.component';
+import { CustomInstantiationParametersComponent } from './custom-instantiation-parameters/custom-instantiation-parameters.component';
 import { NapListsComponent } from './nap-lists/nap-lists.component';
 import { NsInstanceListComponent } from './ns-instance-list/ns-instance-list.component';
 import { NsInstanceDetailComponent } from './ns-instance-detail/ns-instance-detail.component';
@@ -38,6 +39,7 @@ import { LicenceDetailComponent } from './license-detail/license-detail.componen
 		SmNetworkServicesComponent,
 		SmNetworkServicesDetailComponent,
 		NsInstantiateDialogComponent,
+		CustomInstantiationParametersComponent,
 		NapListsComponent,
 		NsInstanceListComponent,
 		NsInstanceDetailComponent,

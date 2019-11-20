@@ -21,8 +21,9 @@ app-ns-instantiate-dialog {
 		font-size: 17px;
 	}
 
-	.mat-dialog-content.first-dialog,
-	.mat-dialog-content.second-dialog {
+	.mat-dialog-content.location-nap-dialog,
+	.mat-dialog-content.custom-parameters-dialog,
+	.mat-dialog-content.naming-dialog {
 		display: flex;
 		flex: 1 1;
 		flex-direction: column;
@@ -44,7 +45,7 @@ app-ns-instantiate-dialog {
 	}
 
 	// SLA and name dialog styles
-	.mat-dialog-content.second-dialog .second-dialog-form {
+	.mat-dialog-content.naming-dialog .naming-dialog-form {
 		width: 100%;
 		margin-top: 6vh;
 	}

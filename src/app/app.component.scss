@@ -811,6 +811,14 @@ ul.unordered-list .mat-input-element:disabled {
 	background-color: $basic-background-color;
 }
 
+.add-more:disabled {
+	color: $button-disabled-font-color;
+
+	i:before {
+		color: $button-disabled-font-color;
+	}
+}
+
 //////////////////////////////////////
 // Generic styles
 //////////////////////////////////////

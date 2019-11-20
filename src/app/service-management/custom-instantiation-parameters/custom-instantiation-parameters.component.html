@@ -1,0 +1,23 @@
+<dl *ngIf="_customParameters && _customParameters.length" class="list">
+	<dt *ngFor="let param of _customParameters" class="list-entry">
+		<span>{{ getObjectString(param) }}</span>
+		<button (click)="eraseParam(param)" class="icon-button-shadow">
+			<i class="wui wui-trash-alt"></i>
+		</button>
+	</dt>
+</dl>
+
+<form [formGroup]="customParameterForm">
+	<mat-form-field>
+		<input matInput type="text" placeholder="Parameter name" formControlName="key" i18n-placeholder="@@parameterNamePlaceholder" />
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="text" placeholder="Parameter value" formControlName="value" i18n-placeholder="@@parameterValuePlaceholder" />
+	</mat-form-field>
+
+	<button [disabled]="!customParameterForm.valid" (click)="onAdd()" class="basic-button add-more">
+		<i class="wui wui-plus"></i>
+		<span i18n="@@addNewCustomParameter"> Add new custom parameter</span>
+	</button>
+</form>

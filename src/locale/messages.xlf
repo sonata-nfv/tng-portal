@@ -1925,7 +1925,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/vim-config/vim-config.component.html</context>
@@ -2004,7 +2004,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
@@ -3537,7 +3537,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="monitoringRules" datatype="html">
@@ -4420,6 +4420,53 @@
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="locationPlaceholder" datatype="html">
+        <source>Location</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="notValidIpMaskExample" datatype="html">
+        <source>
+			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
+		</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewIngress" datatype="html">
+        <source> Add new ingress NAP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewEgress" datatype="html">
+        <source> Add new egress NAP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addNewBlacklist" datatype="html">
+        <source> Add new blacklist NAP</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noLocationsError" datatype="html">
+        <source>
+	No locations were found at this moment. Please, click on NEXT and continue with
+	the instantiation without selecting any, or you could try again later.
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="newSliceInstance" datatype="html">
         <source>New network slice instance</source>
         <context-group purpose="location">
@@ -4489,6 +4536,10 @@
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="backButton" datatype="html">
         <source>BACK</source>
@@ -4502,7 +4553,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instantiateButton" datatype="html">
@@ -4515,7 +4570,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="instantiate" datatype="html">
@@ -4654,7 +4709,7 @@
         <source>Instance name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="trialLicenseError" datatype="html">
@@ -4663,7 +4718,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="privateLicenseError" datatype="html">
@@ -4672,14 +4727,14 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="buy" datatype="html">
         <source>BUY</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/license-list/license-list.component.html</context>
@@ -4868,51 +4923,25 @@
           <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="locationPlaceholder" datatype="html">
-        <source>Location</source>
+      <trans-unit id="parameterNamePlaceholder" datatype="html">
+        <source>Parameter name</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="notValidIpMaskExample" datatype="html">
-        <source>
-			*This is not a valid IP/mask (i.e. 10.10.10.10/24)
-		</source>
+      <trans-unit id="parameterValuePlaceholder" datatype="html">
+        <source>Parameter value</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="addNewIngress" datatype="html">
-        <source> Add new ingress NAP</source>
+      <trans-unit id="addNewCustomParameter" datatype="html">
+        <source> Add new custom parameter</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="addNewEgress" datatype="html">
-        <source> Add new egress NAP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">59</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="addNewBlacklist" datatype="html">
-        <source> Add new blacklist NAP</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">60</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="noLocationsError" datatype="html">
-        <source>
-	No locations were found at this moment. Please, click on NEXT and continue with
-	the instantiation without selecting any, or you could try again later.
-</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/nap-lists/nap-lists.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="numberOfInstances" datatype="html">

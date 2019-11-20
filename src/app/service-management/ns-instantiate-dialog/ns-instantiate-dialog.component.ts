@@ -17,12 +17,13 @@ import { LocationNap } from '../nap-lists/nap-lists.component';
 export class NsInstantiateDialogComponent implements OnInit {
 	loading: boolean;
 	instantiationIsAllowed = true;
-	section = 'first';
+	section = 'location-nap';
 	instantiationForm: FormGroup;
 	slas: Array<any>;
 	ingress = new Array<LocationNap>();
 	egress = new Array<LocationNap>();
 	blacklist = new Array<LocationNap>();
+	customParameters: Array<object>;
 
 	constructor(
 		private utilsService: UtilsService,
@@ -81,6 +82,10 @@ export class NsInstantiateDialogComponent implements OnInit {
 		}
 	}
 
+	receiveCustomParameters(list) {
+		this.customParameters = list;
+	}
+
 	async checkLicenseValidity(slaUUID) {
 		// Check if license is valid before instantiate
 		const response = await this.serviceManagementService.getLicenseStatus(slaUUID, this.data.serviceUUID);
@@ -122,6 +127,11 @@ export class NsInstantiateDialogComponent implements OnInit {
 			service_uuid: serviceUUID,
 			sla_id: this.instantiationForm.get('sla').value || ''
 		};
+
+		if (this.customParameters && this.customParameters.length) {
+			body[ 'params' ] = this.customParameters;
+		}
+
 		const response = await this.serviceManagementService.postOneNSInstance(body);
 
 		this.loading = false;
@@ -144,7 +154,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 		this.loading = false;
 		if (response) {
 			this.utilsService.openSnackBar(response[ 'Succes' ], '');
-			this.section = 'second';
+			this.section = 'naming';
 			this.checkLicenseValidity(sla);
 		} else {
 			this.utilsService.openSnackBar('Unable to buy the license, try again please', '');
@@ -152,7 +162,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	canShowLoading() {
-		return this.loading && this.section !== 'first';
+		return this.loading && this.section !== 'location-nap' && this.section !== 'custom-parameters';
 	}
 
 	canDisableInstantiate() {
