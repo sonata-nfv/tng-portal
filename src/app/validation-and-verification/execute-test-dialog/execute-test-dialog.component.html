@@ -1,0 +1,28 @@
+<button class="close-icon" (click)="close()"><i class="wui wui-times"></i></button>
+
+<h2 *ngIf="data.section === 'tests'" mat-dialog-title>Execute {{ data['name'] }} test</h2>
+<h2 *ngIf="data.section !== 'tests'" mat-dialog-title>Execute {{ data['name'] }} related tests</h2>
+
+<mat-dialog-content>
+	<p i18n="@@optionallyChoosePlatformAndPolicy">You can optionally choose the platform and the policy to be applied to your test.</p>
+	<form [formGroup]="testExecutionForm">
+		<!-- TODO include select for SP and for policies -->
+
+		<p i18n="@@confirmRequiredInTestExecution">
+			Do you want to automatically execute the test plan?
+			Otherwise, it will require your manual confirmation to be run.
+		</p>
+
+		<!-- TODO include radiobutton or similar for confirmRequired -->
+	</form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+	<div class="button-container">
+		<button class="basic-button button-shadow cancel" mat-button mat-dialog-close i18n="@@cancelButton">CANCEL</button>
+		<button class="basic-button button-shadow next" mat-button cdkFocusInitial (click)="createTestPlans()"
+			i18n="@@createPlanButton">CREATE PLAN</button>
+	</div>
+</mat-dialog-actions>
+
+<app-spinner *ngIf="loading"></app-spinner>
