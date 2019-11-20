@@ -1,4 +1,11 @@
-<!-- TODO display list of previosly introduced params -->
+<dl *ngIf="_customParameters && _customParameters.length" class="list">
+	<dt *ngFor="let param of _customParameters" class="list-entry">
+		<span>{{ getObjectString(param) }}</span>
+		<button (click)="eraseParam(param)" class="icon-button-shadow">
+			<i class="wui wui-trash-alt"></i>
+		</button>
+	</dt>
+</dl>
 
 <form [formGroup]="customParameterForm">
 	<mat-form-field>

@@ -162,7 +162,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	}
 
 	canShowLoading() {
-		return this.loading && this.section !== 'location-nap';
+		return this.loading && this.section !== 'location-nap' && this.section !== 'custom-parameters';
 	}
 
 	canDisableInstantiate() {

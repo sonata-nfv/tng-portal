@@ -5,4 +5,18 @@ app-custom-instantiation-parameters {
 	.add-more {
 		align-self: flex-end;
 	}
+
+	// Styles of the listed items
+	.list {
+		color: $primary-font-color-light;
+
+		.list-entry {
+			align-items: center;
+
+			span {
+				flex: 1;
+				font-size: 17px;
+			}
+		}
+	}
 }
