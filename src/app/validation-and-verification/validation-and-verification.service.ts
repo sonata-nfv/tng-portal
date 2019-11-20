@@ -382,7 +382,6 @@ export class ValidationAndVerificationPlatformService {
 					return {
 						uuid: item.uuid,
 						name: item.uuid,
-						instanceUUID: item.instance_uuid
 					};
 				}) : [];
 		} catch (error) {

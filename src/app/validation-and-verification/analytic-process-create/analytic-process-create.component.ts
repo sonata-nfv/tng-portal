@@ -100,9 +100,8 @@ export class AnalyticProcessCreateComponent implements OnInit {
 	}
 
 	receiveTest(uuid) {
-		const instanceUUID = this.tests.find(test => test[ 'uuid' ] === uuid)[ 'instanceUUID' ];
 		this.analyticProcessForm.get('test').setValue(uuid);
-		this.getMonitoringMetrics(instanceUUID);
+		this.getMonitoringMetrics(uuid);
 	}
 
 	receiveService(uuid) {
