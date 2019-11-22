@@ -42,7 +42,9 @@ export class AuthService {
 		const url = this.config.baseSP + this.config.login;
 
 		try {
-			return await this.http.delete(url, { headers: this.authHeaders }).toPromise();
+			const response = await this.http.delete(url, { headers: this.authHeaders }).toPromise();
+			this.authHeaders = new HttpHeaders();
+			return response;
 		} catch (error) {
 			console.error(error);
 		}
