@@ -165,7 +165,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 				break;
 			case 'sdk-jupyter':
 				// open a new tab with the jupyter lab to show all available projects
-				window.open(this.config.baseSDK + ':8884/lab/tree/projects', '_blank');
+				window.open(this.config.baseSDK + '/tng-lab/lab/tree/projects', '_blank');
 				break;
 		}
 		this.section = buttonId;

@@ -60,8 +60,9 @@ export class ConfigService extends Config {
 	analyticProcessExecution = 'analytics/analytic_service';
 
 	// IP of SDK backend container
-	baseSDK = 'http://' + window.location.hostname;
-	// baseSDK = 'http://192.168.99.100';
+	// baseSDK = 'https://' + window.location.hostname;
+	// baseSDK = 'https://pre-int-sp-ath.5gtango.eu';
+	baseSDK = 'http://192.168.99.100';
 
 	private configFile = './config.json';
 

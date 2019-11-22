@@ -24,7 +24,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 	}
 
 	createService() {
-		const endpoint = this.config.baseSDK + ':5098/api/v1/projects';
+		const endpoint = this.config.baseSDK + '/api/v1/projects';
 
 		// only generate Tango descriptors as the SP doesn't accept packages with Tango and OSM
 		const body = new HttpParams().set('only_tango', 'true')

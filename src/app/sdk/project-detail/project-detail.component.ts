@@ -29,7 +29,7 @@ export class ProjectDetailComponent implements OnInit {
 	}
 
 	package(): void {
-		const endpoint = this.config.baseSDK + ':5098/api/v1/projects/' + this.project.uuid + '/package';
+		const endpoint = this.config.baseSDK + '/api/v1/projects/' + this.project.uuid + '/package';
 		const header = new HttpHeaders()
 			.set('Content-Type', 'application/x-www-form-urlencoded')
 			.set('Access-Control-Allow-Origin', this.config.baseSDK + ':5098');
