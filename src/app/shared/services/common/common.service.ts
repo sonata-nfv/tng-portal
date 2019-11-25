@@ -525,9 +525,9 @@ export class CommonService {
 			testd: await this.getTDNumber() || this.unknown,
 			nsd: await this.getNSDNumber() || this.unknown,
 			vnfd: await this.getVNFDNumber() || this.unknown,
-			sonataPlatforms: platforms[ 'SONATA' ] || this.unknown,
-			osmPlatforms: platforms[ 'OSM' ] || this.unknown,
-			onapPlatforms: platforms[ 'ONAP' ] || this.unknown,
+			sonataPlatforms: platforms[ 'SONATA' ].toString() || this.unknown,
+			osmPlatforms: platforms[ 'OSM' ].toString() || this.unknown,
+			onapPlatforms: platforms[ 'ONAP' ].toString() || this.unknown,
 			testsCompleted: await this.getTestsNumber('COMPLETED') || this.unknown,
 			testsInProgress: await this.getTestsNumber('STARTING') || this.unknown,
 			testsWaitingForConfirmation: await this.getTestsNumber('WAITING_FOR_CONFIRMATION') || this.unknown,
@@ -542,7 +542,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -558,7 +558,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -574,7 +574,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -590,7 +590,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -622,8 +622,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -639,8 +638,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -656,8 +654,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
@@ -673,8 +670,7 @@ export class CommonService {
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
-
-			return response[ 'count' ];
+			return response[ 'count' ].toString();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
