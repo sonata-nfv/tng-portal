@@ -28,6 +28,20 @@ app-execute-test-dialog {
 		align-items: center;
 		width: 80%;
 		font-size: 22px;
+
+		.test-execution-form {
+			flex: 1 1;
+    		justify-content: space-between;
+		}
+
+		.same-row {
+			flex-direction: row;
+			align-items: center;
+
+			.confirm-required-toggle {
+				margin-right: 20px;
+			}
+		}
 	}
 
 }
