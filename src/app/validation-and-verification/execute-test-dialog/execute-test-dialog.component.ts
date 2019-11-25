@@ -54,7 +54,8 @@ export class ExecuteTestDialogComponent implements OnInit {
 	}
 
 	changeConfirmRequired(value) {
-		this.testExecutionForm.get('confirmRequired').setValue(value);
+		// If true, then confirm required is false and it gets executed automatically
+		this.testExecutionForm.get('confirmRequired').setValue(!value);
 	}
 
 	async createTestPlans() {
