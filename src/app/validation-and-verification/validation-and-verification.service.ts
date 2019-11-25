@@ -233,16 +233,71 @@ export class ValidationAndVerificationPlatformService {
 	}
 
 	/**
+     * Retrieves a list of policies per platform
+     *
+     */
+	async getTestPlansPolicies() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.testPlansPolicies;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return this.parsePlatformPolicies(response);
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	parsePlatformPolicies(platforms) {
+		const policies = new Array<object>();
+
+		if (!(platforms instanceof Array)) {
+			return policies;
+		}
+
+		platforms.forEach(platform => {
+			platform.policies.map(policy => {
+				policies.push({
+					platformName: platform.platform_name,
+					uuid: policy.uuid,
+					name: policy.pld.name
+				});
+			});
+		});
+
+		return policies;
+	}
+
+	/**
      * Creates the test plans for a given test UUID
      *
-     * @param uuid UUID of the desired test
+     * @param section defines whether the test plan is generated from tests or services
+	 * @param uuid UUID of the desired test/network service
 	 * @param confirmRequired sets the created test plans with priority in the queue
+	 * @param policy [Optional] fixes the policy to be applied in the test plan
+	 * @param platformName [Optional] fixes the platform where the test is to be executed
+	 * @param executionHost [Optional] sets the host where the execution must be performed
+	 *
      */
-	async postTestPlans(section, uuid, confirmRequired) {
+	async postTestPlans(section, uuid, confirmRequired, policy, platformName, executionHost) {
 		const headers = this.authService.getAuthHeaders();
+		let parameters = `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`;
+		if (platformName) {
+			parameters = parameters.concat(`&spName=${ platformName }`);
+		}
+		if (policy) {
+			parameters = parameters.concat(`&policyID=${ policy }`);
+		}
+		if (executionHost) {
+			parameters = parameters.concat(`&executionHost=${ executionHost }`);
+		}
 		const url = section === 'tests' ?
-			this.config.baseVNV + this.config.testPlansTests + `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`
-			: this.config.baseVNV + this.config.testPlansServices + `?confirmRequired=${ confirmRequired }&serviceUuid=${ uuid }`;
+			this.config.baseVNV + this.config.testPlansTests + parameters
+			: this.config.baseVNV + this.config.testPlansServices + parameters;
 
 		try {
 			return await this.http.post(url, { headers: headers }).toPromise();
