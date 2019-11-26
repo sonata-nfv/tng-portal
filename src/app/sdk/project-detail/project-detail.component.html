@@ -64,7 +64,7 @@
 	<button mat-button class="next" [disabled]="!projectLoaded()" (click)="package()">
 		Package
 	</button>
-	<a mat-button class="next" [disabled]="!pkgSuccess" href="{{config.baseSDK}}:5098/api/v1/{{pkgPath}}">
+	<a mat-button class="next" [disabled]="!pkgSuccess" href="{{config.baseSDK}}/api/v1/{{pkgPath}}">
 		Download Package
 	</a>
 	<button mat-button class="next" [disabled]="!pkgSuccess" (click)="onboardPackage()">

@@ -32,7 +32,7 @@ export class ProjectDetailComponent implements OnInit {
 		const endpoint = this.config.baseSDK + '/api/v1/projects/' + this.project.uuid + '/package';
 		const header = new HttpHeaders()
 			.set('Content-Type', 'application/x-www-form-urlencoded')
-			.set('Access-Control-Allow-Origin', this.config.baseSDK + ':5098');
+			.set('Access-Control-Allow-Origin', this.config.baseSDK);
 
 		// skip validation if selected (add mat-checkbox)
 		const body = new HttpParams().set('skip_validation', String(this.skipValidation));
@@ -60,7 +60,7 @@ export class ProjectDetailComponent implements OnInit {
 	// on-board the package to the currently configured service platform
 	onboardPackage(): void {
 		const endpoint = this.config.baseSP + this.config.packages;
-		const pkgPath = this.config.baseSDK + ':5098/api/v1/' + this.pkgPath;
+		const pkgPath = this.config.baseSDK + '/api/v1/' + this.pkgPath;
 		this.pkgOutput = 'On-boarding...';
 
 		// get package from endpoint

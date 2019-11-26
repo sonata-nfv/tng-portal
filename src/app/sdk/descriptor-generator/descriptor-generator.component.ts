@@ -39,7 +39,7 @@ export class DescriptorGeneratorComponent implements OnInit {
 			{
 				headers: new HttpHeaders()
 					.set('Content-Type', 'application/x-www-form-urlencoded')
-					.set('Access-Control-Allow-Origin', this.config.baseSDK + ':5098')
+					.set('Access-Control-Allow-Origin', this.config.baseSDK)
 			}
 		).subscribe(response => {
 			this.sdkService.newProject(this.project.name, this.project.author, this.project.vendor, this.project.description,
