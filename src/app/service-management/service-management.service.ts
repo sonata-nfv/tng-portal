@@ -398,7 +398,7 @@ export class ServiceManagementService {
 				response.map(item => ({
 					requestId: item.id,
 					name: item.name || 'Unknown',
-					duration: item.duration ? this.parseDuration(item.duration) : this.unknown,
+					duration: this.calculateDuration(item.updated_at, item.created_at),
 					type: item.request_type,
 					createdAt: item.created_at,
 					status: item.status
@@ -430,7 +430,7 @@ export class ServiceManagementService {
 					status: response[ 'status' ],
 					type: response[ 'request_type' ],
 					updatedAt: response[ 'updated_at' ],
-					duration: response[ 'duration' ] ? this.parseDuration(response[ 'duration' ]) : this.unknown,
+					duration: this.calculateDuration(response[ 'updated_at' ], response[ 'created_at' ]),
 					slaUUID: response[ 'sla_id' ],
 					serviceVendor: response[ 'service' ] ?
 						response[ 'service' ][ 'vendor' ] : null,
@@ -454,10 +454,13 @@ export class ServiceManagementService {
 		}
 	}
 
-	private parseDuration(duration) {
-		const result = duration.toFixed(3).toString();
-		const secs = result.split('.')[ 0 ];
-		return `${ secs }s`;
+	private calculateDuration(updated, created) {
+		const difference = new Date(updated).getTime() - new Date(created).getTime();
+		const hours = Math.floor(difference / 36e5);
+		const minutes = Math.floor(difference / 6e4) % 60;
+		const seconds = Math.round(difference / 1000) % 60;
+
+		return `${ hours }h ${ minutes }m ${ seconds }s`;
 	}
 
 	/**
