@@ -46,8 +46,9 @@ npm install
 If you just want to test the app, or start developing something you can quickly serve it with the following. This includes hot reloading for any (HTML/CSS/JS) change.
 
 ```
-ng serve --open
+ng serve --host development --open
 ```
+*Note: You need to register the development domain in your `/etc/hosts` next to the localhost declaration*
 
 ### Running a docker container
 
@@ -68,13 +69,13 @@ Portal allows two different configurations: the base URL of the deployment and t
 ### Routes to the services
 The routes to the services for this project are defined in the `config.service.ts` file placed in `/src/app/shared/services/config/config.service.ts`.
 
-When launching locally, by default the used services come from:
+When launched in development mode, by default the used services come from:
 
 - For SP: `http://pre-int-sp-ath.5gtango.eu:32002`
 - For V&V: `http://pre-int-vnv-bcn.5gtango.eu:32002`
 - For SDK: `http://localhost`
 
-When deployed in production the Portal takes the URL of the domain where it was deployed so there is no need to configure it.
+*Note: When deployed in production the Portal takes the URL of the domain where it was deployed so there is no need to configure it.*
 
 ### Menu sections displayed
 

@@ -209,12 +209,6 @@ export class UtilsService {
 	}
 
 	launchUnauthorizedError() {
-		const title = 'Oh oh...';
-		const content = 'It seems that your session has expired. Please, log in again.';
-		const action = 'Log in';
-
-		this.dialogData.openDialog(title, content, action, async () => {
-			this.router.navigate([ '/login' ]);
-		});
+		this.router.navigate([ '/login' ]);
 	}
 }
