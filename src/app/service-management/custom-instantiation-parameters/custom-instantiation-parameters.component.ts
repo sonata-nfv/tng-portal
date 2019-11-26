@@ -12,7 +12,7 @@ export class CustomInstantiationParametersComponent implements OnInit {
 	customParameterForm: FormGroup;
 	@Input()
 	set customParameters(customParameters: Array<object>) {
-		if (customParameters && customParameters.length) {
+		if (customParameters) {
 			this._customParameters = customParameters;
 		}
 	}

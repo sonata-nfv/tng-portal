@@ -34,7 +34,8 @@ app-slice-instance-create {
 		overflow-x: hidden;
     	overflow-y: auto;
 
-		app-nap-lists {
+		app-nap-lists,
+		app-custom-instantiation-parameters {
 			width: 80%;
 		}
 

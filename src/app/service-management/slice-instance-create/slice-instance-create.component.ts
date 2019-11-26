@@ -16,7 +16,7 @@ interface InstantiationParameter {
 	slaID?: string;
 	slaName?: string;
 	vimID?: string;
-	params?: object;
+	customParameters?: Array<object>;
 }
 
 @Component({
@@ -63,6 +63,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 				nsName: ns[ 'nsdName' ],
 				egresses: new Array<LocationNap>(),
 				ingresses: new Array<LocationNap>(),
+				customParameters: new Array<object>(),
 			});
 		});
 	}
@@ -100,10 +101,18 @@ export class SliceInstanceCreateComponent implements OnInit {
 		return this.instantiationParameters[ this.networkServiceIterator ].egresses;
 	}
 
+	getCustomParameters() {
+		return this.instantiationParameters[ this.networkServiceIterator ].customParameters;
+	}
+
 	receiveList(listObject) {
 		listObject.listName === 'ingress' ?
 			this.instantiationParameters[ this.networkServiceIterator ].ingresses = listObject.list
 			: this.instantiationParameters[ this.networkServiceIterator ].egresses = listObject.list;
+	}
+
+	receiveCustomParameters(list) {
+		this.instantiationParameters[ this.networkServiceIterator ].customParameters = list;
 	}
 
 	receiveSlaPerNS(slaUUID) {
@@ -177,6 +186,9 @@ export class SliceInstanceCreateComponent implements OnInit {
 			}
 			if (item.egresses.length) {
 				mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
+			}
+			if (item.customParameters && item.customParameters.length) {
+				mappedObject[ 'params' ] = item.customParameters;
 			}
 			if (Object.keys(mappedObject).length) {
 				mappedObject[ 'subnet_id' ] = item.subnetID;
