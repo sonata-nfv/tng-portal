@@ -8,15 +8,22 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 	encapsulation: ViewEncapsulation.None
 })
 export class CustomInstantiationParametersComponent implements OnInit {
-	_customParameters = new Array<object>();
+	_customParameters = { };
 	customParameterForm: FormGroup;
 	@Input()
-	set customParameters(customParameters: Array<object>) {
+	set customParameters(customParameters: object) {
 		if (customParameters) {
 			this._customParameters = customParameters;
 		}
 	}
-	@Output() customParametersEvent = new EventEmitter<Array<object>>();
+	@Input()
+	set resetForm(resetForm: boolean) {
+		if (resetForm) {
+			this.customParameterForm.reset();
+		}
+	}
+
+	@Output() customParametersEvent = new EventEmitter<object>();
 
 	constructor() { }
 
@@ -27,20 +34,16 @@ export class CustomInstantiationParametersComponent implements OnInit {
 		});
 	}
 
-	getObjectString(object) {
-		return `${ Object.keys(object)[ 0 ] }:${ object[ Object.keys(object)[ 0 ] ] }`;
-	}
-
 	onAdd() {
 		const key = this.customParameterForm.get('key').value;
 		const value = this.customParameterForm.get('value').value;
-		this._customParameters.push({ [ key ]: value });
+		this._customParameters[ key ] = value;
 		this.customParameterForm.reset();
 		this.fireCustomParametersEvent();
 	}
 
-	eraseParam(param) {
-		this._customParameters = this._customParameters.filter(o => o !== param);
+	eraseParam(item) {
+		delete this._customParameters[ item.key ];
 		this.fireCustomParametersEvent();
 	}
 

@@ -16,7 +16,7 @@ interface InstantiationParameter {
 	slaID?: string;
 	slaName?: string;
 	vimID?: string;
-	customParameters?: Array<object>;
+	customParameters?: object;
 }
 
 @Component({
@@ -27,6 +27,7 @@ interface InstantiationParameter {
 })
 export class SliceInstanceCreateComponent implements OnInit {
 	@ViewChild('napListComponent') napListComponent;
+	@ViewChild('customParametersComponent') customParametersComponent;
 	loading: boolean;
 	step = 'intro';
 	instantiationForm: FormGroup;
@@ -63,7 +64,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 				nsName: ns[ 'nsdName' ],
 				egresses: new Array<LocationNap>(),
 				ingresses: new Array<LocationNap>(),
-				customParameters: new Array<object>(),
+				customParameters: new Object(),
 			});
 		});
 	}
@@ -111,8 +112,8 @@ export class SliceInstanceCreateComponent implements OnInit {
 			: this.instantiationParameters[ this.networkServiceIterator ].egresses = listObject.list;
 	}
 
-	receiveCustomParameters(list) {
-		this.instantiationParameters[ this.networkServiceIterator ].customParameters = list;
+	receiveCustomParameters(params) {
+		this.instantiationParameters[ this.networkServiceIterator ].customParameters = params;
 	}
 
 	receiveSlaPerNS(slaUUID) {
@@ -153,6 +154,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 		this.vimValue = this.instantiationParameters[ this.networkServiceIterator ].vimID;
 		this.slaValue = this.instantiationParameters[ this.networkServiceIterator ].slaID;
 		this.napListComponent.resetForm = true;
+		this.customParametersComponent.resetForm = true;
 	}
 
 	canShowLoading() {
@@ -187,7 +189,7 @@ export class SliceInstanceCreateComponent implements OnInit {
 			if (item.egresses.length) {
 				mappedObject[ 'egresses' ] = item.egresses.map(o => ({ location: o.location, nap: o.nap }));
 			}
-			if (item.customParameters && item.customParameters.length) {
+			if (item.customParameters && Object.keys(item.customParameters).length) {
 				mappedObject[ 'params' ] = item.customParameters;
 			}
 			if (Object.keys(mappedObject).length) {

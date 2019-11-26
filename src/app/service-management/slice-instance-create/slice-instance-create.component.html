@@ -50,7 +50,7 @@
 		(selectEvent)="receiveVimPerNS($event)" i18n-placeholder="@@selectVimPlaceholder">
 	</app-select>
 
-	<app-custom-instantiation-parameters [customParameters]="getCustomParameters()"
+	<app-custom-instantiation-parameters #customParametersComponent [customParameters]="getCustomParameters()"
 		(customParametersEvent)="receiveCustomParameters($event)">
 	</app-custom-instantiation-parameters>
 </mat-dialog-content>
