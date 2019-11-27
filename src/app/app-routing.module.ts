@@ -27,7 +27,7 @@ import { TestPlanListComponent } from './validation-and-verification/test-plan-l
 import { TestPlanComponent } from './validation-and-verification/test-plan/test-plan.component';
 import { TestsComponent } from './validation-and-verification/tests/tests.component';
 import { TestsDetailComponent } from './validation-and-verification/tests-detail/tests-detail.component';
-import { VnvNetworkServicesComponent } from './/validation-and-verification/vnv-network-services/vnv-network-services.component';
+import { VnvNetworkServicesComponent } from './validation-and-verification/vnv-network-services/vnv-network-services.component';
 import {
 	VnvNetworkServicesDetailComponent
 } from './validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component';
@@ -76,6 +76,12 @@ import {
 import { LicenceListComponent } from './service-management/license-list/license-list.component';
 import { LicenceDetailComponent } from './service-management/license-detail/license-detail.component';
 
+// SDK imports
+import { MainPageComponent } from './sdk/main-page/main-page.component';
+import { DescriptorGeneratorComponent } from './sdk/descriptor-generator/descriptor-generator.component';
+import { DescriptorDisplayerComponent } from './sdk/descriptor-displayer/descriptor-displayer.component';
+
+
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
 	// Use authGuard module to authenticate user in every step
@@ -83,7 +89,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent, canActivate: [ AuthGuard ] },
+	{ path: 'registered', component: RegisteredComponent , canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
@@ -258,6 +264,12 @@ const routes: Routes = [
 				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
 			},
+
+			// SDK
+			{ path: 'sdk', component: MainPageComponent },
+			{ path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
+			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent },
+
 			// No match in the route sends the user to dashboard again
 			{ path: '**', redirectTo: 'dashboard' }
 		]

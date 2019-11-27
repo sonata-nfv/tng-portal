@@ -59,6 +59,11 @@ export class ConfigService extends Config {
 	analyticMonitoringMetrics = 'analytics/tests/vnv/';
 	analyticProcessExecution = 'analytics/analytic_service';
 
+	// IP of SDK backend container
+	baseSDK = 'https://' + window.location.hostname;
+	// baseSDK = 'https://pre-int-sp-ath.5gtango.eu';
+	// baseSDK = 'http://192.168.99.100';
+
 	private configFile = './config.json';
 
 	constructor(private http: HttpClient) {

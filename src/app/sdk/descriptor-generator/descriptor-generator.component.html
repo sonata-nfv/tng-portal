@@ -1,0 +1,59 @@
+<h3 class="title3 header-section-name">Create new NFV project</h3>
+
+<form class="title-section">
+	<div class="header-buttons">
+		<button class="edit-options cancel" (click)="close()" i18n="@@cancelButton">CANCEL</button>
+	</div>
+</form>
+
+
+<form class="template-form">
+	<div class="form-header">
+		<h2 class="title2">Project Information for Descriptor Generation</h2>
+<!--		<span class="status" [ngClass]="isEmpty? 'status' : disabledButton? 'status-error' : 'status-no-error'"></span>-->
+	</div>
+
+	<mat-form-field>
+		<label>
+			<input matInput [(ngModel)]="project.name" name="service" placeholder="Service Name"/>
+		</label>
+	</mat-form-field>
+
+	<mat-form-field>
+		<label>
+			<input matInput [(ngModel)]="project.author" name="author" placeholder="Author"/>
+		</label>
+	</mat-form-field>
+
+	<mat-form-field>
+		<label>
+			<input matInput [(ngModel)]="project.vendor" name="vendor" placeholder="Vendor"/>
+		</label>
+	</mat-form-field>
+
+	<div class="description">
+		<div class="description-title">
+			<h4 class="title4">Description</h4>
+		</div>
+		<mat-form-field class="description">
+			<label>
+				<textarea matInput [(ngModel)]="project.description" name="description" class="content" type="text">
+				</textarea>
+			</label>
+		</mat-form-field>
+	</div>
+
+	<div>
+		Num. VNFs:
+		<mat-form-field class="num-vnfs">
+			<label>
+				<input matInput [(ngModel)]="project.numVnfs" name="numVnfs" required/>
+			</label>
+		</mat-form-field>
+	</div>
+
+	<div class="button-container">
+		<button mat-button class="basic-button button-shadow next" (click)="createService()">Generate</button>
+	</div>
+
+</form>

@@ -1,0 +1,78 @@
+#  Copyright (c) 2015 SONATA-NFV, 5GTANGO, UBIWHERE, Paderborn University
+# ALL RIGHTS RESERVED.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Neither the name of the SONATA-NFV, 5GTANGO, UBIWHERE, Paderborn University
+# nor the names of its contributors may be used to endorse or promote
+# products derived from this software without specific prior written
+# permission.
+#
+# This work has been performed in the framework of the SONATA project,
+# funded by the European Commission under Grant number 671517 through
+# the Horizon 2020 and 5G-PPP programmes. The authors would like to
+# acknowledge the contributions of their colleagues of the SONATA
+# partner consortium (www.sonata-nfv.eu).
+#
+# This work has also been performed in the framework of the 5GTANGO project,
+# funded by the European Commission under Grant number 761493 through
+# the Horizon 2020 and 5G-PPP programmes. The authors would like to
+# acknowledge the contributions of their colleagues of the SONATA
+# partner consortium (www.5gtango.eu).
+
+# build with "docker build -f Dockerfile-sdk-portal-backend -t sonatanfv/tng-sdk-portal-backend ."
+# run with "docker run -it -p 5098:5098 -p 8888:8888 --rm sonatanfv/tng-sdk-portal-backend"
+
+
+FROM python:3.6-slim
+MAINTAINER 5GTANGO
+
+# essential tooling
+RUN apt-get update && \
+    apt-get install -y \
+    gnupg2 \
+    curl
+
+# install latest nodejs
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+
+# install basics
+RUN apt-get install -y \
+    nodejs \
+    openssh-client \
+    git \
+    build-essential
+
+# create mount dir
+RUN mkdir /home/sdk
+WORKDIR /home/sdk
+
+# install jupyter lab
+RUN pip install jupyterlab
+#RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+# install sdk tools
+# no-cache from here on: simply change arg value to avoid caching
+ARG CACHEBUST=0
+RUN pip install git+https://github.com/sonata-nfv/tng-sdk-project.git
+RUN pip install git+https://github.com/sonata-nfv/tng-sdk-validation.git
+RUN pip install git+https://github.com/sonata-nfv/tng-sdk-package.git
+
+EXPOSE 5098
+EXPOSE 8888
+
+# add start script and start
+ARG CACHEBUST2=1
+ADD start-sdk-portal-backend.sh start-sdk-portal-backend.sh
+RUN chmod +x start-sdk-portal-backend.sh
+CMD ./start-sdk-portal-backend.sh

@@ -1,0 +1,31 @@
+@import "../../../constants.scss";
+
+.button-row button,
+.button-row a {
+	margin-right: 8px;
+	margin-top: 10px;
+}
+
+.button-container {
+	.cancel, .next {
+		font-size: 18px;
+		margin-left: 1vw;
+		margin-right: 1vw;
+		color: $button-basic-font-color;
+		border-radius: 3%;
+	}
+
+	.cancel {
+		background-color: $button-close-color;
+	}
+
+	.next {
+		background-color: $primary-button-color;
+	}
+
+	.cancel:disabled,
+	.next:disabled,
+	.next[disabled]{
+		background-color: $secondary-button-color;
+	}
+}

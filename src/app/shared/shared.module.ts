@@ -19,6 +19,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { FunctionsComponent } from './components/functions/functions.component';
 import { FeatureAvailableDirective } from './directives/feature-available.directive';
 import { TrimFormValuesDirective } from './directives/trimFormValues.directive';
+import { ControlsValidatorDirective } from './utils/controls-validator';
 
 export function initConfiguration(configService: ConfigService): Function {
 	return () => configService.init();
@@ -33,7 +34,8 @@ export function initConfiguration(configService: ConfigService): Function {
 		SpinnerComponent,
 		FunctionsComponent,
 		FeatureAvailableDirective,
-		TrimFormValuesDirective
+		TrimFormValuesDirective,
+		ControlsValidatorDirective
 	],
 	entryComponents: [ DialogComponent ],
 	imports: [
@@ -51,7 +53,8 @@ export function initConfiguration(configService: ConfigService): Function {
 		SpinnerComponent,
 		FunctionsComponent,
 		FeatureAvailableDirective,
-		TrimFormValuesDirective
+		TrimFormValuesDirective,
+		ControlsValidatorDirective
 	],
 	providers: [
 		ConfigService,

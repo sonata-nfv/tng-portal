@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../authentication/auth.service';
 import { UtilsService } from '../shared/services/common/utils.service';
+import { ConfigService } from '../shared/services/config/config.service';
 
 @Component({
 	selector: 'app-menu',
@@ -23,6 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 	@ViewChild('sidenav')
 	sideNav: MatSidenav;
 	constructor(
+		private config: ConfigService,
 		private authService: AuthService,
 		private utilsService: UtilsService,
 		private router: Router
@@ -81,6 +83,10 @@ export class MenuComponent implements OnInit, OnDestroy {
 			case 'service-management':
 				this.section = 'sm-network-services';
 				this.router.navigate([ 'service-management' ]);
+				break;
+			case 'sdk':
+				this.section = 'sdk';
+				this.router.navigate(['/sdk']);
 				break;
 			default:
 				this.router.navigate([ '/dashboard' ]);
@@ -150,6 +156,16 @@ export class MenuComponent implements OnInit, OnDestroy {
 				break;
 			case 'sm-licenses':
 				this.router.navigate([ 'service-management/licenses' ]);
+				break;
+			case 'sdk-generator':
+				this.router.navigate(['sdk/descriptor-generator']);
+				break;
+			case 'sdk-edit':
+				this.router.navigate(['sdk/descriptor-displayer']);
+				break;
+			case 'sdk-jupyter':
+				// open a new tab with the jupyter lab to show all available projects
+				window.open(this.config.baseSDK + '/tng-lab/lab/tree/projects', '_blank');
 				break;
 		}
 		this.section = buttonId;

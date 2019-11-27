@@ -56,6 +56,12 @@
 				<i class="wui wui-table-alt"></i>
 				<span i18n="@@sm">Service management</span>
 			</button>
+
+			<button class="basic-button" [ngClass]="{ active: menu === 'sdk' }"
+					(click)="setMenu($event, 'sdk')" appIfFeatureAvailable="sdk">
+				<i class="wui wui-folder-plus"></i>
+				<span>SDK</span>
+			</button>
 		</div>
 
 		<div class="logo"></div>
@@ -73,6 +79,15 @@
 			<button class="basic-button" [ngClass]="{ active: section === 'wim' }" (click)="setSection($event, 'wim')" i18n="@@wim">
 				WIM
 			</button>
+		</div>
+
+		<div class="options" *ngIf="menu === 'sdk'">
+			<button class="basic-button" [ngClass]="{ active: section === 'sdk-generator' }"
+					(click)="setSection($event, 'sdk-generator')">New Project</button>
+			<button class="basic-button" [ngClass]="{ active: section === 'sdk-edit' }"
+					(click)="setSection($event, 'sdk-edit')">Generated Project</button>
+			<button class="basic-button" [ngClass]="{ active: section === 'sdk-jupyter' }"
+					(click)="setSection($event, 'sdk-jupyter')">All Projects</button>
 		</div>
 
 		<div class="options" *ngIf="menu === 'validation-and-verification'">

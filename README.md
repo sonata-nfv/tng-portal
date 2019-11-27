@@ -132,7 +132,17 @@ The SDK Portal is installed and started similar to the regular 5GTANGO Portal, a
 
 ```bash
 npm install
-ng serve --open
+ng serve
+```
+
+When running a dev server locally, the browser needs to permit CORS to allow the connection to the service platform when on-boarding packages.
+For example, Google Chrome can be started allowing CORS with the following command:
+
+```bash
+# linux
+google-chrome --disable-web-security --user-data-dir=/tmp/chrome
+# windows
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\Users\<username>\tmpChromeSession"
 ```
 
 #### Running in a Docker Container
