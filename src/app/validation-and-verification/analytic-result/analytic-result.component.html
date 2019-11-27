@@ -1,4 +1,10 @@
-<h3 class="title3 header-section-name" *ngIf="detail['id']" i18n="@@analyticResults">Analytic results</h3>
+<div *ngIf="detail['id']" class="header-section">
+	<h3 class="title3 header-section-name" i18n="@@analyticResults">Analytic results</h3>
+	<div class="button-underline">
+		<button class="delete-button" (click)="deleteAnalyticResult()" i18n="@@deleteAnalyticResult">Delete analytic result</button>
+		<div class="underline"></div>
+	</div>
+</div>
 
 <div class="title-section" *ngIf="detail['analyticProcessFriendlyName']">
 	<h1 class="title1 title-section-name">{{ detail['analyticProcessFriendlyName'] }}</h1>

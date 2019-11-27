@@ -47,13 +47,26 @@ export class AnalyticResultComponent implements OnInit {
 		}
 	}
 
+	async deleteAnalyticResult() {
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.deleteAnalyticResult(this.detail[ 'id' ]);
+
+		this.loading = false;
+		if (response) {
+			this.utilsService.openSnackBar('Analytic result successfully removed', '');
+			this.close();
+		} else {
+			this.utilsService.openSnackBar('Unable to remove the analytic result', '');
+		}
+	}
+
 	setURL(url) {
 		try {
 			if (!url) {
 				return;
 			}
 
-			const finalUrl = url.replace('http://tng-analytics-rserver/', `${ this.config.baseVNV }ranalytics/`);
+			const finalUrl = `${ this.config.baseVNV }${ this.config.analyticResult }${ url }`;
 			this.htmlResult.nativeElement.src = finalUrl;
 			this.htmlResult.nativeElement.style.display = '';
 		} catch (error) {

@@ -51,11 +51,12 @@ import { ServiceManagementModule } from './service-management/service-management
 import { PlatformsModule } from './platforms/platforms.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { SdkModule } from './sdk/sdk.module';
 
 @NgModule({
-	declarations: [AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent],
+	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent, PageNotFoundComponent ],
 	imports: [
 		BrowserAnimationsModule,
 		AppRoutingModule,

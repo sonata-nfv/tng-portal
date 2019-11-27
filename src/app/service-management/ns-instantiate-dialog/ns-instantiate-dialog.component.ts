@@ -23,7 +23,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 	ingress = new Array<LocationNap>();
 	egress = new Array<LocationNap>();
 	blacklist = new Array<LocationNap>();
-	customParameters: Array<object>;
+	customParameters: object;
 
 	constructor(
 		private utilsService: UtilsService,
@@ -128,7 +128,7 @@ export class NsInstantiateDialogComponent implements OnInit {
 			sla_id: this.instantiationForm.get('sla').value || ''
 		};
 
-		if (this.customParameters && this.customParameters.length) {
+		if (this.customParameters && Object.keys(this.customParameters).length) {
 			body[ 'params' ] = this.customParameters;
 		}
 

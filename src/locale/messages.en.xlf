@@ -658,7 +658,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result-list/analytic-result-list.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages/sp-packages.component.html</context>
@@ -1391,7 +1391,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="networkSlices" datatype="html">
@@ -1773,6 +1773,13 @@
           <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="pageNotFound" datatype="html">
+        <source>Page not found</source><target state="final">Page not found</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/page-not-found/page-not-found.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="platforms" datatype="html">
         <source>Platforms</source><target state="final">Platforms</target>
         <context-group purpose="location">
@@ -1858,6 +1865,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/wim-list/wim-list.component.html</context>
           <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/analytic-result-list/analytic-result-list.component.html</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/runtime-policy-detail/runtime-policy-detail.component.html</context>
@@ -1988,7 +1999,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -2035,7 +2046,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
@@ -2305,15 +2316,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-packages-detail/sp-packages-detail.component.html</context>
@@ -2631,7 +2642,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="testName" datatype="html">
@@ -2765,7 +2776,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="testPlaceholder" datatype="html">
@@ -2776,7 +2787,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="serviceIDPlaceholder" datatype="html">
@@ -2841,7 +2852,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-platform/sp-network-services-detail/sp-network-services-detail.component.html</context>
@@ -2968,7 +2979,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="startedAtPlaceholder" datatype="html">
@@ -3127,7 +3138,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">76</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
@@ -3367,32 +3378,39 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="deleteAnalyticResult" datatype="html">
+        <source>Delete analytic result</source><target state="final">Delete analytic result</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="analyticProcessIDPlaceholder" datatype="html">
         <source>Analytic process ID</source><target state="final">Analytic process ID</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="analyticServiceNamePlaceholder" datatype="html">
         <source>Analytic service name</source><target state="final">Analytic service name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="executedAtPlaceholder" datatype="html">
         <source>Executed at</source><target state="final">Executed at</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="executionMessage" datatype="html">
         <source>Execution message</source><target state="final">Execution message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createdAt" datatype="html">
@@ -3619,7 +3637,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4617,13 +4635,6 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="nsiNamePlaceholder" datatype="html">
-        <source>NSI Name</source><target state="final">NSI Name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="nextButton" datatype="html">
         <source>
 			NEXT
@@ -4632,11 +4643,11 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4651,11 +4662,11 @@
         <source>BACK</source><target state="final">BACK</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">84</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -4666,6 +4677,13 @@
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="nsiNamePlaceholder" datatype="html">
+        <source>NSI Name</source><target state="final">NSI Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="instantiateButton" datatype="html">
         <source>
 			INSTANTIATE
@@ -4674,7 +4692,7 @@
 		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/ns-instantiate-dialog/ns-instantiate-dialog.component.html</context>
@@ -5039,21 +5057,21 @@
         <source>Parameter name</source><target state="final">Parameter name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="parameterValuePlaceholder" datatype="html">
         <source>Parameter value</source><target state="final">Parameter value</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addNewCustomParameter" datatype="html">
         <source> Add new custom parameter</source><target state="final"> Add new custom parameter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/service-management/custom-instantiation-parameters/custom-instantiation-parameters.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="numberOfInstances" datatype="html">
