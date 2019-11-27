@@ -375,7 +375,7 @@ export class ValidationAndVerificationPlatformService {
 	 */
 	async deleteAnalyticResult(uuid) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.analyticResult + uuid;
+		const url = this.config.baseVNV + this.config.analyticsResult + uuid;
 
 		try {
 			const response = await this.http.delete(url, { headers: headers }).toPromise();

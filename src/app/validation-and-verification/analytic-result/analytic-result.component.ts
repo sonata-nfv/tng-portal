@@ -66,7 +66,7 @@ export class AnalyticResultComponent implements OnInit {
 				return;
 			}
 
-			const finalUrl = url.replace('http://tng-analytics-rserver/', `${ this.config.baseVNV }ranalytics/`);
+			const finalUrl = `${ this.config.baseVNV }${ this.config.analyticResult }${ url }`;
 			this.htmlResult.nativeElement.src = finalUrl;
 			this.htmlResult.nativeElement.style.display = '';
 		} catch (error) {
