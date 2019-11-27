@@ -81,6 +81,7 @@ import { MainPageComponent } from './sdk/main-page/main-page.component';
 import { DescriptorGeneratorComponent } from './sdk/descriptor-generator/descriptor-generator.component';
 import { DescriptorDisplayerComponent } from './sdk/descriptor-displayer/descriptor-displayer.component';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
 	// Redirect to login while there is no dashboard/menu to display
@@ -264,16 +265,14 @@ const routes: Routes = [
 				canActivate: [ CanDisplayGuard ], data: { section: 'service management' },
 				children: [ { path: ':id', component: LicenceDetailComponent } ]
 			},
-
 			// SDK
 			{ path: 'sdk', component: MainPageComponent },
 			{ path: 'sdk/descriptor-generator', component: DescriptorGeneratorComponent },
 			{ path: 'sdk/descriptor-displayer', component: DescriptorDisplayerComponent },
-
-			// No match in the route sends the user to dashboard again
-			{ path: '**', redirectTo: 'dashboard' }
 		]
-	}
+	},
+	// No match in the route sends the user to dashboard again
+	{ path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
