@@ -307,8 +307,8 @@ export class ValidationAndVerificationPlatformService {
 	async getAnalyticResults(search?) {
 		const headers = this.authService.getAuthHeaders();
 		const url = search ?
-			this.config.baseVNV + this.config.analyticResults + search
-			: this.config.baseVNV + this.config.analyticResults;
+			this.config.baseVNV + this.config.analyticResultList + search
+			: this.config.baseVNV + this.config.analyticResultList;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -340,7 +340,7 @@ export class ValidationAndVerificationPlatformService {
 	 */
 	async getAnalyticResult(id) {
 		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseVNV + this.config.analyticResults + `?result_id=${ id }`;
+		const url = this.config.baseVNV + this.config.analyticResultList + `?result_id=${ id }`;
 
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
@@ -359,6 +359,27 @@ export class ValidationAndVerificationPlatformService {
 					'otherResults': response[ 'results' ] && response[ 'results' ].length ?
 						response[ 'results' ].filter(item => item.type !== 'html') : []
 				} : { };
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Remove the analytic result from database
+	 *
+	 * @param uuid Unique identifier of the analytic result
+	 */
+	async deleteAnalyticResult(uuid) {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.analyticResult + uuid;
+
+		try {
+			const response = await this.http.delete(url, { headers: headers }).toPromise();
+			return response;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

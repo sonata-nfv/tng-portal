@@ -14,7 +14,7 @@ import { UtilsService } from '../../shared/services/common/utils.service';
 export class AnalyticResultListComponent implements OnInit, OnDestroy {
 	loading: boolean;
 	results = new Array();
-	displayedColumns = [ 'name', 'test', 'testResult', 'serviceName', 'status', 'executionDate' ];
+	displayedColumns = [ 'name', 'test', 'testResult', 'serviceName', 'status', 'executionDate', 'delete' ];
 	subscription: Subscription;
 
 	constructor(
@@ -48,13 +48,6 @@ export class AnalyticResultListComponent implements OnInit, OnDestroy {
 		this.requestAnalyticResults(search);
 	}
 
-	/**
-     * Generates the HTTP request to get the list of analytic results.
-     *
-     * @param search [Optional] Attributes that
-     *                          must be matched by the returned
-     *                          list of results.
-     */
 	async requestAnalyticResults(search?) {
 		this.loading = true;
 		const response = await this.verificationAndValidationPlatformService.getAnalyticResults(search);
@@ -65,6 +58,16 @@ export class AnalyticResultListComponent implements OnInit, OnDestroy {
 		} else {
 			this.utilsService.openSnackBar('Unable to fetch any analytic result', '');
 		}
+	}
+
+	async deleteAnalyticResult(uuid) {
+		this.loading = true;
+		const response = await this.verificationAndValidationPlatformService.deleteAnalyticResult(uuid);
+
+		this.loading = false;
+		response ?
+			this.utilsService.openSnackBar('Analytic result successfully removed', '')
+			: this.utilsService.openSnackBar('Unable to remove the analytic result', '');
 	}
 
 	createNew() {
