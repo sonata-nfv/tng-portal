@@ -6,6 +6,7 @@ import { NsInstantiateDialogComponent } from '../ns-instantiate-dialog/ns-instan
 
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
+import { ServiceManagementService } from '../service-management.service';
 
 @Component({
 	selector: 'app-sm-network-services-detail',
@@ -16,29 +17,27 @@ import { CommonService } from '../../shared/services/common/common.service';
 export class SmNetworkServicesDetailComponent implements OnInit {
 	loading: boolean;
 	detail = { };
-	displayedColumns = [ 'id', 'vendor', 'name', 'version' ];
+	slas: Array<object>;
+	displayedColumnsVNF = [ 'id', 'vendor', 'name', 'version' ];
+	displayedColumnsSLA = [ 'vendor', 'name', 'version', 'flavor', 'allowedInstances', 'licenseType' ];
 
 	constructor(
 		private utilsService: UtilsService,
 		private commonService: CommonService,
 		private router: Router,
 		private route: ActivatedRoute,
-		private instantiateDialog: MatDialog
+		private instantiateDialog: MatDialog,
+		private serviceManagementService: ServiceManagementService,
 	) { }
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
 			const uuid = params[ 'id' ];
 			this.requestNS(uuid);
+			this.requestSLAs(uuid);
 		});
 	}
 
-	/**
-     * Generates the HTTP request of a NS by UUID.
-     *
-     * @param uuid ID of the selected NS to be displayed.
-     *             Comming from the route.
-     */
 	async requestNS(uuid) {
 		this.loading = true;
 		const response = await this.commonService.getOneNetworkService('sm', uuid);
@@ -50,6 +49,16 @@ export class SmNetworkServicesDetailComponent implements OnInit {
 			this.utilsService.openSnackBar('Unable to fetch the network service', '');
 			this.close();
 		}
+	}
+
+	async requestSLAs(uuid) {
+		this.loading = true;
+		const slas = await this.serviceManagementService.getSlasForService(uuid);
+
+		this.loading = false;
+		slas ?
+			this.slas = slas
+			: this.utilsService.openSnackBar('Unable to fetch any SLA for this network service', '');
 	}
 
 	instantiate() {
@@ -71,6 +80,10 @@ export class SmNetworkServicesDetailComponent implements OnInit {
 
 	copyToClipboard(value) {
 		this.utilsService.copyToClipboard(value);
+	}
+
+	openSLA(uuid) {
+		this.router.navigate([ 'service-platform/slas/sla-templates/', uuid ]);
 	}
 
 	close() {

@@ -145,8 +145,36 @@ export class ServiceManagementService {
 
 			console.error(error);
 		}
+	}
 
+	/**
+	 * Retrieves the list of SLAs for a network service by UUID
+	 *
+	 * @param uuid UUID of the desired network service.
+	 */
+	async getSlasForService(uuid) {
+		const headers = this.authService.getAuthHeadersContentTypeJSON();
+		const url = this.config.baseSP + this.config.slaTemplatesForService + uuid;
 
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response[ 'slas' ] instanceof Array ?
+				response[ 'slas' ].map(sla => ({
+					uuid: sla.uuid,
+					name: sla.name,
+					version: sla.version,
+					vendor: sla.vendor,
+					flavor: sla.d_flavor || this.unknown,
+					allowedInstances: sla.allowed_instances,
+					licenseType: sla.license_type,
+				})) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
 	}
 
 	/**
