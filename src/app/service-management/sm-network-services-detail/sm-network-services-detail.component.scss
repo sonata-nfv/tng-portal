@@ -18,8 +18,7 @@ app-sm-network-services-detail {
 	form {
 		width: 55vw;
 		margin-top: 2vh;
-		margin-bottom: 5vh;
-
+		
 		.left-column, 
 		.same-row .left-column.mat-form-field {
 			width: 25vw;
@@ -30,27 +29,38 @@ app-sm-network-services-detail {
 		.same-row .right-column.mat-form-field {
 			width: 20vw;
 		}
+	}
+		
+	.description {
+		width: 55vw;
+		margin-top: 2vh;
+	}
 
-		.mat-table {
-			width: 100%;
-			overflow-x: hidden;  
+	.vnf {
+		display: flex;
+		flex-direction: column;
+		width: 55vw;
+		margin-top: 5vh;
+		margin-bottom: 10vh;
+	}
+	
+	.sla {
+		width: 55vw;
+		margin-bottom: 10vh;
+	}
+
+	.mat-table {
+		overflow-x: hidden;  
 			
-			td.mat-cell {
-				cursor: auto;
-			} 
-		}
+		td.mat-cell {
+			cursor: auto;
+		} 
+	}
 
-		// Styles for no vnfs message
-		.vnf {
-			display: flex;
-			flex-direction: column;
-		}
-
-		// Styles for no vnfs message
-		.no-results-container {
-			align-self: center;
-			width: 80%;
-			margin-top: 7vh;
-		}
+	// Styles for no vnfs message
+	.no-results-container {
+		align-self: center;
+		width: 80%;
+		margin-top: 7vh;
 	}
 }
