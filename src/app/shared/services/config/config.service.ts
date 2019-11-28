@@ -54,6 +54,7 @@ export class ConfigService extends Config {
 	platformSettings = 'settings/platforms';
 	graphs = 'monitoring/graphs';
 	monitoringData = 'monitoring/data/services';
+	monitoringMetricsByName = 'monitoring/data/prometheus/metrics/name/';
 	monitoringTargets = 'monitoring/data/prometheus/targets';
 	analyticsResult = 'analytics/results/';
 	analyticResult = 'analytic/results';

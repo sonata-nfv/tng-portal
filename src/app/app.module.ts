@@ -45,6 +45,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 
 import { AuthenticationModule } from './authentication/authentication.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { ValidationAndVerificationModule } from './validation-and-verification/validation-and-verification.module';
 import { ServicePlatformModule } from './service-platform/service-platform.module';
 import { ServiceManagementModule } from './service-management/service-management.module';
@@ -56,7 +57,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SdkModule } from './sdk/sdk.module';
 
 @NgModule({
-	declarations: [ AppComponent, MenuComponent, IndexComponent, DashboardComponent, UsersComponent, PageNotFoundComponent ],
+	declarations: [ AppComponent, MenuComponent, IndexComponent, UsersComponent, PageNotFoundComponent ],
 	imports: [
 		BrowserAnimationsModule,
 		AppRoutingModule,
@@ -64,6 +65,7 @@ import { SdkModule } from './sdk/sdk.module';
 		ReactiveFormsModule,
 		AngularMaterialModule,
 		HttpClientModule,
+		DashboardModule,
 		ValidationAndVerificationModule,
 		ServiceManagementModule,
 		ServicePlatformModule,
@@ -71,9 +73,9 @@ import { SdkModule } from './sdk/sdk.module';
 		SettingsModule,
 		SharedModule,
 		AuthenticationModule,
-		SdkModule
+		SdkModule,
 	],
-	providers: [{ provide: LOCALE_ID, useValue: 'en' }],
-	bootstrap: [AppComponent]
+	providers: [ { provide: LOCALE_ID, useValue: 'en' } ],
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }
