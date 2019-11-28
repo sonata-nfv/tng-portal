@@ -52,7 +52,7 @@ app-sm-network-services-detail {
 	.mat-table {
 		overflow-x: hidden;  
 			
-		td.mat-cell {
+		&.vnf-table td.mat-cell {
 			cursor: auto;
 		} 
 	}

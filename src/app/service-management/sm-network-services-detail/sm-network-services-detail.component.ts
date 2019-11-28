@@ -82,6 +82,10 @@ export class SmNetworkServicesDetailComponent implements OnInit {
 		this.utilsService.copyToClipboard(value);
 	}
 
+	openSLA(uuid) {
+		this.router.navigate([ 'service-platform/slas/sla-templates/', uuid ]);
+	}
+
 	close() {
 		this.router.navigate([ '../' ], { relativeTo: this.route });
 	}

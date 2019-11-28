@@ -68,7 +68,7 @@
 <div class="vnf" *ngIf="detail['uuid']">
 	<h2 class="title2" i18n="@@vnfs">VNFs</h2>
 
-	<table mat-table [dataSource]="detail['vnf']">
+	<table class="vnf-table" mat-table [dataSource]="detail['vnf']">
 		<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef i18n="@@id">ID</th>
 			<td mat-cell *matCellDef="let element">{{ element.vnf_id }}</td>
@@ -135,7 +135,7 @@
 		</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumnsSLA"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumnsSLA"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumnsSLA" (click)="openSLA(row.uuid)"></tr>
 	</table>
 </div>
 
