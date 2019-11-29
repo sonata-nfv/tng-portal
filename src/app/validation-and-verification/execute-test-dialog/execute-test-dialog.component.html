@@ -5,8 +5,11 @@
 
 <mat-dialog-content>
 	<form [formGroup]="testExecutionForm" class="test-execution-form">
-		<p i18n="@@optionallyChoosePolicyOrHost">
-			You can optionally choose the policy to be applied to your test, if any, or the host where it will be executed.
+		<p *ngIf="canShowPolicies()" i18n="@@optionallyChoosePolicyOrHost">
+			You can optionally choose the policy to be applied to your test or the host where it will be executed.
+		</p>
+		<p *ngIf="!canShowPolicies()" i18n="@@optionallyChooseHost">
+			You can optionally choose the host where it will be executed.
 		</p>
 
 		<app-select *ngIf="canShowPolicies()" class="select" placeholder="Policy" [list]="policies" (selectEvent)="receivePolicy($event)"

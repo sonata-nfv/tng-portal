@@ -70,7 +70,7 @@ export class TestsDetailComponent implements OnInit {
 
 	execute() {
 		this.executeTestDialog.open(ExecuteTestDialogComponent, {
-			data: { section: 'tests', uuid: this.detail[ 'uuid' ], name: this.detail[ 'name' ] }
+			data: { section: 'tests', uuid: this.detail[ 'uuid' ], name: this.detail[ 'name' ], policiesEnabled: false }
 		});
 	}
 

@@ -6,6 +6,13 @@ import { Router } from '@angular/router';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 
+interface InputData {
+	section: string;
+	uuid: string;
+	name: string;
+	policiesEnabled: boolean;
+}
+
 @Component({
 	selector: 'app-execute-test-dialog',
 	templateUrl: './execute-test-dialog.component.html',
@@ -21,13 +28,15 @@ export class ExecuteTestDialogComponent implements OnInit {
 		private router: Router,
 		private utilsService: UtilsService,
 		public dialogRef: MatDialogRef<ExecuteTestDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any,
+		@Inject(MAT_DIALOG_DATA) public data: InputData,
 		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
 	) { }
 
 	ngOnInit() {
 		this.initForms();
-		this.getData();
+		if (this.data.policiesEnabled) {
+			this.getPolicies();
+		}
 	}
 
 	private initForms() {
@@ -39,7 +48,7 @@ export class ExecuteTestDialogComponent implements OnInit {
 		});
 	}
 
-	private async getData() {
+	private async getPolicies() {
 		this.loading = true;
 		const policies = await this.verificationAndValidationPlatformService.getTestPlansPolicies();
 
@@ -82,7 +91,7 @@ export class ExecuteTestDialogComponent implements OnInit {
 	}
 
 	canShowPolicies() {
-		return this.policies && this.policies.length;
+		return this.policies && this.policies.length && this.data.policiesEnabled;
 	}
 
 	close() {

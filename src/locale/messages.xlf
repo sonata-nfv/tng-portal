@@ -1539,6 +1539,13 @@
           <context context-type="linenumber">220</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="pageNotFound" datatype="html">
+        <source>Page not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/page-not-found/page-not-found.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="platformMetrics" datatype="html">
         <source>Platform metrics</source>
         <context-group purpose="location">
@@ -1718,13 +1725,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">192</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="pageNotFound" datatype="html">
-        <source>Page not found</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/page-not-found/page-not-found.component.html</context>
-          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="platforms" datatype="html">
@@ -1916,7 +1916,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">36</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-process-create/analytic-process-create.component.html</context>
@@ -2955,25 +2955,34 @@
       </trans-unit>
       <trans-unit id="optionallyChoosePolicyOrHost" datatype="html">
         <source>
-			You can optionally choose the policy to be applied to your test, if any, or the host where it will be executed.
+			You can optionally choose the policy to be applied to your test or the host where it will be executed.
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="optionallyChooseHost" datatype="html">
+        <source>
+			You can optionally choose the host where it will be executed.
+		</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="policyPlaceholder" datatype="html">
         <source>Policy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="executionHostPlaceholder" datatype="html">
         <source>Execution host</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="confirmRequiredInTestExecution" datatype="html">
@@ -2983,14 +2992,14 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createPlanButton" datatype="html">
         <source>CREATE PLAN</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/execute-test-dialog/execute-test-dialog.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="createdBy" datatype="html">

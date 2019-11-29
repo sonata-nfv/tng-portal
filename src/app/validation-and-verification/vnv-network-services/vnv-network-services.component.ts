@@ -73,7 +73,7 @@ export class VnvNetworkServicesComponent implements OnInit, OnDestroy {
 
 	execute(ns) {
 		this.executeTestDialog.open(ExecuteTestDialogComponent, {
-			data: { section: 'ns', uuid: ns.uuid, name: ns.name }
+			data: { section: 'ns', uuid: ns.uuid, name: ns.name, policiesEnabled: true }
 		});
 	}
 

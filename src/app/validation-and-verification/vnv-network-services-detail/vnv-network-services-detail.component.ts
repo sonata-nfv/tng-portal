@@ -48,7 +48,7 @@ export class VnvNetworkServicesDetailComponent implements OnInit {
 
 	execute() {
 		this.executeTestDialog.open(ExecuteTestDialogComponent, {
-			data: { section: 'ns', uuid: this.detail[ 'uuid' ], name: this.detail[ 'name' ] }
+			data: { section: 'ns', uuid: this.detail[ 'uuid' ], name: this.detail[ 'name' ], policiesEnabled: true }
 		});
 	}
 

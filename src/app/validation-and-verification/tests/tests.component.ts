@@ -73,7 +73,7 @@ export class TestsComponent implements OnInit, OnDestroy {
 
 	execute(test) {
 		this.executeTestDialog.open(ExecuteTestDialogComponent, {
-			data: { section: 'tests', uuid: test.uuid, name: test.name }
+			data: { section: 'tests', uuid: test.uuid, name: test.name, policiesEnabled: false }
 		});
 	}
 
