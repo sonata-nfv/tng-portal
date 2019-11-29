@@ -264,7 +264,8 @@ export class ValidationAndVerificationPlatformService {
 				policies.push({
 					platformName: platform.platform_name,
 					uuid: policy.uuid,
-					name: policy.pld.name
+					name: policy.pld.name,
+					nsUUID: policy.ns_uuid
 				});
 			});
 		});

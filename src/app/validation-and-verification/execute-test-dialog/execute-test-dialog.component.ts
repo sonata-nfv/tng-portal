@@ -53,7 +53,9 @@ export class ExecuteTestDialogComponent implements OnInit {
 		const policies = await this.verificationAndValidationPlatformService.getTestPlansPolicies();
 
 		this.loading = false;
-		policies ? this.policies = policies : this.utilsService.openSnackBar('Unable to fetch any policy', '');
+		policies ?
+			this.policies = policies.filter(policy => policy[ 'nsUUID' ] === this.data.uuid)
+			: this.utilsService.openSnackBar('Unable to fetch any policy', '');
 	}
 
 	receivePolicy(uuid) {
