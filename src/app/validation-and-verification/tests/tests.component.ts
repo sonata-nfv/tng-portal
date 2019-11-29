@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
-import { DialogDataService } from '../../shared/services/dialog/dialog.service';
+
+import { ExecuteTestDialogComponent } from '../execute-test-dialog/execute-test-dialog.component';
 
 @Component({
 	selector: 'app-tests',
@@ -23,7 +25,7 @@ export class TestsComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private utilsService: UtilsService,
 		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService,
-		private dialogData: DialogDataService
+		private executeTestDialog: MatDialog
 	) { }
 
 	ngOnInit() {
@@ -70,26 +72,9 @@ export class TestsComponent implements OnInit, OnDestroy {
 	}
 
 	execute(test) {
-		const title = test.name;
-		const content = 'Do you want to automatically execute the test? \
-						Otherwise, the tests planned will require your manual \
-						confirmation to be run. ';
-		const action = 'Yes';
-		const secondaryAction = 'No';
-
-		this.dialogData.openDialog(title, content, action,
-			() => this.createTestPlans(test.uuid, false),
-			() => this.createTestPlans(test.uuid, true), secondaryAction);
-	}
-
-	async createTestPlans(uuid, confirmRequired) {
-		this.loading = true;
-		const response = await this.verificationAndValidationPlatformService.postTestPlans('tests', uuid, confirmRequired);
-
-		this.loading = false;
-		response ?
-			this.router.navigate([ 'validation-and-verification/test-plans' ])
-			: this.utilsService.openSnackBar('Unable to execute this test', '');
+		this.executeTestDialog.open(ExecuteTestDialogComponent, {
+			data: { section: 'tests', uuid: test.uuid, name: test.name, policiesEnabled: false }
+		});
 	}
 
 	openTest(uuid) {

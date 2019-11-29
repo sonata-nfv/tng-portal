@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
-import { DialogDataService } from '../../shared/services/dialog/dialog.service';
-import { ValidationAndVerificationPlatformService } from '../validation-and-verification.service';
+
+import { ExecuteTestDialogComponent } from '../execute-test-dialog/execute-test-dialog.component';
 
 @Component({
 	selector: 'app-vnv-network-services-detail',
@@ -22,8 +23,7 @@ export class VnvNetworkServicesDetailComponent implements OnInit {
 		private utilsService: UtilsService,
 		private router: Router,
 		private route: ActivatedRoute,
-		private dialogData: DialogDataService,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private executeTestDialog: MatDialog,
 	) { }
 
 	ngOnInit() {
@@ -47,26 +47,9 @@ export class VnvNetworkServicesDetailComponent implements OnInit {
 	}
 
 	execute() {
-		const title = this.detail[ 'name' ];
-		const content = 'Do you want to automatically execute the related tests? \
-						Otherwise, the tests planned will require your manual \
-						confirmation to be run. ';
-		const action = 'Yes';
-		const secondaryAction = 'No';
-
-		this.dialogData.openDialog(title, content, action,
-			() => this.createTestPlans(this.detail[ 'uuid' ], false),
-			() => this.createTestPlans(this.detail[ 'uuid' ], true), secondaryAction);
-	}
-
-	async createTestPlans(uuid, confirmRequired) {
-		this.loading = true;
-		const response = await this.verificationAndValidationPlatformService.postTestPlans('ns', uuid, confirmRequired);
-
-		this.loading = false;
-		response ?
-			this.router.navigate([ 'validation-and-verification/test-plans' ])
-			: this.utilsService.openSnackBar('Unable to execute this test', '');
+		this.executeTestDialog.open(ExecuteTestDialogComponent, {
+			data: { section: 'ns', uuid: this.detail[ 'uuid' ], name: this.detail[ 'name' ], policiesEnabled: true }
+		});
 	}
 
 	copyToClipboard(value) {

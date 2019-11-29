@@ -20,6 +20,7 @@ import { VnvNetworkServicesDetailComponent } from './vnv-network-services-detail
 import { AnalyticResultListComponent } from './analytic-result-list/analytic-result-list.component';
 import { AnalyticProcessCreateComponent } from './analytic-process-create/analytic-process-create.component';
 import { AnalyticResultComponent } from './analytic-result/analytic-result.component';
+import { ExecuteTestDialogComponent } from './execute-test-dialog/execute-test-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,11 @@ import { AnalyticResultComponent } from './analytic-result/analytic-result.compo
 		VnvNetworkServicesDetailComponent,
 		AnalyticResultListComponent,
 		AnalyticProcessCreateComponent,
-		AnalyticResultComponent
+		AnalyticResultComponent,
+		ExecuteTestDialogComponent,
+	],
+	entryComponents: [
+		ExecuteTestDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -42,7 +47,7 @@ import { AnalyticResultComponent } from './analytic-result/analytic-result.compo
 		FormsModule,
 		NgxJsonViewerModule,
 		AppRoutingModule,
-		SharedModule
+		SharedModule,
 	],
 	providers: [ ValidationAndVerificationPlatformService ]
 })
