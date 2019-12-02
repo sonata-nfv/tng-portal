@@ -4,7 +4,7 @@
 		<div class="same-column dashboard-platform">
 			<h3 class="title3" i18n="@@platformMetrics">Platform metrics</h3>
 
-			<div class="same-row">
+			<div *ngIf="!loading && vimData" class="same-row">
 				<div class="same-column">
 					<iframe class="platform-disk-usage" frameborder="0" [src]="getGraphUrl(8)"></iframe>
 					<div class="same-row">
@@ -17,6 +17,10 @@
 					<iframe class="medium-gauge-graph cpu-usage" frameborder="0" [src]="getGraphUrl(17)"></iframe>
 					<iframe class="medium-gauge-graph memory-usage" frameborder="0" [src]="getGraphUrl(20)"></iframe>
 				</div>
+			</div>
+
+			<div *ngIf="canShowGraphsError()" class="graphs-not-found">
+				<p i18n="@@graphsNotFound">Graphs not found</p>
 			</div>
 		</div>
 
@@ -81,7 +85,7 @@
 		<div class="same-column dashboard-service-alerts">
 			<h3 class="title3" i18n="@@serviceAlerts">Service alerts</h3>
 
-			<iframe class="small-gauge-graph policy-alerts" frameborder="0" [src]="getGraphUrl(26)"></iframe>
+			<iframe *ngIf="!loading && vimData" class="small-gauge-graph policy-alerts" frameborder="0" [src]="getGraphUrl(26)"></iframe>
 			<div class="text-box small">
 				<span class="title" i18n="@@policyAlerts">Policy alerts</span>
 				<span class="number">{{ dashboardData['policyAlerts'] }}</span>
@@ -91,9 +95,13 @@
 		<div class="same-column dashboard-licenses">
 			<h3 class="title3" i18n="@@licenses">Licenses</h3>
 
-			<iframe class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(23)"></iframe>
-			<iframe class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(24)"></iframe>
-			<iframe class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(25)"></iframe>
+			<iframe *ngIf="!loading && vimData" class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(23)"></iframe>
+			<iframe *ngIf="!loading && vimData" class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(24)"></iframe>
+			<iframe *ngIf="!loading && vimData" class="small-gauge-graph" frameborder="0" [src]="getGraphUrl(25)"></iframe>
+
+			<div *ngIf="canShowGraphsError()" class="graphs-not-found">
+				<p i18n="@@graphsNotFound">Graphs not found</p>
+			</div>
 		</div>
 	</div>
 </div>
@@ -104,7 +112,7 @@
 		<div class="same-column dashboard-platform">
 			<h3 class="title3" i18n="@@platformMetrics">Platform metrics</h3>
 
-			<div class="same-row">
+			<div *ngIf="!loading && vimData" class="same-row">
 				<div class="same-column">
 					<iframe class="platform-disk-usage" frameborder="0" [src]="getGraphUrl(8)"></iframe>
 					<div class="same-row">
@@ -117,6 +125,10 @@
 					<iframe class="medium-gauge-graph cpu-usage" frameborder="0" [src]="getGraphUrl(17)"></iframe>
 					<iframe class="medium-gauge-graph memory-usage" frameborder="0" [src]="getGraphUrl(20)"></iframe>
 				</div>
+			</div>
+
+			<div *ngIf="canShowGraphsError()" class="graphs-not-found">
+				<p i18n="@@graphsNotFound">Graphs not found</p>
 			</div>
 		</div>
 
@@ -194,3 +206,5 @@
 		</div>
 	</div>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>
