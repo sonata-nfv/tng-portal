@@ -73,15 +73,18 @@ export class GraphDialogComponent implements OnInit {
 	}
 
 	getGraphUrl() {
-		const functionType = 'CNF_dash/cnf';
+		const functionType = this.data.type === 'vnf' ? 'VNF_sp/vnf' : 'CNF_dash/cnf';
+		const id = this.data.type === 'vnf' ?
+			`var-id=${ this.selectedFunction }&`
+			: `var-cnt_name=${ this.selectedFunction }&`;
 		const panelID = '2';
 
 		return this.sanitizer.bypassSecurityTrustResourceUrl(
-			`${ this.config.baseSP }${ this.config.graphs }/d-solo/${ functionType }?orgId=1&` +
+			`${ this.config.baseSP }${ this.config.graphs }/d/${ functionType }?orgId=1&` +
 			`from=${ this.getMinutesAgo(this.minutes) }&` +
 			`to=${ this.getDate() }&` +
 			`panelId=${ panelID }&` +
-			`var-cnt_name=${ this.selectedFunction }&` +
+			id +
 			`var-metric=${ this.selectedMetric }&` +
 			`theme=light&` +
 			`refresh=${ this.refreshRate }`);

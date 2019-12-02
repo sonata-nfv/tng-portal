@@ -46,7 +46,7 @@ export class VnfRecordDetailComponent implements OnInit {
 	async openMonitoringDialog() {
 		this.graphDialog.open(GraphDialogComponent, {
 			data: {
-				instanceUUID: this._instanceUUID, vnfUUID: this._vnfUUID
+				type: 'vnf', instanceUUID: this._instanceUUID, vnfUUID: this._vnfUUID
 			}
 		});
 	}
