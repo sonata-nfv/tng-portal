@@ -531,5 +531,26 @@ export class ValidationAndVerificationPlatformService {
 			console.error(error);
 		}
 	}
+
+	/**
+     * Retrieves a list of VIMs names.
+     *
+     */
+	async getPlatformNames() {
+		const headers = this.authService.getAuthHeaders();
+		const url = this.config.baseVNV + this.config.platformSettings;
+
+		try {
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			return response instanceof Array ?
+				response.map(item => item.name) : [];
+		} catch (error) {
+			if (error.status === 401 && error.statusText === 'Unauthorized') {
+				this.utilsService.launchUnauthorizedError();
+			}
+
+			console.error(error);
+		}
+	}
 }
 

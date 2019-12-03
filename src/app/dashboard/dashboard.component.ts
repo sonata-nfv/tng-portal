@@ -12,12 +12,14 @@ import { DashboardService } from './dashboard.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
+	loading: boolean;
 	refreshRateGraphs = '10s';
 	dashboardData = { };
 	uptime: string;
 	environment: string;
 	vimData: object;
 	metricName = 'vm_mem_perc';
+	unknown = '-';
 
 	constructor(
 		private sanitizer: DomSanitizer,
@@ -50,10 +52,74 @@ export class DashboardComponent implements OnInit {
 	}
 
 	async getSPDashboardData() {
-		this.dashboardData = await this.commonService.getSPDashboardData();
+		this.loading = true;
+
+		const responses = await Promise.all([
+			this.commonService.getNSTDNumber(),
+			this.commonService.getNSDNumber(),
+			this.commonService.getVNFDNumber(),
+			this.commonService.getRPDNumber(),
+			this.commonService.getSLADNumber(),
+			this.commonService.getRunningSlices(),
+			this.commonService.getRunningNS(),
+			this.commonService.getRunningFunctions(),
+			this.commonService.getPolicyAlertsNumber(),
+		]);
+
+		this.dashboardData[ 'nstd' ] = responses[ 0 ];
+		this.dashboardData[ 'nsd' ] = responses[ 1 ];
+		this.dashboardData[ 'vnfd' ] = responses[ 2 ];
+		this.dashboardData[ 'rpd' ] = responses[ 3 ];
+		this.dashboardData[ 'slad' ] = responses[ 4 ];
+		this.dashboardData[ 'runningSlices' ] = responses[ 5 ];
+		this.dashboardData[ 'runningNS' ] = responses[ 6 ];
+		this.dashboardData[ 'runningFunctions' ] = responses[ 7 ];
+		this.dashboardData[ 'policyAlerts' ] = responses[ 8 ];
+
+		this.loading = false;
 	}
 
 	async getVNVDashboardData() {
-		this.dashboardData = await this.commonService.getVNVDashboardData();
+		this.loading = true;
+
+		const responses = await Promise.all([
+			this.commonService.getTDNumber(),
+			this.commonService.getNSDNumber(),
+			this.commonService.getVNFDNumber(),
+			this.commonService.getTestsNumber('COMPLETED'),
+			this.commonService.getTestsNumber('STARTING'),
+			this.commonService.getTestsNumber('WAITING_FOR_CONFIRMATION'),
+			this.commonService.getTestsNumber('SCHEDULED'),
+			this.commonService.getTestsNumber('ERROR'),
+			this.commonService.getPlatformsNumber(),
+		]);
+
+		this.dashboardData[ 'testd' ] = responses[ 0 ];
+		this.dashboardData[ 'nsd' ] = responses[ 1 ];
+		this.dashboardData[ 'vnfd' ] = responses[ 2 ];
+		this.dashboardData[ 'testsCompleted' ] = responses[ 3 ];
+		this.dashboardData[ 'testsInProgress' ] = responses[ 4 ];
+		this.dashboardData[ 'testsWaitingForConfirmation' ] = responses[ 5 ];
+		this.dashboardData[ 'testsScheduled' ] = responses[ 6 ];
+		this.dashboardData[ 'testsFailed' ] = responses[ 7 ];
+
+		const platforms = responses[ 8 ];
+		if (platforms && Object.keys(platforms).length) {
+			this.dashboardData[ 'sonataPlatforms' ] = platforms[ 'SONATA' ].toString();
+			this.dashboardData[ 'osmPlatforms' ] = platforms[ 'OSM' ].toString();
+			this.dashboardData[ 'onapPlatforms' ] = platforms[ 'ONAP' ].toString();
+		} else {
+			this.dashboardData[ 'sonataPlatforms' ] = this.unknown;
+			this.dashboardData[ 'osmPlatforms' ] = this.unknown;
+			this.dashboardData[ 'onapPlatforms' ] = this.unknown;
+		}
+
+		this.loading = false;
+	}
+
+	canShowGraphsError() {
+		return this.vimData ?
+			!this.loading && Object.keys(this.vimData).length
+			: !this.loading;
 	}
 }

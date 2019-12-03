@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
@@ -20,20 +20,23 @@ interface InputData {
 	encapsulation: ViewEncapsulation.None
 })
 export class ExecuteTestDialogComponent implements OnInit {
+	@ViewChild('platformsSelect') platformsSelect;
 	loading: boolean;
 	testExecutionForm: FormGroup;
 	policies: Array<object>;
+	platforms: Array<string>;
 
 	constructor(
 		private router: Router,
 		private utilsService: UtilsService,
 		public dialogRef: MatDialogRef<ExecuteTestDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: InputData,
-		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService
+		private verificationAndValidationPlatformService: ValidationAndVerificationPlatformService,
 	) { }
 
 	ngOnInit() {
 		this.initForms();
+		this.getPlatforms();
 		if (this.data.policiesEnabled) {
 			this.getPolicies();
 		}
@@ -44,7 +47,7 @@ export class ExecuteTestDialogComponent implements OnInit {
 			platformName: new FormControl(),
 			policy: new FormControl(),
 			confirmRequired: new FormControl(),
-			executionHost: new FormControl()
+			executionHost: new FormControl(),
 		});
 	}
 
@@ -58,10 +61,29 @@ export class ExecuteTestDialogComponent implements OnInit {
 			: this.utilsService.openSnackBar('Unable to fetch any policy', '');
 	}
 
+	private async getPlatforms() {
+		this.loading = true;
+		const platforms = await this.verificationAndValidationPlatformService.getPlatformNames();
+
+		this.loading = false;
+		platforms ?
+			this.platforms = platforms
+			: this.utilsService.openSnackBar('Unable to fetch any platform', '');
+	}
+
 	receivePolicy(uuid) {
 		const platformName = this.policies.find(policy => policy[ 'uuid' ] === uuid)[ 'platformName' ];
 		this.testExecutionForm.get('policy').setValue(uuid);
 		this.testExecutionForm.get('platformName').setValue(platformName);
+		this.platforms = this.platforms.filter(platform => platform === platformName);
+		this.platformsSelect.value = platformName;
+	}
+
+	receivePlatform(platformName) {
+		this.testExecutionForm.get('platformName').setValue(platformName);
+		if (this.policies) {
+			this.policies = this.policies.filter(policy => policy[ 'platformName' ] === platformName);
+		}
 	}
 
 	changeConfirmRequired(value) {
@@ -94,6 +116,10 @@ export class ExecuteTestDialogComponent implements OnInit {
 
 	canShowPolicies() {
 		return this.policies && this.policies.length && this.data.policiesEnabled;
+	}
+
+	canShowPlatforms() {
+		return this.platforms && this.platforms.length;
 	}
 
 	close() {
