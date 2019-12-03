@@ -19,7 +19,6 @@ export class GraphDialogComponent implements OnInit {
 	metrics: Array<any>;
 	selectedFunction: string;
 	selectedMetric: string;
-	minutes = 30;
 	refreshRate = '8s';
 
 	constructor(
@@ -64,27 +63,20 @@ export class GraphDialogComponent implements OnInit {
 		this.getGraphUrl();
 	}
 
-	getDate() {
-		return new Date().getTime();
-	}
-
-	getMinutesAgo(minutes) {
-		return new Date().getTime() - (minutes * 60);
-	}
-
 	getGraphUrl() {
-		const functionType = 'CNF_dash/cnf';
+		const functionType = this.data.type === 'vnf' ? 'VNF_sp/vnf' : 'CNF_dash/cnf';
+		const id = this.data.type === 'vnf' ?
+			`var-id=${ this.selectedFunction }&`
+			: `var-cnt_name=${ this.selectedFunction }&`;
 		const panelID = '2';
 
 		return this.sanitizer.bypassSecurityTrustResourceUrl(
 			`${ this.config.baseSP }${ this.config.graphs }/d-solo/${ functionType }?orgId=1&` +
-			`from=${ this.getMinutesAgo(this.minutes) }&` +
-			`to=${ this.getDate() }&` +
-			`panelId=${ panelID }&` +
-			`var-cnt_name=${ this.selectedFunction }&` +
+			id +
 			`var-metric=${ this.selectedMetric }&` +
+			`refresh=${ this.refreshRate }&` +
 			`theme=light&` +
-			`refresh=${ this.refreshRate }`);
+			`panelId=${ panelID }`);
 	}
 
 	canShowGraph() {

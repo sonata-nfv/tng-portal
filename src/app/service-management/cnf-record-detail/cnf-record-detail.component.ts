@@ -46,7 +46,7 @@ export class CnfRecordDetailComponent implements OnInit {
 	async openMonitoringDialog() {
 		this.graphDialog.open(GraphDialogComponent, {
 			data: {
-				instanceUUID: this._instanceUUID, vnfUUID: this._vnfUUID
+				type: 'cnf', instanceUUID: this._instanceUUID, vnfUUID: this._vnfUUID
 			}
 		});
 	}
