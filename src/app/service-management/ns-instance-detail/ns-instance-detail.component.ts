@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
 	animate,
 	state,
@@ -10,7 +9,7 @@ import {
 } from '@angular/animations';
 
 import { ServiceManagementService } from '../service-management.service';
-import { CustomDataSource } from './custom-data-source.component';
+import { CustomDataSource } from '../../shared/components/custom-data-source.component';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 
