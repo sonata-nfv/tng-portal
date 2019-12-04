@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
@@ -36,6 +36,10 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	policyRulesDataSource = new MatTableDataSource;
 	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
 	durationUnits: Array<object>;
+	// Policy duplication params
+	duplicatingPolicy: boolean;
+	@ViewChild('slaSelect') slaSelect;
+	@ViewChild('nsSelect') nsSelect;
 
 	constructor(
 		private router: Router,
@@ -51,6 +55,18 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.getNS();
 		this.getSLA();
 		this.durationUnits = this.utilsService.getDurationUnits();
+
+		// Check if this is creation or duplication of a policy
+		if (this.router.url.includes('service-platform/policies/runtime-policies/duplicate')) {
+			this.duplicatingPolicy = true;
+
+			this.route.params.subscribe(params => {
+				const uuid = params[ 'id' ];
+				this.requestRuntimePolicy(uuid);
+			});
+		} else {
+			this.duplicatingPolicy = false;
+		}
 	}
 
 	private initForms() {
@@ -101,6 +117,34 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		}
 	}
 
+	async requestRuntimePolicy(uuid) {
+		this.loading = true;
+		const runtimePolicy = await this.servicePlatformService.getOneRuntimePolicy(uuid);
+
+		this.loading = false;
+		if (runtimePolicy) {
+			this.populateForms(runtimePolicy);
+		} else {
+			this.utilsService.openSnackBar('Unable to fetch the runtime policy data', '');
+			this.close();
+		}
+	}
+
+	private populateForms(policy) {
+		this.policyForm.get('name').setValue(policy.name);
+		this.policyForm.get('default').setValue(policy.default);
+		this.policyForm.get('vendor').setValue(policy.vendor);
+		this.policyForm.get('version').setValue(policy.version);
+		this.receiveNS(policy.nsUUID);
+		this.nsSelect.value = policy.nsUUID;
+		this.policyForm.get('sla').setValue(policy.slaUUID);
+		this.slaSelect.value = policy.slaUUID;
+		this.policyForm.get('monitoringRules').setValue(this.getStringifiedJSON(policy.monitoringRules));
+		this.openedMonitoringRuleForm = false;
+		this.policyForm.get('policyRules').setValue(policy.policyRules);
+		this.policyRulesDataSource.data = policy.policyRules;
+	}
+
 	private async getNS() {
 		this.loading = true;
 		const networkServices = await this.commonService.getNetworkServices('SP');
@@ -128,10 +172,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	}
 
 	private async getConditionsForService(nsUUID) {
-		this.loading = true;
 		const monitoringMetrics = await this.servicePlatformService.getMonitoringMetrics(nsUUID);
 
-		this.loading = false;
 		if (monitoringMetrics && monitoringMetrics.length) {
 			this.conditions = monitoringMetrics;
 		} else {
@@ -142,18 +184,19 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	private async getVNFPerService(nsUUID) {
 		const ns = await this.commonService.getOneNetworkService('SP', nsUUID);
 
-		this.loading = true;
 		(ns && ns.vnf) ?
 			this.vnfs = ns.vnf.map(item => item.vnf_vendor + ':' + item.vnf_name + ' ' + item.vnf_version)
 			: this.informError(1);
 	}
 
 	receiveNS(nsUUID) {
-		if (nsUUID !== 'None') {
+		if (nsUUID && nsUUID !== 'None') {
+			this.loading = true;
 			this.policyForm.get('ns').setValue(nsUUID);
 			this.conditions = new Array();
-			this.getConditionsForService(nsUUID);
 			this.getVNFPerService(nsUUID);
+			this.getConditionsForService(nsUUID);
+			this.loading = false;
 		} else {
 			this.policyForm.get('ns').setValue(null);
 		}
@@ -431,7 +474,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	}
 
 	canShowPolicyRulesTable() {
-		return this.policyForm.get('policyRules').value && this.policyForm.get('policyRules').value.length;
+		return this.policyForm.get('policyRules').value && this.policyForm.get('policyRules').value.length &&
+			this.policyRulesDataSource.data && this.policyRulesDataSource.data.length;
 	}
 
 	canDisableAddNewPolicyRule() {
@@ -542,6 +586,6 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	}
 
 	close() {
-		this.router.navigate([ '../' ], { relativeTo: this.route });
+		this.router.navigate([ 'service-platform/policies/runtime-policies' ]);
 	}
 }

@@ -25,11 +25,11 @@
 		<input matInput type="text" placeholder="Version" formControlName="version" required i18n-placeholder="@@version" />
 	</mat-form-field>
 
-	<app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+	<app-select #nsSelect class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
 		i18n-placeholder="@@nsPlaceholder">
 	</app-select>
 
-	<app-select class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
+	<app-select #slaSelect class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
 		i18n-placeholder="@@slaPlaceholder">
 	</app-select>
 </form>
