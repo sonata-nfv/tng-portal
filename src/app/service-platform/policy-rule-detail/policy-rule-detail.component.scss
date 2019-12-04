@@ -1,0 +1,66 @@
+@import "../../../constants.scss";
+app-policy-rule-detail {
+	display: flex;
+	flex-direction: column;
+	background-color: $panel-background-color;
+	border-bottom: 1px solid $primary-color-light;
+	
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin: 10px;
+		margin-bottom: 2vh;
+
+		.table-detail-title {
+			margin-top: 1vh;
+			font-size: 18px;
+			color: $primary-font-color-light;
+
+			&.condition-title {
+				margin-bottom: 2vh;
+			}
+		}
+
+		.mat-table {
+			width: 100%;
+			margin-bottom: 40px;
+			background-color: $panel-background-color;
+
+			.mat-cell {
+				cursor: auto;
+			}
+
+			.mat-row {
+				width: 100%;
+				border-bottom: none;
+				background-image: linear-gradient(
+					to right,
+					$panel-background-color 0%,
+					$table-underline-color 0%,
+					$table-underline-color 100%,
+					$panel-background-color 100%,
+					$panel-background-color 100%
+				);
+			}
+		}
+
+		// Styles for no instances message
+		.no-results-container {
+			margin-top: 2vh;
+		}
+
+		.conditions {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			margin-left: 2vw;
+
+			.rule-condition {
+				margin-top: 1vh;
+    			margin-bottom: 1vh;
+				color: $primary-font-color-light;
+			}
+		}
+	}
+}
