@@ -121,7 +121,6 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.loading = true;
 		const runtimePolicy = await this.servicePlatformService.getOneRuntimePolicy(uuid);
 
-		this.loading = false;
 		if (runtimePolicy) {
 			this.populateForms(runtimePolicy);
 		} else {
@@ -143,6 +142,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.openedMonitoringRuleForm = false;
 		this.policyForm.get('policyRules').setValue(policy.policyRules);
 		this.policyRulesDataSource.data = policy.policyRules;
+		this.loading = false;
 	}
 
 	private async getNS() {

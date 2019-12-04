@@ -9,7 +9,7 @@
 
 		<ng-container matColumnDef="type">
 			<th mat-header-cell *matHeaderCellDef i18n="@@type">Type</th>
-			<td mat-cell *matCellDef="let element">{{ element.action_type }}</td>
+			<td mat-cell *matCellDef="let element">{{ element.action_type  || '-' }} </td>
 		</ng-container>
 
 		<ng-container matColumnDef="name">
