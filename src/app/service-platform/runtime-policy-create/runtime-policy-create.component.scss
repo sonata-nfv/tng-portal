@@ -246,20 +246,20 @@ app-runtime-policy-create {
 					);
 				}
 
-				.mat-cell:nth-child(4),
-				.mat-header-cell:nth-child(4) {
+				.mat-cell.reduced-size:nth-child(4),
+				.mat-header-cell.reduced-size:nth-child(4) {
 					width: 25%;
 				}
 
-				.mat-cell:nth-child(5),
-				.mat-header-cell:nth-child(5) {
+				.mat-cell.reduced-size:nth-child(5),
+				.mat-header-cell.reduced-size:nth-child(5) {
 					width: 25px;
 				}
 			}
 		}
 
 		// Defined policy rules
-		table {
+		.mat-table {
 			width: 100%;
 			margin-bottom: 5vh;
 
@@ -267,7 +267,10 @@ app-runtime-policy-create {
 				cursor: auto;
 			}
 
-			tr.mat-row {
+			.element-row,
+			.mat-row {
+				position: relative;
+				border-bottom: none;
 				background-image: linear-gradient(
 				  to right,
 				  $basic-background-color 0%,
@@ -276,10 +279,31 @@ app-runtime-policy-create {
 				  $basic-background-color 95%,
 				  $basic-background-color 100%
 				);
+				background-image: 3px;
+
+				&.expanded {
+					border-bottom-color: transparent;
+					
+					.mat-cell {
+						color: $primary-font-color;
+					}
+				}
+
+				&:not(.expanded) {
+					cursor: pointer;
+			
+					.mat-cell {
+						color: $cell-color;
+					}
+				}
+
+				&.detail-row {
+					overflow: hidden;
+				}
 			}
 
-			.mat-cell:nth-child(4),
-			.mat-header-cell:nth-child(4) {
+			.mat-cell.reduced-size:nth-child(4),
+			.mat-header-cell.reduced-size:nth-child(4) {
 			  	width: 25px;
 			}
 		}

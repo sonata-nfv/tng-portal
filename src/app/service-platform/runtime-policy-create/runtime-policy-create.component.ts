@@ -2,17 +2,39 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
+import {
+	animate,
+	state,
+	style,
+	transition,
+	trigger
+} from '@angular/animations';
 
 import { CommonService } from '../../shared/services/common/common.service';
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { DialogDataService } from '../../shared/services/dialog/dialog.service';
 
+import { CustomDataSource } from '../../shared/components/custom-data-source.component';
+
 @Component({
 	selector: 'app-runtime-policy-create',
 	templateUrl: './runtime-policy-create.component.html',
 	styleUrls: [ './runtime-policy-create.component.scss' ],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	animations: [
+		trigger('detailExpand', [
+			state(
+				'collapsed',
+				style({
+					display: 'none',
+					transform: 'rotateX(90deg)'
+				})
+			),
+			state('expanded', style({ })),
+			transition('collapsed => expanded', animate('300ms ease-in'))
+		])
+	]
 })
 export class RuntimePolicyCreateComponent implements OnInit {
 	loading = false;
@@ -33,13 +55,16 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	displayedActionColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 	actionsDataSource = new MatTableDataSource;
-	policyRulesDataSource = new MatTableDataSource;
+	policyRulesDataSource = new CustomDataSource();
 	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
 	durationUnits: Array<object>;
 	// Policy duplication params
 	duplicatingPolicy: boolean;
 	@ViewChild('slaSelect') slaSelect;
 	@ViewChild('nsSelect') nsSelect;
+
+	isExpansionDetailRow = (i: number, row: Object) =>
+		row.hasOwnProperty('detailRow')
 
 	constructor(
 		private router: Router,
