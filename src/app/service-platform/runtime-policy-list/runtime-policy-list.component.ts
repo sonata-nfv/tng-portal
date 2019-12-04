@@ -121,16 +121,7 @@ export class RuntimePolicyListComponent implements OnInit, OnDestroy {
 	}
 
 	async duplicatePolicy(uuid) {
-		this.loading = true;
-		const response = await this.servicePlatformService.duplicateOneRuntimePolicy(uuid);
-
-		this.loading = false;
-		if (response) {
-			this.requestRuntimePolicies();
-			this.utilsService.openSnackBar('Runtime policy successfully duplicated', '');
-		} else {
-			this.utilsService.openSnackBar('Unable to duplicate this runtime policy', '');
-		}
+		this.router.navigate([ 'duplicate/', uuid ], { relativeTo: this.route });
 	}
 
 	async deletePolicy(policy) {

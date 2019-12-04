@@ -531,21 +531,6 @@ export class ServicePlatformService {
 		}
 	}
 
-	async duplicateOneRuntimePolicy(uuid) {
-		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.runtimePoliciesClone + uuid;
-
-		try {
-			return await this.http.get(url, { headers: headers }).toPromise();
-		} catch (error) {
-			if (error.status === 401 && error.statusText === 'Unauthorized') {
-				this.utilsService.launchUnauthorizedError();
-			}
-
-			console.error(error);
-		}
-	}
-
 	/**
 	 * Removes the specified runtime policy from the database
 	 *
