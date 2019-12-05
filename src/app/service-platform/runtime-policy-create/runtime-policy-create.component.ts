@@ -49,7 +49,9 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	slaList = new Array();
 	conditions = new Array();
 	monitoringRules = new Array();
-	policyRuleActions = [ 'Elasticity Action', 'Security Action' ];
+	policyRuleActions = [ 'Elasticity Action', 'Alert Action' ];
+	elasticityActionOptions = [ 'Add VNF', 'Remove VNF' ];
+	alertActionOptions = [ 'Intrusion' ];
 	policyRuleActionNames: Array<string>;
 	vnfs: Array<string>;
 	displayedActionColumns = [ 'actionObject', 'name', 'value', 'target', 'delete' ];
@@ -304,8 +306,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.actionsForm.get('actionObject').setValue(action);
 
 		// Set the policy rule action names for this policy rule action object
-		this.policyRuleActionNames = action === 'ElasticityAction' ?
-			[ 'Add VNF', 'Remove VNF' ] : [ 'Enable Firewall', 'Alert Message' ];
+		this.policyRuleActionNames = action === 'ElasticityAction' ? this.elasticityActionOptions : this.alertActionOptions;
 	}
 
 	receivePolicyRuleActionName(name) {
