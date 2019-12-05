@@ -477,6 +477,10 @@ export class ServicePlatformService {
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
+			} else if (error.status === 412 && error.statusText === 'Precondition Failed') {
+				this.utilsService.openSnackBar('There was an error. Please, update the version of your duplicated policy before saving it.', '');
+			} else {
+				this.utilsService.openSnackBar('There was an error creating the runtime policy', '');
 			}
 
 			console.error(error);
@@ -522,21 +526,6 @@ export class ServicePlatformService {
 
 		try {
 			return await this.http.patch(url, data, { headers: headers }).toPromise();
-		} catch (error) {
-			if (error.status === 401 && error.statusText === 'Unauthorized') {
-				this.utilsService.launchUnauthorizedError();
-			}
-
-			console.error(error);
-		}
-	}
-
-	async duplicateOneRuntimePolicy(uuid) {
-		const headers = this.authService.getAuthHeaders();
-		const url = this.config.baseSP + this.config.runtimePoliciesClone + uuid;
-
-		try {
-			return await this.http.get(url, { headers: headers }).toPromise();
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();

@@ -1,16 +1,38 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import {
+	animate,
+	state,
+	style,
+	transition,
+	trigger
+} from '@angular/animations';
 
 import { ServicePlatformService } from '../service-platform.service';
 import { UtilsService } from '../../shared/services/common/utils.service';
 import { CommonService } from '../../shared/services/common/common.service';
 
+import { CustomDataSource } from '../../shared/components/custom-data-source.component';
+
 @Component({
 	selector: 'app-runtime-policy-detail',
 	templateUrl: './runtime-policy-detail.component.html',
 	styleUrls: [ './runtime-policy-detail.component.scss' ],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	animations: [
+		trigger('detailExpand', [
+			state(
+				'collapsed',
+				style({
+					display: 'none',
+					transform: 'rotateX(90deg)'
+				})
+			),
+			state('expanded', style({ })),
+			transition('collapsed => expanded', animate('300ms ease-in'))
+		])
+	]
 })
 export class RuntimePolicyDetailComponent implements OnInit {
 	loading = false;
@@ -19,6 +41,11 @@ export class RuntimePolicyDetailComponent implements OnInit {
 	detail = { };
 	slaValue: string;
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
+	policyRuleDetail = { };
+	dataSourcePolicyRule: CustomDataSource;
+
+	isExpansionDetailRow = (i: number, row: Object) =>
+		row.hasOwnProperty('detailRow')
 
 	constructor(
 		private router: Router,
@@ -53,6 +80,9 @@ export class RuntimePolicyDetailComponent implements OnInit {
 		if (runtimePolicy) {
 			this.detail = runtimePolicy;
 			this.policyForm.get('default').setValue(this.detail[ 'default' ]);
+
+			this.dataSourcePolicyRule = new CustomDataSource();
+			this.dataSourcePolicyRule.data = this.detail[ 'policyRules' ];
 
 			// Request SLAs related to this NS
 			this.requestSLAs(this.detail[ 'nsUUID' ]);

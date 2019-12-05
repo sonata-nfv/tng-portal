@@ -25,11 +25,11 @@
 		<input matInput type="text" placeholder="Version" formControlName="version" required i18n-placeholder="@@version" />
 	</mat-form-field>
 
-	<app-select class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
+	<app-select #nsSelect class="select" placeholder="Network Service" [list]="nsList" (selectEvent)="receiveNS($event)"
 		i18n-placeholder="@@nsPlaceholder">
 	</app-select>
 
-	<app-select class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
+	<app-select #slaSelect class="select" placeholder="SLA template" [list]="slaList" (selectEvent)="receiveSLA($event)"
 		i18n-placeholder="@@slaPlaceholder">
 	</app-select>
 </form>
@@ -134,15 +134,30 @@
 		</ng-container>
 
 		<ng-container matColumnDef="delete">
-			<th mat-header-cell *matHeaderCellDef></th>
-			<td mat-cell *matCellDef="let element" (click)="deletePolicyRule(element)" (click)="$event.stopPropagation()">
+			<th mat-header-cell class="reduced-size" *matHeaderCellDef></th>
+			<td mat-cell class="reduced-size" *matCellDef="let element" (click)="deletePolicyRule(element)"
+				(click)="$event.stopPropagation()">
 				<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
 					<i class="wui wui-trash-alt"></i>
 				</button>
 			</td>
 		</ng-container>
+
+		<!-- Expanded Content Column - The detail row is made up of this one column -->
+		<ng-container matColumnDef="expandedDetail">
+			<td mat-cell *matCellDef="let detail">
+				<app-policy-rule-detail [policyRule]="detail.element"></app-policy-rule-detail>
+			</td>
+		</ng-container>
+
 		<tr mat-header-row *matHeaderRowDef="displayedRuleColumns"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedRuleColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedRuleColumns" matRipple class="element-row"
+			[class.expanded]="policyRuleDetail == row" [class.collapsed]="policyRuleDetail != row"
+			(click)="policyRuleDetail = policyRuleDetail == row ? {} : row"></tr>
+
+		<tr mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+			[@detailExpand]="row.element == policyRuleDetail ? 'expanded' : 'collapsed'" class="detail-row" style="overflow: hidden"></tr>
+
 	</table>
 
 	<h4 class="title4 upper-case" i18n="@@createNewPolicyRule">Create a new policy rule</h4>
@@ -269,8 +284,9 @@
 					<td mat-cell *matCellDef="let element">{{ element.target.name }}</td>
 				</ng-container>
 				<ng-container matColumnDef="delete">
-					<th mat-header-cell *matHeaderCellDef></th>
-					<td mat-cell *matCellDef="let element" (click)="deleteTarget(element)" (click)="$event.stopPropagation()">
+					<th mat-header-cell class="reduced-size" *matHeaderCellDef></th>
+					<td mat-cell class="reduced-size" *matCellDef="let element" (click)="deleteTarget(element)"
+						(click)="$event.stopPropagation()">
 						<button class="icon-button-shadow actions " mat-button matTooltip="Delete" i18n-matTooltip="@@delete">
 							<i class="wui wui-trash-alt"></i>
 						</button>

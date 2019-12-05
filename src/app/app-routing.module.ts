@@ -90,7 +90,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'terms-of-usage', component: TermsOfUsageComponent },
-	{ path: 'registered', component: RegisteredComponent , canActivate: [ AuthGuard ] },
+	{ path: 'registered', component: RegisteredComponent, canActivate: [ AuthGuard ] },
 	{ path: 'portal', redirectTo: '' },
 	{
 		path: '',
@@ -194,6 +194,7 @@ const routes: Routes = [
 				canActivate: [ CanDisplayGuard ], data: { section: 'service platform' },
 				children: [
 					{ path: 'new', component: RuntimePolicyCreateComponent },
+					{ path: 'duplicate/:id', component: RuntimePolicyCreateComponent },
 					{ path: ':id', component: RuntimePolicyDetailComponent }
 				]
 			},

@@ -17,6 +17,7 @@ import { SpFunctionsDetailComponent } from './sp-functions-detail/sp-functions-d
 import { PlacementPolicyComponent } from './placement-policy/placement-policy.component';
 import { RuntimePolicyListComponent } from './runtime-policy-list/runtime-policy-list.component';
 import { RuntimePolicyDetailComponent } from './runtime-policy-detail/runtime-policy-detail.component';
+import { PolicyRuleDetailComponent } from './policy-rule-detail/policy-rule-detail.component';
 import { RuntimePolicyCreateComponent } from './runtime-policy-create/runtime-policy-create.component';
 import {
 	GeneratedActionsComponent
@@ -43,6 +44,7 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		PlacementPolicyComponent,
 		RuntimePolicyListComponent,
 		RuntimePolicyDetailComponent,
+		PolicyRuleDetailComponent,
 		RuntimePolicyCreateComponent,
 		GeneratedActionsComponent,
 		SlaTemplateListComponent,
@@ -55,7 +57,7 @@ import { SpSliceTemplateDetailComponent } from './sp-slice-template-detail/sp-sl
 		SlaViolationsComponent,
 		SpSliceTemplateListComponent,
 		SpSliceTemplateCreateComponent,
-		SpSliceTemplateDetailComponent
+		SpSliceTemplateDetailComponent,
 	],
 	entryComponents: [],
 	imports: [

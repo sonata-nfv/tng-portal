@@ -42,7 +42,6 @@ export class ConfigService extends Config {
 	runtimePolicyDeactivation = 'policies/deactivate/';
 	runtimePoliciesUI = 'policies/ui';
 	runtimePoliciesBind = 'policies/bind/';
-	runtimePoliciesClone = 'policies/clone/';
 	runtimePoliciesDefault = 'policies/default/';
 	runtimePoliciesActions = 'policies/actions';
 	runtimePoliciesRecords = 'policies/records';
