@@ -58,7 +58,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	displayedRuleColumns = [ 'name', 'salience', 'inertia', 'delete' ];
 	actionsDataSource = new MatTableDataSource;
 	policyRulesDataSource = new CustomDataSource();
-	thresholds = [ { uuid: '>', name: 'greater' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
+	thresholds = [ { uuid: '>', name: 'more' }, { uuid: '=', name: 'equal' }, { uuid: '<', name: 'less' } ];
 	durationUnits: Array<object>;
 	// Policy duplication params
 	duplicatingPolicy: boolean;
@@ -321,13 +321,16 @@ export class RuntimePolicyCreateComponent implements OnInit {
 	addNewMonitoringRule() {
 		let rules: Array<Object>;
 		const threshold = this.monitoringRulesForm.get('threshold').value.concat('', this.monitoringRulesForm.get('thresholdValue').value);
-		const name = this.monitoringRulesForm.get('condition').value.concat(':', threshold);
+		const thresholdForName = this.thresholds.find(o => o.uuid === this.monitoringRulesForm.get('threshold').value).name
+			.concat('', this.monitoringRulesForm.get('thresholdValue').value);
+		const name = this.monitoringRulesForm.get('condition').value.concat(':', thresholdForName);
+		const condition = this.monitoringRulesForm.get('condition').value.split(':')[ 2 ];
 		const rule = {
 			'name': name,
 			'description': this.monitoringRulesForm.get('description').value,
 			'duration': parseInt(this.monitoringRulesForm.get('duration').value, 10),
 			'duration_unit': this.monitoringRulesForm.get('durationUnit').value,
-			'condition': this.monitoringRulesForm.get('condition').value,
+			'condition': condition,
 			'threshold': threshold
 		};
 
