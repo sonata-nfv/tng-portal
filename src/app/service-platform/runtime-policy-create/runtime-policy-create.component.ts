@@ -160,7 +160,8 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		this.policyForm.get('name').setValue(policy.name);
 		this.policyForm.get('default').setValue(policy.default);
 		this.policyForm.get('vendor').setValue(policy.vendor);
-		this.policyForm.get('version').setValue(policy.version);
+		const version = (parseInt(policy.version, 10) + 1).toString();
+		this.policyForm.get('version').setValue(version !== 'NaN' ? version : '');
 		this.receiveNS(policy.nsUUID);
 		this.nsSelect.value = policy.nsUUID;
 		this.policyForm.get('sla').setValue(policy.slaUUID);
@@ -578,11 +579,9 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		const response = await this.servicePlatformService.postOneRuntimePolicy(policy);
 
 		this.loading = false;
-		if (response) {
+		if (response && response instanceof Object) {
 			this.utilsService.openSnackBar('Runtime policy created', '');
 			this.close();
-		} else {
-			this.utilsService.openSnackBar('There was an error creating the runtime policy', '');
 		}
 	}
 

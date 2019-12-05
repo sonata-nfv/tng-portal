@@ -477,6 +477,10 @@ export class ServicePlatformService {
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
+			} else if (error.status === 412 && error.statusText === 'Precondition Failed') {
+				this.utilsService.openSnackBar('There was an error. Please, update the version of your duplicated policy before saving it.', '');
+			} else {
+				this.utilsService.openSnackBar('There was an error creating the runtime policy', '');
 			}
 
 			console.error(error);
