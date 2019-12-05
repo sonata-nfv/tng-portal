@@ -74,7 +74,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 		private dialogData: DialogDataService,
 		private utilsService: UtilsService,
 		private commonService: CommonService,
-		private servicePlatformService: ServicePlatformService
+		private servicePlatformService: ServicePlatformService,
 	) { }
 
 	ngOnInit() {
@@ -439,6 +439,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 		rules.push(rule);
 		this.policyForm.get('policyRules').setValue(rules);
+		this.policyRulesDataSource = new CustomDataSource();
 		this.policyRulesDataSource.data = rules;
 		this.resetPolicyRulesForm();
 	}
@@ -456,6 +457,7 @@ export class RuntimePolicyCreateComponent implements OnInit {
 
 	deletePolicyRule(element) {
 		const filteredRules = this.policyForm.get('policyRules').value.filter(item => item !== element);
+		this.policyRulesDataSource = new CustomDataSource();
 		this.policyRulesDataSource.data = filteredRules;
 		this.policyForm.get('policyRules').setValue(filteredRules);
 	}
