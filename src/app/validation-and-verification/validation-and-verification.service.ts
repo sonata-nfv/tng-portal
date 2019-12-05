@@ -286,7 +286,10 @@ export class ValidationAndVerificationPlatformService {
      */
 	async postTestPlans(section, uuid, confirmRequired, policy, platformName, executionHost) {
 		const headers = this.authService.getAuthHeaders();
-		let parameters = `?confirmRequired=${ confirmRequired }&testUuid=${ uuid }`;
+		let parameters = `?confirmRequired=${ confirmRequired }`;
+		section === 'tests' ?
+			parameters = parameters.concat(`&testUuid=${ uuid }`)
+			: parameters = parameters.concat(`&serviceUuid=${ uuid }`);
 		if (platformName) {
 			parameters = parameters.concat(`&spName=${ platformName }`);
 		}

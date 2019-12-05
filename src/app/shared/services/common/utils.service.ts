@@ -3,10 +3,9 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import * as jsyaml from 'js-yaml';
 
-import { DialogDataService } from '../dialog/dialog.service';
-
 @Injectable()
 export class UtilsService {
+	private noSpacesPattern = '^\\S*$';
 	private emailPattern = '[a-zA-Z0-9.-._]{1,}@[a-zA-Z0-9.-]{2,}[.]{1}[a-zA-Z]{2,}';
 	private ipPattern = '(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)';
 	private maskPattern = '([1-9]|1[0-9]|2[0-9]|3[2])';
@@ -19,9 +18,12 @@ export class UtilsService {
 
 	constructor(
 		public snackBar: MatSnackBar,
-		private dialogData: DialogDataService,
 		private router: Router
 	) { }
+
+	getNoSpacesPattern() {
+		return this.noSpacesPattern;
+	}
 
 	getEmailPattern() {
 		return this.emailPattern;
