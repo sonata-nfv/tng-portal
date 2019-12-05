@@ -43,7 +43,8 @@ export class PlatformComponent implements OnInit {
 
 	private initForms() {
 		this.platformForm = new FormGroup({
-			name: new FormControl({ value: '', disabled: this.edition }, Validators.required),
+			name: new FormControl({ value: '', disabled: this.edition },
+				[ Validators.required, Validators.pattern(this.utilsService.getNoSpacesPattern()) ]),
 			host: new FormControl('', Validators.required),
 			username: new FormControl('', Validators.required),
 			password: new FormControl('', Validators.required),
@@ -153,6 +154,10 @@ export class PlatformComponent implements OnInit {
 
 	canShowOsmForm() {
 		return this.canShowForm() && this.platformType === 'OSM' ? true : false;
+	}
+
+	patternErrorExists() {
+		return this.platformForm.get('name').hasError('pattern');
 	}
 
 	receiveType(type) {

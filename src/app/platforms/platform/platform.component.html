@@ -9,6 +9,9 @@
 <form [formGroup]="platformForm" class="title-section" *ngIf="canShowForm()">
 	<mat-form-field class="title1">
 		<input matInput type="text" placeholder="Platform Name" formControlName="name" required i18n-placeholder="@@platformName" />
+		<mat-error *ngIf="patternErrorExists()" class="error-message" i18n="@@fieldRequiredAndNoSpaces">*This field is required and no
+			spaces are allowed
+		</mat-error>
 	</mat-form-field>
 
 	<div class="header-buttons">
