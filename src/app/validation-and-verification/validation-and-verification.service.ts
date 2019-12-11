@@ -216,6 +216,7 @@ export class ValidationAndVerificationPlatformService {
 				serviceUUID: response[ 'service_uuid' ],
 				serviceName: response[ 'service_name' ] || 'Unknown',
 				status: response[ 'test_status' ],
+				description: response[ 'description' ],
 				required: response[ 'confirm_required' ],
 				testSet: response[ 'test_set_uuid' ],
 				testUUID: response[ 'test_uuid' ],

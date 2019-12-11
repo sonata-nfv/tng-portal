@@ -62,6 +62,13 @@
 		<input matInput placeholder="Updated at" value="Last update: {{ utilsService.formatUTCDate(testPlan['updatedAt']) }}" disabled
 			i18n-placeholder="@@updatedAtPlaceholder" />
 	</mat-form-field>
+
+	<div class="description" *ngIf="testPlan['description']">
+		<h4 class="title4" i18n="@@description">Description</h4>
+		<span class="content">
+			<p>{{ testPlan['description'] }}</p>
+		</span>
+	</div>
 </form>
 
 <div *ngIf="canShowExecute()" (click)="confirmExecution()" class="launch">
