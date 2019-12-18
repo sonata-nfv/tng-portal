@@ -2,17 +2,13 @@
 [![Join the chat at https://gitter.im/sonata-nfv/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sonata-nfv/Lobby)
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/wiki/images/sonata-5gtango-logo-500px.png" /></p>
-
 # 5GTANGO Portal
 
 This repository contains an Angular 7 application for the [5GTANGO](http://5gtango.eu) Portal.
 
-The main function of this web application is to provide a method to unify monitoring, user management and interactions with the Validation and Verification Platform, the Service Platform and with the Service Management.
-
-There is also a version of the Portal for using the 5GTANGO Service Development Kit, which is further described [below](#sdk-portal).
+The main function of this web application is to provide a method to unify monitoring, user management and interactions with the Validation and Verification Platform, the Service Platform and with the Service Management. It also supports using the 5GTANGO Service Development Kit, which is further described [below](#sdk-portal).
 
 <p align="center"><img src="https://github.com/sonata-nfv/tng-portal/blob/master/src/assets/images/5GTANGO.gif" /></p>
-
 ## Installation
 
 Make sure that you have all the dependencies installed. Then, run the following command to install all the required modules.
@@ -92,19 +88,16 @@ These are the sections that can be activated:
 	"SETTINGS",
 	"VALIDATION",
 	"SERVICE PLATFORM",
-	"SERVICE MANAGEMENT"
+	"SERVICE MANAGEMENT",
+	"SDK"
   ]
 ```
 
 When deploying in production, there are three predefined configuration files: `/src/config-sp.json`, `/src/config-vnv.json` and `/src/config-sdk.json` for each of the environments. They configure the Portal automatically to display the sections of interest. The user just needs to declare an environmental variable called `$PLATFORM` with the value `sp`, `vnv` or `sdk`.
 
-*Note: The SDK functionality is currently separated and only available in the [`sdk` branch](https://github.com/sonata-nfv/tng-portal/tree/sdk) of the repository.*
-
 ## SDK Portal
 
-The SDK Portal is currently an independent extension to the regular 5GTANGO Portal. It provides a simple graphical user interface for creating new NFV projects, generating and editing corresponding network service and VNF descriptors. These NFV projects can then be then be validated, packaged, and downloaded for further usage. 
-
-The SDK Portal is maintained in the [`sdk` branch](https://github.com/sonata-nfv/tng-portal/tree/sdk). To use it, check out and use the code from that branch for all following commands.
+The SDK Portal is an optional part of the 5GTANGO portal. It provides a simple graphical user interface for creating new NFV projects, generating and editing corresponding network service and VNF descriptors. These NFV projects can then be then be validated, packaged, and downloaded for further usage. 
 
 ### Running the SDK Backend
 
@@ -122,7 +115,7 @@ The SDK Portal connects to the 5GTANGO SDK tools, which are installed in a dedic
 
 ### Configuring the SDK Portal to Connect to the Backend
 
-The IP address of the SDK backend container needs to be configured in `config.service.ts` before starting the SDK Portal. The default value is `http://localhost` for a locally deployed SDK backend container.
+The IP address of the SDK backend container needs to be configured in `config.service.ts` before starting the SDK Portal. For a locally deployed SDK backend container, use `http://localhost`.
 
 ### Running the SDK Portal
 
