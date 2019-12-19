@@ -42,10 +42,6 @@
 	<mat-form-field>
 		<input matInput type="text" placeholder="Password" formControlName="password" required i18n-placeholder="@@password" />
 	</mat-form-field>
-
-	<mat-form-field>
-		<input matInput type="text" placeholder="Monitoring URLs" formControlName="monitoring_urls" i18n-placeholder="@@monitoringUrls" />
-	</mat-form-field>
 </form>
 
 <form [formGroup]="osmForm" class="platformForm" *ngIf="canShowOsmForm()">

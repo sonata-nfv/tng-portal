@@ -2204,25 +2204,18 @@
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="monitoringUrls" datatype="html">
-        <source>Monitoring URLs</source><target state="final">Monitoring URLs</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="projectName" datatype="html">
         <source>Project name</source><target state="final">Project name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="vimAccount" datatype="html">
         <source>VIM account</source><target state="final">VIM account</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/platforms/platform/platform.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="city" datatype="html">
@@ -2358,11 +2351,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">127</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">141</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
@@ -2764,7 +2757,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">75</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests/tests.component.html</context>
@@ -2787,7 +2780,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cancelExecution" datatype="html">
@@ -2798,7 +2791,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="rejectExecution" datatype="html">
@@ -2809,7 +2802,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="testPlanIDPlaceholder" datatype="html">
@@ -2898,7 +2891,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">107</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
@@ -3008,36 +3001,75 @@
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="description" datatype="html">
+        <source>Description</source><target state="final">Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-platform/sp-slice-template-detail/sp-slice-template-detail.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="confirmTestPlanAsRequired" datatype="html">
         <source>Confirm the test plan as required</source><target state="final">Confirm the test plan as required</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cancellExecutionTestPlan" datatype="html">
         <source>Cancel the execution of the test plan</source><target state="final">Cancel the execution of the test plan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="confirmOrCancelExecutionTestPlan" datatype="html">
         <source>Confirm or cancel the execution of the test plan</source><target state="final">Confirm or cancel the execution of the test plan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="results" datatype="html">
         <source>Results</source><target state="final">Results</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">140</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/analytic-result/analytic-result.component.html</context>
@@ -3048,21 +3080,21 @@
         <source>Started at</source><target state="final">Started at</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="endedAtPlaceholder" datatype="html">
         <source>Ended at</source><target state="final">Ended at</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="details" datatype="html">
         <source>Details</source><target state="final">Details</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/test-plan/test-plan.component.html</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="optionallyChoosePolicyOrHostAndPlatform" datatype="html">
@@ -3245,41 +3277,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
           <context context-type="linenumber">57</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="description" datatype="html">
-        <source>Description</source><target state="final">Description</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/validation-and-verification/tests-detail/tests-detail.component.html</context>
-          <context context-type="linenumber">61</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/validation-and-verification/vnv-network-services-detail/vnv-network-services-detail.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sp-functions-detail/sp-functions-detail.component.html</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-platform/sp-slice-template-detail/sp-slice-template-detail.component.html</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-create/slice-instance-create.component.html</context>
-          <context context-type="linenumber">76</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-slice-template-detail/sm-slice-template-detail.component.html</context>
-          <context context-type="linenumber">64</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/slice-instance-detail/slice-instance-detail.component.html</context>
-          <context context-type="linenumber">60</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/service-management/sm-network-services-detail/sm-network-services-detail.component.html</context>
-          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="affectedNetworkServices" datatype="html">
