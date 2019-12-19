@@ -48,7 +48,6 @@ export class PlatformComponent implements OnInit {
 			host: new FormControl('', Validators.required),
 			username: new FormControl('', Validators.required),
 			password: new FormControl('', Validators.required),
-			monitoring_urls: new FormControl()
 		});
 
 		this.osmForm = new FormGroup({
@@ -67,7 +66,6 @@ export class PlatformComponent implements OnInit {
 		this.platformForm.get('host').setValue(this.originalPlatform[ 'host' ]);
 		this.platformForm.get('username').setValue(this.originalPlatform[ 'username' ]);
 		this.platformForm.get('password').setValue(this.originalPlatform[ 'password' ]);
-		this.platformForm.get('monitoring_urls').setValue(this.originalPlatform[ 'monitoring_urls' ]);
 		this.osmForm.get('project_name').setValue(this.originalPlatform[ 'project_name' ]);
 		this.osmForm.get('vim_account').setValue(this.originalPlatform[ 'vim_account' ]);
 	}
@@ -119,7 +117,6 @@ export class PlatformComponent implements OnInit {
 			host: this.platformForm.get('host').value,
 			username: this.platformForm.get('username').value,
 			password: this.platformForm.get('password').value,
-			monitoring_urls: this.platformForm.get('monitoring_urls').value || '',
 		};
 		if (this.osmForm.get('project_name').value) {
 			platform[ 'project_name' ] = this.osmForm.get('project_name').value;

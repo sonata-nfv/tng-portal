@@ -51,7 +51,9 @@ export class PlatformsService {
 		const url = this.config.baseVNV + this.config.platformSettings + '/' + uuid;
 
 		try {
-			return await this.http.get(url, { headers: headers }).toPromise();
+			const response = await this.http.get(url, { headers: headers }).toPromise();
+			delete response['monitoring_urls'];
+			return response;
 		} catch (error) {
 			if (error.status === 401 && error.statusText === 'Unauthorized') {
 				this.utilsService.launchUnauthorizedError();
