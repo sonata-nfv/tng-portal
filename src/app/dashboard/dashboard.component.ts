@@ -118,8 +118,6 @@ export class DashboardComponent implements OnInit {
 	}
 
 	canShowGraphsError() {
-		return this.vimData ?
-			!this.loading && Object.keys(this.vimData).length
-			: !this.loading;
+		return (this.vimData && Object.keys(this.vimData).length && !this.loading) ? false : true;
 	}
 }
