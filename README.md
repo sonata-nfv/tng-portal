@@ -55,7 +55,7 @@ If you want to launch a container locally, place yourself in the Dockerfile fold
 [sudo] docker run -p 80:4200 tng-portal
 ```
 
-The container should be up and running in http://0.0.0.0:80.
+The container should be up and running in http://localhost:80.
 
 *Note: The port where the app will run when using the Docker container can be set in `./Dockerfile`. By default, 4200 is set.*
 
