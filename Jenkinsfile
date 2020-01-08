@@ -82,8 +82,8 @@ pipeline {
 			stages {
 				stage('Generating release') {
 					steps {
-						sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest registry.sonata-nfv.eu:5000/tng-portal:v5.0'
-						sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest sonatanfv/tng-portal:v5.0'
+						sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest registry.sonata-nfv.eu:5000/tng-portal:v5.1'
+						sh 'docker tag registry.sonata-nfv.eu:5000/tng-portal:latest sonatanfv/tng-portal:v5.1'
 						sh 'docker push registry.sonata-nfv.eu:5000/tng-portal:v5.1'
 						sh 'docker push sonatanfv/tng-portal:v5.1'
 					}
