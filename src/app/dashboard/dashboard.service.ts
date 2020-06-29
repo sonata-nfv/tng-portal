@@ -27,16 +27,15 @@ export class DashboardService {
 		try {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			if (response[ 'metrics' ][ 'result' ] instanceof Array) {
-				const resultingMetric = response[ 'metrics' ][ 'result' ]
-				//const resultingMetric = response[ 'metrics' ][ 'result' ].find(item => {
-				//	const location = item.metric.exported_instance.split(':')[ 0 ];
-				//	const metricName = item.metric.__name__;
-				//	if (this.config.base.includes(location) && metricName === metric) {
-				//		return item;
-				//	}
-				//})[ 'metric' ];
+				const resultingMetric = response[ 'metrics' ][ 'result' ].find(item => {
+					const location = this.config.base;
+					const metricName = item.metric.__name__;
+					if (this.config.base.includes(location) && metricName === metric) {
+						return item;
+					}
+				})[ 'metric' ];
 				return resultingMetric ?
-					{ vimUUID: resultingMetric[ 'resource_id' ], vimEnv: resultingMetric[ 'resource_id' ].concat(this.config.base.toString()) }
+					{ vimUUID: resultingMetric[ 'resource_id' ], vimEnv: resultingMetric[ 'exported_instance' ] }
 					: { };
 			} else {
 				return { };
