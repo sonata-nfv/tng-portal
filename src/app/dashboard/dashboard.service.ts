@@ -28,7 +28,7 @@ export class DashboardService {
 			const response = await this.http.get(url, { headers: headers }).toPromise();
 			if (response[ 'metrics' ][ 'result' ] instanceof Array) {
 				const resultingMetric = response[ 'metrics' ][ 'result' ].find(item => {
-					const location = item.metric.exported_instance.split(':')[ 0 ];
+					const location = this.config.base;
 					const metricName = item.metric.__name__;
 					if (this.config.base.includes(location) && metricName === metric) {
 						return item;
