@@ -504,6 +504,38 @@ export class CommonService {
 		}
 	}
 
+	async getSPDashboardData() {
+		return {
+			nstd: await this.getNSTDNumber() || this.unknown,
+			nsd: await this.getNSDNumber() || this.unknown,
+			vnfd: await this.getVNFDNumber() || this.unknown,
+			rpd: await this.getRPDNumber() || this.unknown,
+			slad: await this.getSLADNumber() || this.unknown,
+			runningSlices: await this.getRunningSlices() || this.unknown,
+			runningNS: await this.getRunningNS() || this.unknown,
+			runningFunctions: await this.getRunningFunctions() || this.unknown,
+			policyAlerts: await this.getPolicyAlertsNumber() || this.unknown
+		};
+	}
+
+	async getVNVDashboardData() {
+		const platforms = await this.getPlatformsNumber();
+
+		return {
+			testd: await this.getTDNumber() || this.unknown,
+			nsd: await this.getNSDNumber() || this.unknown,
+			vnfd: await this.getVNFDNumber() || this.unknown,
+			sonataPlatforms: platforms[ 'SONATA' ].toString() || this.unknown,
+			osmPlatforms: platforms[ 'OSM' ].toString() || this.unknown,
+			onapPlatforms: platforms[ 'ONAP' ].toString() || this.unknown,
+			testsCompleted: await this.getTestsNumber('COMPLETED') || this.unknown,
+			testsInProgress: await this.getTestsNumber('STARTING') || this.unknown,
+			testsWaitingForConfirmation: await this.getTestsNumber('WAITING_FOR_CONFIRMATION') || this.unknown,
+			testsScheduled: await this.getTestsNumber('SCHEDULED') || this.unknown,
+			testsFailed: await this.getTestsNumber('ERROR') || this.unknown
+		};
+	}
+
 	async getTDNumber() {
 		const headers = this.authService.getAuthHeaders();
 		const url = this.config.baseVNV + this.config.testDescriptors + `?count`;
@@ -517,7 +549,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -534,7 +565,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -551,7 +581,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -568,7 +597,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -585,7 +613,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -602,7 +629,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -619,7 +645,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -636,7 +661,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -653,7 +677,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -670,7 +693,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 
@@ -702,7 +724,6 @@ export class CommonService {
 			}
 
 			console.error(error);
-			return this.unknown;
 		}
 	}
 }
